@@ -31,7 +31,7 @@ java -jar luix-passport-server/target/*.war
 ```
 * Run Client -> `./gradlew -b samples/demo-client/samples-demo-client.gradle bootRun`
 * Run Resource Server -> `./gradlew -b samples/messages-resource/samples-messages-resource.gradle bootRun`
-* Go to `http://127.0.0.1:8080`
+* Go to `http://127.0.0.1:4003`
 ** Login with credentials -> user \ password
 
 Access H2 Console with URL:
