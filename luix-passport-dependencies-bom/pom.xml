@@ -55,7 +55,7 @@
         <tomcat_embed_version>9.0.63</tomcat_embed_version>
         <transmittable_thread_local_version>2.14.2</transmittable_thread_local_version>
         <validation_version>2.0.1.Final</validation_version>
-        <luix_springboot3_version>1.2.2.3</luix_springboot3_version>
+        <luix_springboot3_version>1.2.2.4</luix_springboot3_version>
         <luix_commons_version>1.2.2.7</luix_commons_version>
         <spring_web_version>5.3.21</spring_web_version>
         <servlet_version>4.0.4</servlet_version>
