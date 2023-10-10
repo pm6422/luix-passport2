@@ -33,7 +33,10 @@ java -jar luix-passport-server/target/*.jar
 ```bash
 java -jar luix-passport-client/target/*.jar
 ```
-* Run Resource Server -> `./gradlew -b samples/messages-resource/samples-messages-resource.gradle bootRun`
+* Run Resource Server
+```bash
+java -jar luix-passport-resource-server/target/*.jar
+```
 
 * Then navigate to `http://127.0.0.1:4003` to access client
 ** Login with credentials -> user \ password
