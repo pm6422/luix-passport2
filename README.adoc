@@ -29,7 +29,7 @@ NOTE: Java compatability: Java 17 above
 * Run Client -> `./gradlew -b samples/demo-client/samples-demo-client.gradle bootRun`
 * Run Resource Server -> `./gradlew -b samples/messages-resource/samples-messages-resource.gradle bootRun`
 * Go to `http://127.0.0.1:8080`
-** Login with credentials -> user1 \ password
+** Login with credentials -> user \ password
 
 Access H2 Console with URL:
 http://localhost:4001/h2-console[http://localhost:4001/h2-console]
