@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Passport Client</title>
+        <link rel="shortcut icon" th:href="@{/images/logo.svg}"/>
+    </head>
+    <body>
+        <h1>Client</h1>
+        <p th:if="!${authenticated}">Please <a href="/open-api/login">login</a></p>
+        <p th:if="${authenticated}"><span th:text="${user}"></span>已登录 <button type="button" id="logout">退出登录</button>
+        <script src="http://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#logout').on("click", function () {
+                    $.post('/logout', {}, function (r) {
+                        window.location = '/';
+                    });
+                });
+                // var authenticated = '[[${authenticated}]]';
+                // if (authenticated === 'false') {
+                //     $.ajax({
+                //         url: "http://localhost:9001/sso/if-login",
+                //         type: "POST",
+                //         xhrFields: {
+                //             withCredentials: true
+                //         },
+                //         crossDomain: true,
+                //         success: function (res) {
+                //             if (res === true) {
+                //                 window.location.href = "/login";
+                //             }
+                //         }
+                //     });
+                // }
+            });
+        </script>
+    </body>
+</html>

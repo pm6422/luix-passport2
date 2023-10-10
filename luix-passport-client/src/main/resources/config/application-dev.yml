@@ -1,0 +1,23 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+# Full reference is available at:
+# https://docs.spring.io/spring-boot/docs/3.1.0/reference/html/application-properties.html#application-properties
+# ===================================================================
+server:
+    port: 5002
+spring:
+    data:
+        redis:
+            host: localhost
+            port: 6379
+            password:
+            database: 0
+luix:
+    sso:
+        server:
+            url: http://localhost:5001
+# ===================================================================
+# Application specific properties
+# ===================================================================
