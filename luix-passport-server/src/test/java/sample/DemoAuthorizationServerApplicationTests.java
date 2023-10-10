@@ -74,7 +74,7 @@ public class DemoAuthorizationServerApplicationTests {
 		assertLoginPage(page);
 
 		this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
-		WebResponse signInResponse = signIn(page, "user1", "password").getWebResponse();
+		WebResponse signInResponse = signIn(page, "user", "password").getWebResponse();
 
 		assertThat(signInResponse.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());	// there is no "default" index page
 	}
@@ -83,7 +83,7 @@ public class DemoAuthorizationServerApplicationTests {
 	public void whenLoginFailsThenDisplayBadCredentials() throws IOException {
 		HtmlPage page = this.webClient.getPage("/");
 
-		HtmlPage loginErrorPage = signIn(page, "user1", "wrong-password");
+		HtmlPage loginErrorPage = signIn(page, "user", "wrong-password");
 
 		HtmlElement alert = loginErrorPage.querySelector("div[role=\"alert\"]");
 		assertThat(alert).isNotNull();
@@ -102,7 +102,7 @@ public class DemoAuthorizationServerApplicationTests {
 		// Log in
 		this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
 		this.webClient.getOptions().setRedirectEnabled(false);
-		signIn(this.webClient.getPage("/login"), "user1", "password");
+		signIn(this.webClient.getPage("/login"), "user", "password");
 
 		// Request token
 		WebResponse response = this.webClient.getPage(AUTHORIZATION_REQUEST).getWebResponse();
