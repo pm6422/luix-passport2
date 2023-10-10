@@ -27,11 +27,15 @@ NOTE: Java compatability: Java 17 above
 
 * Run Authorization Server
 ```bash
-java -jar luix-passport-server/target/*.war
+java -jar luix-passport-server/target/*.jar
 ```
-* Run Client -> `./gradlew -b samples/demo-client/samples-demo-client.gradle bootRun`
+* Run Client
+```bash
+java -jar luix-passport-client/target/*.jar
+```
 * Run Resource Server -> `./gradlew -b samples/messages-resource/samples-messages-resource.gradle bootRun`
-* Go to `http://127.0.0.1:4003`
+
+* Then navigate to `http://127.0.0.1:4003` to access client
 ** Login with credentials -> user \ password
 
 Access H2 Console with URL:
