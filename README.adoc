@@ -22,6 +22,15 @@ NOTE: Java compatability: Java 17 above
 - spring-security-oauth2-authorization-server 0.3.1
 - VUE 3
 
+[[run-demo-sample]]
+=== Run the Sample
+
+* Run Authorization Server -> `./gradlew -b samples/demo-authorizationserver/samples-demo-authorizationserver.gradle bootRun`
+* Run Client -> `./gradlew -b samples/demo-client/samples-demo-client.gradle bootRun`
+* Run Resource Server -> `./gradlew -b samples/messages-resource/samples-messages-resource.gradle bootRun`
+* Go to `http://127.0.0.1:8080`
+** Login with credentials -> user1 \ password
+
 [[UsingDocker]]
 == Using Docker to simplify development (optional)
 Install docker, run:
