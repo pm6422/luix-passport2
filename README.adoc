@@ -31,6 +31,26 @@ NOTE: Java compatability: Java 17 above
 * Go to `http://127.0.0.1:8080`
 ** Login with credentials -> user1 \ password
 
+Access H2 Console with URL:
+http://localhost:4001/h2-console[http://localhost:4001/h2-console]
+
+|===
+|Setting |Value
+
+|Driver Class
+|org.h2.Driver
+
+|JDBC URL
+|jdbc:h2:mem:passport
+
+|Username
+|sa
+
+|Password
+|
+
+|===
+
 [[UsingDocker]]
 == Using Docker to simplify development (optional)
 Install docker, run:
