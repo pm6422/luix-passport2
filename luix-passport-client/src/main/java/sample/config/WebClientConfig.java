@@ -36,23 +36,23 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
-	@Bean
-	public WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {
-		ServletOAuth2AuthorizedClientExchangeFilterFunction oauth2Client =
-				new ServletOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager);
-		// @formatter:off
+    @Bean
+    public WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {
+        ServletOAuth2AuthorizedClientExchangeFilterFunction oauth2Client =
+                new ServletOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager);
+        // @formatter:off
 		return WebClient.builder()
 				.apply(oauth2Client.oauth2Configuration())
 				.build();
 		// @formatter:on
-	}
+    }
 
-	@Bean
-	public OAuth2AuthorizedClientManager authorizedClientManager(
-			ClientRegistrationRepository clientRegistrationRepository,
-			OAuth2AuthorizedClientRepository authorizedClientRepository) {
+    @Bean
+    public OAuth2AuthorizedClientManager authorizedClientManager(
+            ClientRegistrationRepository clientRegistrationRepository,
+            OAuth2AuthorizedClientRepository authorizedClientRepository) {
 
-		// @formatter:off
+        // @formatter:off
 		OAuth2AuthorizedClientProvider authorizedClientProvider =
 				OAuth2AuthorizedClientProviderBuilder.builder()
 						.authorizationCode()
@@ -62,15 +62,15 @@ public class WebClientConfig {
 						.build();
 		// @formatter:on
 
-		DefaultOAuth2AuthorizedClientManager authorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
-				clientRegistrationRepository, authorizedClientRepository);
-		authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
+        DefaultOAuth2AuthorizedClientManager authorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
+                clientRegistrationRepository, authorizedClientRepository);
+        authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
 
-		// Set a contextAttributesMapper to obtain device_code from the request
-		authorizedClientManager.setContextAttributesMapper(DeviceCodeOAuth2AuthorizedClientProvider
-				.deviceCodeContextAttributesMapper());
+        // Set a contextAttributesMapper to obtain device_code from the request
+        authorizedClientManager.setContextAttributesMapper(DeviceCodeOAuth2AuthorizedClientProvider
+                .deviceCodeContextAttributesMapper());
 
-		return authorizedClientManager;
-	}
+        return authorizedClientManager;
+    }
 
 }
