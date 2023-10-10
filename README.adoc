@@ -1,0 +1,69 @@
+= LUI️✘ Single Sign On
+
+[[website]]
+== Official website
+http://www.luixtech.com
+
+[[repository]]
+== Code repository
+https://github.com/pm6422/luix-sso
+
+[[requirements]]
+== Requirements
+Before you can build this project, you must install JDK on your machine. You can install JDK by https://sdkman.io/install[SDK Man]. e.g.
+```bash
+sdk install java 17.0.6-tem
+```
+NOTE: Java compatability: Java 17 above
+
+[[dependencies]]
+== Dependencies
+- spring-boot 2.7.1
+- spring-security-oauth2-authorization-server 0.3.1
+- VUE 3
+
+[[UsingDocker]]
+== Using Docker to simplify development (optional)
+Install docker, run:
+```
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
+
+To start MySQL in a docker container, run:
+
+```
+docker-compose -f docker/mysql.yml up -d
+```
+
+To stop it and remove the container, run:
+
+```
+docker-compose -f docker/mysql.yml down
+```
+
+[[build]]
+== Build
+
+Run the following command to build the project:
+
+```
+./mvnw clean verify
+```
+
+[[references]]
+== References
+https://oauth.net/code/java/[OAuth Libraries for Java]
+
+https://shiro.apache.org/spring-boot.html[Integrating Apache Shiro into Spring-Boot Applications]
+
+https://www.cnblogs.com/mozq/p/11729768.html[Shiro UnitTest]
+
+https://blog.csdn.net/qq_33101675/article/details/105440375[springboot + shiro + cas 实现 登录 + 授权 + sso单点登录]
+
+https://stackoverflow.com/questions/77038121/pac4j-with-shiro-and-keycloak-how-can-i-manage-my-permissions-authorization[Pac4j with Shiro and Keycloak - how can I manage my Permissions]
+
+[[thanks]]
+== Thanks
+Thanks for the license provided by JetBrains
+
+image::https://images.gitee.com/uploads/images/2020/0406/220236_f5275c90_5531506.png[]
