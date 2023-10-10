@@ -25,7 +25,10 @@ NOTE: Java compatability: Java 17 above
 [[run-demo-sample]]
 === Run the Sample
 
-* Run Authorization Server -> `./gradlew -b samples/demo-authorizationserver/samples-demo-authorizationserver.gradle bootRun`
+* Run Authorization Server
+```bash
+java -jar luix-passport-server/target/*.war
+```
 * Run Client -> `./gradlew -b samples/demo-client/samples-demo-client.gradle bootRun`
 * Run Resource Server -> `./gradlew -b samples/messages-resource/samples-messages-resource.gradle bootRun`
 * Go to `http://127.0.0.1:8080`
