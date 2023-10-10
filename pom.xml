@@ -9,10 +9,10 @@
 	<description>This project provides you a standard auth2 server and client configuration powered by Spring Boot 2 with the ability to authenticate login and using MySQL DB as datastore.</description>
 	<modules>
 		<module>luix-passport-dependencies-bom</module>
-		<module>luix-passport-spring-boot-starter</module>
-		<module>luix-passport-server</module>
-		<module>luix-passport-client</module>
-	</modules>
+<!--		<module>luix-passport-spring-boot-starter</module>-->
+<!--		<module>luix-passport-server</module>-->
+<!--		<module>luix-passport-client</module>-->
+		</modules>
 	<properties>
 		<java.version>17</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
@@ -25,7 +25,7 @@
 		<dependencies>
 			<dependency>
 				<groupId>${project.groupId}</groupId>
-				<artifactId>luix-sso-dependencies-bom</artifactId>
+				<artifactId>luix-passport-dependencies-bom</artifactId>
 				<version>${project.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -135,45 +135,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.12</version>
-				<extensions>true</extensions>
-				<configuration>
-					<!-- 必须要和全局配置中的server一致 -->
-					<serverId>ossrh</serverId>
-					<!-- 必须要和issue的评论中给出的地址一致 -->
-					<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-					<!-- 发布后自动执行close和release操作 -->
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<!-- 生成签名，确定使用gpg秘钥 -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>3.0.1</version>
-						<executions>
-							<execution>
-								<!-- 必须和配置中的gpg校验id一致 -->
-								<id>gpg</id>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-								<phase>verify</phase>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>

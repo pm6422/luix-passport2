@@ -1,4 +1,0 @@
-id;username;email;mobile_no;first_name;last_name;password_hash;profile_photo_enabled;activated;enabled;created_by;created_time;modified_by;modified_time
-11;user;user@localhost;15000899471;User;User;de07a031980798d07c1b4ad6c09e1c06;false;true;true;system;now;system;now
-12;admin;admin@localhost;15000899472;Admin;Admin;b0a1357c6a46b9889bb626fc138a25a0;false;true;true;system;now;system;now
-13;louis;louis@luixtech.com;15000899478;Louis;Lau;b8208cc818c0e31445618897cf2e7875;false;true;true;system;now;system;now
