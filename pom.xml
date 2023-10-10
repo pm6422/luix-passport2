@@ -9,9 +9,9 @@
 	<description>This project provides you a standard auth2 server and client configuration powered by Spring Boot 2 with the ability to authenticate login and using MySQL DB as datastore.</description>
 	<modules>
 		<module>luix-passport-dependencies-bom</module>
-<!--		<module>luix-passport-spring-boot-starter</module>-->
-<!--		<module>luix-passport-server</module>-->
-<!--		<module>luix-passport-client</module>-->
+		<module>luix-passport-server</module>
+		<module>luix-passport-resource-server</module>
+		<module>luix-passport-client</module>
 		</modules>
 	<properties>
 		<java.version>17</java.version>
@@ -32,26 +32,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<dependencies>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
