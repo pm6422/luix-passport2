@@ -48,7 +48,7 @@
         <revision>1.0.0</revision>
         <servlet_version>3.1.0</servlet_version>
         <slf4j_version>1.7.30</slf4j_version>
-        <spring_boot_version>2.7.1</spring_boot_version>
+        <spring_boot_version>3.1.0</spring_boot_version>
         <spring_data_mongodb_version>3.4.1</spring_data_mongodb_version>
         <spring_filter_version>2.0.9</spring_filter_version>
         <springdoc_version>1.6.12</springdoc_version>
@@ -60,20 +60,9 @@
         <spring_web_version>5.3.21</spring_web_version>
         <servlet_version>4.0.4</servlet_version>
         <httpclient_version>4.5.14</httpclient_version>
-        <shiro_spring_version>1.12.0</shiro_spring_version>
     </properties>
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>${shiro_spring_version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring-boot-web-starter</artifactId>
-                <version>${shiro_spring_version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
@@ -362,7 +351,7 @@
             <plugin>
                 <groupId>com.github.ekryd.sortpom</groupId>
                 <artifactId>sortpom-maven-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <sortProperties>true</sortProperties>
                     <nrOfIndentSpace>4</nrOfIndentSpace>
@@ -412,45 +401,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.12</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <!-- 必须要和全局配置中的server一致 -->
-                    <serverId>ossrh</serverId>
-                    <!-- 必须要和issue的评论中给出的地址一致 -->
-                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <!-- 发布后自动执行close和release操作 -->
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <!-- 生成签名，确定使用gpg秘钥 -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <!-- 必须和配置中的gpg校验id一致 -->
-                                <id>gpg</id>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                                <phase>verify</phase>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
