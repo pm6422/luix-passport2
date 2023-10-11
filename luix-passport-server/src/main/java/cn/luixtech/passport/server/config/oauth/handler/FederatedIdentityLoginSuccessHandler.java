@@ -20,15 +20,16 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
  */
 public final class FederatedIdentityLoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    private final AuthenticationSuccessHandler delegate = new SavedRequestAwareAuthenticationSuccessHandler();
-
-    private Consumer<OAuth2User> oauth2UserHandler = (user) -> {
+    private final AuthenticationSuccessHandler defaultSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+    private       Consumer<OAuth2User>         oauth2UserHandler     = (user) -> {
     };
-
-    private Consumer<OidcUser> oidcUserHandler = (user) -> this.oauth2UserHandler.accept(user);
+    private       Consumer<OidcUser>           oidcUserHandler       = (user) -> this.oauth2UserHandler.accept(user);
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        Authentication authentication)
+            throws IOException, ServletException {
         if (authentication instanceof OAuth2AuthenticationToken) {
             if (authentication.getPrincipal() instanceof OidcUser) {
                 this.oidcUserHandler.accept((OidcUser) authentication.getPrincipal());
@@ -37,7 +38,7 @@ public final class FederatedIdentityLoginSuccessHandler implements Authenticatio
             }
         }
 
-        this.delegate.onAuthenticationSuccess(request, response, authentication);
+        this.defaultSuccessHandler.onAuthenticationSuccess(request, response, authentication);
     }
 
     public void setOAuth2UserHandler(Consumer<OAuth2User> oauth2UserHandler) {
@@ -47,5 +48,4 @@ public final class FederatedIdentityLoginSuccessHandler implements Authenticatio
     public void setOidcUserHandler(Consumer<OidcUser> oidcUserHandler) {
         this.oidcUserHandler = oidcUserHandler;
     }
-
 }
