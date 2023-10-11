@@ -6,6 +6,7 @@ import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandl
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.session.SessionRegistry;
@@ -42,6 +43,7 @@ public class WebServerSecurityConfiguration {
 					.loginPage("/login")
 					.successHandler(new FederatedIdentityLoginSuccessHandler())
 			);
+//				.logout(logout -> logout.defaultLogoutSuccessHandlerFor())
 
 		return http.build();
 	}

@@ -4,7 +4,6 @@ import cn.luixtech.passport.server.config.AuthUser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
@@ -12,7 +11,6 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import java.io.IOException;
 import java.util.function.Consumer;
 
-@Slf4j
 public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
     private SavedRequestAwareAuthenticationSuccessHandler defaultSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
     private Consumer<AuthUser>                            signedInListener;
