@@ -1,7 +1,9 @@
 package cn.luixtech.passport.client.web;
 
+import cn.luixtech.passport.client.config.ApplicationProperties;
 import jakarta.servlet.http.HttpServletRequest;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
@@ -19,21 +21,16 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @Controller
+@AllArgsConstructor
 public class AuthorizationController {
-    private final WebClient webClient;
-    private final String    messagesBaseUri;
-
-    public AuthorizationController(WebClient webClient,
-                                   @Value("${messages.base-uri}") String messagesBaseUri) {
-        this.webClient = webClient;
-        this.messagesBaseUri = messagesBaseUri;
-    }
+    private final WebClient             webClient;
+    private final ApplicationProperties applicationProperties;
 
     @GetMapping(value = "/authorize", params = "grant_type=client_credentials")
     public String clientCredentialsGrant(Model model) {
         String[] messages = this.webClient
                 .get()
-                .uri(this.messagesBaseUri)
+                .uri(applicationProperties.getUrl().getResourceServerMessages())
                 .attributes(clientRegistrationId("messaging-client-client-credentials"))
                 .retrieve()
                 .bodyToMono(String[].class)
@@ -48,7 +45,7 @@ public class AuthorizationController {
                                          OAuth2AuthorizedClient authorizedClient) {
         String[] messages = this.webClient
                 .get()
-                .uri(this.messagesBaseUri)
+                .uri(applicationProperties.getUrl().getResourceServerMessages())
                 .attributes(oauth2AuthorizedClient(authorizedClient))
                 .retrieve()
                 .bodyToMono(String[].class)

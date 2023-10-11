@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import cn.luixtech.passport.client.config.ApplicationProperties;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @Controller
+@AllArgsConstructor
 public class DeviceController {
 
     private static final Set<String> DEVICE_GRANT_ERRORS = new HashSet<>(Arrays.asList(
@@ -48,15 +51,7 @@ public class DeviceController {
     };
     private final        ClientRegistrationRepository                    clientRegistrationRepository;
     private final        WebClient                                       webClient;
-    private final        String                                          messagesBaseUri;
-
-    public DeviceController(ClientRegistrationRepository clientRegistrationRepository,
-                            WebClient webClient,
-                            @Value("${messages.base-uri}") String messagesBaseUri) {
-        this.clientRegistrationRepository = clientRegistrationRepository;
-        this.webClient = webClient;
-        this.messagesBaseUri = messagesBaseUri;
-    }
+    private final        ApplicationProperties                           applicationProperties;
 
     @GetMapping("/device_authorize")
     public String authorize(Model model) {
@@ -150,7 +145,7 @@ public class DeviceController {
                              @RegisteredOAuth2AuthorizedClient("messaging-client-device-code")
                              OAuth2AuthorizedClient authorizedClient) {
         String[] messages = this.webClient.get()
-                .uri(this.messagesBaseUri)
+                .uri(applicationProperties.getUrl().getResourceServerMessages())
                 .attributes(oauth2AuthorizedClient(authorizedClient))
                 .retrieve()
                 .bodyToMono(String[].class)

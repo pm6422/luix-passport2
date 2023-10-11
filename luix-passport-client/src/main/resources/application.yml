@@ -53,6 +53,10 @@ spring:
         provider:
           spring:
             issuer-uri: http://localhost:4001
-
-messages:
-  base-uri: http://127.0.0.1:4002/messages
+# ===================================================================
+# Application specific properties
+# ===================================================================
+application:
+  url:
+    oauth-server-messages: http://127.0.0.1:4001/server-messages
+    resource-server-messages: http://127.0.0.1:4002/messages
