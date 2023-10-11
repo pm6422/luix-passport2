@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 public class FormLogoutSuccessEventListener implements Consumer<HttpSessionEvent> {
     @Override
     public void accept(HttpSessionEvent event) {
-        SecurityContextHolder.getContext().getAuthentication()
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         log.info("Logged out successfully for user: {}", event);
     }
 }
