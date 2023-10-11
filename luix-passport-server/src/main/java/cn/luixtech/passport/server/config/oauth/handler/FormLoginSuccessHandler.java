@@ -11,7 +11,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import java.io.IOException;
 
 @Slf4j
-public class FormLoginAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     private SavedRequestAwareAuthenticationSuccessHandler defaultSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
 
