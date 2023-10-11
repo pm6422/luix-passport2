@@ -33,6 +33,7 @@
                     <a class="nav-link" aria-current="page" href="/swagger-ui/index.html" th:href="@{/swagger-ui/index.html}">Swagger</a>
                 </li>
             </ul>
+            <span class="me-3"><strong th:text="${username}"></strong></span>
             <form class="d-flex" th:action="@{/logout}" method="post">
                 <button class="btn btn-outline-dark" type="submit">Logout</button>
             </form>
