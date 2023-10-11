@@ -11,8 +11,9 @@ import org.springframework.stereotype.Component;
 /**
  * Refer to {@link org.springframework.security.web.authentication.logout.LogoutSuccessEventPublishingLogoutHandler}
  */
+@Deprecated
 @Slf4j
-@Component
+//@Component
 @AllArgsConstructor
 public class FormLogoutSuccessEventListener {
     @Async

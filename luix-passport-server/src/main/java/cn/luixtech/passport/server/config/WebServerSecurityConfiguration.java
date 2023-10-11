@@ -1,6 +1,8 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.formauth.event.FormLoginSuccessEventListener;
+import cn.luixtech.passport.server.config.formauth.event.FormLogoutSuccessEventListener;
+import cn.luixtech.passport.server.config.formauth.event.LogoutHttpSessionEventPublisher;
 import cn.luixtech.passport.server.config.formauth.handler.FormLogoutSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
@@ -24,7 +26,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @AllArgsConstructor
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
-    private FormLoginSuccessEventListener formLoginSuccessEventListener;
+    private final FormLoginSuccessEventListener  formLoginSuccessEventListener;
+    private final FormLogoutSuccessEventListener formLogoutSuccessEventListener;
 
     // @formatter:off
 	@Bean
@@ -81,7 +84,6 @@ public class WebServerSecurityConfiguration {
 
     @Bean
     public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new HttpSessionEventPublisher();
+        return new LogoutHttpSessionEventPublisher(formLogoutSuccessEventListener);
     }
-
 }
