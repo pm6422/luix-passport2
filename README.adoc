@@ -18,7 +18,7 @@ NOTE: Java compatability: Java 17 above
 
 [[dependencies]]
 == Dependencies
-- spring-boot 2.7.1
+- spring-boot 3.1.0
 - spring-security-oauth2-authorization-server 0.3.1
 - VUE 3
 
