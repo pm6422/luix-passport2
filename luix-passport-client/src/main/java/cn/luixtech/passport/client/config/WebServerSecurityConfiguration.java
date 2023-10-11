@@ -48,8 +48,6 @@ public class WebServerSecurityConfiguration {
         // Set the location that the End-User's User Agent will be redirected to
         // after the logout has been performed at the Provider
         oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}/logged-out");
-
         return oidcLogoutSuccessHandler;
     }
-
 }
