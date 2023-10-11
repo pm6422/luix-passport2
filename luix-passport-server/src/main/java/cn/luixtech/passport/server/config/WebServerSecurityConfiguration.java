@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
-import cn.luixtech.passport.server.config.oauth.handler.FormLoginSuccessHandler;
+import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

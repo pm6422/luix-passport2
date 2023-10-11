@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config.oauth.handler;
+package cn.luixtech.passport.server.config.formauth.handler;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
