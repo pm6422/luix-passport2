@@ -24,8 +24,7 @@ import org.springframework.util.Assert;
 
 public final class DeviceCodeOAuth2AuthorizedClientProvider implements OAuth2AuthorizedClientProvider {
 
-    private OAuth2AccessTokenResponseClient<OAuth2DeviceGrantRequest> accessTokenResponseClient =
-            new OAuth2DeviceAccessTokenResponseClient();
+    private OAuth2AccessTokenResponseClient<OAuth2DeviceGrantRequest> accessTokenResponseClient = new OAuth2DeviceAccessTokenResponseClient();
     private Duration                                                  clockSkew                 = Duration.ofSeconds(60);
     private Clock                                                     clock                     = Clock.systemUTC();
 

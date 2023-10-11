@@ -31,15 +31,14 @@ public class WebClientConfiguration {
     public OAuth2AuthorizedClientManager authorizedClientManager(
             ClientRegistrationRepository clientRegistrationRepository,
             OAuth2AuthorizedClientRepository authorizedClientRepository) {
-
         // @formatter:off
 		OAuth2AuthorizedClientProvider authorizedClientProvider =
 				OAuth2AuthorizedClientProviderBuilder.builder()
-						.authorizationCode()
-						.refreshToken()
-						.clientCredentials()
-						.provider(new DeviceCodeOAuth2AuthorizedClientProvider())
-						.build();
+                    .authorizationCode()
+                    .refreshToken()
+                    .clientCredentials()
+                    .provider(new DeviceCodeOAuth2AuthorizedClientProvider())
+                    .build();
 		// @formatter:on
 
         DefaultOAuth2AuthorizedClientManager authorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
@@ -49,8 +48,6 @@ public class WebClientConfiguration {
         // Set a contextAttributesMapper to obtain device_code from the request
         authorizedClientManager.setContextAttributesMapper(DeviceCodeOAuth2AuthorizedClientProvider
                 .deviceCodeContextAttributesMapper());
-
         return authorizedClientManager;
     }
-
 }
