@@ -49,10 +49,8 @@ public class DeviceController {
             };
 
     private final ClientRegistrationRepository clientRegistrationRepository;
-
-    private final WebClient webClient;
-
-    private final String messagesBaseUri;
+    private final WebClient                    webClient;
+    private final String                       messagesBaseUri;
 
     public DeviceController(ClientRegistrationRepository clientRegistrationRepository, WebClient webClient,
                             @Value("${messages.base-uri}") String messagesBaseUri) {
@@ -74,7 +72,9 @@ public class DeviceController {
         requestParameters.add(OAuth2ParameterNames.SCOPE, StringUtils.collectionToDelimitedString(
                 clientRegistration.getScopes(), " "));
 
-        String deviceAuthorizationUri = (String) clientRegistration.getProviderDetails().getConfigurationMetadata().get("device_authorization_endpoint");
+        String deviceAuthorizationUri = (String) clientRegistration
+                .getProviderDetails()
+                .getConfigurationMetadata().get("device_authorization_endpoint");
 
         // @formatter:off
 		Map<String, Object> responseParameters =

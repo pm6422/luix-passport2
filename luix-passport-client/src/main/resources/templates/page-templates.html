@@ -24,10 +24,13 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Authorize</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/authorize?grant_type=authorization_code" th:href="@{/authorize?grant_type=authorization_code}">Authorization Code</a></li>
                         <li><a class="dropdown-item" href="/authorize?grant_type=client_credentials" th:href="@{/authorize?grant_type=client_credentials}">Client Credentials</a></li>
+                        <li><a class="dropdown-item" href="/authorize?grant_type=authorization_code" th:href="@{/authorize?grant_type=authorization_code}">Authorization Code</a></li>
                         <li><a class="dropdown-item" href="/authorize?grant_type=device_code" th:href="@{/authorize?grant_type=device_code}">Device Code</a></li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/swagger-ui/index.html" th:href="@{/swagger-ui/index.html}">Swagger</a>
                 </li>
             </ul>
             <form class="d-flex" th:action="@{/logout}" method="post">
