@@ -1,18 +1,3 @@
-/*
- * Copyright 2020-2023 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package cn.luixtech.passport.client.web;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,21 +27,6 @@ public class AuthorizationController {
                                    @Value("${messages.base-uri}") String messagesBaseUri) {
         this.webClient = webClient;
         this.messagesBaseUri = messagesBaseUri;
-    }
-
-    // '/authorized' is the registered 'redirect_uri' for authorization_code
-    @GetMapping(value = "/authorized", params = OAuth2ParameterNames.ERROR)
-    public String authorizationFailed(Model model, HttpServletRequest request) {
-        String errorCode = request.getParameter(OAuth2ParameterNames.ERROR);
-        if (StringUtils.hasText(errorCode)) {
-            model.addAttribute("error",
-                    new OAuth2Error(
-                            errorCode,
-                            request.getParameter(OAuth2ParameterNames.ERROR_DESCRIPTION),
-                            request.getParameter(OAuth2ParameterNames.ERROR_URI))
-            );
-        }
-        return "index";
     }
 
     @GetMapping(value = "/authorize", params = "grant_type=client_credentials")
@@ -90,6 +60,21 @@ public class AuthorizationController {
     @GetMapping(value = "/authorize", params = "grant_type=device_code")
     public String deviceCodeGrant() {
         return "device-activate";
+    }
+
+    // '/authorized' is the registered 'redirect_uri' for authorization_code
+    @GetMapping(value = "/authorized", params = OAuth2ParameterNames.ERROR)
+    public String authorizationFailed(Model model, HttpServletRequest request) {
+        String errorCode = request.getParameter(OAuth2ParameterNames.ERROR);
+        if (StringUtils.hasText(errorCode)) {
+            model.addAttribute("error",
+                    new OAuth2Error(
+                            errorCode,
+                            request.getParameter(OAuth2ParameterNames.ERROR_DESCRIPTION),
+                            request.getParameter(OAuth2ParameterNames.ERROR_URI))
+            );
+        }
+        return "index";
     }
 
     @ExceptionHandler(WebClientResponseException.class)
