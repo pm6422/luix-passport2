@@ -1,7 +1,9 @@
 package cn.luixtech.passport.server.config;
 
+import cn.luixtech.passport.server.config.formauth.event.SignedInEventListener;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,8 +18,10 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @EnableWebSecurity
+@AllArgsConstructor
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
+	private SignedInEventListener signedInEventListener;
 
     // @formatter:off
 	@Bean
@@ -31,7 +35,7 @@ public class WebServerSecurityConfiguration {
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")
-					.successHandler(new FormLoginSuccessHandler())
+					.successHandler(new FormLoginSuccessHandler(signedInEventListener))
 			)
 			.oauth2Login(oauth2Login ->
 				oauth2Login

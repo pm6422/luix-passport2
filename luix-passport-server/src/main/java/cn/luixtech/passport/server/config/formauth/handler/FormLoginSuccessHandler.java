@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.config.formauth.handler;
 
+import cn.luixtech.passport.server.config.AuthUser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,19 +15,19 @@ import java.util.function.Consumer;
 @Slf4j
 public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
     private SavedRequestAwareAuthenticationSuccessHandler defaultSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
-//    private Consumer                                      signedInConsumer;
-//
-//    public FormLoginSuccessHandler(Consumer signedInConsumer) {
-//        this.signedInConsumer = signedInConsumer;
-//    }
+    private Consumer<AuthUser>                            signedInListener;
+
+    public FormLoginSuccessHandler(Consumer signedInListener) {
+        this.signedInListener = signedInListener;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication)
             throws ServletException, IOException {
-        log.info("Signed in successfully for user: {}", authentication);
-//        signedInConsumer.accept();
+        // todo: convert
+        signedInListener.accept(null);
         this.defaultSuccessHandler.onAuthenticationSuccess(request, response, authentication);
     }
 }
