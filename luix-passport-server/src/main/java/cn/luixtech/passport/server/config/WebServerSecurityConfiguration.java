@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.config;
 
+import cn.luixtech.passport.server.config.oauth.handler.FormLoginAuthenticationSuccessHandler;
 import cn.luixtech.passport.server.federation.FederatedIdentityAuthenticationSuccessHandler;
 
 import org.springframework.context.annotation.Bean;
@@ -32,6 +33,7 @@ public class WebServerSecurityConfiguration {
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")
+					.successHandler(new FormLoginAuthenticationSuccessHandler())
 			)
 			.oauth2Login(oauth2Login ->
 				oauth2Login
