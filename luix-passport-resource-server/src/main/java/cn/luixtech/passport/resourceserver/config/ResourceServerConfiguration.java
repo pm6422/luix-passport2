@@ -9,15 +9,14 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 @Configuration(proxyBeanMethods = false)
-public class ResourceServerConfig {
+public class ResourceServerConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
 		http
 			.securityMatcher("/messages/**")
 			.oauth2ResourceServer(resource-> resource.jwt(Customizer.withDefaults()))
-			.authorizeHttpRequests(authorize ->
-					authorize.requestMatchers("/messages/**").hasAuthority("SCOPE_message.read"));
+			.authorizeHttpRequests(authorize -> authorize.requestMatchers("/messages/**").hasAuthority("SCOPE_message.read"));
 		return http.build();
 		// @formatter:on
     }
