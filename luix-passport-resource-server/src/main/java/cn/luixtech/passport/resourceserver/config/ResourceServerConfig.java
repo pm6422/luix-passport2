@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config;
+package cn.luixtech.passport.resourceserver.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration(proxyBeanMethods = false)
 public class ResourceServerConfig {
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
 		http
 			.securityMatcher("/messages/**")

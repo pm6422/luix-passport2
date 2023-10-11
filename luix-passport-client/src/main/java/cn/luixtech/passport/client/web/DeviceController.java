@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.web;
+package cn.luixtech.passport.client.web;
 
 import java.time.Instant;
 import java.util.Arrays;

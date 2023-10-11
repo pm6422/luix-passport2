@@ -1,15 +1,16 @@
-package cn.luixtech.passport.server;
+package cn.luixtech.passport.resourceserver;
 
 import com.luixtech.springbootframework.EnableLuixSpringBootFramework;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 @EnableLuixSpringBootFramework
-public class PassportClientApplication {
+public class PassportResourceServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PassportClientApplication.class, args);
+        SpringApplication.run(PassportResourceServerApplication.class, args);
     }
 
 }
