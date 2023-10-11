@@ -59,7 +59,7 @@ public class AuthorizationController {
 
     @GetMapping(value = "/authorize", params = "grant_type=device_code")
     public String deviceCodeGrant() {
-        return "device-activate";
+        return "device-code";
     }
 
     // '/authorized' is the registered 'redirect_uri' for authorization_code
