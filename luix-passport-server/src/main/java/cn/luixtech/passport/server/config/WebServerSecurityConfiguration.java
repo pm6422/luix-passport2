@@ -60,7 +60,6 @@ public class WebServerSecurityConfiguration {
 //			.logout(logout->
 //				logout.logoutSuccessHandler(new FormLogoutSuccessHandler("/login?logout"))
 //			);
-
 		return http.build();
 	}
 	// @formatter:on
