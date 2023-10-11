@@ -5,15 +5,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
-    private SavedRequestAwareAuthenticationSuccessHandler defaultSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
-    private Consumer<AuthUser>                            signedInListener;
+public class FormLoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+    private Consumer<AuthUser> signedInListener;
 
     public FormLoginSuccessHandler(Consumer signedInListener) {
         this.signedInListener = signedInListener;
@@ -22,10 +20,9 @@ public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
-                                        Authentication authentication)
-            throws ServletException, IOException {
+                                        Authentication authentication) throws ServletException, IOException {
         // todo: convert
         signedInListener.accept(null);
-        this.defaultSuccessHandler.onAuthenticationSuccess(request, response, authentication);
+        super.onAuthenticationSuccess(request, response, authentication);
     }
 }
