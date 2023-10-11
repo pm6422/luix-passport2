@@ -2,7 +2,7 @@ package cn.luixtech.passport.server.config;
 
 import java.util.UUID;
 
-import cn.luixtech.passport.server.authentication.DeviceClientAuthenticationProvider;
+import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
 import cn.luixtech.passport.server.jose.Jwks;
 import cn.luixtech.passport.server.web.authentication.DeviceClientAuthenticationConverter;
 import com.nimbusds.jose.jwk.JWKSet;

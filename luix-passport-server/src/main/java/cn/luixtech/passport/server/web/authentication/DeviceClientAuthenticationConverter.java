@@ -15,7 +15,7 @@
  */
 package cn.luixtech.passport.server.web.authentication;
 
-import cn.luixtech.passport.server.authentication.DeviceClientAuthenticationToken;
+import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationToken;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpMethod;
