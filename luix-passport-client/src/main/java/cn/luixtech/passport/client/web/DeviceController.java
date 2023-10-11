@@ -44,15 +44,14 @@ public class DeviceController {
             "expired_token"
     ));
 
-    private static final ParameterizedTypeReference<Map<String, Object>> TYPE_REFERENCE =
-            new ParameterizedTypeReference<>() {
-            };
+    private static final ParameterizedTypeReference<Map<String, Object>> TYPE_REFERENCE = new ParameterizedTypeReference<>() {
+    };
+    private final        ClientRegistrationRepository                    clientRegistrationRepository;
+    private final        WebClient                                       webClient;
+    private final        String                                          messagesBaseUri;
 
-    private final ClientRegistrationRepository clientRegistrationRepository;
-    private final WebClient                    webClient;
-    private final String                       messagesBaseUri;
-
-    public DeviceController(ClientRegistrationRepository clientRegistrationRepository, WebClient webClient,
+    public DeviceController(ClientRegistrationRepository clientRegistrationRepository,
+                            WebClient webClient,
                             @Value("${messages.base-uri}") String messagesBaseUri) {
         this.clientRegistrationRepository = clientRegistrationRepository;
         this.webClient = webClient;
@@ -61,16 +60,10 @@ public class DeviceController {
 
     @GetMapping("/device_authorize")
     public String authorize(Model model) {
-        // @formatter:off
-		ClientRegistration clientRegistration =
-				this.clientRegistrationRepository.findByRegistrationId(
-						"messaging-client-device-code");
-		// @formatter:on
-
+        ClientRegistration clientRegistration = this.clientRegistrationRepository.findByRegistrationId("messaging-client-device-code");
         MultiValueMap<String, String> requestParameters = new LinkedMultiValueMap<>();
         requestParameters.add(OAuth2ParameterNames.CLIENT_ID, clientRegistration.getClientId());
-        requestParameters.add(OAuth2ParameterNames.SCOPE, StringUtils.collectionToDelimitedString(
-                clientRegistration.getScopes(), " "));
+        requestParameters.add(OAuth2ParameterNames.SCOPE, StringUtils.collectionToDelimitedString(clientRegistration.getScopes(), " "));
 
         String deviceAuthorizationUri = (String) clientRegistration
                 .getProviderDetails()
@@ -78,29 +71,29 @@ public class DeviceController {
 
         // @formatter:off
 		Map<String, Object> responseParameters =
-				this.webClient.post()
-						.uri(deviceAuthorizationUri)
-						.headers(headers -> {
-							/*
-							 * This sample demonstrates the use of a public client that does not
-							 * store credentials or authenticate with the authorization server.
-							 *
-							 * See DeviceClientAuthenticationProvider in the authorization server
-							 * sample for an example customization that allows public clients.
-							 *
-							 * For a confidential client, change the client-authentication-method to
-							 * client_secret_basic and set the client-secret to send the
-							 * OAuth 2.0 Device Authorization Request with a clientId/clientSecret.
-							 */
-							if (!clientRegistration.getClientAuthenticationMethod().equals(ClientAuthenticationMethod.NONE)) {
-								headers.setBasicAuth(clientRegistration.getClientId(), clientRegistration.getClientSecret());
-							}
-						})
-						.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-						.body(BodyInserters.fromFormData(requestParameters))
-						.retrieve()
-						.bodyToMono(TYPE_REFERENCE)
-						.block();
+        this.webClient.post()
+            .uri(deviceAuthorizationUri)
+            .headers(headers -> {
+                /*
+                 * This sample demonstrates the use of a public client that does not
+                 * store credentials or authenticate with the authorization server.
+                 *
+                 * See DeviceClientAuthenticationProvider in the authorization server
+                 * sample for an example customization that allows public clients.
+                 *
+                 * For a confidential client, change the client-authentication-method to
+                 * client_secret_basic and set the client-secret to send the
+                 * OAuth 2.0 Device Authorization Request with a clientId/clientSecret.
+                 */
+                if (!clientRegistration.getClientAuthenticationMethod().equals(ClientAuthenticationMethod.NONE)) {
+                    headers.setBasicAuth(clientRegistration.getClientId(), clientRegistration.getClientSecret());
+                }
+            })
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .body(BodyInserters.fromFormData(requestParameters))
+            .retrieve()
+            .bodyToMono(TYPE_REFERENCE)
+            .block();
 		// @formatter:on
 
         Objects.requireNonNull(responseParameters, "Device Authorization Response cannot be null");
@@ -125,7 +118,6 @@ public class DeviceController {
     public ResponseEntity<Void> poll(@RequestParam(OAuth2ParameterNames.DEVICE_CODE) String deviceCode,
                                      @RegisteredOAuth2AuthorizedClient("messaging-client-device-code")
                                      OAuth2AuthorizedClient authorizedClient) {
-
         /*
          * The client will repeatedly poll until authorization is granted.
          *
@@ -157,7 +149,6 @@ public class DeviceController {
     public String authorized(Model model,
                              @RegisteredOAuth2AuthorizedClient("messaging-client-device-code")
                              OAuth2AuthorizedClient authorizedClient) {
-
         String[] messages = this.webClient.get()
                 .uri(this.messagesBaseUri)
                 .attributes(oauth2AuthorizedClient(authorizedClient))
