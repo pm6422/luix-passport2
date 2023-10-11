@@ -44,7 +44,7 @@ import org.springframework.security.web.authentication.LoginUrlAuthenticationEnt
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
-public class AuthorizationServerConfig {
+public class AuthorizationServerConfiguration {
 	private static final String CUSTOM_CONSENT_PAGE_URI = "/oauth2/consent";
 
 	@Bean
