@@ -45,13 +45,15 @@ import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfiguration {
-    private static final String CUSTOM_CONSENT_PAGE_URI = "/oauth2/consent";
+    public static final String CONSENT_PAGE_URI        = "/oauth2/consent";
+    public static final String DEVICE_VERIFICATION_URI = "/activate";
+    public static final String LOGIN_URI               = "/login";
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(
-			HttpSecurity http,
-			RegisteredClientRepository registeredClientRepository,
+            HttpSecurity http,
+            RegisteredClientRepository registeredClientRepository,
             AuthorizationServerSettings authorizationServerSettings) throws Exception {
 
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
@@ -80,32 +82,27 @@ public class AuthorizationServerConfiguration {
 
         // @formatter:off
 		http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
-			.deviceAuthorizationEndpoint(deviceAuthorizationEndpoint ->
-				deviceAuthorizationEndpoint.verificationUri("/activate")
+			.deviceAuthorizationEndpoint(endpoint -> endpoint.verificationUri(DEVICE_VERIFICATION_URI))
+			.deviceVerificationEndpoint(endpoint -> endpoint.consentPage(CONSENT_PAGE_URI))
+			.clientAuthentication(auth ->
+				auth
+				.authenticationConverter(deviceClientAuthenticationConverter)
+				.authenticationProvider(deviceClientAuthenticationProvider)
 			)
-			.deviceVerificationEndpoint(deviceVerificationEndpoint ->
-				deviceVerificationEndpoint.consentPage(CUSTOM_CONSENT_PAGE_URI)
-			)
-			.clientAuthentication(clientAuthentication ->
-				clientAuthentication
-					.authenticationConverter(deviceClientAuthenticationConverter)
-					.authenticationProvider(deviceClientAuthenticationProvider)
-			)
-			.authorizationEndpoint(authorizationEndpoint ->
-				authorizationEndpoint.consentPage(CUSTOM_CONSENT_PAGE_URI))
-			.oidc(Customizer.withDefaults());	// Enable OpenID Connect 1.0
+			.authorizationEndpoint(endpoint -> endpoint.consentPage(CONSENT_PAGE_URI))
+			// Enable OpenID Connect 1.0
+			.oidc(Customizer.withDefaults());
 		// @formatter:on
 
         // @formatter:off
 		http
 			.exceptionHandling((exceptions) -> exceptions
 				.defaultAuthenticationEntryPointFor(
-					new LoginUrlAuthenticationEntryPoint("/login"),
+					new LoginUrlAuthenticationEntryPoint(LOGIN_URI),
 					new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
 				)
 			)
-			.oauth2ResourceServer(oauth2ResourceServer ->
-				oauth2ResourceServer.jwt(Customizer.withDefaults()));
+			.oauth2ResourceServer(server -> server.jwt(Customizer.withDefaults()));
 		// @formatter:on
         return http.build();
     }
