@@ -9,16 +9,24 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 @Slf4j
 public class FormLoginSuccessHandler implements AuthenticationSuccessHandler {
-
     private SavedRequestAwareAuthenticationSuccessHandler defaultSuccessHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+//    private Consumer                                      signedInConsumer;
+//
+//    public FormLoginSuccessHandler(Consumer signedInConsumer) {
+//        this.signedInConsumer = signedInConsumer;
+//    }
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
+                                        Authentication authentication)
+            throws ServletException, IOException {
         log.info("Signed in successfully for user: {}", authentication);
-
+//        signedInConsumer.accept();
         this.defaultSuccessHandler.onAuthenticationSuccess(request, response, authentication);
     }
 }
