@@ -15,7 +15,10 @@ import java.io.IOException;
 @AllArgsConstructor
 public class AuthLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
-    public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        response.setStatus(HttpServletResponse.SC_OK);
+    public void onLogoutSuccess(HttpServletRequest request,
+                                HttpServletResponse response,
+                                Authentication authentication) throws IOException, ServletException {
+
+        System.out.println();
     }
 }

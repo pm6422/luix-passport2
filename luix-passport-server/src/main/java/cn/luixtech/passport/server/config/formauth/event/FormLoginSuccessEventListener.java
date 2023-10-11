@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 @Slf4j
 @Component
-public class SignedInEventListener implements Consumer<AuthUser> {
+public class FormLoginSuccessEventListener implements Consumer<AuthUser> {
     @Override
     public void accept(AuthUser o) {
         log.info("Signed in successfully for user: {}", o);
