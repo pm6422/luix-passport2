@@ -56,7 +56,6 @@ public class DeviceController {
 
     public DeviceController(ClientRegistrationRepository clientRegistrationRepository, WebClient webClient,
                             @Value("${messages.base-uri}") String messagesBaseUri) {
-
         this.clientRegistrationRepository = clientRegistrationRepository;
         this.webClient = webClient;
         this.messagesBaseUri = messagesBaseUri;
@@ -116,7 +115,6 @@ public class DeviceController {
         // Note: You could use a QR-code to display this URL
         model.addAttribute("verificationUriComplete", responseParameters.get(
                 OAuth2ParameterNames.VERIFICATION_URI_COMPLETE));
-
         return "device-authorize";
     }
 
@@ -167,8 +165,6 @@ public class DeviceController {
                 .bodyToMono(String[].class)
                 .block();
         model.addAttribute("messages", messages);
-
         return "index";
     }
-
 }
