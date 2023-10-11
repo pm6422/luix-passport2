@@ -50,7 +50,8 @@ public class AuthorizationServerConfiguration {
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(
-            HttpSecurity http, RegisteredClientRepository registeredClientRepository,
+			HttpSecurity http,
+			RegisteredClientRepository registeredClientRepository,
             AuthorizationServerSettings authorizationServerSettings) throws Exception {
 
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
@@ -195,5 +196,4 @@ public class AuthorizationServerConfiguration {
 				.build();
 		// @formatter:on
     }
-
 }
