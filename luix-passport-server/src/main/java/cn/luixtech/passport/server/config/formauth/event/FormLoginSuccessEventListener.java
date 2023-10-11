@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.config.formauth.event;
 
-import cn.luixtech.passport.server.config.AuthUser;
+import cn.luixtech.passport.server.config.domain.AuthUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

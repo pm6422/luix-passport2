@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config;
+package cn.luixtech.passport.server.config.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

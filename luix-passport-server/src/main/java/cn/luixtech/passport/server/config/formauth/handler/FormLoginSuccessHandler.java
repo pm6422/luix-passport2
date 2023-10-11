@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.config.formauth.handler;
 
-import cn.luixtech.passport.server.config.AuthUser;
+import cn.luixtech.passport.server.config.domain.AuthUser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
