@@ -51,6 +51,9 @@ public class AuthorizationServerConfiguration {
     public static final String AUTH_CODE_CLIENT_SECRET = "secret";
     public static final String DEVICE_VERIFICATION_URI = "/activate";
     public static final String LOGIN_URI               = "/login";
+    /**
+     * Refer to Endpoint {@link org.springframework.security.oauth2.server.authorization.web.OAuth2TokenEndpointFilter}
+     */
     public static final String TOKEN_URI               = "/oauth2/token";
     public static final String INTROSPECT_TOKEN_URI    = "/oauth2/introspect";
     public static final String VIEW_JWK_URI            = "/oauth2/jwks";
@@ -125,6 +128,7 @@ public class AuthorizationServerConfiguration {
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 				.authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
+//				.authorizationGrantType(AuthorizationGrantType.PASSWORD)
 				.redirectUri("http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc")
 				.redirectUri("http://127.0.0.1:4003/authorized")
 				.postLogoutRedirectUri("http://127.0.0.1:4003/logged-out")
