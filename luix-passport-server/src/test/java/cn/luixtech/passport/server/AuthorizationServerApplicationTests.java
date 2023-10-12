@@ -29,8 +29,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class AuthorizationServerApplicationTests {
-    private static final String    REDIRECT_URI          = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
-    private static final String    AUTHORIZATION_REQUEST = UriComponentsBuilder
+    private static final String    REDIRECT_URI              = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
+    private static final String    AUTHORIZATION_REQUEST_URI = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
             .queryParam("client_id", "messaging-client")
             .queryParam("response_type", "code")
@@ -74,7 +74,7 @@ public class AuthorizationServerApplicationTests {
 
     @Test
     public void whenNotLoggedInAndRequestingTokenThenRedirectsToLogin() throws IOException {
-        HtmlPage page = this.webClient.getPage(AUTHORIZATION_REQUEST);
+        HtmlPage page = this.webClient.getPage(AUTHORIZATION_REQUEST_URI);
 
         assertLoginPage(page);
     }
@@ -87,7 +87,7 @@ public class AuthorizationServerApplicationTests {
         signIn(this.webClient.getPage("/login"), "user", "password");
 
         // Request token
-        WebResponse response = this.webClient.getPage(AUTHORIZATION_REQUEST).getWebResponse();
+        WebResponse response = this.webClient.getPage(AUTHORIZATION_REQUEST_URI).getWebResponse();
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
         String location = response.getResponseHeaderValue("location");

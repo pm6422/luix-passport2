@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -34,21 +33,20 @@ import static org.mockito.Mockito.when;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class DemoAuthorizationServerConsentTests {
-
-    private final String                            redirectUri             = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
-    private final String                            authorizationRequestUri = UriComponentsBuilder
+public class AuthorizationServerConsentTests {
+    private static final String                            REDIRECT_URI              = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
+    private static final String                            AUTHORIZATION_REQUEST_URI = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
-            .queryParam("response_type", "code")
             .queryParam("client_id", "messaging-client")
+            .queryParam("response_type", "code")
             .queryParam("scope", "openid message.read message.write")
             .queryParam("state", "state")
-            .queryParam("redirect_uri", this.redirectUri)
+            .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
     @Resource
-    private       WebClient                         webClient;
+    private              WebClient                         webClient;
     @MockBean
-    private       OAuth2AuthorizationConsentService authorizationConsentService;
+    private              OAuth2AuthorizationConsentService authorizationConsentService;
 
     @BeforeEach
     public void setUp() {
@@ -61,7 +59,7 @@ public class DemoAuthorizationServerConsentTests {
     @Test
     @WithMockUser("user1")
     public void whenUserConsentsToAllScopesThenReturnAuthorizationCode() throws IOException {
-        final HtmlPage consentPage = this.webClient.getPage(this.authorizationRequestUri);
+        final HtmlPage consentPage = this.webClient.getPage(this.AUTHORIZATION_REQUEST_URI);
         assertThat(consentPage.getTitleText()).isEqualTo("Passport | Consent");
 
         List<HtmlCheckBoxInput> scopes = new ArrayList<>();
@@ -84,14 +82,14 @@ public class DemoAuthorizationServerConsentTests {
         WebResponse approveConsentResponse = submitConsentButton.click().getWebResponse();
         assertThat(approveConsentResponse.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
         String location = approveConsentResponse.getResponseHeaderValue("location");
-        assertThat(location).startsWith(this.redirectUri);
+        assertThat(location).startsWith(this.REDIRECT_URI);
         assertThat(location).contains("code=");
     }
 
     @Test
     @WithMockUser("user1")
     public void whenUserCancelsConsentThenReturnAccessDeniedError() throws IOException {
-        final HtmlPage consentPage = this.webClient.getPage(this.authorizationRequestUri);
+        final HtmlPage consentPage = this.webClient.getPage(this.AUTHORIZATION_REQUEST_URI);
         assertThat(consentPage.getTitleText()).isEqualTo("Passport | Consent");
 
         DomElement cancelConsentButton = consentPage.querySelector("button[id='cancel-consent']");
@@ -100,7 +98,7 @@ public class DemoAuthorizationServerConsentTests {
         WebResponse cancelConsentResponse = cancelConsentButton.click().getWebResponse();
         assertThat(cancelConsentResponse.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
         String location = cancelConsentResponse.getResponseHeaderValue("location");
-        assertThat(location).startsWith(this.redirectUri);
+        assertThat(location).startsWith(this.REDIRECT_URI);
         assertThat(location).contains("error=access_denied");
     }
 }
