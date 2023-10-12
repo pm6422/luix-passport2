@@ -56,8 +56,8 @@ spring:
             client-name: Sign in with Google
           github-idp:
             provider: github
-            client-id: ${GITHUB_CLIENT_ID:github-client-id}
-            client-secret: ${GITHUB_CLIENT_SECRET:github-client-secret}
+            client-id: ${GITHUB_CLIENT_ID:0f25e4d118b8caa67371}
+            client-secret: ${GITHUB_CLIENT_SECRET:b4eba530555b66efc49d4e4da558d59006ec873f}
             scope: user:email, read:user
             client-name: Sign in with GitHub
         provider:
