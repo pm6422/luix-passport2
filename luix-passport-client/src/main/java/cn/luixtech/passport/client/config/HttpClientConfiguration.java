@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.client.web.reactive.function.client.S
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
-public class WebClientConfiguration {
+public class HttpClientConfiguration {
 
     @Bean
     public WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {
