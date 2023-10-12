@@ -6,7 +6,7 @@ http://www.luixtech.cn
 
 [[repository]]
 == Code repository
-https://github.com/pm6422/luix-sso
+https://github.com/pm6422/luix-passport
 
 [[requirements]]
 == Requirements
