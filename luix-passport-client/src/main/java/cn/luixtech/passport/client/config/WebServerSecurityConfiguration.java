@@ -17,8 +17,7 @@ public class WebServerSecurityConfiguration {
 
     // @formatter:off
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http,
-			ClientRegistrationRepository clientRegistrationRepository) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http, ClientRegistrationRepository clientRegistrationRepository) throws Exception {
 		http
 			.authorizeHttpRequests(authorize ->
 				authorize
@@ -27,19 +26,15 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("/logged-out").permitAll()
 					.anyRequest().authenticated()
 			)
-			.oauth2Login(oauth2Login ->
-				oauth2Login.loginPage("/oauth2/authorization/messaging-client-oidc"))
+			.oauth2Login(oauth2Login -> oauth2Login.loginPage("/oauth2/authorization/messaging-client-oidc"))
 			.oauth2Client(withDefaults())
-			.logout(logout ->
-				logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)));
+			.logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)));
 		return http.build();
 	}
 	// @formatter:on
 
-    private LogoutSuccessHandler oidcLogoutSuccessHandler(
-            ClientRegistrationRepository clientRegistrationRepository) {
-        OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler =
-                new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
+    private LogoutSuccessHandler oidcLogoutSuccessHandler(ClientRegistrationRepository clientRegistrationRepository) {
+        OidcClientInitiatedLogoutSuccessHandler oidcLogoutSuccessHandler = new OidcClientInitiatedLogoutSuccessHandler(clientRegistrationRepository);
 
         // Set the location that the End-User's User Agent will be redirected to
         // after the logout has been performed at the Provider
