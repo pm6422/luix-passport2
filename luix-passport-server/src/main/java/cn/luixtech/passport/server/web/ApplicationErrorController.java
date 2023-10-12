@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class DefaultErrorController implements ErrorController {
+public class ApplicationErrorController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError(Model model, HttpServletRequest request) {

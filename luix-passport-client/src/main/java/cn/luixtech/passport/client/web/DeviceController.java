@@ -1,15 +1,7 @@
 package cn.luixtech.passport.client.web;
 
-import java.time.Instant;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
 import cn.luixtech.passport.client.config.ApplicationProperties;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,32 +12,27 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.OAuth2AuthorizationException;
-import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.Instant;
+import java.util.Map;
+import java.util.Objects;
+
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @Controller
 @AllArgsConstructor
 public class DeviceController {
-
-    private static final Set<String> DEVICE_GRANT_ERRORS = new HashSet<>(Arrays.asList(
-            "authorization_pending",
-            "slow_down",
-            "access_denied",
-            "expired_token"
-    ));
 
     private static final ParameterizedTypeReference<Map<String, Object>> TYPE_REFERENCE = new ParameterizedTypeReference<>() {
     };
@@ -107,7 +94,7 @@ public class DeviceController {
     }
 
     /**
-     * @see #handleError(OAuth2AuthorizationException)
+     * @see ApplicationErrorController#handleError(OAuth2AuthorizationException)
      */
     @PostMapping("/device_authorize")
     public ResponseEntity<Void> poll(@RequestParam(OAuth2ParameterNames.DEVICE_CODE) String deviceCode,
@@ -129,15 +116,6 @@ public class DeviceController {
          * This endpoint simply returns 200 OK when the client is authorized.
          */
         return ResponseEntity.status(HttpStatus.OK).build();
-    }
-
-    @ExceptionHandler(OAuth2AuthorizationException.class)
-    public ResponseEntity<OAuth2Error> handleError(OAuth2AuthorizationException ex) {
-        String errorCode = ex.getError().getErrorCode();
-        if (DEVICE_GRANT_ERRORS.contains(errorCode)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getError());
-        }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getError());
     }
 
     @GetMapping("/device_authorized")
