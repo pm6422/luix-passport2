@@ -19,6 +19,7 @@ public class HomeController {
             User user = (User) authentication.getPrincipal();
             model.addAttribute("username", user.getUsername());
         }
+        model.addAttribute("messages", new String[]{"Message 1", "Message 2"});
         return "index";
     }
 }
