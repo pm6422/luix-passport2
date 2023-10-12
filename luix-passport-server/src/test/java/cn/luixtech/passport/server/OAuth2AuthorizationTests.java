@@ -52,7 +52,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Slf4j
 public class OAuth2AuthorizationTests {
     private static final String    REDIRECT_URI           = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
-    private static final String    PROTECTED_RESOURCE_URI = "/management/luixopenapigroups";
+    private static final String    PROTECTED_RESOURCE_URI = "/api/server-messages";
     private static final String    USERNAME               = "user";
     private static final String    PASSWORD               = "password";
     @Resource

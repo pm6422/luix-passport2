@@ -36,6 +36,7 @@ public class WebServerSecurityConfiguration {
 			.authorizeHttpRequests(authorize ->
 				authorize
 					.requestMatchers("/assets/**", "/webjars/**", "/login", "/h2-console/**").permitAll()
+					.requestMatchers("/api/**").authenticated()
 					.anyRequest().authenticated()
 			)
 			.formLogin(formLogin ->

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ServerMessagesController {
 
-    @GetMapping("/server-messages")
+    @GetMapping("/api/server-messages")
     public String[] getMessages() {
         return new String[]{"Message 1", "Message 2"};
     }
