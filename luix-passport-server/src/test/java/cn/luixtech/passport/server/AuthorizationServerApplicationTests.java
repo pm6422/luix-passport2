@@ -50,7 +50,7 @@ public class AuthorizationServerApplicationTests {
     }
 
     @Test
-    public void whenLoginSuccessfulThenDisplayBadRequestError() throws IOException {
+    public void whenLoginSuccessfulThenOk() throws IOException {
         HtmlPage page = this.webClient.getPage("/");
 
         assertLoginPage(page);
@@ -58,7 +58,7 @@ public class AuthorizationServerApplicationTests {
         this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         WebResponse signInResponse = signIn(page, "user", "password").getWebResponse();
 
-        assertThat(signInResponse.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST.value());    // there is no "default" index page
+        assertThat(signInResponse.getStatusCode()).isEqualTo(HttpStatus.OK.value());
     }
 
     @Test

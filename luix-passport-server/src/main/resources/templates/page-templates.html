@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" th:href="@{/assets/img/logo.svg}"/>
-        <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
     </head>
     <body>
         <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-light">
@@ -58,8 +58,8 @@
                 </div>
             </div>
         </div>
-        <script src="/webjars/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-        <script src="/webjars/jquery/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script src="/webjars/popper.js/umd/popper.js" th:src="@{/webjars/popper.js/umd/popper.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.js}"></script>
     </body>
 </html>
