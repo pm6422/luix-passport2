@@ -14,7 +14,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class DemoAuthorizationServerApplicationTests {
+public class AuthorizationServerApplicationTests {
     private static final String    REDIRECT_URI          = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
     private static final String    AUTHORIZATION_REQUEST = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
