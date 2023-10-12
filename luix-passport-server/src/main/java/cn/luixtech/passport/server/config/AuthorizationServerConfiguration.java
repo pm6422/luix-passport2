@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
 import cn.luixtech.passport.server.jose.Jwks;
-import cn.luixtech.passport.server.web.authentication.DeviceClientAuthenticationConverter;
+import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationConverter;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;

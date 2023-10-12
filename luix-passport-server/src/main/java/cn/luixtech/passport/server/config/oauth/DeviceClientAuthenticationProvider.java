@@ -1,9 +1,6 @@
 package cn.luixtech.passport.server.config.oauth;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import cn.luixtech.passport.server.web.authentication.DeviceClientAuthenticationConverter;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;

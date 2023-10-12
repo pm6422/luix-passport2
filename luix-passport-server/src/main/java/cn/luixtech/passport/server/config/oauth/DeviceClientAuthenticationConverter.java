@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.web.authentication;
+package cn.luixtech.passport.server.config.oauth;
 
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationToken;
 import jakarta.servlet.http.HttpServletRequest;
