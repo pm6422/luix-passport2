@@ -55,9 +55,9 @@ public class ApplicationErrorController implements ErrorController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex.getError());
     }
 
-    @ExceptionHandler(WebClientResponseException.class)
-    public String handleError(Model model, WebClientResponseException ex) {
-        model.addAttribute("error", ex.getMessage());
-        return "index";
-    }
+//    @ExceptionHandler(WebClientResponseException.class)
+//    public String handleError(Model model, WebClientResponseException ex) {
+//        model.addAttribute("error", ex.getMessage());
+//        return "index";
+//    }
 }
