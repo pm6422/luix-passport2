@@ -32,8 +32,8 @@ public class AuthorizationServerApplicationTests {
     private static final String    REDIRECT_URI          = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
     private static final String    AUTHORIZATION_REQUEST = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
-            .queryParam("response_type", "code")
             .queryParam("client_id", "messaging-client")
+            .queryParam("response_type", "code")
             .queryParam("scope", "openid")
             .queryParam("state", "some-state")
             .queryParam("redirect_uri", REDIRECT_URI)
@@ -45,7 +45,7 @@ public class AuthorizationServerApplicationTests {
     public void setUp() {
         this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
         this.webClient.getOptions().setRedirectEnabled(true);
-        // log out
+        // Log out
         this.webClient.getCookieManager().clearCookies();
     }
 
