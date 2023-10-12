@@ -9,6 +9,7 @@ import com.gargoylesoftware.htmlunit.WebResponse;
 import com.gargoylesoftware.htmlunit.html.DomElement;
 import com.gargoylesoftware.htmlunit.html.HtmlCheckBoxInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,15 +36,8 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc
 public class DemoAuthorizationServerConsentTests {
 
-    @Autowired
-    private WebClient webClient;
-
-    @MockBean
-    private OAuth2AuthorizationConsentService authorizationConsentService;
-
-    private final String redirectUri = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
-
-    private final String authorizationRequestUri = UriComponentsBuilder
+    private final String                            redirectUri             = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
+    private final String                            authorizationRequestUri = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
             .queryParam("response_type", "code")
             .queryParam("client_id", "messaging-client")
@@ -51,6 +45,10 @@ public class DemoAuthorizationServerConsentTests {
             .queryParam("state", "state")
             .queryParam("redirect_uri", this.redirectUri)
             .toUriString();
+    @Resource
+    private       WebClient                         webClient;
+    @MockBean
+    private       OAuth2AuthorizationConsentService authorizationConsentService;
 
     @BeforeEach
     public void setUp() {

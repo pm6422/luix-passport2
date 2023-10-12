@@ -9,6 +9,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlButton;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import jakarta.annotation.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,9 +30,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class DemoAuthorizationServerApplicationTests {
-    private static final String REDIRECT_URI = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
-
-    private static final String AUTHORIZATION_REQUEST = UriComponentsBuilder
+    private static final String    REDIRECT_URI          = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
+    private static final String    AUTHORIZATION_REQUEST = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
             .queryParam("response_type", "code")
             .queryParam("client_id", "messaging-client")
@@ -39,9 +39,8 @@ public class DemoAuthorizationServerApplicationTests {
             .queryParam("state", "some-state")
             .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
-
-    @Autowired
-    private WebClient webClient;
+    @Resource
+    private              WebClient webClient;
 
     @BeforeEach
     public void setUp() {
