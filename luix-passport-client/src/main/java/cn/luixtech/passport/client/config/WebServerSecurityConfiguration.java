@@ -16,11 +16,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.ignoring().requestMatchers("/webjars/**", "/assets/**");
-//    }
-
     // @formatter:off
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http,
