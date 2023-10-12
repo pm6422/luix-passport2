@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.web;
+package cn.luixtech.passport.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

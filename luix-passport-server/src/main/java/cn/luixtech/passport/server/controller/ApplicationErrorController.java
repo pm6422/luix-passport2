@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.web;
+package cn.luixtech.passport.server.controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;

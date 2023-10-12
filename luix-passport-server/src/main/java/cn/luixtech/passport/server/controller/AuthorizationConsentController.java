@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.web;
+package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.config.oauth.ScopeWithDescription;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
