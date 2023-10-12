@@ -51,9 +51,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Slf4j
 public class OAuth2AuthorizationTests {
-    private static final String    REDIRECT_URI = "https://www.baidu.com";
-    private static final String    USERNAME     = "user";
-    private static final String    PASSWORD     = "password";
+    private static final String    REDIRECT_URI           = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
+    private static final String    PROTECTED_RESOURCE_URI = "/management/luixopenapigroups";
+    private static final String    USERNAME               = "user";
+    private static final String    PASSWORD               = "password";
     @Resource
     private              MockMvc   mockMvc;
     @Resource
@@ -67,13 +68,13 @@ public class OAuth2AuthorizationTests {
 
     /**
      * Request:
-     *       HTTP Method = POST
-     *       Request URI = /oauth2/token
-     *        Parameters = {grant_type=[client_credentials], scope=[message.read]}
-     *           Headers = [Authorization:"Basic bWVzc2FnaW5nLWNsaWVudDpzZWNyZXQ=", Accept:"application/json"]
-     *              Body = null
-     *     Session Attrs = {}
-     *
+     * HTTP Method = POST
+     * Request URI = /oauth2/token
+     * Parameters = {grant_type=[client_credentials], scope=[message.read]}
+     * Headers = [Authorization:"Basic bWVzc2FnaW5nLWNsaWVudDpzZWNyZXQ=", Accept:"application/json"]
+     * Body = null
+     * Session Attrs = {}
+     * <p>
      * Result:
      * {
      * "access_token": "eyJraWQiOiJhYjE2MmJmOS1jNmY1LTQ2MGUtOTUwNS00MmQ2ZjQwYWYzYTkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJpbnRlcm5hbC1jbGllbnQiLCJhdWQiOiJpbnRlcm5hbC1jbGllbnQiLCJuYmYiOjE2NTkzNDM3NDUsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJ3cml0ZSIsInVzZXJpbmZvIl0sImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo2MDMwIiwiZXhwIjoxNjU5MzQ3MzQ1LCJpYXQiOjE2NTkzNDM3NDV9.m-oy9ImGl0YcUO_MeOJOQ1x9nFW6KLeg0PNG9gU_OJLoA4EzL52XIJV1qilRD7uD27hVBn4W4Snkzyp1Ue7oY9e5Dm863fjwc68oQueflJua_9CJYrDxeo368N1F8lpBd6lh5BUrCk1Pc0uiigTPNiut0Lb_cqvdjNgV8LnsYw0CuddXLa6-N4cSk8awhpB7H45ym55u0OGoYozZNte4ef9O3twZ3WRSi6G5F-O1SzCliWGj9f4dw4NaV_umsfykNHgxm0AUdVzSR1TpJDNzCkN4Yx6IN3kjopvi2BFRJOZBfaVR41KWBTrftxvujPYlNffr_JNr9mZZwcCu8wAX6w",
@@ -355,21 +356,22 @@ public class OAuth2AuthorizationTests {
 
     private void assertRequestResource(Map<String, Object> resultMap) throws Exception {
         // unauthorized if request has no access token
-        mockMvc.perform(get("/api/apps")
+        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
                         .contentType(APPLICATION_JSON_VALUE)
                         .accept(APPLICATION_JSON_VALUE))
                 // Note: this is not a bug, it's a feature!
                 .andExpect(status().isFound());
 
-        // authorized if request has an access token
+        // authorized if request has an access token in header
         String accessToken = resultMap.get("access_token").toString();
-        mockMvc.perform(get("/api/apps")
+        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken)
                         .contentType(APPLICATION_JSON_VALUE)
                         .accept(APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/api/apps?access_token=" + accessToken)
+        // authorized if request has an access token in query variable
+        mockMvc.perform(get(PROTECTED_RESOURCE_URI + "?access_token=" + accessToken)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken)
                         .contentType(APPLICATION_JSON_VALUE)
                         .accept(APPLICATION_JSON_VALUE))
