@@ -49,7 +49,7 @@ spring:
             issuer-uri: http://localhost:4001
 logging:
   level:
-    root: DEBUG
+    root: INFO
     org.springframework.web: INFO
     org.springframework.security: INFO
     org.springframework.security.oauth2: INFO

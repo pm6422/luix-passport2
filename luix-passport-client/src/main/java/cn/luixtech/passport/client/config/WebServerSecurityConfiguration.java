@@ -16,10 +16,10 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers("/webjars/**", "/assets/**");
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().requestMatchers("/webjars/**", "/assets/**");
+//    }
 
     // @formatter:off
 	@Bean
@@ -28,6 +28,8 @@ public class WebServerSecurityConfiguration {
 		http
 			.authorizeHttpRequests(authorize ->
 				authorize
+					.requestMatchers("/webjars/**").permitAll()
+					.requestMatchers("/assets/**").permitAll()
 					.requestMatchers("/logged-out").permitAll()
 					.anyRequest().authenticated()
 			)
