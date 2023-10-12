@@ -15,7 +15,7 @@ public class ResourceServerConfiguration {
         // @formatter:off
 		http
 			.securityMatcher("/messages/**")
-			.oauth2ResourceServer(resource-> resource.jwt(Customizer.withDefaults()))
+			.oauth2ResourceServer(server-> server.jwt(Customizer.withDefaults()))
 			.authorizeHttpRequests(authorize -> authorize.requestMatchers("/messages/**").hasAuthority("SCOPE_message.read"));
 		return http.build();
 		// @formatter:on
