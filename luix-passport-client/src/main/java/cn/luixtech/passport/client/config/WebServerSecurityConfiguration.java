@@ -26,6 +26,8 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("/logged-out").permitAll()
 					.anyRequest().authenticated()
 			)
+			// Default OAuth 2.0 Login Page should match the format /oauth2/authorization/{registrationId}
+			// See {@link org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter.DEFAULT_AUTHORIZATION_REQUEST_BASE_URI}
 			.oauth2Login(oauth2Login -> oauth2Login.loginPage("/oauth2/authorization/messaging-client-oidc"))
 			.oauth2Client(withDefaults())
 			.logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)));
