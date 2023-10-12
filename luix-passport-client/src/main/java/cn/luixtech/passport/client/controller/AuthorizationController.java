@@ -1,4 +1,4 @@
-package cn.luixtech.passport.client.web;
+package cn.luixtech.passport.client.controller;
 
 import cn.luixtech.passport.client.config.ApplicationProperties;
 import jakarta.servlet.http.HttpServletRequest;

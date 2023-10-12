@@ -1,10 +1,12 @@
 package cn.luixtech.passport.server.config.oauth;
 
+import lombok.Data;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Data
 public class ScopeWithDescription {
     private static final String              DEFAULT_DESCRIPTION = "UNKNOWN SCOPE - We cannot provide information about this permission, use caution when granting this.";
     private static final Map<String, String> scopeDescriptions   = new HashMap<>();
