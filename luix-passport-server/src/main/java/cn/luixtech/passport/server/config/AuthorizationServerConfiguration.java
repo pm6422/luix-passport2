@@ -45,9 +45,17 @@ import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfiguration {
-    public static final String CONSENT_PAGE_URI        = "/oauth2/consent";
+    public static final String AUTHORIZATION_BEARER    = "Bearer ";
+    public static final String AUTHORIZATION_BASIC     = "Basic ";
+    public static final String AUTH_CODE_CLIENT_ID     = "messaging-client";
+    public static final String AUTH_CODE_CLIENT_SECRET = "secret";
     public static final String DEVICE_VERIFICATION_URI = "/activate";
     public static final String LOGIN_URI               = "/login";
+    public static final String TOKEN_URI               = "/oauth2/token";
+    public static final String INTROSPECT_TOKEN_URI    = "/oauth2/introspect";
+    public static final String VIEW_JWK_URI            = "/oauth2/jwks";
+    public static final String REVOKE_TOKEN_URI        = "/oauth2/revoke";
+    public static final String CONSENT_PAGE_URI        = "/oauth2/consent";
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -111,7 +119,7 @@ public class AuthorizationServerConfiguration {
 	@Bean
 	public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
 		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
-				.clientId("messaging-client")
+				.clientId(AUTH_CODE_CLIENT_ID)
 				.clientSecret("{noop}secret")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
