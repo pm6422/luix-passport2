@@ -5,6 +5,8 @@ import cn.luixtech.passport.server.config.formauth.event.FormLogoutSuccessEventL
 import cn.luixtech.passport.server.config.formauth.event.LogoutHttpSessionEventPublisher;
 import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
+import cn.luixtech.passport.server.config.oauth.service.CustomUserDetailsService;
+import cn.luixtech.passport.server.service.AuthUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -32,10 +33,10 @@ public class WebServerSecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) ->
                 web.ignoring()
-				// Remove below if remove H2
-				// requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
-				// h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
-				.requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+                        // Remove below if remove H2
+                        // requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
+                        // h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
+                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
     }
 
     // @formatter:off
@@ -75,17 +76,21 @@ public class WebServerSecurityConfiguration {
 	}
 	// @formatter:on
 
-    // @formatter:off
 	@Bean
-	public UserDetailsService users() {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
-				.roles("USER")
-				.build();
-		return new InMemoryUserDetailsManager(user);
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
-	// @formatter:on
+
+    @Bean
+    public UserDetailsService userDetailsService(AuthUserService authUserService) {
+//		UserDetails user = User.withDefaultPasswordEncoder()
+//				.username("user")
+//				.password("password")
+//				.roles("USER")
+//				.build();
+//		return new InMemoryUserDetailsManager(user);
+        return new CustomUserDetailsService(authUserService);
+    }
 
     @Bean
     public SessionRegistry sessionRegistry() {
