@@ -42,8 +42,7 @@ public class CustomUserDetailsService implements org.springframework.security.co
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        return new AuthUser(user.getId(), user.getUsername(),
-                user.getFirstName(), user.getLastName(),
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPasswordHash(), user.getEnabled(),
                 true, true,
                 true, grantedAuthorities);
