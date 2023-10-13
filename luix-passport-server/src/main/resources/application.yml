@@ -40,6 +40,15 @@ spring:
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
     active: test
   datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      poolName: Hikari
+      auto-commit: true
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
 # Created EmbeddedDatabase bean manually in AuthorizationServerConfiguration.class, problem refer to https://stackoverflow.com/questions/41873372/execute-multiple-scripts-on-application-startup
 #    url: jdbc:h2:mem:passport;INIT=RUNSCRIPT FROM 'classpath:/org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql'\;RUNSCRIPT FROM 'classpath:/org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql'\;RUNSCRIPT FROM 'classpath:/org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql'
   h2:

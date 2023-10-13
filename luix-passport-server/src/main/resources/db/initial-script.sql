@@ -15,66 +15,118 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE oauth2_authorization (
-                                      id varchar(100) NOT NULL,
-                                      registered_client_id varchar(100) NOT NULL,
-                                      principal_name varchar(200) NOT NULL,
-                                      authorization_grant_type varchar(100) NOT NULL,
-                                      authorized_scopes varchar(1000) DEFAULT NULL,
-                                      attributes blob DEFAULT NULL,
-                                      state varchar(500) DEFAULT NULL,
-                                      authorization_code_value blob DEFAULT NULL,
-                                      authorization_code_issued_at timestamp DEFAULT NULL,
-                                      authorization_code_expires_at timestamp DEFAULT NULL,
-                                      authorization_code_metadata blob DEFAULT NULL,
-                                      access_token_value blob DEFAULT NULL,
-                                      access_token_issued_at timestamp DEFAULT NULL,
-                                      access_token_expires_at timestamp DEFAULT NULL,
-                                      access_token_metadata blob DEFAULT NULL,
-                                      access_token_type varchar(100) DEFAULT NULL,
-                                      access_token_scopes varchar(1000) DEFAULT NULL,
-                                      oidc_id_token_value blob DEFAULT NULL,
-                                      oidc_id_token_issued_at timestamp DEFAULT NULL,
-                                      oidc_id_token_expires_at timestamp DEFAULT NULL,
-                                      oidc_id_token_metadata blob DEFAULT NULL,
-                                      refresh_token_value blob DEFAULT NULL,
-                                      refresh_token_issued_at timestamp DEFAULT NULL,
-                                      refresh_token_expires_at timestamp DEFAULT NULL,
-                                      refresh_token_metadata blob DEFAULT NULL,
-                                      user_code_value blob DEFAULT NULL,
-                                      user_code_issued_at timestamp DEFAULT NULL,
-                                      user_code_expires_at timestamp DEFAULT NULL,
-                                      user_code_metadata blob DEFAULT NULL,
-                                      device_code_value blob DEFAULT NULL,
-                                      device_code_issued_at timestamp DEFAULT NULL,
-                                      device_code_expires_at timestamp DEFAULT NULL,
-                                      device_code_metadata blob DEFAULT NULL,
-                                      PRIMARY KEY (id)
-);
+--
+-- Table structure for table `oauth2_authorization`
+--
 
-CREATE TABLE oauth2_authorization_consent (
-                                              registered_client_id varchar(100) NOT NULL,
-                                              principal_name varchar(200) NOT NULL,
-                                              authorities varchar(1000) NOT NULL,
-                                              PRIMARY KEY (registered_client_id, principal_name)
-);
+DROP TABLE IF EXISTS `oauth2_authorization`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `oauth2_authorization` (
+                                        `id` varchar(100) NOT NULL,
+                                        `registered_client_id` varchar(100) NOT NULL,
+                                        `principal_name` varchar(200) NOT NULL,
+                                        `authorization_grant_type` varchar(100) NOT NULL,
+                                        `authorized_scopes` varchar(1000) DEFAULT NULL,
+                                        `attributes` blob,
+                                        `state` varchar(500) DEFAULT NULL,
+                                        `authorization_code_value` blob,
+                                        `authorization_code_issued_at` timestamp NULL DEFAULT NULL,
+                                        `authorization_code_expires_at` timestamp NULL DEFAULT NULL,
+                                        `authorization_code_metadata` blob,
+                                        `access_token_value` blob,
+                                        `access_token_issued_at` timestamp NULL DEFAULT NULL,
+                                        `access_token_expires_at` timestamp NULL DEFAULT NULL,
+                                        `access_token_metadata` blob,
+                                        `access_token_type` varchar(100) DEFAULT NULL,
+                                        `access_token_scopes` varchar(1000) DEFAULT NULL,
+                                        `oidc_id_token_value` blob,
+                                        `oidc_id_token_issued_at` timestamp NULL DEFAULT NULL,
+                                        `oidc_id_token_expires_at` timestamp NULL DEFAULT NULL,
+                                        `oidc_id_token_metadata` blob,
+                                        `refresh_token_value` blob,
+                                        `refresh_token_issued_at` timestamp NULL DEFAULT NULL,
+                                        `refresh_token_expires_at` timestamp NULL DEFAULT NULL,
+                                        `refresh_token_metadata` blob,
+                                        `user_code_value` blob,
+                                        `user_code_issued_at` timestamp NULL DEFAULT NULL,
+                                        `user_code_expires_at` timestamp NULL DEFAULT NULL,
+                                        `user_code_metadata` blob,
+                                        `device_code_value` blob,
+                                        `device_code_issued_at` timestamp NULL DEFAULT NULL,
+                                        `device_code_expires_at` timestamp NULL DEFAULT NULL,
+                                        `device_code_metadata` blob,
+                                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-CREATE TABLE oauth2_registered_client (
-                                          id varchar(100) NOT NULL,
-                                          client_id varchar(100) NOT NULL,
-                                          client_id_issued_at timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-                                          client_secret varchar(200) DEFAULT NULL,
-                                          client_secret_expires_at timestamp DEFAULT NULL,
-                                          client_name varchar(200) NOT NULL,
-                                          client_authentication_methods varchar(1000) NOT NULL,
-                                          authorization_grant_types varchar(1000) NOT NULL,
-                                          redirect_uris varchar(1000) DEFAULT NULL,
-                                          post_logout_redirect_uris varchar(1000) DEFAULT NULL,
-                                          scopes varchar(1000) NOT NULL,
-                                          client_settings varchar(2000) NOT NULL,
-                                          token_settings varchar(2000) NOT NULL,
-                                          PRIMARY KEY (id)
-);
+--
+-- Dumping data for table `oauth2_authorization`
+--
+
+LOCK TABLES `oauth2_authorization` WRITE;
+/*!40000 ALTER TABLE `oauth2_authorization` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oauth2_authorization` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `oauth2_authorization_consent`
+--
+
+DROP TABLE IF EXISTS `oauth2_authorization_consent`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `oauth2_authorization_consent` (
+                                                `registered_client_id` varchar(100) NOT NULL,
+                                                `principal_name` varchar(200) NOT NULL,
+                                                `authorities` varchar(1000) NOT NULL,
+                                                PRIMARY KEY (`registered_client_id`,`principal_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `oauth2_authorization_consent`
+--
+
+LOCK TABLES `oauth2_authorization_consent` WRITE;
+/*!40000 ALTER TABLE `oauth2_authorization_consent` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oauth2_authorization_consent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `oauth2_registered_client`
+--
+
+DROP TABLE IF EXISTS `oauth2_registered_client`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `oauth2_registered_client` (
+                                            `id` varchar(100) NOT NULL,
+                                            `client_id` varchar(100) NOT NULL,
+                                            `client_id_issued_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                                            `client_secret` varchar(200) DEFAULT NULL,
+                                            `client_secret_expires_at` timestamp NULL DEFAULT NULL,
+                                            `client_name` varchar(200) NOT NULL,
+                                            `client_authentication_methods` varchar(1000) NOT NULL,
+                                            `authorization_grant_types` varchar(1000) NOT NULL,
+                                            `redirect_uris` varchar(1000) DEFAULT NULL,
+                                            `post_logout_redirect_uris` varchar(1000) DEFAULT NULL,
+                                            `scopes` varchar(1000) NOT NULL,
+                                            `client_settings` varchar(2000) NOT NULL,
+                                            `token_settings` varchar(2000) NOT NULL,
+                                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `oauth2_registered_client`
+--
+
+LOCK TABLES `oauth2_registered_client` WRITE;
+/*!40000 ALTER TABLE `oauth2_registered_client` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oauth2_registered_client` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `user`
 --
@@ -83,28 +135,28 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `id` varchar(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `mobile_no` varchar(13) NOT NULL,
-  `first_name` varchar(20) DEFAULT NULL,
-  `last_name` varchar(20) DEFAULT NULL,
-  `password_hash` varchar(256) NOT NULL,
-  `activation_key` varchar(256) DEFAULT NULL,
-  `reset_key` varchar(256) DEFAULT NULL,
-  `reset_time` timestamp NULL DEFAULT NULL,
-  `profile_photo_enabled` bit(1) NOT NULL,
-  `remarks` varchar(256) DEFAULT NULL,
-  `activated` bit(1) NOT NULL,
-  `enabled` bit(1) NOT NULL,
-  `created_by` varchar(50) NOT NULL,
-  `created_time` timestamp NOT NULL,
-  `modified_by` varchar(50) DEFAULT NULL,
-  `modified_time` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `ux_user_username` (`username`),
-  UNIQUE KEY `ux_user_email` (`email`),
-  UNIQUE KEY `ux_user_mobile` (`mobile_no`)
+                        `id` varchar(20) NOT NULL,
+                        `username` varchar(20) NOT NULL,
+                        `email` varchar(30) NOT NULL,
+                        `mobile_no` varchar(13) NOT NULL,
+                        `first_name` varchar(20) DEFAULT NULL,
+                        `last_name` varchar(20) DEFAULT NULL,
+                        `password_hash` varchar(256) NOT NULL,
+                        `activation_key` varchar(256) DEFAULT NULL,
+                        `reset_key` varchar(256) DEFAULT NULL,
+                        `reset_time` timestamp NULL DEFAULT NULL,
+                        `profile_photo_enabled` bit(1) NOT NULL,
+                        `remarks` varchar(256) DEFAULT NULL,
+                        `activated` bit(1) NOT NULL,
+                        `enabled` bit(1) NOT NULL,
+                        `created_by` varchar(50) NOT NULL,
+                        `created_time` timestamp NOT NULL,
+                        `modified_by` varchar(50) DEFAULT NULL,
+                        `modified_time` timestamp NULL DEFAULT NULL,
+                        PRIMARY KEY (`id`),
+                        UNIQUE KEY `ux_user_username` (`username`),
+                        UNIQUE KEY `ux_user_email` (`email`),
+                        UNIQUE KEY `ux_user_mobile` (`mobile_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -126,10 +178,10 @@ DROP TABLE IF EXISTS `user_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_permission` (
-  `user_id` varchar(20) NOT NULL,
-  `permission` varchar(36) NOT NULL,
-  PRIMARY KEY (`user_id`,`permission`),
-  CONSTRAINT `fk_user_permission_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                                   `user_id` varchar(20) NOT NULL,
+                                   `permission` varchar(36) NOT NULL,
+                                   PRIMARY KEY (`user_id`,`permission`),
+                                   CONSTRAINT `fk_user_permission_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -151,10 +203,10 @@ DROP TABLE IF EXISTS `user_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_role` (
-  `user_id` varchar(20) NOT NULL,
-  `role` varchar(36) NOT NULL,
-  PRIMARY KEY (`user_id`,`role`),
-  CONSTRAINT `fk_user_role_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                             `user_id` varchar(20) NOT NULL,
+                             `role` varchar(36) NOT NULL,
+                             PRIMARY KEY (`user_id`,`role`),
+                             CONSTRAINT `fk_user_role_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -177,4 +229,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-13 14:46:02
+-- Dump completed on 2023-10-13 15:16:26

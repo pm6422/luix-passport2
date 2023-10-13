@@ -116,6 +116,7 @@ public class AuthorizationServerConfiguration {
 
     // @formatter:off
 	@Bean
+//	@Transactional
 	public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
 		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
 				.clientId(AUTH_CODE_CLIENT_ID)
@@ -146,8 +147,8 @@ public class AuthorizationServerConfiguration {
 
 		// Save registered client's in db as if in-memory
 		JdbcRegisteredClientRepository registeredClientRepository = new JdbcRegisteredClientRepository(jdbcTemplate);
-		registeredClientRepository.save(registeredClient);
-		registeredClientRepository.save(deviceClient);
+//		registeredClientRepository.save(registeredClient);
+//		registeredClientRepository.save(deviceClient);
 
 		return registeredClientRepository;
 	}
