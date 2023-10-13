@@ -28,12 +28,16 @@ public class WebServerSecurityConfiguration {
     private final FormLoginSuccessEventListener  formLoginSuccessEventListener;
     private final FormLogoutSuccessEventListener formLogoutSuccessEventListener;
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) ->
-//                web.ignoring().requestMatchers("/h2-console/**", "h2-console/test.do");
-		return (web) -> web.ignoring().anyRequest();
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+////        return (web) ->
+////                web.ignoring().requestMatchers("/h2-console/**", "h2-console/test.do");
+//    }
+
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+	}
 
     // @formatter:off
 	@Bean
@@ -41,7 +45,7 @@ public class WebServerSecurityConfiguration {
 		http
 			.authorizeHttpRequests(authorize ->
 				authorize
-					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
+					.requestMatchers("/assets/**", "/webjars/**", "/login", "/h2-console/**", "/h2-console").permitAll()
 //					.requestMatchers("/api/**").authenticated()
 					.anyRequest().authenticated()
 			)
@@ -54,7 +58,8 @@ public class WebServerSecurityConfiguration {
 				oauth2Login
 					.loginPage("/login")
 					.successHandler(new FederatedIdentityLoginSuccessHandler())
-			);
+			)
+			.headers(headers->headers.frameOptions(x->x.sameOrigin()));
 		/*
 		 * If you request POST /logout, then it will perform the following default operations using a series of LogoutHandlers:
 		 *	Invalidate the HTTP session (SecurityContextLogoutHandler)
