@@ -167,7 +167,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('11','user','user@localhost','15000899471','User','User','{bcrypt}$2a$10$4BrM5W7ySTcjRJ.w.tSFs.VK.pciRmoExb8UmEgH8fYD7Yj2Hb6Ue',NULL,NULL,NULL,_binary '\0',NULL,_binary '',_binary '','system','2023-10-10 00:00:00','system','2023-10-10 00:00:00'),('12','admin','admin@localhost','15000899472','Admin','Admin','$2a$10$gUoLi.ICUNWymQRLD46VjeqPEDrk1LtO1z9EoU6SxwgoDY4j/FxDC',NULL,NULL,NULL,_binary '\0',NULL,_binary '',_binary '','system','2023-10-10 00:00:00','system','2023-10-10 00:00:00'),('13','louis','louis@luixtech.com','15000899478','Louis','Lau','$2a$10$5bD//RIhb2W3TrHQ5faSgeVAgoahpmexiLU/vEZ9MXbg5KvKtgzSS',NULL,NULL,NULL,_binary '\0',NULL,_binary '',_binary '','system','2023-10-10 00:00:00','system','2023-10-10 00:00:00');
+INSERT INTO `user` VALUES ('11','user','user@localhost','15000899471','User','User','{bcrypt}$2a$10$4BrM5W7ySTcjRJ.w.tSFs.VK.pciRmoExb8UmEgH8fYD7Yj2Hb6Ue',NULL,NULL,NULL,_binary '\0',NULL,_binary '',_binary '','system','2023-10-10 00:00:00','system','2023-10-10 00:00:00'),('12','admin','admin@localhost','15000899472','Admin','Admin','{bcrypt}$2a$10$gUoLi.ICUNWymQRLD46VjeqPEDrk1LtO1z9EoU6SxwgoDY4j/FxDC',NULL,NULL,NULL,_binary '\0',NULL,_binary '',_binary '','system','2023-10-10 00:00:00','system','2023-10-10 00:00:00'),('13','louis','louis@luixtech.com','15000899478','Louis','Lau','{bcrypt}$2a$10$5bD//RIhb2W3TrHQ5faSgeVAgoahpmexiLU/vEZ9MXbg5KvKtgzSS',NULL,NULL,NULL,_binary '\0',NULL,_binary '',_binary '','system','2023-10-10 00:00:00','system','2023-10-10 00:00:00');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
