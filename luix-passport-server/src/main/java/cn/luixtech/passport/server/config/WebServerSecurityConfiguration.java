@@ -28,16 +28,12 @@ public class WebServerSecurityConfiguration {
     private final FormLoginSuccessEventListener  formLoginSuccessEventListener;
     private final FormLogoutSuccessEventListener formLogoutSuccessEventListener;
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-////        return (web) ->
-////                web.ignoring().requestMatchers("/h2-console/**", "h2-console/test.do");
-//    }
-
-	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
-	}
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) ->
+                web.ignoring()
+				.requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+    }
 
     // @formatter:off
 	@Bean
