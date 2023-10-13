@@ -4,6 +4,7 @@ import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationConver
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
 import cn.luixtech.passport.server.config.oauth.federation.FederatedIdentityIdTokenCustomizer;
 import cn.luixtech.passport.server.jose.Jwks;
+import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
@@ -37,8 +38,6 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
-
-import java.util.UUID;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfiguration {
@@ -119,10 +118,10 @@ public class AuthorizationServerConfiguration {
 	@Bean
 //	@Transactional
 	public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
-		RegisteredClient registeredClient = RegisteredClient.withId(UUID.randomUUID().toString())
+		RegisteredClient registeredClient = RegisteredClient.withId(IdGenerator.generateId())
 				.clientId(AUTH_CODE_CLIENT_ID)
 //				.clientSecret("{noop}secret")
-				.clientSecret(new BCryptPasswordEncoder().encode("secret"))
+				.clientSecret("{bcrypt}"+new BCryptPasswordEncoder().encode("secret"))
 				.clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
 				.authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
 				.authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
@@ -138,7 +137,7 @@ public class AuthorizationServerConfiguration {
 				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 				.build();
 
-		RegisteredClient deviceClient = RegisteredClient.withId(UUID.randomUUID().toString())
+		RegisteredClient deviceClient = RegisteredClient.withId(IdGenerator.generateId())
 				.clientId("device-messaging-client")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
 				.authorizationGrantType(AuthorizationGrantType.DEVICE_CODE)
