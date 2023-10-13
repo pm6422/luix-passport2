@@ -32,7 +32,7 @@ public class WebServerSecurityConfiguration {
 		http
 			.authorizeHttpRequests(authorize ->
 				authorize
-					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
+					.requestMatchers("/assets/**", "/webjars/**", "/login", "/h2-console/**").permitAll()
 //					.requestMatchers("/api/**").authenticated()
 					.anyRequest().authenticated()
 			)
