@@ -80,11 +80,6 @@ public class WebServerSecurityConfiguration {
 	}
 	// @formatter:on
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
     @Bean
     public UserDetailsService userDetailsService(AuthUserService authUserService) {
 //		UserDetails user = User.withDefaultPasswordEncoder()
