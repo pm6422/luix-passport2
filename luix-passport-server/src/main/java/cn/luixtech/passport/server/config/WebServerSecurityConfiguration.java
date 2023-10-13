@@ -80,15 +80,15 @@ public class WebServerSecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(AuthUserService authUserService) {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username("user")
-				// Use BCryptPasswordEncoder as default, refer to PasswordEncoderFactories.PasswordEncoder()
-				.password("user")
-				.roles("USER")
-				.build();
-		return new InMemoryUserDetailsManager(user);
+//		UserDetails user = User.withDefaultPasswordEncoder()
+//				.username("user")
+//				// Use BCryptPasswordEncoder as default, refer to PasswordEncoderFactories.PasswordEncoder()
+//				.password("user")
+//				.roles("USER")
+//				.build();
+//		return new InMemoryUserDetailsManager(user);
         // Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
-//        return new CustomUserDetailsService(authUserService);
+        return new CustomUserDetailsService(authUserService);
     }
 
     @Bean
