@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server;
+package cn.luixtech.passport.server.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
