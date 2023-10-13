@@ -57,8 +57,8 @@ public class WebServerSecurityConfiguration {
 				oauth2Login
 					.loginPage("/login")
 					.successHandler(new FederatedIdentityLoginSuccessHandler())
-			)
-			.headers(headers->headers.frameOptions(x->x.sameOrigin()));
+			);
+//			.headers(headers->headers.frameOptions(x->x.sameOrigin()));
 		/*
 		 * If you request POST /logout, then it will perform the following default operations using a series of LogoutHandlers:
 		 *	Invalidate the HTTP session (SecurityContextLogoutHandler)
