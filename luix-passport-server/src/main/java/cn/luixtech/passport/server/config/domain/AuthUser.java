@@ -1,28 +1,36 @@
 package cn.luixtech.passport.server.config.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import org.springframework.security.core.GrantedAuthority;
 
-import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class AuthUser implements Serializable {
-    public static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
-    public static final String ROLE_USER      = "ROLE_USER";
-    public static final String ROLE_ADMIN     = "ROLE_ADMIN";
-    public static final String ROLE_DEVELOPER = "ROLE_DEVELOPER";
+@ToString
+public class AuthUser extends org.springframework.security.core.userdetails.User {
+    public static final  String ROLE_ANONYMOUS   = "ROLE_ANONYMOUS";
+    public static final  String ROLE_USER        = "ROLE_USER";
+    public static final  String ROLE_ADMIN       = "ROLE_ADMIN";
+    public static final  String ROLE_DEVELOPER   = "ROLE_DEVELOPER";
+    private static final long   serialVersionUID = -8021915441738843058L;
+    @Setter
+    @Getter
+    private              String id;
+    @Setter
+    @Getter
+    private              String firstName;
+    @Setter
+    @Getter
+    private              String lastName;
 
-    private String      id;
-    private String      username;
-    private String      passwordHash;
-    private String      email;
-    private String      mobileNo;
-    private Boolean     activated;
-    private Boolean     enabled;
-    private Set<String> roles;
-    private Set<String> permissions;
+    public AuthUser(String id, String username, String firstName, String lastName,
+                    String password, boolean enabled,
+                    boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,
+                    Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }
