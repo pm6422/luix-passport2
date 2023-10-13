@@ -15,7 +15,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -76,14 +80,15 @@ public class WebServerSecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(AuthUserService authUserService) {
-//		UserDetails user = User.withDefaultPasswordEncoder()
-//				.username("user")
-//				.password("password")
-//				.roles("USER")
-//				.build();
-//		return new InMemoryUserDetailsManager(user);
+		UserDetails user = User.withDefaultPasswordEncoder()
+				.username("user")
+				// Use BCryptPasswordEncoder as default, refer to PasswordEncoderFactories.PasswordEncoder()
+				.password("user")
+				.roles("USER")
+				.build();
+		return new InMemoryUserDetailsManager(user);
         // Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
-        return new CustomUserDetailsService(authUserService);
+//        return new CustomUserDetailsService(authUserService);
     }
 
     @Bean

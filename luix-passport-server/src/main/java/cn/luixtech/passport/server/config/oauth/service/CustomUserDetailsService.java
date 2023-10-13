@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 
 /**
  * Authenticate a user from the database.
+ * <p>
+ *  Refer below to review match password
+ * {@link org.springframework.security.authentication.dao.DaoAuthenticationProvider#additionalAuthenticationChecks}
  */
 @Slf4j
 @AllArgsConstructor
