@@ -32,6 +32,8 @@ public class WebServerSecurityConfiguration {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) ->
                 web.ignoring()
+				// requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
+				// h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
 				.requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
     }
 
@@ -41,7 +43,7 @@ public class WebServerSecurityConfiguration {
 		http
 			.authorizeHttpRequests(authorize ->
 				authorize
-					.requestMatchers("/assets/**", "/webjars/**", "/login", "/h2-console/**", "/h2-console").permitAll()
+					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
 //					.requestMatchers("/api/**").authenticated()
 					.anyRequest().authenticated()
 			)
