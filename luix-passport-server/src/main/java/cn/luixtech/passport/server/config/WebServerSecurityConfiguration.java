@@ -1,6 +1,8 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
+import cn.luixtech.passport.server.event.AuthenticationEventListener;
+import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import cn.luixtech.passport.server.service.impl.JdbcUserDetailsService;
 import cn.luixtech.passport.server.service.UserService;
 import lombok.AllArgsConstructor;
@@ -48,7 +50,7 @@ public class WebServerSecurityConfiguration {
 			.oauth2Login(oauth2Login ->
 				oauth2Login
 					.loginPage("/login")
-					.successHandler(new FederatedIdentityLoginSuccessHandler())
+					.successHandler(new FederatedIdentityLoginSuccessHandler(new FederatedIdentityLoginSuccessEventListener()))
 			);
 //			.headers(headers->headers.frameOptions(x->x.sameOrigin()));
 		/*
