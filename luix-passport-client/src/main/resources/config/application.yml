@@ -41,6 +41,8 @@ spring:
     active: test
   thymeleaf:
     cache: false
+  banner:
+    location: classpath:config/banner-company.txt
   security:
     oauth2:
       client:

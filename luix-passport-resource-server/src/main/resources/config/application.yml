@@ -1,14 +1,5 @@
 server:
   port: 4002
-
-logging:
-  level:
-    root: INFO
-    org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
-#    org.springframework.boot.autoconfigure: DEBUG
-
 spring:
   application:
     name: luix-passport-resource-server
@@ -17,8 +8,17 @@ spring:
     # Otherwise, it will be filled in by maven when building the WAR file
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
     active: test
+  banner:
+    location: classpath:config/banner-company.txt
   security:
     oauth2:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:4001
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.security.oauth2: INFO
+#    org.springframework.boot.autoconfigure: DEBUG
