@@ -1,6 +1,5 @@
 package cn.luixtech.passport.server.config.oauth.service;
 
-import cn.luixtech.passport.server.config.domain.AuthUser;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.service.AuthUserService;
@@ -8,19 +7,22 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Authenticate a user from the database.
+ * Functions is same to {@link JdbcUserDetailsManager}
  * <p>
- *  Refer below to review match password
- * {@link org.springframework.security.authentication.dao.DaoAuthenticationProvider#additionalAuthenticationChecks}
+ * Refer below to review match password
+ * {@link DaoAuthenticationProvider#additionalAuthenticationChecks}
  */
 @Slf4j
 @AllArgsConstructor
