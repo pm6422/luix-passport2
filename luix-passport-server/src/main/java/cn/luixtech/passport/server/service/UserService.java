@@ -6,7 +6,7 @@ import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import java.util.Optional;
 import java.util.Set;
 
-public interface AuthUserService {
+public interface UserService {
     Optional<User> findOne(String loginName);
 
     Set<String> findAuthorities(String userId);

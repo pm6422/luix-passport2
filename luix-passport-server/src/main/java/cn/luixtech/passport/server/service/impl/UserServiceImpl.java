@@ -2,7 +2,7 @@ package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.service.AuthUserService;
+import cn.luixtech.passport.server.service.UserService;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
-public class AuthUserServiceImpl implements AuthUserService {
+public class UserServiceImpl implements UserService {
     private final DSLContext dslContext;
 
     @Override

@@ -6,7 +6,7 @@ import cn.luixtech.passport.server.config.formauth.event.LogoutHttpSessionEventP
 import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.service.JdbcUserDetailsService;
-import cn.luixtech.passport.server.service.AuthUserService;
+import cn.luixtech.passport.server.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -76,8 +76,8 @@ public class WebServerSecurityConfiguration {
 	// @formatter:on
 
     @Bean
-    public UserDetailsService userDetailsService(AuthUserService authUserService) {
-        return new JdbcUserDetailsService(authUserService);
+    public UserDetailsService userDetailsService(UserService userService) {
+        return new JdbcUserDetailsService(userService);
     }
 
     @Bean

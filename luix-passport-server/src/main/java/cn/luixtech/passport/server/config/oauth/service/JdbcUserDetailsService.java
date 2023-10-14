@@ -2,7 +2,7 @@ package cn.luixtech.passport.server.config.oauth.service;
 
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.service.AuthUserService;
+import cn.luixtech.passport.server.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @AllArgsConstructor
 public class JdbcUserDetailsService implements UserDetailsService {
-    private final AuthUserService authUserService;
+    private final UserService userService;
 
     @Override
 //    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
@@ -38,12 +38,12 @@ public class JdbcUserDetailsService implements UserDetailsService {
             log.warn("login must not be empty!");
             throw new BadCredentialsException("login must not be empty");
         }
-        User user = authUserService.findOne(loginName)
+        User user = userService.findOne(loginName)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + loginName + " was not found"));
         if (!Boolean.TRUE.equals(user.getActivated())) {
             throw new UserNotActivatedException(loginName);
         }
-        List<GrantedAuthority> authorities = authUserService.findAuthorities(user.getId())
+        List<GrantedAuthority> authorities = userService.findAuthorities(user.getId())
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
