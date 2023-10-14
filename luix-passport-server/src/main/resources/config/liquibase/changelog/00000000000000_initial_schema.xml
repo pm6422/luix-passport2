@@ -92,6 +92,11 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <loadData
+                file="config/liquibase/data/oauth2_registered_client.csv"
+                separator=";"
+                tableName="oauth2_registered_client">
+        </loadData>
     </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-4">
         <createTable tableName="user">
