@@ -56,7 +56,7 @@ public class AuthorizationServerApplicationTests {
         assertLoginPage(page);
 
         this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
-        WebResponse signInResponse = signIn(page, "user", "password").getWebResponse();
+        WebResponse signInResponse = signIn(page, "user", "user").getWebResponse();
 
         assertThat(signInResponse.getStatusCode()).isEqualTo(HttpStatus.OK.value());
     }
@@ -84,7 +84,7 @@ public class AuthorizationServerApplicationTests {
         // Log in
         this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         this.webClient.getOptions().setRedirectEnabled(false);
-        signIn(this.webClient.getPage("/login"), "user", "password");
+        signIn(this.webClient.getPage("/login"), "user", "user");
 
         // Request token
         WebResponse response = this.webClient.getPage(AUTHORIZATION_REQUEST_URI).getWebResponse();
