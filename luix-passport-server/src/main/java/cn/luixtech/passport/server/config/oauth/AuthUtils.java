@@ -22,16 +22,8 @@ public abstract class AuthUtils {
      * Get the name of the current logged user.
      */
     public static String getCurrentUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = null;
-        if (authentication != null) {
-            if (authentication.getPrincipal() instanceof User springSecurityUser) {
-                username = springSecurityUser.getUsername();
-            } else if (authentication.getPrincipal() instanceof String) {
-                username = (String) authentication.getPrincipal();
-            }
-        }
-        return username;
+        User currentUser = getCurrentUser(SecurityContextHolder.getContext().getAuthentication());
+        return currentUser != null ? currentUser.getUsername() : null;
     }
 
     /**
