@@ -46,7 +46,8 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void authorizationEvent(AuthorizationEvent event) {
-        log.info("Do authorization for user: [{}] and initiated by {}", getCurrentUsername(event.getAuthentication().get())
+        log.info("Authorization result: {} for user: [{}] and initiated by {}", event.getAuthorizationDecision(),
+                getCurrentUsername(event.getAuthentication().get())
                 , event.getSource().getClass().getSimpleName());
     }
 }
