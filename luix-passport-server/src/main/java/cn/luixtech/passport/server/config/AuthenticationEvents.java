@@ -37,16 +37,16 @@ public class AuthenticationEvents {
 
     @EventListener
     public void authorizationGrantedEventListener(AuthorizationGrantedEvent event) {
-        log.info("Processing logout event initiated by {}", event.getSource().getClass().getSimpleName());
+        log.info("Processing authorization granted event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 
     @EventListener
     public void authorizationEventListener(AuthorizationEvent event) {
-        log.info("Processing logout event initiated by {}", event.getSource().getClass().getSimpleName());
+        log.info("Processing authorization event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 
     @EventListener
     public void authorizationDeniedEventListener(AuthorizationDeniedEvent event) {
-        log.info("Processing logout event initiated by {}", event.getSource().getClass().getSimpleName());
+        log.info("Processing authorization denied event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 }
