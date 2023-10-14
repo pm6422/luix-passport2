@@ -70,6 +70,8 @@ spring:
             user-name-attribute: email
           github:
             user-name-attribute: login
+  liquibase:
+    enabled: false
 logging:
   level:
     root: DEBUG
