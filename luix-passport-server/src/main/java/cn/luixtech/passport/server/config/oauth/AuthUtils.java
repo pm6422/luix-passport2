@@ -10,7 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 
-import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -25,8 +25,7 @@ public abstract class AuthUtils {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = null;
         if (authentication != null) {
-            if (authentication.getPrincipal() instanceof User) {
-                User springSecurityUser = (User) authentication.getPrincipal();
+            if (authentication.getPrincipal() instanceof User springSecurityUser) {
                 username = springSecurityUser.getUsername();
             } else if (authentication.getPrincipal() instanceof String) {
                 username = (String) authentication.getPrincipal();
@@ -39,14 +38,20 @@ public abstract class AuthUtils {
      * Get the current logged user.
      */
     public static User getCurrentUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return getCurrentUser(SecurityContextHolder.getContext().getAuthentication());
+    }
+
+    /**
+     * Get the current logged user.
+     */
+    public static User getCurrentUser(Authentication authentication) {
         User user = null;
         if (authentication != null) {
             if (authentication.getPrincipal() instanceof User) {
                 user = (User) authentication.getPrincipal();
             } else if (authentication.getPrincipal() instanceof String) {
                 user = new User((String) authentication.getPrincipal(), "protected",
-                        Arrays.asList(new SimpleGrantedAuthority("unknown")));
+                        List.of(new SimpleGrantedAuthority("unknown")));
             }
         }
         return user;
