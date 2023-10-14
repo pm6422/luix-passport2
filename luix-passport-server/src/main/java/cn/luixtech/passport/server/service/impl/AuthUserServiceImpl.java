@@ -27,7 +27,7 @@ public class AuthUserServiceImpl implements AuthUserService {
     }
 
     @Override
-    public Set<String> findRoles(String userId) {
+    public Set<String> findAuthorities(String userId) {
         Set<String> roles = dslContext.select(Tables.USER_AUTHORITY.AUTHORITY)
                 .from(Tables.USER_AUTHORITY)
                 .where(Tables.USER_AUTHORITY.USER_ID.eq(userId))

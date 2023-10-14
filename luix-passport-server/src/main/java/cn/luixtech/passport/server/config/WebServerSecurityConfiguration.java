@@ -5,26 +5,18 @@ import cn.luixtech.passport.server.config.formauth.event.FormLogoutSuccessEventL
 import cn.luixtech.passport.server.config.formauth.event.LogoutHttpSessionEventPublisher;
 import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
-import cn.luixtech.passport.server.config.oauth.service.CustomUserDetailsService;
+import cn.luixtech.passport.server.config.oauth.service.JdbcUserDetailsService;
 import cn.luixtech.passport.server.service.AuthUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
@@ -85,7 +77,7 @@ public class WebServerSecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(AuthUserService authUserService) {
-        return new CustomUserDetailsService(authUserService);
+        return new JdbcUserDetailsService(authUserService);
     }
 
     @Bean

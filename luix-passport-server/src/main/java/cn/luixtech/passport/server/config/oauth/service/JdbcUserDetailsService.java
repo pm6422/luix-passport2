@@ -11,6 +11,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
@@ -26,23 +27,23 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @AllArgsConstructor
-public class CustomUserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
+public class JdbcUserDetailsService implements UserDetailsService {
     private final AuthUserService authUserService;
 
     @Override
 //    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
-    public UserDetails loadUserByUsername(final String login) {
-        log.debug("Authenticating {}", login);
-        if (StringUtils.isEmpty(login)) {
+    public UserDetails loadUserByUsername(final String loginName) {
+        log.debug("Authenticating {}", loginName);
+        if (StringUtils.isEmpty(loginName)) {
             log.warn("login must not be empty!");
             throw new BadCredentialsException("login must not be empty");
         }
-        User user = authUserService.findOne(login)
-                .orElseThrow(() -> new UsernameNotFoundException("User " + login + " was not found"));
+        User user = authUserService.findOne(loginName)
+                .orElseThrow(() -> new UsernameNotFoundException("User " + loginName + " was not found"));
         if (!Boolean.TRUE.equals(user.getActivated())) {
-            throw new UserNotActivatedException(login);
+            throw new UserNotActivatedException(loginName);
         }
-        List<GrantedAuthority> grantedAuthorities = authUserService.findRoles(user.getId())
+        List<GrantedAuthority> grantedAuthorities = authUserService.findAuthorities(user.getId())
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
