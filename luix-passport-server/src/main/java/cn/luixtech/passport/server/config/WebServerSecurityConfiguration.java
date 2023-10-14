@@ -26,6 +26,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+ * Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
+ */
 @EnableWebSecurity
 @AllArgsConstructor
 @Configuration(proxyBeanMethods = false)
@@ -82,21 +85,6 @@ public class WebServerSecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(AuthUserService authUserService) {
-//		UserDetails user = User.withDefaultPasswordEncoder()
-//				.username("user")
-//				// Use BCryptPasswordEncoder as default, refer to PasswordEncoderFactories.PasswordEncoder()
-//				.password("user")
-//				.roles("USER")
-//				.build();
-//		return new InMemoryUserDetailsManager(user);
-
-//		JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager();
-//		userDetailsManager.setJdbcTemplate(jdbcTemplate);
-//		userDetailsManager.setEnableGroups(false);
-//		userDetailsManager.setUsersByUsernameQuery("select username, password_hash, enabled from \"USER\" where username = ?");
-//		userDetailsManager.setAuthoritiesByUsernameQuery("select username,authority");
-//		return userDetailsManager;
-//         Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
         return new CustomUserDetailsService(authUserService);
     }
 
