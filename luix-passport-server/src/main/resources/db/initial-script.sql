@@ -197,28 +197,28 @@ INSERT INTO `user_permission` VALUES ('11','user:insert'),('11','user:update'),(
 UNLOCK TABLES;
 
 --
--- Table structure for table `user_role`
+-- Table structure for table `user_authority`
 --
 
-DROP TABLE IF EXISTS `user_role`;
+DROP TABLE IF EXISTS `user_authority`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_role` (
+CREATE TABLE `user_authority` (
                              `user_id` varchar(20) NOT NULL,
-                             `role` varchar(36) NOT NULL,
-                             PRIMARY KEY (`user_id`,`role`),
-                             CONSTRAINT `fk_user_role_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+                             `authority` varchar(36) NOT NULL,
+                             PRIMARY KEY (`user_id`,`authority`),
+                             CONSTRAINT `fk_user_authority_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_role`
+-- Dumping data for table `user_authority`
 --
 
-LOCK TABLES `user_role` WRITE;
-/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
-INSERT INTO `user_role` VALUES ('11','ROLE_ANONYMOUS'),('11','ROLE_USER'),('12','ROLE_ADMIN'),('12','ROLE_ANONYMOUS'),('12','ROLE_USER'),('13','ROLE_ADMIN'),('13','ROLE_ANONYMOUS'),('13','ROLE_DEVELOPER'),('13','ROLE_USER');
-/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+LOCK TABLES `user_authority` WRITE;
+/*!40000 ALTER TABLE `user_authority` DISABLE KEYS */;
+INSERT INTO `user_authority` VALUES ('11','ROLE_ANONYMOUS'),('11','ROLE_USER'),('12','ROLE_ADMIN'),('12','ROLE_ANONYMOUS'),('12','ROLE_USER'),('13','ROLE_ADMIN'),('13','ROLE_ANONYMOUS'),('13','ROLE_DEVELOPER'),('13','ROLE_USER');
+/*!40000 ALTER TABLE `user_authority` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

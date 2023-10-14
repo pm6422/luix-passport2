@@ -8,8 +8,8 @@ import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.User;
+import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
-import cn.luixtech.passport.server.persistence.tables.UserRole;
 
 
 /**
@@ -39,12 +39,12 @@ public class Tables {
     public static final User USER = User.USER;
 
     /**
+     * The table <code>luix-passport.user_authority</code>.
+     */
+    public static final UserAuthority USER_AUTHORITY = UserAuthority.USER_AUTHORITY;
+
+    /**
      * The table <code>luix-passport.user_permission</code>.
      */
     public static final UserPermission USER_PERMISSION = UserPermission.USER_PERMISSION;
-
-    /**
-     * The table <code>luix-passport.user_role</code>.
-     */
-    public static final UserRole USER_ROLE = UserRole.USER_ROLE;
 }

@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport2;
+import cn.luixtech.passport.server.persistence.LuixPassport;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2RegisteredClientRecord;
 
 import java.time.LocalDateTime;
@@ -148,7 +148,7 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
 
     @Override
     public Schema getSchema() {
-        return LuixPassport2.LUIX_PASSPORT2;
+        return LuixPassport.LUIX_PASSPORT;
     }
 
     @Override

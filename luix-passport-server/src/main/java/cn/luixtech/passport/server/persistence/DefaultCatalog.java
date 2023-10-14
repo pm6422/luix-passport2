@@ -27,7 +27,7 @@ public class DefaultCatalog extends CatalogImpl {
     /**
      * The schema <code>luix-passport</code>.
      */
-    public final LuixPassport2 LUIX_PASSPORT2 = LuixPassport2.LUIX_PASSPORT2;
+    public final LuixPassport LUIX_PASSPORT = LuixPassport.LUIX_PASSPORT;
 
     /**
      * No further instances allowed
@@ -39,6 +39,6 @@ public class DefaultCatalog extends CatalogImpl {
     @Override
     public final List<Schema> getSchemas() {
         return Arrays.<Schema>asList(
-            LuixPassport2.LUIX_PASSPORT2);
+            LuixPassport.LUIX_PASSPORT);
     }
 }

@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport2;
+import cn.luixtech.passport.server.persistence.LuixPassport;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 
 import java.util.Arrays;
@@ -92,7 +92,7 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
 
     @Override
     public Schema getSchema() {
-        return LuixPassport2.LUIX_PASSPORT2;
+        return LuixPassport.LUIX_PASSPORT;
     }
 
     @Override
