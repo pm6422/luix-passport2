@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationEvents {
     @EventListener
+    @Async
     public void onSuccess(AuthenticationSuccessEvent success) {
         log.info("Authenticated successfully for user: {}", success.getSource());
     }
@@ -29,7 +30,6 @@ public class AuthenticationEvents {
      *
      * @param event
      */
-//    @Async
     @EventListener
     public void formLogoutSuccessEventListener(LogoutSuccessEvent event) {
         log.info("Processing logout event initiated by {}", event.getSource().getClass().getSimpleName());
