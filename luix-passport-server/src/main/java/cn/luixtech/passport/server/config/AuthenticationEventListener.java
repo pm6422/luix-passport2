@@ -1,6 +1,5 @@
 package cn.luixtech.passport.server.config;
 
-import cn.luixtech.passport.server.config.oauth.AuthUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
@@ -10,22 +9,22 @@ import org.springframework.security.authentication.event.LogoutSuccessEvent;
 import org.springframework.security.authorization.event.AuthorizationDeniedEvent;
 import org.springframework.security.authorization.event.AuthorizationEvent;
 import org.springframework.security.authorization.event.AuthorizationGrantedEvent;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
+
+import static cn.luixtech.passport.server.config.oauth.AuthUtils.getCurrentUser;
 
 @Slf4j
 @Component
 public class AuthenticationEventListener {
     @EventListener
     @Async
-    public void onSuccess(AuthenticationSuccessEvent success) {
-        User currentUser = AuthUtils.getCurrentUser(success.getAuthentication());
-        log.info("Authenticated successfully for user: {}", success.getSource());
+    public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
+        log.info("Authenticated successfully for user: {}", getCurrentUser(event.getAuthentication()));
     }
 
     @EventListener
-    public void onFailure(AbstractAuthenticationFailureEvent failures) {
-        log.warn("Failed to authenticate user: " + failures.getSource() + " with exception: " + failures.getException().getMessage());
+    public void authenticationFailureEvent(AbstractAuthenticationFailureEvent event) {
+        log.warn("Authenticate failed for user: " + getCurrentUser(event.getAuthentication()) + " with exception: " + event.getException().getMessage());
     }
 
     /**
@@ -34,22 +33,22 @@ public class AuthenticationEventListener {
      * @param event
      */
     @EventListener
-    public void formLogoutSuccessEventListener(LogoutSuccessEvent event) {
+    public void logoutSuccessEvent(LogoutSuccessEvent event) {
         log.info("Processing logout event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 
     @EventListener
-    public void authorizationGrantedEventListener(AuthorizationGrantedEvent event) {
+    public void authorizationGrantedEvent(AuthorizationGrantedEvent event) {
         log.info("Processing authorization granted event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 
     @EventListener
-    public void authorizationEventListener(AuthorizationEvent event) {
+    public void authorizationEvent(AuthorizationEvent event) {
         log.info("Processing authorization event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 
     @EventListener
-    public void authorizationDeniedEventListener(AuthorizationDeniedEvent event) {
+    public void authorizationDeniedEvent(AuthorizationDeniedEvent event) {
         log.info("Processing authorization denied event initiated by {}", event.getSource().getClass().getSimpleName());
     }
 }

@@ -1,9 +1,7 @@
 package cn.luixtech.passport.server.config;
 
-import cn.luixtech.passport.server.config.formauth.event.FormLoginSuccessEventListener;
 import cn.luixtech.passport.server.config.formauth.event.FormLogoutSuccessEventListener;
 import cn.luixtech.passport.server.config.formauth.event.LogoutHttpSessionEventPublisher;
-import cn.luixtech.passport.server.config.formauth.handler.FormLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.service.JdbcUserDetailsService;
 import cn.luixtech.passport.server.service.UserService;
@@ -25,7 +23,6 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 @AllArgsConstructor
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
-    private final FormLoginSuccessEventListener  formLoginSuccessEventListener;
     private final FormLogoutSuccessEventListener formLogoutSuccessEventListener;
 
 //    @Bean
@@ -51,7 +48,6 @@ public class WebServerSecurityConfiguration {
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")
-					.successHandler(new FormLoginSuccessHandler(formLoginSuccessEventListener))
 			)
 			.oauth2Login(oauth2Login ->
 				oauth2Login
