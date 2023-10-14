@@ -1,5 +1,7 @@
-package cn.luixtech.passport.server.jose;
+package cn.luixtech.passport.server.utils;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -8,13 +10,7 @@ import java.security.spec.ECParameterSpec;
 import java.security.spec.ECPoint;
 import java.security.spec.EllipticCurve;
 
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
-final class KeyGeneratorUtils {
-
-    private KeyGeneratorUtils() {
-    }
+abstract class KeyGeneratorUtils {
 
     static SecretKey generateSecretKey() {
         SecretKey hmacKey;

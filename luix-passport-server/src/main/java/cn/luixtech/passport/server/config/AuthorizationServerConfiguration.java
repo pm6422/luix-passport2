@@ -3,7 +3,7 @@ package cn.luixtech.passport.server.config;
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationConverter;
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
 import cn.luixtech.passport.server.config.oauth.federation.FederatedIdentityIdTokenCustomizer;
-import cn.luixtech.passport.server.jose.Jwks;
+import cn.luixtech.passport.server.utils.JwkUtils;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
@@ -133,7 +133,7 @@ public class AuthorizationServerConfiguration {
 
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
-        RSAKey rsaKey = Jwks.generateRsa();
+        RSAKey rsaKey = JwkUtils.generateRsa();
         JWKSet jwkSet = new JWKSet(rsaKey);
         return (jwkSelector, securityContext) -> jwkSelector.select(jwkSet);
     }

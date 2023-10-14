@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.jose;
+package cn.luixtech.passport.server.utils;
 
 import com.nimbusds.jose.jwk.Curve;
 import com.nimbusds.jose.jwk.ECKey;
@@ -13,7 +13,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.UUID;
 
-public abstract class Jwks {
+public abstract class JwkUtils {
 
     public static RSAKey generateRsa() {
         KeyPair keyPair = KeyGeneratorUtils.generateRsaKey();
