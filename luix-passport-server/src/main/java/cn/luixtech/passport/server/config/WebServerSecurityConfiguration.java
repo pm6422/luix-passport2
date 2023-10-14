@@ -36,15 +36,15 @@ public class WebServerSecurityConfiguration {
     private final FormLoginSuccessEventListener  formLoginSuccessEventListener;
     private final FormLogoutSuccessEventListener formLogoutSuccessEventListener;
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) ->
-                web.ignoring()
-                        // Remove below if remove H2
-                        // requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
-                        // h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
-                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) ->
+//                web.ignoring()
+//                        // Remove below if remove H2
+//                        // requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
+//                        // h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
+//                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+//    }
 
     // @formatter:off
 	@Bean

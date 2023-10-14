@@ -21,9 +21,6 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" th:href="@{/swagger-ui/index.html}">Swagger</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" target="_blank" aria-current="page" th:href="@{/h2-console}">H2 Console</a>
-                </li>
             </ul>
             <span class="me-3"><strong th:text="${username}"></strong></span>
             <form class="d-flex" th:action="@{/logout}" method="post">

@@ -1,6 +1,0 @@
-spring:
-  # Created EmbeddedDatabase bean manually in DatabaseConfiguration.class, problem refer to https://stackoverflow.com/questions/41873372/execute-multiple-scripts-on-application-startup
-  #    url: jdbc:h2:mem:passport;INIT=RUNSCRIPT FROM 'classpath:/org/springframework/security/oauth2/server/authorization/client/oauth2-registered-client-schema.sql'\;RUNSCRIPT FROM 'classpath:/org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql'\;RUNSCRIPT FROM 'classpath:/org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql'
-  h2:
-    console:
-      enabled: true
