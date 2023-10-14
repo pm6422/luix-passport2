@@ -134,6 +134,11 @@
             <column name="modified_by" type="VARCHAR(50)"/>
             <column name="modified_time" type="timestamp"/>
         </createTable>
+        <loadData
+                file="config/liquibase/data/user.csv"
+                separator=";"
+                tableName="user">
+        </loadData>
     </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-5">
         <createTable tableName="user_authority">
@@ -144,6 +149,11 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
         </createTable>
+        <loadData
+                file="config/liquibase/data/user_authority.csv"
+                separator=";"
+                tableName="user_authority">
+        </loadData>
     </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-6">
         <createTable tableName="user_permission">
