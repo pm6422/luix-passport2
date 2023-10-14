@@ -164,6 +164,11 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
         </createTable>
+        <loadData
+                file="config/liquibase/data/user_permission.csv"
+                separator=";"
+                tableName="user_permission">
+        </loadData>
     </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-7">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fk_user_authority_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>

@@ -12,3 +12,4 @@ spring:
     password:
   liquibase:
     enabled: true
+    drop-first: true # reset database
