@@ -116,9 +116,9 @@ public class AuthorizationServerConfiguration {
 
     // @formatter:off
 	@Bean
-//	@Transactional
 	public RegisteredClientRepository registeredClientRepository(JdbcTemplate jdbcTemplate) {
-		RegisteredClient registeredClient = RegisteredClient.withId(IdGenerator.generateId())
+		RegisteredClient registeredClient = RegisteredClient
+				.withId(IdGenerator.generateId())
 				.clientId(AUTH_CODE_CLIENT_ID)
 //				.clientSecret("{noop}secret")
 				.clientSecret("{bcrypt}"+new BCryptPasswordEncoder().encode("secret"))
@@ -137,7 +137,8 @@ public class AuthorizationServerConfiguration {
 				.clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
 				.build();
 
-		RegisteredClient deviceClient = RegisteredClient.withId(IdGenerator.generateId())
+		RegisteredClient deviceClient = RegisteredClient
+				.withId(IdGenerator.generateId())
 				.clientId("device-messaging-client")
 				.clientAuthenticationMethod(ClientAuthenticationMethod.NONE)
 				.authorizationGrantType(AuthorizationGrantType.DEVICE_CODE)

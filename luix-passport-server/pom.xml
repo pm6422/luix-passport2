@@ -23,10 +23,10 @@
         <start-class>cn.luixtech.passport.server.PassportServerApplication</start-class>
     </properties>
     <dependencies>
-        <!--        <dependency>-->
-        <!--            <groupId>com.h2database</groupId>-->
-        <!--            <artifactId>h2</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.luixtech</groupId>
             <artifactId>luix-springboot3-framework</artifactId>
