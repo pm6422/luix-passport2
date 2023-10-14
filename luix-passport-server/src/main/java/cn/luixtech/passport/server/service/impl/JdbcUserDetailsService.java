@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config.oauth.service;
+package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
