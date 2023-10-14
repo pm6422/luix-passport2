@@ -35,7 +35,7 @@ public class UserRole extends TableImpl<UserRoleRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2.user_role</code>
+     * The reference instance of <code>luix-passport.user_role</code>
      */
     public static final UserRole USER_ROLE = new UserRole();
 
@@ -48,12 +48,12 @@ public class UserRole extends TableImpl<UserRoleRecord> {
     }
 
     /**
-     * The column <code>luix-passport2.user_role.user_id</code>.
+     * The column <code>luix-passport.user_role.user_id</code>.
      */
     public final TableField<UserRoleRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user_role.role</code>.
+     * The column <code>luix-passport.user_role.role</code>.
      */
     public final TableField<UserRoleRecord, String> ROLE = createField(DSL.name("role"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
@@ -66,21 +66,21 @@ public class UserRole extends TableImpl<UserRoleRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport2.user_role</code> table reference
+     * Create an aliased <code>luix-passport.user_role</code> table reference
      */
     public UserRole(String alias) {
         this(DSL.name(alias), USER_ROLE);
     }
 
     /**
-     * Create an aliased <code>luix-passport2.user_role</code> table reference
+     * Create an aliased <code>luix-passport.user_role</code> table reference
      */
     public UserRole(Name alias) {
         this(alias, USER_ROLE);
     }
 
     /**
-     * Create a <code>luix-passport2.user_role</code> table reference
+     * Create a <code>luix-passport.user_role</code> table reference
      */
     public UserRole() {
         this(DSL.name("user_role"), null);

@@ -28,37 +28,37 @@ public class LuixPassport2 extends SchemaImpl {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2</code>
+     * The reference instance of <code>luix-passport</code>
      */
     public static final LuixPassport2 LUIX_PASSPORT2 = new LuixPassport2();
 
     /**
-     * The table <code>luix-passport2.oauth2_authorization</code>.
+     * The table <code>luix-passport.oauth2_authorization</code>.
      */
     public final Oauth2Authorization OAUTH2_AUTHORIZATION = Oauth2Authorization.OAUTH2_AUTHORIZATION;
 
     /**
-     * The table <code>luix-passport2.oauth2_authorization_consent</code>.
+     * The table <code>luix-passport.oauth2_authorization_consent</code>.
      */
     public final Oauth2AuthorizationConsent OAUTH2_AUTHORIZATION_CONSENT = Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT;
 
     /**
-     * The table <code>luix-passport2.oauth2_registered_client</code>.
+     * The table <code>luix-passport.oauth2_registered_client</code>.
      */
     public final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
 
     /**
-     * The table <code>luix-passport2.user</code>.
+     * The table <code>luix-passport.user</code>.
      */
     public final User USER = User.USER;
 
     /**
-     * The table <code>luix-passport2.user_permission</code>.
+     * The table <code>luix-passport.user_permission</code>.
      */
     public final UserPermission USER_PERMISSION = UserPermission.USER_PERMISSION;
 
     /**
-     * The table <code>luix-passport2.user_role</code>.
+     * The table <code>luix-passport.user_role</code>.
      */
     public final UserRole USER_ROLE = UserRole.USER_ROLE;
 
@@ -66,7 +66,7 @@ public class LuixPassport2 extends SchemaImpl {
      * No further instances allowed
      */
     private LuixPassport2() {
-        super("luix-passport2", null);
+        super("luix-passport", null);
     }
 
 

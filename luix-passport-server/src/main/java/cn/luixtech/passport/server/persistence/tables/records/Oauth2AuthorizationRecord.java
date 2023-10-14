@@ -21,462 +21,462 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.id</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.id</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.registered_client_id</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.registered_client_id</code>.
      */
     public void setRegisteredClientId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.registered_client_id</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.registered_client_id</code>.
      */
     public String getRegisteredClientId() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.principal_name</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.principal_name</code>.
      */
     public void setPrincipalName(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.principal_name</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.principal_name</code>.
      */
     public String getPrincipalName() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.authorization_grant_type</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.authorization_grant_type</code>.
      */
     public void setAuthorizationGrantType(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.authorization_grant_type</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.authorization_grant_type</code>.
      */
     public String getAuthorizationGrantType() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.authorized_scopes</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.authorized_scopes</code>.
      */
     public void setAuthorizedScopes(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.authorized_scopes</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.authorized_scopes</code>.
      */
     public String getAuthorizedScopes() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.attributes</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.attributes</code>.
      */
     public void setAttributes(byte[] value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.attributes</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.attributes</code>.
      */
     public byte[] getAttributes() {
         return (byte[]) get(5);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.state</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.state</code>.
      */
     public void setState(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.state</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.state</code>.
      */
     public String getState() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.authorization_code_value</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.authorization_code_value</code>.
      */
     public void setAuthorizationCodeValue(byte[] value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.authorization_code_value</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.authorization_code_value</code>.
      */
     public byte[] getAuthorizationCodeValue() {
         return (byte[]) get(7);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.authorization_code_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.authorization_code_issued_at</code>.
      */
     public void setAuthorizationCodeIssuedAt(LocalDateTime value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.authorization_code_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.authorization_code_issued_at</code>.
      */
     public LocalDateTime getAuthorizationCodeIssuedAt() {
         return (LocalDateTime) get(8);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.authorization_code_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.authorization_code_expires_at</code>.
      */
     public void setAuthorizationCodeExpiresAt(LocalDateTime value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.authorization_code_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.authorization_code_expires_at</code>.
      */
     public LocalDateTime getAuthorizationCodeExpiresAt() {
         return (LocalDateTime) get(9);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.authorization_code_metadata</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.authorization_code_metadata</code>.
      */
     public void setAuthorizationCodeMetadata(byte[] value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.authorization_code_metadata</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.authorization_code_metadata</code>.
      */
     public byte[] getAuthorizationCodeMetadata() {
         return (byte[]) get(10);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.access_token_value</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.access_token_value</code>.
      */
     public void setAccessTokenValue(byte[] value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.access_token_value</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.access_token_value</code>.
      */
     public byte[] getAccessTokenValue() {
         return (byte[]) get(11);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.access_token_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.access_token_issued_at</code>.
      */
     public void setAccessTokenIssuedAt(LocalDateTime value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.access_token_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.access_token_issued_at</code>.
      */
     public LocalDateTime getAccessTokenIssuedAt() {
         return (LocalDateTime) get(12);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.access_token_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.access_token_expires_at</code>.
      */
     public void setAccessTokenExpiresAt(LocalDateTime value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.access_token_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.access_token_expires_at</code>.
      */
     public LocalDateTime getAccessTokenExpiresAt() {
         return (LocalDateTime) get(13);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.access_token_metadata</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.access_token_metadata</code>.
      */
     public void setAccessTokenMetadata(byte[] value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.access_token_metadata</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.access_token_metadata</code>.
      */
     public byte[] getAccessTokenMetadata() {
         return (byte[]) get(14);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.access_token_type</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.access_token_type</code>.
      */
     public void setAccessTokenType(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.access_token_type</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.access_token_type</code>.
      */
     public String getAccessTokenType() {
         return (String) get(15);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.access_token_scopes</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.access_token_scopes</code>.
      */
     public void setAccessTokenScopes(String value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.access_token_scopes</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.access_token_scopes</code>.
      */
     public String getAccessTokenScopes() {
         return (String) get(16);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.oidc_id_token_value</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.oidc_id_token_value</code>.
      */
     public void setOidcIdTokenValue(byte[] value) {
         set(17, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.oidc_id_token_value</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.oidc_id_token_value</code>.
      */
     public byte[] getOidcIdTokenValue() {
         return (byte[]) get(17);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.oidc_id_token_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.oidc_id_token_issued_at</code>.
      */
     public void setOidcIdTokenIssuedAt(LocalDateTime value) {
         set(18, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.oidc_id_token_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.oidc_id_token_issued_at</code>.
      */
     public LocalDateTime getOidcIdTokenIssuedAt() {
         return (LocalDateTime) get(18);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.oidc_id_token_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.oidc_id_token_expires_at</code>.
      */
     public void setOidcIdTokenExpiresAt(LocalDateTime value) {
         set(19, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.oidc_id_token_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.oidc_id_token_expires_at</code>.
      */
     public LocalDateTime getOidcIdTokenExpiresAt() {
         return (LocalDateTime) get(19);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.oidc_id_token_metadata</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.oidc_id_token_metadata</code>.
      */
     public void setOidcIdTokenMetadata(byte[] value) {
         set(20, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.oidc_id_token_metadata</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.oidc_id_token_metadata</code>.
      */
     public byte[] getOidcIdTokenMetadata() {
         return (byte[]) get(20);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.refresh_token_value</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.refresh_token_value</code>.
      */
     public void setRefreshTokenValue(byte[] value) {
         set(21, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.refresh_token_value</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.refresh_token_value</code>.
      */
     public byte[] getRefreshTokenValue() {
         return (byte[]) get(21);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.refresh_token_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.refresh_token_issued_at</code>.
      */
     public void setRefreshTokenIssuedAt(LocalDateTime value) {
         set(22, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.refresh_token_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.refresh_token_issued_at</code>.
      */
     public LocalDateTime getRefreshTokenIssuedAt() {
         return (LocalDateTime) get(22);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.refresh_token_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.refresh_token_expires_at</code>.
      */
     public void setRefreshTokenExpiresAt(LocalDateTime value) {
         set(23, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.refresh_token_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.refresh_token_expires_at</code>.
      */
     public LocalDateTime getRefreshTokenExpiresAt() {
         return (LocalDateTime) get(23);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.refresh_token_metadata</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.refresh_token_metadata</code>.
      */
     public void setRefreshTokenMetadata(byte[] value) {
         set(24, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.refresh_token_metadata</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.refresh_token_metadata</code>.
      */
     public byte[] getRefreshTokenMetadata() {
         return (byte[]) get(24);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.user_code_value</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.user_code_value</code>.
      */
     public void setUserCodeValue(byte[] value) {
         set(25, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.user_code_value</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.user_code_value</code>.
      */
     public byte[] getUserCodeValue() {
         return (byte[]) get(25);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.user_code_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.user_code_issued_at</code>.
      */
     public void setUserCodeIssuedAt(LocalDateTime value) {
         set(26, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.user_code_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.user_code_issued_at</code>.
      */
     public LocalDateTime getUserCodeIssuedAt() {
         return (LocalDateTime) get(26);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.user_code_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.user_code_expires_at</code>.
      */
     public void setUserCodeExpiresAt(LocalDateTime value) {
         set(27, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.user_code_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.user_code_expires_at</code>.
      */
     public LocalDateTime getUserCodeExpiresAt() {
         return (LocalDateTime) get(27);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.user_code_metadata</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.user_code_metadata</code>.
      */
     public void setUserCodeMetadata(byte[] value) {
         set(28, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.user_code_metadata</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.user_code_metadata</code>.
      */
     public byte[] getUserCodeMetadata() {
         return (byte[]) get(28);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.device_code_value</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.device_code_value</code>.
      */
     public void setDeviceCodeValue(byte[] value) {
         set(29, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.device_code_value</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.device_code_value</code>.
      */
     public byte[] getDeviceCodeValue() {
         return (byte[]) get(29);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.device_code_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.device_code_issued_at</code>.
      */
     public void setDeviceCodeIssuedAt(LocalDateTime value) {
         set(30, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.device_code_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.device_code_issued_at</code>.
      */
     public LocalDateTime getDeviceCodeIssuedAt() {
         return (LocalDateTime) get(30);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.device_code_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.device_code_expires_at</code>.
      */
     public void setDeviceCodeExpiresAt(LocalDateTime value) {
         set(31, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.device_code_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.device_code_expires_at</code>.
      */
     public LocalDateTime getDeviceCodeExpiresAt() {
         return (LocalDateTime) get(31);
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization.device_code_metadata</code>.
+     * Setter for <code>luix-passport.oauth2_authorization.device_code_metadata</code>.
      */
     public void setDeviceCodeMetadata(byte[] value) {
         set(32, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization.device_code_metadata</code>.
+     * Getter for <code>luix-passport.oauth2_authorization.device_code_metadata</code>.
      */
     public byte[] getDeviceCodeMetadata() {
         return (byte[]) get(32);

@@ -35,7 +35,7 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2.user_permission</code>
+     * The reference instance of <code>luix-passport.user_permission</code>
      */
     public static final UserPermission USER_PERMISSION = new UserPermission();
 
@@ -48,12 +48,12 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
     }
 
     /**
-     * The column <code>luix-passport2.user_permission.user_id</code>.
+     * The column <code>luix-passport.user_permission.user_id</code>.
      */
     public final TableField<UserPermissionRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user_permission.permission</code>.
+     * The column <code>luix-passport.user_permission.permission</code>.
      */
     public final TableField<UserPermissionRecord, String> PERMISSION = createField(DSL.name("permission"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
@@ -66,21 +66,21 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport2.user_permission</code> table reference
+     * Create an aliased <code>luix-passport.user_permission</code> table reference
      */
     public UserPermission(String alias) {
         this(DSL.name(alias), USER_PERMISSION);
     }
 
     /**
-     * Create an aliased <code>luix-passport2.user_permission</code> table reference
+     * Create an aliased <code>luix-passport.user_permission</code> table reference
      */
     public UserPermission(Name alias) {
         this(alias, USER_PERMISSION);
     }
 
     /**
-     * Create a <code>luix-passport2.user_permission</code> table reference
+     * Create a <code>luix-passport.user_permission</code> table reference
      */
     public UserPermission() {
         this(DSL.name("user_permission"), null);

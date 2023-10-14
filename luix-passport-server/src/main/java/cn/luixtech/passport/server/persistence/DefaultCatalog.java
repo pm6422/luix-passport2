@@ -25,7 +25,7 @@ public class DefaultCatalog extends CatalogImpl {
     public static final DefaultCatalog DEFAULT_CATALOG = new DefaultCatalog();
 
     /**
-     * The schema <code>luix-passport2</code>.
+     * The schema <code>luix-passport</code>.
      */
     public final LuixPassport2 LUIX_PASSPORT2 = LuixPassport2.LUIX_PASSPORT2;
 

@@ -21,28 +21,28 @@ public class UserPermissionRecord extends UpdatableRecordImpl<UserPermissionReco
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport2.user_permission.user_id</code>.
+     * Setter for <code>luix-passport.user_permission.user_id</code>.
      */
     public void setUserId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user_permission.user_id</code>.
+     * Getter for <code>luix-passport.user_permission.user_id</code>.
      */
     public String getUserId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport2.user_permission.permission</code>.
+     * Setter for <code>luix-passport.user_permission.permission</code>.
      */
     public void setPermission(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user_permission.permission</code>.
+     * Getter for <code>luix-passport.user_permission.permission</code>.
      */
     public String getPermission() {
         return (String) get(1);

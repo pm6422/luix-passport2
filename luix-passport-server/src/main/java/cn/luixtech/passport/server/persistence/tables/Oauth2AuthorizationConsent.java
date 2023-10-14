@@ -35,7 +35,7 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2.oauth2_authorization_consent</code>
+     * The reference instance of <code>luix-passport.oauth2_authorization_consent</code>
      */
     public static final Oauth2AuthorizationConsent OAUTH2_AUTHORIZATION_CONSENT = new Oauth2AuthorizationConsent();
 
@@ -48,17 +48,17 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
     }
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization_consent.registered_client_id</code>.
+     * The column <code>luix-passport.oauth2_authorization_consent.registered_client_id</code>.
      */
     public final TableField<Oauth2AuthorizationConsentRecord, String> REGISTERED_CLIENT_ID = createField(DSL.name("registered_client_id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization_consent.principal_name</code>.
+     * The column <code>luix-passport.oauth2_authorization_consent.principal_name</code>.
      */
     public final TableField<Oauth2AuthorizationConsentRecord, String> PRINCIPAL_NAME = createField(DSL.name("principal_name"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization_consent.authorities</code>.
+     * The column <code>luix-passport.oauth2_authorization_consent.authorities</code>.
      */
     public final TableField<Oauth2AuthorizationConsentRecord, String> AUTHORITIES = createField(DSL.name("authorities"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
@@ -71,21 +71,21 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
     }
 
     /**
-     * Create an aliased <code>luix-passport2.oauth2_authorization_consent</code> table reference
+     * Create an aliased <code>luix-passport.oauth2_authorization_consent</code> table reference
      */
     public Oauth2AuthorizationConsent(String alias) {
         this(DSL.name(alias), OAUTH2_AUTHORIZATION_CONSENT);
     }
 
     /**
-     * Create an aliased <code>luix-passport2.oauth2_authorization_consent</code> table reference
+     * Create an aliased <code>luix-passport.oauth2_authorization_consent</code> table reference
      */
     public Oauth2AuthorizationConsent(Name alias) {
         this(alias, OAUTH2_AUTHORIZATION_CONSENT);
     }
 
     /**
-     * Create a <code>luix-passport2.oauth2_authorization_consent</code> table reference
+     * Create a <code>luix-passport.oauth2_authorization_consent</code> table reference
      */
     public Oauth2AuthorizationConsent() {
         this(DSL.name("oauth2_authorization_consent"), null);

@@ -13,7 +13,7 @@ public class DatabaseConfiguration {
 //        // @formatter:off
 //        return new EmbeddedDatabaseBuilder()
 //                .setType(EmbeddedDatabaseType.H2)
-//                .setName("luix-passport2")
+//                .setName("luix-passport")
 //                .setScriptEncoding("UTF-8")
 //                .addScript("org/springframework/security/oauth2/server/authorization/oauth2-authorization-schema.sql")
 //                .addScript("org/springframework/security/oauth2/server/authorization/oauth2-authorization-consent-schema.sql")

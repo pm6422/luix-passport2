@@ -24,252 +24,252 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport2.user.id</code>.
+     * Setter for <code>luix-passport.user.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.id</code>.
+     * Getter for <code>luix-passport.user.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.username</code>.
+     * Setter for <code>luix-passport.user.username</code>.
      */
     public void setUsername(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.username</code>.
+     * Getter for <code>luix-passport.user.username</code>.
      */
     public String getUsername() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.email</code>.
+     * Setter for <code>luix-passport.user.email</code>.
      */
     public void setEmail(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.email</code>.
+     * Getter for <code>luix-passport.user.email</code>.
      */
     public String getEmail() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.mobile_no</code>.
+     * Setter for <code>luix-passport.user.mobile_no</code>.
      */
     public void setMobileNo(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.mobile_no</code>.
+     * Getter for <code>luix-passport.user.mobile_no</code>.
      */
     public String getMobileNo() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.first_name</code>.
+     * Setter for <code>luix-passport.user.first_name</code>.
      */
     public void setFirstName(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.first_name</code>.
+     * Getter for <code>luix-passport.user.first_name</code>.
      */
     public String getFirstName() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.last_name</code>.
+     * Setter for <code>luix-passport.user.last_name</code>.
      */
     public void setLastName(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.last_name</code>.
+     * Getter for <code>luix-passport.user.last_name</code>.
      */
     public String getLastName() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.password_hash</code>.
+     * Setter for <code>luix-passport.user.password_hash</code>.
      */
     public void setPasswordHash(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.password_hash</code>.
+     * Getter for <code>luix-passport.user.password_hash</code>.
      */
     public String getPasswordHash() {
         return (String) get(6);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.activation_key</code>.
+     * Setter for <code>luix-passport.user.activation_key</code>.
      */
     public void setActivationKey(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.activation_key</code>.
+     * Getter for <code>luix-passport.user.activation_key</code>.
      */
     public String getActivationKey() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.reset_key</code>.
+     * Setter for <code>luix-passport.user.reset_key</code>.
      */
     public void setResetKey(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.reset_key</code>.
+     * Getter for <code>luix-passport.user.reset_key</code>.
      */
     public String getResetKey() {
         return (String) get(8);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.reset_time</code>.
+     * Setter for <code>luix-passport.user.reset_time</code>.
      */
     public void setResetTime(LocalDateTime value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.reset_time</code>.
+     * Getter for <code>luix-passport.user.reset_time</code>.
      */
     public LocalDateTime getResetTime() {
         return (LocalDateTime) get(9);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.profile_photo_enabled</code>.
+     * Setter for <code>luix-passport.user.profile_photo_enabled</code>.
      */
     public void setProfilePhotoEnabled(Boolean value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.profile_photo_enabled</code>.
+     * Getter for <code>luix-passport.user.profile_photo_enabled</code>.
      */
     public Boolean getProfilePhotoEnabled() {
         return (Boolean) get(10);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.remarks</code>.
+     * Setter for <code>luix-passport.user.remarks</code>.
      */
     public void setRemarks(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.remarks</code>.
+     * Getter for <code>luix-passport.user.remarks</code>.
      */
     public String getRemarks() {
         return (String) get(11);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.activated</code>.
+     * Setter for <code>luix-passport.user.activated</code>.
      */
     public void setActivated(Boolean value) {
         set(12, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.activated</code>.
+     * Getter for <code>luix-passport.user.activated</code>.
      */
     public Boolean getActivated() {
         return (Boolean) get(12);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.enabled</code>.
+     * Setter for <code>luix-passport.user.enabled</code>.
      */
     public void setEnabled(Boolean value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.enabled</code>.
+     * Getter for <code>luix-passport.user.enabled</code>.
      */
     public Boolean getEnabled() {
         return (Boolean) get(13);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.created_by</code>.
+     * Setter for <code>luix-passport.user.created_by</code>.
      */
     public void setCreatedBy(String value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.created_by</code>.
+     * Getter for <code>luix-passport.user.created_by</code>.
      */
     public String getCreatedBy() {
         return (String) get(14);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.created_time</code>.
+     * Setter for <code>luix-passport.user.created_time</code>.
      */
     public void setCreatedTime(LocalDateTime value) {
         set(15, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.created_time</code>.
+     * Getter for <code>luix-passport.user.created_time</code>.
      */
     public LocalDateTime getCreatedTime() {
         return (LocalDateTime) get(15);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.modified_by</code>.
+     * Setter for <code>luix-passport.user.modified_by</code>.
      */
     public void setModifiedBy(String value) {
         set(16, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.modified_by</code>.
+     * Getter for <code>luix-passport.user.modified_by</code>.
      */
     public String getModifiedBy() {
         return (String) get(16);
     }
 
     /**
-     * Setter for <code>luix-passport2.user.modified_time</code>.
+     * Setter for <code>luix-passport.user.modified_time</code>.
      */
     public void setModifiedTime(LocalDateTime value) {
         set(17, value);
     }
 
     /**
-     * Getter for <code>luix-passport2.user.modified_time</code>.
+     * Getter for <code>luix-passport.user.modified_time</code>.
      */
     public LocalDateTime getModifiedTime() {
         return (LocalDateTime) get(17);

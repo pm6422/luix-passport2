@@ -36,7 +36,7 @@ public class User extends TableImpl<UserRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2.user</code>
+     * The reference instance of <code>luix-passport.user</code>
      */
     public static final User USER = new User();
 
@@ -49,92 +49,92 @@ public class User extends TableImpl<UserRecord> {
     }
 
     /**
-     * The column <code>luix-passport2.user.id</code>.
+     * The column <code>luix-passport.user.id</code>.
      */
     public final TableField<UserRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.username</code>.
+     * The column <code>luix-passport.user.username</code>.
      */
     public final TableField<UserRecord, String> USERNAME = createField(DSL.name("username"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.email</code>.
+     * The column <code>luix-passport.user.email</code>.
      */
     public final TableField<UserRecord, String> EMAIL = createField(DSL.name("email"), SQLDataType.VARCHAR(30).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.mobile_no</code>.
+     * The column <code>luix-passport.user.mobile_no</code>.
      */
     public final TableField<UserRecord, String> MOBILE_NO = createField(DSL.name("mobile_no"), SQLDataType.VARCHAR(13).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.first_name</code>.
+     * The column <code>luix-passport.user.first_name</code>.
      */
     public final TableField<UserRecord, String> FIRST_NAME = createField(DSL.name("first_name"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>luix-passport2.user.last_name</code>.
+     * The column <code>luix-passport.user.last_name</code>.
      */
     public final TableField<UserRecord, String> LAST_NAME = createField(DSL.name("last_name"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>luix-passport2.user.password_hash</code>.
+     * The column <code>luix-passport.user.password_hash</code>.
      */
     public final TableField<UserRecord, String> PASSWORD_HASH = createField(DSL.name("password_hash"), SQLDataType.VARCHAR(256).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.activation_key</code>.
+     * The column <code>luix-passport.user.activation_key</code>.
      */
     public final TableField<UserRecord, String> ACTIVATION_KEY = createField(DSL.name("activation_key"), SQLDataType.VARCHAR(256), this, "");
 
     /**
-     * The column <code>luix-passport2.user.reset_key</code>.
+     * The column <code>luix-passport.user.reset_key</code>.
      */
     public final TableField<UserRecord, String> RESET_KEY = createField(DSL.name("reset_key"), SQLDataType.VARCHAR(256), this, "");
 
     /**
-     * The column <code>luix-passport2.user.reset_time</code>.
+     * The column <code>luix-passport.user.reset_time</code>.
      */
     public final TableField<UserRecord, LocalDateTime> RESET_TIME = createField(DSL.name("reset_time"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.user.profile_photo_enabled</code>.
+     * The column <code>luix-passport.user.profile_photo_enabled</code>.
      */
     public final TableField<UserRecord, Boolean> PROFILE_PHOTO_ENABLED = createField(DSL.name("profile_photo_enabled"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.remarks</code>.
+     * The column <code>luix-passport.user.remarks</code>.
      */
     public final TableField<UserRecord, String> REMARKS = createField(DSL.name("remarks"), SQLDataType.VARCHAR(256), this, "");
 
     /**
-     * The column <code>luix-passport2.user.activated</code>.
+     * The column <code>luix-passport.user.activated</code>.
      */
     public final TableField<UserRecord, Boolean> ACTIVATED = createField(DSL.name("activated"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.enabled</code>.
+     * The column <code>luix-passport.user.enabled</code>.
      */
     public final TableField<UserRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.created_by</code>.
+     * The column <code>luix-passport.user.created_by</code>.
      */
     public final TableField<UserRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.created_time</code>.
+     * The column <code>luix-passport.user.created_time</code>.
      */
     public final TableField<UserRecord, LocalDateTime> CREATED_TIME = createField(DSL.name("created_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.user.modified_by</code>.
+     * The column <code>luix-passport.user.modified_by</code>.
      */
     public final TableField<UserRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column <code>luix-passport2.user.modified_time</code>.
+     * The column <code>luix-passport.user.modified_time</code>.
      */
     public final TableField<UserRecord, LocalDateTime> MODIFIED_TIME = createField(DSL.name("modified_time"), SQLDataType.LOCALDATETIME(0), this, "");
 
@@ -147,21 +147,21 @@ public class User extends TableImpl<UserRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport2.user</code> table reference
+     * Create an aliased <code>luix-passport.user</code> table reference
      */
     public User(String alias) {
         this(DSL.name(alias), USER);
     }
 
     /**
-     * Create an aliased <code>luix-passport2.user</code> table reference
+     * Create an aliased <code>luix-passport.user</code> table reference
      */
     public User(Name alias) {
         this(alias, USER);
     }
 
     /**
-     * Create a <code>luix-passport2.user</code> table reference
+     * Create a <code>luix-passport.user</code> table reference
      */
     public User() {
         this(DSL.name("user"), null);

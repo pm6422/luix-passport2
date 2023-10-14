@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for macos13 (arm64)
 --
--- Host: 127.0.0.1    Database: luix-passport2
+-- Host: 127.0.0.1    Database: luix-passport
 -- ------------------------------------------------------
 -- Server version	8.0.29
 

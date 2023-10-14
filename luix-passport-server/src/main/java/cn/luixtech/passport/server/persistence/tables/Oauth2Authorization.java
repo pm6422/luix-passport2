@@ -35,7 +35,7 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2.oauth2_authorization</code>
+     * The reference instance of <code>luix-passport.oauth2_authorization</code>
      */
     public static final Oauth2Authorization OAUTH2_AUTHORIZATION = new Oauth2Authorization();
 
@@ -48,167 +48,167 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     }
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.id</code>.
+     * The column <code>luix-passport.oauth2_authorization.id</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.registered_client_id</code>.
+     * The column <code>luix-passport.oauth2_authorization.registered_client_id</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> REGISTERED_CLIENT_ID = createField(DSL.name("registered_client_id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.principal_name</code>.
+     * The column <code>luix-passport.oauth2_authorization.principal_name</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> PRINCIPAL_NAME = createField(DSL.name("principal_name"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.authorization_grant_type</code>.
+     * The column <code>luix-passport.oauth2_authorization.authorization_grant_type</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> AUTHORIZATION_GRANT_TYPE = createField(DSL.name("authorization_grant_type"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.authorized_scopes</code>.
+     * The column <code>luix-passport.oauth2_authorization.authorized_scopes</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> AUTHORIZED_SCOPES = createField(DSL.name("authorized_scopes"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.attributes</code>.
+     * The column <code>luix-passport.oauth2_authorization.attributes</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> ATTRIBUTES = createField(DSL.name("attributes"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.state</code>.
+     * The column <code>luix-passport.oauth2_authorization.state</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> STATE = createField(DSL.name("state"), SQLDataType.VARCHAR(500), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.authorization_code_value</code>.
+     * The column <code>luix-passport.oauth2_authorization.authorization_code_value</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> AUTHORIZATION_CODE_VALUE = createField(DSL.name("authorization_code_value"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.authorization_code_issued_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.authorization_code_issued_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> AUTHORIZATION_CODE_ISSUED_AT = createField(DSL.name("authorization_code_issued_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.authorization_code_expires_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.authorization_code_expires_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> AUTHORIZATION_CODE_EXPIRES_AT = createField(DSL.name("authorization_code_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.authorization_code_metadata</code>.
+     * The column <code>luix-passport.oauth2_authorization.authorization_code_metadata</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> AUTHORIZATION_CODE_METADATA = createField(DSL.name("authorization_code_metadata"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.access_token_value</code>.
+     * The column <code>luix-passport.oauth2_authorization.access_token_value</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> ACCESS_TOKEN_VALUE = createField(DSL.name("access_token_value"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.access_token_issued_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.access_token_issued_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> ACCESS_TOKEN_ISSUED_AT = createField(DSL.name("access_token_issued_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.access_token_expires_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.access_token_expires_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> ACCESS_TOKEN_EXPIRES_AT = createField(DSL.name("access_token_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.access_token_metadata</code>.
+     * The column <code>luix-passport.oauth2_authorization.access_token_metadata</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> ACCESS_TOKEN_METADATA = createField(DSL.name("access_token_metadata"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.access_token_type</code>.
+     * The column <code>luix-passport.oauth2_authorization.access_token_type</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> ACCESS_TOKEN_TYPE = createField(DSL.name("access_token_type"), SQLDataType.VARCHAR(100), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.access_token_scopes</code>.
+     * The column <code>luix-passport.oauth2_authorization.access_token_scopes</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, String> ACCESS_TOKEN_SCOPES = createField(DSL.name("access_token_scopes"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.oidc_id_token_value</code>.
+     * The column <code>luix-passport.oauth2_authorization.oidc_id_token_value</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> OIDC_ID_TOKEN_VALUE = createField(DSL.name("oidc_id_token_value"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.oidc_id_token_issued_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.oidc_id_token_issued_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> OIDC_ID_TOKEN_ISSUED_AT = createField(DSL.name("oidc_id_token_issued_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.oidc_id_token_expires_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.oidc_id_token_expires_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> OIDC_ID_TOKEN_EXPIRES_AT = createField(DSL.name("oidc_id_token_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.oidc_id_token_metadata</code>.
+     * The column <code>luix-passport.oauth2_authorization.oidc_id_token_metadata</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> OIDC_ID_TOKEN_METADATA = createField(DSL.name("oidc_id_token_metadata"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.refresh_token_value</code>.
+     * The column <code>luix-passport.oauth2_authorization.refresh_token_value</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> REFRESH_TOKEN_VALUE = createField(DSL.name("refresh_token_value"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.refresh_token_issued_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.refresh_token_issued_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> REFRESH_TOKEN_ISSUED_AT = createField(DSL.name("refresh_token_issued_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.refresh_token_expires_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.refresh_token_expires_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> REFRESH_TOKEN_EXPIRES_AT = createField(DSL.name("refresh_token_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.refresh_token_metadata</code>.
+     * The column <code>luix-passport.oauth2_authorization.refresh_token_metadata</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> REFRESH_TOKEN_METADATA = createField(DSL.name("refresh_token_metadata"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.user_code_value</code>.
+     * The column <code>luix-passport.oauth2_authorization.user_code_value</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> USER_CODE_VALUE = createField(DSL.name("user_code_value"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.user_code_issued_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.user_code_issued_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> USER_CODE_ISSUED_AT = createField(DSL.name("user_code_issued_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.user_code_expires_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.user_code_expires_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> USER_CODE_EXPIRES_AT = createField(DSL.name("user_code_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.user_code_metadata</code>.
+     * The column <code>luix-passport.oauth2_authorization.user_code_metadata</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> USER_CODE_METADATA = createField(DSL.name("user_code_metadata"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.device_code_value</code>.
+     * The column <code>luix-passport.oauth2_authorization.device_code_value</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> DEVICE_CODE_VALUE = createField(DSL.name("device_code_value"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.device_code_issued_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.device_code_issued_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> DEVICE_CODE_ISSUED_AT = createField(DSL.name("device_code_issued_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.device_code_expires_at</code>.
+     * The column <code>luix-passport.oauth2_authorization.device_code_expires_at</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, LocalDateTime> DEVICE_CODE_EXPIRES_AT = createField(DSL.name("device_code_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_authorization.device_code_metadata</code>.
+     * The column <code>luix-passport.oauth2_authorization.device_code_metadata</code>.
      */
     public final TableField<Oauth2AuthorizationRecord, byte[]> DEVICE_CODE_METADATA = createField(DSL.name("device_code_metadata"), SQLDataType.BLOB, this, "");
 
@@ -221,21 +221,21 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport2.oauth2_authorization</code> table reference
+     * Create an aliased <code>luix-passport.oauth2_authorization</code> table reference
      */
     public Oauth2Authorization(String alias) {
         this(DSL.name(alias), OAUTH2_AUTHORIZATION);
     }
 
     /**
-     * Create an aliased <code>luix-passport2.oauth2_authorization</code> table reference
+     * Create an aliased <code>luix-passport.oauth2_authorization</code> table reference
      */
     public Oauth2Authorization(Name alias) {
         this(alias, OAUTH2_AUTHORIZATION);
     }
 
     /**
-     * Create a <code>luix-passport2.oauth2_authorization</code> table reference
+     * Create a <code>luix-passport.oauth2_authorization</code> table reference
      */
     public Oauth2Authorization() {
         this(DSL.name("oauth2_authorization"), null);

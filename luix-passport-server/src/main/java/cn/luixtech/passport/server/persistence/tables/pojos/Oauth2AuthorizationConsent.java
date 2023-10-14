@@ -38,42 +38,42 @@ public class Oauth2AuthorizationConsent implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization_consent.registered_client_id</code>.
+     * Getter for <code>luix-passport.oauth2_authorization_consent.registered_client_id</code>.
      */
     public String getRegisteredClientId() {
         return this.registeredClientId;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization_consent.registered_client_id</code>.
+     * Setter for <code>luix-passport.oauth2_authorization_consent.registered_client_id</code>.
      */
     public void setRegisteredClientId(String registeredClientId) {
         this.registeredClientId = registeredClientId;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization_consent.principal_name</code>.
+     * Getter for <code>luix-passport.oauth2_authorization_consent.principal_name</code>.
      */
     public String getPrincipalName() {
         return this.principalName;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization_consent.principal_name</code>.
+     * Setter for <code>luix-passport.oauth2_authorization_consent.principal_name</code>.
      */
     public void setPrincipalName(String principalName) {
         this.principalName = principalName;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_authorization_consent.authorities</code>.
+     * Getter for <code>luix-passport.oauth2_authorization_consent.authorities</code>.
      */
     public String getAuthorities() {
         return this.authorities;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_authorization_consent.authorities</code>.
+     * Setter for <code>luix-passport.oauth2_authorization_consent.authorities</code>.
      */
     public void setAuthorities(String authorities) {
         this.authorities = authorities;

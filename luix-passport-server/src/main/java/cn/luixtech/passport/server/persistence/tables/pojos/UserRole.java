@@ -34,28 +34,28 @@ public class UserRole implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport2.user_role.user_id</code>.
+     * Getter for <code>luix-passport.user_role.user_id</code>.
      */
     public String getUserId() {
         return this.userId;
     }
 
     /**
-     * Setter for <code>luix-passport2.user_role.user_id</code>.
+     * Setter for <code>luix-passport.user_role.user_id</code>.
      */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     /**
-     * Getter for <code>luix-passport2.user_role.role</code>.
+     * Getter for <code>luix-passport.user_role.role</code>.
      */
     public String getRole() {
         return this.role;
     }
 
     /**
-     * Setter for <code>luix-passport2.user_role.role</code>.
+     * Setter for <code>luix-passport.user_role.role</code>.
      */
     public void setRole(String role) {
         this.role = role;

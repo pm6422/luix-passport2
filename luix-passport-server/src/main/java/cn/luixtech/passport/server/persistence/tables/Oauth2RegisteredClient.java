@@ -36,7 +36,7 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport2.oauth2_registered_client</code>
+     * The reference instance of <code>luix-passport.oauth2_registered_client</code>
      */
     public static final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = new Oauth2RegisteredClient();
 
@@ -49,67 +49,67 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     }
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.id</code>.
+     * The column <code>luix-passport.oauth2_registered_client.id</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_id</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_id</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_ID = createField(DSL.name("client_id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_id_issued_at</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_id_issued_at</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CLIENT_ID_ISSUED_AT = createField(DSL.name("client_id_issued_at"), SQLDataType.LOCALDATETIME(0).nullable(false).defaultValue(DSL.field("CURRENT_TIMESTAMP", SQLDataType.LOCALDATETIME)), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_secret</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_secret</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_SECRET = createField(DSL.name("client_secret"), SQLDataType.VARCHAR(200), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_secret_expires_at</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_secret_expires_at</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CLIENT_SECRET_EXPIRES_AT = createField(DSL.name("client_secret_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_name</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_name</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_NAME = createField(DSL.name("client_name"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_authentication_methods</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_AUTHENTICATION_METHODS = createField(DSL.name("client_authentication_methods"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.authorization_grant_types</code>.
+     * The column <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> AUTHORIZATION_GRANT_TYPES = createField(DSL.name("authorization_grant_types"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.redirect_uris</code>.
+     * The column <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> REDIRECT_URIS = createField(DSL.name("redirect_uris"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.post_logout_redirect_uris</code>.
+     * The column <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> POST_LOGOUT_REDIRECT_URIS = createField(DSL.name("post_logout_redirect_uris"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.scopes</code>.
+     * The column <code>luix-passport.oauth2_registered_client.scopes</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> SCOPES = createField(DSL.name("scopes"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.client_settings</code>.
+     * The column <code>luix-passport.oauth2_registered_client.client_settings</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_SETTINGS = createField(DSL.name("client_settings"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport2.oauth2_registered_client.token_settings</code>.
+     * The column <code>luix-passport.oauth2_registered_client.token_settings</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> TOKEN_SETTINGS = createField(DSL.name("token_settings"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
@@ -122,21 +122,21 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     }
 
     /**
-     * Create an aliased <code>luix-passport2.oauth2_registered_client</code> table reference
+     * Create an aliased <code>luix-passport.oauth2_registered_client</code> table reference
      */
     public Oauth2RegisteredClient(String alias) {
         this(DSL.name(alias), OAUTH2_REGISTERED_CLIENT);
     }
 
     /**
-     * Create an aliased <code>luix-passport2.oauth2_registered_client</code> table reference
+     * Create an aliased <code>luix-passport.oauth2_registered_client</code> table reference
      */
     public Oauth2RegisteredClient(Name alias) {
         this(alias, OAUTH2_REGISTERED_CLIENT);
     }
 
     /**
-     * Create a <code>luix-passport2.oauth2_registered_client</code> table reference
+     * Create a <code>luix-passport.oauth2_registered_client</code> table reference
      */
     public Oauth2RegisteredClient() {
         this(DSL.name("oauth2_registered_client"), null);

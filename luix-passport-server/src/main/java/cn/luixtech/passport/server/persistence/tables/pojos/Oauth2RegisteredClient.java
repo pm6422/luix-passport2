@@ -79,182 +79,182 @@ public class Oauth2RegisteredClient implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.id</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.id</code>.
      */
     public String getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.id</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.id</code>.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_id</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_id</code>.
      */
     public String getClientId() {
         return this.clientId;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_id</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_id</code>.
      */
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_id_issued_at</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_id_issued_at</code>.
      */
     public LocalDateTime getClientIdIssuedAt() {
         return this.clientIdIssuedAt;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_id_issued_at</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_id_issued_at</code>.
      */
     public void setClientIdIssuedAt(LocalDateTime clientIdIssuedAt) {
         this.clientIdIssuedAt = clientIdIssuedAt;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_secret</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_secret</code>.
      */
     public String getClientSecret() {
         return this.clientSecret;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_secret</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_secret</code>.
      */
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_secret_expires_at</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_secret_expires_at</code>.
      */
     public LocalDateTime getClientSecretExpiresAt() {
         return this.clientSecretExpiresAt;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_secret_expires_at</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_secret_expires_at</code>.
      */
     public void setClientSecretExpiresAt(LocalDateTime clientSecretExpiresAt) {
         this.clientSecretExpiresAt = clientSecretExpiresAt;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_name</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_name</code>.
      */
     public String getClientName() {
         return this.clientName;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_name</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_name</code>.
      */
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_authentication_methods</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
      */
     public String getClientAuthenticationMethods() {
         return this.clientAuthenticationMethods;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_authentication_methods</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
      */
     public void setClientAuthenticationMethods(String clientAuthenticationMethods) {
         this.clientAuthenticationMethods = clientAuthenticationMethods;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.authorization_grant_types</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
      */
     public String getAuthorizationGrantTypes() {
         return this.authorizationGrantTypes;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.authorization_grant_types</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
      */
     public void setAuthorizationGrantTypes(String authorizationGrantTypes) {
         this.authorizationGrantTypes = authorizationGrantTypes;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.redirect_uris</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
      */
     public String getRedirectUris() {
         return this.redirectUris;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.redirect_uris</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
      */
     public void setRedirectUris(String redirectUris) {
         this.redirectUris = redirectUris;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.post_logout_redirect_uris</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
     public String getPostLogoutRedirectUris() {
         return this.postLogoutRedirectUris;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.post_logout_redirect_uris</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
     public void setPostLogoutRedirectUris(String postLogoutRedirectUris) {
         this.postLogoutRedirectUris = postLogoutRedirectUris;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.scopes</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.scopes</code>.
      */
     public String getScopes() {
         return this.scopes;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.scopes</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.scopes</code>.
      */
     public void setScopes(String scopes) {
         this.scopes = scopes;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.client_settings</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.client_settings</code>.
      */
     public String getClientSettings() {
         return this.clientSettings;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.client_settings</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.client_settings</code>.
      */
     public void setClientSettings(String clientSettings) {
         this.clientSettings = clientSettings;
     }
 
     /**
-     * Getter for <code>luix-passport2.oauth2_registered_client.token_settings</code>.
+     * Getter for <code>luix-passport.oauth2_registered_client.token_settings</code>.
      */
     public String getTokenSettings() {
         return this.tokenSettings;
     }
 
     /**
-     * Setter for <code>luix-passport2.oauth2_registered_client.token_settings</code>.
+     * Setter for <code>luix-passport.oauth2_registered_client.token_settings</code>.
      */
     public void setTokenSettings(String tokenSettings) {
         this.tokenSettings = tokenSettings;

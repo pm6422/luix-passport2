@@ -99,252 +99,252 @@ public class User implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport2.user.id</code>.
+     * Getter for <code>luix-passport.user.id</code>.
      */
     public String getId() {
         return this.id;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.id</code>.
+     * Setter for <code>luix-passport.user.id</code>.
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.username</code>.
+     * Getter for <code>luix-passport.user.username</code>.
      */
     public String getUsername() {
         return this.username;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.username</code>.
+     * Setter for <code>luix-passport.user.username</code>.
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.email</code>.
+     * Getter for <code>luix-passport.user.email</code>.
      */
     public String getEmail() {
         return this.email;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.email</code>.
+     * Setter for <code>luix-passport.user.email</code>.
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.mobile_no</code>.
+     * Getter for <code>luix-passport.user.mobile_no</code>.
      */
     public String getMobileNo() {
         return this.mobileNo;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.mobile_no</code>.
+     * Setter for <code>luix-passport.user.mobile_no</code>.
      */
     public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.first_name</code>.
+     * Getter for <code>luix-passport.user.first_name</code>.
      */
     public String getFirstName() {
         return this.firstName;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.first_name</code>.
+     * Setter for <code>luix-passport.user.first_name</code>.
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.last_name</code>.
+     * Getter for <code>luix-passport.user.last_name</code>.
      */
     public String getLastName() {
         return this.lastName;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.last_name</code>.
+     * Setter for <code>luix-passport.user.last_name</code>.
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.password_hash</code>.
+     * Getter for <code>luix-passport.user.password_hash</code>.
      */
     public String getPasswordHash() {
         return this.passwordHash;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.password_hash</code>.
+     * Setter for <code>luix-passport.user.password_hash</code>.
      */
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.activation_key</code>.
+     * Getter for <code>luix-passport.user.activation_key</code>.
      */
     public String getActivationKey() {
         return this.activationKey;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.activation_key</code>.
+     * Setter for <code>luix-passport.user.activation_key</code>.
      */
     public void setActivationKey(String activationKey) {
         this.activationKey = activationKey;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.reset_key</code>.
+     * Getter for <code>luix-passport.user.reset_key</code>.
      */
     public String getResetKey() {
         return this.resetKey;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.reset_key</code>.
+     * Setter for <code>luix-passport.user.reset_key</code>.
      */
     public void setResetKey(String resetKey) {
         this.resetKey = resetKey;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.reset_time</code>.
+     * Getter for <code>luix-passport.user.reset_time</code>.
      */
     public LocalDateTime getResetTime() {
         return this.resetTime;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.reset_time</code>.
+     * Setter for <code>luix-passport.user.reset_time</code>.
      */
     public void setResetTime(LocalDateTime resetTime) {
         this.resetTime = resetTime;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.profile_photo_enabled</code>.
+     * Getter for <code>luix-passport.user.profile_photo_enabled</code>.
      */
     public Boolean getProfilePhotoEnabled() {
         return this.profilePhotoEnabled;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.profile_photo_enabled</code>.
+     * Setter for <code>luix-passport.user.profile_photo_enabled</code>.
      */
     public void setProfilePhotoEnabled(Boolean profilePhotoEnabled) {
         this.profilePhotoEnabled = profilePhotoEnabled;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.remarks</code>.
+     * Getter for <code>luix-passport.user.remarks</code>.
      */
     public String getRemarks() {
         return this.remarks;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.remarks</code>.
+     * Setter for <code>luix-passport.user.remarks</code>.
      */
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.activated</code>.
+     * Getter for <code>luix-passport.user.activated</code>.
      */
     public Boolean getActivated() {
         return this.activated;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.activated</code>.
+     * Setter for <code>luix-passport.user.activated</code>.
      */
     public void setActivated(Boolean activated) {
         this.activated = activated;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.enabled</code>.
+     * Getter for <code>luix-passport.user.enabled</code>.
      */
     public Boolean getEnabled() {
         return this.enabled;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.enabled</code>.
+     * Setter for <code>luix-passport.user.enabled</code>.
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.created_by</code>.
+     * Getter for <code>luix-passport.user.created_by</code>.
      */
     public String getCreatedBy() {
         return this.createdBy;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.created_by</code>.
+     * Setter for <code>luix-passport.user.created_by</code>.
      */
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.created_time</code>.
+     * Getter for <code>luix-passport.user.created_time</code>.
      */
     public LocalDateTime getCreatedTime() {
         return this.createdTime;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.created_time</code>.
+     * Setter for <code>luix-passport.user.created_time</code>.
      */
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.modified_by</code>.
+     * Getter for <code>luix-passport.user.modified_by</code>.
      */
     public String getModifiedBy() {
         return this.modifiedBy;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.modified_by</code>.
+     * Setter for <code>luix-passport.user.modified_by</code>.
      */
     public void setModifiedBy(String modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
     /**
-     * Getter for <code>luix-passport2.user.modified_time</code>.
+     * Getter for <code>luix-passport.user.modified_time</code>.
      */
     public LocalDateTime getModifiedTime() {
         return this.modifiedTime;
     }
 
     /**
-     * Setter for <code>luix-passport2.user.modified_time</code>.
+     * Setter for <code>luix-passport.user.modified_time</code>.
      */
     public void setModifiedTime(LocalDateTime modifiedTime) {
         this.modifiedTime = modifiedTime;

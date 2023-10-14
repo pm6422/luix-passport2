@@ -34,28 +34,28 @@ public class UserPermission implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport2.user_permission.user_id</code>.
+     * Getter for <code>luix-passport.user_permission.user_id</code>.
      */
     public String getUserId() {
         return this.userId;
     }
 
     /**
-     * Setter for <code>luix-passport2.user_permission.user_id</code>.
+     * Setter for <code>luix-passport.user_permission.user_id</code>.
      */
     public void setUserId(String userId) {
         this.userId = userId;
     }
 
     /**
-     * Getter for <code>luix-passport2.user_permission.permission</code>.
+     * Getter for <code>luix-passport.user_permission.permission</code>.
      */
     public String getPermission() {
         return this.permission;
     }
 
     /**
-     * Setter for <code>luix-passport2.user_permission.permission</code>.
+     * Setter for <code>luix-passport.user_permission.permission</code>.
      */
     public void setPermission(String permission) {
         this.permission = permission;
