@@ -43,7 +43,7 @@ public class JdbcUserDetailsService implements UserDetailsService {
         if (!Boolean.TRUE.equals(user.getActivated())) {
             throw new UserNotActivatedException(loginName);
         }
-        List<GrantedAuthority> grantedAuthorities = authUserService.findAuthorities(user.getId())
+        List<GrantedAuthority> authorities = authUserService.findAuthorities(user.getId())
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
@@ -51,6 +51,6 @@ public class JdbcUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPasswordHash(), user.getEnabled(),
                 true, true,
-                true, grantedAuthorities);
+                true, authorities);
     }
 }
