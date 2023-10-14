@@ -28,10 +28,10 @@ public class AuthUserServiceImpl implements AuthUserService {
 
     @Override
     public Set<String> findRoles(String userId) {
-        Set<String> roles = dslContext.select(Tables.USER_ROLE.ROLE)
-                .from(Tables.USER_ROLE)
-                .where(Tables.USER_ROLE.USER_ID.eq(userId))
-                .fetchSet(Tables.USER_ROLE.ROLE);
+        Set<String> roles = dslContext.select(Tables.USER_AUTHORITY.AUTHORITY)
+                .from(Tables.USER_AUTHORITY)
+                .where(Tables.USER_AUTHORITY.USER_ID.eq(userId))
+                .fetchSet(Tables.USER_AUTHORITY.AUTHORITY);
         return roles;
     }
 
