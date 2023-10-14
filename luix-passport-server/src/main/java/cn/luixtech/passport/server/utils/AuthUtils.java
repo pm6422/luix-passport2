@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config.oauth;
+package cn.luixtech.passport.server.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,14 @@ public abstract class AuthUtils {
      * Get the name of the current logged user.
      */
     public static String getCurrentUsername() {
-        User currentUser = getCurrentUser(SecurityContextHolder.getContext().getAuthentication());
+        return getCurrentUsername(SecurityContextHolder.getContext().getAuthentication());
+    }
+
+    /**
+     * Get the name of the current logged user.
+     */
+    public static String getCurrentUsername(Authentication authentication) {
+        User currentUser = getCurrentUser(authentication);
         return currentUser != null ? currentUser.getUsername() : null;
     }
 

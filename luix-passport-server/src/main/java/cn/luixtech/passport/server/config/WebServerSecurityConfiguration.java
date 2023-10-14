@@ -1,7 +1,5 @@
 package cn.luixtech.passport.server.config;
 
-import cn.luixtech.passport.server.config.formauth.event.FormLogoutSuccessEventListener;
-import cn.luixtech.passport.server.config.formauth.event.LogoutHttpSessionEventPublisher;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.config.oauth.service.JdbcUserDetailsService;
 import cn.luixtech.passport.server.service.UserService;
@@ -14,7 +12,6 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 /**
  * Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
@@ -23,7 +20,6 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 @AllArgsConstructor
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
-    private final FormLogoutSuccessEventListener formLogoutSuccessEventListener;
 
 //    @Bean
 //    public WebSecurityCustomizer webSecurityCustomizer() {
@@ -79,10 +75,5 @@ public class WebServerSecurityConfiguration {
     @Bean
     public SessionRegistry sessionRegistry() {
         return new SessionRegistryImpl();
-    }
-
-    @Bean
-    public HttpSessionEventPublisher httpSessionEventPublisher() {
-        return new LogoutHttpSessionEventPublisher(formLogoutSuccessEventListener);
     }
 }
