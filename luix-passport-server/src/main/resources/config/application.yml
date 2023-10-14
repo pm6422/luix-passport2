@@ -77,8 +77,8 @@ logging:
   level:
     root: DEBUG
     org.springframework.web: INFO
-    org.springframework.security: INFO
-    org.springframework.security.oauth2: INFO
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
 springdoc: # https://springdoc.org/#migrating-from-springfox
   api-docs:
     enabled: true
