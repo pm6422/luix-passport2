@@ -5,9 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
+
+import java.util.Arrays;
 
 
 /**
@@ -16,7 +19,7 @@ import org.springframework.security.oauth2.core.OAuth2AccessToken;
 @Slf4j
 public abstract class AuthUtils {
     /**
-     * Get the name of the current user.
+     * Get the name of the current logged user.
      */
     public static String getCurrentUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -30,6 +33,23 @@ public abstract class AuthUtils {
             }
         }
         return username;
+    }
+
+    /**
+     * Get the current logged user.
+     */
+    public static User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = null;
+        if (authentication != null) {
+            if (authentication.getPrincipal() instanceof User) {
+                user = (User) authentication.getPrincipal();
+            } else if (authentication.getPrincipal() instanceof String) {
+                user = new User((String) authentication.getPrincipal(), "protected",
+                        Arrays.asList(new SimpleGrantedAuthority("unknown")));
+            }
+        }
+        return user;
     }
 
     /**
