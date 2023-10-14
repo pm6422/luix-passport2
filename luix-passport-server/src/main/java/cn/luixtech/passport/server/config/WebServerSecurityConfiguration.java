@@ -10,6 +10,7 @@ import cn.luixtech.passport.server.service.AuthUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -80,15 +82,22 @@ public class WebServerSecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService(AuthUserService authUserService) {
-		UserDetails user = User.withDefaultPasswordEncoder()
-				.username("user")
-				// Use BCryptPasswordEncoder as default, refer to PasswordEncoderFactories.PasswordEncoder()
-				.password("user")
-				.roles("USER")
-				.build();
-		return new InMemoryUserDetailsManager(user);
-        // Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
-//        return new CustomUserDetailsService(authUserService);
+//		UserDetails user = User.withDefaultPasswordEncoder()
+//				.username("user")
+//				// Use BCryptPasswordEncoder as default, refer to PasswordEncoderFactories.PasswordEncoder()
+//				.password("user")
+//				.roles("USER")
+//				.build();
+//		return new InMemoryUserDetailsManager(user);
+
+//		JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager();
+//		userDetailsManager.setJdbcTemplate(jdbcTemplate);
+//		userDetailsManager.setEnableGroups(false);
+//		userDetailsManager.setUsersByUsernameQuery("select username, password_hash, enabled from \"USER\" where username = ?");
+//		userDetailsManager.setAuthoritiesByUsernameQuery("select username,authority");
+//		return userDetailsManager;
+//         Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
+        return new CustomUserDetailsService(authUserService);
     }
 
     @Bean
