@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationConsentService;
 import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationService;
@@ -34,7 +35,7 @@ import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfiguration {
-    public static final String AUTHORIZATION_BEARER    = "Bearer ";
+    public static final String AUTHORIZATION_BEARER    = OAuth2AccessToken.TokenType.BEARER.getValue();
     public static final String AUTHORIZATION_BASIC     = "Basic ";
     public static final String AUTH_CODE_CLIENT_ID     = "messaging-client";
     public static final String AUTH_CODE_CLIENT_SECRET = "secret";
