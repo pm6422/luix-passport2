@@ -51,6 +51,11 @@ public class AuthorizationServerConfiguration {
     public static final String CONSENT_PAGE_URI        = "/oauth2/consent";
 
     @Bean
+    public AuthorizationServerSettings authorizationServerSettings() {
+        return AuthorizationServerSettings.builder().build();
+    }
+
+    @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain authorizationServerSecurityFilterChain(
             HttpSecurity http,
@@ -140,10 +145,5 @@ public class AuthorizationServerConfiguration {
     @Bean
     public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
         return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
-    }
-
-    @Bean
-    public AuthorizationServerSettings authorizationServerSettings() {
-        return AuthorizationServerSettings.builder().build();
     }
 }
