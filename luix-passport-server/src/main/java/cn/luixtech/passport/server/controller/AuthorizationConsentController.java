@@ -1,6 +1,7 @@
 package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.config.oauth.ScopeWithDescription;
+import lombok.AllArgsConstructor;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsent;
@@ -14,18 +15,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
+@AllArgsConstructor
 public class AuthorizationConsentController {
     private final RegisteredClientRepository        registeredClientRepository;
     private final OAuth2AuthorizationConsentService authorizationConsentService;
-
-    public AuthorizationConsentController(RegisteredClientRepository registeredClientRepository,
-                                          OAuth2AuthorizationConsentService authorizationConsentService) {
-        this.registeredClientRepository = registeredClientRepository;
-        this.authorizationConsentService = authorizationConsentService;
-    }
 
     @GetMapping(value = "/oauth2/consent")
     public String consent(Principal principal, Model model,
