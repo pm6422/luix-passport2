@@ -124,5 +124,5 @@ luix:
 # ===================================================================
 application:
   url:
-    oauth-server-messages: http://127.0.0.1:4001/server-messages
+    oauth-server-messages: http://127.0.0.1:4001/api/server-messages
     resource-server-messages: http://127.0.0.1:4002/messages
