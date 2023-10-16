@@ -1,7 +1,6 @@
 package cn.luixtech.passport.client.controller;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,7 @@ public class HomeController {
     public String index(Model model) {
         // todo: refactor
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof OidcUser) {
-            OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
+        if (authentication != null && authentication.getPrincipal() instanceof OidcUser oidcUser) {
             model.addAttribute("username", oidcUser.getName());
         }
         return "index";

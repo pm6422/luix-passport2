@@ -1,10 +1,9 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
-import cn.luixtech.passport.server.event.AuthenticationEventListener;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
-import cn.luixtech.passport.server.service.impl.JdbcUserDetailsService;
 import cn.luixtech.passport.server.service.UserService;
+import cn.luixtech.passport.server.service.impl.JdbcUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
