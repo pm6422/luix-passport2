@@ -46,6 +46,9 @@ spring:
   security:
     oauth2:
       client:
+        provider:
+          spring:
+            issuer-uri: http://localhost:4001
         registration:
           messaging-client-oidc:
             provider: spring
@@ -77,9 +80,6 @@ spring:
             client-authentication-method: none
             authorization-grant-type: urn:ietf:params:oauth:grant-type:device_code
             scope: message.read,message.write
-        provider:
-          spring:
-            issuer-uri: http://localhost:4001
 logging:
   level:
     root: DEBUG
