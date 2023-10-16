@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ServerMessagesController {
+public class MessagesController {
 
-    @GetMapping("/api/server-messages")
+    @GetMapping("/api/messages")
     public String[] getMessages() {
-        return new String[]{"Message 1", "Message 2"};
+        return new String[]{"Auth Server Message 1", "Auth Server Message 2"};
     }
 }

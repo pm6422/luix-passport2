@@ -38,12 +38,12 @@ public class WebServerSecurityConfiguration {
 	@Bean
 	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http
+			// Integrate both resource server and auth server
 			.oauth2ResourceServer(server-> server.jwt(Customizer.withDefaults()))
-			.authorizeHttpRequests(authorize -> authorize.requestMatchers("/api/server-messages/**").hasAuthority("SCOPE_message.read"))
 			.authorizeHttpRequests(authorize ->
 				authorize
 					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
-//					.requestMatchers("/api/**").authenticated()
+					.requestMatchers("/api/messages/**").hasAuthority("SCOPE_message.read")
 					.anyRequest().authenticated()
 			)
 			.formLogin(formLogin ->
