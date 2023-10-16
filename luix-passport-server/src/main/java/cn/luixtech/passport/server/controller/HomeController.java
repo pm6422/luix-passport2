@@ -10,7 +10,6 @@ public class HomeController {
     @RequestMapping(value = {"/", "/index"})
     public String index(Model model) {
         model.addAttribute("username", AuthUtils.getCurrentUsername());
-        model.addAttribute("messages", new String[]{"Message 1", "Message 2"});
         return "index";
     }
 }
