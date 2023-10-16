@@ -96,7 +96,7 @@ luix:
     open-api-include-pattern: /open-api/**
     management-include-pattern: /management/**
     api-title: LUI️✘ Passport Server API
-    open-api-title: LUI️✘ Passport Server API
+    open-api-title: LUI️✘ Passport Server Open API
     management-title: LUI️✘ Passport Server Management API
     version: ${spring.application.name}
     terms-of-service-url:
