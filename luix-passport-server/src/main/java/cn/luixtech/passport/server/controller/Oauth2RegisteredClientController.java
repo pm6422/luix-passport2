@@ -15,7 +15,9 @@ public class Oauth2RegisteredClientController {
 //            .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
 //            .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
 ////				.authorizationGrantType(AuthorizationGrantType.PASSWORD)
+// redirect for messaging-client-oidc
 //            .redirectUri("http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc")
+// redirect for messaging-client-authorization-code
 //            .redirectUri("http://127.0.0.1:4003/authorized")
 //            .postLogoutRedirectUri("http://127.0.0.1:4003/logged-out")
 //            .scope(OidcScopes.OPENID)
