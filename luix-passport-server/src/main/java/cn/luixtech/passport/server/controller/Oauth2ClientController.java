@@ -43,7 +43,6 @@ public class Oauth2ClientController {
 
     @Operation(summary = "create a new oauth2 client")
     @PostMapping("/api/oauth2-clients")
-    // todo: not work
     @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
     public ResponseEntity<Void> create(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oauth2Client pojo) {
         log.debug("REST create oauth client: {}", pojo);
