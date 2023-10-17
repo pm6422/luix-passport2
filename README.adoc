@@ -31,20 +31,20 @@ curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
 [[run-demo-sample]]
-== Run demo samples locally in two steps
+== Run multiple demo samples locally in two steps
 === 1. Build application docker images
 ```bash
 npm run java:docker
 ```
 
-=== 2. Run the all the Database, Redis and applications
+=== 2. Run the middleware, database and all applications
 * Run Authorization Server, Resource Server and Client in one command
 ```bash
 npm run app:up
 ```
 
 * Then navigate to `http://127.0.0.1:4003` to access client
-** Login with credentials -> user \ password
+** Login with credentials -> user / password
 
 [[configuring-social-login]]
 == Configuring Social Login
@@ -163,47 +163,29 @@ Alternatively, you can set the following environment variables in the Spring Boo
 == Knowledge
 === Authentication Methods
 1. Cookie-based Authentication:
-- Involves creating a session ID for each user after they have successfully authenticated with their username and password.
-- The session ID is then stored on the server and sent to the client as a cookie.
-- Suitable for web-based authentication but not for mobile-based authentication.
-- The server uses the session ID to track the user's entire session.
-- The session ID is stored in a cookie on the client-side and sent to the server with each request.
-- Cookies can be shared across subdomains by modifying the cookie's domain to the parent domain.
+- Involves creating a session ID for each user after they have successfully authenticated with their username and password. The session ID is then stored on the server and sent to the client as a cookie. Suitable for web-based authentication but not for mobile-based authentication. The server uses the session ID to track the user's entire session. The session ID is stored in a cookie on the client-side and sent to the server with each request. Cookies can be shared across subdomains by modifying the cookie's domain to the parent domain.
 - Cookies can be vulnerable to attacks, so it's important to set SameSite, HttpOnly, and Secure attributes to prevent unauthorized access.
 
 2. Token-based Authentication:
-- Involves issuing a token to a user after they have authenticated with their username and password.
-- The token is then sent to the client and included in subsequent requests as an HTTP header.
-- The server validates the token to identify the user.
-- Token-based authentication is advantageous because it eliminates the need for server-side session data storage, which can improve scalability.
+- Involves issuing a token to a user after they have authenticated with their username and password. The token is then sent to the client and included in subsequent requests as an HTTP header. The server validates the token to identify the user. Token-based authentication is advantageous because it eliminates the need for server-side session data storage, which can improve scalability.
 - However, token-based authentication has some security risks, such as the potential for token theft.
 
 3. JWT Authentication:
-- A type of token-based authentication that uses JSON Web Tokens (JWTs) as the access token.
-- JWTs are a secure and self-contained way of transmitting information between parties in a compact format.
-- JWTs are widely used for stateless authentication and authorization, and they offer several advantages, such as scalability, flexibility, and standardization.
+- A type of token-based authentication that uses JSON Web Tokens (JWTs) as the access token. JWTs are a secure and self-contained way of transmitting information between parties in a compact format. JWTs are widely used for stateless authentication and authorization, and they offer several advantages, such as scalability, flexibility, and standardization.
 - However, JWT authentication has some security risks, such as the potential for token theft.
 
 4. Open Authorization (OAuth) Authentication:
-- An open standard for authorization that allows users to grant third-party applications access to their resources without sharing their credentials.
-- OAuth works by issuing access tokens to third-party applications, which are then used to access the user's resources.
-- OAuth is widely used for social login and is advantageous because it allows users to share their resources with third-party applications without exposing their credentials.
+- An open standard for authorization that allows users to grant third-party applications access to their resources without sharing their credentials. OAuth works by issuing access tokens to third-party applications, which are then used to access the user's resources. OAuth is widely used for social login and is advantageous because it allows users to share their resources with third-party applications without exposing their credentials.
 - However, OAuth also has some security risks, such as the potential for token theft and the need to properly secure the authentication process.
 
 5. Security Access Markup Language (SAML) Authentication:
-- An open standard that encodes text into machine language and enables the exchange of identification information.
-- It has become one of the core standards for SSO and is used to help application providers ensure their authentication requests are appropriate.
-- SAML 2.0 is specifically optimized for use in web applications, which enables information to be transmitted through a web browser.
+- An open standard that encodes text into machine language and enables the exchange of identification information. It has become one of the core standards for SSO and is used to help application providers ensure their authentication requests are appropriate. SAML 2.0 is specifically optimized for use in web applications, which enables information to be transmitted through a web browser.
 
 6. OpenID Connect (OIDC) Authentication:
-- Sits on top of OAuth 2.0 to add information about the user and enable the SSO process.
-- It allows one login session to be used across multiple applications.
-- For example, it enables a user to log in to a service using their Facebook or Google account rather than entering user credentials.
+- Sits on top of OAuth 2.0 to add information about the user and enable the SSO process. It allows one login session to be used across multiple applications. For example, it enables a user to log in to a service using their Facebook or Google account rather than entering user credentials.
 
 === Single Sign-on (SSO)
-- A method that allows users to use a single set of login credentials to access multiple applications or services.
-- With SSO, the user only needs to authenticate once, and the authentication is then propagated to all other services that are part of the SSO network.
-- SSO is advantageous because it reduces the number of passwords that users need to remember and simplifies the authentication process.
+- A method that allows users to use a single set of login credentials to access multiple applications or services. With SSO, the user only needs to authenticate once, and the authentication is then propagated to all other services that are part of the SSO network. SSO is advantageous because it reduces the number of passwords that users need to remember and simplifies the authentication process.
 - However, SSO also has some security risks, such as the potential for a single point of failure and the need to properly secure the authentication process.
 
 === Types of SSO
