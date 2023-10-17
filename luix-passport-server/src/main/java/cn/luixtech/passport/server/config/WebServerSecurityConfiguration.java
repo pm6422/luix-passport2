@@ -25,6 +25,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
 
+    /**
+     * Refer to <a href="https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html">Using a Custom Authorization Manager</a>
+     *
+     * @param manager DynamicAuthorizationManager
+     * @return Advisor
+     */
     @Bean
     public Advisor preAuthorize(DynamicAuthorizationManager manager) {
         return AuthorizationManagerBeforeMethodInterceptor.preAuthorize(manager);
