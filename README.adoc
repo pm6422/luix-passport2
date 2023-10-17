@@ -58,7 +58,7 @@ npm run java:docker
 ```
 Or run the below command if using ARM CPU
 ```bash
-java:docker:arm64
+npm run java:docker:arm64
 ```
 
 === 2. Run the middleware and all applications
