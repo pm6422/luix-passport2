@@ -4,6 +4,7 @@ import cn.luixtech.passport.server.utils.AuthUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,5 +15,10 @@ public class HomeController {
         model.addAttribute("swaggerEnabled", AuthUtils.getCurrentUser().getAuthorities()
                 .contains(new SimpleGrantedAuthority("ROLE_DEVELOPER")));
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
