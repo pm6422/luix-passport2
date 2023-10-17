@@ -4,7 +4,7 @@ import cn.luixtech.passport.server.pojo.Oauth2Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface Oauth2ClientService {
+public interface Oauth2RegisteredClientService {
     void insert(Oauth2Client pojo);
 
     Oauth2Client findById(String id);

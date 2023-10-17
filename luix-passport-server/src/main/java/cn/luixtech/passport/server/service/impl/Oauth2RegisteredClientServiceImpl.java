@@ -4,7 +4,7 @@ import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClientDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
-import cn.luixtech.passport.server.service.Oauth2ClientService;
+import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
 import com.google.common.collect.ImmutableMap;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
@@ -29,7 +29,7 @@ import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 
 @Service
 @AllArgsConstructor
-public class Oauth2ClientServiceImpl implements Oauth2ClientService {
+public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClientService {
 
     private final RegisteredClientRepository registeredClientRepository;
     private final Oauth2RegisteredClientDao  oauth2RegisteredClientDao;
