@@ -56,7 +56,7 @@ https://nodejs.org/en/download[NodeJS Download]
 ```bash
 npm run java:docker
 ```
-Or run the below command if using ARM CPU
+* Or run the below command if using ARM CPU
 ```bash
 npm run java:docker:arm64
 ```
