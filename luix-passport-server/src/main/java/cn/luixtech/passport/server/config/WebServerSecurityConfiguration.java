@@ -44,6 +44,7 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
 					.requestMatchers("/api/messages/**").hasAuthority("SCOPE_message.read")
 					.requestMatchers("/swagger-ui/**").hasAuthority("ROLE_DEVELOPER")
+					.requestMatchers("/v3/api-docs/**").hasAuthority("ROLE_DEVELOPER")
 					.anyRequest().authenticated()
 			)
 			.formLogin(formLogin ->
