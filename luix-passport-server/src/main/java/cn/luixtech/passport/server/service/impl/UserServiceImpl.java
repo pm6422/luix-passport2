@@ -74,11 +74,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Set<String> findAuthorities(String userId) {
-        Set<String> roles = dslContext.select(Tables.USER_AUTHORITY.AUTHORITY)
+        Set<String> authorities = dslContext.select(Tables.USER_AUTHORITY.AUTHORITY)
                 .from(Tables.USER_AUTHORITY)
                 .where(Tables.USER_AUTHORITY.USER_ID.eq(userId))
                 .fetchSet(Tables.USER_AUTHORITY.AUTHORITY);
-        return roles;
+        return authorities;
     }
 
     @Override
