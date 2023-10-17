@@ -17,6 +17,7 @@
         <harborUrl/>
         <harborUsername/>
         <java.version>17</java.version>
+        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -178,11 +179,7 @@
                         <image>eclipse-temurin:17-jre</image>
                         <platforms>
                             <platform>
-                                <architecture>amd64</architecture>
-                                <os>linux</os>
-                            </platform>
-                            <platform>
-                                <architecture>arm64</architecture>
+                                <architecture>${jib-maven-plugin.architecture}</architecture>
                                 <os>linux</os>
                             </platform>
                         </platforms>
