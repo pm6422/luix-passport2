@@ -27,8 +27,8 @@ NOTE: Java compatability: Java 17 above
 [[technology-stack]]
 == Technology Stack
 - Java 17
-- spring-boot 3.1.0
-- spring-security-oauth2-authorization-server 1.1.0
+- Spring Boot 3.1.0
+- Spring Security OAuth2 Authorization Server 1.1.0
 - MySQL 8
 - VUE 3
 
