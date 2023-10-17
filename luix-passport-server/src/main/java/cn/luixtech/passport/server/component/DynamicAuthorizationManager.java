@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;
 
+/**
+ * Refer to <a href="https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html">Using a Custom Authorization Manager</a>
+ */
 @Component
 @Slf4j
 public class DynamicAuthorizationManager implements AuthorizationManager<MethodInvocation> {
