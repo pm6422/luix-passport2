@@ -64,7 +64,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Optional<User> findOne(String loginName) {
         User user = dslContext.selectFrom(Tables.USER)
                 .where(Tables.USER.USERNAME.eq(loginName))
-                .or((Tables.USER.EMAIL).eq(loginName))
+                .or(Tables.USER.EMAIL.eq(loginName))
+                .or(Tables.USER.MOBILE_NO.eq(loginName))
                 .limit(1)
                 // Convert User Record to POJO User
                 .fetchOneInto(User.class);
