@@ -20,7 +20,7 @@ NOTE: Java compatability: Java 17 above
 == Related Technology
 - spring-boot 3.1.0
 - spring-security-oauth2-authorization-server 1.1.0
-- MySQL 8.0
+- MySQL 8
 - VUE 3
 
 [[run-demo-sample]]
