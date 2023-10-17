@@ -21,9 +21,14 @@ import java.util.Set;
 
 @Controller
 @AllArgsConstructor
-public class AuthorizationConsentController {
+public class LoginController {
     private final RegisteredClientRepository        registeredClientRepository;
     private final OAuth2AuthorizationConsentService authorizationConsentService;
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 
     @GetMapping(value = "/oauth2/consent")
     public String consent(Principal principal, Model model,
