@@ -16,27 +16,23 @@ sdk install java 17.0.6-tem
 ```
 NOTE: Java compatability: Java 17 above
 
-[[related-technology]]
-== Related Technology
+[[technology-stack]]
+== Technology Stack
 - spring-boot 3.1.0
 - spring-security-oauth2-authorization-server 1.1.0
 - MySQL 8
 - VUE 3
 
 [[run-demo-sample]]
-=== Run the Sample
+=== Build application docker images
+```bash
+npm run java:docker
+```
 
-* Run Authorization Server
+=== Run the Sample
+* Run Authorization Server, Resource Server and Client in one command
 ```bash
-java -jar luix-passport-server/target/*.jar
-```
-* Run Client
-```bash
-java -jar luix-passport-client/target/*.jar
-```
-* Run Resource Server
-```bash
-java -jar luix-passport-resource-server/target/*.jar
+npm run app:up
 ```
 
 * Then navigate to `http://127.0.0.1:4003` to access client
