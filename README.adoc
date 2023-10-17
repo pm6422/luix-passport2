@@ -23,13 +23,21 @@ NOTE: Java compatability: Java 17 above
 - MySQL 8
 - VUE 3
 
+[[UsingDocker]]
+== Using Docker to simplify development
+Install docker, run:
+```
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+```
+
 [[run-demo-sample]]
-=== Build application docker images
+== Run demo samples locally in two steps
+=== 1. Build application docker images
 ```bash
 npm run java:docker
 ```
 
-=== Run the Sample
+=== 2. Run the all the Database, Redis and applications
 * Run Authorization Server, Resource Server and Client in one command
 ```bash
 npm run app:up
@@ -39,7 +47,7 @@ npm run app:up
 ** Login with credentials -> user \ password
 
 [[configuring-social-login]]
-=== Configuring Social Login
+== Configuring Social Login
 
 The demo sample may be configured to provide social login capability.
 
@@ -150,34 +158,6 @@ spring:
 Alternatively, you can set the following environment variables in the Spring Boot application:
 * `GITHUB_CLIENT_ID`
 * `GITHUB_CLIENT_SECRET`
-
-[[UsingDocker]]
-== Using Docker to simplify development (optional)
-Install docker, run:
-```
-curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-```
-
-To start MySQL in a docker container, run:
-
-```
-docker-compose -f docker/mysql.yml up -d
-```
-
-To stop it and remove the container, run:
-
-```
-docker-compose -f docker/mysql.yml down
-```
-
-[[build]]
-== Build
-
-Run the following command to build the project:
-
-```
-./mvnw clean verify
-```
 
 [[Knowledge]]
 == Knowledge
