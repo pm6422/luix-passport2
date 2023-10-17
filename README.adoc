@@ -52,12 +52,13 @@ https://nodejs.org/en/download[NodeJS Download]
 [[run-demo-sample]]
 == Run multiple demo samples locally in two steps
 === 1. Build application docker images
+* Run the command under the project root directory
 ```bash
 npm run java:docker
 ```
 
-=== 2. Run the middleware, database and all applications
-* Run Authorization Server, Resource Server and Client in one command
+=== 2. Run the middleware and all applications
+* Run Authorization Server, Resource Server, Client, and initialize database in one command
 ```bash
 npm run app:up
 ```
