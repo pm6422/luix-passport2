@@ -15,9 +15,9 @@ import static cn.luixtech.passport.server.service.AuthorityService.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
-public class ThirdPartyController {
+public class ThirdPartyClientController {
     @Operation(summary = "find all authority list")
-    @GetMapping("/api/third-parties/authorities")
+    @GetMapping("/api/third-party-clients/authorities")
     public ResponseEntity<List<String>> authorities() {
         return ResponseEntity.ok().body(Arrays.asList(ANONYMOUS, USER, ADMIN, DEVELOPER));
     }
