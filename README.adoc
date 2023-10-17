@@ -237,7 +237,13 @@ Run the following command to build the project:
 
 [[references]]
 == References
+https://docs.spring.io/spring-security/reference/index.html[OSpring Security Reference]
+
 https://oauth.net/code/java/[OAuth Libraries for Java]
+
+https://zhuanlan.zhihu.com/p/441831786[spring boot 2.x 中使用oauth2趟坑记录]
+
+https://idontwannarock.github.io/spring-security-reference/docs/1_gett_star/[Spring Security 之不要太相信這個中文手冊]
 
 [[thanks]]
 == Thanks
