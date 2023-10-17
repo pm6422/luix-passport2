@@ -1,5 +1,13 @@
 = LUI️✘ Passport
 
+This project provides you a standard auth2 server, resource server and client configuration powered by Spring Boot 3 with the ability to authenticate login and using MySQL DB as datastore.
+
+Supported social login:
+
+- Google
+- GitHub
+
+
 [[website]]
 == Official website
 http://www.luixtech.cn
@@ -18,6 +26,7 @@ NOTE: Java compatability: Java 17 above
 
 [[technology-stack]]
 == Technology Stack
+- Java 17
 - spring-boot 3.1.0
 - spring-security-oauth2-authorization-server 1.1.0
 - MySQL 8
