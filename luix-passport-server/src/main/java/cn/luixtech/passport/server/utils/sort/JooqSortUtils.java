@@ -72,6 +72,7 @@ public class JooqSortUtils {
      * @param <T>   field type
      * @return new field with sort ignore case or passed field
      */
+    @SuppressWarnings({ "unchecked" })
     static <T> Field<T> tryConvertSortIgnoreCase(final Field<T> field) {
         if (!String.class.equals(field.getType())) {
             return field;
@@ -108,14 +109,10 @@ public class JooqSortUtils {
     }
 
     static <T> SortField<T> convertToSortField(final Field<T> field, final Sort.Direction direction) {
-        switch (direction) {
-            case ASC:
-                return field.asc();
-            case DESC:
-                return field.desc();
-            default:
-                throw new IllegalStateException("Unexpected value: " + direction);
-        }
+        return switch (direction) {
+            case ASC -> field.asc();
+            case DESC -> field.desc();
+        };
     }
 
     private JooqSortUtils() {
