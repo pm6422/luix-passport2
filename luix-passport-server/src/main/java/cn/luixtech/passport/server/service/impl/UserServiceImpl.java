@@ -1,19 +1,64 @@
 package cn.luixtech.passport.server.service.impl;
 
+import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.jooq.DSLContext;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+/**
+ * Authenticate a user from the database.
+ * Functions is same to {@link JdbcUserDetailsManager}
+ * <p>
+ * Refer below to review match password
+ * {@link DaoAuthenticationProvider#additionalAuthenticationChecks}
+ */
+@Slf4j
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     private final DSLContext dslContext;
+
+    @Override
+//    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
+    public UserDetails loadUserByUsername(final String loginName) {
+        log.debug("Authenticating {}", loginName);
+        if (StringUtils.isEmpty(loginName)) {
+            log.warn("login must not be empty!");
+            throw new BadCredentialsException("login must not be empty");
+        }
+        User user = findOne(loginName)
+                .orElseThrow(() -> new UsernameNotFoundException("User " + loginName + " was not found"));
+        if (!Boolean.TRUE.equals(user.getActivated())) {
+            throw new UserNotActivatedException(loginName);
+        }
+        List<GrantedAuthority> authorities = findAuthorities(user.getId())
+                .stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+                user.getPasswordHash(), user.getEnabled(),
+                true, true,
+                true, authorities);
+    }
 
     @Override
     public Optional<User> findOne(String loginName) {

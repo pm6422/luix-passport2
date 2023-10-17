@@ -2,8 +2,6 @@ package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
-import cn.luixtech.passport.server.service.UserService;
-import cn.luixtech.passport.server.service.impl.JdbcUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +10,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -72,11 +69,6 @@ public class WebServerSecurityConfiguration {
 		return http.build();
 	}
 	// @formatter:on
-
-    @Bean
-    public UserDetailsService userDetailsService(UserService userService) {
-        return new JdbcUserDetailsService(userService);
-    }
 
     @Bean
     public SessionRegistry sessionRegistry() {
