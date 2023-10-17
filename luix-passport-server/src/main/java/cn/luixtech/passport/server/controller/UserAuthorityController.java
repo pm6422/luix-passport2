@@ -16,7 +16,6 @@ import static cn.luixtech.passport.server.service.AuthorityService.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@PreAuthorize("hasAuthority(\"" + USER + "\")")
 public class UserAuthorityController {
     @Operation(summary = "find all authority list")
     @GetMapping("/api/user-authorities/all")
