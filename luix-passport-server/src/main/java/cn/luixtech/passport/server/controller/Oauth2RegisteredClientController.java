@@ -23,12 +23,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-import static cn.luixtech.passport.server.service.AuthorityService.ADMIN;
+import static cn.luixtech.passport.server.service.AuthorityService.USER;
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
 
 @Slf4j
 @RestController
 @AllArgsConstructor
+@PreAuthorize("hasAuthority(\"" + USER + "\")")
 public class Oauth2RegisteredClientController {
     private final HttpHeaderCreator             httpHeaderCreator;
     private final Oauth2RegisteredClientDao     oauth2RegisteredClientDao;
@@ -36,7 +37,6 @@ public class Oauth2RegisteredClientController {
 
     @Operation(summary = "create a new oauth2 client")
     @PostMapping("/api/oauth2-registered-clients")
-    @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
     public ResponseEntity<Void> create(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oauth2Client pojo) {
         oauth2RegisteredClientService.insert(pojo);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -46,7 +46,6 @@ public class Oauth2RegisteredClientController {
 
     @Operation(summary = "find oauth2 client list")
     @GetMapping("/api/oauth2-registered-clients")
-    @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
     public ResponseEntity<List<Oauth2Client>> find(@ParameterObject Pageable pageable,
                                                    @Parameter(description = "Client ID") @RequestParam(value = "clientId", required = false) String clientId) {
         Page<Oauth2Client> domains = oauth2RegisteredClientService.find(pageable, clientId);
@@ -56,7 +55,6 @@ public class Oauth2RegisteredClientController {
 
     @Operation(summary = "find oauth2 client by ID")
     @GetMapping("/api/oauth2-registered-clients/{id}")
-    @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
     public ResponseEntity<Oauth2Client> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
         Oauth2Client domain = oauth2RegisteredClientService.findById(id);
         return ResponseEntity.ok(domain);
@@ -64,7 +62,6 @@ public class Oauth2RegisteredClientController {
 
     @Operation(summary = "update oauth2 client")
     @PutMapping("/api/oauth2-registered-clients")
-    @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
     public ResponseEntity<Void> update(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oauth2Client pojo) {
         oauth2RegisteredClientService.update(pojo);
         return ResponseEntity.ok()
@@ -74,7 +71,6 @@ public class Oauth2RegisteredClientController {
 
     @Operation(summary = "delete oauth2 client by ID", description = "the data may be referenced by other data, and some problems may occur after deletion")
     @DeleteMapping("/api/oauth2-registered-clients/{id}")
-    @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
         Oauth2RegisteredClient client = Optional.ofNullable(oauth2RegisteredClientDao.findById(id))
                 .orElseThrow(() -> new DataNotFoundException(id));

@@ -1,10 +1,13 @@
 package cn.luixtech.passport.server.config;
 
+import cn.luixtech.passport.server.component.DynamicAuthorizationManager;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import lombok.AllArgsConstructor;
+import org.springframework.aop.Advisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,6 +24,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @AllArgsConstructor
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
+
+    @Bean
+    public Advisor preAuthorize(DynamicAuthorizationManager manager) {
+        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize(manager);
+    }
 
 //    @Bean
 //    public WebSecurityCustomizer webSecurityCustomizer() {
