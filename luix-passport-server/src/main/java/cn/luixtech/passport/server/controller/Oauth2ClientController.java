@@ -11,7 +11,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,12 +33,6 @@ public class Oauth2ClientController {
     private final HttpHeaderCreator         httpHeaderCreator;
     private final Oauth2RegisteredClientDao oauth2RegisteredClientDao;
     private final Oauth2ClientService       oauth2ClientService;
-
-    @Operation(summary = "get internal client")
-    @GetMapping("/open-api/oauth2-client/internal-client")
-    public ResponseEntity<Pair<String, String>> getInternalClient() {
-        return ResponseEntity.ok(Pair.of(Oauth2Client.INTERNAL_CLIENT_ID, Oauth2Client.INTERNAL_RAW_CLIENT_SECRET));
-    }
 
     @Operation(summary = "create a new oauth2 client")
     @PostMapping("/api/oauth2-clients")

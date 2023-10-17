@@ -41,7 +41,7 @@ public class WebServerSecurityConfiguration {
 			.authorizeHttpRequests(authorize ->
 				authorize
 					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
-					.requestMatchers("/api/messages/**").hasAuthority("SCOPE_message.read")
+					.requestMatchers("/api/user-authorities/all").hasAuthority("SCOPE_message.read")
 					.requestMatchers("/swagger-ui/**").hasAuthority("ROLE_DEVELOPER")
 					.requestMatchers("/v3/api-docs/**").hasAuthority("ROLE_DEVELOPER")
 					.anyRequest().authenticated()

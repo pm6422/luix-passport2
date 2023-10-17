@@ -26,7 +26,7 @@ public class AuthorizationController {
     public String clientCredentialsGrant(Model model) {
         String[] messages = this.webClient
                 .get()
-                .uri(applicationProperties.getUrl().getOauthServerMessages())
+                .uri(applicationProperties.getUrl().getOauthServerAuthorities())
                 .attributes(clientRegistrationId("messaging-client-client-credentials"))
                 .retrieve()
                 .bodyToMono(String[].class)

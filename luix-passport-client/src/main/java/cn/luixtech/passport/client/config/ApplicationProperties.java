@@ -5,7 +5,6 @@ import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.cors.CorsConfiguration;
 
 /**
  * Properties specific to Application.
@@ -25,6 +24,6 @@ public class ApplicationProperties {
     @Data
     public static class Url {
         private String resourceServerMessages;
-        private String oauthServerMessages;
+        private String oauthServerAuthorities;
     }
 }
