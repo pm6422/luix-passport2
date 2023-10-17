@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.config;
 
-import cn.luixtech.passport.server.component.DynamicAuthorizationManager;
+import cn.luixtech.passport.server.aspect.DynamicAuthorizationManager;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import lombok.AllArgsConstructor;
