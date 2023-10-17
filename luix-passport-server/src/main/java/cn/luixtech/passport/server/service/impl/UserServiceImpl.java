@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserDetails loadUserByUsername(final String loginName) {
         log.debug("Authenticating {}", loginName);
         if (StringUtils.isEmpty(loginName)) {
-            log.warn("login must not be empty!");
-            throw new BadCredentialsException("login must not be empty");
+            log.warn("Login name must not be empty!");
+            throw new BadCredentialsException("Login name must not be empty");
         }
         User user = findOne(loginName)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + loginName + " was not found"));
