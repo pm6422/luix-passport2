@@ -1,15 +1,15 @@
 package cn.luixtech.passport.server.service;
 
-import cn.luixtech.passport.server.pojo.OAuth2Client;
+import cn.luixtech.passport.server.pojo.Oaauth2Client;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface Oauth2ClientService {
-    void insert(OAuth2Client pojo);
+    void insert(Oaauth2Client pojo);
 
-    OAuth2Client findById(String id);
+    Oaauth2Client findById(String id);
 
-    void update(OAuth2Client domain);
+    void update(Oaauth2Client domain);
 
-    Page<OAuth2Client> find(Pageable pageable, String clientId);
+    Page<Oaauth2Client> find(Pageable pageable, String clientId);
 }

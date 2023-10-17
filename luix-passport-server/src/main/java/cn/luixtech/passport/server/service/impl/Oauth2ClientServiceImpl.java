@@ -3,7 +3,7 @@ package cn.luixtech.passport.server.service.impl;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClientDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
-import cn.luixtech.passport.server.pojo.OAuth2Client;
+import cn.luixtech.passport.server.pojo.Oaauth2Client;
 import cn.luixtech.passport.server.service.Oauth2ClientService;
 import com.google.common.collect.ImmutableMap;
 import com.luixtech.utilities.exception.DataNotFoundException;
@@ -36,7 +36,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
     private final DSLContext                 dslContext;
 
     @Override
-    public void insert(OAuth2Client pojo) {
+    public void insert(Oaauth2Client pojo) {
         Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getClientId())).ifPresent((existingEntity) -> {
             throw new DuplicationException(ImmutableMap.of("clientId", pojo.getClientId()));
         });
@@ -44,13 +44,13 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
     }
 
     @Override
-    public OAuth2Client findById(String id) {
-        return Optional.ofNullable(OAuth2Client.fromRegisteredClient(oauth2RegisteredClientDao.findById(id)))
+    public Oaauth2Client findById(String id) {
+        return Optional.ofNullable(Oaauth2Client.fromRegisteredClient(oauth2RegisteredClientDao.findById(id)))
                 .orElseThrow(() -> new DataNotFoundException(id));
     }
 
     @Override
-    public Page<OAuth2Client> find(Pageable pageable, String clientId) {
+    public Page<Oaauth2Client> find(Pageable pageable, String clientId) {
         List<Oauth2RegisteredClient> domains = dslContext.select()
                 .from(Tables.OAUTH2_REGISTERED_CLIENT)
                 .where(createCondition(clientId))
@@ -59,7 +59,7 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
                 .limit(pageable.getPageSize())
                 .fetchInto(Oauth2RegisteredClient.class);
 
-        List<OAuth2Client> results = domains.stream().map(OAuth2Client::fromRegisteredClient).collect(Collectors.toList());
+        List<Oaauth2Client> results = domains.stream().map(Oaauth2Client::fromRegisteredClient).collect(Collectors.toList());
         return new PageImpl<>(results, pageable, oauth2RegisteredClientDao.count());
     }
 
@@ -72,10 +72,10 @@ public class Oauth2ClientServiceImpl implements Oauth2ClientService {
     }
 
     @Override
-    public void update(OAuth2Client pojo) {
+    public void update(Oaauth2Client pojo) {
         Oauth2RegisteredClient existingOne = Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getClientId()))
                 .orElseThrow(() -> new DataNotFoundException(pojo.getId()));
-        OAuth2Client existingClient = OAuth2Client.fromRegisteredClient(existingOne);
+        Oaauth2Client existingClient = Oaauth2Client.fromRegisteredClient(existingOne);
         existingClient.setRawClientSecret(pojo.getRawClientSecret());
         existingClient.setClientIdIssuedAt(Instant.now());
         existingClient.setClientAuthenticationMethods(pojo.getClientAuthenticationMethods());

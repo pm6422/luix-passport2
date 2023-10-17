@@ -23,7 +23,7 @@ import static cn.luixtech.passport.server.config.AuthorizationServerConfiguratio
 
 @Data
 @NoArgsConstructor
-public class OAuth2Client implements Serializable {
+public class Oaauth2Client implements Serializable {
     @Serial
     private static final long    serialVersionUID           = 8481969837769002598L;
     public static final  String  INTERNAL_CLIENT_ID         = "internal-client";
@@ -128,23 +128,23 @@ public class OAuth2Client implements Serializable {
      * @param registeredClient the registeredClient
      * @return the oauth2Client
      */
-    public static OAuth2Client fromRegisteredClient(Oauth2RegisteredClient registeredClient) {
-        OAuth2Client oAuth2Client = new OAuth2Client();
-        oAuth2Client.setId(registeredClient.getId());
-        oAuth2Client.setClientId(registeredClient.getClientId());
-        oAuth2Client.setClientName(registeredClient.getClientName());
-        oAuth2Client.setRawClientSecret(StringUtils.EMPTY);
-        oAuth2Client.setClientIdIssuedAt(registeredClient.getClientIdIssuedAt().atZone(ZoneId.systemDefault()).toInstant());
-        oAuth2Client.setClientAuthenticationMethods(Arrays.asList(registeredClient.getClientAuthenticationMethods().split(",")).stream().collect(Collectors.toSet()));
-        oAuth2Client.setAuthorizationGrantTypes(Arrays.asList(registeredClient.getAuthorizationGrantTypes().split(",")).stream().collect(Collectors.toSet()));
-        oAuth2Client.setRedirectUris(Arrays.asList(registeredClient.getRedirectUris().split(",")).stream().collect(Collectors.toSet()));
-        oAuth2Client.setPostLogoutRedirectUris(Arrays.asList(registeredClient.getPostLogoutRedirectUris()).stream().collect(Collectors.toSet()));
-        oAuth2Client.setScopes(Arrays.asList(registeredClient.getScopes().split(",")).stream().collect(Collectors.toSet()));
+    public static Oaauth2Client fromRegisteredClient(Oauth2RegisteredClient registeredClient) {
+        Oaauth2Client oaauth2Client = new Oaauth2Client();
+        oaauth2Client.setId(registeredClient.getId());
+        oaauth2Client.setClientId(registeredClient.getClientId());
+        oaauth2Client.setClientName(registeredClient.getClientName());
+        oaauth2Client.setRawClientSecret(StringUtils.EMPTY);
+        oaauth2Client.setClientIdIssuedAt(registeredClient.getClientIdIssuedAt().atZone(ZoneId.systemDefault()).toInstant());
+        oaauth2Client.setClientAuthenticationMethods(Arrays.asList(registeredClient.getClientAuthenticationMethods().split(",")).stream().collect(Collectors.toSet()));
+        oaauth2Client.setAuthorizationGrantTypes(Arrays.asList(registeredClient.getAuthorizationGrantTypes().split(",")).stream().collect(Collectors.toSet()));
+        oaauth2Client.setRedirectUris(Arrays.asList(registeredClient.getRedirectUris().split(",")).stream().collect(Collectors.toSet()));
+        oaauth2Client.setPostLogoutRedirectUris(Arrays.asList(registeredClient.getPostLogoutRedirectUris()).stream().collect(Collectors.toSet()));
+        oaauth2Client.setScopes(Arrays.asList(registeredClient.getScopes().split(",")).stream().collect(Collectors.toSet()));
         if (registeredClient.getClientSecretExpiresAt() != null) {
-            oAuth2Client.setClientSecretExpiresAt(registeredClient.getClientSecretExpiresAt().atZone(ZoneId.systemDefault()).toInstant());
+            oaauth2Client.setClientSecretExpiresAt(registeredClient.getClientSecretExpiresAt().atZone(ZoneId.systemDefault()).toInstant());
         }
 
-        return oAuth2Client;
+        return oaauth2Client;
     }
 }
 
