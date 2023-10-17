@@ -39,6 +39,16 @@ Install docker, run:
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
+Install docker compose, refer to:
+
+https://docs.docker.com/compose/install[Overview of installing Docker Compose]
+
+[[nodejs]]
+== Install NodeJS
+Install NodeJS to build frontend developing environment, run:
+
+https://nodejs.org/en/download[NodeJS Download]
+
 [[run-demo-sample]]
 == Run multiple demo samples locally in two steps
 === 1. Build application docker images
