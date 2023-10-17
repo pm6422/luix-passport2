@@ -2,7 +2,7 @@ package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClientDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
-import cn.luixtech.passport.server.pojo.Oaauth2Client;
+import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.Oauth2ClientService;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.utilities.exception.DataNotFoundException;
@@ -38,14 +38,14 @@ public class Oauth2ClientController {
     @Operation(summary = "get internal client")
     @GetMapping("/open-api/oauth2-client/internal-client")
     public ResponseEntity<Pair<String, String>> getInternalClient() {
-        return ResponseEntity.ok(Pair.of(Oaauth2Client.INTERNAL_CLIENT_ID, Oaauth2Client.INTERNAL_RAW_CLIENT_SECRET));
+        return ResponseEntity.ok(Pair.of(Oauth2Client.INTERNAL_CLIENT_ID, Oauth2Client.INTERNAL_RAW_CLIENT_SECRET));
     }
 
     @Operation(summary = "create a new oauth2 client")
     @PostMapping("/api/oauth2-clients")
     // todo: not work
     @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
-    public ResponseEntity<Void> create(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oaauth2Client pojo) {
+    public ResponseEntity<Void> create(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oauth2Client pojo) {
         log.debug("REST create oauth client: {}", pojo);
         oauth2ClientService.insert(pojo);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -56,9 +56,9 @@ public class Oauth2ClientController {
     @Operation(summary = "find oauth2 client list")
     @GetMapping("/api/oauth2-clients")
     @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
-    public ResponseEntity<List<Oaauth2Client>> find(@ParameterObject Pageable pageable,
-                                                    @Parameter(description = "Client ID") @RequestParam(value = "clientId", required = false) String clientId) {
-        Page<Oaauth2Client> domains = oauth2ClientService.find(pageable, clientId);
+    public ResponseEntity<List<Oauth2Client>> find(@ParameterObject Pageable pageable,
+                                                   @Parameter(description = "Client ID") @RequestParam(value = "clientId", required = false) String clientId) {
+        Page<Oauth2Client> domains = oauth2ClientService.find(pageable, clientId);
         HttpHeaders headers = generatePageHeaders(domains);
         return ResponseEntity.ok().headers(headers).body(domains.getContent());
     }
@@ -66,15 +66,15 @@ public class Oauth2ClientController {
     @Operation(summary = "find oauth2 client by ID")
     @GetMapping("/api/oauth2-clients/{id}")
     @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
-    public ResponseEntity<Oaauth2Client> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
-        Oaauth2Client domain = oauth2ClientService.findById(id);
+    public ResponseEntity<Oauth2Client> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
+        Oauth2Client domain = oauth2ClientService.findById(id);
         return ResponseEntity.ok(domain);
     }
 
     @Operation(summary = "update oauth2 client")
     @PutMapping("/api/oauth2-clients")
     @PreAuthorize("hasAuthority(\"" + ADMIN + "\")")
-    public ResponseEntity<Void> update(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oaauth2Client pojo) {
+    public ResponseEntity<Void> update(@Parameter(description = "OAuth2 client", required = true) @Valid @RequestBody Oauth2Client pojo) {
         log.debug("REST request to update oauth client: {}", pojo);
         oauth2ClientService.update(pojo);
         return ResponseEntity.ok()
