@@ -1,13 +1,14 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 name: luix-passport
 services:
-  luix-passport-server:
+  server:
     image: luix-passport-server
     environment:
-      - JAVA_OPTIONS=-Xmx512m -Xms256m
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=test
-#      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
-#      - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka:9092
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      # Note: It can NOT use localhost as the database URL
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/luix-passport?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     ports:
       - 127.0.0.1:4001:4001
     healthcheck:
@@ -25,5 +26,4 @@ services:
   mysql:
     extends:
       file: ./mysql.yml
-      service: luix-mysql
-
+      service: mysql
