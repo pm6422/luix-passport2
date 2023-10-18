@@ -202,7 +202,7 @@
                             <arg>/entrypoint.sh</arg>
                         </entrypoint>
                         <ports>
-                            <port>8010</port>
+                            <port>4001</port>
                         </ports>
                         <environment>
                             <SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
