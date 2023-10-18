@@ -7,6 +7,7 @@ services:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=test
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      # Note: It can NOT use localhost as the database URL
       - AUTH_SERVER_URL=http://server:4001
       - RESOURCE_SERVER_URL=http://resource-server:4002
     ports:
