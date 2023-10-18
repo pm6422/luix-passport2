@@ -27,6 +27,7 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("/webjars/**").permitAll()
 					.requestMatchers("/assets/**").permitAll()
 					.requestMatchers("/logged-out").permitAll()
+					.requestMatchers("/management/health/**").permitAll()
 					.anyRequest().authenticated()
 			)
 			// Default OAuth 2.0 Login Page should match the format /oauth2/authorization/{registrationId}
