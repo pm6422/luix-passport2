@@ -15,22 +15,34 @@ management: # Management http server configuration, used by ManagementServerProp
       exposure:
         include:
           - configprops
+          - env
           - info
           - health
-          - metrics
+          - beans
+          - mappings
+          - httptrace
+          - shutdown
+          - auditevents
+          - scheduledtasks
+          - loggers
           - prometheus
+          - threaddump
+          - liquibase
           - luixopenapigroups
-  endpoint:
+    endpoint:
+      health: # used by HealthEndpointProperties, Note: it will show health details if it has the access token by Ajax
+        enabled: true
+        show-details: WHEN_AUTHORIZED
+      httptrace:
+        enabled: true
+      shutdown:
+        enabled: true # explicitly enable
     health:
-      enabled: true
-      show-details: always
+      mail:
+        enabled: false
     metrics:
-      enabled: true
-    prometheus:
-      enabled: true
-  metrics:
-    tags:
-      application: ${spring.application.name}
+      tags:
+        application: ${spring.application.name}
 spring:
   application:
     name: luix-passport-client
