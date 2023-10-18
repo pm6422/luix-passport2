@@ -60,7 +60,7 @@ spring:
       client:
         provider:
           spring:
-            issuer-uri: http://localhost:4001
+            issuer-uri: ${AUTH_SERVER_URL:http://localhost:4001}
         registration:
           messaging-client-oidc:
             provider: spring
@@ -136,7 +136,7 @@ luix:
 # ===================================================================
 application:
   url:
-    auth-server-url: http://127.0.0.1:4001
-    resource-server-url: http://127.0.0.1:4002
+    auth-server-url: ${AUTH_SERVER_URL:http://localhost:4001}
+    resource-server-url: ${RESOURCE_SERVER_URL:http://localhost:4002}
     auth-server-authorities: ${application.url.auth-server-url}/api/third-party-clients/authorities
     resource-server-messages: ${application.url.resource-server-url}/api/messages
