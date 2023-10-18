@@ -1,6 +1,28 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 name: luix-passport
 services:
+  client:
+    image: luix-passport-client
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=test
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+      - AUTH_SERVER_URL=http://server:4001
+      - RESOURCE_SERVER_URL=http://resource-server:4002
+    ports:
+      - 127.0.0.1:4003:4003
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:4003/management/health
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      server:
+        condition: service_healthy
   server:
     image: luix-passport-server
     environment:
