@@ -40,9 +40,9 @@ management: # Management http server configuration, used by ManagementServerProp
     health:
       mail:
         enabled: false
-  metrics:
-    tags:
-      application: ${spring.application.name}
+    metrics:
+      tags:
+        application: ${spring.application.name}
 spring:
   application:
     name: luix-passport-server
