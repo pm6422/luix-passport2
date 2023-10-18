@@ -136,5 +136,7 @@ luix:
 # ===================================================================
 application:
   url:
-    oauth-server-authorities: http://127.0.0.1:4001/api/third-party-clients/authorities
-    resource-server-messages: http://127.0.0.1:4002/api/messages
+    auth-server-url: http://127.0.0.1:4001
+    resource-server-url: http://127.0.0.1:4002
+    auth-server-authorities: ${application.url.auth-server-url}/api/third-party-clients/authorities
+    resource-server-messages: ${application.url.resource-server-url}/api/messages

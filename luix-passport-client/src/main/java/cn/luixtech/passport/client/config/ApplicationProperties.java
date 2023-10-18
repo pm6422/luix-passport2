@@ -23,7 +23,9 @@ public class ApplicationProperties {
 
     @Data
     public static class Url {
+        private String authServerUrl;
+        private String resourceServerUrl;
         private String resourceServerMessages;
-        private String oauthServerAuthorities;
+        private String authServerAuthorities;
     }
 }
