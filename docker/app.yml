@@ -23,6 +23,26 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+  resource-server:
+    image: luix-passport-resource-server
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=test
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+    ports:
+      - 127.0.0.1:4002:4002
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:4002/management/health
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    depends_on:
+      mysql:
+        condition: service_healthy
   mysql:
     extends:
       file: ./mysql.yml
