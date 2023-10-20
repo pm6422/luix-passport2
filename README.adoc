@@ -49,6 +49,10 @@ Install NodeJS to build frontend developing environment, run:
 
 https://nodejs.org/en/download[NodeJS Download]
 
+[[app_arch]]
+== Application Architecture
+image::images/arch.png[]
+
 [[run-demo-sample]]
 == Run multiple applications locally in two steps
 === 1. Build application docker images
