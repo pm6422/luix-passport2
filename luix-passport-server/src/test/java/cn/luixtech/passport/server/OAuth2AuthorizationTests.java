@@ -94,6 +94,7 @@ public class OAuth2AuthorizationTests {
         params.add(OAuth2ParameterNames.SCOPE, "message.read");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
+        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("message.read");
         // Request resource by access token
         assertRequestResource(resultMap);
     }
@@ -186,7 +187,7 @@ public class OAuth2AuthorizationTests {
         params.add(OAuth2ParameterNames.SCOPE, "openid");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-        assertThat(resultMap.get("scope")).isEqualTo("openid");
+        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid");
     }
 
     /**
@@ -214,7 +215,7 @@ public class OAuth2AuthorizationTests {
         params.add(OAuth2ParameterNames.STATE, "some-state");
         params.add(OAuth2ParameterNames.REDIRECT_URI, REDIRECT_URI);
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-        assertThat(resultMap.get("scope")).isEqualTo("openid");
+        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid");
         // Request resource by access token
         assertRequestResource(resultMap);
     }
@@ -372,6 +373,4 @@ public class OAuth2AuthorizationTests {
         passwordInput.type(password);
         return signInButton.click();
     }
-
-
 }
