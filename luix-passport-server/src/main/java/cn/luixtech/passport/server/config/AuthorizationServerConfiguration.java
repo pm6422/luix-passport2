@@ -35,7 +35,7 @@ import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfiguration {
-    public static final String AUTHORIZATION_BEARER     = OAuth2AccessToken.TokenType.BEARER.getValue();
+    public static final String AUTHORIZATION_BEARER     = OAuth2AccessToken.TokenType.BEARER.getValue() + " ";
     public static final String DEFAULT_PASSWORD_ENCODER = "{bcrypt}";
     public static final String AUTHORIZATION_BASIC      = "Basic ";
     public static final String AUTH_CODE_CLIENT_ID      = "messaging-client";
