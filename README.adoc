@@ -62,7 +62,7 @@ npm run java:docker:arm64
 ```
 
 === 2. Run the middleware and all applications
-* Run Authorization Server, Resource Server, Client, and initialize database in one command
+* Run authorization server, resource server, client, and initialize database in one command
 ```bash
 npm run all:up
 ```
