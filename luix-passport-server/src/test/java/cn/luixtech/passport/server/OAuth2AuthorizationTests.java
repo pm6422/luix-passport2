@@ -269,6 +269,15 @@ public class OAuth2AuthorizationTests {
         // refresh_token值保持不变，access_token值重新生成
         assertThat(refreshToken1).isEqualTo(refreshToken2);
         assertThat(accessToken1).isNotEqualTo(accessToken2);
+
+        // Inactive token still works
+        // https://devforum.okta.com/t/inactive-token-still-works/13460
+
+//        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
+//                .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken1)
+//                .contentType(APPLICATION_JSON_VALUE)
+//                .accept(APPLICATION_JSON_VALUE))
+//        .andExpect(status().isUnauthorized());
     }
 
     @Test
@@ -314,6 +323,9 @@ public class OAuth2AuthorizationTests {
 
         // It must sleep
         TimeUnit.SECONDS.sleep(1L);
+
+        // Inactive token still works
+        // https://devforum.okta.com/t/inactive-token-still-works/13460
 
 //        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
 //                        .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken)
