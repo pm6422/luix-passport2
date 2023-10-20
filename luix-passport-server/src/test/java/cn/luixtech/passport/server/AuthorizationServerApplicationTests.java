@@ -29,8 +29,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class AuthorizationServerApplicationTests {
-    private static final String    REDIRECT_URI              = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
-    private static final String    AUTHORIZATION_REQUEST_URI = UriComponentsBuilder
+    public static final String    REDIRECT_URI              = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
+    public static final  String    AUTHORIZATION_REQUEST_URI = UriComponentsBuilder
             .fromPath("/oauth2/authorize")
             .queryParam("client_id", "messaging-client")
             .queryParam("response_type", "code")

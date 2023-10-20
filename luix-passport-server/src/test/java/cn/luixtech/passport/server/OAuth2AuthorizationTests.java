@@ -23,13 +23,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
-import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -39,6 +37,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+import static cn.luixtech.passport.server.AuthorizationServerApplicationTests.AUTHORIZATION_REQUEST_URI;
+import static cn.luixtech.passport.server.AuthorizationServerApplicationTests.REDIRECT_URI;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -51,10 +51,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Slf4j
 public class OAuth2AuthorizationTests {
-    private static final String    REDIRECT_URI           = "http://127.0.0.1:4003/login/oauth2/code/messaging-client-oidc";
     private static final String    PROTECTED_RESOURCE_URI = "/api/third-party-clients/authorities";
     private static final String    USERNAME               = "user";
-    private static final String    PASSWORD               = "password";
+    private static final String    PASSWORD               = "user";
     @Resource
     private              MockMvc   mockMvc;
     @Resource
@@ -62,7 +61,9 @@ public class OAuth2AuthorizationTests {
 
     @BeforeEach
     public void setUp() {
-        // log out
+        this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
+        this.webClient.getOptions().setRedirectEnabled(true);
+        // Log out
         this.webClient.getCookieManager().clearCookies();
     }
 
@@ -154,7 +155,6 @@ public class OAuth2AuthorizationTests {
 //        // Request resource by access token
 //        assertRequestResource(resultMap);
 //    }
-
     private Map<String, Object> requestTokenByPasswordMode() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.PASSWORD.getValue());
@@ -207,7 +207,7 @@ public class OAuth2AuthorizationTests {
     @DisplayName("authorization code mode")
     public void authCodeMode() throws Exception {
         // Get authorization code via web login
-        String authCode = getAuthCode(AUTH_CODE_CLIENT_ID, OidcScopes.OPENID);
+        String authCode = getAuthCode();
         // Get access token by authorization code
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.AUTHORIZATION_CODE.getValue());
@@ -321,30 +321,19 @@ public class OAuth2AuthorizationTests {
     }
 
 
-    private String getAuthCode(String clientId, String scope) throws IOException, URISyntaxException {
+    private String getAuthCode() throws IOException, URISyntaxException {
+        // Log in
         this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         this.webClient.getOptions().setRedirectEnabled(false);
+        signIn(this.webClient.getPage("/login"), USERNAME, PASSWORD);
 
-        HtmlPage page = this.webClient.getPage(LOGIN_URI);
-        // Redirect to Sign-in page
-        assertLoginPage(page);
-        // Sign in
-        signIn(page, USERNAME, PASSWORD);
-
-        String authorizationRequest = UriComponentsBuilder
-                .fromPath("/oauth2/authorize")
-                .queryParam("response_type", "code")
-                .queryParam("client_id", clientId)
-                .queryParam("scope", scope)
-                .queryParam("state", "some-state")
-                .queryParam("redirect_uri", REDIRECT_URI)
-                .toUriString();
         // Request token
-        WebResponse response = this.webClient.getPage(authorizationRequest).getWebResponse();
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
+        WebResponse response = this.webClient.getPage(AUTHORIZATION_REQUEST_URI).getWebResponse();
 
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
         String location = response.getResponseHeaderValue("location");
         assertThat(location).startsWith(REDIRECT_URI);
+        assertThat(location).contains("code=");
         URIBuilder uriBuilder = new URIBuilder(location);
         List<NameValuePair> params = uriBuilder.getQueryParams();
         Optional<NameValuePair> code = params.stream().filter(p -> p.getName().equals("code")).findFirst();

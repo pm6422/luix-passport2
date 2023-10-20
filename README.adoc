@@ -68,7 +68,24 @@ npm run all:up
 ```
 
 * Then navigate to `http://127.0.0.1:4003` to access client
-** Login with credentials -> user / password
+** Login with credentials below
+
+|===
+|Username |Password |Authority
+
+|user
+|user
+|user
+
+|admin
+|admin
+|user,admin
+
+|louis
+|louis
+|user,admin,developer
+
+|===
 
 [[configuring-social-login]]
 == Configuring Social Login
