@@ -2,10 +2,11 @@ package cn.luixtech.passport.server;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
-import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebResponse;
-import com.gargoylesoftware.htmlunit.html.*;
+import com.gargoylesoftware.htmlunit.html.DomElement;
+import com.gargoylesoftware.htmlunit.html.HtmlCheckBoxInput;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
@@ -60,8 +61,6 @@ public class OAuth2AuthorizationTests {
             .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
     private static final String                            PROTECTED_RESOURCE_URI    = "/api/third-party-clients/authorities";
-    private static final String                            USERNAME                  = "user";
-    private static final String                            PASSWORD                  = "user";
     @Resource
     private              MockMvc                           mockMvc;
     @Resource
@@ -145,15 +144,6 @@ public class OAuth2AuthorizationTests {
                 .andExpect(status().isOk());
     }
 
-    private Map<String, Object> requestTokenByPasswordMode() throws Exception {
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.PASSWORD.getValue());
-        params.add(OAuth2ParameterNames.USERNAME, USERNAME);
-        params.add(OAuth2ParameterNames.PASSWORD, PASSWORD);
-        // Request access token
-        return requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-    }
-
     /**
      * Result:
      * {
@@ -215,9 +205,13 @@ public class OAuth2AuthorizationTests {
 
     @Test
     @DisplayName("introspect access token")
-    void introspectAccessToken() throws Exception {
+    public void introspectAccessToken() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
+        // Get different level access token with different scope
+        params.add(OAuth2ParameterNames.SCOPE, "message.read");
         // Request access token
-        Map<String, Object> resultMap = requestTokenByPasswordMode();
+        Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
         String accessToken = resultMap.get("access_token").toString();
 
         ResultActions result = mockMvc.perform(post(INTROSPECT_TOKEN_URI)
@@ -233,7 +227,7 @@ public class OAuth2AuthorizationTests {
 
     @Test
     @DisplayName("view JWK(JSON Web Key)")
-    void viewJwk() throws Exception {
+    public void viewJwk() throws Exception {
         ResultActions result = mockMvc.perform(get(VIEW_JWK_URI)
                         .accept(APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk());
@@ -244,10 +238,20 @@ public class OAuth2AuthorizationTests {
     }
 
     @Test
+    @WithMockUser("user1")
     @DisplayName("refresh access token")
     public void refreshAccessToken() throws Exception {
-        // Request access token
-        Map<String, Object> resultMap = requestTokenByPasswordMode();
+        this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+        // Get authorization code via web login
+        String authCode = getAuthCode();
+        // Get access token by authorization code
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.AUTHORIZATION_CODE.getValue());
+        params.add(OAuth2ParameterNames.CODE, authCode);
+        params.add(OAuth2ParameterNames.STATE, "some-state");
+        params.add(OAuth2ParameterNames.REDIRECT_URI, REDIRECT_URI);
+        Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
+
         String refreshToken1 = resultMap.get("refresh_token").toString();
         String accessToken1 = resultMap.get("access_token").toString();
 
@@ -270,11 +274,14 @@ public class OAuth2AuthorizationTests {
     @Test
     @DisplayName("revoke access token")
     public void revokeAccessToken() throws Exception {
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
+        // Get different level access token with different scope
+        params.add(OAuth2ParameterNames.SCOPE, "message.read");
         // Request access token
-        Map<String, Object> resultMap = requestTokenByPasswordMode();
+        Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
 
         String accessToken = resultMap.get("access_token").toString();
-        String refreshToken = resultMap.get("access_token").toString();
 
         // Introspect access token
         ResultActions result1 = mockMvc.perform(post(INTROSPECT_TOKEN_URI)
@@ -305,7 +312,10 @@ public class OAuth2AuthorizationTests {
         Map<String, Object> objectMap2 = new JacksonJsonParser().parseMap(resultString2);
         assertThat(objectMap2.get("active")).isEqualTo(false);
 
-//        mockMvc.perform(get("/api/userinfo")
+        // It must sleep
+        TimeUnit.SECONDS.sleep(1L);
+
+//        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
 //                        .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken)
 //                        .contentType(APPLICATION_JSON_VALUE)
 //                        .accept(APPLICATION_JSON_VALUE))
@@ -342,27 +352,5 @@ public class OAuth2AuthorizationTests {
         Optional<NameValuePair> code = params.stream().filter(p -> p.getName().equals("code")).findFirst();
         assertThat(code.isPresent()).isTrue();
         return code.get().getValue();
-    }
-
-    private static void assertLoginPage(HtmlPage page) {
-        assertThat(page.getUrl().toString()).endsWith(LOGIN_URI);
-
-        HtmlInput usernameInput = page.querySelector("input[name=\"username\"]");
-        HtmlInput passwordInput = page.querySelector("input[name=\"password\"]");
-        HtmlButton signInButton = page.querySelector("button");
-
-        assertThat(usernameInput).isNotNull();
-        assertThat(passwordInput).isNotNull();
-        assertThat(signInButton.getTextContent()).isEqualTo("Sign in");
-    }
-
-    private static <P extends Page> P signIn(HtmlPage page, String username, String password) throws IOException {
-        HtmlInput usernameInput = page.querySelector("input[name=\"username\"]");
-        HtmlInput passwordInput = page.querySelector("input[name=\"password\"]");
-        HtmlButton signInButton = page.querySelector("button");
-
-        usernameInput.type(username);
-        passwordInput.type(password);
-        return signInButton.click();
     }
 }
