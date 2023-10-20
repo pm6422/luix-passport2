@@ -334,7 +334,6 @@ public class OAuth2AuthorizationTests {
 //                .andExpect(status().isUnauthorized());
     }
 
-
     private String getAuthCode() throws IOException, URISyntaxException {
         final HtmlPage consentPage = this.webClient.getPage(this.AUTHORIZATION_REQUEST_URI);
         List<HtmlCheckBoxInput> scopes = new ArrayList<>();
