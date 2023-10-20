@@ -129,7 +129,6 @@ public class OAuth2AuthorizationTests {
         String accessToken = resultMap.get("access_token").toString();
         mockMvc.perform(get(PROTECTED_RESOURCE_URI)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken)
-                        .header("client_id", AUTH_CODE_CLIENT_ID)
                         .contentType(APPLICATION_JSON_VALUE)
                         .accept(APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk());
