@@ -72,7 +72,7 @@ npm run all:up
 ```
 
 [[access_app]]
-== Access application
+== Application URLs
 * Then navigate to `http://127.0.0.1:4001` to access authorization server
 * Then navigate to `http://127.0.0.1:4002` to access resource server
 * Then navigate to `http://127.0.0.1:4003` to access client
