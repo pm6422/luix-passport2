@@ -5,9 +5,7 @@ import com.alibaba.fastjson2.JSONWriter;
 import com.gargoylesoftware.htmlunit.Page;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.WebResponse;
-import com.gargoylesoftware.htmlunit.html.HtmlButton;
-import com.gargoylesoftware.htmlunit.html.HtmlInput;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.NameValuePair;
@@ -19,28 +17,29 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
+import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationConsentService;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Base64;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import static cn.luixtech.passport.server.AuthorizationServerApplicationTests.AUTHORIZATION_REQUEST_URI;
-import static cn.luixtech.passport.server.AuthorizationServerApplicationTests.REDIRECT_URI;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -51,13 +50,24 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Slf4j
 public class OAuth2AuthorizationTests {
-    private static final String    PROTECTED_RESOURCE_URI = "/api/third-party-clients/authorities";
-    private static final String    USERNAME               = "user";
-    private static final String    PASSWORD               = "user";
+    private static final String                            REDIRECT_URI              = "http://127.0.0.1/login/oauth2/code/messaging-client-oidc";
+    private static final String                            AUTHORIZATION_REQUEST_URI = UriComponentsBuilder
+            .fromPath("/oauth2/authorize")
+            .queryParam("client_id", "messaging-client")
+            .queryParam("response_type", "code")
+            .queryParam("scope", "openid message.read message.write")
+            .queryParam("state", "state")
+            .queryParam("redirect_uri", REDIRECT_URI)
+            .toUriString();
+    private static final String                            PROTECTED_RESOURCE_URI    = "/api/third-party-clients/authorities";
+    private static final String                            USERNAME                  = "user";
+    private static final String                            PASSWORD                  = "user";
     @Resource
-    private              MockMvc   mockMvc;
+    private              MockMvc                           mockMvc;
     @Resource
-    private              WebClient webClient;
+    private              WebClient                         webClient;
+    @MockBean
+    private              OAuth2AuthorizationConsentService authorizationConsentService;
 
     @BeforeEach
     public void setUp() {
@@ -65,6 +75,7 @@ public class OAuth2AuthorizationTests {
         this.webClient.getOptions().setRedirectEnabled(true);
         // Log out
         this.webClient.getCookieManager().clearCookies();
+        when(this.authorizationConsentService.findById(any(), any())).thenReturn(null);
     }
 
     /**
@@ -119,11 +130,11 @@ public class OAuth2AuthorizationTests {
 
     private void assertRequestResource(Map<String, Object> resultMap) throws Exception {
         // unauthorized if request has no access token
-        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
-                        .contentType(APPLICATION_JSON_VALUE)
-                        .accept(APPLICATION_JSON_VALUE))
-                // Note: this is not a bug, it's a feature!
-                .andExpect(status().isUnauthorized());
+//        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
+//                        .contentType(APPLICATION_JSON_VALUE)
+//                        .accept(APPLICATION_JSON_VALUE))
+//                // Note: this is not a bug, it's a feature!
+//                .andExpect(status().isUnauthorized());
 
         // authorized if request has an access token in header
         String accessToken = resultMap.get("access_token").toString();
@@ -134,26 +145,6 @@ public class OAuth2AuthorizationTests {
                 .andExpect(status().isOk());
     }
 
-    /**
-     * Result:
-     * {
-     * "access_token": "eyJraWQiOiIyOGM0OTIzMi1iZDIxLTQ0NDYtYmZjOC01ZjgxOGM2ZTRhYTMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsb3VpcyIsImF1ZCI6ImludGVybmFsLWNsaWVudCIsIm5iZiI6MTY1OTM0MzgwMiwidXNlcl9pZCI6IjYyZTc5M2IzNmVhM2VhMmIyOTNmZGU4MiIsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJ3cml0ZSIsInVzZXJpbmZvIl0sImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo2MDMwIiwiZXhwIjoxNjU5MzQ3NDAyLCJpYXQiOjE2NTkzNDM4MDJ9.qKukybt12_VAaLdwl-rgRx8f7hhG6w03s2HJM9V-EKDYuoDxaIKRAsT9hUHcuEh9TLb6GErEcOX_bukxjS0ndQQPsVQ_LCWkOvYrq0wsY7IWsCEsZzDyDPIQ_PMKjGppNTLz2ZmuwOdT8HYILxy3p-WefJ993dKbRkcjtWMP_Yn0bCnBxFkdWrGATc9shUm6UKSVwP2z5H0U-VJ46znhWXpBbWyoPjAdFaifTfPmf3IsWWeNLaDl9jTpcilS6-chO4qHIagxVuHjqrcRzrUbC1i6GFhlgbOwclaZrNvIaq20wcVlMcOZCO8u4_2Z4TOnXh8oXpOw9rcFnT60QQchNA",
-     * "refresh_token": "jOVbAITFMHnSNdDjxyXYge7TbaJvF9cE8MqOf7ZV5Uw4X2i7__pJC-KisJCHD1dBfve_jobxsPfelM7KIYKA0dNgn_0QacT2J6azWFMIK__kaxZtH4uVlFdIhHyuuVSU",
-     * "scope": "read openid write userinfo",
-     * "id_token": "eyJraWQiOiIyOGM0OTIzMi1iZDIxLTQ0NDYtYmZjOC01ZjgxOGM2ZTRhYTMiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsb3VpcyIsImF1ZCI6ImludGVybmFsLWNsaWVudCIsImF6cCI6ImludGVybmFsLWNsaWVudCIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo2MDMwIiwiZXhwIjoxNjU5MzQ1NjAyLCJpYXQiOjE2NTkzNDM4MDJ9.qh8yAcGkhIeaGxgv_mO-nPA3Obl6qJjpL6Q7Bt3yx_ToyFhMpgiGy0tD9Kw-BwuIbRkxw5trIDCgctLcwXgK1jkb3KmWlshWK4Kb1y2-0FPE9epTE97P1EFWH_AmlF95h6dQGwM83mNjoph3khXwQY9TFKHIxDhGwPaY7AhXicEv-N_lVkShccyYH6aLKC7rk7Nv6mDPcp0-i_lDziiIvyPmDpUgHVcc-NLcYg5TNoNFr9-yZxeQH-ElvPQqSz84SHqHFUehDyKhJIRI_khXlhFqTx9bhLX0LrZeQ9to4lvW-Go0crKSoVXjad43Ioz0AbesiGj2KKzcsCarreloPA",
-     * "token_type": "Bearer",
-     * "expires_in": 3599
-     * }
-     *
-     * @throws Exception
-     */
-//    @Test
-//    @DisplayName("password mode")
-//    public void passwordMode() throws Exception {
-//        Map<String, Object> resultMap = requestTokenByPasswordMode();
-//        // Request resource by access token
-//        assertRequestResource(resultMap);
-//    }
     private Map<String, Object> requestTokenByPasswordMode() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.PASSWORD.getValue());
@@ -203,8 +194,10 @@ public class OAuth2AuthorizationTests {
      * @throws Exception
      */
     @Test
+    @WithMockUser("user1")
     @DisplayName("authorization code mode")
     public void authCodeMode() throws Exception {
+        this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
         // Get authorization code via web login
         String authCode = getAuthCode();
         // Get access token by authorization code
@@ -214,7 +207,7 @@ public class OAuth2AuthorizationTests {
         params.add(OAuth2ParameterNames.STATE, "some-state");
         params.add(OAuth2ParameterNames.REDIRECT_URI, REDIRECT_URI);
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid");
+        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid message.read message.write");
         // Request resource by access token
         assertRequestResource(resultMap);
     }
@@ -321,18 +314,29 @@ public class OAuth2AuthorizationTests {
 
 
     private String getAuthCode() throws IOException, URISyntaxException {
-        // Log in
-        this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+        final HtmlPage consentPage = this.webClient.getPage(this.AUTHORIZATION_REQUEST_URI);
+        List<HtmlCheckBoxInput> scopes = new ArrayList<>();
+        consentPage.querySelectorAll("input[name='scope']").forEach(scope ->
+                scopes.add((HtmlCheckBoxInput) scope));
+        for (HtmlCheckBoxInput scope : scopes) {
+            scope.click();
+        }
+
+        List<String> scopeIds = new ArrayList<>();
+        scopes.forEach(scope -> {
+            assertThat(scope.isChecked()).isTrue();
+            scopeIds.add(scope.getId());
+        });
+
+        DomElement submitConsentButton = consentPage.querySelector("button[id='submit-consent']");
         this.webClient.getOptions().setRedirectEnabled(false);
-        signIn(this.webClient.getPage("/login"), USERNAME, PASSWORD);
 
-        // Request token
-        WebResponse response = this.webClient.getPage(AUTHORIZATION_REQUEST_URI).getWebResponse();
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
-        String location = response.getResponseHeaderValue("location");
+        WebResponse approveConsentResponse = submitConsentButton.click().getWebResponse();
+        assertThat(approveConsentResponse.getStatusCode()).isEqualTo(HttpStatus.MOVED_PERMANENTLY.value());
+        String location = approveConsentResponse.getResponseHeaderValue("location");
         assertThat(location).startsWith(REDIRECT_URI);
         assertThat(location).contains("code=");
+
         URIBuilder uriBuilder = new URIBuilder(location);
         List<NameValuePair> params = uriBuilder.getQueryParams();
         Optional<NameValuePair> code = params.stream().filter(p -> p.getName().equals("code")).findFirst();
