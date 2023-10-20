@@ -90,6 +90,7 @@ public class OAuth2AuthorizationTests {
     public void clientCredentialMode() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
+        // Get different level access token with different scope
         params.add(OAuth2ParameterNames.SCOPE, "message.read");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
