@@ -8,10 +8,12 @@ services:
       - SPRING_PROFILES_ACTIVE=test
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
       # Note: It can NOT use localhost as the application URL
-      - AUTH_SERVER_URL=http://server:4001
-      - RESOURCE_SERVER_URL=http://resource-server:4002
+#      - AUTH_SERVER_URL=http://server:4001
+#      - RESOURCE_SERVER_URL=http://resource-server:4002
     ports:
       - 127.0.0.1:4003:4003
+    # host network mode can access auth server in docker environment
+    network_mode: host
     healthcheck:
       test:
         - CMD
