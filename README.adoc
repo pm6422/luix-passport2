@@ -33,8 +33,8 @@ NOTE: Java compatability: Java 17 above
 - VUE 3
 
 [[UsingDocker]]
-== Using Docker to simplify development
-Install docker, run:
+== Using Docker
+Install docker to simplify development, run:
 ```
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
@@ -44,8 +44,8 @@ Install docker compose, refer to:
 https://docs.docker.com/compose/install[Overview of installing Docker Compose]
 
 [[nodejs]]
-== Install NodeJS to simplify local development
-Install NodeJS to build frontend developing environment, run:
+== Using NodeJS
+Install NodeJS to simplify local development, refer to:
 
 https://nodejs.org/en/download[NodeJS Download]
 
