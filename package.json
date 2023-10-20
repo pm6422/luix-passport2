@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "app:start": "./mvnw",
-    "app:up": "docker compose -f docker/app.yml up --wait",
+    "all:up": "docker compose -f docker/all.yml up --wait",
     "java:docker": "./mvnw -pl luix-passport-server,luix-passport-resource-server,luix-passport-client -ntp verify -DskipTests -Prelease jib:dockerBuild",
     "java:docker:arm64": "npm run java:docker -- -Djib-maven-plugin.architecture=arm64"
   }
