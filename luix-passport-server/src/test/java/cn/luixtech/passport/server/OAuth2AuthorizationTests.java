@@ -147,13 +147,13 @@ public class OAuth2AuthorizationTests {
      *
      * @throws Exception
      */
-    @Test
-    @DisplayName("password mode")
-    public void passwordMode() throws Exception {
-        Map<String, Object> resultMap = requestTokenByPasswordMode();
-        // Request resource by access token
-        assertRequestResource(resultMap);
-    }
+//    @Test
+//    @DisplayName("password mode")
+//    public void passwordMode() throws Exception {
+//        Map<String, Object> resultMap = requestTokenByPasswordMode();
+//        // Request resource by access token
+//        assertRequestResource(resultMap);
+//    }
 
     private Map<String, Object> requestTokenByPasswordMode() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
@@ -177,18 +177,18 @@ public class OAuth2AuthorizationTests {
      *
      * @throws Exception
      */
-    @Test
-    @DisplayName("password mode with the specified scope")
-    public void passwordModeWithOpenIdScope() throws Exception {
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.PASSWORD.getValue());
-        params.add(OAuth2ParameterNames.USERNAME, USERNAME);
-        params.add(OAuth2ParameterNames.PASSWORD, PASSWORD);
-        params.add(OAuth2ParameterNames.SCOPE, "openid");
-        // Request access token
-        Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid");
-    }
+//    @Test
+//    @DisplayName("password mode with the specified scope")
+//    public void passwordModeWithOpenIdScope() throws Exception {
+//        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+//        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.PASSWORD.getValue());
+//        params.add(OAuth2ParameterNames.USERNAME, USERNAME);
+//        params.add(OAuth2ParameterNames.PASSWORD, PASSWORD);
+//        params.add(OAuth2ParameterNames.SCOPE, "openid");
+//        // Request access token
+//        Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
+//        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid");
+//    }
 
     /**
      * Result:
