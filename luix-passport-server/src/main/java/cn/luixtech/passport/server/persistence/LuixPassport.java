@@ -8,6 +8,7 @@ import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.User;
+import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 
@@ -53,6 +54,11 @@ public class LuixPassport extends SchemaImpl {
     public final User USER = User.USER;
 
     /**
+     * The table <code>luix-passport.user_authentication_event</code>.
+     */
+    public final UserAuthenticationEvent USER_AUTHENTICATION_EVENT = UserAuthenticationEvent.USER_AUTHENTICATION_EVENT;
+
+    /**
      * The table <code>luix-passport.user_authority</code>.
      */
     public final UserAuthority USER_AUTHORITY = UserAuthority.USER_AUTHORITY;
@@ -82,6 +88,7 @@ public class LuixPassport extends SchemaImpl {
             Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT,
             Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT,
             User.USER,
+            UserAuthenticationEvent.USER_AUTHENTICATION_EVENT,
             UserAuthority.USER_AUTHORITY,
             UserPermission.USER_PERMISSION);
     }

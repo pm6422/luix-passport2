@@ -183,7 +183,7 @@ public class User extends TableImpl<UserRecord> {
 
     @Override
     public List<UniqueKey<UserRecord>> getKeys() {
-        return Arrays.<UniqueKey<UserRecord>>asList(Keys.KEY_USER_PRIMARY, Keys.KEY_USER_UX_USER_USERNAME, Keys.KEY_USER_UX_USER_EMAIL, Keys.KEY_USER_UX_USER_MOBILE);
+        return Arrays.<UniqueKey<UserRecord>>asList(Keys.KEY_USER_PRIMARY, Keys.KEY_USER_USERNAME, Keys.KEY_USER_EMAIL, Keys.KEY_USER_MOBILE_NO);
     }
 
     @Override

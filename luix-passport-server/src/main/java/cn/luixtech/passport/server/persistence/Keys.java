@@ -8,11 +8,13 @@ import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.User;
+import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationConsentRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2RegisteredClientRecord;
+import cn.luixtech.passport.server.persistence.tables.records.UserAuthenticationEventRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthorityRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
@@ -38,10 +40,11 @@ public class Keys {
     public static final UniqueKey<Oauth2AuthorizationRecord> KEY_OAUTH2_AUTHORIZATION_PRIMARY = Internal.createUniqueKey(Oauth2Authorization.OAUTH2_AUTHORIZATION, DSL.name("KEY_oauth2_authorization_PRIMARY"), new TableField[] { Oauth2Authorization.OAUTH2_AUTHORIZATION.ID }, true);
     public static final UniqueKey<Oauth2AuthorizationConsentRecord> KEY_OAUTH2_AUTHORIZATION_CONSENT_PRIMARY = Internal.createUniqueKey(Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT, DSL.name("KEY_oauth2_authorization_consent_PRIMARY"), new TableField[] { Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT.REGISTERED_CLIENT_ID, Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT.PRINCIPAL_NAME }, true);
     public static final UniqueKey<Oauth2RegisteredClientRecord> KEY_OAUTH2_REGISTERED_CLIENT_PRIMARY = Internal.createUniqueKey(Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT, DSL.name("KEY_oauth2_registered_client_PRIMARY"), new TableField[] { Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT.ID }, true);
+    public static final UniqueKey<UserRecord> KEY_USER_EMAIL = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_email"), new TableField[] { User.USER.EMAIL }, true);
+    public static final UniqueKey<UserRecord> KEY_USER_MOBILE_NO = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_mobile_no"), new TableField[] { User.USER.MOBILE_NO }, true);
     public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_PRIMARY"), new TableField[] { User.USER.ID }, true);
-    public static final UniqueKey<UserRecord> KEY_USER_UX_USER_EMAIL = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_ux_user_email"), new TableField[] { User.USER.EMAIL }, true);
-    public static final UniqueKey<UserRecord> KEY_USER_UX_USER_MOBILE = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_ux_user_mobile"), new TableField[] { User.USER.MOBILE_NO }, true);
-    public static final UniqueKey<UserRecord> KEY_USER_UX_USER_USERNAME = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_ux_user_username"), new TableField[] { User.USER.USERNAME }, true);
+    public static final UniqueKey<UserRecord> KEY_USER_USERNAME = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_username"), new TableField[] { User.USER.USERNAME }, true);
+    public static final UniqueKey<UserAuthenticationEventRecord> KEY_USER_AUTHENTICATION_EVENT_PRIMARY = Internal.createUniqueKey(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT, DSL.name("KEY_user_authentication_event_PRIMARY"), new TableField[] { UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.ID }, true);
     public static final UniqueKey<UserAuthorityRecord> KEY_USER_AUTHORITY_PRIMARY = Internal.createUniqueKey(UserAuthority.USER_AUTHORITY, DSL.name("KEY_user_authority_PRIMARY"), new TableField[] { UserAuthority.USER_AUTHORITY.USER_ID, UserAuthority.USER_AUTHORITY.AUTHORITY }, true);
     public static final UniqueKey<UserPermissionRecord> KEY_USER_PERMISSION_PRIMARY = Internal.createUniqueKey(UserPermission.USER_PERMISSION, DSL.name("KEY_user_permission_PRIMARY"), new TableField[] { UserPermission.USER_PERMISSION.USER_ID, UserPermission.USER_PERMISSION.PERMISSION }, true);
 
