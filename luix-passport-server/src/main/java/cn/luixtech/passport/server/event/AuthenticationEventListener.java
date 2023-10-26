@@ -49,7 +49,7 @@ public class AuthenticationEventListener {
             domain.setId(IdGenerator.generateId());
             domain.setUserId(userId);
             domain.setEvent("AuthenticationFailure");
-            domain.setDescription(event.getException().getMessage());
+            domain.setDescription(StringUtils.abbreviate(event.getException().getMessage(), 64));
             domain.setCreatedTime(LocalDateTime.now());
             userAuthenticationEventDao.insert(domain);
             log.warn("Authenticate failure for user: " + userId + " with exception: " + event.getException().getMessage());
