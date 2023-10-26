@@ -27,15 +27,15 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
-        String currentUserId = getCurrentUserId();
-        if (StringUtils.isNotEmpty(currentUserId)) {
+        String userId = getCurrentUserId();
+        if (StringUtils.isNotEmpty(userId)) {
             UserAuthenticationEvent domain = new UserAuthenticationEvent();
             domain.setId(IdGenerator.generateId());
-            domain.setUserId(currentUserId);
+            domain.setUserId(userId);
             domain.setEvent("AuthenticationSuccess");
             domain.setCreatedTime(LocalDateTime.now());
             userAuthenticationEventDao.insert(domain);
-            log.info("Authenticated successfully for user: {}", currentUserId);
+            log.info("Authenticated successfully for user: {}", userId);
         }
     }
 
