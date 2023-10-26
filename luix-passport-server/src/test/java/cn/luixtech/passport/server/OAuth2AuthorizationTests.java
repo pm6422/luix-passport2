@@ -88,7 +88,7 @@ public class OAuth2AuthorizationTests {
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
         assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("message.read");
         // Request resource by access token
-        assertRequestResource(resultMap);
+        assertRequestResource(resultMap.get("access_token").toString());
     }
 
     private Map<String, Object> requestToken(String clientId, String rawClientSecret, MultiValueMap<String, String> params) throws Exception {
@@ -108,7 +108,7 @@ public class OAuth2AuthorizationTests {
         return AUTHORIZATION_BASIC + Base64.getEncoder().encodeToString((clientId + ":" + rawClientSecret).getBytes());
     }
 
-    private void assertRequestResource(Map<String, Object> resultMap) throws Exception {
+    private void assertRequestResource(String accessToken) throws Exception {
         // unauthorized if request has no access token
 //        mockMvc.perform(get(PROTECTED_RESOURCE_URI)
 //                        .contentType(APPLICATION_JSON_VALUE)
@@ -117,7 +117,6 @@ public class OAuth2AuthorizationTests {
 //                .andExpect(status().isUnauthorized());
 
         // authorized if request has an access token in header
-        String accessToken = resultMap.get("access_token").toString();
         mockMvc.perform(get(PROTECTED_RESOURCE_URI)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_BEARER + accessToken)
                         .contentType(APPLICATION_JSON_VALUE)
@@ -125,45 +124,6 @@ public class OAuth2AuthorizationTests {
                 .andExpect(status().isOk());
     }
 
-    /**
-     * Result:
-     * {
-     * "access_token": "eyJraWQiOiIxZmZiNGRjYy0wZWFjLTRmZmItYTYwZS0xZTljMWE4ZjU5MDgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsb3VpcyIsImF1ZCI6ImludGVybmFsLWNsaWVudCIsIm5iZiI6MTY1OTM0MzYyNywidXNlcl9pZCI6IjYyZTc5MzA0YWIyN2U5NGMwZjQ2NmE3MyIsInNjb3BlIjpbIm9wZW5pZCJdLCJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6NjAzMCIsImV4cCI6MTY1OTM0NzIyNywiaWF0IjoxNjU5MzQzNjI3fQ.x5qy3qH0iPieVSc-JjyQsjUoKqFsQZYGMyWJ3DxdZlTjDks4QC_9HxF9GqVdq1nYYdogs0RfzGc5Jr2uHhtceR92HQDCtaDCcWvDpP3C9dIE5kIXXVFEXk4ly8jfjstQkRTaOxY3fhRzWcxbn3I1keVOXCQRNyP1zVl4svh5Ua_LM4iNPc8Eu9Vgy-fQcem54nL79ytU2konZWD9boGjYlEZRl_6zMYyQXjaUqPqgxpEj2VF6P4o4EeK_Bv88U8XAbvHY9J6RCH8WUqb_ULpKYGR_B5rKezOZkUYddhgmM3Sy3cyIyf2_xo7GB7a7lz7giMjZa8uCx5a7kMY6kWEpg",
-     * "refresh_token": "Y1LRzoWiKicNcajY4MqjxBX9oHaTbT1vTRoKuDyireFV_09MFdqmZrG1tRJATHIUAvrjdXGl6gmk-t1_vMItRGU7Egj8t3yUrWQfjt9ujHuswmA6s4ng6eYyMiRelo6H",
-     * "scope": "openid",
-     * "id_token": "eyJraWQiOiIxZmZiNGRjYy0wZWFjLTRmZmItYTYwZS0xZTljMWE4ZjU5MDgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsb3VpcyIsImF1ZCI6ImludGVybmFsLWNsaWVudCIsImF6cCI6ImludGVybmFsLWNsaWVudCIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo2MDMwIiwiZXhwIjoxNjU5MzQ1NDI3LCJpYXQiOjE2NTkzNDM2Mjd9.SrzWqL666ADuLF3MRuNUT27YX3boL75VjANggzLz2B_aKhDeBEsF4xwFHeaIoupRnOw2s5LznQXwCHv_h2J7W8dHYJjqmtSALvhUIkslxdN6ODWjprtoeIcf4uDAnQBZlJ_64iTMBMotKrHfqgtiv43BMrxzFL3BE4_OHYXV8fuCsQGJ7QTK4ObDs-L8zfzk2qz_Olecgm9BShIfNMTifYkyhlUET4E19Qgy0VauMq0HTVGCGGfqCnVBOCMjhM5PYlRXqYccdrK9R_FhQY5hwXgDZfWkqgGXMpl50LDpsjzqZh8MdJuO9rIY75ZOra-DTeoLxc90wRs2ixOtzgW17Q",
-     * "token_type": "Bearer",
-     * "expires_in": 3599
-     * }
-     *
-     * @throws Exception
-     */
-//    @Test
-//    @DisplayName("password mode with the specified scope")
-//    public void passwordModeWithOpenIdScope() throws Exception {
-//        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-//        params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.PASSWORD.getValue());
-//        params.add(OAuth2ParameterNames.USERNAME, USERNAME);
-//        params.add(OAuth2ParameterNames.PASSWORD, PASSWORD);
-//        params.add(OAuth2ParameterNames.SCOPE, "openid");
-//        // Request access token
-//        Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-//        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid");
-//    }
-
-    /**
-     * Result:
-     * {
-     * "access_token": "eyJraWQiOiI4NTZkM2IwMi04MmVjLTRiYTItYTM1Yi1mZjNkMDNjYWYxMTgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsb3VpcyIsImF1ZCI6ImludGVybmFsLWNsaWVudCIsIm5iZiI6MTY1OTQxMDYxOSwic2NvcGUiOlsib3BlbmlkIl0sImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDowIiwiZXhwIjoxNjU5NDE0MjE5LCJpYXQiOjE2NTk0MTA2MTl9.nMrU32nSfbr4w9Cdw_NNW5LBrdm6CJ-KKZYj-85sM5T4ux6yKwHaVRsfzbQWc7EOVNi4NYj9d8xLt2n-HqPjZMy_3RLKNkE9POCUVv23uHc42WF9L1V3pih38FM7F5_L56pY-gfAd6IU_8CM2dRZGAWMQ-6FOKzxOAxp6I-NVuVPxF-ZyaOdqrf-cBj1SOPdMiS9lpwXOFj8woOLylMxqcyUxpUAzHAvjWXyCEe3FcOptvs8zJ6xInVLfA_gr7b1O-OU5sdqRlmMOXodZzGeUezdS6v-oJEbvZSB-UbUNzW6l45GfjKJ_VE4jiRC_viFrVg6m3Llz586fn8CA-DsCA",
-     * "refresh_token": "OMJfk7e3gbIqi7KAc_E0bwXnEWMc68ZHWlZEr4zk8k0F69-qBwq8A4HHmIV-z9oSoJC2hErroGt5D6yN2j-KGeK6-XgM6jOCh11-sznSLBLgPJ-iOo81jxwvuxMLmYJY",
-     * "scope": "openid",
-     * "id_token": "eyJraWQiOiI4NTZkM2IwMi04MmVjLTRiYTItYTM1Yi1mZjNkMDNjYWYxMTgiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJsb3VpcyIsImF1ZCI6ImludGVybmFsLWNsaWVudCIsImF6cCI6ImludGVybmFsLWNsaWVudCIsImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDowIiwiZXhwIjoxNjU5NDEyNDE5LCJpYXQiOjE2NTk0MTA2MTl9.PmBJU9n6ktV_aP_yS2XgtyOEcL2yvZSu6VseRykx7Ynf-M0TntFxDI4BbViBnDQKzeYCdgJA1aWTBeu4pR5q2bGNvp79V3QfEKGF8dgLzqpJLFy7xfdD01I-aCp-y5cxBv2WNeh-7yIuteVbi8AI7xwhgmX56WIZEioF4_l_unJ4se59vEoWYQmyIe7k-edcl7owwaL_YBFyJu3KqFrQr207yT_Rw5XipkrUfHO8g3tk7Obpb2arqLwab6O1VtQ4Z6E0ROTjWCnKJkhnaRqncC_DcbRKUEq1osqIXhngWKB9haI1K2VADOBfG1-hiONaFoKo4MbaIjnFVCiu1VZ1Sg",
-     * "token_type": "Bearer",
-     * "expires_in": 3599
-     * }
-     *
-     * @throws Exception
-     */
     @Test
     @WithMockUser("user1")
     @DisplayName("authorization code mode")
@@ -180,9 +140,8 @@ public class OAuth2AuthorizationTests {
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
         assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid message.read message.write");
         // Request resource by access token
-        assertRequestResource(resultMap);
+        assertRequestResource(resultMap.get("access_token").toString());
     }
-
 
     @Test
     @DisplayName("introspect access token")
