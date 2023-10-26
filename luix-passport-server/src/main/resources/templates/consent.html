@@ -93,16 +93,26 @@
 									<p class="text-primary" th:text="${scope.description}"></p>
 								</div>
 
-								<div class="pt-3">
-									<button class="btn btn-primary btn-lg" type="submit" id="submit-consent">
-										Submit Consent
-									</button>
-								</div>
-								<div class="pt-3">
-									<button class="btn btn-link regular" type="button" id="cancel-consent" onclick="cancelConsent();">
+								<!--begin::Actions-->
+								<div class="d-flex flex-wrap justify-content-center pb-lg-0 mt-10">
+									<button
+										id="cancel-consent"
+										type="button"
+										class="btn btn-lg btn-light-secondary me-4 w-150px"
+										onclick="cancelConsent();"
+									>
 										Cancel
 									</button>
+
+									<button
+										id="submit-consent"
+										type="submit"
+										class="btn btn-lg btn-light-primary w-150px"
+									>
+										Agree
+									</button>
 								</div>
+								<!--end::Actions-->
 							</form>
 						</div>
 					</div>
