@@ -22,7 +22,7 @@
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-center p-10">
 			<!--begin::Wrapper-->
-			<div class="card card-flush w-lg-650px py-5 border border-1 border-gray-300">
+			<div class="card card-flush w-lg-650px px-10 py-5 border border-1 border-gray-300">
 				<div class="card-body py-15 py-lg-20">
 					<!--begin::Logo-->
 					<div class="mb-14">
@@ -39,11 +39,11 @@
 					</div>
 					<!--end::Logo-->
 					<!--begin::Title-->
-					<h1 class="fw-bolder text-gray-900 mb-5">Application <span th:text="${clientId}"></span> wants to access your Luix account</h1>
+					<div class="fw-bolder text-gray-800 fs-2qx text-center">Application <span th:text="${clientId}"></span> wants to access your LUI️✘ account</div>
 					<!--end::Title-->
 					<!--begin::Action-->
-					<div class="mb-8">
-						<h2 class="fw-bold text-gray-500 text-center"><span th:text="${email}"></span></h2>
+					<div class="mt-8 mb-8">
+						<div class="fw-bold text-gray-500 fs-1 text-center"><span class="text-warning" th:text="${email}"></span></div>
 					</div>
 					<!--end::Action-->
 					<div th:if="${userCode}" class="row">
