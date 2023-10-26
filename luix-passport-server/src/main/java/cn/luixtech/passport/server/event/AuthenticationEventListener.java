@@ -33,6 +33,7 @@ public class AuthenticationEventListener {
             domain.setId(IdGenerator.generateId());
             domain.setUserId(userId);
             domain.setEvent("AuthenticationSuccess");
+            domain.setSource(event.getSource().getClass().getSimpleName());
             domain.setCreatedTime(LocalDateTime.now());
             userAuthenticationEventDao.insert(domain);
             log.info("Authenticated successfully for user: {}", userId);
