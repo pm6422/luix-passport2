@@ -77,31 +77,12 @@ public class OAuth2AuthorizationTests {
         when(this.authorizationConsentService.findById(any(), any())).thenReturn(null);
     }
 
-    /**
-     * Request:
-     * HTTP Method = POST
-     * Request URI = /oauth2/token
-     * Parameters = {grant_type=[client_credentials], scope=[message.read]}
-     * Headers = [Authorization:"Basic bWVzc2FnaW5nLWNsaWVudDpzZWNyZXQ=", Accept:"application/json"]
-     * Body = null
-     * Session Attrs = {}
-     * <p>
-     * Result:
-     * {
-     * "access_token": "eyJraWQiOiJhYjE2MmJmOS1jNmY1LTQ2MGUtOTUwNS00MmQ2ZjQwYWYzYTkiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJpbnRlcm5hbC1jbGllbnQiLCJhdWQiOiJpbnRlcm5hbC1jbGllbnQiLCJuYmYiOjE2NTkzNDM3NDUsInNjb3BlIjpbInJlYWQiLCJvcGVuaWQiLCJ3cml0ZSIsInVzZXJpbmZvIl0sImlzcyI6Imh0dHA6XC9cL2xvY2FsaG9zdDo2MDMwIiwiZXhwIjoxNjU5MzQ3MzQ1LCJpYXQiOjE2NTkzNDM3NDV9.m-oy9ImGl0YcUO_MeOJOQ1x9nFW6KLeg0PNG9gU_OJLoA4EzL52XIJV1qilRD7uD27hVBn4W4Snkzyp1Ue7oY9e5Dm863fjwc68oQueflJua_9CJYrDxeo368N1F8lpBd6lh5BUrCk1Pc0uiigTPNiut0Lb_cqvdjNgV8LnsYw0CuddXLa6-N4cSk8awhpB7H45ym55u0OGoYozZNte4ef9O3twZ3WRSi6G5F-O1SzCliWGj9f4dw4NaV_umsfykNHgxm0AUdVzSR1TpJDNzCkN4Yx6IN3kjopvi2BFRJOZBfaVR41KWBTrftxvujPYlNffr_JNr9mZZwcCu8wAX6w",
-     * "scope": "message.read",
-     * "token_type": "Bearer",
-     * "expires_in": 299
-     * }
-     *
-     * @throws Exception
-     */
     @Test
     @DisplayName("client credential mode")
     public void clientCredentialMode() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
-        // Get different level access token with different scope
+        // Get different level access token based on different scope
         params.add(OAuth2ParameterNames.SCOPE, "message.read");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
