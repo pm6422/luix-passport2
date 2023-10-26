@@ -8,7 +8,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
@@ -21,6 +20,21 @@ import java.util.List;
 @Slf4j
 public abstract class AuthUtils {
     /**
+     * Get the ID of the current logged user.
+     */
+    public static String getCurrentUserId() {
+        return getCurrentUserId(SecurityContextHolder.getContext().getAuthentication());
+    }
+
+    /**
+     * Get the ID of the current logged user.
+     */
+    public static String getCurrentUserId(Authentication authentication) {
+        AuthUser currentUser = getCurrentUser(authentication);
+        return currentUser != null ? currentUser.getId() : null;
+    }
+
+    /**
      * Get the name of the current logged user.
      */
     public static String getCurrentUsername() {
@@ -31,14 +45,14 @@ public abstract class AuthUtils {
      * Get the name of the current logged user.
      */
     public static String getCurrentUsername(Authentication authentication) {
-        User currentUser = getCurrentUser(authentication);
+        AuthUser currentUser = getCurrentUser(authentication);
         return currentUser != null ? currentUser.getUsername() : null;
     }
 
     /**
      * Get the current logged user.
      */
-    public static User getCurrentUser() {
+    public static AuthUser getCurrentUser() {
         return getCurrentUser(SecurityContextHolder.getContext().getAuthentication());
     }
 
