@@ -1,6 +1,8 @@
 package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.config.oauth.ScopeWithDescription;
+import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
+import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
@@ -24,6 +26,7 @@ import java.util.Set;
 public class LoginController {
     private final RegisteredClientRepository        registeredClientRepository;
     private final OAuth2AuthorizationConsentService authorizationConsentService;
+    private final UserDao userDao;
 
     @GetMapping("/login")
     public String login() {
@@ -43,6 +46,7 @@ public class LoginController {
         RegisteredClient registeredClient = this.registeredClientRepository.findByClientId(clientId);
         OAuth2AuthorizationConsent currentAuthorizationConsent =
                 this.authorizationConsentService.findById(registeredClient.getId(), principal.getName());
+        User user = userDao.fetchOneByUsername(principal.getName());
         Set<String> authorizedScopes;
         if (currentAuthorizationConsent != null) {
             authorizedScopes = currentAuthorizationConsent.getScopes();
@@ -65,6 +69,7 @@ public class LoginController {
         model.addAttribute("scopes", withDescription(scopesToApprove));
         model.addAttribute("previouslyApprovedScopes", withDescription(previouslyApprovedScopes));
         model.addAttribute("principalName", principal.getName());
+        model.addAttribute("email", user.getEmail());
         model.addAttribute("userCode", userCode);
         if (StringUtils.hasText(userCode)) {
             model.addAttribute("requestURI", "/oauth2/device_verification");
