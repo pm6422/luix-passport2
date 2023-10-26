@@ -19,6 +19,7 @@ public class UserAuthenticationEvent implements Serializable {
     private String        id;
     private String        userId;
     private String        event;
+    private String        source;
     private LocalDateTime createdTime;
 
     public UserAuthenticationEvent() {}
@@ -27,6 +28,7 @@ public class UserAuthenticationEvent implements Serializable {
         this.id = value.id;
         this.userId = value.userId;
         this.event = value.event;
+        this.source = value.source;
         this.createdTime = value.createdTime;
     }
 
@@ -34,11 +36,13 @@ public class UserAuthenticationEvent implements Serializable {
         String        id,
         String        userId,
         String        event,
+        String        source,
         LocalDateTime createdTime
     ) {
         this.id = id;
         this.userId = userId;
         this.event = event;
+        this.source = source;
         this.createdTime = createdTime;
     }
 
@@ -85,6 +89,20 @@ public class UserAuthenticationEvent implements Serializable {
     }
 
     /**
+     * Getter for <code>luix-passport.user_authentication_event.source</code>.
+     */
+    public String getSource() {
+        return this.source;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user_authentication_event.source</code>.
+     */
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    /**
      * Getter for <code>luix-passport.user_authentication_event.created_time</code>.
      */
     public LocalDateTime getCreatedTime() {
@@ -125,6 +143,12 @@ public class UserAuthenticationEvent implements Serializable {
         }
         else if (!event.equals(other.event))
             return false;
+        if (source == null) {
+            if (other.source != null)
+                return false;
+        }
+        else if (!source.equals(other.source))
+            return false;
         if (createdTime == null) {
             if (other.createdTime != null)
                 return false;
@@ -141,6 +165,7 @@ public class UserAuthenticationEvent implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         result = prime * result + ((this.event == null) ? 0 : this.event.hashCode());
+        result = prime * result + ((this.source == null) ? 0 : this.source.hashCode());
         result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
         return result;
     }
@@ -152,6 +177,7 @@ public class UserAuthenticationEvent implements Serializable {
         sb.append(id);
         sb.append(", ").append(userId);
         sb.append(", ").append(event);
+        sb.append(", ").append(source);
         sb.append(", ").append(createdTime);
 
         sb.append(")");

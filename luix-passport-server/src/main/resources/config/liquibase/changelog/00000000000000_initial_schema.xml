@@ -186,6 +186,9 @@
             <column name="event" type="VARCHAR(36)">
                 <constraints nullable="false"/>
             </column>
+            <column name="source" type="VARCHAR(64)">
+                <constraints nullable="true"/>
+            </column>
             <column name="created_time" type="timestamp">
                 <constraints nullable="false"/>
             </column>

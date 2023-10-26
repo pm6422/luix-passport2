@@ -16,7 +16,7 @@ import org.jooq.Field;
 import org.jooq.ForeignKey;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row4;
+import org.jooq.Row5;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -62,6 +62,11 @@ public class UserAuthenticationEvent extends TableImpl<UserAuthenticationEventRe
      * The column <code>luix-passport.user_authentication_event.event</code>.
      */
     public final TableField<UserAuthenticationEventRecord, String> EVENT = createField(DSL.name("event"), SQLDataType.VARCHAR(36).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user_authentication_event.source</code>.
+     */
+    public final TableField<UserAuthenticationEventRecord, String> SOURCE = createField(DSL.name("source"), SQLDataType.VARCHAR(64), this, "");
 
     /**
      * The column <code>luix-passport.user_authentication_event.created_time</code>.
@@ -143,11 +148,11 @@ public class UserAuthenticationEvent extends TableImpl<UserAuthenticationEventRe
     }
 
     // -------------------------------------------------------------------------
-    // Row4 type methods
+    // Row5 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row4<String, String, String, LocalDateTime> fieldsRow() {
-        return (Row4) super.fieldsRow();
+    public Row5<String, String, String, String, LocalDateTime> fieldsRow() {
+        return (Row5) super.fieldsRow();
     }
 }
