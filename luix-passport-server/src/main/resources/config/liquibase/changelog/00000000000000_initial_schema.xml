@@ -176,9 +176,25 @@
         </loadData>
     </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-7">
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fk_user_authority_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+        <createTable tableName="user_authentication_event">
+            <column name="id" type="VARCHAR(20)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="event" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
     </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-8">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fk_user_authority_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="louislau (generated)" id="1697270514696-9">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_permission" constraintName="fk_user_permission_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
 </databaseChangeLog>
