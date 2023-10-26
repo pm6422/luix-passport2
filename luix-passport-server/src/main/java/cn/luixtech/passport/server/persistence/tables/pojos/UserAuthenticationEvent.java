@@ -19,7 +19,7 @@ public class UserAuthenticationEvent implements Serializable {
     private String        id;
     private String        userId;
     private String        event;
-    private String        source;
+    private String        description;
     private LocalDateTime createdTime;
 
     public UserAuthenticationEvent() {}
@@ -28,7 +28,7 @@ public class UserAuthenticationEvent implements Serializable {
         this.id = value.id;
         this.userId = value.userId;
         this.event = value.event;
-        this.source = value.source;
+        this.description = value.description;
         this.createdTime = value.createdTime;
     }
 
@@ -36,13 +36,13 @@ public class UserAuthenticationEvent implements Serializable {
         String        id,
         String        userId,
         String        event,
-        String        source,
+        String        description,
         LocalDateTime createdTime
     ) {
         this.id = id;
         this.userId = userId;
         this.event = event;
-        this.source = source;
+        this.description = description;
         this.createdTime = createdTime;
     }
 
@@ -89,17 +89,17 @@ public class UserAuthenticationEvent implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.user_authentication_event.source</code>.
+     * Getter for <code>luix-passport.user_authentication_event.description</code>.
      */
-    public String getSource() {
-        return this.source;
+    public String getDescription() {
+        return this.description;
     }
 
     /**
-     * Setter for <code>luix-passport.user_authentication_event.source</code>.
+     * Setter for <code>luix-passport.user_authentication_event.description</code>.
      */
-    public void setSource(String source) {
-        this.source = source;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -143,11 +143,11 @@ public class UserAuthenticationEvent implements Serializable {
         }
         else if (!event.equals(other.event))
             return false;
-        if (source == null) {
-            if (other.source != null)
+        if (description == null) {
+            if (other.description != null)
                 return false;
         }
-        else if (!source.equals(other.source))
+        else if (!description.equals(other.description))
             return false;
         if (createdTime == null) {
             if (other.createdTime != null)
@@ -165,7 +165,7 @@ public class UserAuthenticationEvent implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         result = prime * result + ((this.event == null) ? 0 : this.event.hashCode());
-        result = prime * result + ((this.source == null) ? 0 : this.source.hashCode());
+        result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
         result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
         return result;
     }
@@ -177,7 +177,7 @@ public class UserAuthenticationEvent implements Serializable {
         sb.append(id);
         sb.append(", ").append(userId);
         sb.append(", ").append(event);
-        sb.append(", ").append(source);
+        sb.append(", ").append(description);
         sb.append(", ").append(createdTime);
 
         sb.append(")");

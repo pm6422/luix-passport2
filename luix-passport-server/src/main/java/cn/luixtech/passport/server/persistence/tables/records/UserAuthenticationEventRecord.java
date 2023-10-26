@@ -66,16 +66,16 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
     }
 
     /**
-     * Setter for <code>luix-passport.user_authentication_event.source</code>.
+     * Setter for <code>luix-passport.user_authentication_event.description</code>.
      */
-    public void setSource(String value) {
+    public void setDescription(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_authentication_event.source</code>.
+     * Getter for <code>luix-passport.user_authentication_event.description</code>.
      */
-    public String getSource() {
+    public String getDescription() {
         return (String) get(3);
     }
 
@@ -133,7 +133,7 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
 
     @Override
     public Field<String> field4() {
-        return UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.SOURCE;
+        return UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.DESCRIPTION;
     }
 
     @Override
@@ -158,7 +158,7 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
 
     @Override
     public String component4() {
-        return getSource();
+        return getDescription();
     }
 
     @Override
@@ -183,7 +183,7 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
 
     @Override
     public String value4() {
-        return getSource();
+        return getDescription();
     }
 
     @Override
@@ -211,7 +211,7 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
 
     @Override
     public UserAuthenticationEventRecord value4(String value) {
-        setSource(value);
+        setDescription(value);
         return this;
     }
 
@@ -245,13 +245,13 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
     /**
      * Create a detached, initialised UserAuthenticationEventRecord
      */
-    public UserAuthenticationEventRecord(String id, String userId, String event, String source, LocalDateTime createdTime) {
+    public UserAuthenticationEventRecord(String id, String userId, String event, String description, LocalDateTime createdTime) {
         super(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT);
 
         setId(id);
         setUserId(userId);
         setEvent(event);
-        setSource(source);
+        setDescription(description);
         setCreatedTime(createdTime);
     }
 }

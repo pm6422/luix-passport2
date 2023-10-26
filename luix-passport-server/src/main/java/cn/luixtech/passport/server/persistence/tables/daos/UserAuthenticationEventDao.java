@@ -93,17 +93,17 @@ public class UserAuthenticationEventDao extends DAOImpl<UserAuthenticationEventR
     }
 
     /**
-     * Fetch records that have <code>source BETWEEN lowerInclusive AND upperInclusive</code>
+     * Fetch records that have <code>description BETWEEN lowerInclusive AND upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserAuthenticationEvent> fetchRangeOfSource(String lowerInclusive, String upperInclusive) {
-        return fetchRange(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.SOURCE, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserAuthenticationEvent> fetchRangeOfDescription(String lowerInclusive, String upperInclusive) {
+        return fetchRange(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.DESCRIPTION, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>source IN (values)</code>
+     * Fetch records that have <code>description IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserAuthenticationEvent> fetchBySource(String... values) {
-        return fetch(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.SOURCE, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserAuthenticationEvent> fetchByDescription(String... values) {
+        return fetch(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.DESCRIPTION, values);
     }
 
     /**
