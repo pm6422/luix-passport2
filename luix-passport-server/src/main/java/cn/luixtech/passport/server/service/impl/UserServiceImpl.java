@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.service.impl;
 
+import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
@@ -54,7 +55,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+        return new AuthUser(user.getId(), user.getUsername(),
+                user.getFirstName(), user.getLastName(),
                 user.getPasswordHash(), user.getEnabled(),
                 true, true,
                 true, authorities);

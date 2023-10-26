@@ -3,7 +3,9 @@ package cn.luixtech.passport.server.config;
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationConverter;
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
 import cn.luixtech.passport.server.config.oauth.federation.FederatedIdentityIdTokenCustomizer;
+import cn.luixtech.passport.server.config.oauth.jackson.AuthUserJacksonModule;
 import cn.luixtech.passport.server.utils.JwkUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
@@ -16,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.server.authorization.JdbcOAuth2AuthorizationConsentService;
@@ -122,7 +125,15 @@ public class AuthorizationServerConfiguration {
     @Bean
     public OAuth2AuthorizationService authorizationService(JdbcTemplate jdbcTemplate,
                                                            RegisteredClientRepository registeredClientRepository) {
-        return new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
+        JdbcOAuth2AuthorizationService authorizationService = new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
+        JdbcOAuth2AuthorizationService.OAuth2AuthorizationRowMapper rowMapper = new JdbcOAuth2AuthorizationService.OAuth2AuthorizationRowMapper(registeredClientRepository);
+        ObjectMapper objectMapper = new ObjectMapper();
+        // Register existing modules
+        objectMapper.registerModules(SecurityJackson2Modules.getModules(JdbcOAuth2AuthorizationService.class.getClassLoader()));
+        objectMapper.registerModule(new AuthUserJacksonModule());
+        rowMapper.setObjectMapper(objectMapper);
+        authorizationService.setAuthorizationRowMapper(rowMapper);
+        return authorizationService;
     }
 
     @Bean

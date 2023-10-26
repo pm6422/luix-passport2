@@ -15,6 +15,10 @@ public class AuthUser extends User {
     @Getter
     private              String lastName;
 
+    public AuthUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
+    }
+
     public AuthUser(String id, String username, String firstName, String lastName,
                     String password, boolean enabled,
                     boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,

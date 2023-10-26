@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.utils;
 
+import cn.luixtech.passport.server.config.oauth.AuthUser;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -44,16 +45,16 @@ public abstract class AuthUtils {
     /**
      * Get the current logged user.
      */
-    public static User getCurrentUser(Authentication authentication) {
-        User user = null;
+    public static AuthUser getCurrentUser(Authentication authentication) {
+        AuthUser user = null;
         if (authentication != null) {
-            if (authentication.getPrincipal() instanceof User) {
-                user = (User) authentication.getPrincipal();
+            if (authentication.getPrincipal() instanceof AuthUser) {
+                user = (AuthUser) authentication.getPrincipal();
             } else if (authentication instanceof JwtAuthenticationToken) {
                 // Use Client ID as username
-                user = new User(authentication.getName(), "protected", authentication.getAuthorities());
+                user = new AuthUser(authentication.getName(), "protected", authentication.getAuthorities());
             } else if (authentication.getPrincipal() instanceof String) {
-                user = new User((String) authentication.getPrincipal(), "protected",
+                user = new AuthUser((String) authentication.getPrincipal(), "protected",
                         List.of(new SimpleGrantedAuthority("unknown")));
             }
         }
