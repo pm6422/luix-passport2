@@ -17,7 +17,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
-import static cn.luixtech.passport.server.utils.AuthUtils.*;
+import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUserId;
+import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 
 @Slf4j
 @Component
@@ -42,13 +43,32 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void authenticationFailureEvent(AbstractAuthenticationFailureEvent event) {
-        log.warn("Authenticate failed for user: " + getCurrentUser(event.getAuthentication()) + " with exception: " + event.getException().getMessage());
+        String userId = getCurrentUserId();
+        if (StringUtils.isNotEmpty(userId)) {
+            UserAuthenticationEvent domain = new UserAuthenticationEvent();
+            domain.setId(IdGenerator.generateId());
+            domain.setUserId(userId);
+            domain.setEvent("AuthenticationFailure");
+            domain.setDescription(event.getException().getMessage());
+            domain.setCreatedTime(LocalDateTime.now());
+            userAuthenticationEventDao.insert(domain);
+            log.warn("Authenticate failure for user: " + userId + " with exception: " + event.getException().getMessage());
+        }
     }
 
     @EventListener
     public void logoutSuccessEvent(LogoutSuccessEvent event) {
-        log.info("Logged out for user: [{}] and initiated by {}", getCurrentUsername(event.getAuthentication()),
-                event.getSource().getClass().getSimpleName());
+        String userId = getCurrentUserId();
+        if (StringUtils.isNotEmpty(userId)) {
+            UserAuthenticationEvent domain = new UserAuthenticationEvent();
+            domain.setId(IdGenerator.generateId());
+            domain.setUserId(userId);
+            domain.setEvent("LogoutSuccess");
+            domain.setDescription(event.getSource().getClass().getSimpleName());
+            domain.setCreatedTime(LocalDateTime.now());
+            userAuthenticationEventDao.insert(domain);
+            log.info("Logged out for user: [{}] and initiated by {}", userId, event.getSource().getClass().getSimpleName());
+        }
     }
 
     @EventListener
