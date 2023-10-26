@@ -26,7 +26,7 @@ import java.util.Set;
 public class LoginController {
     private final RegisteredClientRepository        registeredClientRepository;
     private final OAuth2AuthorizationConsentService authorizationConsentService;
-    private final UserDao userDao;
+    private final UserDao                           userDao;
 
     @GetMapping("/login")
     public String login() {
@@ -68,8 +68,7 @@ public class LoginController {
         model.addAttribute("state", state);
         model.addAttribute("scopes", withDescription(scopesToApprove));
         model.addAttribute("previouslyApprovedScopes", withDescription(previouslyApprovedScopes));
-        model.addAttribute("principalName", principal.getName());
-        model.addAttribute("email", user.getEmail());
+        model.addAttribute("principalName", user != null ? user.getEmail() : principal.getName());
         model.addAttribute("userCode", userCode);
         if (StringUtils.hasText(userCode)) {
             model.addAttribute("requestURI", "/oauth2/device_verification");
