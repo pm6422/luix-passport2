@@ -98,6 +98,42 @@
                 tableName="oauth2_registered_client">
         </loadData>
     </changeSet>
+    <changeSet author="louis (generated)" id="1698384562711-4">
+        <createTable tableName="spring_session">
+            <column name="PRIMARY_ID" type="CHAR(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SESSION_ID" type="CHAR(36)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="CREATION_TIME" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_ACCESS_TIME" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MAX_INACTIVE_INTERVAL" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXPIRY_TIME" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRINCIPAL_NAME" type="VARCHAR(100)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="louis (generated)" id="1698384562711-5">
+        <createTable tableName="spring_session_attributes">
+            <column name="SESSION_PRIMARY_ID" type="CHAR(36)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ATTRIBUTE_NAME" type="VARCHAR(200)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="ATTRIBUTE_BYTES" type="BLOB">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
     <changeSet author="louislau (generated)" id="1697270514696-4">
         <createTable tableName="user">
             <column name="id" type="VARCHAR(20)">

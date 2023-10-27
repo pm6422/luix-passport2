@@ -7,6 +7,8 @@ package cn.luixtech.passport.server.persistence;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.SpringSession;
+import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
@@ -33,6 +35,16 @@ public class Tables {
      * The table <code>luix-passport.oauth2_registered_client</code>.
      */
     public static final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
+
+    /**
+     * The table <code>luix-passport.spring_session</code>.
+     */
+    public static final SpringSession SPRING_SESSION = SpringSession.SPRING_SESSION;
+
+    /**
+     * The table <code>luix-passport.spring_session_attributes</code>.
+     */
+    public static final SpringSessionAttributes SPRING_SESSION_ATTRIBUTES = SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES;
 
     /**
      * The table <code>luix-passport.user</code>.
