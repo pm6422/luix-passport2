@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
@@ -65,6 +66,9 @@ public abstract class AuthUtils {
             if (authentication.getPrincipal() instanceof AuthUser) {
                 user = (AuthUser) authentication.getPrincipal();
             } else if (authentication instanceof JwtAuthenticationToken) {
+                // Use Client ID as username
+                user = new AuthUser(authentication.getName(), "protected", authentication.getAuthorities());
+            } else if (authentication instanceof OAuth2AuthenticationToken) {
                 // Use Client ID as username
                 user = new AuthUser(authentication.getName(), "protected", authentication.getAuthorities());
             } else if (authentication.getPrincipal() instanceof String) {
