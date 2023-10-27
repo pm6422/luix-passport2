@@ -82,16 +82,18 @@
 						<!--end::Login options-->
 						<!--begin::Separator-->
 						<div class="separator separator-content my-14">
-							<span class="w-125px text-gray-500 fw-semibold fs-7"></span>
+							<span class="w-125px text-gray-500 fw-semibold fs-7">
+								<img
+									th:src="@{/assets/img/logo.svg}"
+									class="h-30px"
+								/>
+							</span>
 						</div>
 						<!--end::Separator-->
 						<!--begin::alert-->
 						<div th:if="${param.error}" class="alert alert-dismissible bg-light-danger d-flex flex-column flex-sm-row p-5 mb-5">
 							<!--begin::Wrapper-->
 							<div class="d-flex flex-column pe-0 pe-sm-10">
-								<!--begin::Title-->
-								<h4 class="fw-semibold">Error</h4>
-								<!--end::Title-->
 								<!--begin::Content-->
 								<span class="text-gray-700">Invalid username or password.</span>
 								<!--end::Content-->
