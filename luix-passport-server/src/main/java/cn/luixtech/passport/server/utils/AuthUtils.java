@@ -29,6 +29,14 @@ public abstract class AuthUtils {
         return authentication.isAuthenticated();
     }
 
+    public static boolean hasAuthority(String authority) {
+        AuthUser currentUser = getCurrentUser();
+        if (currentUser == null) {
+            return false;
+        }
+        return currentUser.getAuthorities().contains(new SimpleGrantedAuthority(authority));
+    }
+
     /**
      * Get the ID of the current logged user.
      */
