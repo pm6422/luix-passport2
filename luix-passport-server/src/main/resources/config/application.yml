@@ -91,6 +91,7 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
+    org.jooq.tools.LoggerListener: DEBUG
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
 springdoc: # https://springdoc.org/#migrating-from-springfox
