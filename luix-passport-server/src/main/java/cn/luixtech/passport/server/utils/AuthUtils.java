@@ -69,7 +69,6 @@ public abstract class AuthUtils {
                 // Use Client ID as username
                 user = new AuthUser(authentication.getName(), "protected", authentication.getAuthorities());
             } else if (authentication instanceof OAuth2AuthenticationToken) {
-                // Use Client ID as username
                 user = new AuthUser(authentication.getName(), "protected", authentication.getAuthorities());
             } else if (authentication.getPrincipal() instanceof String) {
                 user = new AuthUser((String) authentication.getPrincipal(), "protected",
