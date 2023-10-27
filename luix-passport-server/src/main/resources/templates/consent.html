@@ -68,15 +68,27 @@
 							<input type="hidden" name="state" th:value="${state}">
 							<input th:if="${userCode}" type="hidden" name="user_code" th:value="${userCode}">
 
-							<div th:each="scope: ${scopes}" class="form-check py-1">
-								<input class="form-check-input"
-											 style="float: none"
-											 type="checkbox"
-											 name="scope"
-											 th:value="${scope.scope}"
-											 th:id="${scope.scope}">
-								<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
-								<p class="text-danger fw-bold" th:text="${scope.description}"></p>
+							<div th:each="scope: ${scopes}" class="">
+								<div class="separator separator-dashed"></div>
+								<div class="d-flex">
+									<div class="d-flex my-3 ms-3">
+										<label class="form-check form-check-custom form-check-solid me-5">
+											<input
+												class="form-check-input"
+												type="checkbox"
+												name="scope"
+												th:value="${scope.scope}"
+												th:id="${scope.scope}"
+											/>
+										</label>
+									</div>
+									<div class="d-flex align-items-center">
+										<span class="fw-bolder" th:for="${scope.scope}" th:text="${scope.scope}"></span>
+										:&nbsp;
+										<span class="fw-bold" th:text="${scope.description}"></span>
+									</div>
+								</div>
+								<div class="separator separator-dashed"></div>
 							</div>
 
 							<p th:if="${not #lists.isEmpty(previouslyApprovedScopes)}">
