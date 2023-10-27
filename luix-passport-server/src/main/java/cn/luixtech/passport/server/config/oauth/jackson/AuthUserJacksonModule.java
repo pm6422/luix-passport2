@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 public class AuthUserJacksonModule extends SimpleModule {
@@ -19,6 +20,7 @@ public class AuthUserJacksonModule extends SimpleModule {
     public void setupModule(SetupContext context) {
         SecurityJackson2Modules.enableDefaultTyping(context.getOwner());
         context.setMixInAnnotations(AuthUser.class, AuthUserMixin.class);
+        context.setMixInAnnotations(HashSet.class, ArrayWhitelistMixin.class);
         context.setMixInAnnotations(LinkedHashSet.class, ArrayWhitelistMixin.class);
     }
 }
