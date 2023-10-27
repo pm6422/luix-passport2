@@ -21,7 +21,7 @@ public class ScopeWithDescription {
     static {
         scopeDescriptions.put(
                 OidcScopes.PROFILE,
-                "Read your profile information"
+                "Read all user profile data"
         );
         scopeDescriptions.put(
                 "message.read",
