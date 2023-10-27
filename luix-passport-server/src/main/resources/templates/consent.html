@@ -39,11 +39,11 @@
 					</div>
 					<!--end::Logo-->
 					<!--begin::Title-->
-					<div class="fw-bolder text-gray-800 fs-2qx text-center">Application <span th:text="${clientId}"></span> wants to access your LUI️✘ account</div>
+					<div class="fw-bolder text-gray-900 fs-2qx text-center">Application <span th:text="${clientId}"></span> wants to access your LUI️✘ account</div>
 					<!--end::Title-->
 					<!--begin::Action-->
 					<div class="mt-8 mb-8">
-						<div class="fw-bold text-gray-500 fs-1 text-center"><span class="text-warning" th:text="${principalName}"></span></div>
+						<div class="fw-bold text-gray-800 fs-1 text-center"><span th:text="${principalName}"></span></div>
 					</div>
 					<!--end::Action-->
 					<div th:if="${userCode}" class="row">
@@ -57,7 +57,7 @@
 					</div>
 					<!--begin::Action-->
 					<div class="mb-8">
-						<div class="fw-bolder text-gray-400 fs-2 text-center mb-5">When you allow this access, <span class="text-primary" th:text="${clientId}"></span> will be able to
+						<div class="fw-bolder text-gray-900 fs-2 text-center mb-5">When you allow this access, <span class="text-gray-800" th:text="${clientId}"></span> will be able to
 						</div>
 					</div>
 					<!--end::Action-->
@@ -76,7 +76,7 @@
 												 th:value="${scope.scope}"
 												 th:id="${scope.scope}">
 									<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
-									<p class="text-primary" th:text="${scope.description}"></p>
+									<p class="text-warning" th:text="${scope.description}"></p>
 								</div>
 
 								<p th:if="${not #lists.isEmpty(previouslyApprovedScopes)}">
@@ -90,7 +90,7 @@
 												 disabled
 												 checked>
 									<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
-									<p class="text-primary" th:text="${scope.description}"></p>
+									<p class="text-warning" th:text="${scope.description}"></p>
 								</div>
 
 								<!--begin::Actions-->
@@ -98,7 +98,7 @@
 									<button
 										id="cancel-consent"
 										type="button"
-										class="btn btn-lg btn-secondary me-4 w-150px"
+										class="btn btn-lg btn-dark me-4 w-150px text-white"
 										onclick="cancelConsent();"
 									>
 										Cancel
