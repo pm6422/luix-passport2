@@ -29,7 +29,7 @@ public class ScopeWithDescription {
         );
         scopeDescriptions.put(
                 "message.write",
-                "Add new messages. It will also be able to edit and delete existing messages"
+                "Add new messages, edit and delete existing messages"
         );
         scopeDescriptions.put(
                 "other.scope",
