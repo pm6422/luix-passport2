@@ -20,6 +20,15 @@ import java.util.List;
  */
 @Slf4j
 public abstract class AuthUtils {
+
+    public static boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
+            return false;
+        }
+        return authentication.isAuthenticated();
+    }
+
     /**
      * Get the ID of the current logged user.
      */

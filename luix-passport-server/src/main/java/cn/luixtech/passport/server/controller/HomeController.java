@@ -13,7 +13,7 @@ public class HomeController {
     @RequestMapping(value = {"/", "/index"})
     public String index(Model model) {
         model.addAttribute("username", AuthUtils.getCurrentUsername());
-        model.addAttribute("swaggerEnabled", AuthUtils.getCurrentUser() == null ? false : AuthUtils.getCurrentUser().getAuthorities()
+        model.addAttribute("swaggerEnabled", !AuthUtils.isAuthenticated() ? false : AuthUtils.getCurrentUser().getAuthorities()
                 .contains(new SimpleGrantedAuthority(DEVELOPER)));
         return "index";
     }
