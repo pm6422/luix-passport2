@@ -60,7 +60,7 @@ public class AuthorizationServerConsentTests {
     @WithMockUser("user1")
     public void whenUserConsentsToAllScopesThenReturnAuthorizationCode() throws IOException {
         final HtmlPage consentPage = this.webClient.getPage(this.AUTHORIZATION_REQUEST_URI);
-        assertThat(consentPage.getTitleText()).isEqualTo("Passport | Consent");
+        assertThat(consentPage.getTitleText()).isEqualTo("Passport | Authorization");
 
         List<HtmlCheckBoxInput> scopes = new ArrayList<>();
         consentPage.querySelectorAll("input[name='scope']").forEach(scope ->
@@ -90,7 +90,7 @@ public class AuthorizationServerConsentTests {
     @WithMockUser("user1")
     public void whenUserCancelsConsentThenReturnAccessDeniedError() throws IOException {
         final HtmlPage consentPage = this.webClient.getPage(this.AUTHORIZATION_REQUEST_URI);
-        assertThat(consentPage.getTitleText()).isEqualTo("Passport | Consent");
+        assertThat(consentPage.getTitleText()).isEqualTo("Passport | Authorization");
 
         DomElement cancelConsentButton = consentPage.querySelector("button[id='cancel-consent']");
         this.webClient.getOptions().setRedirectEnabled(false);
