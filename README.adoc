@@ -30,7 +30,6 @@ NOTE: Java compatability: Java 17 above
 - Spring Boot 3.1.0
 - Spring Security OAuth2 Authorization Server 1.1.0
 - MySQL 8
-- VUE 3
 
 [[UsingDocker]]
 == Using Docker
