@@ -45,6 +45,7 @@ public class AuthorizationServerApplicationTests {
     public void setUp() {
         this.webClient.getOptions().setThrowExceptionOnFailingStatusCode(true);
         this.webClient.getOptions().setRedirectEnabled(true);
+        this.webClient.getOptions().setJavaScriptEnabled(false);
         // Log out
         this.webClient.getCookieManager().clearCookies();
     }
