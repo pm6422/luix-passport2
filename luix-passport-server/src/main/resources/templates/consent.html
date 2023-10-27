@@ -1,130 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-	<!--begin::Head-->
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Passport | Authorization</title>
-		<link rel="shortcut icon" th:href="@{/assets/img/logo.svg}"/>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-		<link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
-		<link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
-		<script>
-			function cancelConsent() {
-				document.consent_form.reset();
-				document.consent_form.submit();
-			}
-		</script>
-	</head>
-	<!--end::Head-->
+<!--begin::Head-->
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Passport | Authorization</title>
+	<link rel="shortcut icon" th:href="@{/assets/img/logo.svg}"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+	<link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+	<script>
+		function cancelConsent() {
+			document.consent_form.reset();
+			document.consent_form.submit();
+		}
+	</script>
+</head>
+<!--end::Head-->
 	<!--begin::Body-->
-	<body>
-		<!--begin::Root-->
-		<div class="d-flex flex-column flex-center p-10">
-			<!--begin::Wrapper-->
-			<div class="card card-flush w-lg-650px px-10 py-5 border border-1 border-gray-300">
-				<div class="card-body py-15 py-lg-20">
+<body>
+	<!--begin::Root-->
+	<div class="d-flex flex-column flex-center p-10">
+		<!--begin::Wrapper-->
+		<div class="card card-flush w-lg-650px px-10 py-5 border border-1 border-gray-300">
+			<div class="card-body py-15 py-lg-20">
+				<!--begin::Logo-->
+				<div class="mb-14">
 					<!--begin::Logo-->
-					<div class="mb-14">
-						<!--begin::Logo-->
-						<div class="text-gray-500 fw-semibold fs-6">
-							<div class="text-center">
-								<img
-									th:src="@{/assets/img/logo.svg}"
-									class="h-80px me-1"
-								/>
-							</div>
+					<div class="text-gray-500 fw-semibold fs-6">
+						<div class="text-center">
+							<img
+								th:src="@{/assets/img/logo.svg}"
+								class="h-80px me-1"
+							/>
 						</div>
-						<!--end::Logo-->
 					</div>
 					<!--end::Logo-->
-					<!--begin::Title-->
-					<div class="fw-bolder text-gray-900 fs-2qx text-center">Application <span th:text="${clientId}"></span> wants to access your LUI️✘ account</div>
-					<!--end::Title-->
-					<!--begin::Action-->
-					<div class="mt-8 mb-8">
-						<div class="fw-bold text-gray-800 fs-1 text-center"><span th:text="${principalName}"></span></div>
-					</div>
-					<!--end::Action-->
-					<div th:if="${userCode}" class="row">
-						<div class="col text-center">
-							<p class="alert alert-warning">
-								You have provided the code
-								<span class="fw-bold" th:text="${userCode}"></span>.
-								Verify that this code matches what is shown on your device.
-							</p>
-						</div>
-					</div>
-					<!--begin::Action-->
-					<div class="mb-8">
-						<div class="fw-bolder text-gray-900 fs-2 text-center mb-5">When you allow this access, <span class="text-gray-800" th:text="${clientId}"></span> will be able to
-						</div>
-					</div>
-					<!--end::Action-->
-					<div class="row">
-						<div class="col text-center">
-							<form name="consent_form" method="post" th:action="${requestURI}">
-								<input type="hidden" name="client_id" th:value="${clientId}">
-								<input type="hidden" name="state" th:value="${state}">
-								<input th:if="${userCode}" type="hidden" name="user_code" th:value="${userCode}">
-
-								<div th:each="scope: ${scopes}" class="form-check py-1">
-									<input class="form-check-input"
-												 style="float: none"
-												 type="checkbox"
-												 name="scope"
-												 th:value="${scope.scope}"
-												 th:id="${scope.scope}">
-									<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
-									<p class="text-warning" th:text="${scope.description}"></p>
-								</div>
-
-								<p th:if="${not #lists.isEmpty(previouslyApprovedScopes)}">
-									You have already granted the following permissions to the above app:
-								</p>
-								<div th:each="scope: ${previouslyApprovedScopes}" class="form-check py-1">
-									<input class="form-check-input"
-												 style="float: none"
-												 type="checkbox"
-												 th:id="${scope.scope}"
-												 disabled
-												 checked>
-									<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
-									<p class="text-warning" th:text="${scope.description}"></p>
-								</div>
-
-								<!--begin::Actions-->
-								<div class="d-flex flex-wrap justify-content-center pb-lg-0 mt-10">
-									<button
-										id="cancel-consent"
-										type="button"
-										class="btn btn-lg btn-dark me-4 w-150px text-white"
-										onclick="cancelConsent();"
-									>
-										Cancel
-									</button>
-
-									<button
-										id="submit-consent"
-										type="submit"
-										class="btn btn-lg btn-primary w-150px"
-									>
-										Agree
-									</button>
-								</div>
-								<!--end::Actions-->
-							</form>
-						</div>
-					</div>
-
 				</div>
+				<!--end::Logo-->
+				<!--begin::Title-->
+				<div class="fw-bolder text-gray-900 fs-2qx text-center">Application <span th:text="${clientId}"></span> wants to access your LUI️✘ account</div>
+				<!--end::Title-->
+				<!--begin::Action-->
+				<div class="mt-8 mb-8">
+					<div class="fw-bold text-gray-800 fs-1 text-center"><span th:text="${principalName}"></span></div>
+				</div>
+				<!--end::Action-->
+				<div th:if="${userCode}" class="row">
+					<div class="col text-center">
+						<p class="alert alert-warning">
+							You have provided the code
+							<span class="fw-bold" th:text="${userCode}"></span>.
+							Verify that this code matches what is shown on your device.
+						</p>
+					</div>
+				</div>
+				<!--begin::Action-->
+				<div class="mb-8">
+					<div class="fw-bolder text-gray-900 fs-2 text-center mb-5">When you allow this access, <span class="text-gray-800" th:text="${clientId}"></span> will be able to
+					</div>
+				</div>
+				<!--end::Action-->
+				<div class="row">
+					<div class="col text-center">
+						<form name="consent_form" method="post" th:action="${requestURI}">
+							<input type="hidden" name="client_id" th:value="${clientId}">
+							<input type="hidden" name="state" th:value="${state}">
+							<input th:if="${userCode}" type="hidden" name="user_code" th:value="${userCode}">
+
+							<div th:each="scope: ${scopes}" class="form-check py-1">
+								<input class="form-check-input"
+											 style="float: none"
+											 type="checkbox"
+											 name="scope"
+											 th:value="${scope.scope}"
+											 th:id="${scope.scope}">
+								<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
+								<p class="text-warning" th:text="${scope.description}"></p>
+							</div>
+
+							<p th:if="${not #lists.isEmpty(previouslyApprovedScopes)}">
+								You have already granted the following permissions to the above app:
+							</p>
+							<div th:each="scope: ${previouslyApprovedScopes}" class="form-check py-1">
+								<input class="form-check-input"
+											 style="float: none"
+											 type="checkbox"
+											 th:id="${scope.scope}"
+											 disabled
+											 checked>
+								<label class="form-check-label fw-bold px-2" th:for="${scope.scope}" th:text="${scope.scope}"></label>
+								<p class="text-warning" th:text="${scope.description}"></p>
+							</div>
+
+							<!--begin::Actions-->
+							<div class="d-flex flex-wrap justify-content-center pb-lg-0 mt-10">
+								<button
+									id="cancel-consent"
+									type="button"
+									class="btn btn-lg btn-dark me-4 w-150px text-white"
+									onclick="cancelConsent();"
+								>
+									Cancel
+								</button>
+
+								<button
+									id="submit-consent"
+									type="submit"
+									class="btn btn-lg btn-primary w-150px"
+								>
+									Agree
+								</button>
+							</div>
+							<!--end::Actions-->
+						</form>
+					</div>
+				</div>
+
 			</div>
-			<!--end::Wrapper-->
 		</div>
-		<!--end::Root-->
-		<script th:href="@{/assets/plugins/global/plugins.bundle.js}"></script>
-		<script th:href="@{/assets/js/scripts.bundle.js}"></script>
-		<!--end::Javascript-->
-	</body>
+		<!--end::Wrapper-->
+	</div>
+	<!--end::Root-->
+	<script th:href="@{/assets/plugins/global/plugins.bundle.js}"></script>
+	<script th:href="@{/assets/js/scripts.bundle.js}"></script>
+	<!--end::Javascript-->
+</body>
 	<!--end::Body-->
 </html>
