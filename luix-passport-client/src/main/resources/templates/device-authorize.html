@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Passport | Activation Notice</title>
+    <title>Passport | Device Authorization</title>
     <link rel="shortcut icon" th:href="@{/assets/media/logos/logo.svg}"/>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.css" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
 </head>
@@ -12,9 +12,9 @@
 <div class="container">
     <div class="row py-5">
         <div class="col-md-5">
-            <h2>Device Activation</h2>
-            <p>Please visit <a th:href="${verificationUri}" target="_blank" th:text="${verificationUri?.replaceFirst('https?://', '')}"></a> on another device to continue.</p>
-            <p class="mt-5">Activation Code</p>
+            <h2>Device Authorization</h2>
+            <p>Please visit <a th:href="${verificationUri}" target="_blank" th:text="${verificationUri?.replaceFirst('https?://', '')}"></a> on security device to continue.</p>
+            <p class="mt-5">Security Code</p>
             <div class="card text-bg-light">
                 <span class="card-body" style="font-size: 2em; letter-spacing: 2rem" th:text="${userCode}"></span>
                 <form id="authorize-form" th:action="@{/device_authorize}" method="post">
