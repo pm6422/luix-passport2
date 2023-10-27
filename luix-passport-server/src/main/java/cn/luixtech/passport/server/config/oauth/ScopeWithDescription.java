@@ -21,19 +21,19 @@ public class ScopeWithDescription {
     static {
         scopeDescriptions.put(
                 OidcScopes.PROFILE,
-                "This application will be able to read your profile information."
+                "Read your profile information"
         );
         scopeDescriptions.put(
                 "message.read",
-                "This application will be able to read your message."
+                "Read your message"
         );
         scopeDescriptions.put(
                 "message.write",
-                "This application will be able to add new messages. It will also be able to edit and delete existing messages."
+                "Add new messages. It will also be able to edit and delete existing messages"
         );
         scopeDescriptions.put(
                 "other.scope",
-                "This is another scope example of a scope description."
+                "This is another scope example of a scope description"
         );
     }
 }
