@@ -40,7 +40,7 @@ public class DeviceController {
     private final        WebClient                                       webClient;
     private final        ApplicationProperties                           applicationProperties;
 
-    @GetMapping("/device_authorize")
+    @GetMapping(value = "/authorize", params = "grant_type=device_code")
     public String authorize(Model model) {
         ClientRegistration clientRegistration = this.clientRegistrationRepository.findByRegistrationId("messaging-client-device-code");
         MultiValueMap<String, String> requestParameters = new LinkedMultiValueMap<>();

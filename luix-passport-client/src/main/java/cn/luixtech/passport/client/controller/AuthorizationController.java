@@ -50,11 +50,6 @@ public class AuthorizationController {
         return "index";
     }
 
-    @GetMapping(value = "/authorize", params = "grant_type=device_code")
-    public String deviceCodeGrant() {
-        return "device-code";
-    }
-
     // '/authorized' is the registered 'redirect_uri' for authorization_code
     @GetMapping(value = "/authorized", params = OAuth2ParameterNames.ERROR)
     public String authorizationFailed(Model model, HttpServletRequest request) {
