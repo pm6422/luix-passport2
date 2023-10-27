@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Passport | Enter Device Code</title>
+    <title>Passport | Device Activation</title>
     <link rel="shortcut icon" th:href="@{/assets/media/logos/logo.svg}"/>
     <link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
@@ -13,11 +13,11 @@
     <div class="row py-5">
         <div class="col-md-6">
             <h2>Device Activation</h2>
-            <p>Enter the activation code to authorize the device.</p>
+            <p>Enter the security code to authorize the device.</p>
             <div class="mt-5">
                 <form th:action="@{/oauth2/device_verification}" method="post">
                     <div class="mb-3">
-                        <label for="user_code" class="form-label">Activation Code</label>
+                        <label for="user_code" class="form-label">Security Code</label>
                         <input type="text" id="user_code" name="user_code" class="form-control" required autofocus>
                         <!--begin::Section-->
                         <div class="mb-10">
