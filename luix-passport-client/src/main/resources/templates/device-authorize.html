@@ -13,7 +13,7 @@
     <div class="row py-5">
         <div class="col-md-5">
             <h2>Device Authorization</h2>
-            <p>Please visit <a th:href="${verificationUri}" target="_blank" th:text="${verificationUri?.replaceFirst('https?://', '')}"></a> on security device to continue.</p>
+            <p>Please visit <a th:href="${verificationUri}" target="_blank" th:text="${verificationUri?.replaceFirst('https?://', '')}"></a> on the security device to continue.</p>
             <p class="mt-5">Security Code</p>
             <div class="card text-bg-light">
                 <span class="card-body" style="font-size: 2em; letter-spacing: 2rem" th:text="${userCode}"></span>
