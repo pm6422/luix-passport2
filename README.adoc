@@ -22,6 +22,10 @@ Before you can build this project, you must install JDK on your machine. You can
 ```bash
 sdk install java 17.0.6-tem
 ```
+Or
+```bash
+apt install openjdk-17-jdk openjdk-17-jre -y
+```
 NOTE: Java compatability: Java 17 above
 
 [[technology-stack]]
