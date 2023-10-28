@@ -9,8 +9,10 @@ services:
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
       # Note: It can NOT use localhost as the database URL
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/luix-passport?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:80:4001
+      - 80:4001
     healthcheck:
       test:
         - CMD
