@@ -22,7 +22,7 @@ Before you can build this project, you must install JDK on your machine. You can
 ```bash
 sdk install java 17.0.6-tem
 ```
-Or
+Or install by Linux package management tool
 ```bash
 apt install openjdk-17-jdk openjdk-17-jre -y
 ```
