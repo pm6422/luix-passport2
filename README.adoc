@@ -38,15 +38,12 @@ Install docker to simplify development, run:
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
 ```
 
-Install docker compose, refer to:
-
-https://docs.docker.com/compose/install[Overview of installing Docker Compose]
-
 [[nodejs]]
 == Using NodeJS
 Install NodeJS to simplify local development, refer to:
-
-https://nodejs.org/en/download[NodeJS Download]
+```
+apt install nodejs npm -y
+```
 
 [[app_arch]]
 == Application Architecture
