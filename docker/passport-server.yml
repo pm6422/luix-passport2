@@ -1,17 +1,17 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 name: luix-passport
 services:
-  nginx:
-    image: nginx
-    volumes:
-      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./config/nginx/key.pem:/root/ssl/key.pem
-      - ./config/nginx/cert.pem:/root/ssl/cert.pem
-    ports:
-      - 443:443
-    depends_on:
-      server:
-        condition: service_healthy
+#  nginx:
+#    image: nginx
+#    volumes:
+#      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+#      - ./config/nginx/key.pem:/root/ssl/key.pem
+#      - ./config/nginx/cert.pem:/root/ssl/cert.pem
+#    ports:
+#      - 443:443
+#    depends_on:
+#      server:
+#        condition: service_healthy
   server:
     image: luix-passport-server
     environment:
@@ -23,7 +23,8 @@ services:
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 127.0.0.1:4001:4001
+      - 80:4001
+#      - 127.0.0.1:4001:4001
     healthcheck:
       test:
         - CMD
