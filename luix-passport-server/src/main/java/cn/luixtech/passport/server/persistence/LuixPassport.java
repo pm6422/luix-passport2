@@ -12,6 +12,7 @@ import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
+import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 
 import java.util.Arrays;
@@ -76,6 +77,11 @@ public class LuixPassport extends SchemaImpl {
     public final UserAuthority USER_AUTHORITY = UserAuthority.USER_AUTHORITY;
 
     /**
+     * The table <code>luix-passport.user_login</code>.
+     */
+    public final UserLogin USER_LOGIN = UserLogin.USER_LOGIN;
+
+    /**
      * The table <code>luix-passport.user_permission</code>.
      */
     public final UserPermission USER_PERMISSION = UserPermission.USER_PERMISSION;
@@ -104,6 +110,7 @@ public class LuixPassport extends SchemaImpl {
             User.USER,
             UserAuthenticationEvent.USER_AUTHENTICATION_EVENT,
             UserAuthority.USER_AUTHORITY,
+            UserLogin.USER_LOGIN,
             UserPermission.USER_PERMISSION);
     }
 }

@@ -12,6 +12,7 @@ import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
+import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationConsentRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationRecord;
@@ -20,6 +21,7 @@ import cn.luixtech.passport.server.persistence.tables.records.SpringSessionAttri
 import cn.luixtech.passport.server.persistence.tables.records.SpringSessionRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthenticationEventRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthorityRecord;
+import cn.luixtech.passport.server.persistence.tables.records.UserLoginRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 
@@ -53,6 +55,7 @@ public class Keys {
     public static final UniqueKey<UserRecord> KEY_USER_USERNAME = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_username"), new TableField[] { User.USER.USERNAME }, true);
     public static final UniqueKey<UserAuthenticationEventRecord> KEY_USER_AUTHENTICATION_EVENT_PRIMARY = Internal.createUniqueKey(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT, DSL.name("KEY_user_authentication_event_PRIMARY"), new TableField[] { UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.ID }, true);
     public static final UniqueKey<UserAuthorityRecord> KEY_USER_AUTHORITY_PRIMARY = Internal.createUniqueKey(UserAuthority.USER_AUTHORITY, DSL.name("KEY_user_authority_PRIMARY"), new TableField[] { UserAuthority.USER_AUTHORITY.USER_ID, UserAuthority.USER_AUTHORITY.AUTHORITY }, true);
+    public static final UniqueKey<UserLoginRecord> KEY_USER_LOGIN_PRIMARY = Internal.createUniqueKey(UserLogin.USER_LOGIN, DSL.name("KEY_user_login_PRIMARY"), new TableField[] { UserLogin.USER_LOGIN.ID }, true);
     public static final UniqueKey<UserPermissionRecord> KEY_USER_PERMISSION_PRIMARY = Internal.createUniqueKey(UserPermission.USER_PERMISSION, DSL.name("KEY_user_permission_PRIMARY"), new TableField[] { UserPermission.USER_PERMISSION.USER_ID, UserPermission.USER_PERMISSION.PERMISSION }, true);
 
     // -------------------------------------------------------------------------
@@ -60,5 +63,6 @@ public class Keys {
     // -------------------------------------------------------------------------
 
     public static final ForeignKey<UserAuthorityRecord, UserRecord> FK_USER_AUTHORITY_USER_ID = Internal.createForeignKey(UserAuthority.USER_AUTHORITY, DSL.name("fk_user_authority_user_id"), new TableField[] { UserAuthority.USER_AUTHORITY.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
+    public static final ForeignKey<UserLoginRecord, UserRecord> FK_USER_LOGIN_USER_ID = Internal.createForeignKey(UserLogin.USER_LOGIN, DSL.name("fk_user_login_user_id"), new TableField[] { UserLogin.USER_LOGIN.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserPermissionRecord, UserRecord> FK_USER_PERMISSION_USER_ID = Internal.createForeignKey(UserPermission.USER_PERMISSION, DSL.name("fk_user_permission_user_id"), new TableField[] { UserPermission.USER_PERMISSION.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
 }

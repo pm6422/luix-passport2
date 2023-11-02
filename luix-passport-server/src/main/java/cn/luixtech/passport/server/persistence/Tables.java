@@ -12,6 +12,7 @@ import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
+import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 
 
@@ -60,6 +61,11 @@ public class Tables {
      * The table <code>luix-passport.user_authority</code>.
      */
     public static final UserAuthority USER_AUTHORITY = UserAuthority.USER_AUTHORITY;
+
+    /**
+     * The table <code>luix-passport.user_login</code>.
+     */
+    public static final UserLogin USER_LOGIN = UserLogin.USER_LOGIN;
 
     /**
      * The table <code>luix-passport.user_permission</code>.
