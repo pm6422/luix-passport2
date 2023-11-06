@@ -5,5 +5,8 @@ services:
     image: nginx
     volumes:
       - ./config/nginx/nginx-default.conf:/etc/nginx/nginx.conf:ro
+      - ./config/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./config/nginx/key.pem:/root/ssl/key.pem
+      - ./config/nginx/cert.pem:/root/ssl/cert.pem
     ports:
       - 8080:80
