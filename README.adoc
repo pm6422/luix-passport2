@@ -247,6 +247,8 @@ https://zhuanlan.zhihu.com/p/441831786[spring boot 2.x 中使用oauth2趟坑记�
 
 https://idontwannarock.github.io/spring-security-reference/docs/1_gett_star/[Spring Security 之不要太相信這個中文手冊]
 
+https://goodmemory.cc/%E5%9F%BA%E4%BA%8Ecertbot%E7%9A%84letsencrypt%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/[基于certbot的letsencrypt安装使用]
+
 [[thanks]]
 == Thanks
 Thanks for the license provided by JetBrains
