@@ -7,8 +7,10 @@
   "scripts": {
     "app:start": "./mvnw",
     "all:up": "docker compose -f docker/all.yml up --wait",
-    "prod": "docker compose -f docker/prod.yml up --wait",
-    "nginx": "docker compose -f docker/nginx.yml up -d",
+    "prod:up": "docker compose -f docker/prod.yml up --wait",
+    "prod:down": "docker compose -f docker/prod.yml down",
+    "nginx:up": "docker compose -f docker/nginx.yml up -d",
+    "nginx:down": "docker compose -f docker/nginx.yml down",
     "docker:build": "./mvnw -pl luix-passport-server,luix-passport-resource-server,luix-passport-client -ntp verify -DskipTests -Prelease jib:dockerBuild",
     "docker:build:arm64": "npm run java:docker -- -Djib-maven-plugin.architecture=arm64"
   }
