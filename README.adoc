@@ -67,6 +67,11 @@ npm run docker:build:arm64
 npm run all:up
 ```
 
+=== 3. View docker log
+```bash
+docker logs luix-passport-nginx-1
+```
+
 [[access_app]]
 == Application URLs
 * Navigate to `http://127.0.0.1:4001` to access authorization server
