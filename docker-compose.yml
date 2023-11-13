@@ -5,9 +5,9 @@ services:
     image: nginx:1.15-alpine
     restart: unless-stopped
     volumes:
-      - ./config/nginx:/etc/nginx/conf.d
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./docker/config/nginx:/etc/nginx/conf.d
+      - ./docker/config/certbot/conf:/etc/letsencrypt
+      - ./docker/config/certbot/www:/var/www/certbot
     ports:
       - "80:80"
       - "443:443"
@@ -17,7 +17,7 @@ services:
     image: certbot/certbot
     restart: unless-stopped
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./docker/config/certbot/conf:/etc/letsencrypt
+      - ./docker/config/certbot/www:/var/www/certbot
 #   This will check if your certificate is up for renewal every 12 hours as recommended by Let’s Encrypt
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
