@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if ! [ -x "$(command -v  docker compose -f nginx.yml)" ]; then
-  echo 'Error:  docker compose -f nginx.yml is not installed.' >&2
+if ! [ -x "$(command -v docker compose)" ]; then
+  echo 'Error: docker compose is not installed.' >&2
   exit 1
 fi
 
@@ -9,7 +9,7 @@ domains=(passport.luixtech.cn www.passport.luixtech.cn) # Change to your version
 rsa_key_size=4096
 
 # certbot output directory
-data_path="./config/certbot"
+data_path="./docker/config/certbot"
 email="louis@luixtech.cn" # Change to your version
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
@@ -32,7 +32,7 @@ fi
 echo "### Creating dummy certificate for $domains ..."
 path="/etc/letsencrypt/live/$domains"
 mkdir -p "$data_path/conf/live/$domains"
- docker compose -f nginx.yml run --rm --entrypoint "\
+docker compose run --rm --entrypoint "\
   openssl req -x509 -nodes -newkey rsa:$rsa_key_size -days 1\
     -keyout '$path/privkey.pem' \
     -out '$path/fullchain.pem' \
@@ -41,11 +41,11 @@ echo
 
 
 echo "### Starting nginx ..."
- docker compose -f nginx.yml up --force-recreate -d nginx
+docker compose up --force-recreate -d nginx
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
- docker compose -f nginx.yml run --rm --entrypoint "\
+docker compose run --rm --entrypoint "\
   rm -Rf /etc/letsencrypt/live/$domains && \
   rm -Rf /etc/letsencrypt/archive/$domains && \
   rm -Rf /etc/letsencrypt/renewal/$domains.conf" certbot
@@ -68,7 +68,7 @@ esac
 # Enable staging mode if needed
 if [ $staging != "0" ]; then staging_arg="--staging"; fi
 
- docker compose -f nginx.yml run --rm --entrypoint "\
+docker compose run --rm --entrypoint "\
   certbot certonly --webroot -w /var/www/certbot \
     $staging_arg \
     $email_arg \
@@ -79,4 +79,4 @@ if [ $staging != "0" ]; then staging_arg="--staging"; fi
 echo
 
 echo "### Reloading nginx ..."
- docker compose -f nginx.yml exec nginx nginx -s reload
+docker compose exec nginx nginx -s reload
