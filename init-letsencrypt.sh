@@ -9,7 +9,7 @@ domains=(passport.luixtech.cn www.passport.luixtech.cn) # Change to your version
 rsa_key_size=4096
 
 # certbot output directory
-data_path="./config/certbot"
+data_path="./docker/config/certbot"
 email="louis@luixtech.cn" # Change to your version
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
