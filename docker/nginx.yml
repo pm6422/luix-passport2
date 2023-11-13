@@ -1,5 +1,5 @@
-# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: nginx
+version: '3'
+
 services:
   nginx:
     image: nginx:1.15-alpine
@@ -13,9 +13,6 @@ services:
       - "443:443"
     #   You need to make sure that nginx reloads the newly obtained certificates
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-#    depends_on:
-#      server:
-#        condition: service_healthy
   certbot:
     image: certbot/certbot
     restart: unless-stopped
