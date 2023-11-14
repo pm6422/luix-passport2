@@ -67,11 +67,6 @@ npm run docker:build:arm64
 npm run all:up
 ```
 
-=== 3. View docker log
-```bash
-docker logs luix-passport-nginx-1
-```
-
 [[access_app]]
 == Application URLs
 * Navigate to `http://127.0.0.1:4001` to access authorization server
@@ -251,10 +246,6 @@ https://oauth.net/code/java/[OAuth Libraries for Java]
 https://zhuanlan.zhihu.com/p/441831786[spring boot 2.x 中使用oauth2趟坑记录]
 
 https://idontwannarock.github.io/spring-security-reference/docs/1_gett_star/[Spring Security 之不要太相信這個中文手冊]
-
-https://goodmemory.cc/%E5%9F%BA%E4%BA%8Ecertbot%E7%9A%84letsencrypt%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/[基于certbot的letsencrypt安装使用]
-
-https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71[Nginx and Let’s Encrypt with Docker in Less Than 5 Minutes]
 
 [[thanks]]
 == Thanks
