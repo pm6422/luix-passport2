@@ -1,4 +1,4 @@
-= LUI️✘ Passport Nginx Usage
+= Nginx Docker Usage
 
 This project is referred by https://medium.com/@pentacent/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71[step-by-step guide on how to
 set up nginx and Let’s Encrypt with Docker].
