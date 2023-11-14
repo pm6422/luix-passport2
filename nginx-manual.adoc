@@ -21,7 +21,7 @@ docker compose up
 
 === 4. View the log
 ```bash
-docker logs luix-passport-nginx-1
+docker logs -f docker-nginx-1
 ```
 
 [[references]]
