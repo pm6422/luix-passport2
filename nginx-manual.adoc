@@ -11,12 +11,12 @@ set up nginx and Let’s Encrypt with Docker].
 
 === 2. Run the init script
 ```bash
-./init-letsencrypt.sh
+docker/init-letsencrypt.sh
 ```
 
-=== 3. Run the server
+=== 3. Run the nginx and certbot docker
 ```bash
-docker compose up
+npm run nginx:up
 ```
 
 === 4. View the log
