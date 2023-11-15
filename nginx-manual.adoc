@@ -21,7 +21,7 @@ npm run nginx:up
 
 === 4. View the nginx log
 ```bash
-docker logs -f docker-nginx-1
+docker logs -f luix-passport-nginx-1
 ```
 
 [[references]]
