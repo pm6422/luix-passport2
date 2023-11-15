@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginx:alpine
+    image: nginx:1.25-alpine
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
       # init-letsencrypt.sh will generate certbot files to docker/config/certbot
@@ -12,7 +12,7 @@ services:
     #   You need to make sure that nginx reloads the newly obtained certificates
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:v2.7.0
     volumes:
       - ./config/certbot/conf:/etc/letsencrypt
       - ./config/certbot/www:/var/www/certbot
