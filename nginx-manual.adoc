@@ -19,7 +19,7 @@ docker/init-letsencrypt.sh
 npm run nginx:up
 ```
 
-=== 4. View the log
+=== 4. View the nginx log
 ```bash
 docker logs -f docker-nginx-1
 ```
