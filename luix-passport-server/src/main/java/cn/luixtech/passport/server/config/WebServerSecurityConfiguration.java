@@ -54,7 +54,7 @@ public class WebServerSecurityConfiguration {
 			.oauth2ResourceServer(server-> server.jwt(Customizer.withDefaults()))
 			.authorizeHttpRequests(authorize ->
 				authorize
-					.requestMatchers("/assets/**", "/webjars/**", "/login").permitAll()
+					.requestMatchers("favicon.ico", "/assets/**", "/webjars/**", "/login").permitAll()
 					.requestMatchers("/management/health/**").permitAll()
 					.requestMatchers("/api/third-party-clients/**").hasAuthority("SCOPE_message.read")
 					.requestMatchers("/swagger-ui/**").hasAuthority("ROLE_DEVELOPER")
