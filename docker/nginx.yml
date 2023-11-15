@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginx:1.15-alpine
+    image: nginx:alpine
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
       # init-letsencrypt.sh will generate certbot files to docker/config/certbot
