@@ -5,7 +5,7 @@ services:
     image: luix-passport-server
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
-      - SPRING_PROFILES_ACTIVE=test
+      - SPRING_PROFILES_ACTIVE=prod
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
       # Note: It can NOT use localhost as the database URL
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/luix-passport?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
