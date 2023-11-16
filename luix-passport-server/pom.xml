@@ -17,7 +17,7 @@
         <harborUrl/>
         <harborUsername/>
         <java.version>17</java.version>
-        <jib-maven-plugin.architecture></jib-maven-plugin.architecture>
+        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -139,55 +139,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>3.3.0</version>
-                <configuration>
-                    <from>
-                        <image>eclipse-temurin:17-jre</image>
-                        <platforms>
-                            <platform>
-                                <architecture>${jib-maven-plugin.architecture}</architecture>
-                                <os>linux</os>
-                            </platform>
-                        </platforms>
-                    </from>
-                    <to>
-                        <image>${harborUrl}/${project.artifactId}:${project.version}</image>
-                        <auth>
-                            <username>${harborUsername}</username>
-                            <password>${harborPassword}</password>
-                        </auth>
-                    </to>
-                    <container>
-                        <entrypoint>
-                            <shell>bash</shell>
-                            <option>-c</option>
-                            <arg>/entrypoint.sh</arg>
-                        </entrypoint>
-                        <ports>
-                            <port>4001</port>
-                        </ports>
-                        <environment>
-                            <SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
-                            <SLEEP_TIME>1</SLEEP_TIME>
-                            <START_CLASS>${start-class}</START_CLASS>
-                        </environment>
-                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-                        <user>1000</user>
-                    </container>
-                    <extraDirectories>
-                        <paths>src/main/jib</paths>
-                        <permissions>
-                            <permission>
-                                <file>/entrypoint.sh</file>
-                                <mode>755</mode>
-                            </permission>
-                        </permissions>
-                    </extraDirectories>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
                 <version>3.14.15</version>
@@ -292,7 +243,7 @@
                                 <image>eclipse-temurin:17-jdk-focal</image>
                                 <platforms>
                                     <platform>
-                                        <architecture>amd64</architecture>
+                                        <architecture>${jib-maven-plugin.architecture}</architecture>
                                         <os>linux</os>
                                     </platform>
                                 </platforms>
