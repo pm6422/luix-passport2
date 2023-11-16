@@ -10,6 +10,7 @@ import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -55,8 +56,12 @@ public class AuthorizationServerConfiguration {
     public static final String CONSENT_PAGE_URI         = "/oauth2/consent";
 
     @Bean
-    public AuthorizationServerSettings authorizationServerSettings() {
-        return AuthorizationServerSettings.builder().build();
+    public AuthorizationServerSettings authorizationServerSettings(ApplicationProperties applicationProperties) {
+        AuthorizationServerSettings.Builder builder = AuthorizationServerSettings.builder();
+        if (StringUtils.isNotEmpty(applicationProperties.getUrl().getAuthServerUrl())) {
+            builder.issuer(applicationProperties.getUrl().getAuthServerUrl());
+        }
+        return builder.build();
     }
 
     @Bean

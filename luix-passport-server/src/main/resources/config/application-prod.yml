@@ -6,3 +6,9 @@ spring:
   liquibase:
     enabled: true
     drop-first: true # reset database
+# ===================================================================
+# Application specific properties
+# ===================================================================
+application:
+  url:
+    auth-server-url: ${AUTH_SERVER_URL:https://passport.luixtech.cn}
