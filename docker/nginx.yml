@@ -26,7 +26,7 @@ services:
     image: portainer/portainer-ce:2.19.2
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - ./config/portainer/data:/data
     # If you want to expose these ports outside your dev PC, remove the "127.0.0.1:" prefix
     ports:
       - 127.0.0.1:8000:8000
