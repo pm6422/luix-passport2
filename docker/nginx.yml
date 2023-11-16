@@ -13,6 +13,8 @@ services:
       - "443:443"
     #   You need to make sure that nginx reloads the newly obtained certificates
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    # host network mode can access auth server in docker environment
+    network_mode: host
   certbot:
     image: certbot/certbot:v2.7.0
     volumes:
