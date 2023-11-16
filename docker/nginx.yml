@@ -1,4 +1,5 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+# Refer to https://beta.nginxconfig.io/?0.domain=passport.luixtech.cn&0.php=false&0.proxy&0.proxy_pass=http:%2F%2F127.0.0.1:4001
 name: luix-passport
 services:
   nginx:
