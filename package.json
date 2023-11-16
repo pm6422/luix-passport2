@@ -11,7 +11,7 @@
     "prod:down": "docker compose -f docker/prod.yml down",
     "nginx:up": "docker compose -f docker/nginx.yml up -d",
     "nginx:down": "docker compose -f docker/nginx.yml down",
-    "docker:build": "./mvnw -pl luix-passport-server -ntp verify -DskipTests -Prelease jib:dockerBuild",
-    "docker:build:arm64": "npm run docker:build -- -Djib-maven-plugin.architecture=arm64"
+    "docker:build": "./mvnw -pl luix-passport-server -Djib-maven-plugin.architecture=amd64 -ntp verify -DskipTests -Prelease jib:dockerBuild",
+    "docker:build:arm64": "./mvnw -pl luix-passport-server -Djib-maven-plugin.architecture=arm64 -ntp verify -DskipTests -Prelease jib:dockerBuild"
   }
 }
