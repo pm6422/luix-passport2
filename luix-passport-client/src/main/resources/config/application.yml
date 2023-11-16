@@ -60,6 +60,7 @@ spring:
       client:
         provider:
           spring:
+#            issuer-uri: ${AUTH_SERVER_URL:https://passport.luixtech.cn}
             issuer-uri: ${AUTH_SERVER_URL:http://localhost:4001}
         registration:
           messaging-client-oidc:
@@ -136,6 +137,7 @@ luix:
 # ===================================================================
 application:
   url:
+#    auth-server-url: ${AUTH_SERVER_URL:https://passport.luixtech.cn}
     auth-server-url: ${AUTH_SERVER_URL:http://localhost:4001}
     resource-server-url: ${RESOURCE_SERVER_URL:http://localhost:4002}
     auth-server-authorities: ${application.url.auth-server-url}/api/third-party-clients/authorities
