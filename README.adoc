@@ -27,8 +27,8 @@ sdk install java 17.0.6-tem
 ```
 NOTE: Java compatability: Java 17 above
 
-[[technology-stack]]
-== Technology Stack
+[[tech-stack]]
+== Tech Stack
 - Java 17
 - Spring Boot 3.1.0
 - Spring Security OAuth2 Authorization Server 1.1.0
