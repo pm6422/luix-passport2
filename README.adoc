@@ -242,7 +242,7 @@ Alternatively, you can set the following environment variables in the Spring Boo
 
 [[references]]
 == References
-https://docs.spring.io/spring-security/reference/index.html[OSpring Security Reference]
+https://docs.spring.io/spring-security/reference/index.html[Spring Security Reference]
 
 https://oauth.net/code/java/[OAuth Libraries for Java]
 
