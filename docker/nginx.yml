@@ -30,5 +30,5 @@ services:
     # If you want to expose these ports outside your dev PC, remove the "127.0.0.1:" prefix
     ports:
       - 127.0.0.1:8000:8000
-      - 127.0.0.1:9000:9000
       - 127.0.0.1:9443:9443
+      - 9000:9000
