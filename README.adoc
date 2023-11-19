@@ -21,7 +21,7 @@ image::images/demo.gif[]
 
 [[requirements]]
 == Requirements
-Prior to building this project, it is necessary to install the Java Development Kit (JDK) on your machine. The JDK can be installed using https://sdkman.io/install[SDK Man].
+Prior to building this project, it is necessary to install the JDK on your machine. The JDK can be installed using https://sdkman.io/install[SDK Man].
 
 ```bash
 sdk install java 17.0.6-tem
