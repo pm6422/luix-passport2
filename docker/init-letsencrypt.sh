@@ -14,6 +14,9 @@ data_path="./config/certbot"
 email="louis@luixtech.cn" # Change to your version
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
+# delete certbot directory
+rm -rf $data_path
+
 if [ -d "$data_path" ]; then
   read -p "Existing data found for $domains. Continue and replace existing certificate? (y/n) " decision
   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
