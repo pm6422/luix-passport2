@@ -5,8 +5,8 @@ if ! [ -x "$(command -v docker compose)" ]; then
   exit 1
 fi
 
-#domains=(passport.luixtech.cn portainer.passport.luixtech.cn) # Change to your version, multiple domains are seperated by space key
-domains=(passport.luixtech.cn) # Change to your version, multiple domains are seperated by space key
+#domains=(luixtech.cn portainer.luixtech.cn) # Change to your version, multiple domains are seperated by space key
+domains=(luixtech.cn) # Change to your version, multiple domains are seperated by space key
 rsa_key_size=4096
 
 # certbot output directory
