@@ -7,9 +7,9 @@ services:
     volumes:
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./config/nginx/app:/etc/nginx/conf.d
-      # Download ssl certificates from https://console.cloud.tencent.com/ssl
-      # Installation Manual: https://cloud.tencent.com/document/product/400/35244?from_cn_redirect=1
-      - ./config/ssl:/etc/ssl
+      # init-letsencrypt.sh will generate certbot files to docker/config/certbot
+      - ./config/certbot/conf:/etc/letsencrypt
+      - ./config/certbot/www:/var/www/certbot
     ports:
       - "80:80"
       - "443:443"
