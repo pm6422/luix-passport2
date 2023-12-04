@@ -9,6 +9,7 @@ services:
       - ./config/nginx/app:/etc/nginx/conf.d
       # Download ssl certificates from https://console.cloud.tencent.com/ssl
       # Installation Manual: https://cloud.tencent.com/document/product/400/35244?from_cn_redirect=1
+      # View already registered certificate: https://crt.sh/?q=luixtech.cn&dir=^&sort=1&group=none
       - ./config/ssl:/etc/ssl
     ports:
       - "80:80"
