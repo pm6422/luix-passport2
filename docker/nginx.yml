@@ -10,6 +10,7 @@ services:
       # init-letsencrypt.sh will generate certbot files to docker/config/certbot
       - ./config/certbot/conf:/etc/letsencrypt
       - ./config/certbot/www:/var/www/certbot
+      - ./config/ssl:/etc/ssl
     ports:
       - "80:80"
       - "443:443"
