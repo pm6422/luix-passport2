@@ -5,17 +5,13 @@ if ! [ -x "$(command -v docker compose)" ]; then
   exit 1
 fi
 
-#domains=(luixtech.cn portainer.luixtech.cn) # Change to your version, multiple domains are seperated by space key
-domains=(luixtech.cn) # Change to your version, multiple domains are seperated by space key
+domains=(passport.luixtech.cn) # Change to your version, multiple domains are seperated by space key
 rsa_key_size=4096
 
 # certbot output directory
 data_path="./config/certbot"
 email="louis@luixtech.cn" # Change to your version
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
-
-# delete certbot directory
-rm -rf $data_path
 
 if [ -d "$data_path" ]; then
   read -p "Existing data found for $domains. Continue and replace existing certificate? (y/n) " decision
