@@ -1,7 +1,7 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: luix-passport
+name: luix
 services:
-  client:
+  passport-client:
     image: luix-passport-client
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
@@ -24,9 +24,9 @@ services:
       timeout: 5s
       retries: 40
     depends_on:
-      server:
+      passport-server:
         condition: service_healthy
-  server:
+  passport-server:
     image: luix-passport-server
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
@@ -48,7 +48,7 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
-  resource-server:
+  passport-resource-server:
     image: luix-passport-resource-server
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
