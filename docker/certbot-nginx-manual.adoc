@@ -17,12 +17,7 @@ cd docker
 
 === 3. Run the nginx and certbot docker
 ```bash
-npm run nginx:up
-```
-
-=== 4. View the nginx log
-```bash
-docker logs -f luix-nginx-1
+npm run nginx-certbot:up
 ```
 
 [[references]]
