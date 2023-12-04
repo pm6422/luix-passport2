@@ -15,13 +15,6 @@ services:
       - "443:443"
     #   You need to make sure that nginx reloads the newly obtained certificates
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-  certbot:
-    image: certbot/certbot:v2.7.0
-    volumes:
-      - ./config/certbot/conf:/etc/letsencrypt
-      - ./config/certbot/www:/var/www/certbot
-    #   This will check if your certificate is up for renewal every 12 hours as recommended by Let’s Encrypt
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   portainer:
     image: portainer/portainer-ce:2.19.2
     volumes:
