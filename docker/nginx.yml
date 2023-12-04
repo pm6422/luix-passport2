@@ -16,7 +16,7 @@ services:
     #   You need to make sure that nginx reloads the newly obtained certificates
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   portainer:
-    image: portainer/portainer-ce:2.19.2
+    image: portainer/portainer-ce:2.19.3
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/portainer/data:/data
