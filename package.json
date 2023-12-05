@@ -7,6 +7,7 @@
   "scripts": {
     "app:start": "./mvnw",
     "all:up": "docker compose -f docker/all.yml up --wait",
+    "all:down": "docker compose -f docker/all.yml down",
     "docker:build": "./mvnw -pl luix-passport-server,luix-passport-resource-server,luix-passport-client -ntp verify -DskipTests -Prelease jib:dockerBuild",
     "docker:build:arm64": "npm run docker:build -- -Djib-maven-plugin.architecture=arm64",
     "prod:up": "docker compose -f docker/prod.yml up --wait",
