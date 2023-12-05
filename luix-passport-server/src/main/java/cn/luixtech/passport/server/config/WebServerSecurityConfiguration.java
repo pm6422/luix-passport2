@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.aop.Advisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -25,16 +26,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration(proxyBeanMethods = false)
 public class WebServerSecurityConfiguration {
 
-    /**
-     * Refer to <a href="https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html">Using a Custom Authorization Manager</a>
-     *
-     * @param manager DynamicAuthorizationManager
-     * @return Advisor
-     */
-    @Bean
-    public Advisor preAuthorize(DynamicAuthorizationManager manager) {
-        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize(manager);
-    }
+//    /**
+//     * Refer to <a href="https://docs.spring.io/spring-security/reference/servlet/authorization/method-security.html">Using a Custom Authorization Manager</a>
+//     *
+//     * @param manager DynamicAuthorizationManager
+//     * @return Advisor
+//     */
+//    @Bean
+//    public Advisor preAuthorize(@Lazy DynamicAuthorizationManager manager) {
+//        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize(manager);
+//    }
 
 //    @Bean
 //    public WebSecurityCustomizer webSecurityCustomizer() {
