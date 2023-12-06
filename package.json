@@ -5,7 +5,6 @@
   "description": "Luix Passport Package Management",
   "license": "UNLICENSED",
   "scripts": {
-    "app:start": "./mvnw",
     "all:up": "docker compose -f docker/all.yml up --wait",
     "all:down": "docker compose -f docker/all.yml down",
     "docker:build": "./mvnw package -ntp verify -DskipTests -Prelease",
