@@ -20,4 +20,4 @@ jobs:
           cache: maven
       - name: Build and push docker image to docker registry
         #      run: mvn compile jib:build
-        run: ./mvnw package -ntp verify -DskipTests -Prelease -Djib.arch=arm64 -Djib.goal=build -Djib.harbor.url=pm6422.jfrog.io/default-docker-virtual/ -Djib.harbor.username=pm6422@126.com -Djib.harbor.password=Test12345
+        run: npm run docker:deploy
