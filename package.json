@@ -8,12 +8,6 @@
     "all:up": "docker compose -f docker/all.yml up --wait",
     "all:down": "docker compose -f docker/all.yml down",
     "docker:build": "./mvnw compile -ntp verify -DskipTests -Prelease",
-    "docker:build:arm64": "npm run docker:build -- -Djib.arch=arm64",
-    "prod:up": "docker compose -f docker/prod.yml up --wait",
-    "prod:down": "docker compose -f docker/prod.yml down",
-    "nginx:up": "docker compose -f docker/nginx.yml up -d",
-    "nginx:down": "docker compose -f docker/nginx.yml down",
-    "nginx-certbot:up": "docker compose -f docker/nginx-certbot.yml up -d",
-    "nginx-certbot:down": "docker compose -f docker/nginx-certbot.yml down"
+    "docker:build:arm64": "npm run docker:build -- -Djib.arch=arm64"
   }
 }
