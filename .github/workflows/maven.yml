@@ -20,4 +20,4 @@ jobs:
           cache: maven
       - name: Build and push docker image to docker registry
         # run: mvn compile jib:build
-        run: npm run docker:build:arm64 -- -Djib.goal=build -Djib.registry.url=ttl.sh/
+        run: npm run docker:build:arm64 -- -Djib.goal=build -Djib.registry.url=${{vars.DOCKER_REGISTRY_URL}}
