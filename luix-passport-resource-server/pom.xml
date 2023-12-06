@@ -15,6 +15,7 @@
     <properties>
         <java.version>21</java.version>
         <jib.arch>amd64</jib.arch>
+        <jib.goal>dockerBuild</jib.goal>
         <jib.harbor.password/>
         <jib.harbor.url/>
         <jib.harbor.username/>
@@ -114,7 +115,11 @@
                                 </platforms>
                             </from>
                             <to>
-                                <image>${project.artifactId}:latest</image>
+                                <image>${jib.harbor.url}${project.artifactId}:latest</image>
+                                <auth>
+                                    <username>${jib.harbor.username}</username>
+                                    <password>${jib.harbor.password}</password>
+                                </auth>
                             </to>
                             <container>
                                 <entrypoint>
@@ -151,6 +156,15 @@
                                 </permissions>
                             </extraDirectories>
                         </configuration>
+                        <executions>
+                            <execution>
+                                <id>build</id>
+                                <goals>
+                                    <goal>${jib.goal}</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
