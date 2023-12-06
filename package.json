@@ -9,6 +9,7 @@
     "all:down": "docker compose -f docker/all.yml down",
     "docker:build": "./mvnw package -ntp verify -DskipTests -Prelease",
     "docker:build:arm64": "npm run docker:build -- -Djib.arch=arm64",
+    "docker:deploy": "./mvnw package -ntp verify -DskipTests -Prelease -Djib.arch=arm64 -Djib.goal=build -Djib.harbor.url=pm6422.jfrog.io/default-docker-virtual/ -Djib.harbor.username=pm6422@126.com -Djib.harbor.password=Test12345",
     "prod:up": "docker compose -f docker/prod.yml up --wait",
     "prod:down": "docker compose -f docker/prod.yml down",
     "nginx:up": "docker compose -f docker/nginx.yml up -d",
