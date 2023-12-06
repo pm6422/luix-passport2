@@ -13,11 +13,11 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <properties>
-        <harborPassword/>
-        <harborUrl/>
-        <harborUsername/>
         <java.version>21</java.version>
-        <jib-maven-plugin.architecture>amd64</jib-maven-plugin.architecture>
+        <jib.arch>amd64</jib.arch>
+        <jib.harbor.password/>
+        <jib.harbor.url/>
+        <jib.harbor.username/>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -136,7 +136,7 @@
                                 <image>eclipse-temurin:21-jre-jammy</image>
                                 <platforms>
                                     <platform>
-                                        <architecture>${jib-maven-plugin.architecture}</architecture>
+                                        <architecture>${jib.arch}</architecture>
                                         <os>linux</os>
                                     </platform>
                                 </platforms>
