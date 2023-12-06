@@ -16,9 +16,9 @@
         <java.version>21</java.version>
         <jib.arch>amd64</jib.arch>
         <jib.goal>dockerBuild</jib.goal>
-        <jib.harbor.password/>
-        <jib.harbor.url/>
-        <jib.harbor.username/>
+        <jib.registry.password/>
+        <jib.registry.url/>
+        <jib.registry.username/>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -143,10 +143,10 @@
                                 </platforms>
                             </from>
                             <to>
-                                <image>${jib.harbor.url}${project.artifactId}:latest</image>
+                                <image>${jib.registry.url}${project.artifactId}:1d</image>
                                 <auth>
-                                    <username>${jib.harbor.username}</username>
-                                    <password>${jib.harbor.password}</password>
+                                    <username>${jib.registry.username}</username>
+                                    <password>${jib.registry.password}</password>
                                 </auth>
                             </to>
                             <container>
