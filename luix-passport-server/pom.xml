@@ -305,7 +305,7 @@
                                 <goals>
                                     <goal>${jib.goal}</goal>
                                 </goals>
-                                <phase>package</phase>
+                                <phase>compile</phase>
                             </execution>
                         </executions>
                     </plugin>

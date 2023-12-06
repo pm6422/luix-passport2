@@ -20,4 +20,4 @@ jobs:
           cache: maven
       - name: Build and push docker image to docker registry
         #      run: mvn compile jib:build
-        run: npm run docker:deploy
+        run: npm run docker:release
