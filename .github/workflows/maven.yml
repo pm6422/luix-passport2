@@ -20,4 +20,4 @@ jobs:
           cache: maven
       - name: Build and push docker image to registry
         # run: mvn compile jib:build
-        run: npm run docker:build:arm64 -- -Djib.goal=build -Djib.registry.url=${{vars.DOCKER_REGISTRY_URL}}
+        run: npm run docker:build:arm64 -- -Djib.goal=build -Djib.registry.url=${{vars.DOCKER_REGISTRY_URL}} -Djib.registry.username=${{vars.DOCKER_REGISTRY_USERNAME}} -Djib.registry.password=${{vars.DOCKER_REGISTRY_PASSWORD}}
