@@ -51,6 +51,10 @@ spring:
     # Otherwise, it will be filled in by maven when building the WAR file
     # Either way, it can be overridden by `--spring.profiles.active` value passed in the commandline or `-Dspring.profiles.active` set in `JAVA_OPTS`
     active: test
+  mail: # specific mail property, used by MailProperties
+    host: smtp.exmail.qq.com
+    username: test@luixtech.com
+    password: LoU-UHR-9dH-8G9-F3G
   banner:
     location: classpath:config/banner-company.txt
   datasource:
