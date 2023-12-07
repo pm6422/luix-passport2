@@ -16,6 +16,7 @@
         <java.version>21</java.version>
         <jib.arch>amd64</jib.arch>
         <jib.goal>dockerBuild</jib.goal>
+        <jib.image.version>latest</jib.image.version>
         <jib.registry.password/>
         <jib.registry.url/>
         <jib.registry.username/>
@@ -258,7 +259,7 @@
                                 </platforms>
                             </from>
                             <to>
-                                <image>${jib.registry.url}${project.artifactId}:1d</image>
+                                <image>${jib.registry.url}${project.artifactId}:${jib.image.version}</image>
                                 <auth>
                                     <username>${jib.registry.username}</username>
                                     <password>${jib.registry.password}</password>
