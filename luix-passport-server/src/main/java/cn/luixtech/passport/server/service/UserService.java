@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.service;
 
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -12,4 +13,8 @@ public interface UserService {
     Set<String> findAuthorities(String userId);
 
     Set<String> findPermissions(String userId);
+
+    User insert(User domain, List<String> authorities, String rawPassword);
+
+    void update(User domain);
 }
