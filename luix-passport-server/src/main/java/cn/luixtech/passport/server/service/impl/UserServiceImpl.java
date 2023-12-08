@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Optional<User> findOne(String loginName) {
-        User user = dslContext.selectFrom(USER)
+        User user = dslContext.select(Tables.USER)
                 .where(USER.USERNAME.eq(loginName))
                 .or(USER.EMAIL.eq(loginName))
                 .or(USER.MOBILE_NO.eq(loginName))
@@ -159,13 +159,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (existingOne == null) {
             throw new DataNotFoundException(domain.getId());
         }
-        int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
+        int existingEmailCount = dslContext.fetchCount(DSL.select(Tables.USER)
                 .where(USER.EMAIL.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
         if (existingEmailCount > 0) {
             throw new DuplicationException(ImmutableMap.of("email", domain.getEmail()));
         }
-        int existingMobileNoCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
+        int existingMobileNoCount = dslContext.fetchCount(DSL.select(Tables.USER)
                 .where(USER.MOBILE_NO.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
         if (existingMobileNoCount > 0) {
