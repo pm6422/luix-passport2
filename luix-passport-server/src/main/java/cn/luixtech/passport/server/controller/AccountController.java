@@ -52,7 +52,7 @@ public class AccountController {
 
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
-    public ResponseEntity<Void> updateCurrentAccount(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
+    public ResponseEntity<Void> updateAccount(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
         // For security reason
         User currentUser = userDao.findById(AuthUtils.getCurrentUserId());
         domain.setId(currentUser.getId());
