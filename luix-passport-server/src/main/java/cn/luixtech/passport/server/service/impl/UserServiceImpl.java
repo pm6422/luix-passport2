@@ -223,6 +223,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(dto.getNewPassword()));
         userDao.update(user);
         log.debug("Changed password for user: {}", user);
-
     }
 }
