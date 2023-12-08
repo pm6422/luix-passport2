@@ -179,16 +179,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDao.update(existingOne);
         log.debug("Updated user: {}", domain);
 
-        // first delete user authorities
-        dslContext.delete(Tables.USER_AUTHORITY)
-                .where(USER_AUTHORITY.USER_ID.eq(domain.getId()))
-                .execute();
+        if (CollectionUtils.isNotEmpty(authorities)) {
+            // first delete user authorities
+            dslContext.delete(Tables.USER_AUTHORITY)
+                    .where(USER_AUTHORITY.USER_ID.eq(domain.getId()))
+                    .execute();
 
-        // then insert user authorities
-        List<UserAuthority> userAuthorities = userAuthorityService.generate(domain.getId(), authorities);
-        userAuthorityDao.insert(userAuthorities);
-        log.info("Updated user authorities: {}", userAuthorities);
-
+            // then insert user authorities
+            List<UserAuthority> userAuthorities = userAuthorityService.generate(domain.getId(), authorities);
+            userAuthorityDao.insert(userAuthorities);
+            log.info("Updated user authorities: {}", userAuthorities);
+        }
         return existingOne;
     }
 

@@ -1,9 +1,11 @@
 package cn.luixtech.passport.server.controller;
 
+import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
+import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,8 +29,9 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 @Slf4j
 public class AccountController {
     private final HttpHeaderCreator httpHeaderCreator;
-    private final MailService       mailService;
-    private final UserService       userService;
+    private final MailService mailService;
+    private final UserDao     userDao;
+    private final UserService userService;
 
     @Operation(summary = "register a new user and send an activation email")
     @PostMapping("/open-api/accounts/register")
@@ -45,5 +48,20 @@ public class AccountController {
     @GetMapping("/open-api/accounts/activate/{code:[0-9]+}")
     public void activate(@Parameter(description = "activation code", required = true) @PathVariable String code) {
         userService.activate(code);
+    }
+
+    @Operation(summary = "update current user")
+    @PutMapping("/api/accounts/user")
+    public ResponseEntity<Void> updateCurrentAccount(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
+        // For security reason
+        User currentUser = userDao.findById(AuthUtils.getCurrentUserId());
+        domain.setId(currentUser.getId());
+        domain.setUsername(currentUser.getUsername());
+        domain.setEnabled(currentUser.getEnabled());
+        domain.setActivated(currentUser.getActivated());
+        domain.setProfilePhotoEnabled(currentUser.getProfilePhotoEnabled());
+
+        userDao.update(domain);
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 }
