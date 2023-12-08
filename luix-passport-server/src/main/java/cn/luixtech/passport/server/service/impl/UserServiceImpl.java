@@ -8,6 +8,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
+import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -151,6 +153,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User update(User domain, List<String> authorities) {
         User existingOne = userDao.findById(domain.getId());
         if (existingOne == null) {
@@ -194,6 +197,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void activate(String activationCode) {
         List<User> users = userDao.fetchByActivationCode(activationCode);
         if (CollectionUtils.isEmpty(users)) {
@@ -204,5 +208,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         users.get(0).setActivationCode(null);
         userDao.update(users.get(0));
         log.info("Activated user: {}", users.get(0));
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void changePassword(String userId, ChangePassword dto) {
+        User user = userDao.findById(userId);
+        if (user == null) {
+            throw new DataNotFoundException(userId);
+        }
+
+        Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(dto.getOldPassword()).equals(user.getPasswordHash()), "Old password does NOT match!");
+
+        user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(dto.getNewPassword()));
+        userDao.update(user);
+        log.debug("Changed password for user: {}", user);
+
     }
 }

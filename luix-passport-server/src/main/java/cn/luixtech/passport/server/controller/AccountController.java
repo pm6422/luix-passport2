@@ -1,19 +1,21 @@
 package cn.luixtech.passport.server.controller;
 
+import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
+import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
-import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +30,11 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 @AllArgsConstructor
 @Slf4j
 public class AccountController {
-    private final HttpHeaderCreator httpHeaderCreator;
-    private final MailService mailService;
-    private final UserDao     userDao;
-    private final UserService userService;
+    private final HttpHeaderCreator         httpHeaderCreator;
+    private final MailService               mailService;
+    private final UserDao                   userDao;
+    private final UserService               userService;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "register a new user and send an activation email")
     @PostMapping("/open-api/accounts/register")
@@ -63,5 +66,15 @@ public class AccountController {
 
         userDao.update(domain);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
+    }
+
+    @Operation(summary = "modify the password of the current user")
+    @PutMapping("/api/accounts/password")
+    public ResponseEntity<Void> changePassword(@Parameter(description = "new password", required = true) @RequestBody @Valid ChangePassword dto) {
+        // For security reason
+        userService.changePassword(AuthUtils.getCurrentUserId(), dto);
+        // Logout asynchronously
+        applicationEventPublisher.publishEvent(new LogoutEvent(this));
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", "password")).build();
     }
 }

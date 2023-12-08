@@ -2,6 +2,7 @@ package cn.luixtech.passport.server.service;
 
 
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.pojo.ChangePassword;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +20,6 @@ public interface UserService {
     User update(User domain, List<String> authorities);
 
     void activate(String activationCode);
+
+    void changePassword(String userId, ChangePassword dto);
 }
