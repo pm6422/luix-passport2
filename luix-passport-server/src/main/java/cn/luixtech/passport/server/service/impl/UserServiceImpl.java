@@ -16,7 +16,6 @@ import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jooq.DSLContext;
@@ -34,7 +33,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -43,8 +41,6 @@ import java.util.stream.Collectors;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
 import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
-import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
-import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 
 /**
  * Authenticate a user from the database.
