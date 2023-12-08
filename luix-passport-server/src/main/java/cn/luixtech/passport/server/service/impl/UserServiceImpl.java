@@ -10,6 +10,7 @@ import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ChangePassword;
+import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
@@ -43,6 +44,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -283,6 +285,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .fetchInto(User.class);
 
         return new PageImpl<>(domains, pageable, userDao.count());
+    }
+
+    @Override
+    public ManagedUser findById(String id) {
+        User user = userDao.findById(id);
+        if (user == null) {
+            throw new DataNotFoundException(id);
+        }
+        user.setPasswordHash("***");
+
+        return ManagedUser.of(user, new ArrayList<>(findAuthorities(id)));
     }
 
     private Condition createCondition(String username, String email, String mobileNo, Boolean enabled, Boolean activated) {

@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.service;
 
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ChangePassword;
+import cn.luixtech.passport.server.pojo.ManagedUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -30,4 +31,6 @@ public interface UserService {
     void resetPassword(String resetCode, String newRawPassword);
 
     Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
+
+    ManagedUser findById(String id);
 }

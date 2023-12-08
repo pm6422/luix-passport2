@@ -32,8 +32,11 @@ public class ManagedUser extends User {
 
     private List<String> authorities;
 
-    public ManagedUser(User user) {
-        BeanUtils.copyProperties(user, this);
+    public static ManagedUser of(User user, List<String> authorities) {
+        ManagedUser managedUser = new ManagedUser();
+        BeanUtils.copyProperties(user, managedUser);
+        managedUser.setAuthorities(authorities);
+        return managedUser;
     }
 
     public User toUser() {
