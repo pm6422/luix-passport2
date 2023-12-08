@@ -19,7 +19,6 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.jackson2.SecurityJackson2Modules;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -56,10 +55,6 @@ public class AuthorizationServerConfiguration {
     public static final String REVOKE_TOKEN_URI         = "/oauth2/revoke";
     public static final String CONSENT_PAGE_URI         = "/oauth2/consent";
 
-    @Bean
-    public BCryptPasswordEncoder bcryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public AuthorizationServerSettings authorizationServerSettings(ApplicationProperties applicationProperties) {

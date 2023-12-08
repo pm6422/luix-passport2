@@ -48,10 +48,10 @@ import static cn.luixtech.passport.server.service.AuthorityService.USER;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    private final BCryptPasswordEncoder bcryptPasswordEncoder;
-    private final DSLContext            dslContext;
-    private final UserDao               userDao;
-    private final UserAuthorityDao      userAuthorityDao;
+    private static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private final        DSLContext            dslContext;
+    private final        UserDao               userDao;
+    private final        UserAuthorityDao      userAuthorityDao;
 
     @Override
 //    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setId(id);
         domain.setUsername(domain.getUsername().toLowerCase());
         domain.setEmail(domain.getEmail().toLowerCase());
-        domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER + bcryptPasswordEncoder.encode(rawPassword));
+        domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
         domain.setActivationKey(RandomStringUtils.randomNumeric(20));
         domain.setResetKey(RandomStringUtils.randomNumeric(20));
         domain.setResetTime(LocalDateTime.now());
