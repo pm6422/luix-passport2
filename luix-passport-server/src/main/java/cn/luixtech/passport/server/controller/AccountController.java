@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class AccountController {
     private final UserService       userService;
 
     @Operation(summary = "register a new user and send an activation email")
-    @PostMapping("/open-api/accounts/register")
+    @PostMapping("/api/accounts/register")
     public ResponseEntity<Void> register(HttpServletRequest request,
                                          @Parameter(description = "user", required = true) @Valid @RequestBody ManagedUser managedUser) {
         log.debug("REST request to register user: {}", managedUser);
@@ -40,5 +41,10 @@ public class AccountController {
         mailService.sendActivationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM2001");
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
+    }
+
+    @GetMapping("/open-api/test")
+    public String test() {
+        return "abc";
     }
 }

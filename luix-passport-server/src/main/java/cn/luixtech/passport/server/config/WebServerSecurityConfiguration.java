@@ -1,14 +1,10 @@
 package cn.luixtech.passport.server.config;
 
-import cn.luixtech.passport.server.aspect.DynamicAuthorizationManager;
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import lombok.AllArgsConstructor;
-import org.springframework.aop.Advisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -57,6 +53,7 @@ public class WebServerSecurityConfiguration {
 				authorize
 					.requestMatchers("favicon.ico", "/assets/**", "/webjars/**", "/login").permitAll()
 					.requestMatchers("/management/health/**").permitAll()
+					.requestMatchers("/open-api/**").permitAll()
 					.requestMatchers("/api/third-party-clients/**").hasAuthority("SCOPE_message.read")
 					.requestMatchers("/swagger-ui/**").hasAuthority("ROLE_DEVELOPER")
 					.requestMatchers("/v3/api-docs/**").hasAuthority("ROLE_DEVELOPER")
