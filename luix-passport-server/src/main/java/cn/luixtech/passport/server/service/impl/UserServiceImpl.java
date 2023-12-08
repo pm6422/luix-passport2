@@ -190,4 +190,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         return existingOne;
     }
+
+    @Override
+    public void activate(String code) {
+    }
 }

@@ -5,6 +5,7 @@ import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
+import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,5 +39,11 @@ public class AccountController {
         mailService.sendActivationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM2001");
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
+    }
+
+    @Operation(summary = "activate the account according to the activation code")
+    @GetMapping("/open-api/accounts/activate/{code:[0-9]+}")
+    public void activate(@Parameter(description = "activation code", required = true) @PathVariable String code) {
+        userService.activate(code);
     }
 }

@@ -17,4 +17,6 @@ public interface UserService {
     User insert(User domain, List<String> authorities, String rawPassword);
 
     User update(User domain, List<String> authorities);
+
+    void activate(String code);
 }
