@@ -8,9 +8,9 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
+import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
-import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
 
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
+import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 
@@ -56,10 +57,10 @@ import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
     private static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    private final        MessageCreator        messageCreator;
     private final        DSLContext            dslContext;
     private final        UserDao               userDao;
     private final        UserAuthorityDao      userAuthorityDao;
+    private final        UserAuthorityService  userAuthorityService;
 
     @Override
 //    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
@@ -145,27 +146,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDao.insert(domain);
         log.info("Created user: {}", domain);
 
-        List<UserAuthority> userAuthorities = new ArrayList<>();
-        if (CollectionUtils.isEmpty(authorities)) {
-            // set default user authorities
-            UserAuthority userAuthority1 = new UserAuthority();
-            userAuthority1.setUserId(id);
-            userAuthority1.setAuthority(AUTH_ANONYMOUS);
-            userAuthorities.add(userAuthority1);
-
-            UserAuthority userAuthority2 = new UserAuthority();
-            userAuthority2.setUserId(id);
-            userAuthority2.setAuthority(AUTH_USER);
-            userAuthorities.add(userAuthority2);
-        } else {
-            userAuthorities = authorities.stream().map(auth -> {
-                UserAuthority userAuthority = new UserAuthority();
-                userAuthority.setUserId(id);
-                userAuthority.setAuthority(auth);
-                return userAuthority;
-            }).collect(Collectors.toList());
-        }
-
+        List<UserAuthority> userAuthorities = userAuthorityService.generate(id, authorities);
         userAuthorityDao.insert(userAuthorities);
         log.info("Created user authorities: {}", userAuthorities);
 
@@ -178,13 +159,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (existingOne == null) {
             throw new DataNotFoundException(domain.getId());
         }
-        int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(USER)
+        int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
                 .where(USER.EMAIL.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
         if (existingEmailCount > 0) {
             throw new DuplicationException(ImmutableMap.of("email", domain.getEmail()));
         }
-        int existingMobileNoCount = dslContext.fetchCount(DSL.selectFrom(USER)
+        int existingMobileNoCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
                 .where(USER.MOBILE_NO.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
         if (existingMobileNoCount > 0) {
@@ -198,11 +179,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingOne.setEnabled(domain.getEnabled());
         existingOne.setRemarks(domain.getRemarks());
 
-//        existingOne.setAuthorities(domain.getAuthorities());
-
-
         userDao.update(existingOne);
         log.debug("Updated user: {}", domain);
+
+        // first delete user authorities
+        dslContext.delete(Tables.USER_AUTHORITY)
+                .where(USER_AUTHORITY.USER_ID.eq(domain.getId()))
+                .execute();
+
+        // then insert user authorities
+        List<UserAuthority> userAuthorities = userAuthorityService.generate(domain.getId(), authorities);
+        userAuthorityDao.insert(userAuthorities);
+        log.info("Updated user authorities: {}", userAuthorities);
+
         return existingOne;
     }
 }
