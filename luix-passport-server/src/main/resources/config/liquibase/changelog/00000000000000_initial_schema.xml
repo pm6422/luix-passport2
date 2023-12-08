@@ -153,7 +153,7 @@
             <column name="password_hash" type="VARCHAR(256)">
                 <constraints nullable="false"/>
             </column>
-            <column name="activation_key" type="VARCHAR(256)"/>
+            <column name="activation_code" type="VARCHAR(256)"/>
             <column name="reset_key" type="VARCHAR(256)"/>
             <column name="reset_time" type="timestamp"/>
             <column name="profile_photo_enabled" type="BIT(1)">

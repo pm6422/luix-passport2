@@ -23,7 +23,7 @@ public class User implements Serializable {
     private String firstName;
     private String lastName;
     private String passwordHash;
-    private String activationKey;
+    private String activationCode;
     private String resetKey;
     private LocalDateTime resetTime;
     private Boolean profilePhotoEnabled;
@@ -45,7 +45,7 @@ public class User implements Serializable {
         this.firstName = value.firstName;
         this.lastName = value.lastName;
         this.passwordHash = value.passwordHash;
-        this.activationKey = value.activationKey;
+        this.activationCode = value.activationCode;
         this.resetKey = value.resetKey;
         this.resetTime = value.resetTime;
         this.profilePhotoEnabled = value.profilePhotoEnabled;
@@ -66,7 +66,7 @@ public class User implements Serializable {
         String firstName,
         String lastName,
         String passwordHash,
-        String activationKey,
+        String activationCode,
         String resetKey,
         LocalDateTime resetTime,
         Boolean profilePhotoEnabled,
@@ -85,7 +85,7 @@ public class User implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.passwordHash = passwordHash;
-        this.activationKey = activationKey;
+        this.activationCode = activationCode;
         this.resetKey = resetKey;
         this.resetTime = resetTime;
         this.profilePhotoEnabled = profilePhotoEnabled;
@@ -197,17 +197,17 @@ public class User implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.user.activation_key</code>.
+     * Getter for <code>luix-passport.user.activation_code</code>.
      */
-    public String getActivationKey() {
-        return this.activationKey;
+    public String getActivationCode() {
+        return this.activationCode;
     }
 
     /**
-     * Setter for <code>luix-passport.user.activation_key</code>.
+     * Setter for <code>luix-passport.user.activation_code</code>.
      */
-    public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 
     /**
@@ -401,11 +401,11 @@ public class User implements Serializable {
         }
         else if (!this.passwordHash.equals(other.passwordHash))
             return false;
-        if (this.activationKey == null) {
-            if (other.activationKey != null)
+        if (this.activationCode == null) {
+            if (other.activationCode != null)
                 return false;
         }
-        else if (!this.activationKey.equals(other.activationKey))
+        else if (!this.activationCode.equals(other.activationCode))
             return false;
         if (this.resetKey == null) {
             if (other.resetKey != null)
@@ -481,7 +481,7 @@ public class User implements Serializable {
         result = prime * result + ((this.firstName == null) ? 0 : this.firstName.hashCode());
         result = prime * result + ((this.lastName == null) ? 0 : this.lastName.hashCode());
         result = prime * result + ((this.passwordHash == null) ? 0 : this.passwordHash.hashCode());
-        result = prime * result + ((this.activationKey == null) ? 0 : this.activationKey.hashCode());
+        result = prime * result + ((this.activationCode == null) ? 0 : this.activationCode.hashCode());
         result = prime * result + ((this.resetKey == null) ? 0 : this.resetKey.hashCode());
         result = prime * result + ((this.resetTime == null) ? 0 : this.resetTime.hashCode());
         result = prime * result + ((this.profilePhotoEnabled == null) ? 0 : this.profilePhotoEnabled.hashCode());
@@ -506,7 +506,7 @@ public class User implements Serializable {
         sb.append(", ").append(firstName);
         sb.append(", ").append(lastName);
         sb.append(", ").append(passwordHash);
-        sb.append(", ").append(activationKey);
+        sb.append(", ").append(activationCode);
         sb.append(", ").append(resetKey);
         sb.append(", ").append(resetTime);
         sb.append(", ").append(profilePhotoEnabled);

@@ -122,16 +122,16 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     }
 
     /**
-     * Setter for <code>luix-passport.user.activation_key</code>.
+     * Setter for <code>luix-passport.user.activation_code</code>.
      */
-    public void setActivationKey(String value) {
+    public void setActivationCode(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user.activation_key</code>.
+     * Getter for <code>luix-passport.user.activation_code</code>.
      */
-    public String getActivationKey() {
+    public String getActivationCode() {
         return (String) get(7);
     }
 
@@ -335,7 +335,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
 
     @Override
     public Field<String> field8() {
-        return User.USER.ACTIVATION_KEY;
+        return User.USER.ACTIVATION_CODE;
     }
 
     @Override
@@ -425,7 +425,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
 
     @Override
     public String component8() {
-        return getActivationKey();
+        return getActivationCode();
     }
 
     @Override
@@ -515,7 +515,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
 
     @Override
     public String value8() {
-        return getActivationKey();
+        return getActivationCode();
     }
 
     @Override
@@ -612,7 +612,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
 
     @Override
     public UserRecord value8(String value) {
-        setActivationKey(value);
+        setActivationCode(value);
         return this;
     }
 
@@ -713,7 +713,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Create a detached, initialised UserRecord
      */
-    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationKey, String resetKey, LocalDateTime resetTime, Boolean profilePhotoEnabled, String remarks, Boolean activated, Boolean enabled, String createdBy, LocalDateTime createdTime, String modifiedBy, LocalDateTime modifiedTime) {
+    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String resetKey, LocalDateTime resetTime, Boolean profilePhotoEnabled, String remarks, Boolean activated, Boolean enabled, String createdBy, LocalDateTime createdTime, String modifiedBy, LocalDateTime modifiedTime) {
         super(User.USER);
 
         setId(id);
@@ -723,7 +723,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
         setFirstName(firstName);
         setLastName(lastName);
         setPasswordHash(passwordHash);
-        setActivationKey(activationKey);
+        setActivationCode(activationCode);
         setResetKey(resetKey);
         setResetTime(resetTime);
         setProfilePhotoEnabled(profilePhotoEnabled);
@@ -751,7 +751,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
             setFirstName(value.getFirstName());
             setLastName(value.getLastName());
             setPasswordHash(value.getPasswordHash());
-            setActivationKey(value.getActivationKey());
+            setActivationCode(value.getActivationCode());
             setResetKey(value.getResetKey());
             setResetTime(value.getResetTime());
             setProfilePhotoEnabled(value.getProfilePhotoEnabled());

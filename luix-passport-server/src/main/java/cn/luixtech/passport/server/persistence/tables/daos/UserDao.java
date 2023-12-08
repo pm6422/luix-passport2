@@ -206,18 +206,18 @@ public class UserDao extends DAOImpl<UserRecord, cn.luixtech.passport.server.per
     }
 
     /**
-     * Fetch records that have <code>activation_key BETWEEN lowerInclusive AND
+     * Fetch records that have <code>activation_code BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfActivationKey(String lowerInclusive, String upperInclusive) {
-        return fetchRange(User.USER.ACTIVATION_KEY, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfActivationCode(String lowerInclusive, String upperInclusive) {
+        return fetchRange(User.USER.ACTIVATION_CODE, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>activation_key IN (values)</code>
+     * Fetch records that have <code>activation_code IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByActivationKey(String... values) {
-        return fetch(User.USER.ACTIVATION_KEY, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByActivationCode(String... values) {
+        return fetch(User.USER.ACTIVATION_CODE, values);
     }
 
     /**
