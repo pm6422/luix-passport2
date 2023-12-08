@@ -6,9 +6,6 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 import java.time.LocalDateTime;
 
 import org.jooq.Field;
@@ -36,8 +33,6 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
     /**
      * Getter for <code>luix-passport.user_authentication_event.id</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getId() {
         return (String) get(0);
     }
@@ -52,8 +47,6 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
     /**
      * Getter for <code>luix-passport.user_authentication_event.user_id</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getUserId() {
         return (String) get(1);
     }
@@ -68,8 +61,6 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
     /**
      * Getter for <code>luix-passport.user_authentication_event.event</code>.
      */
-    @NotNull
-    @Size(max = 36)
     public String getEvent() {
         return (String) get(2);
     }
@@ -86,7 +77,6 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
      * Getter for
      * <code>luix-passport.user_authentication_event.description</code>.
      */
-    @Size(max = 64)
     public String getDescription() {
         return (String) get(3);
     }
@@ -103,7 +93,6 @@ public class UserAuthenticationEventRecord extends UpdatableRecordImpl<UserAuthe
      * Getter for
      * <code>luix-passport.user_authentication_event.created_time</code>.
      */
-    @NotNull
     public LocalDateTime getCreatedTime() {
         return (LocalDateTime) get(4);
     }

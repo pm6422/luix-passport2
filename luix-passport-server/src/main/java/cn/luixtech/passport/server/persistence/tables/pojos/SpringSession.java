@@ -4,9 +4,6 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 import java.io.Serializable;
 
 
@@ -59,8 +56,6 @@ public class SpringSession implements Serializable {
     /**
      * Getter for <code>luix-passport.spring_session.PRIMARY_ID</code>.
      */
-    @NotNull
-    @Size(max = 36)
     public String getPrimaryId() {
         return this.primaryId;
     }
@@ -75,8 +70,6 @@ public class SpringSession implements Serializable {
     /**
      * Getter for <code>luix-passport.spring_session.SESSION_ID</code>.
      */
-    @NotNull
-    @Size(max = 36)
     public String getSessionId() {
         return this.sessionId;
     }
@@ -91,7 +84,6 @@ public class SpringSession implements Serializable {
     /**
      * Getter for <code>luix-passport.spring_session.CREATION_TIME</code>.
      */
-    @NotNull
     public Long getCreationTime() {
         return this.creationTime;
     }
@@ -106,7 +98,6 @@ public class SpringSession implements Serializable {
     /**
      * Getter for <code>luix-passport.spring_session.LAST_ACCESS_TIME</code>.
      */
-    @NotNull
     public Long getLastAccessTime() {
         return this.lastAccessTime;
     }
@@ -122,7 +113,6 @@ public class SpringSession implements Serializable {
      * Getter for
      * <code>luix-passport.spring_session.MAX_INACTIVE_INTERVAL</code>.
      */
-    @NotNull
     public Integer getMaxInactiveInterval() {
         return this.maxInactiveInterval;
     }
@@ -138,7 +128,6 @@ public class SpringSession implements Serializable {
     /**
      * Getter for <code>luix-passport.spring_session.EXPIRY_TIME</code>.
      */
-    @NotNull
     public Long getExpiryTime() {
         return this.expiryTime;
     }
@@ -153,7 +142,6 @@ public class SpringSession implements Serializable {
     /**
      * Getter for <code>luix-passport.spring_session.PRINCIPAL_NAME</code>.
      */
-    @Size(max = 100)
     public String getPrincipalName() {
         return this.principalName;
     }

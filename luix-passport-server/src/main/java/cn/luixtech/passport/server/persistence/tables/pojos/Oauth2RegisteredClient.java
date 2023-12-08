@@ -4,9 +4,6 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -84,8 +81,6 @@ public class Oauth2RegisteredClient implements Serializable {
     /**
      * Getter for <code>luix-passport.oauth2_registered_client.id</code>.
      */
-    @NotNull
-    @Size(max = 100)
     public String getId() {
         return this.id;
     }
@@ -100,8 +95,6 @@ public class Oauth2RegisteredClient implements Serializable {
     /**
      * Getter for <code>luix-passport.oauth2_registered_client.client_id</code>.
      */
-    @NotNull
-    @Size(max = 100)
     public String getClientId() {
         return this.clientId;
     }
@@ -133,7 +126,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_secret</code>.
      */
-    @Size(max = 200)
     public String getClientSecret() {
         return this.clientSecret;
     }
@@ -166,8 +158,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_name</code>.
      */
-    @NotNull
-    @Size(max = 200)
     public String getClientName() {
         return this.clientName;
     }
@@ -184,8 +174,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
      */
-    @NotNull
-    @Size(max = 1000)
     public String getClientAuthenticationMethods() {
         return this.clientAuthenticationMethods;
     }
@@ -202,8 +190,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
      */
-    @NotNull
-    @Size(max = 1000)
     public String getAuthorizationGrantTypes() {
         return this.authorizationGrantTypes;
     }
@@ -220,7 +206,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
      */
-    @Size(max = 1000)
     public String getRedirectUris() {
         return this.redirectUris;
     }
@@ -237,7 +222,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
-    @Size(max = 1000)
     public String getPostLogoutRedirectUris() {
         return this.postLogoutRedirectUris;
     }
@@ -253,8 +237,6 @@ public class Oauth2RegisteredClient implements Serializable {
     /**
      * Getter for <code>luix-passport.oauth2_registered_client.scopes</code>.
      */
-    @NotNull
-    @Size(max = 1000)
     public String getScopes() {
         return this.scopes;
     }
@@ -270,8 +252,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_settings</code>.
      */
-    @NotNull
-    @Size(max = 2000)
     public String getClientSettings() {
         return this.clientSettings;
     }
@@ -288,8 +268,6 @@ public class Oauth2RegisteredClient implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_registered_client.token_settings</code>.
      */
-    @NotNull
-    @Size(max = 2000)
     public String getTokenSettings() {
         return this.tokenSettings;
     }

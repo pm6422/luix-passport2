@@ -6,9 +6,6 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-
 import java.time.LocalDateTime;
 
 import org.jooq.Field;
@@ -36,8 +33,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.id</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getId() {
         return (String) get(0);
     }
@@ -52,8 +47,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.user_id</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getUserId() {
         return (String) get(1);
     }
@@ -68,7 +61,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.logged_time</code>.
      */
-    @NotNull
     public LocalDateTime getLoggedTime() {
         return (LocalDateTime) get(2);
     }
@@ -83,8 +75,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.location</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getLocation() {
         return (String) get(3);
     }
@@ -99,8 +89,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.ip</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getIp() {
         return (String) get(4);
     }
@@ -115,8 +103,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.os</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getOs() {
         return (String) get(5);
     }
@@ -131,8 +117,6 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Getter for <code>luix-passport.user_login.browser</code>.
      */
-    @NotNull
-    @Size(max = 20)
     public String getBrowser() {
         return (String) get(6);
     }
