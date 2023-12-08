@@ -93,9 +93,9 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, String> ACTIVATION_CODE = createField(DSL.name("activation_code"), SQLDataType.VARCHAR(256), this, "");
 
     /**
-     * The column <code>luix-passport.user.reset_key</code>.
+     * The column <code>luix-passport.user.reset_code</code>.
      */
-    public final TableField<UserRecord, String> RESET_KEY = createField(DSL.name("reset_key"), SQLDataType.VARCHAR(256), this, "");
+    public final TableField<UserRecord, String> RESET_CODE = createField(DSL.name("reset_code"), SQLDataType.VARCHAR(256), this, "");
 
     /**
      * The column <code>luix-passport.user.reset_time</code>.

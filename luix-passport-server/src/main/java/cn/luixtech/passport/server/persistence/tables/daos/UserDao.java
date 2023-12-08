@@ -221,18 +221,18 @@ public class UserDao extends DAOImpl<UserRecord, cn.luixtech.passport.server.per
     }
 
     /**
-     * Fetch records that have <code>reset_key BETWEEN lowerInclusive AND
+     * Fetch records that have <code>reset_code BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfResetKey(String lowerInclusive, String upperInclusive) {
-        return fetchRange(User.USER.RESET_KEY, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfResetCode(String lowerInclusive, String upperInclusive) {
+        return fetchRange(User.USER.RESET_CODE, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>reset_key IN (values)</code>
+     * Fetch records that have <code>reset_code IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByResetKey(String... values) {
-        return fetch(User.USER.RESET_KEY, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByResetCode(String... values) {
+        return fetch(User.USER.RESET_CODE, values);
     }
 
     /**

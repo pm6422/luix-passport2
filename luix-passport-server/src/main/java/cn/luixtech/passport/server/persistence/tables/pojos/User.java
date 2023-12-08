@@ -24,7 +24,7 @@ public class User implements Serializable {
     private String lastName;
     private String passwordHash;
     private String activationCode;
-    private String resetKey;
+    private String resetCode;
     private LocalDateTime resetTime;
     private Boolean profilePhotoEnabled;
     private String remarks;
@@ -46,7 +46,7 @@ public class User implements Serializable {
         this.lastName = value.lastName;
         this.passwordHash = value.passwordHash;
         this.activationCode = value.activationCode;
-        this.resetKey = value.resetKey;
+        this.resetCode = value.resetCode;
         this.resetTime = value.resetTime;
         this.profilePhotoEnabled = value.profilePhotoEnabled;
         this.remarks = value.remarks;
@@ -67,7 +67,7 @@ public class User implements Serializable {
         String lastName,
         String passwordHash,
         String activationCode,
-        String resetKey,
+        String resetCode,
         LocalDateTime resetTime,
         Boolean profilePhotoEnabled,
         String remarks,
@@ -86,7 +86,7 @@ public class User implements Serializable {
         this.lastName = lastName;
         this.passwordHash = passwordHash;
         this.activationCode = activationCode;
-        this.resetKey = resetKey;
+        this.resetCode = resetCode;
         this.resetTime = resetTime;
         this.profilePhotoEnabled = profilePhotoEnabled;
         this.remarks = remarks;
@@ -211,17 +211,17 @@ public class User implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.user.reset_key</code>.
+     * Getter for <code>luix-passport.user.reset_code</code>.
      */
-    public String getResetKey() {
-        return this.resetKey;
+    public String getResetCode() {
+        return this.resetCode;
     }
 
     /**
-     * Setter for <code>luix-passport.user.reset_key</code>.
+     * Setter for <code>luix-passport.user.reset_code</code>.
      */
-    public void setResetKey(String resetKey) {
-        this.resetKey = resetKey;
+    public void setResetCode(String resetCode) {
+        this.resetCode = resetCode;
     }
 
     /**
@@ -407,11 +407,11 @@ public class User implements Serializable {
         }
         else if (!this.activationCode.equals(other.activationCode))
             return false;
-        if (this.resetKey == null) {
-            if (other.resetKey != null)
+        if (this.resetCode == null) {
+            if (other.resetCode != null)
                 return false;
         }
-        else if (!this.resetKey.equals(other.resetKey))
+        else if (!this.resetCode.equals(other.resetCode))
             return false;
         if (this.resetTime == null) {
             if (other.resetTime != null)
@@ -482,7 +482,7 @@ public class User implements Serializable {
         result = prime * result + ((this.lastName == null) ? 0 : this.lastName.hashCode());
         result = prime * result + ((this.passwordHash == null) ? 0 : this.passwordHash.hashCode());
         result = prime * result + ((this.activationCode == null) ? 0 : this.activationCode.hashCode());
-        result = prime * result + ((this.resetKey == null) ? 0 : this.resetKey.hashCode());
+        result = prime * result + ((this.resetCode == null) ? 0 : this.resetCode.hashCode());
         result = prime * result + ((this.resetTime == null) ? 0 : this.resetTime.hashCode());
         result = prime * result + ((this.profilePhotoEnabled == null) ? 0 : this.profilePhotoEnabled.hashCode());
         result = prime * result + ((this.remarks == null) ? 0 : this.remarks.hashCode());
@@ -507,7 +507,7 @@ public class User implements Serializable {
         sb.append(", ").append(lastName);
         sb.append(", ").append(passwordHash);
         sb.append(", ").append(activationCode);
-        sb.append(", ").append(resetKey);
+        sb.append(", ").append(resetCode);
         sb.append(", ").append(resetTime);
         sb.append(", ").append(profilePhotoEnabled);
         sb.append(", ").append(remarks);
