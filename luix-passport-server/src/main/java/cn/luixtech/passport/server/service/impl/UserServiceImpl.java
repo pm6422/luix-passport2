@@ -245,7 +245,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setResetTime(LocalDateTime.now());
 
         userDao.update(user);
-        log.debug("Requested password reset by reset code {}", resetCode);
+        log.info("Requested password reset by reset code {}", resetCode);
         return user;
     }
 }
