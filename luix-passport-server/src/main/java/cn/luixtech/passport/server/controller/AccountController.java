@@ -72,7 +72,7 @@ public class AccountController {
 
     @Operation(summary = "modify the password of the current user")
     @PutMapping("/api/accounts/password")
-    public ResponseEntity<Void> changePassword(@Parameter(description = "new password", required = true) @RequestBody @Valid ChangePassword dto) {
+    public ResponseEntity<Void> changePassword(@Parameter(description = "new password", required = true) @Valid @RequestBody ChangePassword dto) {
         // For security reason
         userService.changePassword(AuthUtils.getCurrentUserId(), dto);
         // Logout asynchronously
@@ -91,7 +91,7 @@ public class AccountController {
 
     @Operation(summary = "reset password")
     @PostMapping("/open-api/accounts/reset")
-    public ResponseEntity<Void> reset(@Parameter(description = "reset code and new password", required = true) @RequestBody @Valid ResetPassword dto) {
+    public ResponseEntity<Void> reset(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody ResetPassword dto) {
         userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2003")).build();
     }
