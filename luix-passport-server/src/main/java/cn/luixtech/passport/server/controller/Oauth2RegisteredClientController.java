@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-import static cn.luixtech.passport.server.service.AuthorityService.USER;
+import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
 
 @Slf4j
 @RestController
 @AllArgsConstructor
-@PreAuthorize("hasAuthority(\"" + USER + "\")")
+@PreAuthorize("hasAuthority(\"" + AUTH_USER + "\")")
 public class Oauth2RegisteredClientController {
     private final HttpHeaderCreator             httpHeaderCreator;
     private final Oauth2RegisteredClientDao     oauth2RegisteredClientDao;

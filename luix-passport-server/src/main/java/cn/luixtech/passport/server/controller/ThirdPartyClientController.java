@@ -19,6 +19,6 @@ public class ThirdPartyClientController {
     @Operation(summary = "find all authority list")
     @GetMapping("/api/third-party-clients/authorities")
     public ResponseEntity<List<String>> authorities() {
-        return ResponseEntity.ok().body(Arrays.asList(ANONYMOUS, USER, ADMIN, DEVELOPER));
+        return ResponseEntity.ok().body(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
     }
 }

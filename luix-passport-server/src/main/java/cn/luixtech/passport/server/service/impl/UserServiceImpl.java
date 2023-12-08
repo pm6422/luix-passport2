@@ -7,6 +7,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserAuthorityDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
+import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
@@ -35,8 +36,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
-import static cn.luixtech.passport.server.service.AuthorityService.ANONYMOUS;
-import static cn.luixtech.passport.server.service.AuthorityService.USER;
+import static cn.luixtech.passport.server.persistence.Tables.USER;
+import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
+import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 
 /**
  * Authenticate a user from the database.
@@ -80,10 +82,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Optional<User> findOne(String loginName) {
-        User user = dslContext.selectFrom(Tables.USER)
-                .where(Tables.USER.USERNAME.eq(loginName))
-                .or(Tables.USER.EMAIL.eq(loginName))
-                .or(Tables.USER.MOBILE_NO.eq(loginName))
+        User user = dslContext.selectFrom(USER)
+                .where(USER.USERNAME.eq(loginName))
+                .or(USER.EMAIL.eq(loginName))
+                .or(USER.MOBILE_NO.eq(loginName))
                 .limit(1)
                 // Convert User Record to POJO User
                 .fetchOneInto(User.class);
@@ -108,6 +110,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User insert(User domain, List<String> authorities, String rawPassword) {
+        // From pojo to record
+        UserRecord userRecord = dslContext.newRecord(USER, domain);
+
         if (userDao.fetchOneByUsername(domain.getUsername().toLowerCase()) != null) {
             throw new DuplicationException(ImmutableMap.of("username", domain.getUsername()));
         }
@@ -138,12 +143,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             // set default user authorities
             UserAuthority userAuthority1 = new UserAuthority();
             userAuthority1.setUserId(id);
-            userAuthority1.setAuthority(ANONYMOUS);
+            userAuthority1.setAuthority(AUTH_ANONYMOUS);
             userAuthorities.add(userAuthority1);
 
             UserAuthority userAuthority2 = new UserAuthority();
             userAuthority2.setUserId(id);
-            userAuthority2.setAuthority(USER);
+            userAuthority2.setAuthority(AUTH_USER);
             userAuthorities.add(userAuthority2);
         } else {
             userAuthorities = authorities.stream().map(auth -> {
