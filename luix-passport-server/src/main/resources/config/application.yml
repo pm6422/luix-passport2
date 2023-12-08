@@ -133,3 +133,9 @@ luix:
   ribbon:
     # comma separated list of profiles to show a ribbon on the GUI
     display-on-active-profiles: dev,test,demo
+# ===================================================================
+# Application specific properties
+# ===================================================================
+application:
+  account:
+    default-password: ${spring.application.name}

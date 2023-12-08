@@ -5,10 +5,12 @@ import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.daos.UserAuthorityDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
+import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ChangePassword;
+import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
@@ -22,8 +24,12 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
+import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
@@ -45,6 +51,8 @@ import java.util.stream.Collectors;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
 import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
+import static cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
+import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 
 /**
  * Authenticate a user from the database.
@@ -229,6 +237,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User requestPasswordReset(String email, String resetCode) {
         User user = dslContext.select(Tables.USER)
                 .where(USER.EMAIL.eq(email))
@@ -249,6 +258,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void resetPassword(String resetCode, String newRawPassword) {
         List<User> users = userDao.fetchByResetCode(resetCode);
         if (CollectionUtils.isEmpty(users)) {
@@ -261,5 +271,37 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         userDao.update(users.get(0));
         log.debug("Reset password by reset code {}", resetCode);
+    }
+
+    @Override
+    public Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
+        List<User> domains = dslContext.select(Tables.USER)
+                .where(createCondition(username, email, mobileNo, enabled, activated))
+                .orderBy(buildOrderBy(pageable.getSort(), USER.fields()))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetchInto(User.class);
+
+        return new PageImpl<>(domains, pageable, userDao.count());
+    }
+
+    private Condition createCondition(String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
+        Condition condition = DSL.trueCondition();
+        if (StringUtils.isNotEmpty(username)) {
+            condition = condition.and(USER.USERNAME.eq(username));
+        }
+        if (StringUtils.isNotEmpty(email)) {
+            condition = condition.and(USER.EMAIL.eq(email));
+        }
+        if (StringUtils.isNotEmpty(mobileNo)) {
+            condition = condition.and(USER.MOBILE_NO.eq(mobileNo));
+        }
+        if (enabled != null) {
+            condition = condition.and(USER.ENABLED.eq(enabled));
+        }
+        if (activated != null) {
+            condition = condition.and(USER.ACTIVATED.eq(activated));
+        }
+        return condition;
     }
 }

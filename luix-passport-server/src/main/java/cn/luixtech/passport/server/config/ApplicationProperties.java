@@ -19,7 +19,13 @@ import org.springframework.validation.annotation.Validated;
 @Getter
 public class ApplicationProperties {
 
-    private final Url url = new Url();
+    private final Account account = new Account();
+    private final Url     url     = new Url();
+
+    @Data
+    public static class Account {
+        private String defaultPassword;
+    }
 
     @Data
     public static class Url {
