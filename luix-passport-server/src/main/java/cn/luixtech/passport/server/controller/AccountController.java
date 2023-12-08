@@ -5,7 +5,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ChangePassword;
-import cn.luixtech.passport.server.pojo.Reset;
+import cn.luixtech.passport.server.pojo.ResetPassword;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -82,8 +82,8 @@ public class AccountController {
 
     @Operation(summary = "send reset password email")
     @PostMapping("/open-api/accounts/request-reset")
-    public ResponseEntity<Void> requestPasswordReset(HttpServletRequest request,
-                                                     @Parameter(description = "email", required = true) @RequestBody String email) {
+    public ResponseEntity<Void> requestReset(HttpServletRequest request,
+                                             @Parameter(description = "email", required = true) @RequestBody String email) {
         User user = userService.requestPasswordReset(email, RandomStringUtils.randomNumeric(20));
         mailService.sendPasswordResetMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2002")).build();
@@ -91,7 +91,7 @@ public class AccountController {
 
     @Operation(summary = "reset password")
     @PostMapping("/open-api/accounts/reset")
-    public ResponseEntity<Void> reset(@Parameter(description = "reset code and new password", required = true) @RequestBody @Valid Reset dto) {
+    public ResponseEntity<Void> reset(@Parameter(description = "reset code and new password", required = true) @RequestBody @Valid ResetPassword dto) {
         userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2003")).build();
     }
