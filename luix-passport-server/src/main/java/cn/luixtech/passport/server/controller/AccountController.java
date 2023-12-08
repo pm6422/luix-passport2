@@ -5,6 +5,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ChangePassword;
+import cn.luixtech.passport.server.pojo.Reset;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -86,5 +87,12 @@ public class AccountController {
         User user = userService.requestPasswordReset(email, RandomStringUtils.randomNumeric(20));
         mailService.sendPasswordResetMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2002")).build();
+    }
+
+    @Operation(summary = "reset password")
+    @PostMapping("/open-api/accounts/reset")
+    public ResponseEntity<Void> reset(@Parameter(description = "reset code and new password", required = true) @RequestBody @Valid Reset dto) {
+        userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2003")).build();
     }
 }

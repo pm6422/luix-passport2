@@ -17,10 +17,10 @@ public class ChangePassword {
     @Schema(description = "old password")
     @NotNull
     @Size(min = ManagedUser.RAW_PASSWORD_MIN_LENGTH, max = ManagedUser.RAW_PASSWORD_MAX_LENGTH)
-    private String oldPassword;
+    private String oldRawPassword;
 
     @Schema(description = "new password")
     @NotNull
     @Size(min = ManagedUser.RAW_PASSWORD_MIN_LENGTH, max = ManagedUser.RAW_PASSWORD_MAX_LENGTH)
-    private String newPassword;
+    private String newRawPassword;
 }

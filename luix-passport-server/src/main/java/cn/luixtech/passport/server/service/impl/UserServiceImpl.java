@@ -36,7 +36,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -222,9 +221,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         // todo: i18n
-        Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(dto.getOldPassword()).equals(user.getPasswordHash()), "Old password does NOT match!");
+        Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(dto.getOldRawPassword()).equals(user.getPasswordHash()), "Old password does NOT match!");
 
-        user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(dto.getNewPassword()));
+        user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(dto.getNewRawPassword()));
         userDao.update(user);
         log.info("Changed password for user: {}", user);
     }
@@ -247,5 +246,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDao.update(user);
         log.info("Requested password reset by reset code {}", resetCode);
         return user;
+    }
+
+    @Override
+    public void resetPassword(String resetCode, String newRawPassword) {
+        List<User> users = userDao.fetchByResetCode(resetCode);
+        if (CollectionUtils.isEmpty(users)) {
+            throw new DataNotFoundException(resetCode);
+        }
+
+        users.get(0).setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
+        users.get(0).setResetCode(null);
+        users.get(0).setResetTime(null);
+
+        userDao.update(users.get(0));
+        log.debug("Reset password by reset code {}", resetCode);
     }
 }
