@@ -18,5 +18,5 @@ public interface UserService {
 
     User update(User domain, List<String> authorities);
 
-    void activate(String code);
+    void activate(String activationCode);
 }

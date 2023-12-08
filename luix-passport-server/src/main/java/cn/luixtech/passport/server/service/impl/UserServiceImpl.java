@@ -16,6 +16,7 @@ import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jooq.DSLContext;
@@ -192,6 +193,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void activate(String code) {
+    public void activate(String activationCode) {
+        List<User> users = userDao.fetchByActivationCode(activationCode);
+        if (CollectionUtils.isEmpty(users)) {
+            throw new DataNotFoundException(activationCode);
+        }
+
+        users.get(0).setActivated(true);
+        users.get(0).setActivationCode(null);
+        userDao.update(users.get(0));
+        log.info("Activated user: {}", users.get(0));
     }
 }
