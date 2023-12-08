@@ -19,7 +19,7 @@ import cn.luixtech.passport.server.persistence.tables.UserPermission;
 /**
  * Convenience access to all tables in luix-passport.
  */
-@SuppressWarnings({ "all", "unchecked", "rawtypes" })
+@SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
 
     /**
