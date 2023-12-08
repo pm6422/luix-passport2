@@ -27,6 +27,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -109,6 +111,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User insert(User domain, List<String> authorities, String rawPassword) {
         // From pojo to record
         UserRecord userRecord = dslContext.newRecord(USER, domain);
@@ -138,7 +141,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDao.insert(domain);
         log.info("Created user: {}", domain);
 
-        List<UserAuthority> userAuthorities = new ArrayList<>(authorities.size());
+        List<UserAuthority> userAuthorities = new ArrayList<>();
         if (CollectionUtils.isEmpty(authorities)) {
             // set default user authorities
             UserAuthority userAuthority1 = new UserAuthority();
