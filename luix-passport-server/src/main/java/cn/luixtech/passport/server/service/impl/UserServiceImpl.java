@@ -224,16 +224,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void changePassword(String userId, ChangePassword dto) {
+    public void changePassword(String userId, String oldRawPassword, String newRawPassword) {
         User user = userDao.findById(userId);
         if (user == null) {
             throw new DataNotFoundException(userId);
         }
 
         // todo: i18n
-        Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(dto.getOldRawPassword()).equals(user.getPasswordHash()), "Old password does NOT match!");
-
-        user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(dto.getNewRawPassword()));
+        if (StringUtils.isNotEmpty(oldRawPassword)) {
+            Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(oldRawPassword).equals(user.getPasswordHash()), "Old password does NOT match!");
+        }
+        user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         userDao.update(user);
         log.info("Changed password for user: {}", user);
     }

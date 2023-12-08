@@ -74,7 +74,7 @@ public class AccountController {
     @PutMapping("/api/accounts/password")
     public ResponseEntity<Void> changePassword(@Parameter(description = "new password", required = true) @Valid @RequestBody ChangePassword dto) {
         // For security reason
-        userService.changePassword(AuthUtils.getCurrentUserId(), dto);
+        userService.changePassword(AuthUtils.getCurrentUserId(), dto.getOldRawPassword(), dto.getNewRawPassword());
         // Logout asynchronously
         applicationEventPublisher.publishEvent(new LogoutEvent(this));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", "password")).build();

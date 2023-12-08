@@ -24,7 +24,7 @@ public interface UserService {
 
     void activate(String activationCode);
 
-    void changePassword(String userId, ChangePassword dto);
+    void changePassword(String userId, String oldRawPassword, String newRawPassword);
 
     User requestPasswordReset(String email, String resetCode);
 

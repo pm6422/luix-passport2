@@ -95,18 +95,15 @@ public class UserController {
         userDao.deleteById(id);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1003", id)).build();
     }
-//
-//    @Operation(summary = "reset password")
-//    @PutMapping("/api/users/{username:[a-zA-Z0-9-]+}")
-//    public ResponseEntity<Void> resetPassword(@Parameter(description = "username", required = true) @PathVariable String username) {
-//        log.debug("REST reset the password of user: {}", username);
-//        UsernameAndPasswordDTO dto = UsernameAndPasswordDTO.builder()
-//                .username(username)
-//                .newPassword(applicationProperties.getAccount().getDefaultPassword()).build();
-//        userService.changePassword(dto);
-//        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM2012", applicationProperties.getAccount().getDefaultPassword());
-//        return ResponseEntity.ok().headers(headers).build();
-//    }
+
+    @Operation(summary = "reset password")
+    @PutMapping("/api/users/{id}")
+    public ResponseEntity<Void> resetPassword(@Parameter(description = "id", required = true) @PathVariable String id) {
+        log.debug("REST reset the password of user: {}", id);
+        userService.changePassword(id, null, applicationProperties.getAccount().getDefaultPassword());
+        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM2012", applicationProperties.getAccount().getDefaultPassword());
+        return ResponseEntity.ok().headers(headers).build();
+    }
 //
 //    @Operation(summary = "get user profile photo")
 //    @GetMapping(GET_PROFILE_PHOTO_URL + "{username:[a-zA-Z0-9-]+}")
