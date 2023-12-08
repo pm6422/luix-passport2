@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -76,5 +77,14 @@ public class AccountController {
         // Logout asynchronously
         applicationEventPublisher.publishEvent(new LogoutEvent(this));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", "password")).build();
+    }
+
+    @Operation(summary = "send reset password email")
+    @PostMapping("/open-api/accounts/request-reset")
+    public ResponseEntity<Void> requestPasswordReset(HttpServletRequest request,
+                                                     @Parameter(description = "email", required = true) @RequestBody String email) {
+        User user = userService.requestPasswordReset(email, RandomStringUtils.randomNumeric(20));
+        mailService.sendPasswordResetMail(user, getRequestUrl(request));
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2002")).build();
     }
 }

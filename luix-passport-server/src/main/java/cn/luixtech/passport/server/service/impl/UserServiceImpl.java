@@ -12,6 +12,7 @@ import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
+import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -60,6 +62,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final        UserDao               userDao;
     private final        UserAuthorityDao      userAuthorityDao;
     private final        UserAuthorityService  userAuthorityService;
+    private final        MessageCreator        messageCreator;
 
     @Override
 //    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
@@ -218,10 +221,31 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new DataNotFoundException(userId);
         }
 
+        // todo: i18n
         Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(dto.getOldPassword()).equals(user.getPasswordHash()), "Old password does NOT match!");
 
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(dto.getNewPassword()));
         userDao.update(user);
         log.debug("Changed password for user: {}", user);
+    }
+
+    @Override
+    public User requestPasswordReset(String email, String resetCode) {
+        User user = dslContext.select(Tables.USER)
+                .where(USER.EMAIL.eq(email))
+                .and(USER.ACTIVATED.eq(true))
+                .limit(1)
+                // Convert User Record to POJO User
+                .fetchOneInto(User.class);
+        if (user == null) {
+            throw new DataNotFoundException(messageCreator.getMessage("email"));
+        }
+
+        user.setResetCode(resetCode);
+        user.setResetTime(LocalDateTime.now());
+
+        userDao.update(user);
+        log.debug("Requested password reset by reset code {}", resetCode);
+        return user;
     }
 }
