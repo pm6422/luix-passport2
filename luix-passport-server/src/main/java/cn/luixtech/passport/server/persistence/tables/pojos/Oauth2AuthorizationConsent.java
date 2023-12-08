@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 
 
@@ -41,6 +44,8 @@ public class Oauth2AuthorizationConsent implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization_consent.registered_client_id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getRegisteredClientId() {
         return this.registeredClientId;
     }
@@ -57,6 +62,8 @@ public class Oauth2AuthorizationConsent implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization_consent.principal_name</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getPrincipalName() {
         return this.principalName;
     }
@@ -73,6 +80,8 @@ public class Oauth2AuthorizationConsent implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization_consent.authorities</code>.
      */
+    @NotNull
+    @Size(max = 1000)
     public String getAuthorities() {
         return this.authorities;
     }

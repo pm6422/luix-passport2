@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.Arrays;
 
@@ -42,6 +45,8 @@ public class SpringSessionAttributes implements Serializable {
      * Getter for
      * <code>luix-passport.spring_session_attributes.SESSION_PRIMARY_ID</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getSessionPrimaryId() {
         return this.sessionPrimaryId;
     }
@@ -58,6 +63,8 @@ public class SpringSessionAttributes implements Serializable {
      * Getter for
      * <code>luix-passport.spring_session_attributes.ATTRIBUTE_NAME</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getAttributeName() {
         return this.attributeName;
     }
@@ -74,6 +81,8 @@ public class SpringSessionAttributes implements Serializable {
      * Getter for
      * <code>luix-passport.spring_session_attributes.ATTRIBUTE_BYTES</code>.
      */
+    @NotNull
+    @Size(max = 65535)
     public byte[] getAttributeBytes() {
         return this.attributeBytes;
     }

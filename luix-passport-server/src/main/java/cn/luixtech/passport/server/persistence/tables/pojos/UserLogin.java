@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -57,6 +60,8 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getId() {
         return this.id;
     }
@@ -71,6 +76,8 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.user_id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getUserId() {
         return this.userId;
     }
@@ -85,6 +92,7 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.logged_time</code>.
      */
+    @NotNull
     public LocalDateTime getLoggedTime() {
         return this.loggedTime;
     }
@@ -99,6 +107,8 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.location</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getLocation() {
         return this.location;
     }
@@ -113,6 +123,8 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.ip</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getIp() {
         return this.ip;
     }
@@ -127,6 +139,8 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.os</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getOs() {
         return this.os;
     }
@@ -141,6 +155,8 @@ public class UserLogin implements Serializable {
     /**
      * Getter for <code>luix-passport.user_login.browser</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getBrowser() {
         return this.browser;
     }

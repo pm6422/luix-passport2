@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import org.jooq.Field;
 import org.jooq.Record2;
 import org.jooq.Record3;
@@ -33,6 +36,8 @@ public class SpringSessionAttributesRecord extends UpdatableRecordImpl<SpringSes
      * Getter for
      * <code>luix-passport.spring_session_attributes.SESSION_PRIMARY_ID</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getSessionPrimaryId() {
         return (String) get(0);
     }
@@ -49,6 +54,8 @@ public class SpringSessionAttributesRecord extends UpdatableRecordImpl<SpringSes
      * Getter for
      * <code>luix-passport.spring_session_attributes.ATTRIBUTE_NAME</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getAttributeName() {
         return (String) get(1);
     }
@@ -65,6 +72,8 @@ public class SpringSessionAttributesRecord extends UpdatableRecordImpl<SpringSes
      * Getter for
      * <code>luix-passport.spring_session_attributes.ATTRIBUTE_BYTES</code>.
      */
+    @NotNull
+    @Size(max = 65535)
     public byte[] getAttributeBytes() {
         return (byte[]) get(2);
     }

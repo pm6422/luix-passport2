@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -162,6 +165,8 @@ public class Oauth2Authorization implements Serializable {
     /**
      * Getter for <code>luix-passport.oauth2_authorization.id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getId() {
         return this.id;
     }
@@ -177,6 +182,8 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.registered_client_id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getRegisteredClientId() {
         return this.registeredClientId;
     }
@@ -193,6 +200,8 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.principal_name</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getPrincipalName() {
         return this.principalName;
     }
@@ -209,6 +218,8 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorization_grant_type</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getAuthorizationGrantType() {
         return this.authorizationGrantType;
     }
@@ -225,6 +236,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorized_scopes</code>.
      */
+    @Size(max = 1000)
     public String getAuthorizedScopes() {
         return this.authorizedScopes;
     }
@@ -240,6 +252,7 @@ public class Oauth2Authorization implements Serializable {
     /**
      * Getter for <code>luix-passport.oauth2_authorization.attributes</code>.
      */
+    @Size(max = 65535)
     public byte[] getAttributes() {
         return this.attributes;
     }
@@ -254,6 +267,7 @@ public class Oauth2Authorization implements Serializable {
     /**
      * Getter for <code>luix-passport.oauth2_authorization.state</code>.
      */
+    @Size(max = 500)
     public String getState() {
         return this.state;
     }
@@ -269,6 +283,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorization_code_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getAuthorizationCodeValue() {
         return this.authorizationCodeValue;
     }
@@ -317,6 +332,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorization_code_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getAuthorizationCodeMetadata() {
         return this.authorizationCodeMetadata;
     }
@@ -333,6 +349,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getAccessTokenValue() {
         return this.accessTokenValue;
     }
@@ -381,6 +398,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getAccessTokenMetadata() {
         return this.accessTokenMetadata;
     }
@@ -397,6 +415,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_type</code>.
      */
+    @Size(max = 100)
     public String getAccessTokenType() {
         return this.accessTokenType;
     }
@@ -413,6 +432,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_scopes</code>.
      */
+    @Size(max = 1000)
     public String getAccessTokenScopes() {
         return this.accessTokenScopes;
     }
@@ -429,6 +449,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.oidc_id_token_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getOidcIdTokenValue() {
         return this.oidcIdTokenValue;
     }
@@ -477,6 +498,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.oidc_id_token_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getOidcIdTokenMetadata() {
         return this.oidcIdTokenMetadata;
     }
@@ -493,6 +515,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.refresh_token_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getRefreshTokenValue() {
         return this.refreshTokenValue;
     }
@@ -541,6 +564,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.refresh_token_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getRefreshTokenMetadata() {
         return this.refreshTokenMetadata;
     }
@@ -557,6 +581,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.user_code_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getUserCodeValue() {
         return this.userCodeValue;
     }
@@ -605,6 +630,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.user_code_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getUserCodeMetadata() {
         return this.userCodeMetadata;
     }
@@ -621,6 +647,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.device_code_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getDeviceCodeValue() {
         return this.deviceCodeValue;
     }
@@ -669,6 +696,7 @@ public class Oauth2Authorization implements Serializable {
      * Getter for
      * <code>luix-passport.oauth2_authorization.device_code_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getDeviceCodeMetadata() {
         return this.deviceCodeMetadata;
     }

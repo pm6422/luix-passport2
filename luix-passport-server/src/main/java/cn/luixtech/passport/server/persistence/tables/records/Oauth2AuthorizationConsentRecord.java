@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import org.jooq.Field;
 import org.jooq.Record2;
 import org.jooq.Record3;
@@ -33,6 +36,8 @@ public class Oauth2AuthorizationConsentRecord extends UpdatableRecordImpl<Oauth2
      * Getter for
      * <code>luix-passport.oauth2_authorization_consent.registered_client_id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getRegisteredClientId() {
         return (String) get(0);
     }
@@ -49,6 +54,8 @@ public class Oauth2AuthorizationConsentRecord extends UpdatableRecordImpl<Oauth2
      * Getter for
      * <code>luix-passport.oauth2_authorization_consent.principal_name</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getPrincipalName() {
         return (String) get(1);
     }
@@ -65,6 +72,8 @@ public class Oauth2AuthorizationConsentRecord extends UpdatableRecordImpl<Oauth2
      * Getter for
      * <code>luix-passport.oauth2_authorization_consent.authorities</code>.
      */
+    @NotNull
+    @Size(max = 1000)
     public String getAuthorities() {
         return (String) get(2);
     }

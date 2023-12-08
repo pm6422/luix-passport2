@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -49,6 +52,8 @@ public class UserAuthenticationEvent implements Serializable {
     /**
      * Getter for <code>luix-passport.user_authentication_event.id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getId() {
         return this.id;
     }
@@ -63,6 +68,8 @@ public class UserAuthenticationEvent implements Serializable {
     /**
      * Getter for <code>luix-passport.user_authentication_event.user_id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getUserId() {
         return this.userId;
     }
@@ -77,6 +84,8 @@ public class UserAuthenticationEvent implements Serializable {
     /**
      * Getter for <code>luix-passport.user_authentication_event.event</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getEvent() {
         return this.event;
     }
@@ -92,6 +101,7 @@ public class UserAuthenticationEvent implements Serializable {
      * Getter for
      * <code>luix-passport.user_authentication_event.description</code>.
      */
+    @Size(max = 64)
     public String getDescription() {
         return this.description;
     }
@@ -108,6 +118,7 @@ public class UserAuthenticationEvent implements Serializable {
      * Getter for
      * <code>luix-passport.user_authentication_event.created_time</code>.
      */
+    @NotNull
     public LocalDateTime getCreatedTime() {
         return this.createdTime;
     }

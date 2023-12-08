@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import org.jooq.Field;
 import org.jooq.Record1;
 import org.jooq.Record7;
@@ -31,6 +34,8 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     /**
      * Getter for <code>luix-passport.spring_session.PRIMARY_ID</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getPrimaryId() {
         return (String) get(0);
     }
@@ -45,6 +50,8 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     /**
      * Getter for <code>luix-passport.spring_session.SESSION_ID</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getSessionId() {
         return (String) get(1);
     }
@@ -59,6 +66,7 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     /**
      * Getter for <code>luix-passport.spring_session.CREATION_TIME</code>.
      */
+    @NotNull
     public Long getCreationTime() {
         return (Long) get(2);
     }
@@ -73,6 +81,7 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     /**
      * Getter for <code>luix-passport.spring_session.LAST_ACCESS_TIME</code>.
      */
+    @NotNull
     public Long getLastAccessTime() {
         return (Long) get(3);
     }
@@ -89,6 +98,7 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
      * Getter for
      * <code>luix-passport.spring_session.MAX_INACTIVE_INTERVAL</code>.
      */
+    @NotNull
     public Integer getMaxInactiveInterval() {
         return (Integer) get(4);
     }
@@ -103,6 +113,7 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     /**
      * Getter for <code>luix-passport.spring_session.EXPIRY_TIME</code>.
      */
+    @NotNull
     public Long getExpiryTime() {
         return (Long) get(5);
     }
@@ -117,6 +128,7 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     /**
      * Getter for <code>luix-passport.spring_session.PRINCIPAL_NAME</code>.
      */
+    @Size(max = 100)
     public String getPrincipalName() {
         return (String) get(6);
     }

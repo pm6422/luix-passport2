@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDateTime;
 
 import org.jooq.Record1;
@@ -30,6 +33,8 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Getter for <code>luix-passport.oauth2_authorization.id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getId() {
         return (String) get(0);
     }
@@ -46,6 +51,8 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.registered_client_id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getRegisteredClientId() {
         return (String) get(1);
     }
@@ -62,6 +69,8 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.principal_name</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getPrincipalName() {
         return (String) get(2);
     }
@@ -78,6 +87,8 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorization_grant_type</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getAuthorizationGrantType() {
         return (String) get(3);
     }
@@ -94,6 +105,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorized_scopes</code>.
      */
+    @Size(max = 1000)
     public String getAuthorizedScopes() {
         return (String) get(4);
     }
@@ -108,6 +120,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Getter for <code>luix-passport.oauth2_authorization.attributes</code>.
      */
+    @Size(max = 65535)
     public byte[] getAttributes() {
         return (byte[]) get(5);
     }
@@ -122,6 +135,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Getter for <code>luix-passport.oauth2_authorization.state</code>.
      */
+    @Size(max = 500)
     public String getState() {
         return (String) get(6);
     }
@@ -138,6 +152,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorization_code_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getAuthorizationCodeValue() {
         return (byte[]) get(7);
     }
@@ -186,6 +201,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.authorization_code_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getAuthorizationCodeMetadata() {
         return (byte[]) get(10);
     }
@@ -202,6 +218,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getAccessTokenValue() {
         return (byte[]) get(11);
     }
@@ -250,6 +267,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getAccessTokenMetadata() {
         return (byte[]) get(14);
     }
@@ -266,6 +284,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_type</code>.
      */
+    @Size(max = 100)
     public String getAccessTokenType() {
         return (String) get(15);
     }
@@ -282,6 +301,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.access_token_scopes</code>.
      */
+    @Size(max = 1000)
     public String getAccessTokenScopes() {
         return (String) get(16);
     }
@@ -298,6 +318,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.oidc_id_token_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getOidcIdTokenValue() {
         return (byte[]) get(17);
     }
@@ -346,6 +367,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.oidc_id_token_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getOidcIdTokenMetadata() {
         return (byte[]) get(20);
     }
@@ -362,6 +384,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.refresh_token_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getRefreshTokenValue() {
         return (byte[]) get(21);
     }
@@ -410,6 +433,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.refresh_token_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getRefreshTokenMetadata() {
         return (byte[]) get(24);
     }
@@ -426,6 +450,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.user_code_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getUserCodeValue() {
         return (byte[]) get(25);
     }
@@ -474,6 +499,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.user_code_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getUserCodeMetadata() {
         return (byte[]) get(28);
     }
@@ -490,6 +516,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.device_code_value</code>.
      */
+    @Size(max = 65535)
     public byte[] getDeviceCodeValue() {
         return (byte[]) get(29);
     }
@@ -538,6 +565,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>luix-passport.oauth2_authorization.device_code_metadata</code>.
      */
+    @Size(max = 65535)
     public byte[] getDeviceCodeMetadata() {
         return (byte[]) get(32);
     }

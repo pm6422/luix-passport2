@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import org.jooq.Field;
 import org.jooq.Record2;
 import org.jooq.Row2;
@@ -30,6 +33,8 @@ public class UserAuthorityRecord extends UpdatableRecordImpl<UserAuthorityRecord
     /**
      * Getter for <code>luix-passport.user_authority.user_id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getUserId() {
         return (String) get(0);
     }
@@ -44,6 +49,8 @@ public class UserAuthorityRecord extends UpdatableRecordImpl<UserAuthorityRecord
     /**
      * Getter for <code>luix-passport.user_authority.authority</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getAuthority() {
         return (String) get(1);
     }

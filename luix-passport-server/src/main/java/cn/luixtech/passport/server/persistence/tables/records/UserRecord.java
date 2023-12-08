@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.User;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDateTime;
 
 import org.jooq.Field;
@@ -33,6 +36,8 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getId() {
         return (String) get(0);
     }
@@ -47,6 +52,8 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.username</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getUsername() {
         return (String) get(1);
     }
@@ -61,6 +68,8 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.email</code>.
      */
+    @NotNull
+    @Size(max = 30)
     public String getEmail() {
         return (String) get(2);
     }
@@ -75,6 +84,8 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.mobile_no</code>.
      */
+    @NotNull
+    @Size(max = 13)
     public String getMobileNo() {
         return (String) get(3);
     }
@@ -89,6 +100,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.first_name</code>.
      */
+    @Size(max = 20)
     public String getFirstName() {
         return (String) get(4);
     }
@@ -103,6 +115,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.last_name</code>.
      */
+    @Size(max = 20)
     public String getLastName() {
         return (String) get(5);
     }
@@ -117,6 +130,8 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.password_hash</code>.
      */
+    @NotNull
+    @Size(max = 256)
     public String getPasswordHash() {
         return (String) get(6);
     }
@@ -131,6 +146,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.activation_key</code>.
      */
+    @Size(max = 256)
     public String getActivationKey() {
         return (String) get(7);
     }
@@ -145,6 +161,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.reset_key</code>.
      */
+    @Size(max = 256)
     public String getResetKey() {
         return (String) get(8);
     }
@@ -173,6 +190,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.profile_photo_enabled</code>.
      */
+    @NotNull
     public Boolean getProfilePhotoEnabled() {
         return (Boolean) get(10);
     }
@@ -187,6 +205,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.remarks</code>.
      */
+    @Size(max = 256)
     public String getRemarks() {
         return (String) get(11);
     }
@@ -201,6 +220,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.activated</code>.
      */
+    @NotNull
     public Boolean getActivated() {
         return (Boolean) get(12);
     }
@@ -215,6 +235,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.enabled</code>.
      */
+    @NotNull
     public Boolean getEnabled() {
         return (Boolean) get(13);
     }
@@ -229,6 +250,8 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.created_by</code>.
      */
+    @NotNull
+    @Size(max = 50)
     public String getCreatedBy() {
         return (String) get(14);
     }
@@ -243,6 +266,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.created_time</code>.
      */
+    @NotNull
     public LocalDateTime getCreatedTime() {
         return (LocalDateTime) get(15);
     }
@@ -257,6 +281,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> implements Recor
     /**
      * Getter for <code>luix-passport.user.modified_by</code>.
      */
+    @Size(max = 50)
     public String getModifiedBy() {
         return (String) get(16);
     }

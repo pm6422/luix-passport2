@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -101,6 +104,8 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getId() {
         return this.id;
     }
@@ -115,6 +120,8 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.username</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getUsername() {
         return this.username;
     }
@@ -129,6 +136,8 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.email</code>.
      */
+    @NotNull
+    @Size(max = 30)
     public String getEmail() {
         return this.email;
     }
@@ -143,6 +152,8 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.mobile_no</code>.
      */
+    @NotNull
+    @Size(max = 13)
     public String getMobileNo() {
         return this.mobileNo;
     }
@@ -157,6 +168,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.first_name</code>.
      */
+    @Size(max = 20)
     public String getFirstName() {
         return this.firstName;
     }
@@ -171,6 +183,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.last_name</code>.
      */
+    @Size(max = 20)
     public String getLastName() {
         return this.lastName;
     }
@@ -185,6 +198,8 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.password_hash</code>.
      */
+    @NotNull
+    @Size(max = 256)
     public String getPasswordHash() {
         return this.passwordHash;
     }
@@ -199,6 +214,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.activation_key</code>.
      */
+    @Size(max = 256)
     public String getActivationKey() {
         return this.activationKey;
     }
@@ -213,6 +229,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.reset_key</code>.
      */
+    @Size(max = 256)
     public String getResetKey() {
         return this.resetKey;
     }
@@ -241,6 +258,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.profile_photo_enabled</code>.
      */
+    @NotNull
     public Boolean getProfilePhotoEnabled() {
         return this.profilePhotoEnabled;
     }
@@ -255,6 +273,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.remarks</code>.
      */
+    @Size(max = 256)
     public String getRemarks() {
         return this.remarks;
     }
@@ -269,6 +288,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.activated</code>.
      */
+    @NotNull
     public Boolean getActivated() {
         return this.activated;
     }
@@ -283,6 +303,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.enabled</code>.
      */
+    @NotNull
     public Boolean getEnabled() {
         return this.enabled;
     }
@@ -297,6 +318,8 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.created_by</code>.
      */
+    @NotNull
+    @Size(max = 50)
     public String getCreatedBy() {
         return this.createdBy;
     }
@@ -311,6 +334,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.created_time</code>.
      */
+    @NotNull
     public LocalDateTime getCreatedTime() {
         return this.createdTime;
     }
@@ -325,6 +349,7 @@ public class User implements Serializable {
     /**
      * Getter for <code>luix-passport.user.modified_by</code>.
      */
+    @Size(max = 50)
     public String getModifiedBy() {
         return this.modifiedBy;
     }

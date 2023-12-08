@@ -4,6 +4,9 @@
 package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 
 
@@ -36,6 +39,8 @@ public class UserPermission implements Serializable {
     /**
      * Getter for <code>luix-passport.user_permission.user_id</code>.
      */
+    @NotNull
+    @Size(max = 20)
     public String getUserId() {
         return this.userId;
     }
@@ -50,6 +55,8 @@ public class UserPermission implements Serializable {
     /**
      * Getter for <code>luix-passport.user_permission.permission</code>.
      */
+    @NotNull
+    @Size(max = 36)
     public String getPermission() {
         return this.permission;
     }

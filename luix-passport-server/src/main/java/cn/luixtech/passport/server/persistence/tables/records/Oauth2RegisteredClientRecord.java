@@ -6,6 +6,9 @@ package cn.luixtech.passport.server.persistence.tables.records;
 
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDateTime;
 
 import org.jooq.Field;
@@ -33,6 +36,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
     /**
      * Getter for <code>luix-passport.oauth2_registered_client.id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getId() {
         return (String) get(0);
     }
@@ -47,6 +52,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
     /**
      * Getter for <code>luix-passport.oauth2_registered_client.client_id</code>.
      */
+    @NotNull
+    @Size(max = 100)
     public String getClientId() {
         return (String) get(1);
     }
@@ -79,6 +86,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_secret</code>.
      */
+    @Size(max = 200)
     public String getClientSecret() {
         return (String) get(3);
     }
@@ -111,6 +119,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_name</code>.
      */
+    @NotNull
+    @Size(max = 200)
     public String getClientName() {
         return (String) get(5);
     }
@@ -127,6 +137,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
      */
+    @NotNull
+    @Size(max = 1000)
     public String getClientAuthenticationMethods() {
         return (String) get(6);
     }
@@ -143,6 +155,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
      */
+    @NotNull
+    @Size(max = 1000)
     public String getAuthorizationGrantTypes() {
         return (String) get(7);
     }
@@ -159,6 +173,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
      */
+    @Size(max = 1000)
     public String getRedirectUris() {
         return (String) get(8);
     }
@@ -175,6 +190,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
+    @Size(max = 1000)
     public String getPostLogoutRedirectUris() {
         return (String) get(9);
     }
@@ -189,6 +205,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
     /**
      * Getter for <code>luix-passport.oauth2_registered_client.scopes</code>.
      */
+    @NotNull
+    @Size(max = 1000)
     public String getScopes() {
         return (String) get(10);
     }
@@ -205,6 +223,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.client_settings</code>.
      */
+    @NotNull
+    @Size(max = 2000)
     public String getClientSettings() {
         return (String) get(11);
     }
@@ -221,6 +241,8 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
      * Getter for
      * <code>luix-passport.oauth2_registered_client.token_settings</code>.
      */
+    @NotNull
+    @Size(max = 2000)
     public String getTokenSettings() {
         return (String) get(12);
     }
