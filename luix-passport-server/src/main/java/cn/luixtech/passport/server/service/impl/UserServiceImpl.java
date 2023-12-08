@@ -10,7 +10,9 @@ import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
+import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
+import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,6 +55,7 @@ import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
     private static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private final        MessageCreator        messageCreator;
     private final        DSLContext            dslContext;
     private final        UserDao               userDao;
     private final        UserAuthorityDao      userAuthorityDao;
@@ -169,7 +172,34 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void update(User domain) {
+    public User update(User domain, List<String> authorities) {
+        User existingOne = userDao.findById(domain.getId());
+        if (existingOne == null) {
+            throw new DataNotFoundException(domain.getId());
+        }
 
+        User existingUser = userDao.fetchOneByEmail(domain.getEmail());
+        if (existingUser != null && (!existingUser.getId().equalsIgnoreCase(domain.getId()))) {
+            throw new DuplicationException(ImmutableMap.of("email", domain.getEmail()));
+        }
+        existingUser = userDao.fetchOneByMobileNo(domain.getMobileNo());
+        if (existingUser != null && (!existingUser.getId().equalsIgnoreCase(domain.getId()))) {
+            throw new DuplicationException(ImmutableMap.of("mobileNo", domain.getMobileNo()));
+        }
+
+        existingOne.setFirstName(domain.getFirstName());
+        existingOne.setLastName(domain.getLastName());
+        existingOne.setEmail(domain.getEmail().toLowerCase());
+        existingOne.setMobileNo(domain.getMobileNo());
+        existingOne.setEnabled(domain.getEnabled());
+        existingOne.setRemarks(domain.getRemarks());
+
+
+//        existingOne.setAuthorities(domain.getAuthorities());
+
+
+        userDao.update(existingOne);
+        log.debug("Updated user: {}", domain);
+        return existingOne;
     }
 }

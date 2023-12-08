@@ -16,5 +16,5 @@ public interface UserService {
 
     User insert(User domain, List<String> authorities, String rawPassword);
 
-    void update(User domain);
+    User update(User domain, List<String> authorities);
 }
