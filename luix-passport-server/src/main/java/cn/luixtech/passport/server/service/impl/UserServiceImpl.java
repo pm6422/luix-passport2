@@ -20,6 +20,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jooq.DSLContext;
+import org.jooq.impl.DSL;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
@@ -177,13 +178,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (existingOne == null) {
             throw new DataNotFoundException(domain.getId());
         }
-
-        User existingUser = userDao.fetchOneByEmail(domain.getEmail());
-        if (existingUser != null && (!existingUser.getId().equalsIgnoreCase(domain.getId()))) {
+        int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(USER)
+                .where(USER.EMAIL.eq(domain.getEmail()))
+                .and(USER.ID.ne(domain.getId())));
+        if (existingEmailCount > 0) {
             throw new DuplicationException(ImmutableMap.of("email", domain.getEmail()));
         }
-        existingUser = userDao.fetchOneByMobileNo(domain.getMobileNo());
-        if (existingUser != null && (!existingUser.getId().equalsIgnoreCase(domain.getId()))) {
+        int existingMobileNoCount = dslContext.fetchCount(DSL.selectFrom(USER)
+                .where(USER.MOBILE_NO.eq(domain.getEmail()))
+                .and(USER.ID.ne(domain.getId())));
+        if (existingMobileNoCount > 0) {
             throw new DuplicationException(ImmutableMap.of("mobileNo", domain.getMobileNo()));
         }
 
@@ -193,7 +197,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingOne.setMobileNo(domain.getMobileNo());
         existingOne.setEnabled(domain.getEnabled());
         existingOne.setRemarks(domain.getRemarks());
-
 
 //        existingOne.setAuthorities(domain.getAuthorities());
 
