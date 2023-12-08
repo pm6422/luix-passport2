@@ -162,7 +162,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userAuthorityDao.insert(userAuthorities);
         log.info("Created user authorities: {}", userAuthorities);
 
-        return userDao.findById(id);
+        return domain;
     }
 
     @Override
