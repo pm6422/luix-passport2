@@ -237,14 +237,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User requestPasswordReset(String email, String resetCode) {
-        User user = dslContext.select(Tables.USER)
+        User user = dslContext.selectFrom(Tables.USER)
                 .where(USER.EMAIL.eq(email))
                 .and(USER.ACTIVATED.eq(true))
                 .limit(1)
                 // Convert User Record to POJO User
                 .fetchOneInto(User.class);
         if (user == null) {
-            throw new DataNotFoundException(messageCreator.getMessage("email"));
+            throw new DataNotFoundException(email);
         }
 
         user.setResetCode(resetCode);
@@ -273,7 +273,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
-        List<User> domains = dslContext.select(Tables.USER)
+        List<User> domains = dslContext.selectFrom(Tables.USER)
                 .where(createCondition(username, email, mobileNo, enabled, activated))
                 .orderBy(buildOrderBy(pageable.getSort(), USER.fields()))
                 .offset(pageable.getOffset())
