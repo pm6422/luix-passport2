@@ -18,9 +18,9 @@ public interface UserService {
 
     Set<String> findPermissions(String userId);
 
-    User insert(User domain, List<String> authorities, String rawPassword);
+    User insert(User domain, Set<String> authorities, String rawPassword);
 
-    User update(User domain, List<String> authorities);
+    User update(User domain, Set<String> authorities);
 
     void activate(String activationCode);
 

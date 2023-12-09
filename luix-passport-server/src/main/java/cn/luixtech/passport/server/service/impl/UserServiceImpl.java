@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User insert(User domain, List<String> authorities, String rawPassword) {
+    public User insert(User domain, Set<String> authorities, String rawPassword) {
         // From pojo to record
         UserRecord userRecord = dslContext.newRecord(USER, domain);
 
@@ -161,7 +161,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User update(User domain, List<String> authorities) {
+    public User update(User domain, Set<String> authorities) {
         User existingOne = userDao.findById(domain.getId());
         if (existingOne == null) {
             throw new DataNotFoundException(domain.getId());
