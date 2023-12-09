@@ -201,20 +201,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void activate(String activationCode) {
-        List<User> users = userDao.fetchByActivationCode(activationCode);
-        if (CollectionUtils.isEmpty(users)) {
-            throw new DataNotFoundException(activationCode);
-        }
-
-        users.get(0).setActivated(true);
-        users.get(0).setActivationCode(null);
-        userDao.update(users.get(0));
-        log.info("Activated user: {}", users.get(0));
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void changePassword(String userId, String oldRawPassword, String newRawPassword) {
         User user = userDao.findById(userId);
         if (user == null) {
@@ -254,16 +240,36 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void resetPassword(String resetCode, String newRawPassword) {
-        List<User> users = userDao.fetchByResetCode(resetCode);
-        Validate.isTrue(CollectionUtils.isNotEmpty(users), messageCreator.getMessage("UE1022"));
-        Validate.isTrue(LocalDateTime.now().isBefore(users.get(0).getResetTime().plusDays(1)), messageCreator.getMessage("UE1023"));
+        User user = dslContext.selectFrom(Tables.USER)
+                .where(USER.RESET_CODE.eq(resetCode))
+                .limit(1)
+                // Convert User Record to POJO User
+                .fetchOneInto(User.class);
+        Validate.isTrue(user != null, messageCreator.getMessage("UE1022"));
+        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetTime().plusDays(1)), messageCreator.getMessage("UE1023"));
 
-        users.get(0).setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
-        users.get(0).setResetCode(null);
-        users.get(0).setResetTime(null);
+        user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
+        user.setResetCode(null);
+        user.setResetTime(null);
 
-        userDao.update(users.get(0));
+        userDao.update(user);
         log.debug("Reset password by reset code {}", resetCode);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void activate(String activationCode) {
+        User user = dslContext.selectFrom(Tables.USER)
+                .where(USER.ACTIVATION_CODE.eq(activationCode))
+                .limit(1)
+                // Convert User Record to POJO User
+                .fetchOneInto(User.class);
+        Validate.isTrue(user != null, messageCreator.getMessage("UE1024"));
+
+        user.setActivated(true);
+        user.setActivationCode(null);
+        userDao.update(user);
+        log.info("Activated user by activation code {}", activationCode);
     }
 
     @Override
