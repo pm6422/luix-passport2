@@ -174,7 +174,7 @@
                             <daos>true</daos>
                             <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
                             <springAnnotations>true</springAnnotations>
-<!--                            <validationAnnotations>true</validationAnnotations>-->
+                            <!--                            <validationAnnotations>true</validationAnnotations>-->
                         </generate>
                         <target>
                             <packageName>cn.luixtech.passport.server.persistence</packageName>

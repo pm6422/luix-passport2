@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Optional<User> findOne(String loginName) {
-        User user = dslContext.select(Tables.USER)
+        User user = dslContext.selectFrom(Tables.USER)
                 .where(USER.USERNAME.eq(loginName))
                 .or(USER.EMAIL.eq(loginName))
                 .or(USER.MOBILE_NO.eq(loginName))
