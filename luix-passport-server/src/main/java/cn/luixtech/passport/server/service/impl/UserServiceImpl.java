@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setEmail(domain.getEmail().toLowerCase());
         domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
         domain.setActivationCode(RandomStringUtils.randomNumeric(20));
-        domain.setResetCode(RandomStringUtils.randomNumeric(20));
+        domain.setResetCode(null);
         domain.setResetTime(LocalDateTime.now());
         domain.setProfilePhotoEnabled(false);
         domain.setActivated(false);
@@ -236,7 +236,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User requestPasswordReset(String email, String resetCode) {
+    public User requestPasswordReset(String email) {
         User user = dslContext.selectFrom(Tables.USER)
                 .where(USER.EMAIL.eq(email))
                 .and(USER.ACTIVATED.eq(true))
@@ -247,11 +247,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new DataNotFoundException(email);
         }
 
-        user.setResetCode(resetCode);
+        user.setResetCode(RandomStringUtils.randomNumeric(20));
         user.setResetTime(LocalDateTime.now());
 
         userDao.update(user);
-        log.info("Requested password reset by reset code {}", resetCode);
+        log.info("Requested password reset by reset code {}", user.getResetCode());
         return user;
     }
 

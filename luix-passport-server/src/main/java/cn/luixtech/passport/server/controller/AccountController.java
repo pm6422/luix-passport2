@@ -84,7 +84,7 @@ public class AccountController {
     @PostMapping("/open-api/accounts/request-reset")
     public ResponseEntity<Void> requestReset(HttpServletRequest request,
                                              @Parameter(description = "email", required = true) @RequestBody String email) {
-        User user = userService.requestPasswordReset(email, RandomStringUtils.randomNumeric(20));
+        User user = userService.requestPasswordReset(email);
         mailService.sendPasswordResetMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM2002")).build();
     }
