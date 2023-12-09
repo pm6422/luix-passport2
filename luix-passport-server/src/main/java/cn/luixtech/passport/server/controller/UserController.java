@@ -94,7 +94,7 @@ public class UserController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1003", id)).build();
     }
 
-    @Operation(summary = "reset password to initial one")
+    @Operation(summary = "reset password to default one")
     @PutMapping("/api/users/reset-password/{id}")
     public ResponseEntity<Void> resetPassword(@Parameter(description = "id", required = true) @PathVariable String id) {
         userService.changePassword(id, null, applicationProperties.getAccount().getDefaultPassword());

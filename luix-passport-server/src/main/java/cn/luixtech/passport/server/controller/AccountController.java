@@ -71,7 +71,7 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 
-    @Operation(summary = "modify the password of the current user")
+    @Operation(summary = "update the password of the current user")
     @PutMapping("/api/accounts/password")
     public ResponseEntity<Void> changePassword(@Parameter(description = "new password", required = true) @Valid @RequestBody ChangePassword dto) {
         // For security reason
