@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Schema(description = "user reset DTO")
 @Data
-public class RetrievePassword implements Serializable {
+public class PasswordRecovery implements Serializable {
 
     private static final long serialVersionUID = -6442194590613017034L;
 

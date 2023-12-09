@@ -2,12 +2,10 @@ package cn.luixtech.passport.server.service;
 
 
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -26,7 +24,7 @@ public interface UserService {
 
     void changePassword(String userId, String oldRawPassword, String newRawPassword);
 
-    User requestPasswordReset(String email);
+    User requestPasswordRecovery(String email);
 
     void resetPassword(String resetCode, String newRawPassword);
 

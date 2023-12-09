@@ -232,7 +232,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User requestPasswordReset(String email) {
+    public User requestPasswordRecovery(String email) {
         User user = dslContext.selectFrom(Tables.USER)
                 .where(USER.EMAIL.eq(email))
                 .and(USER.ACTIVATED.eq(true))

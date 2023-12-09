@@ -5,7 +5,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
-import cn.luixtech.passport.server.pojo.RetrievePassword;
+import cn.luixtech.passport.server.pojo.PasswordRecovery;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -81,18 +81,18 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("password"))).build();
     }
 
-    @Operation(summary = "send retrieve password email")
-    @PostMapping("/open-api/accounts/request-retrieve-password")
-    public ResponseEntity<Void> requestRetrievePassword(HttpServletRequest request,
+    @Operation(summary = "send password recovery email")
+    @PostMapping("/open-api/accounts/request-password-recovery")
+    public ResponseEntity<Void> requestRecoverPassword(HttpServletRequest request,
                                              @Parameter(description = "email", required = true) @RequestBody String email) {
-        User user = userService.requestPasswordReset(email);
-        mailService.sendPasswordRetrievalMail(user, getRequestUrl(request));
+        User user = userService.requestPasswordRecovery(email);
+        mailService.sendPasswordRecoveryMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
     }
 
-    @Operation(summary = "complete retrieve password")
-    @PostMapping("/open-api/accounts/complete-retrieve-password")
-    public ResponseEntity<Void> completeRetrievePassword(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody RetrievePassword dto) {
+    @Operation(summary = "complete password recovery")
+    @PostMapping("/open-api/accounts/complete-password-recovery")
+    public ResponseEntity<Void> completeRecoverPassword(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody PasswordRecovery dto) {
         userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
     }
