@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setUsername(domain.getUsername().toLowerCase());
         domain.setEmail(domain.getEmail().toLowerCase());
         domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
-        domain.setActivationCode(RandomStringUtils.randomNumeric(20));
+        domain.setActivationCode(generateRandomCode());
         domain.setResetCode(null);
         domain.setResetTime(null);
         domain.setProfilePhotoEnabled(false);
@@ -227,7 +227,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new DataNotFoundException(email);
         }
 
-        user.setResetCode(RandomStringUtils.randomNumeric(20));
+        user.setResetCode(generateRandomCode());
         user.setResetTime(LocalDateTime.now());
 
         userDao.update(user);
@@ -317,7 +317,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public String generateRandomCode() {
-        return RandomStringUtils.randomNumeric(4) + "-" + RandomStringUtils.randomNumeric(4)
-                + "-" + RandomStringUtils.randomNumeric(4) + "-" + RandomStringUtils.randomNumeric(4);
+        return RandomStringUtils.randomAlphanumeric(4).toUpperCase() +
+                "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
+                + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
+                + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
+                + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase();
     }
 }
