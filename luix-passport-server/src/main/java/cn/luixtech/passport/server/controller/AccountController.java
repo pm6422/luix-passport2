@@ -114,16 +114,7 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
     }
 
-    @Operation(summary = "upload current user profile picture")
-    @PostMapping("/api/accounts/profile-photo/upload")
-    public void uploadProfilePhoto(@Parameter(description = "file description", required = true) @RequestPart String description,
-                                   @Parameter(description = "user profile picture", required = true) @RequestPart MultipartFile file) throws IOException {
-        User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
-        userPhotoService.save(user, file.getBytes());
-        log.info("Uploaded profile photo with file name {} and description {}", file.getOriginalFilename(), description);
-    }
-
-    @Operation(summary = "get the current user profile photo")
+    @Operation(summary = "get profile photo of the current user")
     @GetMapping("/api/accounts/profile-photo")
     public ModelAndView getProfilePhoto() {
         // @RestController下使用return forwardUrl不好使
@@ -132,7 +123,16 @@ public class AccountController {
         return new ModelAndView(forwardUrl);
     }
 
-    @Operation(summary = "download user profile photo")
+    @Operation(summary = "upload profile photo of the current user")
+    @PostMapping("/api/accounts/profile-photo/upload")
+    public void uploadProfilePhoto(@Parameter(description = "file description", required = true) @RequestPart String description,
+                                   @Parameter(description = "user profile picture", required = true) @RequestPart MultipartFile file) throws IOException {
+        User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        userPhotoService.save(user, file.getBytes());
+        log.info("Uploaded profile photo with file name {} and description {}", file.getOriginalFilename(), description);
+    }
+
+    @Operation(summary = "download profile photo of the current user")
     @GetMapping("/api/accounts/profile-photo/download")
     public ResponseEntity<Resource> downloadProfilePhoto() {
         UserPhoto existingOne = userPhotoDao.findById(AuthUtils.getCurrentUserId());
