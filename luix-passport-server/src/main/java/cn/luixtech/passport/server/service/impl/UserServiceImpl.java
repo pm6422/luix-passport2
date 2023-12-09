@@ -160,10 +160,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User update(User domain, Set<String> authorities) {
-        User existingOne = userDao.findById(domain.getId());
-        if (existingOne == null) {
-            throw new DataNotFoundException(domain.getId());
-        }
+        User existingOne = Optional.ofNullable(userDao.findById(domain.getId())).orElseThrow(() -> new DataNotFoundException(domain.getId()));
+
         int existingEmailCount = dslContext.fetchCount(DSL.select(Tables.USER)
                 .where(USER.EMAIL.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
@@ -201,10 +199,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void changePassword(String userId, String oldRawPassword, String newRawPassword) {
-        User user = userDao.findById(userId);
+    public void changePassword(String id, String oldRawPassword, String newRawPassword) {
+        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
         if (user == null) {
-            throw new DataNotFoundException(userId);
+            throw new DataNotFoundException(id);
         }
 
         if (StringUtils.isNotEmpty(oldRawPassword)) {
@@ -274,10 +272,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public ManagedUser findById(String id) {
-        User user = userDao.findById(id);
-        if (user == null) {
-            throw new DataNotFoundException(id);
-        }
+        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
         user.setPasswordHash("*");
         return ManagedUser.of(user, findAuthorities(id));
     }

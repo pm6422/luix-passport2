@@ -22,7 +22,7 @@ public interface UserService {
 
     void activate(String activationCode);
 
-    void changePassword(String userId, String oldRawPassword, String newRawPassword);
+    void changePassword(String id, String oldRawPassword, String newRawPassword);
 
     User requestPasswordRecovery(String email);
 
