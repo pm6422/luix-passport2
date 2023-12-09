@@ -5,7 +5,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
-import cn.luixtech.passport.server.pojo.ResetPassword;
+import cn.luixtech.passport.server.pojo.RetrievePassword;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -92,7 +92,7 @@ public class AccountController {
 
     @Operation(summary = "complete retrieve password")
     @PostMapping("/open-api/accounts/complete-retrieve-password")
-    public ResponseEntity<Void> completeRetrievePassword(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody ResetPassword dto) {
+    public ResponseEntity<Void> completeRetrievePassword(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody RetrievePassword dto) {
         userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
     }
