@@ -83,8 +83,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
-        boolean accountNonExpired = user.getAccountExpiresAt() == null ? true : LocalDateTime.now().isBefore(user.getAccountExpiresAt());
-        boolean passwordNonExpired = user.getPasswordExpiresAt() == null ? true : LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
+        boolean accountNonExpired = user.getAccountExpiresAt() == null || LocalDateTime.now().isBefore(user.getAccountExpiresAt());
+        boolean passwordNonExpired = user.getPasswordExpiresAt() == null || LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
 
         return new AuthUser(user.getId(), user.getUsername(),
                 user.getFirstName(), user.getLastName(),
