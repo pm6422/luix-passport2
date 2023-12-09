@@ -101,7 +101,7 @@ public class UserController {
     public ResponseEntity<Void> resetPassword(@Parameter(description = "id", required = true) @PathVariable String id) {
         log.debug("REST reset the password of user: {}", id);
         userService.changePassword(id, null, applicationProperties.getAccount().getDefaultPassword());
-        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM2012", applicationProperties.getAccount().getDefaultPassword());
+        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.ok().headers(headers).build();
     }
 //
