@@ -258,9 +258,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void resetPassword(String resetCode, String newRawPassword) {
         List<User> users = userDao.fetchByResetCode(resetCode);
-        if (CollectionUtils.isEmpty(users)) {
-            throw new DataNotFoundException(resetCode);
-        }
+        Validate.isTrue(CollectionUtils.isNotEmpty(users), messageCreator.getMessage("UE1022"));
+        Validate.isTrue(LocalDateTime.now().isBefore(users.get(0).getResetTime().plusDays(1)), messageCreator.getMessage("UE1023"));
 
         users.get(0).setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         users.get(0).setResetCode(null);
