@@ -14,6 +14,7 @@ import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
+import cn.luixtech.passport.server.persistence.tables.UserPhoto;
 
 import java.util.Arrays;
 import java.util.List;
@@ -87,6 +88,11 @@ public class LuixPassport extends SchemaImpl {
     public final UserPermission USER_PERMISSION = UserPermission.USER_PERMISSION;
 
     /**
+     * The table <code>luix-passport.user_photo</code>.
+     */
+    public final UserPhoto USER_PHOTO = UserPhoto.USER_PHOTO;
+
+    /**
      * No further instances allowed
      */
     private LuixPassport() {
@@ -111,7 +117,8 @@ public class LuixPassport extends SchemaImpl {
             UserAuthenticationEvent.USER_AUTHENTICATION_EVENT,
             UserAuthority.USER_AUTHORITY,
             UserLogin.USER_LOGIN,
-            UserPermission.USER_PERMISSION
+            UserPermission.USER_PERMISSION,
+            UserPhoto.USER_PHOTO
         );
     }
 }

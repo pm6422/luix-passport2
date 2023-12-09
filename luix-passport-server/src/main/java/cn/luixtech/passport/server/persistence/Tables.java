@@ -14,6 +14,7 @@ import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
+import cn.luixtech.passport.server.persistence.tables.UserPhoto;
 
 
 /**
@@ -71,4 +72,9 @@ public class Tables {
      * The table <code>luix-passport.user_permission</code>.
      */
     public static final UserPermission USER_PERMISSION = UserPermission.USER_PERMISSION;
+
+    /**
+     * The table <code>luix-passport.user_photo</code>.
+     */
+    public static final UserPhoto USER_PHOTO = UserPhoto.USER_PHOTO;
 }
