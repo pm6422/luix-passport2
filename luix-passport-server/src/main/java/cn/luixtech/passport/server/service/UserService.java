@@ -33,4 +33,6 @@ public interface UserService {
     Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
 
     ManagedUser findById(String id);
+
+    void deleteById(String id);
 }

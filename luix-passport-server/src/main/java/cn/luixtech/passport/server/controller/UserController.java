@@ -90,7 +90,7 @@ public class UserController {
     @DeleteMapping("/api/users/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
         log.debug("REST request to delete user: {}", id);
-        userDao.deleteById(id);
+        userService.deleteById(id);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1003", id)).build();
     }
 

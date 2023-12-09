@@ -1,18 +1,28 @@
 package cn.luixtech.passport.server.service.impl;
 
+import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.service.UserAuthorityService;
+import lombok.AllArgsConstructor;
+import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 
 @Service
+@AllArgsConstructor
 public class UserAuthorityServiceImpl implements UserAuthorityService {
+
+    private final DSLContext dslContext;
+
     @Override
     public List<UserAuthority> generate(String userId, Set<String> newAuthorities) {
         List<UserAuthority> userAuthorities = newAuthorities.stream()
@@ -37,5 +47,13 @@ public class UserAuthorityServiceImpl implements UserAuthorityService {
         userAuthority.setUserId(userId);
         userAuthority.setAuthority(authority);
         return userAuthority;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void deleteByUserId(String userId) {
+        dslContext.delete(Tables.USER_AUTHORITY)
+                .where(USER_AUTHORITY.USER_ID.eq(userId))
+                .execute();
     }
 }

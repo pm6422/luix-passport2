@@ -47,7 +47,6 @@ import java.util.stream.Collectors;
 
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
-import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
 import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 
 /**
@@ -190,9 +189,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         if (CollectionUtils.isNotEmpty(authorities)) {
             // first delete user authorities
-            dslContext.delete(Tables.USER_AUTHORITY)
-                    .where(USER_AUTHORITY.USER_ID.eq(domain.getId()))
-                    .execute();
+            userAuthorityService.deleteByUserId(domain.getId());
 
             // then insert user authorities
             List<UserAuthority> userAuthorities = userAuthorityService.generate(domain.getId(), authorities);
@@ -308,5 +305,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             condition = condition.and(USER.ACTIVATED.eq(activated));
         }
         return condition;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void deleteById(String userId) {
+        userAuthorityService.deleteByUserId(userId);
+        userDao.deleteById(userId);
     }
 }

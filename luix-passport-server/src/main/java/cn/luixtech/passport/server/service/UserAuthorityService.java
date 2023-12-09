@@ -7,4 +7,6 @@ import java.util.Set;
 
 public interface UserAuthorityService {
     List<UserAuthority> generate(String userId, Set<String> authorities);
+
+    void deleteByUserId(String userId);
 }
