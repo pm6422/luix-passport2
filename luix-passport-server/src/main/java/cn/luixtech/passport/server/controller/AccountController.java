@@ -34,9 +34,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+import static cn.luixtech.passport.server.service.AuthorityService.*;
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 
 /**
@@ -82,7 +85,7 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 
-    @Operation(summary = "update the password of the current user")
+    @Operation(summary = "update password of the current user")
     @PutMapping("/api/accounts/password")
     public ResponseEntity<Void> changePassword(@Parameter(description = "new password", required = true) @Valid @RequestBody ChangePassword dto) {
         // For security reason
@@ -150,5 +153,11 @@ public class AccountController {
 //        String path = System.getProperty("user.home") + File.separator + "fileName.txt";
 //        File outFile = ResourceUtils.getFile(path);
 //        FileUtils.writeLines(outFile, strList);
+    }
+
+    @Operation(summary = "get all authority names")
+    @GetMapping("/api/accounts/authority-names")
+    public ResponseEntity<List<String>> getAuthorityNames() {
+        return ResponseEntity.ok(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
     }
 }
