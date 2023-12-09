@@ -272,6 +272,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public ManagedUser findById(String id) {
+        User user = userDao.findById(id);
+        if (user == null) {
+            throw new DataNotFoundException(id);
+        }
+        user.setPasswordHash("*");
+        return ManagedUser.of(user, findAuthorities(id));
+    }
+
+    @Override
     public Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
         List<User> domains = dslContext.selectFrom(Tables.USER)
                 .where(createCondition(username, email, mobileNo, enabled, activated))
@@ -279,19 +289,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetchInto(User.class);
-
         return new PageImpl<>(domains, pageable, userDao.count());
-    }
-
-    @Override
-    public ManagedUser findById(String id) {
-        User user = userDao.findById(id);
-        if (user == null) {
-            throw new DataNotFoundException(id);
-        }
-        user.setPasswordHash("***");
-
-        return ManagedUser.of(user, new ArrayList<>(findAuthorities(id)));
     }
 
     private Condition createCondition(String username, String email, String mobileNo, Boolean enabled, Boolean activated) {

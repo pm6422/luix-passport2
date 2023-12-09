@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -30,9 +30,9 @@ public class ManagedUser extends User {
     @Size(min = RAW_PASSWORD_MIN_LENGTH, max = RAW_PASSWORD_MAX_LENGTH)
     private String password;
 
-    private List<String> authorities;
+    private Set<String> authorities;
 
-    public static ManagedUser of(User user, List<String> authorities) {
+    public static ManagedUser of(User user, Set<String> authorities) {
         ManagedUser managedUser = new ManagedUser();
         BeanUtils.copyProperties(user, managedUser);
         managedUser.setAuthorities(authorities);
