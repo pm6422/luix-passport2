@@ -33,4 +33,6 @@ public interface UserService {
     ManagedUser findById(String id);
 
     void deleteById(String id);
+
+    String generateRandomCode();
 }

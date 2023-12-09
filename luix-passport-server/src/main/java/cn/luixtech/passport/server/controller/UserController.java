@@ -71,6 +71,7 @@ public class UserController {
     @Operation(summary = "find user by id")
     @GetMapping("/api/users/{id}")
     public ResponseEntity<ManagedUser> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
+        String s = userService.generateRandomCode();
         return ResponseEntity.ok(userService.findById(id));
     }
 

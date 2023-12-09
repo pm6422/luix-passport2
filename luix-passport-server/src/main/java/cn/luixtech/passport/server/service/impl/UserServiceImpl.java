@@ -314,4 +314,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userAuthorityService.deleteByUserId(userId);
         userDao.deleteById(userId);
     }
+
+    @Override
+    public String generateRandomCode() {
+        return RandomStringUtils.randomNumeric(4) + "-" + RandomStringUtils.randomNumeric(4)
+                + "-" + RandomStringUtils.randomNumeric(4) + "-" + RandomStringUtils.randomNumeric(4);
+    }
 }

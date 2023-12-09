@@ -50,12 +50,6 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
     }
 
-    @Operation(summary = "activate the account by activation code")
-    @GetMapping("/open-api/accounts/activate/{code:[0-9]+}")
-    public void activate(@Parameter(description = "activation code", required = true) @PathVariable String code) {
-        userService.activate(code);
-    }
-
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> updateAccount(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
@@ -79,6 +73,12 @@ public class AccountController {
         // Logout asynchronously
         applicationEventPublisher.publishEvent(new LogoutEvent(this));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("password"))).build();
+    }
+
+    @Operation(summary = "activate the account by activation code")
+    @GetMapping("/open-api/accounts/activate/{code:[0-9]+}")
+    public void activate(@Parameter(description = "activation code", required = true) @PathVariable String code) {
+        userService.activate(code);
     }
 
     @Operation(summary = "send password recovery email")
