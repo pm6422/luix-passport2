@@ -2,11 +2,14 @@ package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
+import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
 import cn.luixtech.passport.server.service.MailService;
+import cn.luixtech.passport.server.service.UserPhotoService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
@@ -18,13 +21,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.Optional;
 
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
@@ -36,12 +46,15 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 @AllArgsConstructor
 @Slf4j
 public class AccountController {
-    private final HttpHeaderCreator         httpHeaderCreator;
-    private final MessageCreator            messageCreator;
-    private final MailService               mailService;
-    private final UserDao                   userDao;
-    private final UserService               userService;
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private static final FastDateFormat            DATETIME_FORMAT = FastDateFormat.getInstance("yyyyMMdd-HHmmss");
+    private final        HttpHeaderCreator         httpHeaderCreator;
+    private final        MessageCreator            messageCreator;
+    private final        MailService               mailService;
+    private final        UserDao                   userDao;
+    private final        UserPhotoDao              userPhotoDao;
+    private final        UserService               userService;
+    private final        UserPhotoService          userPhotoService;
+    private final        ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "register a new user and send an activation email")
     @PostMapping("/open-api/accounts/register")
@@ -101,12 +114,41 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
     }
 
-    @Operation(summary = "get the current user avatar")
+    @Operation(summary = "upload current user profile picture")
+    @PostMapping("/api/accounts/profile-photo/upload")
+    public void uploadProfilePhoto(@Parameter(description = "file description", required = true) @RequestPart String description,
+                                   @Parameter(description = "user profile picture", required = true) @RequestPart MultipartFile file) throws IOException {
+        User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        userPhotoService.save(user, file.getBytes());
+        log.info("Uploaded profile photo with file name {} and description {}", file.getOriginalFilename(), description);
+    }
+
+    @Operation(summary = "get the current user profile photo")
     @GetMapping("/api/accounts/profile-photo")
     public ModelAndView getProfilePhoto() {
         // @RestController下使用return forwardUrl不好使
         String forwardUrl = "forward:".concat(UserController.GET_PROFILE_PHOTO_URL).concat(AuthUtils.getCurrentUserId());
         log.info(forwardUrl);
         return new ModelAndView(forwardUrl);
+    }
+
+    @Operation(summary = "download user profile photo")
+    @GetMapping("/api/accounts/profile-photo/download")
+    public ResponseEntity<Resource> downloadProfilePhoto() {
+        UserPhoto existingOne = userPhotoDao.findById(AuthUtils.getCurrentUserId());
+        if (existingOne == null) {
+            return ResponseEntity.ok().body(null);
+        }
+        ByteArrayResource resource = new ByteArrayResource(existingOne.getProfilePhoto());
+        String fileName = "photo-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .contentLength(existingOne.getProfilePhoto().length)
+                .body(resource);
+
+//        String path = System.getProperty("user.home") + File.separator + "fileName.txt";
+//        File outFile = ResourceUtils.getFile(path);
+//        FileUtils.writeLines(outFile, strList);
     }
 }
