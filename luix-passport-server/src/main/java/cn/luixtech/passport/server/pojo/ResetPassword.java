@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.pojo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -14,11 +14,11 @@ public class ResetPassword implements Serializable {
     private static final long serialVersionUID = -6442194590613017034L;
 
     @Schema(description = "reset code")
-    @NotNull
+    @NotEmpty
     private String resetCode;
 
     @Schema(description = "new raw password")
-    @NotNull
+    @NotEmpty
     @Size(min = ManagedUser.RAW_PASSWORD_MIN_LENGTH, max = ManagedUser.RAW_PASSWORD_MAX_LENGTH)
     private String newRawPassword;
 
