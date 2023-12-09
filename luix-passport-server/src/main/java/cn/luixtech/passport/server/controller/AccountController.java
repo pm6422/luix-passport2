@@ -61,7 +61,7 @@ public class AccountController {
     public ResponseEntity<Void> register(HttpServletRequest request,
                                          @Parameter(description = "user", required = true) @Valid @RequestBody ManagedUser managedUser) {
         log.debug("REST request to register user: {}", managedUser);
-        User newUser = userService.insert(managedUser.toUser(), managedUser.getAuthorities(), managedUser.getPassword());
+        User newUser = userService.insert(managedUser.toUser(), managedUser.getAuthorities(), managedUser.getPassword(), false);
         mailService.sendActivationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("SM1021", newUser.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();

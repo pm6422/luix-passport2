@@ -83,10 +83,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 
+        boolean accountNonExpired = user.getAccountExpiresAt() == null ? true : LocalDateTime.now().isBefore(user.getAccountExpiresAt());
+        boolean passwordNonExpired = user.getPasswordExpiresAt() == null ? true : LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
+
         return new AuthUser(user.getId(), user.getUsername(),
                 user.getFirstName(), user.getLastName(),
                 user.getPasswordHash(), user.getEnabled(),
-                true, true,
+                accountNonExpired, passwordNonExpired,
                 true, authorities);
     }
 
@@ -120,7 +123,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User insert(User domain, Set<String> authorities, String rawPassword) {
+    public User insert(User domain, Set<String> authorities, String rawPassword, boolean permanentAccount) {
         // From pojo to record
         UserRecord userRecord = dslContext.newRecord(USER, domain);
 
@@ -145,6 +148,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setProfilePhotoEnabled(false);
         domain.setActivated(false);
         domain.setEnabled(true);
+        domain.setPasswordExpiresAt(LocalDateTime.now().plusMonths(6));
+        if (!permanentAccount) {
+            domain.setAccountExpiresAt(LocalDateTime.now().plusDays(30));
+        }
 
         userDao.insert(domain);
         log.info("Created user: {}", domain);
