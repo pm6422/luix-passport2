@@ -67,7 +67,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final        MessageCreator        messageCreator;
 
     @Override
-//    @Transactional(propagation = Propagation.REQUIRED, readOnly = true, noRollbackFor = Exception.class)
     public UserDetails loadUserByUsername(final String loginName) {
         log.debug("Authenticating {}", loginName);
         if (StringUtils.isEmpty(loginName)) {
