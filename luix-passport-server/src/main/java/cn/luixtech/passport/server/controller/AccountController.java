@@ -81,18 +81,18 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("password"))).build();
     }
 
-    @Operation(summary = "send reset password email")
-    @PostMapping("/open-api/accounts/request-reset")
-    public ResponseEntity<Void> requestReset(HttpServletRequest request,
+    @Operation(summary = "send retrieve password email")
+    @PostMapping("/open-api/accounts/request-retrieve-password")
+    public ResponseEntity<Void> requestRetrievePassword(HttpServletRequest request,
                                              @Parameter(description = "email", required = true) @RequestBody String email) {
         User user = userService.requestPasswordReset(email);
-        mailService.sendPasswordResetMail(user, getRequestUrl(request));
+        mailService.sendPasswordRetrievalMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
     }
 
-    @Operation(summary = "reset password")
-    @PostMapping("/open-api/accounts/reset")
-    public ResponseEntity<Void> reset(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody ResetPassword dto) {
+    @Operation(summary = "complete retrieve password")
+    @PostMapping("/open-api/accounts/complete-retrieve-password")
+    public ResponseEntity<Void> completeRetrievePassword(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody ResetPassword dto) {
         userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
     }

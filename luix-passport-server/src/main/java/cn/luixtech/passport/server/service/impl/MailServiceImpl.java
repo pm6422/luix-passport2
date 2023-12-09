@@ -84,7 +84,7 @@ public class MailServiceImpl implements MailService {
 
     @Async
     @Override
-    public void sendPasswordResetMail(User user, String baseUrl) {
+    public void sendPasswordRetrievalMail(User user, String baseUrl) {
         log.debug("Sending password reset e-mail to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "email/password-reset-email", "emailResetTitle", baseUrl);
     }

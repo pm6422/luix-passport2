@@ -13,6 +13,6 @@ public interface MailService {
 
     void sendCreationEmail(User user, String baseUrl);
 
-    void sendPasswordResetMail(User user, String baseUrl);
+    void sendPasswordRetrievalMail(User user, String baseUrl);
 
 }
