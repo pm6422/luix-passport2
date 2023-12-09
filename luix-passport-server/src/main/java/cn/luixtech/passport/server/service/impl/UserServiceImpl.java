@@ -45,7 +45,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
+import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER_PREFIX;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
 import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 
@@ -59,12 +59,12 @@ import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    private static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    private final        DSLContext            dslContext;
-    private final        UserDao               userDao;
-    private final        UserAuthorityDao      userAuthorityDao;
-    private final        UserAuthorityService  userAuthorityService;
-    private final        MessageCreator        messageCreator;
+    public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private final       DSLContext            dslContext;
+    private final       UserDao               userDao;
+    private final       UserAuthorityDao      userAuthorityDao;
+    private final       UserAuthorityService  userAuthorityService;
+    private final       MessageCreator        messageCreator;
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
@@ -138,7 +138,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setId(id);
         domain.setUsername(domain.getUsername().toLowerCase());
         domain.setEmail(domain.getEmail().toLowerCase());
-        domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
+        domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
         domain.setActivationCode(generateRandomCode());
         domain.setResetCode(null);
         domain.setResetTime(null);

@@ -5,7 +5,6 @@ import com.luixtech.uidgenerator.core.id.IdGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
@@ -19,7 +18,8 @@ import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
+import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER_PREFIX;
+import static cn.luixtech.passport.server.service.impl.UserServiceImpl.BCRYPT_PASSWORD_ENCODER;
 
 @Data
 @NoArgsConstructor
@@ -101,7 +101,7 @@ public class Oauth2Client implements Serializable {
                 .withId(Optional.ofNullable(this.id).orElse(IdGenerator.generateId()))
                 .clientId(Optional.ofNullable(this.clientId).orElse(IdGenerator.generateId()))
                 .clientName(this.clientName)
-                .clientSecret(DEFAULT_PASSWORD_ENCODER + new BCryptPasswordEncoder().encode(this.getRawClientSecret()))
+                .clientSecret(DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(this.getRawClientSecret()))
                 .clientIdIssuedAt(this.clientIdIssuedAt)
                 .clientAuthenticationMethods(clientAuthenticationMethodSet ->
                         clientAuthenticationMethodSet.addAll(clientAuthenticationMethods.stream()
