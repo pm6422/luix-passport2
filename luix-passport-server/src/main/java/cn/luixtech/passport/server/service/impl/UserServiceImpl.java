@@ -144,7 +144,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
         domain.setActivationCode(RandomStringUtils.randomNumeric(20));
         domain.setResetCode(null);
-        domain.setResetTime(LocalDateTime.now());
+        domain.setResetTime(null);
         domain.setProfilePhotoEnabled(false);
         domain.setActivated(false);
         domain.setEnabled(true);
