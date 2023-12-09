@@ -307,7 +307,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteById(String userId) {
-        userAuthorityService.deleteByUserId(userId);
         userDao.deleteById(userId);
     }
 
