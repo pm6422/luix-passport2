@@ -54,7 +54,7 @@ public class UserController {
         log.debug("REST request to create user: {}", domain);
         User newUser = userService.insert(domain, null, applicationProperties.getAccount().getDefaultPassword());
         mailService.sendCreationEmail(newUser, getRequestUrl(request));
-        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM2011", applicationProperties.getAccount().getDefaultPassword());
+        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
     }
 
