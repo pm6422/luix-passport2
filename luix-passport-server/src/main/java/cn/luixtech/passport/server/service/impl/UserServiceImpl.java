@@ -5,13 +5,10 @@ import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.daos.UserAuthorityDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
-import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
-import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
@@ -32,7 +29,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,7 +49,6 @@ import java.util.stream.Collectors;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
 import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
-import static cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
 import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 
 /**
@@ -230,9 +225,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new DataNotFoundException(userId);
         }
 
-        // todo: i18n
         if (StringUtils.isNotEmpty(oldRawPassword)) {
-            Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(oldRawPassword).equals(user.getPasswordHash()), "Old password does NOT match!");
+            Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(oldRawPassword).equals(user.getPasswordHash()),
+                    messageCreator.getMessage("UE5008"));
         }
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         userDao.update(user);
