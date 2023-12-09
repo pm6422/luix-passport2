@@ -201,9 +201,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void changePassword(String id, String oldRawPassword, String newRawPassword) {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
-        if (user == null) {
-            throw new DataNotFoundException(id);
-        }
 
         if (StringUtils.isNotEmpty(oldRawPassword)) {
             Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(oldRawPassword).equals(user.getPasswordHash()),
