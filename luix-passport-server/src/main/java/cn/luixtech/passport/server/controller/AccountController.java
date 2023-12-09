@@ -11,6 +11,7 @@ import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.springbootframework.component.MessageCreator;
+import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 
@@ -54,7 +58,7 @@ public class AccountController {
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> updateAccount(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
         // For security reason
-        User currentUser = userDao.findById(AuthUtils.getCurrentUserId());
+        User currentUser = Optional.ofNullable(userDao.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         domain.setId(currentUser.getId());
         domain.setUsername(currentUser.getUsername());
         domain.setEnabled(currentUser.getEnabled());
@@ -84,7 +88,7 @@ public class AccountController {
     @Operation(summary = "send password recovery email")
     @PostMapping("/open-api/accounts/request-password-recovery")
     public ResponseEntity<Void> requestRecoverPassword(HttpServletRequest request,
-                                             @Parameter(description = "email", required = true) @RequestBody String email) {
+                                                       @Parameter(description = "email", required = true) @RequestBody String email) {
         User user = userService.requestPasswordRecovery(email);
         mailService.sendPasswordRecoveryMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
@@ -95,5 +99,14 @@ public class AccountController {
     public ResponseEntity<Void> completeRecoverPassword(@Parameter(description = "reset code and new password", required = true) @Valid @RequestBody PasswordRecovery dto) {
         userService.resetPassword(dto.getResetCode(), dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
+    }
+
+    @Operation(summary = "get the current user avatar")
+    @GetMapping("/api/accounts/profile-photo")
+    public ModelAndView getProfilePhoto() {
+        // @RestController下使用return forwardUrl不好使
+        String forwardUrl = "forward:".concat(UserController.GET_PROFILE_PHOTO_URL).concat(AuthUtils.getCurrentUserId());
+        log.info(forwardUrl);
+        return new ModelAndView(forwardUrl);
     }
 }

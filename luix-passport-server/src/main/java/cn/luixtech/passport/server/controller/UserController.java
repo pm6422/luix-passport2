@@ -2,8 +2,9 @@ package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.config.ApplicationProperties;
 import cn.luixtech.passport.server.event.LogoutEvent;
-import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
+import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
@@ -25,6 +26,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
@@ -38,7 +40,7 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 public class UserController {
     public static final String                    GET_PROFILE_PHOTO_URL = "/api/users/profile-photo/";
     private final       ApplicationProperties     applicationProperties;
-    //    private final       UserProfilePhotoRepository userProfilePhotoRepository;
+    private final       UserPhotoDao              userPhotoDao;
     private final       UserService               userService;
     private final       MailService               mailService;
     private final       ApplicationEventPublisher applicationEventPublisher;
@@ -100,12 +102,11 @@ public class UserController {
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.ok().headers(headers).build();
     }
-//
-//    @Operation(summary = "get user profile photo")
-//    @GetMapping(GET_PROFILE_PHOTO_URL + "{username:[a-zA-Z0-9-]+}")
-//    public ResponseEntity<byte[]> getProfilePhoto(@Parameter(description = "username", required = true) @PathVariable String username) {
-//        User user = userService.findOneByUsername(username);
-//        Optional<UserProfilePhoto> userProfilePhoto = userProfilePhotoRepository.findByUserId(user.getId());
-//        return userProfilePhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
-//    }
+
+    @Operation(summary = "get user profile photo")
+    @GetMapping(GET_PROFILE_PHOTO_URL + "{id}")
+    public ResponseEntity<byte[]> getProfilePhoto(@Parameter(description = "id", required = true) @PathVariable String id) {
+        Optional<UserPhoto> userPhoto = Optional.ofNullable(userPhotoDao.findById(id));
+        return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
+    }
 }
