@@ -28,13 +28,14 @@ public class UserPhotoServiceImpl implements UserPhotoService {
 
     @Override
     public void save(User user, byte[] photoData) {
-        UserPhoto existingPhoto = userPhotoDao.findById(user.getId());
-        if (existingPhoto != null) {
-            // Update if exists
-            update(existingPhoto, photoData);
+        UserPhoto existingOne = userPhotoDao.findById(user.getId());
+        if (existingOne != null) {
+            // update if exists
+            update(existingOne, photoData);
         } else {
-            // Insert if not exists
+            // insert if not exists
             insert(user.getId(), photoData);
+
             user.setProfilePhotoEnabled(true);
             userDao.update(user);
         }
