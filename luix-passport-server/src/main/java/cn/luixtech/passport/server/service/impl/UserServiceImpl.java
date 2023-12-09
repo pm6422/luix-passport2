@@ -60,7 +60,7 @@ import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
  * Authenticate a user from the database.
  * <p>
  * Refer below to review match password
- * {@link DaoAuthenticationProvider#additionalAuthenticationChecks}
+ * DaoAuthenticationProvider#additionalAuthenticationChecks
  */
 @Slf4j
 @Service
