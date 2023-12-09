@@ -9,7 +9,6 @@ import cn.luixtech.passport.server.service.UserPhotoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @AllArgsConstructor
 public class UserPhotoServiceImpl implements UserPhotoService {
