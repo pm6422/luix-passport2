@@ -15,11 +15,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function18;
+import org.jooq.Function20;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row18;
+import org.jooq.Row20;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -121,6 +121,16 @@ public class User extends TableImpl<UserRecord> {
      * The column <code>luix-passport.user.enabled</code>.
      */
     public final TableField<UserRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT.nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user.account_expires_at</code>.
+     */
+    public final TableField<UserRecord, LocalDateTime> ACCOUNT_EXPIRES_AT = createField(DSL.name("account_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
+
+    /**
+     * The column <code>luix-passport.user.password_expires_at</code>.
+     */
+    public final TableField<UserRecord, LocalDateTime> PASSWORD_EXPIRES_AT = createField(DSL.name("password_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
      * The column <code>luix-passport.user.created_by</code>.
@@ -230,18 +240,18 @@ public class User extends TableImpl<UserRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row18 type methods
+    // Row20 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row18<String, String, String, String, String, String, String, String, String, LocalDateTime, Boolean, String, Boolean, Boolean, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row18) super.fieldsRow();
+    public Row20<String, String, String, String, String, String, String, String, String, LocalDateTime, Boolean, String, Boolean, Boolean, LocalDateTime, LocalDateTime, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row20) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function18<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function20<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -249,7 +259,7 @@ public class User extends TableImpl<UserRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function18<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function20<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

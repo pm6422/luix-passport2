@@ -311,6 +311,36 @@ public class UserDao extends DAOImpl<UserRecord, cn.luixtech.passport.server.per
     }
 
     /**
+     * Fetch records that have <code>account_expires_at BETWEEN lowerInclusive
+     * AND upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfAccountExpiresAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(User.USER.ACCOUNT_EXPIRES_AT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>account_expires_at IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByAccountExpiresAt(LocalDateTime... values) {
+        return fetch(User.USER.ACCOUNT_EXPIRES_AT, values);
+    }
+
+    /**
+     * Fetch records that have <code>password_expires_at BETWEEN lowerInclusive
+     * AND upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfPasswordExpiresAt(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(User.USER.PASSWORD_EXPIRES_AT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>password_expires_at IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByPasswordExpiresAt(LocalDateTime... values) {
+        return fetch(User.USER.PASSWORD_EXPIRES_AT, values);
+    }
+
+    /**
      * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */

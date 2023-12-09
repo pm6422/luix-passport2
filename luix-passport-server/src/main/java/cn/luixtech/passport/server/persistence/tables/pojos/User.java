@@ -30,6 +30,8 @@ public class User implements Serializable {
     private String remarks;
     private Boolean activated;
     private Boolean enabled;
+    private LocalDateTime accountExpiresAt;
+    private LocalDateTime passwordExpiresAt;
     private String createdBy;
     private LocalDateTime createdTime;
     private String modifiedBy;
@@ -52,6 +54,8 @@ public class User implements Serializable {
         this.remarks = value.remarks;
         this.activated = value.activated;
         this.enabled = value.enabled;
+        this.accountExpiresAt = value.accountExpiresAt;
+        this.passwordExpiresAt = value.passwordExpiresAt;
         this.createdBy = value.createdBy;
         this.createdTime = value.createdTime;
         this.modifiedBy = value.modifiedBy;
@@ -73,6 +77,8 @@ public class User implements Serializable {
         String remarks,
         Boolean activated,
         Boolean enabled,
+        LocalDateTime accountExpiresAt,
+        LocalDateTime passwordExpiresAt,
         String createdBy,
         LocalDateTime createdTime,
         String modifiedBy,
@@ -92,6 +98,8 @@ public class User implements Serializable {
         this.remarks = remarks;
         this.activated = activated;
         this.enabled = enabled;
+        this.accountExpiresAt = accountExpiresAt;
+        this.passwordExpiresAt = passwordExpiresAt;
         this.createdBy = createdBy;
         this.createdTime = createdTime;
         this.modifiedBy = modifiedBy;
@@ -295,6 +303,34 @@ public class User implements Serializable {
     }
 
     /**
+     * Getter for <code>luix-passport.user.account_expires_at</code>.
+     */
+    public LocalDateTime getAccountExpiresAt() {
+        return this.accountExpiresAt;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.account_expires_at</code>.
+     */
+    public void setAccountExpiresAt(LocalDateTime accountExpiresAt) {
+        this.accountExpiresAt = accountExpiresAt;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.password_expires_at</code>.
+     */
+    public LocalDateTime getPasswordExpiresAt() {
+        return this.passwordExpiresAt;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.password_expires_at</code>.
+     */
+    public void setPasswordExpiresAt(LocalDateTime passwordExpiresAt) {
+        this.passwordExpiresAt = passwordExpiresAt;
+    }
+
+    /**
      * Getter for <code>luix-passport.user.created_by</code>.
      */
     public String getCreatedBy() {
@@ -443,6 +479,18 @@ public class User implements Serializable {
         }
         else if (!this.enabled.equals(other.enabled))
             return false;
+        if (this.accountExpiresAt == null) {
+            if (other.accountExpiresAt != null)
+                return false;
+        }
+        else if (!this.accountExpiresAt.equals(other.accountExpiresAt))
+            return false;
+        if (this.passwordExpiresAt == null) {
+            if (other.passwordExpiresAt != null)
+                return false;
+        }
+        else if (!this.passwordExpiresAt.equals(other.passwordExpiresAt))
+            return false;
         if (this.createdBy == null) {
             if (other.createdBy != null)
                 return false;
@@ -488,6 +536,8 @@ public class User implements Serializable {
         result = prime * result + ((this.remarks == null) ? 0 : this.remarks.hashCode());
         result = prime * result + ((this.activated == null) ? 0 : this.activated.hashCode());
         result = prime * result + ((this.enabled == null) ? 0 : this.enabled.hashCode());
+        result = prime * result + ((this.accountExpiresAt == null) ? 0 : this.accountExpiresAt.hashCode());
+        result = prime * result + ((this.passwordExpiresAt == null) ? 0 : this.passwordExpiresAt.hashCode());
         result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
         result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
         result = prime * result + ((this.modifiedBy == null) ? 0 : this.modifiedBy.hashCode());
@@ -513,6 +563,8 @@ public class User implements Serializable {
         sb.append(", ").append(remarks);
         sb.append(", ").append(activated);
         sb.append(", ").append(enabled);
+        sb.append(", ").append(accountExpiresAt);
+        sb.append(", ").append(passwordExpiresAt);
         sb.append(", ").append(createdBy);
         sb.append(", ").append(createdTime);
         sb.append(", ").append(modifiedBy);
