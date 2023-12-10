@@ -57,7 +57,7 @@ spring:
     host: smtp-relay.brevo.com
     port: 587
     username: pm6422@gmail.com
-    password: ${MAIL_PASSWORD:user-your-password}
+    password: ${MAIL_PASSWORD:use-your-password}
   banner:
     location: classpath:config/banner-company.txt
   datasource:
