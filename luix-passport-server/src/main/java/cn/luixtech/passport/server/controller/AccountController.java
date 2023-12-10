@@ -119,11 +119,9 @@ public class AccountController {
 
     @Operation(summary = "get profile photo of the current user")
     @GetMapping("/api/accounts/profile-photo")
-    public ModelAndView getProfilePhoto() {
-        // @RestController下使用return forwardUrl不好使
-        String forwardUrl = "forward:".concat(UserController.GET_PROFILE_PHOTO_URL).concat(AuthUtils.getCurrentUserId());
-        log.info(forwardUrl);
-        return new ModelAndView(forwardUrl);
+    public ResponseEntity<byte[]> getProfilePhoto() {
+        Optional<UserPhoto> userPhoto = Optional.ofNullable(userPhotoDao.findById(AuthUtils.getCurrentUserId()));
+        return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
     }
 
     @Operation(summary = "upload profile photo of the current user")

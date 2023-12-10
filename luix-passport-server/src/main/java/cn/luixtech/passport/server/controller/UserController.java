@@ -38,13 +38,12 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 @AllArgsConstructor
 @Slf4j
 public class UserController {
-    public static final String                    GET_PROFILE_PHOTO_URL = "/api/users/profile-photo/";
-    private final       ApplicationProperties     applicationProperties;
-    private final       UserPhotoDao              userPhotoDao;
-    private final       UserService               userService;
-    private final       MailService               mailService;
-    private final       ApplicationEventPublisher applicationEventPublisher;
-    private final       HttpHeaderCreator         httpHeaderCreator;
+    private final ApplicationProperties     applicationProperties;
+    private final ApplicationEventPublisher applicationEventPublisher;
+    private final UserPhotoDao              userPhotoDao;
+    private final UserService               userService;
+    private final MailService               mailService;
+    private final HttpHeaderCreator         httpHeaderCreator;
 
     @Operation(summary = "create new user and send activation email")
     @PostMapping("/api/users")
@@ -104,7 +103,7 @@ public class UserController {
     }
 
     @Operation(summary = "get user profile photo")
-    @GetMapping(GET_PROFILE_PHOTO_URL + "{id}")
+    @GetMapping("/api/users/profile-photo/{id}")
     public ResponseEntity<byte[]> getProfilePhoto(@Parameter(description = "id", required = true) @PathVariable String id) {
         Optional<UserPhoto> userPhoto = Optional.ofNullable(userPhotoDao.findById(id));
         return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
