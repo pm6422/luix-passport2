@@ -9,6 +9,9 @@
 server:
   port: 4001
 management: # Management http server configuration, used by ManagementServerProperties
+  health:
+    mail:
+      enabled: false
   endpoints:
     web:
       base-path: /management
@@ -37,12 +40,6 @@ management: # Management http server configuration, used by ManagementServerProp
         enabled: true
       shutdown:
         enabled: true # explicitly enable
-    health:
-      mail:
-        enabled: false
-    metrics:
-      tags:
-        application: ${spring.application.name}
 spring:
   application:
     name: luix-passport-server
