@@ -57,7 +57,7 @@ spring:
     host: smtp-relay.brevo.com
     port: 587
     username: pm6422@gmail.com
-    password: xsmtpsib-bca67241cad75a3bee497fac6e53d3a1b818dbd57770a6b3dc6bf2ae585f8a78-LbskGfRAxjyIPK18
+    password: xsmtpsib-bca67241cad75a3bee497fac6e53d3a1b818dbd57770a6b3dc6bf2ae585f8a78-MOKhtZw35vP620DE
   banner:
     location: classpath:config/banner-company.txt
   datasource:
