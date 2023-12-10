@@ -49,7 +49,6 @@ public class UserController {
     @PostMapping("/api/users")
     public ResponseEntity<Void> create(HttpServletRequest request,
                                        @Parameter(description = "user", required = true) @Valid @RequestBody User domain) {
-        log.debug("REST request to create user: {}", domain);
         User newUser = userService.insert(domain, null, applicationProperties.getAccount().getDefaultPassword(), true);
         mailService.sendCreationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
@@ -77,7 +76,6 @@ public class UserController {
     @Operation(summary = "update user")
     @PutMapping("/api/users")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody ManagedUser domain) {
-        log.debug("REST request to update user: {}", domain);
         userService.update(domain, domain.getAuthorities());
         if (domain.getId().equals(AuthUtils.getCurrentUserId())) {
             // Logout if current user were changed
@@ -89,7 +87,6 @@ public class UserController {
     @Operation(summary = "delete user by id", description = "the data may be referenced by other data, and some problems may occur after deletion")
     @DeleteMapping("/api/users/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
-        log.debug("REST request to delete user: {}", id);
         userService.deleteById(id);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1003", id)).build();
     }
