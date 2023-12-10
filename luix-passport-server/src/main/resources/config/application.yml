@@ -54,9 +54,10 @@ spring:
   messages:
     basename: i18n/messages,i18n/luix-messages
   mail: # specific mail property, used by MailProperties
-    host: smtp.exmail.qq.com
-    username: test@luixtech.com
-    password: LoU-UHR-9dH-8G9-F3G
+    host: smtp-relay.brevo.com
+    port: 587
+    username: pm6422@gmail.com
+    password: ${MAIL_PASSWORD:user-your-password}
   banner:
     location: classpath:config/banner-company.txt
   datasource:
