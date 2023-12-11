@@ -40,7 +40,6 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 public class UserController {
     private final ApplicationProperties     applicationProperties;
     private final ApplicationEventPublisher applicationEventPublisher;
-    private final UserPhotoDao              userPhotoDao;
     private final UserService               userService;
     private final MailService               mailService;
     private final HttpHeaderCreator         httpHeaderCreator;
@@ -97,12 +96,5 @@ public class UserController {
         userService.changePassword(id, null, applicationProperties.getAccount().getDefaultPassword());
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.ok().headers(headers).build();
-    }
-
-    @Operation(summary = "get user profile photo")
-    @GetMapping("/api/users/profile-photo/{id}")
-    public ResponseEntity<byte[]> getProfilePhoto(@Parameter(description = "id", required = true) @PathVariable String id) {
-        Optional<UserPhoto> userPhoto = Optional.ofNullable(userPhotoDao.findById(id));
-        return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
     }
 }
