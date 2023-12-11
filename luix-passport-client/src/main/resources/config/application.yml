@@ -37,12 +37,6 @@ management: # Management http server configuration, used by ManagementServerProp
         enabled: true
       shutdown:
         enabled: true # explicitly enable
-    health:
-      mail:
-        enabled: false
-    metrics:
-      tags:
-        application: ${spring.application.name}
 spring:
   application:
     name: luix-passport-client
