@@ -32,6 +32,4 @@ public class WebConfigurer implements ServletContextInitializer, WebMvcConfigure
                 .allowedOrigins(value)
                 .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(), HttpMethod.DELETE.name()));
     }
-
-
 }
