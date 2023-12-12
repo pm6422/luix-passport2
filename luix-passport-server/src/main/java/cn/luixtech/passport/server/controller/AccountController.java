@@ -94,7 +94,7 @@ public class AccountController {
     }
 
     @Operation(summary = "activate the account by activation code")
-    @GetMapping("/open-api/accounts/activate/{code:[0-9]+}")
+    @GetMapping("/open-api/accounts/activate/code")
     public void activate(@Parameter(description = "activation code", required = true) @PathVariable String code) {
         userService.activate(code);
     }
