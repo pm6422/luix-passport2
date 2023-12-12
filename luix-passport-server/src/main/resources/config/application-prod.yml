@@ -12,3 +12,6 @@ spring:
 application:
   url:
     auth-server-url: ${AUTH_SERVER_URL:https://passport.luixtech.cn}
+  allow-cors:
+    mappings:
+      "[/api/**]": http://passport.luixtech.cn
