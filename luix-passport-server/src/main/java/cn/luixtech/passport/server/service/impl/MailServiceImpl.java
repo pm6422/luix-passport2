@@ -39,20 +39,20 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendEmail(String[] sendTo, String subject, String content, boolean isMultipart, boolean isHtml) {
-        log.debug("Send e-mail[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}", isMultipart,
+        log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}", isMultipart,
                 isHtml, sendTo, subject, content);
         // Prepare message using a Spring helper
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, StandardCharsets.UTF_8.name());
             message.setTo(sendTo);
-            message.setFrom(mailProperties.getUsername(), "InfinityTeam");
+            message.setFrom(mailProperties.getUsername(), "Luixtech Universe");
             message.setSubject(subject);
             message.setText(content, isHtml);
             javaMailSender.send(mimeMessage);
-            log.debug("Sent e-mail to User '{}'", StringUtils.arrayToCommaDelimitedString(sendTo));
+            log.info("Sent email to user '{}'", StringUtils.arrayToCommaDelimitedString(sendTo));
         } catch (Exception e) {
-            log.warn("E-mail could not be sent to user '{}', exception is: {}", sendTo, e.getMessage());
+            log.warn("Email could not be sent to user '{}', exception is: {}", sendTo, e.getMessage());
         }
     }
 
