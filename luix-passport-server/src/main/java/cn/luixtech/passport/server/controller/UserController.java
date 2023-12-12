@@ -2,9 +2,7 @@ package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.config.ApplicationProperties;
 import cn.luixtech.passport.server.event.LogoutEvent;
-import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
@@ -26,7 +24,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
@@ -44,12 +41,12 @@ public class UserController {
     private final MailService               mailService;
     private final HttpHeaderCreator         httpHeaderCreator;
 
-    @Operation(summary = "create new user and send activation email")
+    @Operation(summary = "create new user and send a user creation email")
     @PostMapping("/api/users")
     public ResponseEntity<Void> create(HttpServletRequest request,
                                        @Parameter(description = "user", required = true) @Valid @RequestBody User domain) {
         User newUser = userService.insert(domain, null, applicationProperties.getAccount().getDefaultPassword(), true);
-        mailService.sendCreationEmail(newUser, getRequestUrl(request));
+        mailService.sendUserCreationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
     }

@@ -3,7 +3,7 @@
 <head>
     <title th:text="#{emailActivationTitle}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="http://luixtech.com/content/css/mail-style.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="http://passport.luixtech.cn/assets/css/mail-style.css" media="all" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <table class="body-wrap">
@@ -32,7 +32,7 @@
                                 </tr>
                                 <tr>
                                     <td class="content-block">
-                                        <a th:href="@{|${baseUrl}/#/reset-password?key=${user.resetKey}|}"
+                                        <a th:href="@{|${baseUrl}/#/reset-password?key=${user.resetCode}|}"
                                            th:text="|${user.username}|">Login</a>
                                     </td>
                                 </tr>
@@ -53,7 +53,7 @@
                 <div class="footer">
                     <table width="100%">
                         <tr>
-                            <td class="aligncenter content-block">www.luixtech.com</td>
+                            <td class="aligncenter content-block">www.luixtech.cn</td>
                         </tr>
                     </table>
                 </div>

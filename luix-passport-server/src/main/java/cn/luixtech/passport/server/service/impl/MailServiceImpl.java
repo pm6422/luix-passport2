@@ -70,22 +70,22 @@ public class MailServiceImpl implements MailService {
 
     @Async
     @Override
-    public void sendActivationEmail(User user, String baseUrl) {
-        log.debug("Sending activation e-mail to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "email/activation-email", "emailActivationTitle", baseUrl);
+    public void sendAccountActivationEmail(User user, String baseUrl) {
+        sendEmailFromTemplate(user, "email/account-activation-email", "emailActivationTitle", baseUrl);
+        log.info("Sent account activation email to '{}'", user.getEmail());
     }
 
     @Async
     @Override
-    public void sendCreationEmail(User user, String baseUrl) {
-        log.debug("Sending creation e-mail to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "email/creation-email", "emailActivationTitle", baseUrl);
+    public void sendUserCreationEmail(User user, String baseUrl) {
+        sendEmailFromTemplate(user, "email/user-creation-email", "emailActivationTitle", baseUrl);
+        log.info("Sent user creation email to '{}'", user.getEmail());
     }
 
     @Async
     @Override
     public void sendPasswordRecoveryMail(User user, String baseUrl) {
-        log.debug("Sending password reset e-mail to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "email/password-reset-email", "emailResetTitle", baseUrl);
+        log.info("Sent password recovery email to '{}'", user.getEmail());
     }
 }

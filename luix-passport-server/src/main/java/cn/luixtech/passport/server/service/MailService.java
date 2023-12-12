@@ -9,9 +9,9 @@ public interface MailService {
 
     void sendEmailFromTemplate(User user, String templateName, String titleKey, String baseUrl);
 
-    void sendActivationEmail(User user, String baseUrl);
+    void sendAccountActivationEmail(User user, String baseUrl);
 
-    void sendCreationEmail(User user, String baseUrl);
+    void sendUserCreationEmail(User user, String baseUrl);
 
     void sendPasswordRecoveryMail(User user, String baseUrl);
 
