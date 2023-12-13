@@ -46,7 +46,7 @@ public class MailServiceImpl implements MailService {
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, StandardCharsets.UTF_8.name());
             message.setTo(sendTo);
-            message.setFrom(mailProperties.getUsername(), "Luixtech Universe");
+            message.setFrom(mailProperties.getUsername(), "Luix Passport");
             message.setSubject(subject);
             message.setText(content, isHtml);
             javaMailSender.send(mimeMessage);
@@ -85,7 +85,7 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendPasswordRecoveryMail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/password-reset-email", "password.reset", baseUrl);
+        sendEmailFromTemplate(user, "email/password-recovery-email", "password.reset", baseUrl);
         log.info("Sent password recovery email to '{}'", user.getEmail());
     }
 }

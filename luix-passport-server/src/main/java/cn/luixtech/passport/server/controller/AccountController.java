@@ -102,7 +102,7 @@ public class AccountController {
     @Operation(summary = "send password recovery email")
     @PostMapping("/open-api/accounts/request-password-recovery")
     public ResponseEntity<Void> requestRecoverPassword(HttpServletRequest request,
-                                                       @Parameter(description = "email", required = true) @RequestBody String email) {
+                                                       @Parameter(description = "email", required = true) @RequestParam String email) {
         User user = userService.requestPasswordRecovery(email);
         mailService.sendPasswordRecoveryMail(user, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
