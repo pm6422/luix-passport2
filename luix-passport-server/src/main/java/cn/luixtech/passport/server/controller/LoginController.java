@@ -33,6 +33,7 @@ public class LoginController {
         return "login";
     }
 
+    @Deprecated
     @GetMapping("/password-recovery-email")
     public String password() {
         return "/email/password-recovery-email";
