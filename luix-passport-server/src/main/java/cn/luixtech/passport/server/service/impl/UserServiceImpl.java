@@ -14,6 +14,7 @@ import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
 import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
+import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import lombok.AllArgsConstructor;
@@ -229,7 +230,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new DataNotFoundException(email);
         }
 
-        user.setResetCode(generateRandomCode());
+        user.setResetCode(JasyptEncryptUtils.encrypt(generateRandomCode()));
         user.setResetTime(LocalDateTime.now());
 
         userDao.update(user);
