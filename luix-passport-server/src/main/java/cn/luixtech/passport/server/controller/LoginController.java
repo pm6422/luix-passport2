@@ -33,6 +33,11 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/password-recovery-email")
+    public String password() {
+        return "/email/password-recovery-email";
+    }
+
     @GetMapping(value = "/oauth2/consent")
     public String consent(Principal principal, Model model,
                           @RequestParam(OAuth2ParameterNames.CLIENT_ID) String clientId,
