@@ -58,13 +58,13 @@ public class MailServiceImpl implements MailService {
 
     @Async
     @Override
-    public void sendEmailFromTemplate(User user, String templateName, String titleKey, String baseUrl) {
+    public void sendEmailFromTemplate(User user, String templateName, String emailSubjectKey, String baseUrl) {
         Locale locale = Locale.getDefault();
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl);
         String content = springTemplateEngine.process(templateName, context);
-        String subject = messageSource.getMessage(titleKey, null, locale);
+        String subject = messageSource.getMessage(emailSubjectKey, null, locale);
         sendEmail(new String[]{user.getEmail()}, subject, content, false, true);
     }
 
@@ -85,7 +85,7 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendPasswordRecoveryMail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/password-recovery-email", "password.reset", baseUrl);
+        sendEmailFromTemplate(user, "email/password-recovery-email", "reset.password.email.subject", baseUrl);
         log.info("Sent password recovery email to '{}'", user.getEmail());
     }
 }
