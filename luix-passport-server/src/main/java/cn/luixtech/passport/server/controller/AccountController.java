@@ -58,7 +58,6 @@ public class AccountController {
     private final        UserService               userService;
     private final        UserPhotoService          userPhotoService;
     private final        ApplicationEventPublisher applicationEventPublisher;
-    private final        MessageCreator            messageCreator;
 
     @Operation(summary = "register a new user and send an account activation email")
     @PostMapping("/open-api/accounts/register")
