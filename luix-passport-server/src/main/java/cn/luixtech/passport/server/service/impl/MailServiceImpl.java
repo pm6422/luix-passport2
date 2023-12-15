@@ -45,8 +45,8 @@ public class MailServiceImpl implements MailService {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, StandardCharsets.UTF_8.name());
-            message.setTo(sendTo);
             message.setFrom(mailProperties.getUsername(), "Luix Passport");
+            message.setTo(sendTo);
             message.setSubject(subject);
             message.setText(content, isHtml);
             javaMailSender.send(mimeMessage);
