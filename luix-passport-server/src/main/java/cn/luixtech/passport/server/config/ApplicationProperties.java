@@ -24,7 +24,6 @@ public class ApplicationProperties {
     private final Account   account   = new Account();
     private final Company   company   = new Company();
     private final Mail      mail      = new Mail();
-    private final Url       url       = new Url();
     private final AllowCors allowCors = new AllowCors();
 
     @Data
@@ -34,6 +33,7 @@ public class ApplicationProperties {
 
     @Data
     public static class Company {
+        private String  name;
         private String  domain;
         private boolean forceToHttps;
     }
@@ -42,12 +42,6 @@ public class ApplicationProperties {
     public static class Mail {
         private String resendApiKey;
         private String fromUsername;
-        private String fromDisplayName;
-    }
-
-    @Data
-    public static class Url {
-        private String authServerUrl;
     }
 
     @Data

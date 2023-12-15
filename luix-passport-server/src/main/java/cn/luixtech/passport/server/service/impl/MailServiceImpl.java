@@ -41,7 +41,7 @@ public class MailServiceImpl implements MailService {
         try {
             Resend resend = new Resend(applicationProperties.getMail().getResendApiKey());
             SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                    .from(applicationProperties.getMail().getFromDisplayName() + " <" + applicationProperties.getMail().getFromUsername() + ">")
+                    .from(applicationProperties.getCompany().getName() + " <" + applicationProperties.getMail().getFromUsername() + ">")
                     .to(sendTo)
                     .subject(subject)
                     .html(content)
