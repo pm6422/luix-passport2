@@ -41,6 +41,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -325,5 +326,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
                 + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
                 + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase();
+    }
+
+    @Override
+    public User extendAccount(String id, long amountToAdd, TemporalUnit unit) {
+        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        if (user.getAccountExpiresAt().isBefore(LocalDateTime.now())) {
+            user.setAccountExpiresAt(LocalDateTime.now().plus(amountToAdd, unit));
+        } else {
+            user.setAccountExpiresAt(user.getAccountExpiresAt().plus(amountToAdd, unit));
+        }
+        userDao.update(user);
+        return user;
     }
 }

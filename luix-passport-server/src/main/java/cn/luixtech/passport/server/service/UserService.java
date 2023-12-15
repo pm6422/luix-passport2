@@ -6,6 +6,7 @@ import cn.luixtech.passport.server.pojo.ManagedUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.temporal.TemporalUnit;
 import java.util.Optional;
 import java.util.Set;
 
@@ -35,4 +36,6 @@ public interface UserService {
     void deleteById(String id);
 
     String generateRandomCode();
+
+    User extendAccount(String id, long amountToAdd, TemporalUnit unit);
 }
