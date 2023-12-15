@@ -63,7 +63,7 @@ public class MailServiceImpl implements MailService {
         context.setVariable(DOMAIN, applicationProperties.getCompany().getDomain());
         String content = springTemplateEngine.process(templateName, context);
         String subject = messageSource.getMessage(emailSubjectKey, null, locale);
-//        sendEmail(new String[]{user.getEmail()}, subject, content);
+        sendEmail(new String[]{user.getEmail()}, subject, content);
     }
 
     @Async
