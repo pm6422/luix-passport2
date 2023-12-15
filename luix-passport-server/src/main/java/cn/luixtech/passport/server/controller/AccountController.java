@@ -165,4 +165,10 @@ public class AccountController {
     public ResponseEntity<List<String>> getAuthorityNames() {
         return ResponseEntity.ok(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
     }
+
+    @Operation(summary = "delete account")
+    @DeleteMapping("/api/accounts")
+    public void delete() {
+        userService.deleteById(AuthUtils.getCurrentUserId());
+    }
 }
