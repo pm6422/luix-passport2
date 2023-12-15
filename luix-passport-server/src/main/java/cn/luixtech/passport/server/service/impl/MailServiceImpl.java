@@ -78,7 +78,7 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendUserCreationEmail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/create-user-email", "activate.account.email.subject", baseUrl);
+        sendEmailFromTemplate(user, "email/create-user-email", "create.user.email.subject", baseUrl);
         log.info("Sent user creation email to '{}'", user.getEmail());
     }
 
