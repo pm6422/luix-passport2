@@ -42,6 +42,7 @@ public class ApplicationProperties {
     public static class Mail {
         private String resendApiKey;
         private String fromUsername;
+        private String adminEmail;
     }
 
     @Data

@@ -138,3 +138,4 @@ application:
   mail:
     resend-api-key: ${RESEND_API_KEY:use-your-resend-api-key} # https://resend.com
     from-user-name: noreply@luixtech.cn
+    admin-email: ${luix.api-docs.contact-email}
