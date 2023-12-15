@@ -329,6 +329,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User extendAccount(String id, long amountToAdd, TemporalUnit unit) {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
         if (user.getAccountExpiresAt().isBefore(LocalDateTime.now())) {
