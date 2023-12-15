@@ -59,8 +59,8 @@ public class AuthorizationServerConfiguration {
     @Bean
     public AuthorizationServerSettings authorizationServerSettings(ApplicationProperties applicationProperties) {
         AuthorizationServerSettings.Builder builder = AuthorizationServerSettings.builder();
-        if (StringUtils.isNotEmpty(applicationProperties.getUrl().getAuthServerUrl())) {
-            builder.issuer(applicationProperties.getUrl().getAuthServerUrl());
+        if (applicationProperties.getCompany().isForceToHttps()) {
+            builder.issuer(applicationProperties.getCompany().getDomain());
         }
         return builder.build();
     }

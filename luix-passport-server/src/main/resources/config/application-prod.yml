@@ -10,8 +10,8 @@ spring:
 # Application specific properties
 # ===================================================================
 application:
-  url:
-    auth-server-url: ${AUTH_SERVER_URL:https://passport.luixtech.cn}
+  company:
+    force-to-https: true
   allow-cors:
     mappings:
       "[/api/**]": http://passport.luixtech.cn

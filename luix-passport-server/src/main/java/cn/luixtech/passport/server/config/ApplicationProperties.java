@@ -34,7 +34,8 @@ public class ApplicationProperties {
 
     @Data
     public static class Company {
-        private String domain;
+        private String  domain;
+        private boolean forceToHttps;
     }
 
     @Data
