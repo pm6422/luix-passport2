@@ -51,7 +51,7 @@ spring:
   messages:
     basename: i18n/messages,i18n/luix-messages
   mail: # specific mail property, used by MailProperties
-    host: smtp.elasticemail.com
+    host: smtp.elasticemail.com # https://app.elasticemail.com/api/
     port: 2525
     username: noreply@luixtech.cn
     password: ${MAIL_PASSWORD:use-your-password}
