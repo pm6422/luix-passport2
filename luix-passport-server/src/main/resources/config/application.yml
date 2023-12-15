@@ -53,7 +53,7 @@ spring:
   mail: # specific mail property, used by MailProperties
     host: smtp-relay.brevo.com
     port: 587
-    username: pm6422@gmail.com
+    username: pm6422@126.com
     password: ${MAIL_PASSWORD:use-your-password}
   banner:
     location: classpath:config/banner-company.txt
