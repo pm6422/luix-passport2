@@ -26,6 +26,7 @@ import java.util.Locale;
 public class MailServiceImpl implements MailService {
     private static final String                USER     = "user";
     private static final String                BASE_URL = "baseUrl";
+    private static final String                DOMAIN   = "domain";
     private final        ApplicationProperties applicationProperties;
     private final        MessageSource         messageSource;
     private final        SpringTemplateEngine  springTemplateEngine;
@@ -59,9 +60,10 @@ public class MailServiceImpl implements MailService {
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl);
+        context.setVariable(DOMAIN, applicationProperties.getCompany().getDomain());
         String content = springTemplateEngine.process(templateName, context);
         String subject = messageSource.getMessage(emailSubjectKey, null, locale);
-        sendEmail(new String[]{user.getEmail()}, subject, content);
+//        sendEmail(new String[]{user.getEmail()}, subject, content);
     }
 
     @Async
