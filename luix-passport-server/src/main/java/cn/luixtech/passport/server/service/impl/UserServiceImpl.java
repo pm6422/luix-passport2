@@ -205,7 +205,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void changePassword(String id, String oldRawPassword, String newRawPassword) {
+    public User changePassword(String id, String oldRawPassword, String newRawPassword) {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
 
         if (StringUtils.isNotEmpty(oldRawPassword)) {
@@ -215,6 +215,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         userDao.update(user);
         log.info("Changed password for user: {}", user);
+        return user;
     }
 
     @Override
