@@ -83,7 +83,6 @@ public class LoginController {
         Set<ScopeWithDescription> scopeWithDescriptions = new HashSet<>();
         for (String scope : scopes) {
             scopeWithDescriptions.add(new ScopeWithDescription(scope));
-
         }
         return scopeWithDescriptions;
     }
