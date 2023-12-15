@@ -36,7 +36,7 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendEmail(String[] sendTo, String subject, String content) {
-        log.debug("Send email to '{}' with subject '{}' and content={}", sendTo, subject, content);
+        log.info("Send email to [{}] with subject [{}] and content: {}", sendTo, subject, content);
         try {
             Resend resend = new Resend(applicationProperties.getMail().getResendApiKey());
             SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
@@ -46,9 +46,9 @@ public class MailServiceImpl implements MailService {
                     .html(content)
                     .build();
             SendEmailResponse result = resend.emails().send(sendEmailRequest);
-            log.info("Sent email to user: {} with message id: {}", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
+            log.info("Sent email to user [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
         } catch (Exception e) {
-            log.warn("Email could not be sent to user '{}', exception is: {}", sendTo, e.getMessage());
+            log.error("Failed to send email to user [{}] with exception: {}", sendTo, e.getMessage());
         }
     }
 
@@ -68,26 +68,26 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendAccountActivationEmail(User user, String baseUrl) {
         sendEmailFromTemplate(user, "email/activate-account-email", "activate.account.email.subject", baseUrl);
-        log.info("Sent account activation email to '{}'", user.getEmail());
+        log.info("Requested sending account activation email to [{}]", user.getEmail());
     }
 
     @Async
     @Override
     public void sendUserCreationEmail(User user, String baseUrl) {
         sendEmailFromTemplate(user, "email/create-user-email", "create.user.email.subject", baseUrl);
-        log.info("Sent user creation email to '{}'", user.getEmail());
+        log.info("Requested sending user creation email to [{}]", user.getEmail());
     }
 
     @Async
     @Override
     public void sendPasswordRecoveryMail(User user, String baseUrl) {
         sendEmailFromTemplate(user, "email/recover-password-email", "reset.password.email.subject", baseUrl);
-        log.info("Sent password recovery email to '{}'", user.getEmail());
+        log.info("Requested sending password recovery email to [{}]", user.getEmail());
     }
 
     @Override
     public void sendPasswordChangedMail(User user, String baseUrl) {
         sendEmailFromTemplate(user, "email/changed-password-email", "changed.password.email.subject=", baseUrl);
-        log.info("Sent password changed email to '{}'", user.getEmail());
+        log.info("Requested sending password changed email to [{}]", user.getEmail());
     }
 }
