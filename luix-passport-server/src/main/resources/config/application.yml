@@ -50,11 +50,6 @@ spring:
     active: test
   messages:
     basename: i18n/messages,i18n/luix-messages
-  mail: # specific mail property, used by MailProperties
-    host: smtp.elasticemail.com # https://app.elasticemail.com/api/
-    port: 2525
-    username: noreply@luixtech.cn
-    password: ${MAIL_PASSWORD:use-your-password}
   banner:
     location: classpath:config/banner-company.txt
   datasource:
@@ -137,3 +132,7 @@ luix:
 application:
   account:
     default-password: ${spring.application.name}
+  mail:
+    resend-api-key: ${RESEND_API_KEY:use-your-resend-api-key} # https://resend.com
+    from-user-name: noreply@luixtech.cn
+    from-display-name: Luix Passport

@@ -5,7 +5,7 @@ import cn.luixtech.passport.server.persistence.tables.pojos.User;
 
 public interface MailService {
 
-    void sendEmail(String[] sendTo, String subject, String content, boolean isMultipart, boolean isHtml);
+    void sendEmail(String[] sendTo, String subject, String content);
 
     void sendEmailFromTemplate(User user, String templateName, String titleKey, String baseUrl);
 

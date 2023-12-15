@@ -22,12 +22,20 @@ import java.util.LinkedHashMap;
 public class ApplicationProperties {
 
     private final Account   account   = new Account();
+    private final Mail      mail      = new Mail();
     private final Url       url       = new Url();
     private final AllowCors allowCors = new AllowCors();
 
     @Data
     public static class Account {
         private String defaultPassword;
+    }
+
+    @Data
+    public static class Mail {
+        private String resendApiKey;
+        private String fromUsername;
+        private String fromDisplayName;
     }
 
     @Data
