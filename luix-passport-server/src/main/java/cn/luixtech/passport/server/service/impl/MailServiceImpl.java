@@ -88,4 +88,10 @@ public class MailServiceImpl implements MailService {
         sendEmailFromTemplate(user, "email/recover-password-email", "reset.password.email.subject", baseUrl);
         log.info("Sent password recovery email to '{}'", user.getEmail());
     }
+
+    @Override
+    public void sendPasswordChangedMail(User user, String baseUrl) {
+        sendEmailFromTemplate(user, "email/changed-password-email", "changed.password.email.subject=", baseUrl);
+        log.info("Sent password changed email to '{}'", user.getEmail());
+    }
 }

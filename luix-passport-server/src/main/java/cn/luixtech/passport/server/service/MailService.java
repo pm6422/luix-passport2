@@ -15,4 +15,6 @@ public interface MailService {
 
     void sendPasswordRecoveryMail(User user, String baseUrl);
 
+    void sendPasswordChangedMail(User user, String baseUrl);
+
 }
