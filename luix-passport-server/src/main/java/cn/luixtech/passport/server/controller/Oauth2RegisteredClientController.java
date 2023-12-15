@@ -53,7 +53,7 @@ public class Oauth2RegisteredClientController {
         return ResponseEntity.ok().headers(headers).body(domains.getContent());
     }
 
-    @Operation(summary = "find oauth2 client by ID")
+    @Operation(summary = "find oauth2 client by id")
     @GetMapping("/api/oauth2-registered-clients/{id}")
     public ResponseEntity<Oauth2Client> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
         Oauth2Client domain = oauth2RegisteredClientService.findById(id);
@@ -69,7 +69,7 @@ public class Oauth2RegisteredClientController {
                 .build();
     }
 
-    @Operation(summary = "delete oauth2 client by ID", description = "the data may be referenced by other data, and some problems may occur after deletion")
+    @Operation(summary = "delete oauth2 client by id", description = "the data may be referenced by other data, and some problems may occur after deletion")
     @DeleteMapping("/api/oauth2-registered-clients/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
         Oauth2RegisteredClient client = Optional.ofNullable(oauth2RegisteredClientDao.findById(id))
