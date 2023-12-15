@@ -53,7 +53,7 @@ spring:
   mail: # specific mail property, used by MailProperties
     host: smtp.elasticemail.com
     port: 2525
-    username: pm6422@gmail.com
+    username: noreply@luixtech.cn
     password: ${MAIL_PASSWORD:use-your-password}
   banner:
     location: classpath:config/banner-company.txt
