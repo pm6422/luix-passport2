@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 public class ApplicationProperties {
 
     private final Account   account   = new Account();
+    private final Company   company   = new Company();
     private final Mail      mail      = new Mail();
     private final Url       url       = new Url();
     private final AllowCors allowCors = new AllowCors();
@@ -29,6 +30,11 @@ public class ApplicationProperties {
     @Data
     public static class Account {
         private String defaultPassword;
+    }
+
+    @Data
+    public static class Company {
+        private String domain;
     }
 
     @Data

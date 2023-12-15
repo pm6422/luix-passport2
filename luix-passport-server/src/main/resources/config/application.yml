@@ -132,6 +132,8 @@ luix:
 application:
   account:
     default-password: ${spring.application.name}
+  company:
+    domain: https://passport.luixtech.cn
   mail:
     resend-api-key: ${RESEND_API_KEY:use-your-resend-api-key} # https://resend.com
     from-user-name: noreply@luixtech.cn
