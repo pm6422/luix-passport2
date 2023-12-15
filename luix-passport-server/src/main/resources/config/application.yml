@@ -51,9 +51,9 @@ spring:
   messages:
     basename: i18n/messages,i18n/luix-messages
   mail: # specific mail property, used by MailProperties
-    host: smtp-relay.brevo.com
-    port: 587
-    username: pm6422@126.com
+    host: smtp.elasticemail.com
+    port: 2525
+    username: pm6422@gmail.com
     password: ${MAIL_PASSWORD:use-your-password}
   banner:
     location: classpath:config/banner-company.txt
