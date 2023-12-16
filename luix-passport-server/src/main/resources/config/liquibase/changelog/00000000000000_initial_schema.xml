@@ -267,17 +267,36 @@
             </column>
         </createTable>
     </changeSet>
-
     <changeSet author="louislau (generated)" id="1697270514696-10">
+        <createTable tableName="user_preference">
+            <column name="user_id" type="varchar(20)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="lang" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_zone" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_format" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="louislau (generated)" id="1697270514696-11">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fk_user_authority_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
-    <changeSet author="louislau (generated)" id="1697270514696-11">
+    <changeSet author="louislau (generated)" id="1697270514696-12">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_permission" constraintName="fk_user_permission_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
-    <changeSet author="louislau (generated)" id="1697270514696-12">
+    <changeSet author="louislau (generated)" id="1697270514696-13">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_login" constraintName="fk_user_login_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
-    <changeSet author="louislau (generated)" id="1697270514696-13">
+    <changeSet author="louislau (generated)" id="1697270514696-14">
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_photo" constraintName="fk_user_photo_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+    </changeSet>
+    <changeSet author="louislau (generated)" id="1697270514696-15">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_preference" constraintName="fk_user_preference_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
 </databaseChangeLog>
