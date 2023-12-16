@@ -7,6 +7,10 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * Solve form csrf issue, add below
+ * <th:input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+ */
 public class CsrfRequireMatcher implements RequestMatcher {
     private static final Pattern      ALLOWED_METHODS    = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
     private static final List<String> LOCALHOST_PATTERNS = ImmutableList.of("127.0.0.1", "0:0:0:0:0:0:0:1");
