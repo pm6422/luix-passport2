@@ -15,6 +15,10 @@ import java.util.regex.Pattern;
 @Slf4j
 public class CsrfRequireMatcher implements RequestMatcher {
     private static final Pattern      ALLOWED_METHODS    = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
+    /**
+     * todo: add token validation
+     * swagger-ui/index.html?token=123
+     */
     private static final List<String> IGNORED_PATHS      = ImmutableList.of("swagger-ui/index.html");
 
     @Override
