@@ -10,8 +10,8 @@ spring:
 # Application specific properties
 # ===================================================================
 application:
-  company:
-    force-to-https: true
   allow-cors:
     mappings:
       "[/api/**]": http://passport.luixtech.cn
+  company:
+    force-to-https: true
