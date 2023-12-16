@@ -10,7 +10,7 @@ spring:
 # Application specific properties
 # ===================================================================
 application:
-  allow-cors:
+  allowed-cors:
     mappings:
       "[/api/**]": http://passport.luixtech.cn
   company:

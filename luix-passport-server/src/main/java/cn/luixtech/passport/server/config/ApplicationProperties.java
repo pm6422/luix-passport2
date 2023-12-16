@@ -21,10 +21,10 @@ import java.util.LinkedHashMap;
 @Getter
 public class ApplicationProperties {
 
-    private final Account   account   = new Account();
-    private final Company   company   = new Company();
-    private final Mail      mail      = new Mail();
-    private final AllowCors allowCors = new AllowCors();
+    private final Account   account     = new Account();
+    private final Company   company     = new Company();
+    private final Mail      mail        = new Mail();
+    private final AllowCors allowedCors = new AllowCors();
 
     @Data
     public static class Account {

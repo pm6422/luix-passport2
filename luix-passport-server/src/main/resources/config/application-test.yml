@@ -10,6 +10,6 @@ spring:
 # Application specific properties
 # ===================================================================
 application:
-  allow-cors:
+  allowed-cors:
     mappings:
       "[/api/**]": http://127.0.0.1:4001

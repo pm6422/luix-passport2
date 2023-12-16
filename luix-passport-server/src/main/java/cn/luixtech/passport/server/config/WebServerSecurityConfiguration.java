@@ -60,7 +60,9 @@ public class WebServerSecurityConfiguration {
 					.anyRequest().authenticated()
 			)
 			// Solve post/delete forbidden issue for request of path "open-api/**"
-			.csrf(csrf-> csrf.ignoringRequestMatchers("/open-api/**"))
+			.csrf(csrf-> csrf
+					.ignoringRequestMatchers("/open-api/**")
+					.requireCsrfProtectionMatcher(new CsrfRequireMatcher()))
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")

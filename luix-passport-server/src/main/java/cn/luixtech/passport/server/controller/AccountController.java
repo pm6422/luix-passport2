@@ -184,7 +184,7 @@ public class AccountController {
         return ResponseEntity.ok(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
     }
 
-    @Operation(summary = "delete account of the current user")
+    @Operation(summary = "delete current user")
     @DeleteMapping("/api/accounts")
     public void delete() {
         userService.deleteById(AuthUtils.getCurrentUserId());

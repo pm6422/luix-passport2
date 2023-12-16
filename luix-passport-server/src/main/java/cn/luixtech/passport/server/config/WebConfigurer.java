@@ -27,7 +27,7 @@ public class WebConfigurer implements ServletContextInitializer, WebMvcConfigure
 
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
-        applicationProperties.getAllowCors().getMappings().forEach((key, value) -> registry
+        applicationProperties.getAllowedCors().getMappings().forEach((key, value) -> registry
                 .addMapping(key)
                 .allowedOrigins(value)
                 .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(), HttpMethod.DELETE.name()));
