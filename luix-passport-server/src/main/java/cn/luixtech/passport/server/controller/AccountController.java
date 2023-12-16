@@ -100,7 +100,7 @@ public class AccountController {
     }
 
     @Operation(summary = "activate the account by activation code")
-    @GetMapping("/open-api/accounts/activate/code")
+    @GetMapping("/open-api/accounts/activate/{code}")
     public void activate(@Parameter(description = "activation code", required = true) @PathVariable String code) {
         userService.activate(code);
     }
@@ -178,7 +178,7 @@ public class AccountController {
     }
 
     @Operation(summary = "get all authority names")
-    @GetMapping("/api/accounts/authority-names")
+    @GetMapping("/api/accounts/all-authorities")
     public ResponseEntity<List<String>> getAuthorityNames() {
         return ResponseEntity.ok(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
     }
