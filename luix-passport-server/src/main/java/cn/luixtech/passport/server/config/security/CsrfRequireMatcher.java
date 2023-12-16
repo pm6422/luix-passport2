@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 @Slf4j
 public class CsrfRequireMatcher implements RequestMatcher {
     private static final Pattern      ALLOWED_METHODS    = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
-    private static final List<String> LOCALHOST_PATTERNS = ImmutableList.of("127.0.0.1", "0:0:0:0:0:0:0:1");
     private static final List<String> IGNORED_PATHS      = ImmutableList.of("swagger-ui/index.html");
 
     @Override
@@ -25,15 +24,10 @@ public class CsrfRequireMatcher implements RequestMatcher {
             return false;
         }
 
-        // CSRF not required on localhost when swagger-ui is referer
-        final String remoteHost = request.getRemoteHost();
-        log.info("Remote host: {}", remoteHost);
+        // CSRF not required when swagger-ui is referer
         final String referer = request.getHeader("Referer");
         log.info("Referer: {}", referer);
-        if (remoteHost != null
-                && referer != null
-                && LOCALHOST_PATTERNS.contains(remoteHost)
-                && IGNORED_PATHS.stream().anyMatch(referer::contains)) {
+        if (referer != null && IGNORED_PATHS.stream().anyMatch(referer::contains)) {
             return false;
         }
         // otherwise, CSRF is required
