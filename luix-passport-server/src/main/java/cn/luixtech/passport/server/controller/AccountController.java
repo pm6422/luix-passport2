@@ -136,6 +136,7 @@ public class AccountController {
     @Operation(summary = "update user preference of the current user")
     @PutMapping("/api/accounts/preference")
     public ResponseEntity<Void> updatePreference(@Parameter(description = "new user preference", required = true) @Valid @RequestBody UserPreference domain) {
+        Optional.ofNullable(userService.findById(domain.getUserId())).orElseThrow(() -> new DataNotFoundException(domain.getUserId()));
         domain.setUserId(AuthUtils.getCurrentUserId());
         userPreferenceDao.update(domain);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("user.preference"))).build();
