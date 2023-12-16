@@ -149,7 +149,7 @@ public class AccountController {
     }
 
     @Operation(summary = "upload profile photo of the current user")
-    @PostMapping("/api/accounts/profile-photo/upload")
+    @PutMapping("/api/accounts/profile-photo/upload")
     public void uploadProfilePhoto(@Parameter(description = "file description", required = true) @RequestPart String description,
                                    @Parameter(description = "user profile picture", required = true) @RequestPart MultipartFile file) throws IOException {
         User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
