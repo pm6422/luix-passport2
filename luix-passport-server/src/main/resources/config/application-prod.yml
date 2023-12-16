@@ -6,6 +6,8 @@ spring:
   liquibase:
     enabled: true
     drop-first: true # reset database
+server:
+  forward-headers-strategy: framework
 # ===================================================================
 # Application specific properties
 # ===================================================================
