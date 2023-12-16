@@ -12,8 +12,5 @@ server:
 # Application specific properties
 # ===================================================================
 application:
-  allowed-cors:
-    mappings:
-      "[/api/**]": http://passport.luixtech.cn
   company:
     force-to-https: true

@@ -6,10 +6,3 @@ spring:
   liquibase:
     enabled: true
     drop-first: true # reset database
-# ===================================================================
-# Application specific properties
-# ===================================================================
-application:
-  allowed-cors:
-    mappings:
-      "[/api/**]": http://127.0.0.1:4001
