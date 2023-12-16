@@ -1,6 +1,7 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
+import cn.luixtech.passport.server.config.security.CsrfRequireMatcher;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
