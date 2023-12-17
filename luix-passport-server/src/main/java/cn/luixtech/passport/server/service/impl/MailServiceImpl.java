@@ -41,7 +41,7 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendEmail(String[] sendTo, String subject, String content) {
-        log.info("Send email to [{}] with subject [{}] and content: {}", sendTo, subject, content);
+        log.info("Send email to [{}] with subject [{}] and content: {}", StringUtils.arrayToCommaDelimitedString(sendTo), subject, content);
         try {
             Resend resend = new Resend(applicationProperties.getMail().getResendApiKey());
             SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
