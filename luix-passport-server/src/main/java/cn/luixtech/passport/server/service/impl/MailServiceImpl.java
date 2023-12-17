@@ -94,7 +94,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public void sendPasswordChangedMail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/changed-password-email", "changed.password.email.subject=", baseUrl);
+        sendEmailFromTemplate(user, "email/changed-password-email", "changed.password.email.subject", baseUrl);
         log.info("Requested sending password changed email to [{}]", user.getEmail());
     }
 }
