@@ -51,9 +51,9 @@ public class MailServiceImpl implements MailService {
                     .html(content)
                     .build();
             SendEmailResponse result = resend.emails().send(sendEmailRequest);
-            log.info("Successfully sent email to user [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
+            log.info("Successfully sent email to users [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
         } catch (Exception e) {
-            log.error("Failed to send email to user {} with exception: {}", sendTo, e.getMessage());
+            log.error("Failed to send email to users [{}] with exception: {}", StringUtils.arrayToCommaDelimitedString(sendTo), e.getMessage());
         }
     }
 
