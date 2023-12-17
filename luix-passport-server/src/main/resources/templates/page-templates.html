@@ -19,7 +19,7 @@
                     <a class="nav-link active" aria-current="page" th:href="@{/}">Server Home</a>
                 </li>
                 <li class="nav-item" th:if="${swaggerEnabled}">
-                    <a class="nav-link" target="_blank" aria-current="page" href="/swagger-ui/index.html">Swagger</a>
+                    <a class="nav-link" target="_blank" aria-current="page" th:href="@{|swagger-ui/index.html?token=${swaggerToken}|}">Swagger</a>
                 </li>
             </ul>
             <span class="me-3"><strong th:text="${username}"></strong></span>
