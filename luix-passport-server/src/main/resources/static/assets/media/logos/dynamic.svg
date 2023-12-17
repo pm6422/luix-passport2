@@ -2,7 +2,7 @@
      mydata:presentation="2.5" mydata:layouttype="undefined" mydata:specialfontid="undefined" mydata:id1="010"
      mydata:id2="374" mydata:companyname="luix universe" mydata:companytagline="" version="1.1"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 550 470"
-     style="background-color: #222246; background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%);">
+     style="background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%);">
     <style style="animation-play-state: running;">#pulse-circle1 {
         transform: scale(0);
         opacity: 0;
