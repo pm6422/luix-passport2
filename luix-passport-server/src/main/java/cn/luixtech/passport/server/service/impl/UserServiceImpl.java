@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
-        log.debug("Authenticating {}", loginName);
+        log.info("Authenticating {}", loginName);
         if (StringUtils.isEmpty(loginName)) {
             log.warn("Login name must not be empty!");
             throw new BadCredentialsException("Login name must not be empty");
