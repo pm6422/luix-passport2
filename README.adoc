@@ -24,14 +24,14 @@ image::images/demo.gif[]
 Prior to building this project, it is necessary to install the JDK on your machine. The JDK can be installed using https://sdkman.io/install[SDK Man].
 
 ```bash
-sdk install java 17.0.6-tem
+sdk install java 21.0.1-amzn
 ```
-NOTE: Java compatability: Java 17 above
+NOTE: Java compatability: Java 21 above
 
 [[tech-stack]]
 == Tech Stack
-- Java 17
-- Spring Boot 3.1.0
+- Java 21
+- Spring Boot 3.2.0
 - Spring Security OAuth2 Authorization Server 1.1.0
 - MySQL 8
 
