@@ -19,6 +19,7 @@ import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -63,25 +64,20 @@ import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
     public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    @Resource
     private             DSLContext            dslContext;
+    @Resource
     private             UserDao               userDao;
+    @Resource
     private             UserAuthorityDao      userAuthorityDao;
+    @Resource
     private             UserPreferenceDao     userPreferenceDao;
+    @Resource
     private             UserAuthorityService  userAuthorityService;
+    @Resource
     private             MessageCreator        messageCreator;
+    @Value("${spring.web.locale}")
     private             String                defaultLocale;
-
-    public UserServiceImpl(DSLContext dslContext, UserDao userDao, UserAuthorityDao userAuthorityDao,
-                           UserPreferenceDao userPreferenceDao, UserAuthorityService userAuthorityService,
-                           MessageCreator messageCreator, @Value("${spring.web.locale}") String defaultLocale) {
-        this.dslContext = dslContext;
-        this.userDao = userDao;
-        this.userAuthorityDao = userAuthorityDao;
-        this.userPreferenceDao = userPreferenceDao;
-        this.userAuthorityService = userAuthorityService;
-        this.messageCreator = messageCreator;
-        this.defaultLocale = defaultLocale;
-    }
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
