@@ -272,7 +272,7 @@
             <column name="user_id" type="varchar(20)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="lang" type="varchar(10)">
+            <column name="locale" type="varchar(10)">
                 <constraints nullable="false"/>
             </column>
             <column name="time_zone" type="varchar(30)">

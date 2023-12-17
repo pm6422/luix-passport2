@@ -36,16 +36,16 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
     }
 
     /**
-     * Setter for <code>luix-passport.user_preference.lang</code>.
+     * Setter for <code>luix-passport.user_preference.locale</code>.
      */
-    public void setLang(String value) {
+    public void setLocale(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_preference.lang</code>.
+     * Getter for <code>luix-passport.user_preference.locale</code>.
      */
-    public String getLang() {
+    public String getLocale() {
         return (String) get(1);
     }
 
@@ -107,7 +107,7 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
 
     @Override
     public Field<String> field2() {
-        return UserPreference.USER_PREFERENCE.LANG;
+        return UserPreference.USER_PREFERENCE.LOCALE;
     }
 
     @Override
@@ -127,7 +127,7 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
 
     @Override
     public String component2() {
-        return getLang();
+        return getLocale();
     }
 
     @Override
@@ -147,7 +147,7 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
 
     @Override
     public String value2() {
-        return getLang();
+        return getLocale();
     }
 
     @Override
@@ -168,7 +168,7 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
 
     @Override
     public UserPreferenceRecord value2(String value) {
-        setLang(value);
+        setLocale(value);
         return this;
     }
 
@@ -207,11 +207,11 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
     /**
      * Create a detached, initialised UserPreferenceRecord
      */
-    public UserPreferenceRecord(String userId, String lang, String timeZone, String dateFormat) {
+    public UserPreferenceRecord(String userId, String locale, String timeZone, String dateFormat) {
         super(UserPreference.USER_PREFERENCE);
 
         setUserId(userId);
-        setLang(lang);
+        setLocale(locale);
         setTimeZone(timeZone);
         setDateFormat(dateFormat);
         resetChangedOnNotNull();
@@ -225,7 +225,7 @@ public class UserPreferenceRecord extends UpdatableRecordImpl<UserPreferenceReco
 
         if (value != null) {
             setUserId(value.getUserId());
-            setLang(value.getLang());
+            setLocale(value.getLocale());
             setTimeZone(value.getTimeZone());
             setDateFormat(value.getDateFormat());
             resetChangedOnNotNull();

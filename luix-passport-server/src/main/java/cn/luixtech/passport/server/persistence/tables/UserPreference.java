@@ -57,14 +57,14 @@ public class UserPreference extends TableImpl<UserPreferenceRecord> {
     public final TableField<UserPreferenceRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_preference.lang</code>.
+     * The column <code>luix-passport.user_preference.locale</code>.
      */
-    public final TableField<UserPreferenceRecord, String> LANG = createField(DSL.name("lang"), SQLDataType.VARCHAR(10).nullable(false), this, "");
+    public final TableField<UserPreferenceRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user_preference.time_zone</code>.
      */
-    public final TableField<UserPreferenceRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+    public final TableField<UserPreferenceRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(30).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user_preference.date_format</code>.

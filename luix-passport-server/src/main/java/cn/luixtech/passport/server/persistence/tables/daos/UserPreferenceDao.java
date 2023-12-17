@@ -73,18 +73,18 @@ public class UserPreferenceDao extends DAOImpl<UserPreferenceRecord, cn.luixtech
     }
 
     /**
-     * Fetch records that have <code>lang BETWEEN lowerInclusive AND
+     * Fetch records that have <code>locale BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPreference> fetchRangeOfLang(String lowerInclusive, String upperInclusive) {
-        return fetchRange(UserPreference.USER_PREFERENCE.LANG, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPreference> fetchRangeOfLocale(String lowerInclusive, String upperInclusive) {
+        return fetchRange(UserPreference.USER_PREFERENCE.LOCALE, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>lang IN (values)</code>
+     * Fetch records that have <code>locale IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPreference> fetchByLang(String... values) {
-        return fetch(UserPreference.USER_PREFERENCE.LANG, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPreference> fetchByLocale(String... values) {
+        return fetch(UserPreference.USER_PREFERENCE.LOCALE, values);
     }
 
     /**

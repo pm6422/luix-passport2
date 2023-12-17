@@ -16,7 +16,7 @@ public class UserPreference implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String userId;
-    private String lang;
+    private String locale;
     private String timeZone;
     private String dateFormat;
 
@@ -24,19 +24,19 @@ public class UserPreference implements Serializable {
 
     public UserPreference(UserPreference value) {
         this.userId = value.userId;
-        this.lang = value.lang;
+        this.locale = value.locale;
         this.timeZone = value.timeZone;
         this.dateFormat = value.dateFormat;
     }
 
     public UserPreference(
         String userId,
-        String lang,
+        String locale,
         String timeZone,
         String dateFormat
     ) {
         this.userId = userId;
-        this.lang = lang;
+        this.locale = locale;
         this.timeZone = timeZone;
         this.dateFormat = dateFormat;
     }
@@ -56,17 +56,17 @@ public class UserPreference implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.user_preference.lang</code>.
+     * Getter for <code>luix-passport.user_preference.locale</code>.
      */
-    public String getLang() {
-        return this.lang;
+    public String getLocale() {
+        return this.locale;
     }
 
     /**
-     * Setter for <code>luix-passport.user_preference.lang</code>.
+     * Setter for <code>luix-passport.user_preference.locale</code>.
      */
-    public void setLang(String lang) {
-        this.lang = lang;
+    public void setLocale(String locale) {
+        this.locale = locale;
     }
 
     /**
@@ -112,11 +112,11 @@ public class UserPreference implements Serializable {
         }
         else if (!this.userId.equals(other.userId))
             return false;
-        if (this.lang == null) {
-            if (other.lang != null)
+        if (this.locale == null) {
+            if (other.locale != null)
                 return false;
         }
-        else if (!this.lang.equals(other.lang))
+        else if (!this.locale.equals(other.locale))
             return false;
         if (this.timeZone == null) {
             if (other.timeZone != null)
@@ -138,7 +138,7 @@ public class UserPreference implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
-        result = prime * result + ((this.lang == null) ? 0 : this.lang.hashCode());
+        result = prime * result + ((this.locale == null) ? 0 : this.locale.hashCode());
         result = prime * result + ((this.timeZone == null) ? 0 : this.timeZone.hashCode());
         result = prime * result + ((this.dateFormat == null) ? 0 : this.dateFormat.hashCode());
         return result;
@@ -149,7 +149,7 @@ public class UserPreference implements Serializable {
         StringBuilder sb = new StringBuilder("UserPreference (");
 
         sb.append(userId);
-        sb.append(", ").append(lang);
+        sb.append(", ").append(locale);
         sb.append(", ").append(timeZone);
         sb.append(", ").append(dateFormat);
 
