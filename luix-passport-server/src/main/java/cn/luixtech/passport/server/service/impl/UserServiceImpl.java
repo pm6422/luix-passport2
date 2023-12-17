@@ -5,8 +5,10 @@ import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.daos.UserAuthorityDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
+import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.service.UserAuthorityService;
@@ -17,7 +19,6 @@ import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -26,6 +27,7 @@ import org.apache.commons.lang3.Validate;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -59,14 +61,27 @@ import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
  */
 @Slf4j
 @Service
-@AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
     public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    private final       DSLContext            dslContext;
-    private final       UserDao               userDao;
-    private final       UserAuthorityDao      userAuthorityDao;
-    private final       UserAuthorityService  userAuthorityService;
-    private final       MessageCreator        messageCreator;
+    private             DSLContext            dslContext;
+    private             UserDao               userDao;
+    private             UserAuthorityDao      userAuthorityDao;
+    private             UserPreferenceDao     userPreferenceDao;
+    private             UserAuthorityService  userAuthorityService;
+    private             MessageCreator        messageCreator;
+    private             String                defaultLocale;
+
+    public UserServiceImpl(DSLContext dslContext, UserDao userDao, UserAuthorityDao userAuthorityDao,
+                           UserPreferenceDao userPreferenceDao, UserAuthorityService userAuthorityService,
+                           MessageCreator messageCreator, @Value("${spring.web.locale}") String defaultLocale) {
+        this.dslContext = dslContext;
+        this.userDao = userDao;
+        this.userAuthorityDao = userAuthorityDao;
+        this.userPreferenceDao = userPreferenceDao;
+        this.userAuthorityService = userAuthorityService;
+        this.messageCreator = messageCreator;
+        this.defaultLocale = defaultLocale;
+    }
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
@@ -159,7 +174,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         List<UserAuthority> userAuthorities = userAuthorityService.generate(id, authorities);
         userAuthorityDao.insert(userAuthorities);
-        log.info("Created user authorities: {}", userAuthorities);
+
+        UserPreference userPreference = new UserPreference();
+        userPreference.setUserId(id);
+        userPreference.setLang(defaultLocale);
+        userPreference.setDateFormat("2021-09-10 10:15:00");
+        userPreference.setTimeZone("Asia/Shanghai (GMT +08:00)");
+        userPreferenceDao.insert(userPreference);
 
         return domain;
     }

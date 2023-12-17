@@ -1,13 +1,16 @@
 package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.config.ApplicationProperties;
+import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.service.MailService;
 import com.resend.Resend;
 import com.resend.services.emails.model.SendEmailRequest;
 import com.resend.services.emails.model.SendEmailResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -30,6 +33,7 @@ public class MailServiceImpl implements MailService {
     private final        ApplicationProperties applicationProperties;
     private final        MessageSource         messageSource;
     private final        SpringTemplateEngine  springTemplateEngine;
+    private final        UserPreferenceDao     userPreferenceDao;
 
     /**
      * System default email address that sends the e-mails.
@@ -47,16 +51,17 @@ public class MailServiceImpl implements MailService {
                     .html(content)
                     .build();
             SendEmailResponse result = resend.emails().send(sendEmailRequest);
-            log.info("Sent email to user [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
+            log.info("Successfully sent email to user [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
         } catch (Exception e) {
-            log.error("Failed to send email to user [{}] with exception: {}", sendTo, e.getMessage());
+            log.error("Failed to send email to user {} with exception: {}", sendTo, e.getMessage());
         }
     }
 
     @Async
     @Override
     public void sendEmailFromTemplate(User user, String templateName, String emailSubjectKey, String baseUrl) {
-        Locale locale = Locale.getDefault();
+        UserPreference userPreference = userPreferenceDao.findById(user.getId());
+        Locale locale = LocaleUtils.toLocale(userPreference.getLang());
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl);
