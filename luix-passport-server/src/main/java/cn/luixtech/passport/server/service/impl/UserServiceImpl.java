@@ -177,7 +177,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         UserPreference userPreference = new UserPreference();
         userPreference.setUserId(id);
-        userPreference.setLang(defaultLocale);
+        userPreference.setLocale(defaultLocale);
         userPreference.setDateFormat("2021-09-10 10:15:00");
         userPreference.setTimeZone("Asia/Shanghai (GMT +08:00)");
         userPreferenceDao.insert(userPreference);

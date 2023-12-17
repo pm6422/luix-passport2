@@ -61,7 +61,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendEmailFromTemplate(User user, String templateName, String emailSubjectKey, String baseUrl) {
         UserPreference userPreference = userPreferenceDao.findById(user.getId());
-        Locale locale = LocaleUtils.toLocale(userPreference.getLang());
+        Locale locale = LocaleUtils.toLocale(userPreference.getLocale());
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl);
