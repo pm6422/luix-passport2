@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * <th:input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
  */
 @Slf4j
-public class CsrfRequireMatcher implements RequestMatcher {
+public class CsrfRequestMatcher implements RequestMatcher {
     private static final Pattern      ALLOWED_METHODS = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
     private static final List<String> IGNORED_PATHS   = ImmutableList.of("swagger-ui/index.html");
 
