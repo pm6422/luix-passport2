@@ -29,7 +29,7 @@
                 <span class="fw-semibold text-gray-800" th:text="#{activate.account.email.text}"></span>
             </div>
             <div class="mb-15">
-                <a href="@{|${baseUrl}/#/activate?code=${user.activationCode}|}" class="btn btn-lg btn-primary hover-elevate-down" th:text="#{activate.account.email.button.text}"></a>
+                <a th:href="@{|${baseUrl}/#/activate?code=${user.activationCode}|}" class="btn btn-lg btn-primary hover-elevate-down" th:text="#{activate.account.email.button.text}"></a>
             </div>
         </div>
         <div class="fw-semibold">
