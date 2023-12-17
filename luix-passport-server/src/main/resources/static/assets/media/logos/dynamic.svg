@@ -2,7 +2,7 @@
      mydata:presentation="2.5" mydata:layouttype="undefined" mydata:specialfontid="undefined" mydata:id1="010"
      mydata:id2="374" mydata:companyname="luix universe" mydata:companytagline="" version="1.1"
      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 550 470"
-     style="background-color: rgb(217, 217, 217); background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%);">
+     style="background-color: #222246; background-image: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%);">
     <style style="animation-play-state: running;">#pulse-circle1 {
         transform: scale(0);
         opacity: 0;
@@ -38,7 +38,7 @@
         }
         }
     </style>
-    <g fill="#000000" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+    <g fill="rgb(244,55,76)" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
        stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
        font-size="none" text-anchor="none" style="mix-blend-mode: normal; animation-play-state: running;">
         <g data-paper-data="{&quot;isGlobalGroup&quot;:true,&quot;bounds&quot;:{&quot;x&quot;:65,&quot;y&quot;:127.54026674233825,&quot;width&quot;:420,&quot;height&quot;:214.9194665153235}}"
@@ -88,10 +88,10 @@
             </g>
         </g>
     </g>
-    <circle id="pulse-circle1" cx="50%" cy="50%" r="45%" stroke="#000000" stroke-width="5" fill="none"
+    <circle id="pulse-circle1" cx="50%" cy="50%" r="45%" stroke="rgb(244,55,76)" stroke-width="5" fill="none"
             style="animation-play-state: running;"></circle>
-    <circle id="pulse-circle2" cx="50%" cy="50%" r="45%" stroke="#000000" stroke-width="5" fill="none"
+    <circle id="pulse-circle2" cx="50%" cy="50%" r="45%" stroke="rgb(244,55,76)" stroke-width="5" fill="none"
             style="animation-play-state: running;"></circle>
-    <circle id="pulse-circle3" cx="50%" cy="50%" r="45%" stroke="#000000" stroke-width="5" fill="none"
+    <circle id="pulse-circle3" cx="50%" cy="50%" r="45%" stroke="rgb(244,55,76)" stroke-width="5" fill="none"
             style="animation-play-state: running;"></circle>
 </svg>
