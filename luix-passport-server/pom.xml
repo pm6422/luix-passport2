@@ -288,7 +288,6 @@
                                 <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
                                 <user>root</user>
                             </container>
-                            <allowInsecureRegistries>true</allowInsecureRegistries>
                             <extraDirectories>
                                 <paths>
                                     <path>src/main/jib</path>
