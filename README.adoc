@@ -9,7 +9,7 @@ Supported social login:
 
 [[website]]
 == Official website
-http://passport.luixtech.cn
+https://passport.luixtech.cn
 
 [[repository]]
 == Code repository
