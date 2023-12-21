@@ -12,11 +12,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function2;
+import org.jooq.Function4;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row2;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -58,6 +58,16 @@ public class Tenant extends TableImpl<TenantRecord> {
      * The column <code>luix-passport.tenant.name</code>.
      */
     public final TableField<TenantRecord, String> NAME = createField(DSL.name("name"), SQLDataType.VARCHAR(36).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.tenant.enabled</code>.
+     */
+    public final TableField<TenantRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT.nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.tenant.photo</code>.
+     */
+    public final TableField<TenantRecord, byte[]> PHOTO = createField(DSL.name("photo"), SQLDataType.BLOB, this, "");
 
     private Tenant(Name alias, Table<TenantRecord> aliased) {
         this(alias, aliased, null);
@@ -142,18 +152,18 @@ public class Tenant extends TableImpl<TenantRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row2 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row2<String, String> fieldsRow() {
-        return (Row2) super.fieldsRow();
+    public Row4<String, String, Boolean, byte[]> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function2<? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function4<? super String, ? super String, ? super Boolean, ? super byte[], ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -161,7 +171,7 @@ public class Tenant extends TableImpl<TenantRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function2<? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function4<? super String, ? super String, ? super Boolean, ? super byte[], ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

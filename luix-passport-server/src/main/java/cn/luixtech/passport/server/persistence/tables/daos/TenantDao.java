@@ -72,4 +72,34 @@ public class TenantDao extends DAOImpl<TenantRecord, cn.luixtech.passport.server
     public List<cn.luixtech.passport.server.persistence.tables.pojos.Tenant> fetchByName(String... values) {
         return fetch(Tenant.TENANT.NAME, values);
     }
+
+    /**
+     * Fetch records that have <code>enabled BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Tenant> fetchRangeOfEnabled(Boolean lowerInclusive, Boolean upperInclusive) {
+        return fetchRange(Tenant.TENANT.ENABLED, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>enabled IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Tenant> fetchByEnabled(Boolean... values) {
+        return fetch(Tenant.TENANT.ENABLED, values);
+    }
+
+    /**
+     * Fetch records that have <code>photo BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Tenant> fetchRangeOfPhoto(byte[] lowerInclusive, byte[] upperInclusive) {
+        return fetchRange(Tenant.TENANT.PHOTO, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>photo IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Tenant> fetchByPhoto(byte[]... values) {
+        return fetch(Tenant.TENANT.PHOTO, values);
+    }
 }

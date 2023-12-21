@@ -132,6 +132,12 @@
             <column name="name" type="VARCHAR(36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
+            <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="longblob">
+                <constraints nullable="true"/>
+            </column>
         </createTable>
         <loadData
                 file="config/liquibase/data/tenant.csv"
