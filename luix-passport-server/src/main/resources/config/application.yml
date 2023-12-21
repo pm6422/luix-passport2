@@ -32,14 +32,14 @@ management: # Management http server configuration, used by ManagementServerProp
           - threaddump
           - liquibase
           - luixopenapigroups
-    endpoint:
-      health: # used by HealthEndpointProperties, Note: it will show health details if it has the access token by Ajax
-        enabled: true
-        show-details: WHEN_AUTHORIZED
-      httptrace:
-        enabled: true
-      shutdown:
-        enabled: true # explicitly enable
+  endpoint:
+    health: # used by HealthEndpointProperties, Note: it will show health details if it has the access token by Ajax
+      enabled: true
+      show-details: WHEN_AUTHORIZED
+    httptrace:
+      enabled: true
+    shutdown:
+      enabled: true # explicitly enable
 spring:
   application:
     name: luix-passport-server
