@@ -60,7 +60,7 @@ public class User extends TableImpl<UserRecord> {
     /**
      * The column <code>luix-passport.user.tenant_id</code>.
      */
-    public final TableField<UserRecord, String> TENANT_ID = createField(DSL.name("tenant_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+    public final TableField<UserRecord, String> TENANT_ID = createField(DSL.name("tenant_id"), SQLDataType.VARCHAR(20), this, "");
 
     /**
      * The column <code>luix-passport.user.username</code>.

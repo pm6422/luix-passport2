@@ -300,9 +300,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
+    public Page<User> find(Pageable pageable, String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
         List<User> domains = dslContext.selectFrom(Tables.USER)
-                .where(createCondition(username, email, mobileNo, enabled, activated))
+                .where(createCondition(tenantId, username, email, mobileNo, enabled, activated))
                 .orderBy(buildOrderBy(pageable.getSort(), USER.fields()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -310,8 +310,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new PageImpl<>(domains, pageable, userDao.count());
     }
 
-    private Condition createCondition(String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
+    private Condition createCondition(String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
         Condition condition = DSL.trueCondition();
+        if (StringUtils.isNotEmpty(tenantId)) {
+            condition = condition.and(USER.TENANT_ID.eq(tenantId));
+        }
         if (StringUtils.isNotEmpty(username)) {
             condition = condition.and(USER.USERNAME.eq(username));
         }

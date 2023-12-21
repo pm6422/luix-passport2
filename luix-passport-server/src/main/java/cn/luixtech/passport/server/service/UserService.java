@@ -29,7 +29,7 @@ public interface UserService {
 
     void resetPassword(String resetCode, String newRawPassword);
 
-    Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
+    Page<User> find(Pageable pageable, String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
 
     ManagedUser findById(String id);
 
