@@ -8,6 +8,8 @@
     "all:up": "docker compose -f docker/all.yml up --wait",
     "all:down": "docker compose -f docker/all.yml down",
     "docker:build": "./mvnw compile -ntp verify -DskipTests -Prelease",
-    "docker:build:arm64": "npm run docker:build -- -Djib.arch=arm64"
+    "docker:build:arm64": "npm run docker:build -- -Djib.arch=arm64",
+    "docker:push": "npm run docker:build -- -Djib.goal=build -Djib.image.version=${{vars.DOCKER_IMAGE_VERSION}} -Djib.registry.url=${{vars.DOCKER_REGISTRY_URL}} -Djib.registry.username=${{vars.DOCKER_REGISTRY_USERNAME}} -Djib.registry.password=${{vars.DOCKER_REGISTRY_PASSWORD}}",
+    "docker:push:arm64": "npm run docker:push -- -Djib.arch=arm64"
   }
 }
