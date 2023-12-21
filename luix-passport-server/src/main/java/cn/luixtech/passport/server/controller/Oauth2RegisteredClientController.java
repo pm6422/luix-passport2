@@ -2,9 +2,11 @@ package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClientDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
+import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,7 +21,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,6 +79,16 @@ public class Oauth2RegisteredClientController {
         oauth2RegisteredClientDao.deleteById(id);
         return ResponseEntity.ok()
                 .headers(httpHeaderCreator.createSuccessHeader("SM1003", client.getClientId())).build();
+    }
+
+    @Operation(summary = "upload photo of the oauth2 registered client")
+    @PutMapping("/api/oauth2-registered-clients/photo/upload")
+    public void uploadProfilePhoto(@Parameter(description = "id", required = true) @RequestPart String id,
+                                   @Parameter(description = "photo", required = true) @RequestPart MultipartFile file) throws IOException {
+        Oauth2RegisteredClient oauth2RegisteredClient = Optional.ofNullable(oauth2RegisteredClientDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        oauth2RegisteredClient.setPhoto(file.getBytes());
+        oauth2RegisteredClientDao.update(oauth2RegisteredClient);
+        log.info("Uploaded oauth2 registered client photo with file name {} and ID {}", file.getOriginalFilename(), id);
     }
 
     @Operation(summary = "find photo by id")
