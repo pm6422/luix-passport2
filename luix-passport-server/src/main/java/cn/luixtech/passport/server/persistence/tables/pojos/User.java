@@ -17,6 +17,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
+    private String tenantId;
     private String username;
     private String email;
     private String mobileNo;
@@ -41,6 +42,7 @@ public class User implements Serializable {
 
     public User(User value) {
         this.id = value.id;
+        this.tenantId = value.tenantId;
         this.username = value.username;
         this.email = value.email;
         this.mobileNo = value.mobileNo;
@@ -64,6 +66,7 @@ public class User implements Serializable {
 
     public User(
         String id,
+        String tenantId,
         String username,
         String email,
         String mobileNo,
@@ -85,6 +88,7 @@ public class User implements Serializable {
         LocalDateTime modifiedTime
     ) {
         this.id = id;
+        this.tenantId = tenantId;
         this.username = username;
         this.email = email;
         this.mobileNo = mobileNo;
@@ -118,6 +122,20 @@ public class User implements Serializable {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.tenant_id</code>.
+     */
+    public String getTenantId() {
+        return this.tenantId;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.tenant_id</code>.
+     */
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
     /**
@@ -401,6 +419,12 @@ public class User implements Serializable {
         }
         else if (!this.id.equals(other.id))
             return false;
+        if (this.tenantId == null) {
+            if (other.tenantId != null)
+                return false;
+        }
+        else if (!this.tenantId.equals(other.tenantId))
+            return false;
         if (this.username == null) {
             if (other.username != null)
                 return false;
@@ -523,6 +547,7 @@ public class User implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.tenantId == null) ? 0 : this.tenantId.hashCode());
         result = prime * result + ((this.username == null) ? 0 : this.username.hashCode());
         result = prime * result + ((this.email == null) ? 0 : this.email.hashCode());
         result = prime * result + ((this.mobileNo == null) ? 0 : this.mobileNo.hashCode());
@@ -550,6 +575,7 @@ public class User implements Serializable {
         StringBuilder sb = new StringBuilder("User (");
 
         sb.append(id);
+        sb.append(", ").append(tenantId);
         sb.append(", ").append(username);
         sb.append(", ").append(email);
         sb.append(", ").append(mobileNo);

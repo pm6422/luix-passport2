@@ -9,6 +9,7 @@ import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
+import cn.luixtech.passport.server.persistence.tables.Tenant;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
@@ -48,6 +49,11 @@ public class Tables {
      * The table <code>luix-passport.spring_session_attributes</code>.
      */
     public static final SpringSessionAttributes SPRING_SESSION_ATTRIBUTES = SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES;
+
+    /**
+     * The table <code>luix-passport.tenant</code>.
+     */
+    public static final Tenant TENANT = Tenant.TENANT;
 
     /**
      * The table <code>luix-passport.user</code>.

@@ -9,6 +9,7 @@ import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
+import cn.luixtech.passport.server.persistence.tables.Tenant;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserAuthority;
@@ -21,6 +22,7 @@ import cn.luixtech.passport.server.persistence.tables.records.Oauth2Authorizatio
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2RegisteredClientRecord;
 import cn.luixtech.passport.server.persistence.tables.records.SpringSessionAttributesRecord;
 import cn.luixtech.passport.server.persistence.tables.records.SpringSessionRecord;
+import cn.luixtech.passport.server.persistence.tables.records.TenantRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthenticationEventRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthorityRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserLoginRecord;
@@ -53,6 +55,7 @@ public class Keys {
     public static final UniqueKey<SpringSessionRecord> KEY_SPRING_SESSION_PRIMARY = Internal.createUniqueKey(SpringSession.SPRING_SESSION, DSL.name("KEY_spring_session_PRIMARY"), new TableField[] { SpringSession.SPRING_SESSION.PRIMARY_ID }, true);
     public static final UniqueKey<SpringSessionRecord> KEY_SPRING_SESSION_SESSION_ID = Internal.createUniqueKey(SpringSession.SPRING_SESSION, DSL.name("KEY_spring_session_SESSION_ID"), new TableField[] { SpringSession.SPRING_SESSION.SESSION_ID }, true);
     public static final UniqueKey<SpringSessionAttributesRecord> KEY_SPRING_SESSION_ATTRIBUTES_PRIMARY = Internal.createUniqueKey(SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES, DSL.name("KEY_spring_session_attributes_PRIMARY"), new TableField[] { SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES.SESSION_PRIMARY_ID, SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES.ATTRIBUTE_NAME }, true);
+    public static final UniqueKey<TenantRecord> KEY_TENANT_PRIMARY = Internal.createUniqueKey(Tenant.TENANT, DSL.name("KEY_tenant_PRIMARY"), new TableField[] { Tenant.TENANT.ID, Tenant.TENANT.NAME }, true);
     public static final UniqueKey<UserRecord> KEY_USER_EMAIL = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_email"), new TableField[] { User.USER.EMAIL }, true);
     public static final UniqueKey<UserRecord> KEY_USER_MOBILE_NO = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_mobile_no"), new TableField[] { User.USER.MOBILE_NO }, true);
     public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_PRIMARY"), new TableField[] { User.USER.ID }, true);
@@ -68,6 +71,7 @@ public class Keys {
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final ForeignKey<UserRecord, TenantRecord> FK_USER_TENANT_ID = Internal.createForeignKey(User.USER, DSL.name("fk_user_tenant_id"), new TableField[] { User.USER.TENANT_ID }, Keys.KEY_TENANT_PRIMARY, new TableField[] { Tenant.TENANT.ID }, true);
     public static final ForeignKey<UserAuthorityRecord, UserRecord> FK_USER_AUTHORITY_USER_ID = Internal.createForeignKey(UserAuthority.USER_AUTHORITY, DSL.name("fk_user_authority_user_id"), new TableField[] { UserAuthority.USER_AUTHORITY.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserLoginRecord, UserRecord> FK_USER_LOGIN_USER_ID = Internal.createForeignKey(UserLogin.USER_LOGIN, DSL.name("fk_user_login_user_id"), new TableField[] { UserLogin.USER_LOGIN.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserPermissionRecord, UserRecord> FK_USER_PERMISSION_USER_ID = Internal.createForeignKey(UserPermission.USER_PERMISSION, DSL.name("fk_user_permission_user_id"), new TableField[] { UserPermission.USER_PERMISSION.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);

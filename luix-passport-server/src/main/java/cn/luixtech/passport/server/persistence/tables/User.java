@@ -15,11 +15,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function20;
+import org.jooq.Function21;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row20;
+import org.jooq.Row21;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -56,6 +56,11 @@ public class User extends TableImpl<UserRecord> {
      * The column <code>luix-passport.user.id</code>.
      */
     public final TableField<UserRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user.tenant_id</code>.
+     */
+    public final TableField<UserRecord, String> TENANT_ID = createField(DSL.name("tenant_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user.username</code>.
@@ -201,6 +206,24 @@ public class User extends TableImpl<UserRecord> {
     }
 
     @Override
+    public List<ForeignKey<UserRecord, ?>> getReferences() {
+        return Arrays.asList(Keys.FK_USER_TENANT_ID);
+    }
+
+    private transient Tenant _tenant;
+
+    /**
+     * Get the implicit join path to the <code>luix-passport.tenant</code>
+     * table.
+     */
+    public Tenant tenant() {
+        if (_tenant == null)
+            _tenant = new Tenant(this, Keys.FK_USER_TENANT_ID);
+
+        return _tenant;
+    }
+
+    @Override
     public User as(String alias) {
         return new User(DSL.name(alias), this);
     }
@@ -240,18 +263,18 @@ public class User extends TableImpl<UserRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row20 type methods
+    // Row21 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row20<String, String, String, String, String, String, String, String, String, LocalDateTime, Boolean, String, Boolean, Boolean, LocalDateTime, LocalDateTime, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row20) super.fieldsRow();
+    public Row21<String, String, String, String, String, String, String, String, String, String, LocalDateTime, Boolean, String, Boolean, Boolean, LocalDateTime, LocalDateTime, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row21) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function20<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function21<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -259,7 +282,7 @@ public class User extends TableImpl<UserRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function20<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function21<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }
