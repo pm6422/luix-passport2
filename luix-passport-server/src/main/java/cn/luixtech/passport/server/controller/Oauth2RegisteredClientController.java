@@ -2,6 +2,7 @@ package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClientDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
@@ -74,5 +75,12 @@ public class Oauth2RegisteredClientController {
         oauth2RegisteredClientDao.deleteById(id);
         return ResponseEntity.ok()
                 .headers(httpHeaderCreator.createSuccessHeader("SM1003", client.getClientId())).build();
+    }
+
+    @Operation(summary = "find photo by id")
+    @GetMapping("/api/oauth2-registered-clients/photo/{id}")
+    public ResponseEntity<byte[]> findPhotoById(@Parameter(description = "id", required = true) @PathVariable String id) {
+        Optional<Oauth2RegisteredClient> oauth2RegisteredClient = Optional.ofNullable(oauth2RegisteredClientDao.findById(id));
+        return oauth2RegisteredClient.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
     }
 }

@@ -38,6 +38,7 @@ public class Oauth2Client implements Serializable {
     private              Instant clientSecretExpiresAt;
     private              Integer validityInDays;
     private              Boolean enabled;
+    private              byte[]  photo;
 
     private Set<String> clientAuthenticationMethods = new HashSet<>();
     private Set<String> authorizationGrantTypes     = new HashSet<>();
@@ -143,7 +144,6 @@ public class Oauth2Client implements Serializable {
         if (registeredClient.getClientSecretExpiresAt() != null) {
             oauth2Client.setClientSecretExpiresAt(registeredClient.getClientSecretExpiresAt().atZone(ZoneId.systemDefault()).toInstant());
         }
-
         return oauth2Client;
     }
 }
