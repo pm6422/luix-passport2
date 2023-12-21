@@ -13,11 +13,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function13;
+import org.jooq.Function14;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row13;
+import org.jooq.Row14;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -126,6 +126,11 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
      */
     public final TableField<Oauth2RegisteredClientRecord, String> TOKEN_SETTINGS = createField(DSL.name("token_settings"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
+    /**
+     * The column <code>luix-passport.oauth2_registered_client.photo</code>.
+     */
+    public final TableField<Oauth2RegisteredClientRecord, byte[]> PHOTO = createField(DSL.name("photo"), SQLDataType.BLOB, this, "");
+
     private Oauth2RegisteredClient(Name alias, Table<Oauth2RegisteredClientRecord> aliased) {
         this(alias, aliased, null);
     }
@@ -212,18 +217,18 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     }
 
     // -------------------------------------------------------------------------
-    // Row13 type methods
+    // Row14 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row13<String, String, LocalDateTime, String, LocalDateTime, String, String, String, String, String, String, String, String> fieldsRow() {
-        return (Row13) super.fieldsRow();
+    public Row14<String, String, LocalDateTime, String, LocalDateTime, String, String, String, String, String, String, String, String, byte[]> fieldsRow() {
+        return (Row14) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function13<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function14<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super byte[], ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -231,7 +236,7 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function13<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function14<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super byte[], ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

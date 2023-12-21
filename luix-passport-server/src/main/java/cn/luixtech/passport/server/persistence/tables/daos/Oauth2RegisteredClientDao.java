@@ -255,4 +255,19 @@ public class Oauth2RegisteredClientDao extends DAOImpl<Oauth2RegisteredClientRec
     public List<cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient> fetchByTokenSettings(String... values) {
         return fetch(Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT.TOKEN_SETTINGS, values);
     }
+
+    /**
+     * Fetch records that have <code>photo BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient> fetchRangeOfPhoto(byte[] lowerInclusive, byte[] upperInclusive) {
+        return fetchRange(Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT.PHOTO, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>photo IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient> fetchByPhoto(byte[]... values) {
+        return fetch(Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT.PHOTO, values);
+    }
 }

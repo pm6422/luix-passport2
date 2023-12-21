@@ -6,6 +6,7 @@ package cn.luixtech.passport.server.persistence.tables.pojos;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 
 /**
@@ -29,6 +30,7 @@ public class Oauth2RegisteredClient implements Serializable {
     private String scopes;
     private String clientSettings;
     private String tokenSettings;
+    private byte[] photo;
 
     public Oauth2RegisteredClient() {}
 
@@ -46,6 +48,7 @@ public class Oauth2RegisteredClient implements Serializable {
         this.scopes = value.scopes;
         this.clientSettings = value.clientSettings;
         this.tokenSettings = value.tokenSettings;
+        this.photo = value.photo;
     }
 
     public Oauth2RegisteredClient(
@@ -61,7 +64,8 @@ public class Oauth2RegisteredClient implements Serializable {
         String postLogoutRedirectUris,
         String scopes,
         String clientSettings,
-        String tokenSettings
+        String tokenSettings,
+        byte[] photo
     ) {
         this.id = id;
         this.clientId = clientId;
@@ -76,6 +80,7 @@ public class Oauth2RegisteredClient implements Serializable {
         this.scopes = scopes;
         this.clientSettings = clientSettings;
         this.tokenSettings = tokenSettings;
+        this.photo = photo;
     }
 
     /**
@@ -280,6 +285,20 @@ public class Oauth2RegisteredClient implements Serializable {
         this.tokenSettings = tokenSettings;
     }
 
+    /**
+     * Getter for <code>luix-passport.oauth2_registered_client.photo</code>.
+     */
+    public byte[] getPhoto() {
+        return this.photo;
+    }
+
+    /**
+     * Setter for <code>luix-passport.oauth2_registered_client.photo</code>.
+     */
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -367,6 +386,12 @@ public class Oauth2RegisteredClient implements Serializable {
         }
         else if (!this.tokenSettings.equals(other.tokenSettings))
             return false;
+        if (this.photo == null) {
+            if (other.photo != null)
+                return false;
+        }
+        else if (!Arrays.equals(this.photo, other.photo))
+            return false;
         return true;
     }
 
@@ -387,6 +412,7 @@ public class Oauth2RegisteredClient implements Serializable {
         result = prime * result + ((this.scopes == null) ? 0 : this.scopes.hashCode());
         result = prime * result + ((this.clientSettings == null) ? 0 : this.clientSettings.hashCode());
         result = prime * result + ((this.tokenSettings == null) ? 0 : this.tokenSettings.hashCode());
+        result = prime * result + ((this.photo == null) ? 0 : Arrays.hashCode(this.photo));
         return result;
     }
 
@@ -407,6 +433,7 @@ public class Oauth2RegisteredClient implements Serializable {
         sb.append(", ").append(scopes);
         sb.append(", ").append(clientSettings);
         sb.append(", ").append(tokenSettings);
+        sb.append(", ").append("[binary...]");
 
         sb.append(")");
         return sb.toString();

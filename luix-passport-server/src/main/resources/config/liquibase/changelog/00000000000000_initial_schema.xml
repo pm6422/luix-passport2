@@ -87,6 +87,9 @@
             <column name="token_settings" type="VARCHAR(2000)">
                 <constraints nullable="false"/>
             </column>
+            <column name="photo" type="longblob">
+                <constraints nullable="true"/>
+            </column>
         </createTable>
         <loadData
                 file="config/liquibase/data/oauth2_registered_client.csv"
