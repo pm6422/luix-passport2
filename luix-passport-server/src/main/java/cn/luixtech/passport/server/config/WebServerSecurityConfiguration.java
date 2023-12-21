@@ -56,6 +56,7 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("/management/health/**").permitAll()
 					.requestMatchers("/open-api/**").permitAll()
 					.requestMatchers("/api/third-party-clients/**").hasAuthority("SCOPE_message.read")
+					.requestMatchers("/userinfo").hasAuthority("SCOPE_message.read")
 					.requestMatchers("/swagger-ui/**").hasAuthority("ROLE_DEVELOPER")
 					.requestMatchers("/v3/api-docs/**").hasAuthority("ROLE_DEVELOPER")
 					.anyRequest().authenticated()
