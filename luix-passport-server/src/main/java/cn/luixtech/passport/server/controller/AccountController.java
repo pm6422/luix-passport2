@@ -10,6 +10,7 @@ import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
+import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserPhotoService;
 import cn.luixtech.passport.server.service.UserService;
@@ -70,6 +71,12 @@ public class AccountController {
         mailService.sendAccountActivationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("SM1021", newUser.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
+    }
+
+    @Operation(summary = "find user by username")
+    @GetMapping("/api/accounts/{username}")
+    public ResponseEntity<ProfileScopeUser> findByName(@Parameter(description = "username", required = true) @PathVariable String username) {
+        return ResponseEntity.ok(userService.findByUsername(username));
     }
 
     @Operation(summary = "update current user")

@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.service;
 
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
+import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -32,6 +33,8 @@ public interface UserService {
     Page<User> find(Pageable pageable, String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
 
     ManagedUser findById(String id);
+
+    ProfileScopeUser findByUsername(String username);
 
     void deleteById(String id);
 

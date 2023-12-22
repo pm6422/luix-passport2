@@ -11,6 +11,7 @@ import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ManagedUser;
+import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.service.UserAuthorityService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
@@ -297,6 +298,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
         user.setPasswordHash("*");
         return ManagedUser.of(user, findAuthorities(id));
+    }
+
+    @Override
+    public ProfileScopeUser findByUsername(String username) {
+        User user = Optional.ofNullable(userDao.fetchOneByUsername(username)).orElseThrow(() -> new DataNotFoundException(username));
+        return ProfileScopeUser.of(user.getUsername(), user.getEmail(), findAuthorities(user.getId()));
     }
 
     @Override
