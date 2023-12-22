@@ -73,12 +73,6 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
     }
 
-    @Operation(summary = "find user by username")
-    @GetMapping("/api/accounts/{username}")
-    public ResponseEntity<ProfileScopeUser> findByName(@Parameter(description = "username", required = true) @PathVariable String username) {
-        return ResponseEntity.ok(userService.findByUsername(username));
-    }
-
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
