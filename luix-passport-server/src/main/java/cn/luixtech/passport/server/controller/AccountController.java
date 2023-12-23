@@ -10,6 +10,7 @@ import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
+import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserPhotoService;
 import cn.luixtech.passport.server.service.UserService;

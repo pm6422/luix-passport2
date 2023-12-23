@@ -13,16 +13,12 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <properties>
-        <java.version>21</java.version>
         <jib.arch>amd64</jib.arch>
         <jib.goal>dockerBuild</jib.goal>
         <jib.image.version>latest</jib.image.version>
         <jib.registry.password/>
         <jib.registry.url/>
         <jib.registry.username/>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>cn.luixtech.passport.client.PassportClientApplication</start-class>
     </properties>
     <dependencyManagement>
@@ -156,9 +152,6 @@
                                     <option>-c</option>
                                     <arg>/entrypoint.sh</arg>
                                 </entrypoint>
-                                <ports>
-                                    <port>4003</port>
-                                </ports>
                                 <environment>
                                     <SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
                                     <SLEEP_TIME>1</SLEEP_TIME>
