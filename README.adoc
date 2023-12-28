@@ -241,6 +241,12 @@ Alternatively, you can set the following environment variables in the Spring Boo
 - SAML
 - OIDC
 
+[[critical_classes]]
+== OAuth Server Critical Classes
+- org.springframework.security.oauth2.server.authorization.oidc.web.OidcLogoutEndpointFilter.doFilterInternal()
+- org.springframework.security.oauth2.server.authorization.oidc.web.authentication.OidcLogoutAuthenticationConverter.convert()
+- org.springframework.security.oauth2.server.authorization.oidc.authentication.OidcLogoutAuthenticationProvider.authenticate()
+
 [[references]]
 == References
 https://docs.spring.io/spring-security/reference/index.html[Spring Security Reference]
