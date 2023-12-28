@@ -63,6 +63,7 @@ public class WebServerSecurityConfiguration {
 					.anyRequest().authenticated()
 			)
 			.csrf(csrf-> csrf
+					// Ignore matching requests
 					.ignoringRequestMatchers("/open-api/**")
 					// Solve post/delete forbidden issue for request from swagger
 					.requireCsrfProtectionMatcher(new CsrfRequestMatcher()))
