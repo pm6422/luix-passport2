@@ -62,9 +62,9 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("/v3/api-docs/**").hasAuthority("ROLE_DEVELOPER")
 					.anyRequest().authenticated()
 			)
-			// Solve post/delete forbidden issue for request of path "open-api/**"
 			.csrf(csrf-> csrf
 					.ignoringRequestMatchers("/open-api/**")
+					// Solve post/delete forbidden issue for request from swagger
 					.requireCsrfProtectionMatcher(new CsrfRequestMatcher()))
 			.formLogin(formLogin ->
 				formLogin
