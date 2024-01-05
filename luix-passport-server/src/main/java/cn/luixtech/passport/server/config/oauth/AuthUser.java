@@ -13,6 +13,10 @@ import java.util.Set;
 public class AuthUser extends User {
     private static final long        serialVersionUID = -8021915441738843058L;
     @Getter
+    private              String      tenantId;
+    @Getter
+    private              String      employeeId;
+    @Getter
     private              String      id;
     @Getter
     private              String      email;
@@ -27,12 +31,14 @@ public class AuthUser extends User {
         super(username, password, authorities);
     }
 
-    public AuthUser(String id, String username, String email, String firstName, String lastName,
-                    String password, boolean enabled,
+    public AuthUser(String tenantId, String employeeId, String id, String username, String email,
+                    String firstName, String lastName, String password, boolean enabled,
                     boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,
                     Collection<? extends GrantedAuthority> authorities,
                     Set<String> roles) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+        this.tenantId = tenantId;
+        this.employeeId = employeeId;
         this.id = id;
         this.email = email;
         this.firstName = firstName;

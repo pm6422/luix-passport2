@@ -18,6 +18,7 @@ public class User implements Serializable {
 
     private String id;
     private String tenantId;
+    private String employeeId;
     private String username;
     private String email;
     private String mobileNo;
@@ -43,6 +44,7 @@ public class User implements Serializable {
     public User(User value) {
         this.id = value.id;
         this.tenantId = value.tenantId;
+        this.employeeId = value.employeeId;
         this.username = value.username;
         this.email = value.email;
         this.mobileNo = value.mobileNo;
@@ -67,6 +69,7 @@ public class User implements Serializable {
     public User(
         String id,
         String tenantId,
+        String employeeId,
         String username,
         String email,
         String mobileNo,
@@ -89,6 +92,7 @@ public class User implements Serializable {
     ) {
         this.id = id;
         this.tenantId = tenantId;
+        this.employeeId = employeeId;
         this.username = username;
         this.email = email;
         this.mobileNo = mobileNo;
@@ -136,6 +140,20 @@ public class User implements Serializable {
      */
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.employee_id</code>.
+     */
+    public String getEmployeeId() {
+        return this.employeeId;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.employee_id</code>.
+     */
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 
     /**
@@ -425,6 +443,12 @@ public class User implements Serializable {
         }
         else if (!this.tenantId.equals(other.tenantId))
             return false;
+        if (this.employeeId == null) {
+            if (other.employeeId != null)
+                return false;
+        }
+        else if (!this.employeeId.equals(other.employeeId))
+            return false;
         if (this.username == null) {
             if (other.username != null)
                 return false;
@@ -548,6 +572,7 @@ public class User implements Serializable {
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.tenantId == null) ? 0 : this.tenantId.hashCode());
+        result = prime * result + ((this.employeeId == null) ? 0 : this.employeeId.hashCode());
         result = prime * result + ((this.username == null) ? 0 : this.username.hashCode());
         result = prime * result + ((this.email == null) ? 0 : this.email.hashCode());
         result = prime * result + ((this.mobileNo == null) ? 0 : this.mobileNo.hashCode());
@@ -576,6 +601,7 @@ public class User implements Serializable {
 
         sb.append(id);
         sb.append(", ").append(tenantId);
+        sb.append(", ").append(employeeId);
         sb.append(", ").append(username);
         sb.append(", ").append(email);
         sb.append(", ").append(mobileNo);

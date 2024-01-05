@@ -72,11 +72,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Resource
     private             UserRoleDao           userRoleDao;
     @Resource
-    private UserPreferenceDao userPreferenceDao;
+    private             UserPreferenceDao     userPreferenceDao;
     @Resource
-    private UserRoleService   userRoleService;
+    private             UserRoleService       userRoleService;
     @Resource
-    private MessageCreator    messageCreator;
+    private             MessageCreator        messageCreator;
     @Value("${spring.web.locale}")
     private             String                defaultLocale;
 
@@ -102,8 +102,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         boolean accountNonExpired = user.getAccountExpiresAt() == null || LocalDateTime.now().isBefore(user.getAccountExpiresAt());
         boolean passwordNonExpired = user.getPasswordExpiresAt() == null || LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
 
-        return new AuthUser(user.getId(), user.getUsername(), user.getEmail(),
-                user.getFirstName(), user.getLastName(), user.getPasswordHash(),
+        return new AuthUser(user.getTenantId(), user.getEmployeeId(), user.getId(), user.getUsername(),
+                user.getEmail(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
                 true, authorities, roles);
     }
