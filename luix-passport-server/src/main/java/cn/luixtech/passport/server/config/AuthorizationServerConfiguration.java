@@ -104,7 +104,7 @@ public class AuthorizationServerConfiguration {
 			)
 			.authorizationEndpoint(endpoint -> endpoint.consentPage(CONSENT_PAGE_URI))
 			// Enable OpenID Connect 1.0
-            .oidc(oidc-> oidc.userInfoEndpoint(userInfo -> userInfo.userInfoMapper(new OidcUserInfoMapper())));
+            .oidc(Customizer.withDefaults());
 		// @formatter:on
 
         // @formatter:off
