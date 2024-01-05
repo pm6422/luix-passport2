@@ -28,6 +28,8 @@ public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
 
     private static final TypeReference<Set<SimpleGrantedAuthority>> SIMPLE_GRANTED_AUTHORITY_SET = new TypeReference<>() {
     };
+    private static final TypeReference<Set<String>>                 ROLE_SET                     = new TypeReference<>() {
+    };
 
     /**
      * This method will create {@link AuthUser} object. It will ensure successful object
@@ -44,8 +46,6 @@ public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
     public AuthUser deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         JsonNode jsonNode = mapper.readTree(jp);
-        Set<? extends GrantedAuthority> authorities = mapper.convertValue(jsonNode.get("authorities"),
-                SIMPLE_GRANTED_AUTHORITY_SET);
         JsonNode passwordNode = readJsonNode(jsonNode, "password");
         String id = readJsonNode(jsonNode, "id").asText();
         String username = readJsonNode(jsonNode, "username").asText();
@@ -57,8 +57,10 @@ public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
         boolean accountNonExpired = readJsonNode(jsonNode, "accountNonExpired").asBoolean();
         boolean credentialsNonExpired = readJsonNode(jsonNode, "credentialsNonExpired").asBoolean();
         boolean accountNonLocked = readJsonNode(jsonNode, "accountNonLocked").asBoolean();
+        Set<? extends GrantedAuthority> authorities = mapper.convertValue(jsonNode.get("authorities"), SIMPLE_GRANTED_AUTHORITY_SET);
+        Set<String> roles = mapper.convertValue(jsonNode.get("roles"), ROLE_SET);
         AuthUser result = new AuthUser(id, username, email, firstName, lastName, password, enabled, accountNonExpired,
-                credentialsNonExpired, accountNonLocked, authorities);
+                credentialsNonExpired, accountNonLocked, authorities, roles);
         if (passwordNode.asText(null) == null) {
             result.eraseCredentials();
         }

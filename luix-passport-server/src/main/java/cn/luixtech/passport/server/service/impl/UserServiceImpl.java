@@ -92,7 +92,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (!Boolean.TRUE.equals(user.getActivated())) {
             throw new UserNotActivatedException(loginName);
         }
-        List<GrantedAuthority> authorities = findAuthorities(user.getId())
+
+        Set<String> roles = findAuthorities(user.getId());
+        List<GrantedAuthority> authorities = roles
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
@@ -103,7 +105,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new AuthUser(user.getId(), user.getUsername(), user.getEmail(),
                 user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, authorities);
+                true, authorities, roles);
     }
 
     @Override
