@@ -127,8 +127,7 @@ public class AuthorizationServerConfiguration {
     @Bean
     public OAuth2AuthorizationService authorizationService(JdbcTemplate jdbcTemplate,
                                                            RegisteredClientRepository registeredClientRepository) {
-        JdbcOAuth2AuthorizationService authorizationService = new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
-        return authorizationService;
+        return new JdbcOAuth2AuthorizationService(jdbcTemplate, registeredClientRepository);
     }
 
     @Bean
