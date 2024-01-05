@@ -2,6 +2,7 @@ package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationConverter;
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
+import cn.luixtech.passport.server.config.oauth.authentication.OidcUserInfoMapper;
 import cn.luixtech.passport.server.config.oauth.federation.FederatedIdentityIdTokenCustomizer;
 import cn.luixtech.passport.server.utils.JwkUtils;
 import com.nimbusds.jose.jwk.JWKSet;
@@ -103,7 +104,7 @@ public class AuthorizationServerConfiguration {
 			)
 			.authorizationEndpoint(endpoint -> endpoint.consentPage(CONSENT_PAGE_URI))
 			// Enable OpenID Connect 1.0
-			.oidc(Customizer.withDefaults());
+            .oidc(oidc-> oidc.userInfoEndpoint(userInfo -> userInfo.userInfoMapper(new OidcUserInfoMapper())));
 		// @formatter:on
 
         // @formatter:off
