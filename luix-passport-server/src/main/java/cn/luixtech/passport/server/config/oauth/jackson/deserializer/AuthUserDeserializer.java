@@ -49,6 +49,7 @@ public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
         JsonNode passwordNode = readJsonNode(jsonNode, "password");
         String id = readJsonNode(jsonNode, "id").asText();
         String username = readJsonNode(jsonNode, "username").asText();
+        String email = readJsonNode(jsonNode, "email").asText();
         String firstName = readJsonNode(jsonNode, "firstName").asText();
         String lastName = readJsonNode(jsonNode, "lastName").asText();
         String password = passwordNode.asText("");
@@ -56,8 +57,8 @@ public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
         boolean accountNonExpired = readJsonNode(jsonNode, "accountNonExpired").asBoolean();
         boolean credentialsNonExpired = readJsonNode(jsonNode, "credentialsNonExpired").asBoolean();
         boolean accountNonLocked = readJsonNode(jsonNode, "accountNonLocked").asBoolean();
-        AuthUser result = new AuthUser(id, username, firstName, lastName, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked,
-                authorities);
+        AuthUser result = new AuthUser(id, username, email, firstName, lastName, password, enabled, accountNonExpired,
+                credentialsNonExpired, accountNonLocked, authorities);
         if (passwordNode.asText(null) == null) {
             result.eraseCredentials();
         }
@@ -67,5 +68,4 @@ public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
     private JsonNode readJsonNode(JsonNode jsonNode, String field) {
         return jsonNode.has(field) ? jsonNode.get(field) : MissingNode.getInstance();
     }
-
 }

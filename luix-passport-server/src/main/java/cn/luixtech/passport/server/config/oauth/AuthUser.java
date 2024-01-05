@@ -11,6 +11,8 @@ public class AuthUser extends User {
     @Getter
     private              String id;
     @Getter
+    private              String email;
+    @Getter
     private              String firstName;
     @Getter
     private              String lastName;
@@ -19,12 +21,13 @@ public class AuthUser extends User {
         super(username, password, authorities);
     }
 
-    public AuthUser(String id, String username, String firstName, String lastName,
+    public AuthUser(String id, String username, String email, String firstName, String lastName,
                     String password, boolean enabled,
                     boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked,
                     Collection<? extends GrantedAuthority> authorities) {
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         this.id = id;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
