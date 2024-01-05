@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import org.springframework.security.oauth2.core.oidc.endpoint.OidcParameterNames;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -103,6 +104,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         if (ObjectUtils.isNotEmpty(object) && object instanceof AuthUser principal) {
             claims.put(OPEN_ID, principal.getId());
             claims.put(ROLES, principal.getRoles());
+            claims.put(StandardClaimNames.EMAIL, principal.getEmail());
         }
     }
 }
