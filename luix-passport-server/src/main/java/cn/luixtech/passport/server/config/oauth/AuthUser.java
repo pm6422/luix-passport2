@@ -1,5 +1,7 @@
 package cn.luixtech.passport.server.config.oauth;
 
+import cn.luixtech.passport.server.config.oauth.jackson.deserializer.AuthUserDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -7,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import java.util.Collection;
 import java.util.Set;
 
+@JsonDeserialize(using = AuthUserDeserializer.class)
 public class AuthUser extends User {
     private static final long        serialVersionUID = -8021915441738843058L;
     @Getter

@@ -11,19 +11,10 @@ import com.fasterxml.jackson.databind.node.MissingNode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import cn.luixtech.passport.server.config.oauth.jackson.mixin.AuthUserMixin;
 
 import java.io.IOException;
 import java.util.Set;
 
-/**
- * Custom Deserializer for {@link AuthUser} class. This is already registered with
- * {@link AuthUserMixin}. You can also use it directly with your mixin class.
- *
- * @author Jitendra Singh
- * @see AuthUserMixin
- * @since 4.2
- */
 public class AuthUserDeserializer extends JsonDeserializer<AuthUser> {
 
     private static final TypeReference<Set<SimpleGrantedAuthority>> SIMPLE_GRANTED_AUTHORITY_SET = new TypeReference<>() {
