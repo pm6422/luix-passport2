@@ -1,4 +1,4 @@
-user_id;authority
+user_id;role
 11;ROLE_ANONYMOUS
 11;ROLE_USER
 12;ROLE_ANONYMOUS

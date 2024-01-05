@@ -12,11 +12,11 @@ import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.Tenant;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
-import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.UserPhoto;
 import cn.luixtech.passport.server.persistence.tables.UserPreference;
+import cn.luixtech.passport.server.persistence.tables.UserRole;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,11 +80,6 @@ public class LuixPassport extends SchemaImpl {
     public final UserAuthenticationEvent USER_AUTHENTICATION_EVENT = UserAuthenticationEvent.USER_AUTHENTICATION_EVENT;
 
     /**
-     * The table <code>luix-passport.user_authority</code>.
-     */
-    public final UserAuthority USER_AUTHORITY = UserAuthority.USER_AUTHORITY;
-
-    /**
      * The table <code>luix-passport.user_login</code>.
      */
     public final UserLogin USER_LOGIN = UserLogin.USER_LOGIN;
@@ -103,6 +98,11 @@ public class LuixPassport extends SchemaImpl {
      * The table <code>luix-passport.user_preference</code>.
      */
     public final UserPreference USER_PREFERENCE = UserPreference.USER_PREFERENCE;
+
+    /**
+     * The table <code>luix-passport.user_role</code>.
+     */
+    public final UserRole USER_ROLE = UserRole.USER_ROLE;
 
     /**
      * No further instances allowed
@@ -128,11 +128,11 @@ public class LuixPassport extends SchemaImpl {
             Tenant.TENANT,
             User.USER,
             UserAuthenticationEvent.USER_AUTHENTICATION_EVENT,
-            UserAuthority.USER_AUTHORITY,
             UserLogin.USER_LOGIN,
             UserPermission.USER_PERMISSION,
             UserPhoto.USER_PHOTO,
-            UserPreference.USER_PREFERENCE
+            UserPreference.USER_PREFERENCE,
+            UserRole.USER_ROLE
         );
     }
 }

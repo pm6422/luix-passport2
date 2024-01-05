@@ -14,7 +14,7 @@ import java.util.Set;
 public interface UserService {
     Optional<User> findOne(String loginName);
 
-    Set<String> findAuthorities(String userId);
+    Set<String> findRoles(String userId);
 
     Set<String> findPermissions(String userId);
 

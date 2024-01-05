@@ -197,18 +197,18 @@
                 separator=";"
                 tableName="user">
         </loadData>
-        <createTable tableName="user_authority">
+        <createTable tableName="user_role">
             <column name="user_id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="authority" type="VARCHAR(36)">
+            <column name="role" type="VARCHAR(36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
         </createTable>
         <loadData
-                file="config/liquibase/data/user_authority.csv"
+                file="config/liquibase/data/user_role.csv"
                 separator=";"
-                tableName="user_authority">
+                tableName="user_role">
         </loadData>
         <createTable tableName="user_permission">
             <column name="user_id" type="VARCHAR(20)">
@@ -292,7 +292,7 @@
         </loadData>
 
         <addForeignKeyConstraint baseColumnNames="tenant_id" baseTableName="user" constraintName="fk_user_tenant_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="tenant" validate="true"/>
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_authority" constraintName="fk_user_authority_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fk_user_role_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_permission" constraintName="fk_user_permission_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_login" constraintName="fk_user_login_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_photo" constraintName="fk_user_photo_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>

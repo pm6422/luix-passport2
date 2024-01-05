@@ -1,8 +1,7 @@
 package cn.luixtech.passport.server.service.impl;
 
-import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
-import cn.luixtech.passport.server.service.UserAuthorityService;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
+import cn.luixtech.passport.server.service.UserRoleService;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
@@ -13,25 +12,25 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static cn.luixtech.passport.server.persistence.Tables.USER_AUTHORITY;
+import static cn.luixtech.passport.server.persistence.Tables.USER_ROLE;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 
 @Service
 @AllArgsConstructor
-public class UserAuthorityServiceImpl implements UserAuthorityService {
+public class UserRoleServiceImpl implements UserRoleService {
 
     private final DSLContext dslContext;
 
     @Override
-    public List<UserAuthority> generate(String userId, Set<String> newAuthorities) {
-        List<UserAuthority> userAuthorities = newAuthorities.stream()
+    public List<UserRole> generate(String userId, Set<String> newAuthorities) {
+        List<UserRole> userAuthorities = newAuthorities.stream()
                 .map(auth -> build(userId, auth))
                 .collect(Collectors.toList());
 
         // set default user newAuthorities
-        UserAuthority anoAuth = build(userId, AUTH_ANONYMOUS);
-        UserAuthority userAuth = build(userId, AUTH_USER);
+        UserRole anoAuth = build(userId, AUTH_ANONYMOUS);
+        UserRole userAuth = build(userId, AUTH_USER);
 
         if (!userAuthorities.contains(anoAuth)) {
             userAuthorities.add(anoAuth);
@@ -42,18 +41,18 @@ public class UserAuthorityServiceImpl implements UserAuthorityService {
         return userAuthorities;
     }
 
-    private UserAuthority build(String userId, String authority) {
-        UserAuthority userAuthority = new UserAuthority();
+    private UserRole build(String userId, String authority) {
+        UserRole userAuthority = new UserRole();
         userAuthority.setUserId(userId);
-        userAuthority.setAuthority(authority);
+        userAuthority.setRole(authority);
         return userAuthority;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteByUserId(String userId) {
-        dslContext.delete(Tables.USER_AUTHORITY)
-                .where(USER_AUTHORITY.USER_ID.eq(userId))
+        dslContext.delete(USER_ROLE)
+                .where(USER_ROLE.USER_ID.eq(userId))
                 .execute();
     }
 }

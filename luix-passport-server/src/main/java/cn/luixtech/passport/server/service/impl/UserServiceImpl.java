@@ -3,16 +3,16 @@ package cn.luixtech.passport.server.service.impl;
 import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.daos.UserAuthorityDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
+import cn.luixtech.passport.server.persistence.tables.daos.UserRoleDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
+import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ProfileScopeUser;
-import cn.luixtech.passport.server.service.UserAuthorityService;
+import cn.luixtech.passport.server.service.UserRoleService;
 import cn.luixtech.passport.server.service.UserService;
 import com.google.common.collect.ImmutableMap;
 import com.luixtech.springbootframework.component.MessageCreator;
@@ -70,13 +70,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Resource
     private             UserDao               userDao;
     @Resource
-    private             UserAuthorityDao      userAuthorityDao;
+    private             UserRoleDao           userRoleDao;
     @Resource
-    private             UserPreferenceDao     userPreferenceDao;
+    private UserPreferenceDao userPreferenceDao;
     @Resource
-    private             UserAuthorityService  userAuthorityService;
+    private UserRoleService   userRoleService;
     @Resource
-    private             MessageCreator        messageCreator;
+    private MessageCreator    messageCreator;
     @Value("${spring.web.locale}")
     private             String                defaultLocale;
 
@@ -93,7 +93,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new UserNotActivatedException(loginName);
         }
 
-        Set<String> roles = findAuthorities(user.getId());
+        Set<String> roles = findRoles(user.getId());
         List<GrantedAuthority> authorities = roles
                 .stream()
                 .map(SimpleGrantedAuthority::new)
@@ -120,11 +120,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Set<String> findAuthorities(String userId) {
-        return dslContext.select(Tables.USER_AUTHORITY.AUTHORITY)
-                .from(Tables.USER_AUTHORITY)
-                .where(Tables.USER_AUTHORITY.USER_ID.eq(userId))
-                .fetchSet(Tables.USER_AUTHORITY.AUTHORITY);
+    public Set<String> findRoles(String userId) {
+        return dslContext.select(Tables.USER_ROLE.ROLE)
+                .from(Tables.USER_ROLE)
+                .where(Tables.USER_ROLE.USER_ID.eq(userId))
+                .fetchSet(Tables.USER_ROLE.ROLE);
     }
 
     @Override
@@ -170,8 +170,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userDao.insert(domain);
         log.info("Created user: {}", domain);
 
-        List<UserAuthority> userAuthorities = userAuthorityService.generate(id, authorities);
-        userAuthorityDao.insert(userAuthorities);
+        List<UserRole> userAuthorities = userRoleService.generate(id, authorities);
+        userRoleDao.insert(userAuthorities);
 
         UserPreference userPreference = new UserPreference();
         userPreference.setUserId(id);
@@ -213,11 +213,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         if (CollectionUtils.isNotEmpty(authorities)) {
             // first delete user authorities
-            userAuthorityService.deleteByUserId(domain.getId());
+            userRoleService.deleteByUserId(domain.getId());
 
             // then insert user authorities
-            List<UserAuthority> userAuthorities = userAuthorityService.generate(domain.getId(), authorities);
-            userAuthorityDao.insert(userAuthorities);
+            List<UserRole> userAuthorities = userRoleService.generate(domain.getId(), authorities);
+            userRoleDao.insert(userAuthorities);
             log.info("Updated user authorities: {}", userAuthorities);
         }
         return existingOne;
@@ -298,13 +298,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public ManagedUser findById(String id) {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
         user.setPasswordHash("*");
-        return ManagedUser.of(user, findAuthorities(id));
+        return ManagedUser.of(user, findRoles(id));
     }
 
     @Override
     public ProfileScopeUser findByUsername(String username) {
         User user = Optional.ofNullable(userDao.fetchOneByUsername(username)).orElseThrow(() -> new DataNotFoundException(username));
-        return ProfileScopeUser.of(user.getUsername(), user.getEmail(), findAuthorities(user.getId()));
+        return ProfileScopeUser.of(user.getUsername(), user.getEmail(), findRoles(user.getId()));
     }
 
     @Override

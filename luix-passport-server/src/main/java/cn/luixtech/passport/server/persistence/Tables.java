@@ -12,11 +12,11 @@ import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.Tenant;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
-import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.UserPhoto;
 import cn.luixtech.passport.server.persistence.tables.UserPreference;
+import cn.luixtech.passport.server.persistence.tables.UserRole;
 
 
 /**
@@ -66,11 +66,6 @@ public class Tables {
     public static final UserAuthenticationEvent USER_AUTHENTICATION_EVENT = UserAuthenticationEvent.USER_AUTHENTICATION_EVENT;
 
     /**
-     * The table <code>luix-passport.user_authority</code>.
-     */
-    public static final UserAuthority USER_AUTHORITY = UserAuthority.USER_AUTHORITY;
-
-    /**
      * The table <code>luix-passport.user_login</code>.
      */
     public static final UserLogin USER_LOGIN = UserLogin.USER_LOGIN;
@@ -89,4 +84,9 @@ public class Tables {
      * The table <code>luix-passport.user_preference</code>.
      */
     public static final UserPreference USER_PREFERENCE = UserPreference.USER_PREFERENCE;
+
+    /**
+     * The table <code>luix-passport.user_role</code>.
+     */
+    public static final UserRole USER_ROLE = UserRole.USER_ROLE;
 }

@@ -12,11 +12,11 @@ import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.Tenant;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
-import cn.luixtech.passport.server.persistence.tables.UserAuthority;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.UserPhoto;
 import cn.luixtech.passport.server.persistence.tables.UserPreference;
+import cn.luixtech.passport.server.persistence.tables.UserRole;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationConsentRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2RegisteredClientRecord;
@@ -24,12 +24,12 @@ import cn.luixtech.passport.server.persistence.tables.records.SpringSessionAttri
 import cn.luixtech.passport.server.persistence.tables.records.SpringSessionRecord;
 import cn.luixtech.passport.server.persistence.tables.records.TenantRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthenticationEventRecord;
-import cn.luixtech.passport.server.persistence.tables.records.UserAuthorityRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserLoginRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPhotoRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPreferenceRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
+import cn.luixtech.passport.server.persistence.tables.records.UserRoleRecord;
 
 import org.jooq.ForeignKey;
 import org.jooq.TableField;
@@ -61,20 +61,20 @@ public class Keys {
     public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_PRIMARY"), new TableField[] { User.USER.ID }, true);
     public static final UniqueKey<UserRecord> KEY_USER_USERNAME = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_username"), new TableField[] { User.USER.USERNAME }, true);
     public static final UniqueKey<UserAuthenticationEventRecord> KEY_USER_AUTHENTICATION_EVENT_PRIMARY = Internal.createUniqueKey(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT, DSL.name("KEY_user_authentication_event_PRIMARY"), new TableField[] { UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.ID }, true);
-    public static final UniqueKey<UserAuthorityRecord> KEY_USER_AUTHORITY_PRIMARY = Internal.createUniqueKey(UserAuthority.USER_AUTHORITY, DSL.name("KEY_user_authority_PRIMARY"), new TableField[] { UserAuthority.USER_AUTHORITY.USER_ID, UserAuthority.USER_AUTHORITY.AUTHORITY }, true);
     public static final UniqueKey<UserLoginRecord> KEY_USER_LOGIN_PRIMARY = Internal.createUniqueKey(UserLogin.USER_LOGIN, DSL.name("KEY_user_login_PRIMARY"), new TableField[] { UserLogin.USER_LOGIN.ID }, true);
     public static final UniqueKey<UserPermissionRecord> KEY_USER_PERMISSION_PRIMARY = Internal.createUniqueKey(UserPermission.USER_PERMISSION, DSL.name("KEY_user_permission_PRIMARY"), new TableField[] { UserPermission.USER_PERMISSION.USER_ID, UserPermission.USER_PERMISSION.PERMISSION }, true);
     public static final UniqueKey<UserPhotoRecord> KEY_USER_PHOTO_PRIMARY = Internal.createUniqueKey(UserPhoto.USER_PHOTO, DSL.name("KEY_user_photo_PRIMARY"), new TableField[] { UserPhoto.USER_PHOTO.USER_ID }, true);
     public static final UniqueKey<UserPreferenceRecord> KEY_USER_PREFERENCE_PRIMARY = Internal.createUniqueKey(UserPreference.USER_PREFERENCE, DSL.name("KEY_user_preference_PRIMARY"), new TableField[] { UserPreference.USER_PREFERENCE.USER_ID }, true);
+    public static final UniqueKey<UserRoleRecord> KEY_USER_ROLE_PRIMARY = Internal.createUniqueKey(UserRole.USER_ROLE, DSL.name("KEY_user_role_PRIMARY"), new TableField[] { UserRole.USER_ROLE.USER_ID, UserRole.USER_ROLE.ROLE }, true);
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
     public static final ForeignKey<UserRecord, TenantRecord> FK_USER_TENANT_ID = Internal.createForeignKey(User.USER, DSL.name("fk_user_tenant_id"), new TableField[] { User.USER.TENANT_ID }, Keys.KEY_TENANT_PRIMARY, new TableField[] { Tenant.TENANT.ID }, true);
-    public static final ForeignKey<UserAuthorityRecord, UserRecord> FK_USER_AUTHORITY_USER_ID = Internal.createForeignKey(UserAuthority.USER_AUTHORITY, DSL.name("fk_user_authority_user_id"), new TableField[] { UserAuthority.USER_AUTHORITY.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserLoginRecord, UserRecord> FK_USER_LOGIN_USER_ID = Internal.createForeignKey(UserLogin.USER_LOGIN, DSL.name("fk_user_login_user_id"), new TableField[] { UserLogin.USER_LOGIN.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserPermissionRecord, UserRecord> FK_USER_PERMISSION_USER_ID = Internal.createForeignKey(UserPermission.USER_PERMISSION, DSL.name("fk_user_permission_user_id"), new TableField[] { UserPermission.USER_PERMISSION.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserPhotoRecord, UserRecord> FK_USER_PHOTO_USER_ID = Internal.createForeignKey(UserPhoto.USER_PHOTO, DSL.name("fk_user_photo_user_id"), new TableField[] { UserPhoto.USER_PHOTO.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
     public static final ForeignKey<UserPreferenceRecord, UserRecord> FK_USER_PREFERENCE_USER_ID = Internal.createForeignKey(UserPreference.USER_PREFERENCE, DSL.name("fk_user_preference_user_id"), new TableField[] { UserPreference.USER_PREFERENCE.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
+    public static final ForeignKey<UserRoleRecord, UserRecord> FK_USER_ROLE_USER_ID = Internal.createForeignKey(UserRole.USER_ROLE, DSL.name("fk_user_role_user_id"), new TableField[] { UserRole.USER_ROLE.USER_ID }, Keys.KEY_USER_PRIMARY, new TableField[] { User.USER.ID }, true);
 }
