@@ -20,6 +20,7 @@ import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -52,8 +53,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER_PREFIX;
+import static cn.luixtech.passport.server.controller.UserPhotoController.USER_PHOTO_TOKEN_KEY;
+import static cn.luixtech.passport.server.controller.UserPhotoController.USER_PHOTO_URL;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
 import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
+import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
+import static com.luixtech.utilities.encryption.JasyptEncryptUtils.DEFAULT_ALGORITHM;
 
 /**
  * Authenticate a user from the database.
@@ -77,6 +82,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private             UserRoleService       userRoleService;
     @Resource
     private             MessageCreator        messageCreator;
+    @Resource
+    private             HttpServletRequest    httpServletRequest;
     @Value("${spring.web.locale}")
     private             String                defaultLocale;
 
@@ -103,10 +110,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .collect(Collectors.toList());
         Set<String> teamIds = findTeamIds(user.getId());
 
+        String photoUrl = null;
+        if (httpServletRequest != null) {
+            photoUrl = getRequestUrl(httpServletRequest) + USER_PHOTO_URL + JasyptEncryptUtils.encrypt(user.getId(), DEFAULT_ALGORITHM, USER_PHOTO_TOKEN_KEY);
+        }
         return new AuthUser(user.getId(), user.getUsername(),
                 user.getEmail(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, authorities, roles, teamIds);
+                true, authorities, roles, teamIds, photoUrl);
     }
 
     @Override
