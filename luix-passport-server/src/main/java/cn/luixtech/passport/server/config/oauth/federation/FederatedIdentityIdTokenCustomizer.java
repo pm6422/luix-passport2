@@ -67,17 +67,17 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
     }
 
     private void addClaimsByScopes(Map<String, Object> claims, Authentication authentication, Set<String> authorizedScopes) {
-        Set<String> scopeRequestedClaimNames = new HashSet<>(32);
-        scopeRequestedClaimNames.add(StandardClaimNames.SUB);
+        Set<String> authorizedClaimNames = new HashSet<>(32);
 
+        authorizedClaimNames.add(StandardClaimNames.SUB);
         if (authorizedScopes.contains(OidcScopes.EMAIL)) {
-            scopeRequestedClaimNames.addAll(LuixClaimNames.EMAIL_CLAIMS);
+            authorizedClaimNames.addAll(LuixClaimNames.EMAIL_CLAIMS);
         }
         if (authorizedScopes.contains(OidcScopes.PHONE)) {
-            scopeRequestedClaimNames.addAll(LuixClaimNames.PHONE_CLAIMS);
+            authorizedClaimNames.addAll(LuixClaimNames.PHONE_CLAIMS);
         }
         if (authorizedScopes.contains(OidcScopes.PROFILE)) {
-            scopeRequestedClaimNames.addAll(LuixClaimNames.PROFILE_CLAIMS);
+            authorizedClaimNames.addAll(LuixClaimNames.PROFILE_CLAIMS);
         }
 
         if (authentication instanceof UsernamePasswordAuthenticationToken) {
@@ -88,11 +88,11 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
 
         // remove claims which are not in authorized scopes
-        claims.keySet().removeIf(claimName -> !scopeRequestedClaimNames.contains(claimName));
+        claims.keySet().removeIf(claimName -> !authorizedClaimNames.contains(claimName));
     }
 
     private void addAllClaims(Map<String, Object> claims, Object object) {
-        if (object != null && object instanceof AuthUser user) {
+        if (object instanceof AuthUser user) {
             claims.put(StandardClaimNames.NAME, user.getUsername());
             claims.put(StandardClaimNames.EMAIL, user.getEmail());
             claims.put(StandardClaimNames.EMAIL_VERIFIED, true);
