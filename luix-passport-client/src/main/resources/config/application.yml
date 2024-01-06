@@ -132,5 +132,5 @@ application:
   url:
     auth-server-url: http://localhost:4001
     resource-server-url: http://localhost:4002
-    auth-server-authorities: ${application.url.auth-server-url}/api/third-party-clients/authorities
+    auth-server-authorities: ${application.url.auth-server-url}/api/externals/authorities
     resource-server-messages: ${application.url.resource-server-url}/api/messages

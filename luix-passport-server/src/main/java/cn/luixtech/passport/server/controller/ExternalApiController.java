@@ -15,10 +15,10 @@ import static cn.luixtech.passport.server.service.AuthorityService.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
-public class ThirdPartyClientController {
+public class ExternalApiController {
 
     @Operation(summary = "find all authority list")
-    @GetMapping("/api/third-party-clients/authorities")
+    @GetMapping("/api/externals/authorities")
     public ResponseEntity<List<String>> authorities() {
         return ResponseEntity.ok().body(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
     }

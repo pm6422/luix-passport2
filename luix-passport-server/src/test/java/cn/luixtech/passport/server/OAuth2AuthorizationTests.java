@@ -60,7 +60,7 @@ public class OAuth2AuthorizationTests {
             .queryParam("state", "state")
             .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
-    private static final String                            PROTECTED_RESOURCE_URI    = "/api/third-party-clients/authorities";
+    private static final String                            PROTECTED_RESOURCE_URI    = "/api/externals/authorities";
     @Resource
     private              MockMvc                           mockMvc;
     @Resource
