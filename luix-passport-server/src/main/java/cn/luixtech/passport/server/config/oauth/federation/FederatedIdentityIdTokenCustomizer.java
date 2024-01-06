@@ -54,6 +54,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         } else {
             claims = Collections.emptyMap();
         }
+        claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
         return new HashMap<>(claims);
     }
 
@@ -86,8 +87,6 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         } else if (authentication instanceof OAuth2AccessTokenAuthenticationToken) {
             addAllClaims(claims, authentication.getDetails());
         }
-        claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
-
         // then remove claims which are not in authorized scopes
         claims.keySet().removeIf(claimName -> !authorizedClaimNames.contains(claimName));
     }
