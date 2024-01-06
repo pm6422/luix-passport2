@@ -5,7 +5,6 @@ import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClien
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
-import com.google.common.collect.ImmutableMap;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import io.micrometer.common.util.StringUtils;
@@ -21,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -38,7 +38,7 @@ public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClient
     @Override
     public void insert(Oauth2Client pojo) {
         Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getClientId())).ifPresent((existingEntity) -> {
-            throw new DuplicationException(ImmutableMap.of("clientId", pojo.getClientId()));
+            throw new DuplicationException(Map.of("clientId", pojo.getClientId()));
         });
         registeredClientRepository.save(pojo.toRegisteredClient());
     }

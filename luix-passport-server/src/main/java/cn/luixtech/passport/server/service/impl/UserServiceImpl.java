@@ -14,7 +14,6 @@ import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.service.UserRoleService;
 import cn.luixtech.passport.server.service.UserService;
-import com.google.common.collect.ImmutableMap;
 import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
@@ -47,6 +46,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -151,13 +151,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         UserRecord userRecord = dslContext.newRecord(USER, domain);
 
         if (userDao.fetchOneByUsername(domain.getUsername().toLowerCase()) != null) {
-            throw new DuplicationException(ImmutableMap.of("username", domain.getUsername()));
+            throw new DuplicationException(Map.of("username", domain.getUsername()));
         }
         if (userDao.fetchOneByEmail(domain.getEmail()) != null) {
-            throw new DuplicationException(ImmutableMap.of("email", domain.getEmail()));
+            throw new DuplicationException(Map.of("email", domain.getEmail()));
         }
         if (userDao.fetchOneByMobileNo(domain.getMobileNo()) != null) {
-            throw new DuplicationException(ImmutableMap.of("mobileNo", domain.getMobileNo()));
+            throw new DuplicationException(Map.of("mobileNo", domain.getMobileNo()));
         }
 
         String id = IdGenerator.generateId();
@@ -201,13 +201,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .where(USER.EMAIL.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
         if (existingEmailCount > 0) {
-            throw new DuplicationException(ImmutableMap.of("email", domain.getEmail()));
+            throw new DuplicationException(Map.of("email", domain.getEmail()));
         }
         int existingMobileNoCount = dslContext.fetchCount(DSL.select(Tables.USER)
                 .where(USER.MOBILE_NO.eq(domain.getEmail()))
                 .and(USER.ID.ne(domain.getId())));
         if (existingMobileNoCount > 0) {
-            throw new DuplicationException(ImmutableMap.of("mobileNo", domain.getMobileNo()));
+            throw new DuplicationException(Map.of("mobileNo", domain.getMobileNo()));
         }
 
         existingOne.setFirstName(domain.getFirstName());
