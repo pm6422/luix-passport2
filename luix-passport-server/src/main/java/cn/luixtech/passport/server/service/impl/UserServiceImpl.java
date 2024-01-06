@@ -121,7 +121,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             photoUrl = getRequestUrl(httpServletRequest) + USER_PHOTO_URL + JasyptEncryptUtils.encrypt(user.getId(), DEFAULT_ALGORITHM, USER_PHOTO_TOKEN_KEY);
         }
         return new AuthUser(user.getId(), user.getUsername(),
-                user.getEmail(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
+                user.getEmail(), user.getMobileNo(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
                 true, photoUrl, locale, modifiedTime, authorities, roles, teamIds);
     }
