@@ -55,7 +55,6 @@ public class WebServerSecurityConfiguration {
 					.requestMatchers("favicon.ico", "/assets/**", "/webjars/**", "/login").permitAll()
 					.requestMatchers("/management/health/**").permitAll()
 					.requestMatchers("/open-api/**").permitAll()
-					.requestMatchers("/api/third-party-clients/user").hasAuthority("SCOPE_profile")
 					.requestMatchers("/api/third-party-clients/authorities").hasAuthority("SCOPE_message.read")
 //					.requestMatchers("/userinfo").hasAuthority("SCOPE_message.read")
 					.requestMatchers("/swagger-ui/**").hasAuthority("ROLE_DEVELOPER")
