@@ -110,6 +110,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .collect(Collectors.toList());
         Set<String> teamIds = findTeamIds(user.getId());
 
+        UserPreference userPreference = userPreferenceDao.findById(user.getId());
+        String locale = userPreference != null ? userPreference.getLocale() : "";
+
         String photoUrl = null;
         if (httpServletRequest != null) {
             photoUrl = getRequestUrl(httpServletRequest) + USER_PHOTO_URL + JasyptEncryptUtils.encrypt(user.getId(), DEFAULT_ALGORITHM, USER_PHOTO_TOKEN_KEY);
@@ -117,7 +120,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new AuthUser(user.getId(), user.getUsername(),
                 user.getEmail(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, authorities, roles, teamIds, photoUrl);
+                true, photoUrl, locale, authorities, roles, teamIds);
     }
 
     @Override

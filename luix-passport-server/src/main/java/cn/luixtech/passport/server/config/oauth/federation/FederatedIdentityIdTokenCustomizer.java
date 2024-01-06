@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCustomizer<JwtEncodingContext> {
 
     private static final String AUTHORITIES = "authorities";
-    private static final String OPEN_ID     = "openid";
     private static final String ROLES       = "roles";
 
     private static final Set<String> ID_TOKEN_CLAIMS = Set.of(IdTokenClaimNames.ISS,
@@ -103,10 +102,13 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
     }
 
     private void putUserInfo(Map<String, Object> claims, Object object) {
-        if (object != null && object instanceof AuthUser principal) {
-            claims.put(StandardClaimNames.NAME, principal.getUsername());
-            claims.put(StandardClaimNames.EMAIL, principal.getEmail());
-            claims.put(ROLES, principal.getRoles());
+        if (object != null && object instanceof AuthUser user) {
+            claims.put(StandardClaimNames.NAME, user.getUsername());
+            claims.put(StandardClaimNames.EMAIL, user.getEmail());
+            claims.put(StandardClaimNames.EMAIL_VERIFIED, true);
+            claims.put(StandardClaimNames.PICTURE, user.getPhotoUrl());
+            claims.put(StandardClaimNames.LOCALE, user.getLocale());
+            claims.put(ROLES, user.getRoles());
         }
     }
 }
