@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config.oauth.federation;
+package cn.luixtech.passport.server.config.oauth.authorization.token;
 
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 import org.springframework.security.oauth2.core.oidc.StandardClaimNames;

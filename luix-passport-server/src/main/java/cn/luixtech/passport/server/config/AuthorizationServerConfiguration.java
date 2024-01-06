@@ -2,7 +2,7 @@ package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationConverter;
 import cn.luixtech.passport.server.config.oauth.DeviceClientAuthenticationProvider;
-import cn.luixtech.passport.server.config.oauth.federation.LuixOAuth2TokenCustomizer;
+import cn.luixtech.passport.server.config.oauth.authorization.token.LuixOAuth2TokenCustomizer;
 import cn.luixtech.passport.server.utils.JwkUtils;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;

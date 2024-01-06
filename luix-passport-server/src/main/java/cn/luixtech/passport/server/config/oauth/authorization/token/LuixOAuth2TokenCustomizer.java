@@ -1,4 +1,4 @@
-package cn.luixtech.passport.server.config.oauth.federation;
+package cn.luixtech.passport.server.config.oauth.authorization.token;
 
 import cn.luixtech.passport.server.config.oauth.AuthUser;
 import org.apache.commons.collections4.CollectionUtils;
