@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.config.oauth.authentication;
 
+import cn.luixtech.passport.server.config.oauth.federation.LuixClaimNames;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
@@ -8,35 +9,13 @@ import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
 import org.springframework.security.oauth2.server.authorization.oidc.authentication.OidcUserInfoAuthenticationContext;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 public class DefaultOidcUserInfoMapper implements Function<OidcUserInfoAuthenticationContext, OidcUserInfo> {
-
-    private static final List<String> EMAIL_CLAIMS   = Arrays.asList(
-            StandardClaimNames.EMAIL,
-            StandardClaimNames.EMAIL_VERIFIED
-    );
-    private static final List<String> PHONE_CLAIMS   = Arrays.asList(
-            StandardClaimNames.PHONE_NUMBER,
-            StandardClaimNames.PHONE_NUMBER_VERIFIED
-    );
-    private static final List<String> PROFILE_CLAIMS = Arrays.asList(
-            StandardClaimNames.NAME,
-            StandardClaimNames.FAMILY_NAME,
-            StandardClaimNames.GIVEN_NAME,
-            StandardClaimNames.MIDDLE_NAME,
-            StandardClaimNames.NICKNAME,
-            StandardClaimNames.PREFERRED_USERNAME,
-            StandardClaimNames.PROFILE,
-            StandardClaimNames.PICTURE,
-            StandardClaimNames.WEBSITE,
-            StandardClaimNames.GENDER,
-            StandardClaimNames.BIRTHDATE,
-            StandardClaimNames.ZONEINFO,
-            StandardClaimNames.LOCALE,
-            StandardClaimNames.UPDATED_AT
-    );
 
     @Override
     public OidcUserInfo apply(OidcUserInfoAuthenticationContext authenticationContext) {
@@ -55,13 +34,13 @@ public class DefaultOidcUserInfoMapper implements Function<OidcUserInfoAuthentic
             scopeRequestedClaimNames.add(StandardClaimNames.ADDRESS);
         }
         if (requestedScopes.contains(OidcScopes.EMAIL)) {
-            scopeRequestedClaimNames.addAll(EMAIL_CLAIMS);
+            scopeRequestedClaimNames.addAll(LuixClaimNames.EMAIL_CLAIMS);
         }
         if (requestedScopes.contains(OidcScopes.PHONE)) {
-            scopeRequestedClaimNames.addAll(PHONE_CLAIMS);
+            scopeRequestedClaimNames.addAll(LuixClaimNames.PHONE_CLAIMS);
         }
         if (requestedScopes.contains(OidcScopes.PROFILE)) {
-            scopeRequestedClaimNames.addAll(PROFILE_CLAIMS);
+            scopeRequestedClaimNames.addAll(LuixClaimNames.PROFILE_CLAIMS);
         }
 
         Map<String, Object> requestedClaims = new HashMap<>(claims);

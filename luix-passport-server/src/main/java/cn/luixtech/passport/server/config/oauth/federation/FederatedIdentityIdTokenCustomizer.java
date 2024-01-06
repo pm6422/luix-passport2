@@ -27,23 +27,6 @@ import java.util.stream.Collectors;
  * the {@code id_token} produced by this authorization server.
  */
 public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCustomizer<JwtEncodingContext> {
-
-    private static final String AUTHORITIES = "authorities";
-    private static final String ROLES       = "roles";
-
-    private static final Set<String> ID_TOKEN_CLAIMS = Set.of(IdTokenClaimNames.ISS,
-            IdTokenClaimNames.SUB,
-            IdTokenClaimNames.AUD,
-            IdTokenClaimNames.EXP,
-            IdTokenClaimNames.IAT,
-            IdTokenClaimNames.AUTH_TIME,
-            IdTokenClaimNames.NONCE,
-            IdTokenClaimNames.ACR,
-            IdTokenClaimNames.AMR,
-            IdTokenClaimNames.AZP,
-            IdTokenClaimNames.AT_HASH,
-            IdTokenClaimNames.C_HASH);
-
     @Override
     public void customize(JwtEncodingContext context) {
         if (OidcParameterNames.ID_TOKEN.equals(context.getTokenType().getValue())) {
@@ -53,7 +36,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
                 existingClaims.keySet().forEach(thirdPartyClaims::remove);
 
                 // Remove standard id_token claims that could cause problems with clients
-                ID_TOKEN_CLAIMS.forEach(thirdPartyClaims::remove);
+                LuixClaimNames.ID_TOKEN_CLAIMS.forEach(thirdPartyClaims::remove);
 
                 // Add all other claims directly to id_token
                 existingClaims.putAll(thirdPartyClaims);
@@ -83,7 +66,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
             Set<String> authorities = authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toSet());
-            claims.put(AUTHORITIES, authorities);
+            claims.put(LuixClaimNames.CLAIM_NAMES_AUTHORITIES, authorities);
         }
     }
 
@@ -108,7 +91,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
             claims.put(StandardClaimNames.EMAIL_VERIFIED, true);
             claims.put(StandardClaimNames.PICTURE, user.getPhotoUrl());
             claims.put(StandardClaimNames.LOCALE, user.getLocale());
-            claims.put(ROLES, user.getRoles());
+            claims.put(LuixClaimNames.ROLES, user.getRoles());
         }
     }
 }
