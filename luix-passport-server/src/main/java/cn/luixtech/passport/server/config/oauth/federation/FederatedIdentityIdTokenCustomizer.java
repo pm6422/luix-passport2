@@ -80,6 +80,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
             authorizedClaimNames.addAll(LuixClaimNames.PROFILE_CLAIMS);
         }
 
+        // first add all claims
         if (authentication instanceof UsernamePasswordAuthenticationToken) {
             addAllClaims(claims, authentication.getPrincipal());
         } else if (authentication instanceof OAuth2AccessTokenAuthenticationToken) {
@@ -87,7 +88,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         }
         claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
 
-        // remove claims which are not in authorized scopes
+        // then remove claims which are not in authorized scopes
         claims.keySet().removeIf(claimName -> !authorizedClaimNames.contains(claimName));
     }
 
