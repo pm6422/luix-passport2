@@ -59,7 +59,7 @@ public class UserController {
                                            @Parameter(description = "mobileNo") @RequestParam(value = "mobileNo", required = false) String mobileNo,
                                            @Parameter(description = "enabled") @RequestParam(value = "enabled", required = false) Boolean enabled,
                                            @Parameter(description = "activated") @RequestParam(value = "activated", required = false) Boolean activated) {
-        Page<User> domains = userService.find(pageable, null, username, email, mobileNo, enabled, activated);
+        Page<User> domains = userService.find(pageable, username, email, mobileNo, enabled, activated);
         return ResponseEntity.ok().headers(generatePageHeaders(domains)).body(domains.getContent());
     }
 

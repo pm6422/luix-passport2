@@ -16,6 +16,8 @@ public interface UserService {
 
     Set<String> findRoles(String userId);
 
+    Set<String> findTeamIds(String userId);
+
     Set<String> findPermissions(String userId);
 
     User insert(User domain, Set<String> authorities, String rawPassword, boolean permanentAccount);
@@ -30,7 +32,7 @@ public interface UserService {
 
     void resetPassword(String resetCode, String newRawPassword);
 
-    Page<User> find(Pageable pageable, String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
+    Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
 
     ManagedUser findById(String id);
 

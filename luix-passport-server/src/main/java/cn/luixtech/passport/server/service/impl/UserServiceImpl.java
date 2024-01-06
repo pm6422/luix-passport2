@@ -93,19 +93,20 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new UserNotActivatedException(loginName);
         }
 
+        boolean accountNonExpired = user.getAccountExpiresAt() == null || LocalDateTime.now().isBefore(user.getAccountExpiresAt());
+        boolean passwordNonExpired = user.getPasswordExpiresAt() == null || LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
+
         Set<String> roles = findRoles(user.getId());
         List<GrantedAuthority> authorities = roles
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+        Set<String> teamIds = findTeamIds(user.getId());
 
-        boolean accountNonExpired = user.getAccountExpiresAt() == null || LocalDateTime.now().isBefore(user.getAccountExpiresAt());
-        boolean passwordNonExpired = user.getPasswordExpiresAt() == null || LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
-
-        return new AuthUser(user.getTenantId(), user.getEmployeeId(), user.getId(), user.getUsername(),
+        return new AuthUser(user.getId(), user.getUsername(),
                 user.getEmail(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, authorities, roles);
+                true, authorities, roles, teamIds);
     }
 
     @Override
@@ -125,6 +126,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .from(Tables.USER_ROLE)
                 .where(Tables.USER_ROLE.USER_ID.eq(userId))
                 .fetchSet(Tables.USER_ROLE.ROLE);
+    }
+
+    @Override
+    public Set<String> findTeamIds(String userId) {
+        return dslContext.select(Tables.TEAM_USER.TEAM_ID)
+                .from(Tables.TEAM_USER)
+                .where(Tables.TEAM_USER.USER_ID.eq(userId))
+                .fetchSet(Tables.TEAM_USER.TEAM_ID);
     }
 
     @Override
@@ -308,9 +317,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Page<User> find(Pageable pageable, String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
+    public Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
         List<User> domains = dslContext.selectFrom(Tables.USER)
-                .where(createCondition(tenantId, username, email, mobileNo, enabled, activated))
+                .where(createCondition(username, email, mobileNo, enabled, activated))
                 .orderBy(buildOrderBy(pageable.getSort(), USER.fields()))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -318,11 +327,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new PageImpl<>(domains, pageable, userDao.count());
     }
 
-    private Condition createCondition(String tenantId, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
+    private Condition createCondition(String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
         Condition condition = DSL.trueCondition();
-        if (StringUtils.isNotEmpty(tenantId)) {
-            condition = condition.and(USER.TENANT_ID.eq(tenantId));
-        }
         if (StringUtils.isNotEmpty(username)) {
             condition = condition.and(USER.USERNAME.eq(username));
         }
