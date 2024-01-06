@@ -39,7 +39,7 @@ public class AuthorizationServerConsentTests {
             .fromPath("/oauth2/authorize")
             .queryParam("client_id", "messaging-client")
             .queryParam("response_type", "code")
-            .queryParam("scope", "openid message.read message.write")
+            .queryParam("scope", "openid external:read external:write")
             .queryParam("state", "state")
             .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
@@ -74,7 +74,7 @@ public class AuthorizationServerConsentTests {
             assertThat(scope.isChecked()).isTrue();
             scopeIds.add(scope.getId());
         });
-        assertThat(scopeIds).containsExactlyInAnyOrder("message.read", "message.write");
+        assertThat(scopeIds).containsExactlyInAnyOrder("external:read", "external:write");
 
         DomElement submitConsentButton = consentPage.querySelector("button[id='submit-consent']");
         this.webClient.getOptions().setRedirectEnabled(false);

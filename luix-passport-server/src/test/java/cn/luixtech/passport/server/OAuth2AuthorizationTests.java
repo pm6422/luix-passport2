@@ -56,7 +56,7 @@ public class OAuth2AuthorizationTests {
             .fromPath("/oauth2/authorize")
             .queryParam("client_id", "messaging-client")
             .queryParam("response_type", "code")
-            .queryParam("scope", "openid message.read message.write")
+            .queryParam("scope", "openid external:read external:write")
             .queryParam("state", "state")
             .queryParam("redirect_uri", REDIRECT_URI)
             .toUriString();
@@ -83,10 +83,10 @@ public class OAuth2AuthorizationTests {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
         // Get different level access token based on different scope
-        params.add(OAuth2ParameterNames.SCOPE, "message.read");
+        params.add(OAuth2ParameterNames.SCOPE, "external:read");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("message.read");
+        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("external:read");
         // Request resource by access token
         assertRequestResource(resultMap.get("access_token").toString());
     }
@@ -138,7 +138,7 @@ public class OAuth2AuthorizationTests {
         params.add(OAuth2ParameterNames.STATE, "some-state");
         params.add(OAuth2ParameterNames.REDIRECT_URI, REDIRECT_URI);
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
-        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid message.read message.write");
+        assertThat(resultMap.get(OAuth2ParameterNames.SCOPE)).isEqualTo("openid external:read external:write");
         // Request resource by access token
         assertRequestResource(resultMap.get("access_token").toString());
     }
@@ -149,7 +149,7 @@ public class OAuth2AuthorizationTests {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
         // Get different level access token with different scope
-        params.add(OAuth2ParameterNames.SCOPE, "message.read");
+        params.add(OAuth2ParameterNames.SCOPE, "external:read");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
         String accessToken = resultMap.get("access_token").toString();
@@ -226,7 +226,7 @@ public class OAuth2AuthorizationTests {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.CLIENT_CREDENTIALS.getValue());
         // Get different level access token with different scope
-        params.add(OAuth2ParameterNames.SCOPE, "message.read");
+        params.add(OAuth2ParameterNames.SCOPE, "external:read");
         // Request access token
         Map<String, Object> resultMap = requestToken(AUTH_CODE_CLIENT_ID, AUTH_CODE_CLIENT_SECRET, params);
 

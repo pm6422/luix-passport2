@@ -28,12 +28,12 @@ public class ScopeWithDescription {
                 "Read user's email data"
         );
         scopeDescriptions.put(
-                "message.read",
-                "Read your message"
+                "external:read",
+                "Read authority to the specified resources"
         );
         scopeDescriptions.put(
-                "message.write",
-                "Add new messages, edit and delete existing messages"
+                "external:write",
+                "Write authority to the specified resources"
         );
         scopeDescriptions.put(
                 "other.scope",
