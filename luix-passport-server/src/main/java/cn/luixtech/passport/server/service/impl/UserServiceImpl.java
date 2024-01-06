@@ -45,6 +45,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +60,7 @@ import static cn.luixtech.passport.server.persistence.Tables.USER;
 import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 import static com.luixtech.utilities.encryption.JasyptEncryptUtils.DEFAULT_ALGORITHM;
+import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT;
 
 /**
  * Authenticate a user from the database.
@@ -112,6 +114,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         UserPreference userPreference = userPreferenceDao.findById(user.getId());
         String locale = userPreference != null ? userPreference.getLocale() : "";
+        String modifiedTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(user.getModifiedTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
         String photoUrl = null;
         if (httpServletRequest != null) {
@@ -120,7 +123,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new AuthUser(user.getId(), user.getUsername(),
                 user.getEmail(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, photoUrl, locale, authorities, roles, teamIds);
+                true, photoUrl, locale, modifiedTime, authorities, roles, teamIds);
     }
 
     @Override
