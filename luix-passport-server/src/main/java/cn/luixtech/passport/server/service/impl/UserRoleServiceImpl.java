@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.service.impl;
 
+import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
 import cn.luixtech.passport.server.service.UserRoleService;
 import lombok.AllArgsConstructor;
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static cn.luixtech.passport.server.persistence.Tables.USER_ROLE;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
 import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 
@@ -51,8 +51,8 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteByUserId(String userId) {
-        dslContext.delete(USER_ROLE)
-                .where(USER_ROLE.USER_ID.eq(userId))
+        dslContext.delete(Tables.USER_ROLE)
+                .where(Tables.USER_ROLE.USER_ID.eq(userId))
                 .execute();
     }
 }
