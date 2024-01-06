@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * An {@link OAuth2TokenCustomizer} to map claims from a federated identity to
  * the {@code id_token} produced by this authorization server.
  */
-public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCustomizer<JwtEncodingContext> {
+public final class LuixOAuth2TokenCustomizer implements OAuth2TokenCustomizer<JwtEncodingContext> {
     @Override
     public void customize(JwtEncodingContext context) {
         if (OidcParameterNames.ID_TOKEN.equals(context.getTokenType().getValue())) {
