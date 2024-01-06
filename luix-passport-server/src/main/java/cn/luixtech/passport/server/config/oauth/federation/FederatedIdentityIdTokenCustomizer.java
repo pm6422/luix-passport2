@@ -104,7 +104,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
 
     private void putUserInfo(Map<String, Object> claims, Object object) {
         if (object != null && object instanceof AuthUser principal) {
-            claims.put("username", principal.getUsername());
+            claims.put(StandardClaimNames.NAME, principal.getUsername());
             claims.put(StandardClaimNames.EMAIL, principal.getEmail());
             claims.put(ROLES, principal.getRoles());
         }
