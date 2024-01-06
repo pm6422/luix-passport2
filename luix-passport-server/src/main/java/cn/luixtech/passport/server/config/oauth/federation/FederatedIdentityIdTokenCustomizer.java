@@ -6,7 +6,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
-import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import org.springframework.security.oauth2.core.oidc.endpoint.OidcParameterNames;
@@ -53,15 +52,15 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
             claims = oauth2User.getAttributes();
         } else if (authentication.getPrincipal() instanceof AuthUser) {
             claims = new HashMap<>(32);
-            appendAuthorities(claims, authentication);
-            appendCommons(claims, authentication, authorizedScopes);
+            addAuthoritiesClaim(claims, authentication);
+            addCommonClaims(claims, authentication, authorizedScopes);
         } else {
             claims = Collections.emptyMap();
         }
         return new HashMap<>(claims);
     }
 
-    private void appendAuthorities(Map<String, Object> claims, Authentication authentication) {
+    private void addAuthoritiesClaim(Map<String, Object> claims, Authentication authentication) {
         if (CollectionUtils.isNotEmpty(authentication.getAuthorities())) {
             Set<String> authorities = authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
@@ -70,9 +69,9 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         }
     }
 
-    private void appendCommons(Map<String, Object> claims, Authentication authentication, Set<String> authorizedScopes) {
+    private void addCommonClaims(Map<String, Object> claims, Authentication authentication, Set<String> authorizedScopes) {
         if (CollectionUtils.isNotEmpty(authorizedScopes)) {
-            claims.put(OAuth2ParameterNames.SCOPE, authorizedScopes);
+            claims.put(LuixClaimNames.SCOPE, authorizedScopes);
         }
         if (authentication instanceof UsernamePasswordAuthenticationToken) {
             putUserInfo(claims, authentication.getPrincipal());

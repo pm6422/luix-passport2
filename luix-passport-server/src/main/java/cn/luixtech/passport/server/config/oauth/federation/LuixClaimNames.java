@@ -6,6 +6,7 @@ import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import java.util.Set;
 
 public abstract class LuixClaimNames {
+    public static final String SCOPE                   = "scope";
     public static final String CLAIM_NAMES_AUTHORITIES = "authorities";
     public static final String ROLES                   = "roles";
 
