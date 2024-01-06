@@ -74,36 +74,6 @@ public class UserDao extends DAOImpl<UserRecord, cn.luixtech.passport.server.per
     }
 
     /**
-     * Fetch records that have <code>tenant_id BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfTenantId(String lowerInclusive, String upperInclusive) {
-        return fetchRange(User.USER.TENANT_ID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>tenant_id IN (values)</code>
-     */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByTenantId(String... values) {
-        return fetch(User.USER.TENANT_ID, values);
-    }
-
-    /**
-     * Fetch records that have <code>employee_id BETWEEN lowerInclusive AND
-     * upperInclusive</code>
-     */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfEmployeeId(String lowerInclusive, String upperInclusive) {
-        return fetchRange(User.USER.EMPLOYEE_ID, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>employee_id IN (values)</code>
-     */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByEmployeeId(String... values) {
-        return fetch(User.USER.EMPLOYEE_ID, values);
-    }
-
-    /**
      * Fetch records that have <code>username BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */

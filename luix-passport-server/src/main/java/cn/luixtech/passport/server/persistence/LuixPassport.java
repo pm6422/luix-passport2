@@ -9,7 +9,8 @@ import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
-import cn.luixtech.passport.server.persistence.tables.Tenant;
+import cn.luixtech.passport.server.persistence.tables.Team;
+import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
@@ -65,9 +66,14 @@ public class LuixPassport extends SchemaImpl {
     public final SpringSessionAttributes SPRING_SESSION_ATTRIBUTES = SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES;
 
     /**
-     * The table <code>luix-passport.tenant</code>.
+     * The table <code>luix-passport.team</code>.
      */
-    public final Tenant TENANT = Tenant.TENANT;
+    public final Team TEAM = Team.TEAM;
+
+    /**
+     * The table <code>luix-passport.team_user</code>.
+     */
+    public final TeamUser TEAM_USER = TeamUser.TEAM_USER;
 
     /**
      * The table <code>luix-passport.user</code>.
@@ -125,7 +131,8 @@ public class LuixPassport extends SchemaImpl {
             Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT,
             SpringSession.SPRING_SESSION,
             SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES,
-            Tenant.TENANT,
+            Team.TEAM,
+            TeamUser.TEAM_USER,
             User.USER,
             UserAuthenticationEvent.USER_AUTHENTICATION_EVENT,
             UserLogin.USER_LOGIN,
