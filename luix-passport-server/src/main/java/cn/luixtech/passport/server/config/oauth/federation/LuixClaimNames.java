@@ -7,6 +7,7 @@ import java.util.Set;
 
 public abstract class LuixClaimNames {
     public static final String SCOPE                   = "scope";
+    public static final String COMPANY                 = "company";
     public static final String CLAIM_NAMES_AUTHORITIES = "authorities";
     public static final String ROLES                   = "roles";
 
@@ -45,6 +46,7 @@ public abstract class LuixClaimNames {
             StandardClaimNames.BIRTHDATE,
             StandardClaimNames.ZONEINFO,
             StandardClaimNames.LOCALE,
-            StandardClaimNames.UPDATED_AT
+            StandardClaimNames.UPDATED_AT,
+            LuixClaimNames.ROLES
     );
 }

@@ -5,8 +5,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.security.oauth2.core.oidc.StandardClaimNames;
 import org.springframework.security.oauth2.core.oidc.endpoint.OidcParameterNames;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
@@ -15,10 +15,7 @@ import org.springframework.security.oauth2.server.authorization.authentication.O
 import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -53,7 +50,7 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         } else if (authentication.getPrincipal() instanceof AuthUser) {
             claims = new HashMap<>(32);
             addAuthoritiesClaim(claims, authentication);
-            addCommonClaims(claims, authentication, authorizedScopes);
+            addClaimsByScopes(claims, authentication, authorizedScopes);
         } else {
             claims = Collections.emptyMap();
         }
@@ -69,21 +66,32 @@ public final class FederatedIdentityIdTokenCustomizer implements OAuth2TokenCust
         }
     }
 
-    private void addCommonClaims(Map<String, Object> claims, Authentication authentication, Set<String> authorizedScopes) {
-        if (CollectionUtils.isNotEmpty(authorizedScopes)) {
-            claims.put(LuixClaimNames.SCOPE, authorizedScopes);
+    private void addClaimsByScopes(Map<String, Object> claims, Authentication authentication, Set<String> authorizedScopes) {
+        Set<String> scopeRequestedClaimNames = new HashSet<>(32);
+        scopeRequestedClaimNames.add(StandardClaimNames.SUB);
+
+        if (authorizedScopes.contains(OidcScopes.EMAIL)) {
+            scopeRequestedClaimNames.addAll(LuixClaimNames.EMAIL_CLAIMS);
         }
+        if (authorizedScopes.contains(OidcScopes.PHONE)) {
+            scopeRequestedClaimNames.addAll(LuixClaimNames.PHONE_CLAIMS);
+        }
+        if (authorizedScopes.contains(OidcScopes.PROFILE)) {
+            scopeRequestedClaimNames.addAll(LuixClaimNames.PROFILE_CLAIMS);
+        }
+
         if (authentication instanceof UsernamePasswordAuthenticationToken) {
-            putUserInfo(claims, authentication.getPrincipal());
+            addAllClaims(claims, authentication.getPrincipal());
+        } else if (authentication instanceof OAuth2AccessTokenAuthenticationToken) {
+            addAllClaims(claims, authentication.getDetails());
         }
-        if (authentication instanceof OAuth2AccessTokenAuthenticationToken) {
-            Object details = authentication.getDetails();
-            putUserInfo(claims, details);
-        }
-        claims.put("company", "https://luixtech.cn");
+        claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
+
+        // remove claims which are not in authorized scopes
+        claims.keySet().removeIf(claimName -> !scopeRequestedClaimNames.contains(claimName));
     }
 
-    private void putUserInfo(Map<String, Object> claims, Object object) {
+    private void addAllClaims(Map<String, Object> claims, Object object) {
         if (object != null && object instanceof AuthUser user) {
             claims.put(StandardClaimNames.NAME, user.getUsername());
             claims.put(StandardClaimNames.EMAIL, user.getEmail());
