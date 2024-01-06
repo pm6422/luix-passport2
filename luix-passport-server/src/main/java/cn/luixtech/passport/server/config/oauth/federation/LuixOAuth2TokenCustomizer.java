@@ -15,7 +15,10 @@ import org.springframework.security.oauth2.server.authorization.authentication.O
 import org.springframework.security.oauth2.server.authorization.token.JwtEncodingContext;
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenCustomizer;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -41,7 +44,9 @@ public final class LuixOAuth2TokenCustomizer implements OAuth2TokenCustomizer<Jw
     }
 
     private Map<String, Object> extractClaims(Authentication authentication, Set<String> authorizedScopes) {
-        Map<String, Object> claims;
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
+
         if (authentication.getPrincipal() instanceof OidcUser oidcUser) {
             OidcIdToken idToken = oidcUser.getIdToken();
             claims = idToken.getClaims();
@@ -51,10 +56,7 @@ public final class LuixOAuth2TokenCustomizer implements OAuth2TokenCustomizer<Jw
             claims = new HashMap<>(32);
             addAuthoritiesClaim(claims, authentication);
             addClaimsByScopes(claims, authentication, authorizedScopes);
-        } else {
-            claims = Collections.emptyMap();
         }
-        claims.put(LuixClaimNames.COMPANY, "https://luixtech.cn");
         return new HashMap<>(claims);
     }
 
