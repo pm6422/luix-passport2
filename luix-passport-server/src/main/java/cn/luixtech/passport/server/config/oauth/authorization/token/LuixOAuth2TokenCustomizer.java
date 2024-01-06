@@ -96,6 +96,7 @@ public final class LuixOAuth2TokenCustomizer implements OAuth2TokenCustomizer<Jw
     private void addAllClaims(Map<String, Object> claims, Object object) {
         if (object instanceof AuthUser user) {
             claims.put(StandardClaimNames.NAME, user.getUsername());
+            claims.put(StandardClaimNames.PREFERRED_USERNAME, user.getUsername());
             claims.put(StandardClaimNames.EMAIL, user.getEmail());
             claims.put(StandardClaimNames.EMAIL_VERIFIED, true);
             claims.put(StandardClaimNames.PICTURE, user.getPhotoUrl());
