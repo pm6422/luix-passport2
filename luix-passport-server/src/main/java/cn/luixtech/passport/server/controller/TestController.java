@@ -15,7 +15,7 @@ import static cn.luixtech.passport.server.service.impl.UserServiceImpl.BCRYPT_PA
 public class TestController {
     @Operation(summary = "get encoded password")
     @GetMapping("/api/test/encode-password/{rawPassword}")
-    public Map<String, String> encodePassword(@Parameter(description = "Raw password", required = true) @PathVariable String rawPassword) {
-        return Map.of("encodedPassword", DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
+    public String encodePassword(@Parameter(description = "Raw password", required = true) @PathVariable String rawPassword) {
+        return DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(rawPassword);
     }
 }
