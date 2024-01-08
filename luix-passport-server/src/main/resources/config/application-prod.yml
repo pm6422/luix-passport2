@@ -7,7 +7,7 @@ spring:
     enabled: true
     drop-first: true # reset database
 server:
-  forward-headers-strategy: framework # Resolved http CORS block issue on prod env
+  forward-headers-strategy: framework # Resolved http CORS block issue
 # ===================================================================
 # Application specific properties
 # ===================================================================
