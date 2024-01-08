@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
-import cn.luixtech.passport.server.config.security.CsrfRequestMatcher;
+import cn.luixtech.passport.server.config.security.LuixCsrfRequestMatcher;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -65,7 +65,7 @@ public class WebServerSecurityConfiguration {
 				// Ignore matching requests
 				.ignoringRequestMatchers("/open-api/**")
 				// Solve post/delete forbidden issue for request from swagger
-				.requireCsrfProtectionMatcher(new CsrfRequestMatcher()))
+				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher()))
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")
