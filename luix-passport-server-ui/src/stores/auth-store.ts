@@ -34,6 +34,7 @@ export const useAuthStore = defineStore("auth", () => {
     ApiService.post("logout", {})
       .then(({ data }) => {
         purgeAuth();
+        window.location.reload();
       })
       .catch(({ response }) => {
 
@@ -61,6 +62,9 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   function setAuth(authUser: IAuthUser) {
+    if(authUser.username === 'anonymousUser') {
+      return;
+    }
     isAuthenticated.value = true;
     user.value = authUser;
     errors.value = {};

@@ -4,6 +4,7 @@ import cn.luixtech.passport.server.utils.AuthUtils;
 import com.google.common.collect.ImmutableList;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +13,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -19,9 +21,11 @@ import java.util.regex.Pattern;
  * <th:input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
  */
 @Slf4j
+@AllArgsConstructor
 public class LuixCsrfRequestMatcher implements RequestMatcher {
-    private static final Pattern      ALLOWED_METHODS = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
-    private static final List<String> IGNORED_PATHS   = ImmutableList.of("swagger-ui/index.html");
+    private static final Pattern             ALLOWED_METHODS = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
+    private static final List<String>        IGNORED_PATHS   = ImmutableList.of("swagger-ui/index.html");
+    private final        Map<String, String> allowedMappings;
 
     @Override
     public boolean matches(HttpServletRequest request) {
@@ -32,7 +36,13 @@ public class LuixCsrfRequestMatcher implements RequestMatcher {
 
         // CSRF not required when swagger-ui is referer
         final String referer = request.getHeader("Referer");
-        log.info("Referer: {}", referer);
+        log.info("Request referer: {}", referer);
+
+        boolean allowedMappingFound = allowedMappings.entrySet().stream().anyMatch(entry -> entry.getKey().equals(request.getRequestURI()) && entry.getValue().equals(referer));
+        if (allowedMappingFound) {
+            return false;
+        }
+
         if (referer != null && IGNORED_PATHS.stream().anyMatch(referer::contains)) {
             MultiValueMap<String, String> parameters = UriComponentsBuilder.fromUriString(referer).build().getQueryParams();
             if (MapUtils.isNotEmpty(parameters) && StringUtils.isNotEmpty(parameters.getFirst("token"))) {

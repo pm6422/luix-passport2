@@ -6,6 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.LinkedHashMap;
+
 /**
  * Properties specific to Application.
  *
@@ -22,6 +24,7 @@ public class ApplicationProperties {
     private final Account account = new Account();
     private final Company company = new Company();
     private final Mail    mail    = new Mail();
+    private final AllowedCors  allowedCors  = new AllowedCors();
 
     @Data
     public static class Account {
@@ -40,5 +43,10 @@ public class ApplicationProperties {
         private String resendApiKey;
         private String fromUsername;
         private String adminEmail;
+    }
+
+    @Data
+    public static class AllowedCors {
+        private LinkedHashMap<String, String> mappings = new LinkedHashMap<>();
     }
 }

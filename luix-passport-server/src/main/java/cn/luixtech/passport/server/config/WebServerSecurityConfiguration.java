@@ -46,7 +46,7 @@ public class WebServerSecurityConfiguration {
 
     // @formatter:off
 	@Bean
-	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http, ApplicationProperties applicationProperties) throws Exception {
 		http
 			// Integrate both resource server and auth server
 			.oauth2ResourceServer(server-> server.jwt(Customizer.withDefaults()))
@@ -65,7 +65,7 @@ public class WebServerSecurityConfiguration {
 				// Ignore matching requests
 				.ignoringRequestMatchers("/open-api/**")
 				// Solve post/delete forbidden issue for request from swagger
-				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher()))
+				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher(applicationProperties.getAllowedCors().getMappings())))
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")

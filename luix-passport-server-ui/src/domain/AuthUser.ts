@@ -1,5 +1,5 @@
 export interface IAuthUser {
-  name: string;
+  username: string;
   email: string;
   password: string;
   roles: Array<string>;
