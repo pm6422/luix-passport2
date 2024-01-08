@@ -53,7 +53,7 @@ public class WebServerSecurityConfiguration {
 			.authorizeHttpRequests(authorize ->
 				authorize
 					.requestMatchers("favicon.ico", "/assets/**", "/webjars/**", "/login").permitAll()
-					.requestMatchers("/management/health/**").permitAll()
+					.requestMatchers("/management/health/**", "/management/info/**").permitAll()
 					.requestMatchers("/open-api/**").permitAll()
 					.requestMatchers("/api/externals/authorities").hasAuthority("SCOPE_external:read")
 //					.requestMatchers("/userinfo").hasAuthority("SCOPE_external:read")
