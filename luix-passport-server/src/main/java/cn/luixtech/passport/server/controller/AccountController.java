@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.controller;
 
+import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
@@ -10,7 +11,6 @@ import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
-import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserPhotoService;
 import cn.luixtech.passport.server.service.UserService;
@@ -62,6 +62,12 @@ public class AccountController {
     private final        UserService               userService;
     private final        UserPhotoService          userPhotoService;
     private final        ApplicationEventPublisher applicationEventPublisher;
+
+    @Operation(summary = "check if the user is authenticated, and return its login")
+    @GetMapping("/open-api/accounts/user")
+    public ResponseEntity<AuthUser> getCurrentUser() {
+        return ResponseEntity.ok(AuthUtils.getCurrentUser());
+    }
 
     @Operation(summary = "register a new user and send an account activation email")
     @PostMapping("/open-api/accounts/register")

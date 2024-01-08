@@ -30,6 +30,31 @@ export default defineConfig({
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, '')
       },
+      '/open-api': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/login': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/logout': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/oauth2': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/assets': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
       '/swagger-ui': {
         target: 'http://localhost:4001',
         changeOrigin: true

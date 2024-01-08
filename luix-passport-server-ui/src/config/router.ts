@@ -240,18 +240,20 @@ router.beforeEach((to, from, next) => {
   configStore.resetLayoutConfig();
 
   // verify auth token before each page change
-  // authStore.verifyAuth();
-
-  // before page access check if page requires authentication
-  if (to.meta.requireAuth) {
-    if (authStore.isAuthenticated) {
-      next();
-    } else {
-      next({ name: "sign-in" });
-    }
-  } else {
-    next();
-  }
+  authStore.verifyAuth()
+    .then(() => {
+      // before page access check if page requires authentication
+      if (to.meta.requireAuth) {
+        if (authStore.isAuthenticated) {
+          next();
+        } else {
+          // go to login page if failed to authenticate
+          window.location.href = '/login';
+        }
+      } else {
+        next();
+      }
+    })
 
   // Scroll page to top on every route change
   window.scrollTo({
