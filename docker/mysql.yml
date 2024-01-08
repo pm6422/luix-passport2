@@ -3,6 +3,7 @@ name: luix
 services:
   mysql:
     image: mysql:8.1.0
+    container_name: mysql
     volumes:
       - ./config/mysql:/etc/mysql/conf.d
     #   - ~/volumes/luix-passport/db/mysql/:/var/lib/mysql/

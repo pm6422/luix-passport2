@@ -3,6 +3,7 @@ name: luix
 services:
   passport-client:
     image: luix-passport-client
+    container_name: luix-passport-client
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=test
@@ -25,6 +26,7 @@ services:
         condition: service_healthy
   passport-server:
     image: luix-passport-server
+    container_name: luix-passport-server
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=test
@@ -47,6 +49,7 @@ services:
         condition: service_healthy
   passport-resource-server:
     image: luix-passport-resource-server
+    container_name: luix-passport-resource-server
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=test
