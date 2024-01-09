@@ -54,6 +54,8 @@ spring:
     basename: i18n/messages,i18n/luix-messages
   banner:
     location: classpath:config/banner-company.txt
+  thymeleaf:
+    mode: HTML
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:

@@ -12,6 +12,6 @@ import static cn.luixtech.passport.server.service.AuthorityService.AUTH_DEVELOPE
 public class HomeController {
 //    @RequestMapping(value = {"/", "/index"})
 //    public String index(Model model) {
-//        return "/#/";
+//        return "index";
 //    }
 }
