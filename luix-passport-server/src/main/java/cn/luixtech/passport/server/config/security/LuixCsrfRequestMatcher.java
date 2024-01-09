@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
+
 /**
  * Solve form csrf issue, add below
  * <th:input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -37,6 +39,10 @@ public class LuixCsrfRequestMatcher implements RequestMatcher {
         // CSRF not required when swagger-ui is referer
         final String referer = request.getHeader("Referer");
         log.info("Request referer: {}", referer);
+
+        if (referer.contains(getRequestUrl(request))) {
+            return false;
+        }
 
         boolean allowedMappingFound = allowedMappings.entrySet()
                 .stream()
