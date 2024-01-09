@@ -38,7 +38,9 @@ public class LuixCsrfRequestMatcher implements RequestMatcher {
         final String referer = request.getHeader("Referer");
         log.info("Request referer: {}", referer);
 
-        boolean allowedMappingFound = allowedMappings.entrySet().stream().anyMatch(entry -> entry.getKey().equals(request.getRequestURI()) && entry.getValue().equals(referer));
+        boolean allowedMappingFound = allowedMappings.entrySet()
+                .stream()
+                .anyMatch(entry -> entry.getKey().equals(request.getRequestURI()) && referer.contains(entry.getValue()));
         if (allowedMappingFound) {
             return false;
         }
