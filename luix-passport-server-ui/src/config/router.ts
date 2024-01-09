@@ -1,6 +1,6 @@
 import {
   createRouter,
-  createWebHashHistory,
+  createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
 import { useAuthStore } from "@/stores/auth-store";
@@ -219,7 +219,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 
