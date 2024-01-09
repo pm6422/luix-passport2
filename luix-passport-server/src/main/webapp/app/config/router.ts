@@ -115,15 +115,6 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: "manual",
-        path: "/developer/manual",
-        component: () => import("@/views/developer/manual/manual.vue"),
-        meta: {
-          pageTitle: "menu.developer.manual",
-          breadcrumbs: [],
-        },
-      },
-      {
         name: "report-templates",
         path: "/security-reports/report-templates",
         component: () => import("@/views/admin/security-reports/report-template/report-template-list.vue"),

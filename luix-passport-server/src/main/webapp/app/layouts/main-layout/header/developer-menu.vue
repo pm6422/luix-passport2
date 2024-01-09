@@ -75,12 +75,6 @@
         <span v-text="$t('menu.developer.json-parser')"></span>
       </router-link>
     </div>
-    <div class="menu-item px-5">
-      <router-link to="/developer/manual" class="menu-link px-5">
-        <KTIcon icon-name="book-open" icon-class="fs-2 fs-md-1 px-2" />
-        <span v-text="$t('menu.developer.manual')"></span>
-      </router-link>
-    </div>
   </div>
   <!--end::Menu-->
 </template>
