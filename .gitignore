@@ -51,7 +51,7 @@ pom.xml.bak
 src/main/webapp/app/constants.js
 
 # Node
-/node/
+luix-passport-server/node/
 node_tmp/
 node_modules/
 npm-debug.log.*
