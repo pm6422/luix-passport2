@@ -32,7 +32,7 @@ public class WebConfigurer implements WebMvcConfigurer, WebServerFactoryCustomiz
     @Override
     public void customize(WebServerFactory server) {
         // When running in an IDE or with ./mvnw spring-boot:run, set location of the static web assets.
-        setLocationForStaticAssets(server);
+//        setLocationForStaticAssets(server);
     }
 
     private void setLocationForStaticAssets(WebServerFactory server) {
