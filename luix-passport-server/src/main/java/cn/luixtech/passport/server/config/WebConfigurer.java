@@ -1,15 +1,12 @@
 package cn.luixtech.passport.server.config;
 
-import jakarta.servlet.ServletContext;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.server.WebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -26,13 +23,8 @@ import static java.net.URLDecoder.decode;
 @Configuration
 @AllArgsConstructor
 @Slf4j
-public class WebConfigurer implements ServletContextInitializer, WebMvcConfigurer, WebServerFactoryCustomizer<WebServerFactory> {
+public class WebConfigurer implements WebMvcConfigurer, WebServerFactoryCustomizer<WebServerFactory> {
     private final ApplicationProperties applicationProperties;
-    private final Environment           env;
-
-    @Override
-    public void onStartup(ServletContext servletContext) {
-    }
 
     /**
      * Customize the Servlet engine: Mime types, the document root, the cache.
