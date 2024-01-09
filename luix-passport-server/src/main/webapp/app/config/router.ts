@@ -106,15 +106,6 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: "json-parser",
-        path: "/developer/json-parser",
-        component: () => import("@/views/developer/json-parser/json-parser.vue"),
-        meta: {
-          pageTitle: "menu.developer.json-parser",
-          breadcrumbs: [],
-        },
-      },
-      {
         name: "report-templates",
         path: "/security-reports/report-templates",
         component: () => import("@/views/admin/security-reports/report-template/report-template-list.vue"),
@@ -132,17 +123,7 @@ const routes: Array<RouteRecordRaw> = [
           pageTitle: "menu.configuration.accounts.title",
           breadcrumbs: ["menu.configuration.title"],
         },
-      },
-      {
-        name: "form",
-        path: "/configuration/form",
-        component: () => import("@/views/configuration/form.vue"),
-        meta: {
-          pageTitle: "menu.configuration.form.title",
-          breadcrumbs: ["menu.configuration.title"],
-        },
       }
-
     ],
   },
 

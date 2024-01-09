@@ -69,12 +69,6 @@
         <span v-text="$t('menu.developer.loggers')"></span>
       </router-link>
     </div>
-    <div class="menu-item px-5">
-      <router-link to="/developer/json-parser" class="menu-link px-5">
-        <KTIcon icon-name="abstract-20" icon-class="fs-2 fs-md-1 px-2" />
-        <span v-text="$t('menu.developer.json-parser')"></span>
-      </router-link>
-    </div>
   </div>
   <!--end::Menu-->
 </template>
