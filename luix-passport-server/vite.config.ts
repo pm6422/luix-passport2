@@ -16,6 +16,7 @@ export default defineConfig({
   base: "/",
   build: {
     chunkSizeWarningLimit: 3000,
+    outDir: '../../../target/classes/static/'
   },
   server: {
     host: 'localhost',
