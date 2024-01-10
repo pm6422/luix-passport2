@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -66,6 +67,7 @@ public class WebServerSecurityConfiguration {
 					.anyRequest().authenticated()
 			)
 			.csrf(csrf-> csrf
+//				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				// Ignore matching requests
 				.ignoringRequestMatchers("/open-api/**")
 				// Solve post/delete forbidden issue for request from swagger
