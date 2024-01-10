@@ -14,3 +14,6 @@ server:
 application:
   company:
     force-to-https: true
+  allowed-cors:
+    mappings:
+      "[/logout]": https://passport.luixtech.cn/
