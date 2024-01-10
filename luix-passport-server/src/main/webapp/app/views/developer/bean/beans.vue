@@ -108,7 +108,7 @@ export default defineComponent({
     const loadAll = () => {
       ManagementService.getBeans()
       .then(res => {
-        forEach(res.data['contexts']['tsap-api']['beans'], function (val, key) {
+        forEach(res.data['contexts']['luix-passport-server']['beans'], function (val, key) {
           items.value.push({bean: key, type: val.type, scope: val.scope, dependencies: val.dependencies});
         });
         initItems.value = items.value;
