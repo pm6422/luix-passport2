@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 /**
  * Properties specific to Application.
@@ -48,6 +47,6 @@ public class ApplicationProperties {
 
     @Data
     public static class AllowedCors {
-        private LinkedHashMap<String, Set<String>> mappings = new LinkedHashMap<>();
+        private LinkedHashMap<String, String> mappings = new LinkedHashMap<>();
     }
 }

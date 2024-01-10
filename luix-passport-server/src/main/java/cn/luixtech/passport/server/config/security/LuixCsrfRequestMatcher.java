@@ -8,7 +8,6 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
@@ -20,9 +19,9 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 @Slf4j
 @AllArgsConstructor
 public class LuixCsrfRequestMatcher implements RequestMatcher {
-    private static final Pattern                  ALLOWED_METHODS = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
-    private static final List<String>             IGNORED_PATHS   = ImmutableList.of("swagger-ui/index.html");
-    private final        Map<String, Set<String>> allowedMappings;
+    private static final Pattern             ALLOWED_METHODS = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
+    private static final List<String>        IGNORED_PATHS   = ImmutableList.of("swagger-ui/index.html");
+    private final        Map<String, String> allowedMappings;
 
     @Override
     public boolean matches(HttpServletRequest request) {
@@ -37,7 +36,7 @@ public class LuixCsrfRequestMatcher implements RequestMatcher {
 
         boolean allowedMappingFound = allowedMappings.entrySet()
                 .stream()
-                .anyMatch(entry -> entry.getValue().contains(request.getRequestURI()) && referer.contains(entry.getKey()));
+                .anyMatch(entry -> entry.getKey().equals(request.getRequestURI()) && referer.contains(entry.getValue()));
         if (allowedMappingFound) {
             return false;
         }

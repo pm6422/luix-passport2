@@ -21,8 +21,8 @@ public class WebConfigurer implements WebMvcConfigurer {
     public void addCorsMappings(@NonNull CorsRegistry registry) {
         // resolved logout CORS issue
         applicationProperties.getAllowedCors().getMappings().forEach((key, value) -> registry
-                .addMapping(org.springframework.util.StringUtils.collectionToCommaDelimitedString(value))
-                .allowedOrigins(key)
+                .addMapping(key)
+                .allowedOrigins(value)
                 .allowedMethods(HttpMethod.GET.name(), HttpMethod.POST.name(), HttpMethod.PUT.name(), HttpMethod.DELETE.name()));
     }
 }
