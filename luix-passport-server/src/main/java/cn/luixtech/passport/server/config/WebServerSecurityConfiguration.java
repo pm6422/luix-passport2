@@ -52,7 +52,9 @@ public class WebServerSecurityConfiguration {
 			.oauth2ResourceServer(server-> server.jwt(Customizer.withDefaults()))
 			.authorizeHttpRequests(authorize ->
 				authorize
-					.requestMatchers("favicon.ico", "/assets/**", "/webjars/**", "/login", "/swagger-ui/index.html").permitAll()
+					.requestMatchers("favicon.ico", "/assets/**", "/webjars/**", "/login").permitAll()
+					// Resolved issue of "Refused to display in a frame because it set 'X-Frame-Options' to 'deny'"
+					.requestMatchers( "/swagger-ui/index.html").permitAll()
 					.requestMatchers("/management/health/**", "/management/info/**").permitAll()
 					.requestMatchers("/open-api/**").permitAll()
 					.requestMatchers("/api/externals/authorities").hasAuthority("SCOPE_external:read")
