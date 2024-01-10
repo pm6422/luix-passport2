@@ -94,6 +94,35 @@ export class DataDictService {
   }
 }
 
+export class UserService {
+  constructor() {
+  }
+
+  public static find(reqParams: any): Promise<any> {
+    return ApiService.query("api/users", { params: reqParams });
+  }
+
+  public static findAll(enabled: boolean | null = null): Promise<any> {
+    return ApiService.query("api/users", { params: {page: 1, size: 2000, enabled: enabled} });
+  }
+
+  public static findById(id: String): Promise<any> {
+    return ApiService.query("api/users/" + id, null);
+  }
+
+  public static create(model: IDataDict): Promise<any> {
+    return ApiService.post("api/users", model);
+  }
+
+  public static update(model: IDataDict): Promise<any> {
+    return ApiService.put("api/users", model);
+  }
+
+  public static deleteById(id: String): Promise<any> {
+    return ApiService.delete("api/users/" + id);
+  }
+}
+
 export class ManagementService {
   constructor() {
   }
