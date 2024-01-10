@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "vite --port 4000",
-    "build": "run-p type-check build-only",
-    "preview": "vite preview",
-    "type-check": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "clean-www": "rimraf target/classes/static/app/{src,target/}",
     "webapp:build:dev": "vite build",
-    "webapp:build": "npm run clean-www && npm run webapp:build:dev --"
+    "webapp:build": "npm run clean-www && npm run webapp:build:dev --",
+    "check-build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@amcharts/amcharts5": "^5.3.16",

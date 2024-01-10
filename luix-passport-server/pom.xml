@@ -359,9 +359,6 @@
                 <!-- default spring profiles -->
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <spring.profiles.active>dev</spring.profiles.active>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
