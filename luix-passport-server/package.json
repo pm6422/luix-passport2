@@ -6,7 +6,6 @@
     "dev": "vite --port 4000",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
-    "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "clean-www": "rimraf target/classes/static/app/{src,target/}",

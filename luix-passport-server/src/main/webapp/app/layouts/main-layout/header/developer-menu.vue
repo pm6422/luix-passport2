@@ -28,12 +28,6 @@
       </router-link>
     </div>
     <div class="menu-item px-5">
-      <router-link to="/developer/tenants" class="menu-link px-5">
-        <KTIcon icon-name="people" icon-class="fs-2 fs-md-1 px-2" />
-        <span v-text="$t('menu.developer.tenants')"></span>
-      </router-link>
-    </div>
-    <div class="menu-item px-5">
       <router-link to="/developer/health" class="menu-link px-5">
         <KTIcon icon-name="pulse" icon-class="fs-2 fs-md-1 px-2" />
         <span v-text="$t('menu.developer.health')"></span>
