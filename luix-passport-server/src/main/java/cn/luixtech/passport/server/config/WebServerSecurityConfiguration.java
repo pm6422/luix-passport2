@@ -10,9 +10,11 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  * Use org.springframework.security.crypto.password.DelegatingPasswordEncoder as default
@@ -34,15 +36,16 @@ public class WebServerSecurityConfiguration {
 //        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize(manager);
 //    }
 
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) ->
-//                web.ignoring()
-//                        // Remove below if remove H2
-//                        // requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
-//                        // h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) ->
+                web.ignoring()
+                        // Remove below if remove H2
+                        // requestMatchers("/h2-console/**") does NOT work, because there are query string in URL
+                        // h2-console/login.do?jsessionid=f9c70ca0904f0960ff233ceca108853d
 //                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
-//    }
+                        .requestMatchers(new AntPathRequestMatcher("/swagger-ui/index.html"));
+    }
 
     // @formatter:off
 	@Bean
