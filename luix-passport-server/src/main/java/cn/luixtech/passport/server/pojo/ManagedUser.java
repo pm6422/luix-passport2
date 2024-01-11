@@ -26,7 +26,6 @@ public class ManagedUser extends User {
     public static final  int  RAW_PASSWORD_MAX_LENGTH = 50;
 
     @Schema(required = true)
-    @NotEmpty(message = "Password:{Validation.NotEmpty}")
     @Size(min = RAW_PASSWORD_MIN_LENGTH, max = RAW_PASSWORD_MAX_LENGTH)
     private String password;
 

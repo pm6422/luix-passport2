@@ -100,8 +100,7 @@
                 </a>
                 <ConfirmDeleteButton 
                   :record="row" 
-                  :delete-callback="deleteRecord" 
-                  :disable-callback="disableRecord"
+                  :delete-callback="deleteRecord"
                   btnStyle="icon"
                 />
               </div>
@@ -488,7 +487,7 @@
                       class="btn btn-primary btn-sm min-w-80px"
                       :data-kt-indicator="formSubmitting ? 'on' : null"
                       :disabled="formSubmitting"
-                      @click="saveUser(editFormRef)"
+                      @click="save(editFormRef)"
                     >
                       <span v-if="!formSubmitting" class="indicator-label" v-text="$t('form.global.save')"></span>
                       <span v-if="formSubmitting" class="indicator-progress">
@@ -641,17 +640,15 @@ export default defineComponent({
       tableData.value = cloneDeep(data);
       tableTotalItems.value = data.length;
     };
-    const deleteRecord = (id: string) => {
-      if(tableData.value) {
-        remove(tableData.value, (item) => item.id === id);
-        tableTotalItems.value--;
-      }
-    };
-    const disableRecord = (id: string) => {
-    };
     const selectItems = (selectedItems: Array<string>) => {
       selectedIds.value = selectedItems;
     };
+    const deleteRecord = (id: string) => {
+      UserService.deleteById(id).then(r => {
+        loadAll();
+      })
+    };
+
     const validationRules = computed<FormRules>(() => {
       return {
         username: [
@@ -707,7 +704,6 @@ export default defineComponent({
       }
     };
     const clickViewUser = (row: any) => {
-      // todo: get user info from api
       modalData.value = row;
       viewFormVisible.value = true;
       editFormVisible.value = false;
@@ -720,40 +716,56 @@ export default defineComponent({
       collapseDetails.value = false;
     };
     const clickUpdateUser = (row: any) => {
-      // todo: get user info from api
       modalData.value = row;
       modalOperation.value = "update";
       viewFormVisible.value = false;
       editFormVisible.value = true;
       collapseDetails.value = false;
     };
-    const saveUser = (formInstance: FormInstance | undefined) => {
+    const doSave = (): Promise<any> => {
+      return new Promise((resolve, reject) => {
+        var deferred = modalOperation.value === "create" ? UserService.create(modalData.value) : UserService.update(modalData.value);
+        deferred.then(result => {
+          resolve(result.data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+      });
+    };
+    const save = (formInstance: FormInstance | undefined) => {
       if (!formInstance) {
         return;
       }
+
       formInstance.validate((valid, fields) => {
         if (!valid) {
           return false;
         }
 
         formSubmitting.value = true;
-        if(modalOperation.value === "create") {
-          // todo: call api to create user
-        }
-        else if(modalOperation.value === "update"){
-          // todo: call api to update user
-        }
-        setTimeout(() => {
-          formSubmitting.value = false;
-          Swal.fire({
-            text: i18n.t("msg.global.saved-successfully"),
-            icon: "success",
-            showConfirmButton: false,
-            timer: 1000,
-            heightAuto: false,
-          }).then(() => {
+        doSave()
+          .then(data => {
+            // Success
+            setTimeout(() => {
+              formSubmitting.value = false;
+              Swal.fire({
+                text: i18n.t("msg.global.saved-successfully"),
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1000,
+                heightAuto: false,
+              }).then(() => {
+                if(modalOperation.value === 'create') {
+                  formInstance.resetFields();
+                }
+              });
+            }, 1000);
+          })
+          .catch(error => {
+            // errorMsg.value = error;
+            formSubmitting.value = false;
           });
-        }, 1000);
       });
     };
 
@@ -773,7 +785,6 @@ export default defineComponent({
       selectedIds,
       getAssetPath,
       deleteRecord,
-      disableRecord,
       clickViewUser,
       clickCreateUser,
       clickUpdateUser,
@@ -784,7 +795,7 @@ export default defineComponent({
       editFormRef,
       currentPageNo,
       currentPageSize,
-      saveUser,
+      save,
       validationRules,
       formSubmitting,
       modalOperation,
