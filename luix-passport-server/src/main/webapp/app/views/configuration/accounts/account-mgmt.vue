@@ -23,6 +23,10 @@
                 <KTIcon icon-name="plus" icon-class="fs-3" />
                 <span v-text="$t('form.account.create-user')"></span>
               </button>
+              <button class="btn btn-light-warning px-5 ms-3" @click="loadAll()">
+                <KTIcon icon-name="arrows-circle" icon-class="fs-3" />
+                <span v-text="$t('form.global.refresh')"></span>
+              </button>
             </div>
             <div v-else class="d-flex justify-content-end align-items-center">
               <BatchDeleteButton :selectedIds="selectedIds" :deleteRecordCallback="deleteRecord"/>
@@ -46,7 +50,7 @@
               @onPageNoChange="changePage"
               @onPageSizeChange="changePage"
           >
-            <template v-slot:username="{ row: row }">
+            <template v-slot:username="{ row: row}">
               <a class="badge badge-light-primary cursor-pointer" @click="clickViewUser(row)">
                 <span>{{ row.username }}</span>
               </a>
@@ -803,7 +807,8 @@ export default defineComponent({
       updateTableData,
       currentLanguage,
       changePage,
-      enabledRoles
+      enabledRoles,
+      loadAll
     }
   },
 });
