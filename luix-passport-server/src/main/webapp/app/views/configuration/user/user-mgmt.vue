@@ -520,27 +520,27 @@
   
 <script lang="ts">
 import { getAssetPath } from "@/helpers/assets";
-import { defineComponent, ref, computed, onMounted } from "vue";
+import { defineComponent, ref, computed } from "vue";
 import KTDatatable from "@/components/kt-datatable/KTDataTable.vue";
 import type { Sort } from "@/components/kt-datatable/domain/Sort";
 import type { Column } from "@/components/kt-datatable/domain/Column";
 import arraySort from "array-sort";
 import { useI18n } from "vue-i18n";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import YesOrNo  from '@/components/utilities/yes-or-no.vue';
-import OneOrMore  from '@/components/utilities/one-or-more.vue';
+import YesOrNo from '@/components/utilities/yes-or-no.vue';
+import OneOrMore from '@/components/utilities/one-or-more.vue';
 import type { FormInstance, FormRules } from 'element-plus';
 import type { IUser } from '@/domain/User';
 import { DateTimeUtils } from "@/helpers/DateTimeUtils";
 import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue';
 import BatchDeleteButton  from '@/components/button/batch-delete-button.vue';
 import SearchBox  from '@/components/search/search-box.vue';
-import { cloneDeep, remove } from "lodash";
+import { cloneDeep } from "lodash";
 import Abbreviation  from '@/components/utilities/abbreviation.vue';
 import type {IDataDict} from "@/main/webapp/app/domain/DataDict";
-import {useRoute, useRouter} from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { UserService, DataDictService } from "@/services/services";
-import {TableHelper} from "@/helpers/TableHelper";
+import { TableHelper } from "@/helpers/TableHelper";
 
 export default defineComponent({
   name: "user-mgmt",

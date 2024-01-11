@@ -584,11 +584,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
 </template>
 <script lang="ts">
 import { getAssetPath } from "@/helpers/assets";
