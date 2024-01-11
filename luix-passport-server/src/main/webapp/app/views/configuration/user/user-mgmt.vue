@@ -448,7 +448,7 @@
                   <!--begin::Input group-->
                   <div class="row mt-3">
                     <label class="fw-semobold">
-                      <span class="required" v-text="$t('form.account.roles')"></span>
+                      <span class="col-form-label required fw-semobold py-0" v-text="$t('form.account.roles')"></span>
                     </label>
                     <!--begin::Hint-->
                     <div class="form-text mb-2" v-text="$t('msg.global.support-multiple-tip')"></div>
