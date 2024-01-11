@@ -18,6 +18,12 @@ const MainMenuConfig: Array<MenuItem> = [
         bootstrapIcon: "bi-app-indicator",
       },
       {
+        heading: "menu.user-management.title",
+        route: "/configuration/user-mgmt",
+        keenthemesIcon: "profile-user",
+        bootstrapIcon: "bi-archive",
+      },
+      {
         sectionTitle: "menu.security-reports.title",
         route: "/security-reports",
         keenthemesIcon: "chart-pie-4",
@@ -29,19 +35,6 @@ const MainMenuConfig: Array<MenuItem> = [
           }
         ]
       },
-    ],
-  },
-
-  {
-    heading: "menu.configuration.title",
-    route: "/configuration",
-    pages: [
-      {
-        heading: "menu.configuration.user-management.title",
-        route: "/configuration/user-mgmt",
-        keenthemesIcon: "profile-user",
-        bootstrapIcon: "bi-archive",
-      }
     ],
   }
 ];

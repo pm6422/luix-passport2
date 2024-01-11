@@ -56,104 +56,17 @@
     "inbox": {
       "title": "待办任务"
     },
-    "security-tickets": {
-      "title": "安全工单"
-    },
-    "security-alerts": {
-      "title": "安全告警"
-    },
-    "security-assets": {
-      "title": "安全资产",
-      "asset-groups": {
-        "title": "资产分组"
-      },
-      "asset-group-view": {
-        "title": "查看资产分组"
-      },
-      "vehicles": {
-        "title": "汽车"
-      },
-      "models": {
-        "title": "车型"
-      },
-      "parts": {
-        "title": "汽车零部件"
-      },
-      "backend-services": {
-        "title": "后端服务"
-      },
-      "mobile-apps": {
-        "title": "手机应用"
-      }
-    },
-    "threat-detection": {
-      "title": "威胁检测",
-      "signals": {
-        "title": "信号",
-        "create": {
-          "title": "创建信号"
-        },
-        "update": {
-          "title": "更新信号"
-        }
-      },
-      "signal-models": {
-        "title": "信号模型"
-      },
-      "signal-combination-models": {
-        "title": "信号组合模型"
-      },
-      "events": {
-        "title": "事件"
-      },
-      "event-chain-models": {
-        "title": "事件链模型"
-      },
-      "triggers": {
-        "title": "触发器",
-        "create": {
-          "title": "创建触发器"
-        },
-        "update": {
-          "title": "更新触发器"
-        }
-      },
-      "detectors": {
-        "title": "检测器"
-      },
-      "ai-detectors": {
-        "title": "智能检测器"
-      }
-    },
-    "auto-response": {
-      "title": "自动响应"
+    "user-management": {
+      "title": "用户管理"
     },
     "security-reports": {
       "title": "安全报告",
       "report-templates": {
         "title": "报告模版"
-      },
-      "report-tasks": {
-        "title": "报告任务"
-      },
-      "report-histories": {
-        "title": "报告历史"
-      },
-      "compliance-report": {
-        "title": "合规报告"
       }
     },
     "configuration": {
       "title": "管理配置",
-      "user-management": {
-        "title": "用户管理"
-      },
-      "threat-simulator": {
-        "title": "威胁模拟器"
-      },
-      "live-detection": {
-        "title": "在线检测演示"
-      },
       "form": {
         "title": "表单"
       }

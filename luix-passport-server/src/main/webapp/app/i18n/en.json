@@ -56,104 +56,17 @@
     "inbox": {
       "title": "Inbox"
     },
-    "security-tickets": {
-      "title": "Security Tickets"
-    },
-    "security-alerts": {
-      "title": "Security Alerts"
-    },
-    "security-assets": {
-      "title": "Security Assets",
-      "asset-groups": {
-        "title": "Assets Groups"
-      },
-      "asset-group-view": {
-        "title": "View Asset Group"
-      },
-      "vehicles": {
-        "title": "Vehicles"
-      },
-      "models": {
-        "title": "Models"
-      },
-      "parts": {
-        "title": "Vehicle Parts"
-      },
-      "backend-services": {
-        "title": "Backend Services"
-      },
-      "mobile-apps": {
-        "title": "Mobile Apps"
-      }
-    },
-    "threat-detection": {
-      "title": "Threat Detection",
-      "signals": {
-        "title": "Signals",
-        "create": {
-          "title": "Create Signal"
-        },
-        "update": {
-          "title": "Update Signal"
-        }
-      },
-      "signal-models": {
-        "title": "Signal Models"
-      },
-      "signal-combination-models": {
-        "title": "Signals Models"
-      },
-      "events": {
-        "title": "Events"
-      },
-      "event-chain-models": {
-        "title": "Event Chain Models"
-      },
-      "triggers": {
-        "title": "Triggers",
-        "create": {
-          "title": "Create Trigger"
-        },
-        "update": {
-          "title": "Update Trigger"
-        }
-      },
-      "detectors": {
-        "title": "Detectors"
-      },
-      "ai-detectors": {
-        "title": "AI Detectors"
-      }
-    },
-    "auto-response": {
-      "title": "Auto Response"
+    "user-management": {
+      "title": "User Management"
     },
     "security-reports": {
       "title": "Security Reports",
       "report-templates": {
         "title": "Report Templates"
-      },
-      "report-tasks": {
-        "title": "Report Tasks"
-      },
-      "report-histories": {
-        "title": "Report Histories"
-      },
-      "compliance-report": {
-        "title": "Compliance Report"
       }
     },
     "configuration": {
       "title": "Administration",
-      "user-management": {
-        "title": "User Management"
-      },
-      "threat-simulator": {
-        "title": "Threat Simulator"
-      },
-      "live-detection": {
-        "title": "Live Detection"
-      },
       "form": {
         "title": "Form"
       }

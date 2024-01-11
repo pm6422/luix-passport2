@@ -121,7 +121,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/configuration/user-mgmt",
         component: () => import("@/views/configuration/user/user-mgmt.vue"),
         meta: {
-          pageTitle: "menu.configuration.user-management.title",
+          pageTitle: "menu.user-management.title",
           breadcrumbs: ["menu.configuration.title"],
         },
       }
