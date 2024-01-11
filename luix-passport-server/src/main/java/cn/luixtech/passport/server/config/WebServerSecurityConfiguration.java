@@ -1,7 +1,9 @@
 package cn.luixtech.passport.server.config;
 
 import cn.luixtech.passport.server.config.oauth.handler.FederatedIdentityLoginSuccessHandler;
+import cn.luixtech.passport.server.config.security.CsrfCookieFilter;
 import cn.luixtech.passport.server.config.security.LuixCsrfRequestMatcher;
+import cn.luixtech.passport.server.config.security.SpaCsrfTokenRequestHandler;
 import cn.luixtech.passport.server.event.FederatedIdentityLoginSuccessEventListener;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -67,11 +70,15 @@ public class WebServerSecurityConfiguration {
 					.anyRequest().authenticated()
 			)
 			.csrf(csrf-> csrf
-//				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-				// Ignore matching requests
+				// Single-Page Applications part of https://docs.spring.io/spring-security/reference/servlet/exploits/csrf.html
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				.csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler())
+					// Ignore matching requests
 				.ignoringRequestMatchers("/open-api/**")
 				// Solve post/delete forbidden issue for request from swagger
-				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher(applicationProperties.getAllowedCors().getMappings())))
+				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher(applicationProperties.getAllowedCors().getMappings()))
+			)
+			.addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 			.formLogin(formLogin ->
 				formLogin
 					.loginPage("/login")

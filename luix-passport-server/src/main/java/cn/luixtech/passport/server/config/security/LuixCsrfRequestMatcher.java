@@ -30,7 +30,6 @@ public class LuixCsrfRequestMatcher implements RequestMatcher {
             return false;
         }
 
-        // CSRF not required when swagger-ui is referer
         final String referer = request.getHeader("Referer");
         log.info("Request referer: {}", referer);
 
