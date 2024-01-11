@@ -19,7 +19,7 @@ const MainMenuConfig: Array<MenuItem> = [
       },
       {
         heading: "menu.user-management.title",
-        route: "/configuration/user-mgmt",
+        route: "/user-mgmt",
         keenthemesIcon: "profile-user",
         bootstrapIcon: "bi-archive",
       },
