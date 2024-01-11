@@ -431,7 +431,7 @@
                   <!--end::Input group-->
 
                   <!--begin::Input group-->
-                  <div class="row">
+                  <div class="row mt-3">
                     <label class="col-form-label required fw-semobold py-0" v-text="$t('form.profile.mobile-no')"></label>
                     <!--begin::Hint-->
                     <div class="form-text mb-2" v-text="$t('msg.global.active-mobile-num-tip')"></div>
@@ -446,7 +446,7 @@
                   <!--end::Input group-->
 
                   <!--begin::Input group-->
-                  <div class="row">
+                  <div class="row mt-3">
                     <label class="fw-semobold">
                       <span class="required" v-text="$t('form.account.roles')"></span>
                     </label>
@@ -470,7 +470,7 @@
                   <!--end::Input group-->
 
                   <!--begin::Input group-->
-                  <div class="row">
+                  <div class="row mt-3">
                     <el-form-item>
                       <label class="col-form-label fw-semobold">
                         <span v-text="$t('form.global.enabled')"></span>
