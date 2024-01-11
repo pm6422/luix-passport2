@@ -19,7 +19,6 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
-        // resolved logout CORS issue
         applicationProperties.getAllowedCors().getMappings().forEach((key, value) -> registry
                 .addMapping(key)
                 .allowedOrigins(value)

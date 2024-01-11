@@ -76,7 +76,7 @@ public class WebServerSecurityConfiguration {
 					// Ignore matching requests
 				.ignoringRequestMatchers("/open-api/**")
 				// Solve post/delete forbidden issue for request from swagger
-				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher(applicationProperties.getAllowedCors().getMappings()))
+//				.requireCsrfProtectionMatcher(new LuixCsrfRequestMatcher(applicationProperties.getAllowedCors().getMappings()))
 			)
 			.addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
 			.formLogin(formLogin ->
