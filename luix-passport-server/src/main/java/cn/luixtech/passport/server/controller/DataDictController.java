@@ -10,7 +10,6 @@ import com.alibaba.fastjson2.JSONWriter;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,6 @@ import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePag
 @RestController
 @AllArgsConstructor
 @Slf4j
-@Tag(name = "20.应用配置-数据字典")
 public class DataDictController {
     private       DSLContext      dslContext;
     private final DataDictDao     dataDictDao;
@@ -58,8 +56,8 @@ public class DataDictController {
     @Operation(summary = "find data dict list")
     @GetMapping("/api/data-dicts")
     public ResponseEntity<List<DataDict>> find(@ParameterObject Pageable pageable,
-                                               @Parameter(description = "分类代码") @RequestParam(value = "categoryCode", required = false) String categoryCode,
-                                               @Parameter(description = "是否可用") @RequestParam(value = "enabled", required = false) Boolean enabled) {
+                                               @RequestParam(value = "categoryCode", required = false) String categoryCode,
+                                               @RequestParam(value = "enabled", required = false) Boolean enabled) {
         Page<DataDict> domains = dataDictService.find(pageable, categoryCode, enabled);
         return ResponseEntity.ok().headers(generatePageHeaders(domains)).body(domains.getContent());
     }
