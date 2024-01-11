@@ -543,7 +543,7 @@ import { UserService, DataDictService } from "@/services/services";
 import {TableHelper} from "@/helpers/TableHelper";
 
 export default defineComponent({
-  name: "account-mgmt",
+  name: "user-mgmt",
   components: {
     KTDatatable,
     YesOrNo,

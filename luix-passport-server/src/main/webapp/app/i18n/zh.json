@@ -145,8 +145,8 @@
     },
     "configuration": {
       "title": "管理配置",
-      "accounts": {
-        "title": "账号管理"
+      "user-management": {
+        "title": "用户管理"
       },
       "threat-simulator": {
         "title": "威胁模拟器"

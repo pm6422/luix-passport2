@@ -145,8 +145,8 @@
     },
     "configuration": {
       "title": "Administration",
-      "accounts": {
-        "title": "Accounts"
+      "user-management": {
+        "title": "User Management"
       },
       "threat-simulator": {
         "title": "Threat Simulator"

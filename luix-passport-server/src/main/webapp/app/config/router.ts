@@ -117,11 +117,11 @@ const routes: Array<RouteRecordRaw> = [
       },
       
       {
-        name: "account-mgmt",
-        path: "/configuration/account-mgmt",
-        component: () => import("@/views/configuration/accounts/account-mgmt.vue"),
+        name: "user-mgmt",
+        path: "/configuration/user-mgmt",
+        component: () => import("@/views/configuration/user/user-mgmt.vue"),
         meta: {
-          pageTitle: "menu.configuration.accounts.title",
+          pageTitle: "menu.configuration.user-management.title",
           breadcrumbs: ["menu.configuration.title"],
         },
       }

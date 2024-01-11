@@ -37,8 +37,8 @@ const MainMenuConfig: Array<MenuItem> = [
     route: "/configuration",
     pages: [
       {
-        heading: "menu.configuration.accounts.title",
-        route: "/configuration/account-mgmt",
+        heading: "menu.configuration.user-management.title",
+        route: "/configuration/user-mgmt",
         keenthemesIcon: "profile-user",
         bootstrapIcon: "bi-archive",
       }
