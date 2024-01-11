@@ -7,6 +7,7 @@ package cn.luixtech.passport.server.persistence.tables.daos;
 import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.records.DataDictRecord;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -145,5 +146,35 @@ public class DataDictDao extends DAOImpl<DataDictRecord, cn.luixtech.passport.se
      */
     public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByEnabled(Boolean... values) {
         return fetch(DataDict.DATA_DICT.ENABLED, values);
+    }
+
+    /**
+     * Fetch records that have <code>created_time BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfCreatedTime(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(DataDict.DATA_DICT.CREATED_TIME, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>created_time IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByCreatedTime(LocalDateTime... values) {
+        return fetch(DataDict.DATA_DICT.CREATED_TIME, values);
+    }
+
+    /**
+     * Fetch records that have <code>modified_time BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfModifiedTime(LocalDateTime lowerInclusive, LocalDateTime upperInclusive) {
+        return fetchRange(DataDict.DATA_DICT.MODIFIED_TIME, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>modified_time IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByModifiedTime(LocalDateTime... values) {
+        return fetch(DataDict.DATA_DICT.MODIFIED_TIME, values);
     }
 }

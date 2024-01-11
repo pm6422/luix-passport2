@@ -307,6 +307,10 @@
             <column name="enabled" type="BIT(1)">
                 <constraints nullable="false"/>
             </column>
+            <column name="created_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_time" type="timestamp"/>
         </createTable>
         <loadData
                 file="config/liquibase/data/data_dict.csv"

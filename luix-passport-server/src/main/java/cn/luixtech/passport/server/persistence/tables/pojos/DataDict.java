@@ -5,6 +5,7 @@ package cn.luixtech.passport.server.persistence.tables.pojos;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 /**
@@ -21,6 +22,8 @@ public class DataDict implements Serializable {
     private String dictName;
     private String desc;
     private Boolean enabled;
+    private LocalDateTime createdTime;
+    private LocalDateTime modifiedTime;
 
     public DataDict() {}
 
@@ -31,6 +34,8 @@ public class DataDict implements Serializable {
         this.dictName = value.dictName;
         this.desc = value.desc;
         this.enabled = value.enabled;
+        this.createdTime = value.createdTime;
+        this.modifiedTime = value.modifiedTime;
     }
 
     public DataDict(
@@ -39,7 +44,9 @@ public class DataDict implements Serializable {
         String dictCode,
         String dictName,
         String desc,
-        Boolean enabled
+        Boolean enabled,
+        LocalDateTime createdTime,
+        LocalDateTime modifiedTime
     ) {
         this.id = id;
         this.categoryCode = categoryCode;
@@ -47,6 +54,8 @@ public class DataDict implements Serializable {
         this.dictName = dictName;
         this.desc = desc;
         this.enabled = enabled;
+        this.createdTime = createdTime;
+        this.modifiedTime = modifiedTime;
     }
 
     /**
@@ -133,6 +142,34 @@ public class DataDict implements Serializable {
         this.enabled = enabled;
     }
 
+    /**
+     * Getter for <code>luix-passport.data_dict.created_time</code>.
+     */
+    public LocalDateTime getCreatedTime() {
+        return this.createdTime;
+    }
+
+    /**
+     * Setter for <code>luix-passport.data_dict.created_time</code>.
+     */
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    /**
+     * Getter for <code>luix-passport.data_dict.modified_time</code>.
+     */
+    public LocalDateTime getModifiedTime() {
+        return this.modifiedTime;
+    }
+
+    /**
+     * Setter for <code>luix-passport.data_dict.modified_time</code>.
+     */
+    public void setModifiedTime(LocalDateTime modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -178,6 +215,18 @@ public class DataDict implements Serializable {
         }
         else if (!this.enabled.equals(other.enabled))
             return false;
+        if (this.createdTime == null) {
+            if (other.createdTime != null)
+                return false;
+        }
+        else if (!this.createdTime.equals(other.createdTime))
+            return false;
+        if (this.modifiedTime == null) {
+            if (other.modifiedTime != null)
+                return false;
+        }
+        else if (!this.modifiedTime.equals(other.modifiedTime))
+            return false;
         return true;
     }
 
@@ -191,6 +240,8 @@ public class DataDict implements Serializable {
         result = prime * result + ((this.dictName == null) ? 0 : this.dictName.hashCode());
         result = prime * result + ((this.desc == null) ? 0 : this.desc.hashCode());
         result = prime * result + ((this.enabled == null) ? 0 : this.enabled.hashCode());
+        result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
+        result = prime * result + ((this.modifiedTime == null) ? 0 : this.modifiedTime.hashCode());
         return result;
     }
 
@@ -204,6 +255,8 @@ public class DataDict implements Serializable {
         sb.append(", ").append(dictName);
         sb.append(", ").append(desc);
         sb.append(", ").append(enabled);
+        sb.append(", ").append(createdTime);
+        sb.append(", ").append(modifiedTime);
 
         sb.append(")");
         return sb.toString();
