@@ -55,7 +55,7 @@
               <div class="d-flex align-items-center">
                 <!--begin::Avatar-->
                 <div class="symbol symbol-35px symbol-circle">
-                  <img alt="avatar" :src="getAssetPath(`media/avatars/${row.avatar}`)" />
+                  <img alt="avatar" :src="getAssetPath(`media/avatars/300-0.jpg`)" />
                 </div>
                 <!--end::Avatar-->
                 <!--begin::Details-->
@@ -147,7 +147,7 @@
             <div class="d-flex align-items-center">
               <!--begin::Avatar-->
               <div class="symbol symbol-50px symbol-circle me-3">
-                <img alt="Pic" :src="getAssetPath(`media/avatars/${modalData.avatar}`)" />
+                <img alt="Pic" :src="getAssetPath(`media/avatars/300-0.jpg`)" />
               </div>
               <!--end::Avatar-->
 
@@ -319,7 +319,7 @@
             <div class="d-flex align-items-center">
               <!--begin::Avatar-->
               <div class="symbol symbol-50px symbol-circle me-3">
-                <img alt="avatar" :src="getAssetPath(`media/avatars/${modalData.avatar}`)" />
+                <img alt="avatar" :src="getAssetPath(`media/avatars/300-0.jpg`)" />
               </div>
               <!--end::Avatar-->
 
