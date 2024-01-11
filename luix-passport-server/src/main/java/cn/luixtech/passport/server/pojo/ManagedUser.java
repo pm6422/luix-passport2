@@ -30,12 +30,12 @@ public class ManagedUser extends User {
     @Size(min = RAW_PASSWORD_MIN_LENGTH, max = RAW_PASSWORD_MAX_LENGTH)
     private String password;
 
-    private Set<String> authorities;
+    private Set<String> roles;
 
-    public static ManagedUser of(User user, Set<String> authorities) {
+    public static ManagedUser of(User user, Set<String> roles) {
         ManagedUser managedUser = new ManagedUser();
         BeanUtils.copyProperties(user, managedUser);
-        managedUser.setAuthorities(authorities);
+        managedUser.setRoles(roles);
         return managedUser;
     }
 

@@ -11,7 +11,7 @@
           <!--begin::Card title-->
           <div class="card-title">
             <!--begin::Search-->
-            <SearchBox :initTableData="fakers[0].accounts" @onUpdateTableData="updateTableData"/>
+            <SearchBox :initTableData="initialTableData" @onUpdateTableData="updateTableData"/>
             <!--end::Search-->
           </div>
           <!--begin::Card title-->
@@ -35,12 +35,16 @@
         <!--begin::Card body-->
         <div class="card-body pt-0">
           <KTDatatable
-            :header="tableHeader"
-            :data="tableData"
-            :totalItems=tableTotalItems
-            :checkboxEnabled=true
-            @onSortChange="changeSort"
-            @onItemsSelect="selectItems"
+              :header="tableHeader"
+              :data="tableData"
+              :page-no="currentPageNo"
+              :page-size="currentPageSize"
+              :totalItems=tableTotalItems
+              :checkboxEnabled=true
+              @onItemsSelect="selectItems"
+              @onSortChange="changeSort"
+              @onPageNoChange="changePage"
+              @onPageSizeChange="changePage"
           >
             <template v-slot:username="{ row: row }">
               <a class="badge badge-light-primary cursor-pointer" @click="clickViewUser(row)">
@@ -58,7 +62,6 @@
                 <div class="ms-5">
                   <Abbreviation :text="`${row.firstName}&nbsp;${row.lastName}`" :maxTextLength="15" class="fs-6 fw-bold text-gray-900 text-hover-primary mb-2"/>
                   <div class="fw-semibold text-muted fs-7">{{ row.email }}</div>
-                  <div class="fw-semibold text-muted fs-8">{{ row.gender }}</div>
                 </div>
                 <!--end::Details-->
               </div>
@@ -71,7 +74,7 @@
             </template>
             <template v-slot:joinedTime="{ row: row }">
               <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.lastLogin) }}</div>
-              <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.joinedTime) }}</div>
+              <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.createdTime) }}</div>
             </template>
             <template v-slot:enabled="{ row: row }">
               <YesOrNo :val="row.enabled"/>
@@ -144,18 +147,18 @@
             <div class="d-flex align-items-center">
               <!--begin::Avatar-->
               <div class="symbol symbol-50px symbol-circle me-3">
-                <img alt="Pic" :src="getAssetPath(`media/avatars/${model.avatar}`)" />
+                <img alt="Pic" :src="getAssetPath(`media/avatars/${modalData.avatar}`)" />
               </div>
               <!--end::Avatar-->
 
               <!--begin::Info-->
               <div class="d-flex flex-column">
                 <!--begin::Name-->
-                <a class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">{{model.firstName}}&nbsp;{{model.lastName}}</a>
+                <a class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">{{modalData.firstName}}&nbsp;{{modalData.lastName}}</a>
                 <!--end::Name-->
 
                 <!--begin::Email-->
-                <a class="fw-semobold text-gray-600 text-hover-primary">{{ model.email }}</a>
+                <a class="fw-semobold text-gray-600 text-hover-primary">{{ modalData.email }}</a>
                 <!--end::Email-->
               </div>
               <!--end::Info-->
@@ -190,77 +193,70 @@
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.profile.username')"></td>
-                  <td class="text-gray-800">{{ model.username }}</td>
+                  <td class="text-gray-800">{{ modalData.username }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.profile.mobile-no')"></td>
-                  <td id = "mobileNo" class="text-gray-800">{{ model.mobileNo }}</td>
-                </tr>
-                <!--end::Row-->
-
-                <!--begin::Row-->
-                <tr class="">
-                  <td class="text-gray-400" v-text="$t('form.account.gender')"></td>
-                  <td class="text-gray-800">{{ model.gender }}</td>
+                  <td id = "mobileNo" class="text-gray-800">{{ modalData.mobileNo }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.account.joined-time')"></td>
-                  <td class="text-gray-800 fs-8">{{ DateTimeUtils.formatDateTime(model.joinedTime) }}</td>
+                  <td class="text-gray-800 fs-8">{{ DateTimeUtils.formatDateTime(modalData.createdTime) }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.account.last-login-time')"></td>
-                  <td class="text-gray-800 fs-8">{{ DateTimeUtils.formatDateTime(model.lastLogin) }}</td>
+                  <td class="text-gray-800 fs-8">{{ DateTimeUtils.formatDateTime(modalData.lastLogin) }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.enabled')"></td>
-                  <td><YesOrNo :val="model.enabled" class="px-0"/></td>
+                  <td><YesOrNo :val="modalData.enabled" class="px-0"/></td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.account.activated')"></td>
-                  <td><YesOrNo :val="model.activated" class="px-0"/></td>
+                  <td><YesOrNo :val="modalData.activated" class="px-0"/></td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.created-by')"></td>
-                  <td class="text-gray-800 fs-7">{{ model.createdBy }}</td>
+                  <td class="text-gray-800 fs-7">{{ modalData.createdBy }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.created-time')"></td>
-                  <td class="text-gray-800 fs-7">{{ model.createdTime }}</td>
+                  <td class="text-gray-800 fs-7">{{ modalData.createdTime }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.modified-by')"></td>
-                  <td class="text-gray-800 fs-7">{{ model.updatedBy }}</td>
+                  <td class="text-gray-800 fs-7">{{ modalData.updatedBy }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.modified-time')"></td>
-                  <td class="text-gray-800 fs-7">{{ model.updatedTime }}</td>
+                  <td class="text-gray-800 fs-7">{{ modalData.updatedTime }}</td>
                 </tr>
                 <!--end::Row-->
 
@@ -272,7 +268,7 @@
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.account.roles')"></td>
                   <td class="text-gray-800">
-                    <OneOrMore :values="model.roles"/>
+                    <OneOrMore :values="modalData.roles"/>
                   </td>
                 </tr>
                 <!--end::Row-->
@@ -323,18 +319,18 @@
             <div class="d-flex align-items-center">
               <!--begin::Avatar-->
               <div class="symbol symbol-50px symbol-circle me-3">
-                <img alt="avatar" :src="getAssetPath(`media/avatars/${model.avatar}`)" />
+                <img alt="avatar" :src="getAssetPath(`media/avatars/${modalData.avatar}`)" />
               </div>
               <!--end::Avatar-->
 
               <!--begin::Info-->
               <div class="d-flex flex-column">
                 <!--begin::Name-->
-                <a class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">{{model.firstName}}&nbsp;{{model.lastName}}</a>
+                <a class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">{{modalData.firstName}}&nbsp;{{modalData.lastName}}</a>
                 <!--end::Name-->
 
                 <!--begin::Email-->
-                <a class="fw-semobold text-gray-600 text-hover-primary">{{ model.email }}</a>
+                <a class="fw-semobold text-gray-600 text-hover-primary">{{ modalData.email }}</a>
                 <!--end::Email-->
               </div>
               <!--end::Info-->
@@ -364,7 +360,7 @@
               <div class="">
                 <el-form
                   ref="editFormRef"
-                  :model="model"
+                  :model="modalData"
                   :rules="validationRules"
                   class="form"
                   size="default"
@@ -383,7 +379,7 @@
                     <el-form-item prop="username">
                       <el-input
                         name="username"
-                        v-model="model.username"
+                        v-model="modalData.username"
                       ></el-input>
                     </el-form-item>
                   </div>
@@ -397,7 +393,7 @@
                       <el-form-item prop="firstName">
                         <el-input
                           name="firstName"
-                          v-model="model.firstName"
+                          v-model="modalData.firstName"
                           v-bind:placeholder="$t('form.profile.first-name')"
                         ></el-input>
                       </el-form-item>
@@ -410,7 +406,7 @@
                       <el-form-item prop="lastName">
                         <el-input
                           name="lastName"
-                          v-model="model.lastName"
+                          v-model="modalData.lastName"
                           v-bind:placeholder="$t('form.profile.last-name')"
                         ></el-input>
                       </el-form-item>
@@ -425,7 +421,7 @@
                     <el-form-item prop="email">
                       <el-input
                         name="email"
-                        v-model="model.email"
+                        v-model="modalData.email"
                       ></el-input>
                     </el-form-item>
                   </div>
@@ -440,20 +436,8 @@
                     <el-form-item prop="mobileNo">
                       <el-input
                         name="mobileNo"
-                        v-model="model.mobileNo"
+                        v-model="modalData.mobileNo"
                       ></el-input>
-                    </el-form-item>
-                  </div>
-                  <!--end::Input group-->
-
-                  <!--begin::Input group-->
-                  <div class="row">
-                    <label class="col-form-label required fw-semobold" v-text="$t('form.profile.gender')"></label>
-                    <el-form-item prop="gender">
-                      <el-radio-group v-model="model.gender">
-                        <el-radio-button label="male">{{ $t('form.profile.male') }}</el-radio-button>
-                        <el-radio-button label="female">{{ $t('form.profile.female') }}</el-radio-button>
-                      </el-radio-group>
                     </el-form-item>
                   </div>
                   <!--end::Input group-->
@@ -480,7 +464,7 @@
   <!--                      <el-option v-for="(role, key) in data.roles" :key="key" :value="role.code" :label="role.code">{{ role.code }}</el-option>-->
   <!--                    </el-select>-->
 
-                      <el-checkbox-group v-model="model.roles">
+                      <el-checkbox-group v-model="modalData.roles">
                         <el-checkbox-button v-for="(item, key) in data.roles" :label="item.code" :key="key"></el-checkbox-button>
                       </el-checkbox-group>
                     </el-form-item>
@@ -493,7 +477,7 @@
                       <label class="col-form-label fw-semobold">
                         <span v-text="$t('form.global.enabled')"></span>
                       </label>
-                      <el-switch v-model="model.enabled" class="ms-5"/>
+                      <el-switch v-model="modalData.enabled" class="ms-5"/>
                     </el-form-item>
                   </div>
                   <!--end::Input group-->
@@ -546,16 +530,20 @@ import { useI18n } from "vue-i18n";
 import data from "@/data/data";
 import fakers from "@/data/fakers";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-import YesOrNo  from '@/components/utilities/yes-or-no.vue'
-import OneOrMore  from '@/components/utilities/one-or-more.vue'
-import type { FormInstance, FormRules } from 'element-plus'
+import YesOrNo  from '@/components/utilities/yes-or-no.vue';
+import OneOrMore  from '@/components/utilities/one-or-more.vue';
+import type { FormInstance, FormRules } from 'element-plus';
 import type { IUser } from '@/domain/User';
 import { DateTimeUtils } from "@/helpers/DateTimeUtils";
-import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue'
-import BatchDeleteButton  from '@/components/button/batch-delete-button.vue'
-import SearchBox  from '@/components/search/search-box.vue'
+import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue';
+import BatchDeleteButton  from '@/components/button/batch-delete-button.vue';
+import SearchBox  from '@/components/search/search-box.vue';
 import { cloneDeep, remove } from "lodash";
-import Abbreviation  from '@/components/utilities/abbreviation.vue'
+import Abbreviation  from '@/components/utilities/abbreviation.vue';
+import type {IDataDict} from "@/main/webapp/app/domain/DataDict";
+import {useRoute, useRouter} from "vue-router";
+import { UserService } from "@/services/services";
+import {TableHelper} from "@/helpers/TableHelper";
 
 export default defineComponent({
   name: "account-mgmt",
@@ -571,8 +559,15 @@ export default defineComponent({
   setup() {
     const i18n = useI18n();
     const selectedIds = ref<Array<string>>([]);
-    const tableData = ref(fakers[0].accounts);
-    const tableTotalItems = ref(fakers[0].accounts.length);
+    const initialTableData = ref<Array<IDataDict>>([]);
+    const tableData = ref<Array<IDataDict>>([]);
+    const tableTotalItems = ref(0);
+    const modalOperation = ref('create');
+    const router = useRouter();
+    const route = useRoute();
+
+    const currentPageNo = ref<number>(1);
+    const currentPageSize = ref<number>(10);
 
     const viewFormVisible = ref(false);
     const editFormVisible = ref(false);
@@ -581,22 +576,16 @@ export default defineComponent({
     const operation = ref("update");
     const collapseDetails = ref(false);
 
-    const emptyModel = {
+    const emptyModalData : IUser = {
       id: "",
       username: "",
       firstName: "",
       lastName: "",
       email: "",
       mobileNo: "",
-      avatar: "",
-      gender: "",
-      roles: [],
-      lastLogin: "",
-      joinedTime: "",
-      enabled: false
+      enabled: true
     };
-    const model = ref<IUser>(emptyModel);
-
+    const modalData = ref(emptyModalData);
     const tableHeader = computed<Array<Column>>(() => {
       return [
       {
@@ -605,7 +594,7 @@ export default defineComponent({
         sortEnabled: true,
       },
       {
-        columnName: i18n.t('form.global.name'),
+        columnName: i18n.t('form.profile.email'),
         columnLabel: "email",
         sortEnabled: true,
       },
@@ -641,6 +630,14 @@ export default defineComponent({
     ]
     });
 
+    const loadAll = () => {
+      UserService.findAll().then(r => {
+        initialTableData.value = r.data;
+        const keyword = route.query.searchKeyword as string;
+        tableData.value = keyword ? TableHelper.filter(r.data, keyword) : r.data;
+        tableTotalItems.value = tableData.value.length;
+      });
+    };
     const updateTableData = (data: any) => {
       tableData.value = cloneDeep(data);
       tableTotalItems.value = data.length;
@@ -652,12 +649,6 @@ export default defineComponent({
       }
     };
     const disableRecord = (id: string) => {
-    };
-    const changeSort = (sort: Sort) => {
-      const reverse: boolean = sort.order === "asc";
-      if (sort.label) {
-        arraySort(tableData.value, sort.label, { reverse });
-      }
     };
     const selectItems = (selectedItems: Array<string>) => {
       selectedIds.value = selectedItems;
@@ -687,14 +678,43 @@ export default defineComponent({
         ]
       };
     });
+    const changePage = (page: number, size: number) => {
+      currentPageNo.value = page;
+      currentPageSize.value = size;
+
+      if(page === 1 && size === 10) {
+        let newQuery = JSON.parse(JSON.stringify(route.query));
+        delete newQuery.pageNo;
+        delete newQuery.pageSize;
+        router.replace({ query: newQuery });
+      } else if(page === 1 && size != 10){
+        let newQuery = JSON.parse(JSON.stringify(route.query));
+        delete newQuery.pageNo;
+        newQuery.pageSize = size;
+        router.replace({ query: newQuery });
+      } else if(page != 1 && size === 10){
+        let newQuery = JSON.parse(JSON.stringify(route.query));
+        delete newQuery.pageSize;
+        newQuery.pageNo = page;
+        router.replace({ query: newQuery });
+      } else {
+        router.replace({ query: { ...route.query, pageNo: page, pageSize: size }});
+      }
+    };
+    const changeSort = (sort: Sort) => {
+      const reverse: boolean = sort.order === "asc";
+      if (sort.label) {
+        arraySort(tableData.value, sort.label, { reverse });
+      }
+    };
     const clickViewUser = (row: any) => {
       // todo: get user info from api
-      model.value = row;
+      modalData.value = row;
       viewFormVisible.value = true;
       editFormVisible.value = false;
     };
     const clickCreateUser = () => {
-      model.value = emptyModel;
+      modalData.value = emptyModalData;
       operation.value = "create";
       viewFormVisible.value = false;
       editFormVisible.value = true;
@@ -702,7 +722,7 @@ export default defineComponent({
     };
     const clickUpdateUser = (row: any) => {
       // todo: get user info from api
-      model.value = row;
+      modalData.value = row;
       operation.value = "update";
       viewFormVisible.value = false;
       editFormVisible.value = true;
@@ -741,10 +761,13 @@ export default defineComponent({
     const currentLanguage = computed(() => {
       return i18n.locale.value;
     });
+
+    loadAll();
     
     return {
       data,
       tableData,
+      initialTableData,
       tableTotalItems,
       tableHeader,
       changeSort,
@@ -759,8 +782,10 @@ export default defineComponent({
       viewFormVisible,
       editFormVisible,
       collapseDetails,
-      model,
+      modalData,
       editFormRef,
+      currentPageNo,
+      currentPageSize,
       saveUser,
       validationRules,
       formSubmitting,
@@ -768,7 +793,8 @@ export default defineComponent({
       DateTimeUtils,
       fakers,
       updateTableData,
-      currentLanguage
+      currentLanguage,
+      changePage
     }
   },
 });

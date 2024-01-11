@@ -62,11 +62,11 @@ export class DataDictService {
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {
-    return ApiService.query("api/data-dicts", { params: {page: 1, size: 2000, enabled: enabled} });
+    return ApiService.query("api/data-dicts", { params: {page: 0, size: 2000, enabled: enabled} });
   }
 
   public static lookup(categoryCode: string, enabled: boolean | null = null): Promise<any> {
-    return ApiService.query("api/data-dicts", { params: {page: 1, size: 2000, categoryCode: categoryCode, enabled: enabled} });
+    return ApiService.query("api/data-dicts", { params: {page: 0, size: 2000, categoryCode: categoryCode, enabled: enabled} });
   }
 
   public static findById(id: String): Promise<any> {
@@ -103,7 +103,7 @@ export class UserService {
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {
-    return ApiService.query("api/users", { params: {page: 1, size: 2000, enabled: enabled} });
+    return ApiService.query("api/users", { params: {page: 0, size: 2000, enabled: enabled} });
   }
 
   public static findById(id: String): Promise<any> {

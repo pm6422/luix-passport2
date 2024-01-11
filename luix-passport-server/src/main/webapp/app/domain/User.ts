@@ -3,18 +3,16 @@ export interface IUser {
     username: string;
     firstName: string;
     lastName: string;
-    avatar: string;
     email: string;
     mobileNo: string;
-    gender: string;
-    roles: Array<string>;
-    joinedTime: string;
-    lastLogin: string;
+    enabled: boolean;
+    activated?: boolean;
+    createdTime?: string;
     createdBy?: string;
-    createdTime?: Date;
     updatedBy?: string;
     updatedTime?: Date;
     password?: string;
-    enabled: boolean;
-    activated?: boolean;
+    lastLogin: string;
+    roles: Array<string>;
+    photoUrl: string;
   }
