@@ -304,7 +304,7 @@
         <div class="card-header">
           <!--begin::Card title-->
           <div class="card-title">
-            <h2 v-if="operation === 'update'" v-text="$t('form.account.update-user')"></h2>
+            <h2 v-if="modalOperation === 'update'" v-text="$t('form.account.update-user')"></h2>
             <h2 v-else v-text="$t('form.account.create-user')"></h2>
           </div>
           <!--end::Card title-->
@@ -314,7 +314,7 @@
         <!--begin::Card body-->
         <div class="card-body pt-0">
           <!--begin::Section-->
-          <div class="mb-4" v-if="operation === 'update'">
+          <div class="mb-4" v-if="modalOperation === 'update'">
             <!--begin::Details-->
             <div class="d-flex align-items-center">
               <!--begin::Avatar-->
@@ -371,7 +371,7 @@
                   <!--begin::errors-->
 
                   <!--begin::Input group-->
-                  <div class="row" v-show="operation === 'create'">
+                  <div class="row" v-show="modalOperation === 'create'">
                     <label class="col-form-label required fw-semobold py-0" v-text="$t('form.profile.username')"></label>
                     <!--begin::Hint-->
                     <div class="form-text mb-2" v-text="$t('msg.global.username-tip')"></div>
@@ -451,22 +451,18 @@
                     <div class="form-text mb-2" v-text="$t('msg.global.support-multiple-tip')"></div>
                     <!--end::Hint-->
                     <el-form-item prop="roles">
-<!--                      <el-select-->
-<!--                        v-bind:placeholder="$t('form.global.multi-select')"-->
-<!--                        name="roles"-->
-<!--                        v-model="modalData.roles"-->
-<!--                        multiple-->
-<!--                        collapse-tags-->
-<!--                        collapse-tags-tooltip-->
-<!--                        :max-collapse-tags="2"-->
-<!--                        clearable-->
-<!--                      >-->
-<!--                        <el-option v-for="(role, key) in enabledRoles" :key="key" :value="role.dictCode" :label="role.dictCode">{{ role.dictCode }}</el-option>-->
-<!--                      </el-select>-->
-
-                      <el-checkbox-group v-model="modalData.roles">
-                        <el-checkbox-button v-for="(item, key) in enabledRoles" :label="item.dictCode" :key="key"></el-checkbox-button>
-                      </el-checkbox-group>
+                      <el-select
+                        v-bind:placeholder="$t('form.global.multi-select')"
+                        name="roles"
+                        v-model="modalData.roles"
+                        multiple
+                        collapse-tags
+                        collapse-tags-tooltip
+                        :max-collapse-tags="1"
+                        clearable
+                      >
+                        <el-option v-for="(role, key) in enabledRoles" :key="key" :value="role.dictCode" :label="role.dictCode">{{ role.dictCode }}</el-option>
+                      </el-select>
                     </el-form-item>
                   </div>
                   <!--end::Input group-->
@@ -560,7 +556,7 @@ export default defineComponent({
     const initialTableData = ref<Array<IDataDict>>([]);
     const tableData = ref<Array<IDataDict>>([]);
     const tableTotalItems = ref(0);
-    const modalOperation = ref('create');
+    const modalOperation = ref('update');
     const router = useRouter();
     const route = useRoute();
 
@@ -571,7 +567,6 @@ export default defineComponent({
     const editFormVisible = ref(false);
     const editFormRef = ref<FormInstance>();
     const formSubmitting = ref<boolean>(false);
-    const operation = ref("update");
     const collapseDetails = ref(false);
 
     const enabledRoles = ref<Array<IDataDict>>([]);
@@ -719,7 +714,7 @@ export default defineComponent({
     };
     const clickCreateUser = () => {
       modalData.value = emptyModalData;
-      operation.value = "create";
+      modalOperation.value = "create";
       viewFormVisible.value = false;
       editFormVisible.value = true;
       collapseDetails.value = false;
@@ -727,7 +722,7 @@ export default defineComponent({
     const clickUpdateUser = (row: any) => {
       // todo: get user info from api
       modalData.value = row;
-      operation.value = "update";
+      modalOperation.value = "update";
       viewFormVisible.value = false;
       editFormVisible.value = true;
       collapseDetails.value = false;
@@ -742,10 +737,10 @@ export default defineComponent({
         }
 
         formSubmitting.value = true;
-        if(operation.value === "create") {
+        if(modalOperation.value === "create") {
           // todo: call api to create user
         }
-        else if(operation.value === "update"){
+        else if(modalOperation.value === "update"){
           // todo: call api to update user
         }
         setTimeout(() => {
@@ -792,7 +787,7 @@ export default defineComponent({
       saveUser,
       validationRules,
       formSubmitting,
-      operation,
+      modalOperation,
       DateTimeUtils,
       updateTableData,
       currentLanguage,
