@@ -455,7 +455,6 @@
                     <!--end::Hint-->
                     <el-form-item prop="roles">
                       <el-select
-                        v-bind:placeholder="$t('form.global.multi-select')"
                         name="roles"
                         v-model="modalData.roles"
                         multiple
