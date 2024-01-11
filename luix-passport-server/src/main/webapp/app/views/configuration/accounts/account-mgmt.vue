@@ -242,21 +242,21 @@
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.created-time')"></td>
-                  <td class="text-gray-800 fs-7">{{ modalData.createdTime }}</td>
+                  <td class="text-gray-800 fs-7">{{ DateTimeUtils.formatDateTime(modalData.createdTime) }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.modified-by')"></td>
-                  <td class="text-gray-800 fs-7">{{ modalData.updatedBy }}</td>
+                  <td class="text-gray-800 fs-7">{{ modalData.modifiedBy }}</td>
                 </tr>
                 <!--end::Row-->
 
                 <!--begin::Row-->
                 <tr class="">
                   <td class="text-gray-400" v-text="$t('form.global.modified-time')"></td>
-                  <td class="text-gray-800 fs-7">{{ modalData.updatedTime }}</td>
+                  <td class="text-gray-800 fs-7">{{ DateTimeUtils.formatDateTime(modalData.modifiedTime) }}</td>
                 </tr>
                 <!--end::Row-->
 

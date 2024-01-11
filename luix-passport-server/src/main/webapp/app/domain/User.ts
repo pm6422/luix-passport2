@@ -9,8 +9,8 @@ export interface IUser {
     activated?: boolean;
     createdTime?: string;
     createdBy?: string;
-    updatedBy?: string;
-    updatedTime?: Date;
+    modifiedBy?: string;
+    modifiedTime?: string;
     password?: string;
     lastLogin: string;
     roles: Array<string>;
