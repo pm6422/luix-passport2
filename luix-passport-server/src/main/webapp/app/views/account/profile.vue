@@ -520,10 +520,6 @@
   </div>
   <!--end::Row-->
 
-
-  
-
-
   <div class="d-flex flex-column flex-center text-center">
     <div class="card card-flush w-lg-550px w-md-100 py-5">
       <div class="card-body py-15 py-lg-20">
