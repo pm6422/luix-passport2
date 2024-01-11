@@ -104,10 +104,6 @@
                 <label class="col-lg-4 col-form-label fw-semobold" v-text="$t('form.profile.username')"></label>
                 <div class="col-lg-8 fv-row d-flex align-items-center">
                   <label id="username" class="form-control-lg form-control-transparent" v-text="user.username"></label>
-                  <a class="d-flex align-items-center px-0 cursor-pointer" ref="copyBtnRef" data-clipboard-target="#username">
-                    <KTIcon icon-name="tablet-text-up" icon-class="fs-3"/>
-                    <span ref="copyBtnTxtRef" class="fs-8 px-1 text-gray-800" v-text="$t('form.global.copy')"></span>
-                  </a>
                 </div>
               </div>
               <!--end::Input group-->
@@ -605,7 +601,6 @@ import type { IUser } from '@/domain/User';
 import type { IUserSettings } from '@/domain/UserSettings';
 import OneOrMore  from '@/components/utilities/one-or-more.vue'
 import { useI18n } from "vue-i18n";
-import ClipboardJS from "clipboard";
 import { DateTimeUtils, dateTimeFormats } from "@/helpers/DateTimeUtils";
 
 
@@ -624,29 +619,9 @@ export default defineComponent({
     const pwdFormSubmitting = ref<boolean>(false);
     const i18n = useI18n();
 
-    const copyBtnRef = ref<null | HTMLElement>(null);
-    const copyBtnTxtRef = ref<null | HTMLElement>(null);
-
     onMounted(() => {
       nextTick(() => {
         PasswordMeterComponent.bootstrap();
-      });
-
-      const clipboard = new ClipboardJS(copyBtnRef.value as Element);
-      clipboard.on("success", function (e) {
-        const buttonCaption = copyBtnTxtRef.value?.innerHTML;
-
-        if (copyBtnTxtRef.value) {
-          copyBtnTxtRef.value.innerHTML = i18n.t("form.global.copied");
-        }
-
-        setTimeout(function () {
-          if (copyBtnTxtRef.value && buttonCaption) {
-            copyBtnTxtRef.value.innerHTML = buttonCaption;
-          }
-        }, 3000); // 3 seconds
-
-        e.clearSelection();
       });
     })
 
@@ -765,8 +740,6 @@ export default defineComponent({
       profileFormSubmitting,
       settingsFormSubmitting,
       pwdFormSubmitting,
-      copyBtnRef,
-      copyBtnTxtRef,
       dateTimeFormats
     }
   }
