@@ -331,7 +331,7 @@
       "current-password": "Current Password",
       "new-password": "New Password",
       "confirm-password": "Confirm New Password",
-      "password-pattern": "You can use letters(A-z), numbers(0-9) and periods(.)",
+      "password-pattern": "You can use letters(A-z), numbers(0-9)",
       "personal-settings": "Personal Settings",
       "date-format": "Date Format",
       "time-zone": "Time Zone"

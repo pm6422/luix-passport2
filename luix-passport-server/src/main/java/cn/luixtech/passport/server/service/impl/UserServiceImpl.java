@@ -41,6 +41,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -87,6 +89,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private             MessageCreator        messageCreator;
     @Resource
     private             HttpServletRequest    httpServletRequest;
+    private             PasswordEncoder       passwordEncoder         = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     @Value("${spring.web.locale}")
     private             String                defaultLocale;
 
@@ -275,10 +278,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User changePassword(String id, String oldRawPassword, String newRawPassword) {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
-
         if (StringUtils.isNotEmpty(oldRawPassword)) {
-            Validate.isTrue(BCRYPT_PASSWORD_ENCODER.encode(oldRawPassword).equals(user.getPasswordHash()),
-                    messageCreator.getMessage("UE5008"));
+            try {
+                if (!passwordEncoder.matches(oldRawPassword, user.getPasswordHash())) {
+                    throw new IllegalArgumentException(messageCreator.getMessage("UE5008"));
+                }
+            } catch (Exception ex) {
+                throw new IllegalArgumentException(messageCreator.getMessage("UE5008"));
+            }
         }
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         userDao.update(user);

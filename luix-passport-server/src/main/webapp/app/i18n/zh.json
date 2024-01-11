@@ -334,7 +334,7 @@
       "current-password": "当前密码",
       "new-password": "新密码",
       "confirm-password": "确认新密码",
-      "password-pattern": "请使用字母(A-z)、数字(0-9)和点(.)",
+      "password-pattern": "请使用字母(A-z)、数字(0-9)",
       "personal-settings": "个人设置",
       "date-format": "日期格式",
       "time-zone": "时区"

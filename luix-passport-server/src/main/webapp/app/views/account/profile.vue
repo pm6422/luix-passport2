@@ -410,6 +410,7 @@
                           type="password"
                           class="form-control form-control-lg form-control-solid fw-semobold"
                           name="currentPassword"
+                          v-model="oldRawPassword"
                         />
                         <div class="fv-plugins-message-container">
                           <div class="fv-help-block">
@@ -428,6 +429,7 @@
                             type="password"
                             class="form-control form-control-lg form-control-solid fw-semobold"
                             name="newPassword"
+                            v-model="newRawPassword"
                           />
                           <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                             <KTIcon icon-name="eye-slash" icon-class="fs-1" />
@@ -461,11 +463,11 @@
                         <Field
                           type="password"
                           class="form-control form-control-lg form-control-solid fw-semobold"
-                          name="confirmpassword"
+                          name="confirmPassword"
                         />
                         <div class="fv-plugins-message-container">
                           <div class="fv-help-block">
-                            <ErrorMessage name="confirmpassword" />
+                            <ErrorMessage name="confirmPassword" />
                           </div>
                         </div>
                       </div>
@@ -578,14 +580,14 @@ export default defineComponent({
     const settingsFormSubmitting = ref<boolean>(false);
     const pwdFormSubmitting = ref<boolean>(false);
     const i18n = useI18n();
-
+    const oldRawPassword = ref("");
+    const newRawPassword = ref("");
 
     onMounted(() => {
       nextTick(() => {
         PasswordMeterComponent.bootstrap();
       });
     })
-
 
     const user = ref<IUser>({
       id: "",
@@ -672,7 +674,7 @@ export default defineComponent({
         newPassword: Yup.string()
           .required(i18n.t("validation.global.required"))
           .min(4, i18n.t("validation.global.min-length", { min: 4 })),
-        confirmpassword: Yup.string()
+        confirmPassword: Yup.string()
           .required(i18n.t("validation.global.required"))
           .oneOf([Yup.ref("newPassword"), null], i18n.t("validation.global.passwords-must-match")),
       })
@@ -680,18 +682,25 @@ export default defineComponent({
     const updatePwd = () => {
       // Activate indicator
       pwdFormSubmitting.value = true;
-      setTimeout(() => {
+      AccountService.updatePassword({'oldRawPassword': oldRawPassword.value, 'newRawPassword': newRawPassword.value})
+      .then(data => {
+        // Success
+        setTimeout(() => {
+          pwdFormSubmitting.value = false;
+          Swal.fire({
+            text: i18n.t("msg.global.update-password-successfully"),
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000,
+            heightAuto: false,
+          }).then(() => {
+          });
+        }, 1000);
+      })
+      .catch(error => {
+        // errorMsg.value = error;
         pwdFormSubmitting.value = false;
-        Swal.fire({
-          text: i18n.t("msg.global.update-password-successfully"),
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1000,
-          heightAuto: false,
-        }).then(() => {
-          pwdFormInvisible.value = false;
-        });
-      }, 1000);
+      });
     }
     return {
       user,
@@ -708,7 +717,9 @@ export default defineComponent({
       profileFormSubmitting,
       settingsFormSubmitting,
       pwdFormSubmitting,
-      dateTimeFormats
+      dateTimeFormats,
+      oldRawPassword,
+      newRawPassword
     }
   }
 });

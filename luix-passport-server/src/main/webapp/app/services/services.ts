@@ -106,6 +106,10 @@ export class AccountService {
   public static update(model: IUser): Promise<any> {
     return ApiService.put("api/accounts/user", model);
   }
+
+  public static updatePassword(model: any): Promise<any> {
+    return ApiService.put("api/accounts/password", model);
+  }
 }
 
 export class UserService {
