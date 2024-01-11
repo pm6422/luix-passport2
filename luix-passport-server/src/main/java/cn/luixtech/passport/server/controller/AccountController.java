@@ -84,7 +84,6 @@ public class AccountController {
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
-        // For security reason
         User currentUser = Optional.ofNullable(userDao.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         Validate.isTrue(StringUtils.isEmpty(domain.getId()) || currentUser.getId().equals(domain.getId()), "Invalid user ID!");
         domain.setId(currentUser.getId());

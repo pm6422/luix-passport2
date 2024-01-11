@@ -562,7 +562,7 @@ import type { IUserSettings } from '@/domain/UserSettings';
 import OneOrMore  from '@/components/utilities/one-or-more.vue'
 import { useI18n } from "vue-i18n";
 import { DateTimeUtils, dateTimeFormats } from "@/helpers/DateTimeUtils";
-import { AccountService } from "@/services/services";
+import {AccountService, UserService} from "@/services/services";
 
 export default defineComponent({
   name: "my-profile",
@@ -614,17 +614,25 @@ export default defineComponent({
     const saveUser = () => {
       // Activate indicator
       profileFormSubmitting.value = true;
-      setTimeout(() => {
-        profileFormSubmitting.value = false;
-        Swal.fire({
-          text: i18n.t("msg.global.saved-successfully"),
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1000,
-          heightAuto: false,
-        }).then(() => {
+      AccountService.update(user.value)
+        .then(data => {
+          // Success
+          setTimeout(() => {
+            profileFormSubmitting.value = false;
+            Swal.fire({
+              text: i18n.t("msg.global.saved-successfully"),
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1000,
+              heightAuto: false,
+            }).then(() => {
+            });
+          }, 1000);
+        })
+        .catch(error => {
+          // errorMsg.value = error;
+          profileFormSubmitting.value = false;
         });
-      }, 1000);
     }
     const userSettings = ref<IUserSettings>({
       id: "101",
