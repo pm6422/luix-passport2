@@ -138,6 +138,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public ManagedUser findById(String id) {
+        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        user.setPasswordHash("*");
+        return ManagedUser.of(user, findRoles(id));
+    }
+
+    @Override
+    public ProfileScopeUser findByUsername(String username) {
+        User user = Optional.ofNullable(userDao.fetchOneByUsername(username)).orElseThrow(() -> new DataNotFoundException(username));
+        return ProfileScopeUser.of(user.getUsername(), user.getEmail(), findRoles(user.getId()));
+    }
+
+    @Override
     public Set<String> findRoles(String userId) {
         return dslContext.select(Tables.USER_ROLE.ROLE)
                 .from(Tables.USER_ROLE)
@@ -318,19 +331,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setActivationCode(null);
         userDao.update(user);
         log.info("Activated user by activation code {}", activationCode);
-    }
-
-    @Override
-    public ManagedUser findById(String id) {
-        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
-        user.setPasswordHash("*");
-        return ManagedUser.of(user, findRoles(id));
-    }
-
-    @Override
-    public ProfileScopeUser findByUsername(String username) {
-        User user = Optional.ofNullable(userDao.fetchOneByUsername(username)).orElseThrow(() -> new DataNotFoundException(username));
-        return ProfileScopeUser.of(user.getUsername(), user.getEmail(), findRoles(user.getId()));
     }
 
     @Override

@@ -81,6 +81,12 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
     }
 
+    @Operation(summary = "find current user")
+    @GetMapping("/api/accounts/user")
+    public ResponseEntity<ManagedUser> getCurrentSignedInUser() {
+        return ResponseEntity.ok(userService.findById(AuthUtils.getCurrentUserId()));
+    }
+
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {

@@ -14,6 +14,10 @@ import java.util.Set;
 public interface UserService {
     Optional<User> findOne(String loginName);
 
+    ManagedUser findById(String id);
+
+    ProfileScopeUser findByUsername(String username);
+
     Set<String> findRoles(String userId);
 
     Set<String> findTeamIds(String userId);
@@ -33,10 +37,6 @@ public interface UserService {
     void resetPassword(String resetCode, String newRawPassword);
 
     Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated);
-
-    ManagedUser findById(String id);
-
-    ProfileScopeUser findByUsername(String username);
 
     void deleteById(String id);
 
