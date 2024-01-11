@@ -4,6 +4,7 @@
 package cn.luixtech.passport.server.persistence;
 
 
+import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
@@ -25,6 +26,11 @@ import cn.luixtech.passport.server.persistence.tables.UserRole;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
+
+    /**
+     * The table <code>luix-passport.data_dict</code>.
+     */
+    public static final DataDict DATA_DICT = DataDict.DATA_DICT;
 
     /**
      * The table <code>luix-passport.oauth2_authorization</code>.

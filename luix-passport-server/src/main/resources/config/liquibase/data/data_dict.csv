@@ -1,0 +1,5 @@
+id;category_code;dict_code;enabled
+13;role;ROLE_ANONYMOUS;true
+14;role;ROLE_USER;true
+15;role;ROLE_ADMIN;true
+16;role;ROLE_DEVELOPER;true

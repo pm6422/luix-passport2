@@ -290,6 +290,29 @@
                 separator=";"
                 tableName="user_preference">
         </loadData>
+        <createTable tableName="data_dict">
+            <column name="id" type="varchar(20)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="category_code" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_code" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dict_name" type="varchar(20)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="desc" type="VARCHAR(256)"/>
+            <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <loadData
+                file="config/liquibase/data/data_dict.csv"
+                separator=";"
+                tableName="data_dict">
+        </loadData>
 
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="team_user" constraintName="fk_team_user_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fk_user_role_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>

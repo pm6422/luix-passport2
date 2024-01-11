@@ -4,6 +4,7 @@
 package cn.luixtech.passport.server.persistence;
 
 
+import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
@@ -18,6 +19,7 @@ import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.UserPhoto;
 import cn.luixtech.passport.server.persistence.tables.UserPreference;
 import cn.luixtech.passport.server.persistence.tables.UserRole;
+import cn.luixtech.passport.server.persistence.tables.records.DataDictRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationConsentRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationRecord;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2RegisteredClientRecord;
@@ -51,6 +53,7 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
+    public static final UniqueKey<DataDictRecord> KEY_DATA_DICT_PRIMARY = Internal.createUniqueKey(DataDict.DATA_DICT, DSL.name("KEY_data_dict_PRIMARY"), new TableField[] { DataDict.DATA_DICT.ID }, true);
     public static final UniqueKey<Oauth2AuthorizationRecord> KEY_OAUTH2_AUTHORIZATION_PRIMARY = Internal.createUniqueKey(Oauth2Authorization.OAUTH2_AUTHORIZATION, DSL.name("KEY_oauth2_authorization_PRIMARY"), new TableField[] { Oauth2Authorization.OAUTH2_AUTHORIZATION.ID }, true);
     public static final UniqueKey<Oauth2AuthorizationConsentRecord> KEY_OAUTH2_AUTHORIZATION_CONSENT_PRIMARY = Internal.createUniqueKey(Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT, DSL.name("KEY_oauth2_authorization_consent_PRIMARY"), new TableField[] { Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT.REGISTERED_CLIENT_ID, Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT.PRINCIPAL_NAME }, true);
     public static final UniqueKey<Oauth2RegisteredClientRecord> KEY_OAUTH2_REGISTERED_CLIENT_PRIMARY = Internal.createUniqueKey(Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT, DSL.name("KEY_oauth2_registered_client_PRIMARY"), new TableField[] { Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT.ID }, true);

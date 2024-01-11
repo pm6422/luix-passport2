@@ -4,6 +4,7 @@
 package cn.luixtech.passport.server.persistence;
 
 
+import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
@@ -39,6 +40,11 @@ public class LuixPassport extends SchemaImpl {
      * The reference instance of <code>luix-passport</code>
      */
     public static final LuixPassport LUIX_PASSPORT = new LuixPassport();
+
+    /**
+     * The table <code>luix-passport.data_dict</code>.
+     */
+    public final DataDict DATA_DICT = DataDict.DATA_DICT;
 
     /**
      * The table <code>luix-passport.oauth2_authorization</code>.
@@ -126,6 +132,7 @@ public class LuixPassport extends SchemaImpl {
     @Override
     public final List<Table<?>> getTables() {
         return Arrays.asList(
+            DataDict.DATA_DICT,
             Oauth2Authorization.OAUTH2_AUTHORIZATION,
             Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT,
             Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT,
