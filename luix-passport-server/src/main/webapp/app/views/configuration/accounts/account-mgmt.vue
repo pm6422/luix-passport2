@@ -451,21 +451,21 @@
                     <div class="form-text mb-2" v-text="$t('msg.global.support-multiple-tip')"></div>
                     <!--end::Hint-->
                     <el-form-item prop="roles">
-  <!--                    <el-select-->
-  <!--                      v-bind:placeholder="$t('form.global.multi-select')"-->
-  <!--                      name="roles"-->
-  <!--                      v-model="model.roles"-->
-  <!--                      multiple-->
-  <!--                      collapse-tags-->
-  <!--                      collapse-tags-tooltip-->
-  <!--                      :max-collapse-tags="2"-->
-  <!--                      clearable-->
-  <!--                    >-->
-  <!--                      <el-option v-for="(role, key) in data.roles" :key="key" :value="role.code" :label="role.code">{{ role.code }}</el-option>-->
-  <!--                    </el-select>-->
+<!--                      <el-select-->
+<!--                        v-bind:placeholder="$t('form.global.multi-select')"-->
+<!--                        name="roles"-->
+<!--                        v-model="modalData.roles"-->
+<!--                        multiple-->
+<!--                        collapse-tags-->
+<!--                        collapse-tags-tooltip-->
+<!--                        :max-collapse-tags="2"-->
+<!--                        clearable-->
+<!--                      >-->
+<!--                        <el-option v-for="(role, key) in enabledRoles" :key="key" :value="role.dictCode" :label="role.dictCode">{{ role.dictCode }}</el-option>-->
+<!--                      </el-select>-->
 
                       <el-checkbox-group v-model="modalData.roles">
-                        <el-checkbox-button v-for="(item, key) in data.roles" :label="item.code" :key="key"></el-checkbox-button>
+                        <el-checkbox-button v-for="(item, key) in enabledRoles" :label="item.dictCode" :key="key"></el-checkbox-button>
                       </el-checkbox-group>
                     </el-form-item>
                   </div>
@@ -528,7 +528,6 @@ import type { Column } from "@/components/kt-datatable/domain/Column";
 import arraySort from "array-sort";
 import { useI18n } from "vue-i18n";
 import data from "@/data/data";
-import fakers from "@/data/fakers";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import YesOrNo  from '@/components/utilities/yes-or-no.vue';
 import OneOrMore  from '@/components/utilities/one-or-more.vue';
@@ -542,7 +541,7 @@ import { cloneDeep, remove } from "lodash";
 import Abbreviation  from '@/components/utilities/abbreviation.vue';
 import type {IDataDict} from "@/main/webapp/app/domain/DataDict";
 import {useRoute, useRouter} from "vue-router";
-import { UserService } from "@/services/services";
+import { UserService, DataDictService } from "@/services/services";
 import {TableHelper} from "@/helpers/TableHelper";
 
 export default defineComponent({
@@ -575,6 +574,12 @@ export default defineComponent({
     const formSubmitting = ref<boolean>(false);
     const operation = ref("update");
     const collapseDetails = ref(false);
+
+    const enabledRoles = ref<Array<IDataDict>>([]);
+
+    DataDictService.lookup("Role", true).then(r => {
+      enabledRoles.value = r.data;
+    });
 
     const emptyModalData : IUser = {
       id: "",
@@ -791,10 +796,10 @@ export default defineComponent({
       formSubmitting,
       operation,
       DateTimeUtils,
-      fakers,
       updateTableData,
       currentLanguage,
-      changePage
+      changePage,
+      enabledRoles
     }
   },
 });
