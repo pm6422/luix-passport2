@@ -1,6 +1,7 @@
 import axios from 'axios';
 import ApiService from "@/services/ApiService";
 import type { IDataDict } from '@/domain/DataDict';
+import type { IUser } from '@/domain/User';
 
 export class LocalDataLoaderService {
   constructor() {
@@ -62,11 +63,11 @@ export class DataDictService {
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {
-    return ApiService.query("api/data-dicts", { params: {page: 0, size: 2000, enabled: enabled} });
+    return ApiService.query("api/data-dicts", { params: { page: 0, size: 2000, enabled: enabled } });
   }
 
   public static lookup(categoryCode: string, enabled: boolean | null = null): Promise<any> {
-    return ApiService.query("api/data-dicts", { params: {page: 0, size: 2000, categoryCode: categoryCode, enabled: enabled} });
+    return ApiService.query("api/data-dicts", { params: { page: 0, size: 2000, categoryCode: categoryCode, enabled: enabled } });
   }
 
   public static findById(id: String): Promise<any> {
@@ -94,6 +95,19 @@ export class DataDictService {
   }
 }
 
+export class AccountService {
+  constructor() {
+  }
+
+  public static getCurrentAccount(): Promise<any> {
+    return ApiService.query("open-api/accounts/user", null);
+  }
+
+  public static update(model: IUser): Promise<any> {
+    return ApiService.put("api/accounts/user", model);
+  }
+}
+
 export class UserService {
   constructor() {
   }
@@ -103,18 +117,18 @@ export class UserService {
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {
-    return ApiService.query("api/users", { params: {page: 0, size: 2000, enabled: enabled} });
+    return ApiService.query("api/users", { params: { page: 0, size: 2000, enabled: enabled } });
   }
 
   public static findById(id: String): Promise<any> {
     return ApiService.query("api/users/" + id, null);
   }
 
-  public static create(model: IDataDict): Promise<any> {
+  public static create(model: IUser): Promise<any> {
     return ApiService.post("api/users", model);
   }
 
-  public static update(model: IDataDict): Promise<any> {
+  public static update(model: IUser): Promise<any> {
     return ApiService.put("api/users", model);
   }
 

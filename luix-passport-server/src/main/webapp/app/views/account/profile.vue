@@ -55,7 +55,7 @@
                       class="image-input-wrapper w-125px h-125px"
                       :style="{
                         backgroundImage: `url(${getAssetPath(
-                          user.avatar
+                          'media/avatars/blank.png'
                         )})`,
                       }"
                     >
@@ -190,41 +190,6 @@
                   <div class="fv-plugins-message-container">
                     <div class="fv-help-block">
                       <ErrorMessage name="mobileNo" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--end::Input group-->
-
-              <!--begin::Input group-->
-              <div class="row mb-6">
-                <label class="col-lg-4 col-form-label required fw-semobold" v-text="$t('form.profile.gender')"></label>
-                <div class="col-lg-8 fv-row">
-                  <div class="form-check form-check-custom form-check-solid form-check-lg">
-                    <div class="d-flex align-items-center">
-                      <Field
-                        name="gender"
-                        class="form-check-input"
-                        type="radio"
-                        value="male"
-                        v-model="user.gender"
-                      />
-                      <label class="form-check-label" v-text="$t('form.profile.male')"></label>
-                    </div>
-                    <div class="d-flex px-5 align-items-center">
-                      <Field
-                        name="gender"
-                        class="form-check-input"
-                        type="radio"
-                        value="female"
-                        v-model="user.gender"
-                      />
-                      <label class="form-check-label" v-text="$t('form.profile.female')"></label>
-                    </div>
-                  </div>
-                  <div class="fv-plugins-message-container">
-                    <div class="fv-help-block">
-                      <ErrorMessage name="gender" />
                     </div>
                   </div>
                 </div>
@@ -597,7 +562,7 @@ import type { IUserSettings } from '@/domain/UserSettings';
 import OneOrMore  from '@/components/utilities/one-or-more.vue'
 import { useI18n } from "vue-i18n";
 import { DateTimeUtils, dateTimeFormats } from "@/helpers/DateTimeUtils";
-
+import { AccountService } from "@/services/services";
 
 export default defineComponent({
   name: "my-profile",
@@ -614,33 +579,33 @@ export default defineComponent({
     const pwdFormSubmitting = ref<boolean>(false);
     const i18n = useI18n();
 
+
     onMounted(() => {
       nextTick(() => {
         PasswordMeterComponent.bootstrap();
       });
     })
 
+
     const user = ref<IUser>({
-      id: "101",
-      username: "louis",
-      firstName: "Louis",
-      lastName: "Lau",
-      email: "louis@126.com",
-      mobileNo: "17991914521",
-      avatar: "media/avatars/300-0.jpg",
-      gender: "male",
-      roles: ['Admin', 'Developer'],
-      lastLogin: "2023-03-09T02:30:04.544Z",
-      joinedTime: "2023-03-09T02:30:04.544Z",
-      enabled: true,
-    })
+      id: "",
+      username: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      mobileNo: "",
+      enabled: true
+    });
+    AccountService.getCurrentAccount().then(r => {
+      user.value = r.data;
+    });
+
     const profileValidationSchema = computed(()=> {
       return Yup.object().shape({
         firstName: Yup.string().required(i18n.t("validation.global.required")),
         lastName: Yup.string().required(i18n.t("validation.global.required")),
         email: Yup.string().required(i18n.t("validation.global.required")),
         mobileNo: Yup.string().required(i18n.t("validation.global.required")),
-        gender: Yup.string().required(i18n.t("validation.global.required")),
       })
     })
     const removeImage = () => {
