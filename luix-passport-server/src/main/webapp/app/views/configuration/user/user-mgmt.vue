@@ -670,9 +670,6 @@ export default defineComponent({
         mobileNo: [
           { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
         ],
-        gender: [
-          { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
-        ],
         roles: [
           { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
         ]
