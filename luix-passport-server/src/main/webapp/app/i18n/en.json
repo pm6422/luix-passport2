@@ -659,6 +659,7 @@
       "user": "User",
       "gender": "Gender",
       "roles": "Roles",
+      "authority": "Authority",
       "authorities": "Authorities",
       "last-login-time": "Last Login at",
       "joined-time": "Joined at",

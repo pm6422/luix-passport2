@@ -264,7 +264,7 @@
                 <!--end::Row-->
 
                 <!--begin::Title-->
-                <h5 class="mt-5" v-text="$t('form.account.authorities')"></h5>
+                <h5 class="mt-5" v-text="$t('form.account.authority')"></h5>
                 <!--end::Title-->
 
                 <!--begin::Row-->

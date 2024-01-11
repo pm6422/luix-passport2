@@ -662,6 +662,7 @@
       "user": "用户",
       "gender": "性别",
       "roles": "角色",
+      "authority": "权限",
       "authorities": "权限",
       "last-login-time": "上次访问时间",
       "joined-time": "注册时间",
