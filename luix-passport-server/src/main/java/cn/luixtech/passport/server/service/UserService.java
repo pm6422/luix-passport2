@@ -26,7 +26,9 @@ public interface UserService {
 
     User insert(User domain, Set<String> authorities, String rawPassword, boolean permanentAccount);
 
-    User update(User domain, Set<String> authorities);
+    User update(User domain);
+
+    User update(User domain, Set<String> roles);
 
     void activate(String activationCode);
 

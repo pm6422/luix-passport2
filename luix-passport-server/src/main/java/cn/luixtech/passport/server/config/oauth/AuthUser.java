@@ -26,6 +26,9 @@ public class AuthUser extends User {
     private              String      photoUrl;
     @Getter
     private              String      locale;
+    /**
+     * Type is String
+     */
     @Getter
     private              String      modifiedTime;
     @Getter

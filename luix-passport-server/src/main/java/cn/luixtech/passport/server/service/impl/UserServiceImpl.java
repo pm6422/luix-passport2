@@ -14,6 +14,7 @@ import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.service.UserRoleService;
 import cn.luixtech.passport.server.service.UserService;
+import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
@@ -224,7 +225,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User update(User domain, Set<String> authorities) {
+    public User update(User domain) {
         User existingOne = Optional.ofNullable(userDao.findById(domain.getId())).orElseThrow(() -> new DataNotFoundException(domain.getId()));
 
         int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
@@ -246,20 +247,28 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingOne.setMobileNo(domain.getMobileNo());
         existingOne.setEnabled(domain.getEnabled());
         existingOne.setRemarks(domain.getRemarks());
+        existingOne.setModifiedBy(AuthUtils.getCurrentUsername());
+        existingOne.setModifiedTime(LocalDateTime.now());
 
         userDao.update(existingOne);
         log.debug("Updated user: {}", domain);
+        return existingOne;
+    }
 
-        if (CollectionUtils.isNotEmpty(authorities)) {
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public User update(User domain, Set<String> roles) {
+        User updated = update(domain);
+        if (CollectionUtils.isNotEmpty(roles)) {
             // first delete user authorities
             userRoleService.deleteByUserId(domain.getId());
 
             // then insert user authorities
-            List<UserRole> userAuthorities = userRoleService.generate(domain.getId(), authorities);
-            userRoleDao.insert(userAuthorities);
-            log.info("Updated user authorities: {}", userAuthorities);
+            List<UserRole> userRoles = userRoleService.generate(domain.getId(), roles);
+            userRoleDao.insert(userRoles);
+            log.info("Updated user authorities: {}", userRoles);
         }
-        return existingOne;
+        return updated;
     }
 
     @Override

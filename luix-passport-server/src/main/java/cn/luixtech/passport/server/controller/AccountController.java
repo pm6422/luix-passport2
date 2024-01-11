@@ -92,13 +92,7 @@ public class AccountController {
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
         User currentUser = Optional.ofNullable(userDao.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         Validate.isTrue(StringUtils.isEmpty(domain.getId()) || currentUser.getId().equals(domain.getId()), "Invalid user ID!");
-        domain.setId(currentUser.getId());
-        domain.setUsername(currentUser.getUsername());
-        domain.setEnabled(currentUser.getEnabled());
-        domain.setActivated(currentUser.getActivated());
-        domain.setProfilePhotoEnabled(currentUser.getProfilePhotoEnabled());
-
-        userDao.update(domain);
+        userService.update(domain);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 
