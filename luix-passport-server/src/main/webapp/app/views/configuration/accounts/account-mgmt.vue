@@ -527,7 +527,6 @@ import type { Sort } from "@/components/kt-datatable/domain/Sort";
 import type { Column } from "@/components/kt-datatable/domain/Column";
 import arraySort from "array-sort";
 import { useI18n } from "vue-i18n";
-import data from "@/data/data";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import YesOrNo  from '@/components/utilities/yes-or-no.vue';
 import OneOrMore  from '@/components/utilities/one-or-more.vue';
@@ -770,7 +769,6 @@ export default defineComponent({
     loadAll();
     
     return {
-      data,
       tableData,
       initialTableData,
       tableTotalItems,
