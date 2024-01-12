@@ -60,7 +60,7 @@
 <script lang="ts">
 import { getAssetPath } from "@/helpers/assets";
 import { defineComponent, onMounted, nextTick } from "vue";
-import LayoutService from "@/services/LayoutService";
+import LayoutService from "@/services/layout-service";
 import { useBodyStore } from "@/stores/body";
 import { useAppInfoStore } from "@/stores/app-info-store";
 import { reinitializeComponents } from "@/plugins/keenthemes";

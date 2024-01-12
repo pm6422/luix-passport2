@@ -46,7 +46,7 @@
 import { getAssetPath, getIllustrationsPath } from "@/helpers/assets";
 import { defineComponent, onMounted } from "vue";
 import { useBodyStore } from "@/stores/body";
-import LayoutService from "@/services/LayoutService";
+import LayoutService from "@/services/layout-service";
 import { themeMode } from "@/helpers/config";
 
 export default defineComponent({

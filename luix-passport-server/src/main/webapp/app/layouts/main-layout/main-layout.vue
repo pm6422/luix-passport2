@@ -51,7 +51,7 @@ import KTScrollTop from "@/layouts/main-layout/extras/scroll-top.vue";
 // import KTCustomize from "@/layouts/main-layout/extras/Customize.vue";
 import { useRoute } from "vue-router";
 import { reinitializeComponents } from "@/plugins/keenthemes";
-import LayoutService from "@/services/LayoutService";
+import LayoutService from "@/services/layout-service";
 import { toolbarDisplay } from "@/helpers/config";
 import Ribbon from "@/components/ribbon/ribbon.vue";
 
