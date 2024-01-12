@@ -17,10 +17,10 @@ import { initVeeValidate } from "@/plugins/vee-validate";
 import { initKtIcon } from "@/plugins/keenthemes";
 import { AppInfoService } from '@/services/services';
 import { useAppInfoStore } from "@/stores/app-info-store";
+import { useBodyStore } from "@/stores/body";
 import { LanguageHelper } from "@/helpers/LanguageHelper";
 import { ElMessage } from 'element-plus';
 import axios from 'axios';
-import { useBodyStore } from "@/stores/body";
 import DayjsConfig from '@/config/dayjs-config';
 import "@/plugins/prismjs";
 
@@ -38,7 +38,8 @@ AppInfoService.load().then(result => {
   app.use(ElementPlus);
 
   // It must be put behind createPinia()
-  setAppInfoStore(result);
+  const appInfoStore = useAppInfoStore();
+  appInfoStore.setAppInfoStore(result);
 
   // Init services
   ApiService.init(app);
@@ -64,17 +65,6 @@ function createVueI18n() {
     globalInjection: true,
     messages: { zh, en }
   });
-}
-
-function setAppInfoStore(result) {
-  const appInfoStore = useAppInfoStore();
-
-  appInfoStore.ribbonProfile = result['ribbonProfile'];
-  appInfoStore.apiDocsEnabled = result['apiDocsEnabled'];
-  if(result['build']) {
-    appInfoStore.appName = result['build']['name'];
-    appInfoStore.appVersion = result['build']['version'];
-  }
 }
 
 function setAxiosInterceptors() {

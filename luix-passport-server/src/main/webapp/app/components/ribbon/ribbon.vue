@@ -1,6 +1,6 @@
 <template>
-  <div class="card-header ribbon ribbon-top border-gray-300" v-if="appInfoStore.ribbonProfile">
-    <div class="ribbon-label bg-light-info fw-bold text-dark">{{ appInfoStore.ribbonProfile }} {{$t('form.global.env')}}</div>
+  <div class="card-header ribbon ribbon-top border-gray-300" v-if="appInfoStore.getRibbonProfile()">
+    <div class="ribbon-label bg-light-info fw-bold text-dark">{{ appInfoStore.getRibbonProfile() }} {{$t('form.global.env')}}</div>
   </div>
 </template>
 

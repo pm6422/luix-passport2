@@ -5,10 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { useAppInfoStore } from "@/stores/app-info-store";
-
-const appInfoStore = useAppInfoStore();
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

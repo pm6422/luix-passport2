@@ -62,7 +62,6 @@ import { getAssetPath } from "@/helpers/assets";
 import { defineComponent, onMounted, nextTick } from "vue";
 import LayoutService from "@/services/layout-service";
 import { useBodyStore } from "@/stores/body";
-import { useAppInfoStore } from "@/stores/app-info-store";
 import { reinitializeComponents } from "@/plugins/keenthemes";
 import LanguageFooter from "@/components/language/language-footer.vue"
 import Ribbon from "@/components/ribbon/ribbon.vue";
@@ -79,7 +78,6 @@ export default defineComponent({
   },
   setup() {
     const store = useBodyStore();
-    const appInfoStore = useAppInfoStore();
     const i18n = useI18n();
 
     onMounted(() => {
@@ -104,7 +102,6 @@ export default defineComponent({
 
     return {
       getAssetPath,
-      appInfoStore,
       typedOptions
     };
   },
