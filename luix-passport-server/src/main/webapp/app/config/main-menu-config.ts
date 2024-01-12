@@ -26,7 +26,11 @@ const MainMenuConfig: Array<MenuItem> = [
           {
             heading: "menu.user-authority.users.title",
             route: "/user-authority/users",
-          }
+          },
+          {
+            heading: "menu.user-authority.teams.title",
+            route: "/user-authority/teams",
+          },
         ]
       },
     ],

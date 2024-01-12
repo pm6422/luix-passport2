@@ -27,11 +27,20 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: "user-mgmt",
+        name: "users",
         path: "/user-authority/users",
         component: () => import("@/views/admin/user-authority/users.vue"),
         meta: {
           pageTitle: "menu.user-authority.users.title",
+          breadcrumbs: ["menu.user-authority.title"],
+        },
+      },
+      {
+        name: "teams",
+        path: "/user-authority/teams",
+        component: () => import("@/views/admin/user-authority/teams.vue"),
+        meta: {
+          pageTitle: "menu.user-authority.teams.title",
           breadcrumbs: ["menu.user-authority.title"],
         },
       },

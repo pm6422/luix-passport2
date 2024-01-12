@@ -59,7 +59,10 @@
     "user-authority": {
       "title": "用户权限",
       "users": {
-        "title": "用户管理"
+        "title": "用户"
+      },
+      "teams": {
+        "title": "团队"
       }
     },
     "configuration": {
