@@ -91,7 +91,8 @@ function setAxiosInterceptors() {
   //       // store.logout();
   //       if (!url.endsWith('api/account') && !url.endsWith('api/authenticate')) {
   //         // Ask for a new authentication
-  //         // window.location.reload();
+  //         // go to login page if failed to authenticate
+  //           window.location.href = '/login';
   //         return;
   //       }
   //     }
