@@ -28,7 +28,7 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   function verifyAuth() {
-    return ApiService.query("open-api/accounts/user", {})
+    return ApiService.query("api/accounts/user", {})
       .then(({ data }) => {
         setAuth(data);
       })
