@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ApiService from "@/services/ApiService";
+import ApiService from "@/services/api-service";
 import type { IDataDict } from '@/domain/DataDict';
 import type { IUser } from '@/domain/User';
 

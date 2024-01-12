@@ -10,7 +10,7 @@ import zh from "@/i18n/zh.json";
 import router from "@/config/router";
 
 //imports for app initialization
-import ApiService from "@/services/ApiService";
+import ApiService from "@/services/api-service";
 import { initApexCharts } from "@/plugins/apexcharts";
 import { initInlineSvg } from "@/plugins/inline-svg";
 import { initVeeValidate } from "@/plugins/vee-validate";
