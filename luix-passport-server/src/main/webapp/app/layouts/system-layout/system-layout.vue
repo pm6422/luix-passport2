@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from "vue";
-import { useBodyStore } from "@/stores/body";
+import { useBodyStore } from "@/stores/body-store";
 
 export default defineComponent({
   name: "system-layout",

@@ -17,7 +17,7 @@ import { initVeeValidate } from "@/plugins/vee-validate";
 import { initKtIcon } from "@/plugins/keenthemes";
 import { AppInfoService } from '@/services/services';
 import { useAppInfoStore } from "@/stores/app-info-store";
-import { useBodyStore } from "@/stores/body";
+import { useBodyStore } from "@/stores/body-store";
 import { LanguageHelper } from "@/helpers/LanguageHelper";
 import { ElMessage } from 'element-plus';
 import axios from 'axios';
@@ -38,8 +38,7 @@ AppInfoService.load().then(result => {
   app.use(ElementPlus);
 
   // It must be put behind createPinia()
-  const appInfoStore = useAppInfoStore();
-  appInfoStore.setAppInfoStore(result);
+  useAppInfoStore().setAppInfoStore(result);
 
   // Init services
   ApiService.init(app);

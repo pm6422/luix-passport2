@@ -36,11 +36,9 @@ export const useBodyStore = defineStore("body", () => {
   }
 
   return {
-    getClasses,
     addBodyClassname,
     removeBodyClassName,
     addBodyAttribute,
-    removeBodyAttribute,
     addClassname,
   };
 });

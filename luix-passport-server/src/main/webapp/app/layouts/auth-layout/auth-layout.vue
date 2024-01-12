@@ -61,7 +61,7 @@
 import { getAssetPath } from "@/helpers/assets";
 import { defineComponent, onMounted, nextTick } from "vue";
 import LayoutService from "@/services/layout-service";
-import { useBodyStore } from "@/stores/body";
+import { useBodyStore } from "@/stores/body-store";
 import { reinitializeComponents } from "@/plugins/keenthemes";
 import LanguageFooter from "@/components/language/language-footer.vue"
 import Ribbon from "@/components/ribbon/ribbon.vue";

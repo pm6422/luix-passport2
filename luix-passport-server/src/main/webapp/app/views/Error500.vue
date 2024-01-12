@@ -45,7 +45,7 @@
 <script lang="ts">
 import { getAssetPath, getIllustrationsPath } from "@/helpers/assets";
 import { defineComponent, onMounted } from "vue";
-import { useBodyStore } from "@/stores/body";
+import { useBodyStore } from "@/stores/body-store";
 import LayoutService from "@/services/layout-service";
 import { themeMode } from "@/helpers/config";
 

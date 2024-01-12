@@ -9,7 +9,7 @@ import { defineComponent, nextTick, onBeforeMount, onMounted, computed } from "v
 import { RouterView } from "vue-router";
 import { useConfigStore } from "@/stores/config-store.js";
 import { useThemeStore } from "@/stores/theme";
-import { useBodyStore } from "@/stores/body";
+import { useBodyStore } from "@/stores/body-store";
 import { themeConfigValue } from "@/helpers/config";
 import { initializeComponents } from "@/plugins/keenthemes";
 import { useI18n } from "vue-i18n";

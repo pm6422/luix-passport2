@@ -1,6 +1,6 @@
 import objectPath from "object-path";
 import { config } from "@/helpers/config";
-import { useBodyStore } from "@/stores/body";
+import { useBodyStore } from "@/stores/body-store";
 import { useConfigStore } from "@/stores/config-store";
 
 class LayoutService {
