@@ -519,34 +519,6 @@
     </div>
   </div>
   <!--end::Row-->
-
-  <div class="d-flex flex-column flex-center text-center">
-    <div class="card card-flush w-lg-550px w-md-100 py-5">
-      <div class="card-body py-15 py-lg-20">
-        <div class="mb-10">
-          <a href="http://passport.luixtech.cn">
-            <img alt="logo" class="h-40px" src="http://passport.luixtech.cn/assets/media/logos/logo-text.svg"/>
-          </a>
-        </div>
-        <div class="mb-10">
-          <img alt="vote-logo" class="h-125px" src="http://passport.luixtech.cn/assets/media/email/icon-positive-vote-1.svg"/>
-        </div>
-        <h1 class="fw-bolder text-gray-900 mb-10">Verify your email</h1>
-        <div class="fs-5 mb-1">
-          <span class="fw-bold text-gray-800">Hey Louis,</span>
-        </div>
-        <div class="fs-5 mb-15">
-          <span class="fw-semibold text-gray-800">Thanks for registering for an account on Luix Passport! Before we get started, we just need to confirm that this is you. Click below to verify your email address:</span>
-        </div>
-        <div class="mb-10">
-          <a href="../../demo1/dist/index.html" class="btn btn-lg btn-primary hover-elevate-down">Verify</a>
-        </div>
-      </div>
-      <div class="fw-semibold">
-        Sent by <a href="http://passport.luixtech.cn">Luix Passport</a>
-      </div>
-    </div>
-  </div>
 </template>
 <script lang="ts">
 import { getAssetPath } from "@/helpers/assets";

@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
-        name: "my-profile",
+        name: "profile",
         path: "/account/profile",
         component: () => import("@/views/account/profile.vue"),
         meta: {
