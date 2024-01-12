@@ -190,15 +190,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
   const configStore = useConfigStore();
-  // const { t, te } = useI18n();
-
-  // var tilte = to.meta.pageTitle;
-  // if (te(to.meta.pageTitle)) {
-  //   tilte = t(to.meta.pageTitle);
-  // }
-
-  // // set current page view title
-  // document.title = `${tilte} | ${import.meta.env.VITE_APP_NAME}`;
 
   // reset config to initial state
   configStore.resetLayoutConfig();
