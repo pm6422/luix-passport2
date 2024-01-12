@@ -110,7 +110,7 @@ function setAxiosInterceptors() {
 
     if(error.response.data.message) {
       // show form validation error
-      ElMessage.error({message: error.response.data.message, showClose: true, duration: 6000});
+      ElMessage.error({ message: error.response.data.message, showClose: true, duration: 6000 });
     }
     return Promise.reject(error);
   });
