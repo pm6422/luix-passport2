@@ -58,8 +58,8 @@
     },
     "user-authority": {
       "title": "User Authority",
-      "user-management": {
-        "title": "User Management"
+      "users": {
+        "title": "Users"
       }
     },
     "configuration": {

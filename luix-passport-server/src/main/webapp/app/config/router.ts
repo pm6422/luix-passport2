@@ -27,10 +27,10 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         name: "user-mgmt",
-        path: "/user-authority/user-mgmt",
-        component: () => import("@/views/admin/user-authority/user-mgmt.vue"),
+        path: "/user-authority/users",
+        component: () => import("@/views/admin/user-authority/users.vue"),
         meta: {
-          pageTitle: "menu.user-authority.user-management.title",
+          pageTitle: "menu.user-authority.users.title",
           breadcrumbs: ["menu.user-authority.title"],
         },
       },

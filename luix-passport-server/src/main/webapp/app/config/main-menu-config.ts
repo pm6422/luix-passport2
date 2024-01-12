@@ -24,8 +24,8 @@ const MainMenuConfig: Array<MenuItem> = [
         bootstrapIcon: "bi-archive",
         sub: [
           {
-            heading: "menu.user-authority.user-management.title",
-            route: "/user-authority/user-mgmt",
+            heading: "menu.user-authority.users.title",
+            route: "/user-authority/users",
           }
         ]
       },

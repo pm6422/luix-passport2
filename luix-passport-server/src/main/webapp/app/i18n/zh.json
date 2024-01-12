@@ -58,7 +58,7 @@
     },
     "user-authority": {
       "title": "用户权限",
-      "user-management": {
+      "users": {
         "title": "用户管理"
       }
     },
