@@ -80,9 +80,9 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
   return {
-    errors,
     user,
     isAuthenticated,
+    errors,
     logout,
     verifyAuth,
   };
