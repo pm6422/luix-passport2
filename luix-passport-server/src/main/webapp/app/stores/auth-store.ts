@@ -8,10 +8,18 @@ export const useAuthStore = defineStore("auth", () => {
   const isAuthenticated = ref(false);
   const errors = ref({});
 
+  function verifyAuth() {
+    return ApiService.query("api/accounts/user", {})
+      .then(({data}) => {
+        setAuth(data);
+      })
+      .catch(({response}) => {
+        setError(response.data.errors);
+        deleteAuth();
+      });
+  }
+
   function setAuth(authUser: IAuthUser) {
-    if(authUser.username === 'anonymousUser') {
-      return;
-    }
     isAuthenticated.value = true;
     user.value = authUser;
     errors.value = {};
@@ -25,17 +33,6 @@ export const useAuthStore = defineStore("auth", () => {
 
   function setError(error: any) {
     errors.value = { ...error };
-  }
-
-  function verifyAuth() {
-    return ApiService.query("api/accounts/user", {})
-      .then(({ data }) => {
-        setAuth(data);
-      })
-      .catch(({ response }) => {
-        setError(response.data.errors);
-        deleteAuth();
-      });
   }
 
   // function login(credentials: IAuthUser) {

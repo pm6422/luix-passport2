@@ -1,6 +1,5 @@
 package cn.luixtech.passport.server.controller;
 
-import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
@@ -65,10 +64,11 @@ public class AccountController {
     private final        UserPhotoService          userPhotoService;
     private final        ApplicationEventPublisher applicationEventPublisher;
 
-    @Operation(summary = "check if the user is authenticated, and return its login")
-    @GetMapping("/open-api/accounts/user")
-    public ResponseEntity<AuthUser> getCurrentUser() {
-        return ResponseEntity.ok(AuthUtils.getCurrentUser());
+    @Operation(summary = "find current user")
+    @GetMapping("/api/accounts/user")
+    public ResponseEntity<ManagedUser> getCurrentSignedInUser() {
+        ManagedUser user = AuthUtils.getCurrentUserId() != null ? userService.findById(AuthUtils.getCurrentUserId()) : null;
+        return ResponseEntity.ok(user);
     }
 
     @Operation(summary = "register a new user and send an account activation email")
@@ -79,12 +79,6 @@ public class AccountController {
         mailService.sendAccountActivationEmail(newUser, getRequestUrl(request));
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("SM1021", newUser.getUsername());
         return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
-    }
-
-    @Operation(summary = "find current user")
-    @GetMapping("/api/accounts/user")
-    public ResponseEntity<ManagedUser> getCurrentSignedInUser() {
-        return ResponseEntity.ok(userService.findById(AuthUtils.getCurrentUserId()));
     }
 
     @Operation(summary = "update current user")
