@@ -8,6 +8,25 @@ export const useAuthStore = defineStore("auth", () => {
   const isAuthenticated = ref(false);
   const errors = ref({});
 
+  function setAuth(authUser: IAuthUser) {
+    if(authUser.username === 'anonymousUser') {
+      return;
+    }
+    isAuthenticated.value = true;
+    user.value = authUser;
+    errors.value = {};
+  }
+
+  function deleteAuth() {
+    isAuthenticated.value = false;
+    user.value = {} as IAuthUser;
+    errors.value = [];
+  }
+
+  function setError(error: any) {
+    errors.value = { ...error };
+  }
+
   function verifyAuth() {
     return ApiService.query("open-api/accounts/user", {})
       .then(({ data }) => {
@@ -59,25 +78,6 @@ export const useAuthStore = defineStore("auth", () => {
   //       setError(response.data.errors);
   //     });
   // }
-
-  function setAuth(authUser: IAuthUser) {
-    if(authUser.username === 'anonymousUser') {
-      return;
-    }
-    isAuthenticated.value = true;
-    user.value = authUser;
-    errors.value = {};
-  }
-
-  function deleteAuth() {
-    isAuthenticated.value = false;
-    user.value = {} as IAuthUser;
-    errors.value = [];
-  }
-
-  function setError(error: any) {
-    errors.value = { ...error };
-  }
 
   return {
     user,
