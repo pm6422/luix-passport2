@@ -70,11 +70,6 @@ function setAxiosInterceptors() {
   axios.interceptors.request.use(function (config) {
     // spinning start to show
     useBodyStore().addBodyClassname("page-loading");
-  
-    const token = window.localStorage.token;
-    if (token) {
-       config.headers.Authorization = `token ${token}`
-    }
     return config
   }, function (error) {
     return Promise.reject(error);
@@ -96,7 +91,7 @@ function setAxiosInterceptors() {
   //       // store.logout();
   //       if (!url.endsWith('api/account') && !url.endsWith('api/authenticate')) {
   //         // Ask for a new authentication
-  //         // loginService.openLogin();
+  //         // window.location.reload();
   //         return;
   //       }
   //     }
@@ -105,7 +100,6 @@ function setAxiosInterceptors() {
       // show form validation error
       ElMessage.error({message: error.response.data.message, showClose: true, duration: 6000});
     }
-
     return Promise.reject(error);
   });
 }
