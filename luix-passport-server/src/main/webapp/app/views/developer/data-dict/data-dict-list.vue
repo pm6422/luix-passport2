@@ -118,9 +118,9 @@
         @onPageNoChange="changePage"
         @onPageSizeChange="changePage"
       >
-        <template v-slot:num="{ row: row }">
+        <template v-slot:id="{ row: row }">
           <div class="badge badge-light">
-            {{ row.num }}
+            {{ row.id }}
           </div>
         </template>
         <template v-slot:categoryCode="{ row: row }">
@@ -228,8 +228,8 @@ export default defineComponent({
     const tableHeader = computed<Array<Column>>(() => {
       return [
       {
-        columnName: "#",
-        columnLabel: "num",
+        columnName: i18n.t('form.global.id'),
+        columnLabel: "id",
         sortEnabled: true,
       },
       {
