@@ -3,32 +3,11 @@ import ApiService from "@/services/api-service";
 import type { IDataDict } from '@/domain/DataDict';
 import type { IUser } from '@/domain/User';
 
-export class LocalDataLoaderService {
-  constructor() {
-  }
-  public load(fileName): Promise<any> {
-    return new Promise(resolve => {
-      axios
-        .get<any>('/src/data/json/' + fileName)
-        .then(res => {
-          resolve(res.data);
-        })
-        .catch(() => resolve(null));
-    });
-  }
-}
-
 export class AppInfoService {
   constructor() {
   }
 
   public static async load(): Promise<any> {
-    // try {
-    //   const res = await ApiService.query("management/info", null);
-    //   return res.data;
-    // } catch (error) {
-    //   return null;
-    // }
     return new Promise(resolve => {
       axios
         .get<any>("management/info")
@@ -36,7 +15,7 @@ export class AppInfoService {
           resolve(res.data);
         })
         .catch(() => {
-          // Load from local if failed
+          // load from local if failed
           resolve(AppInfoService.loadFromLocal());
         });
     });

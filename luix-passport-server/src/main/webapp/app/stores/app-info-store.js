@@ -2,8 +2,9 @@ import { defineStore } from "pinia";
 
 export const useAppInfoStore = defineStore("appInfo", {
   state: () => ({
-    apiDocsEnabled: false,
-    ribbonProfile: '',
+    appName: '',
     appVersion: '',
+    apiDocsEnabled: false,
+    ribbonProfile: ''
   })
 });

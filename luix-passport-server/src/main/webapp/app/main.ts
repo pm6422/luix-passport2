@@ -21,19 +21,15 @@ import { LanguageHelper } from "@/helpers/LanguageHelper";
 import { ElMessage } from 'element-plus';
 import axios from 'axios';
 import { useBodyStore } from "@/stores/body";
-
-import "@/plugins/prismjs";
-
 import DayjsConfig from '@/config/dayjs-config';
+import "@/plugins/prismjs";
 
 AppInfoService.load().then(result => {
   if (result === null) {
     alert('Failed to connect to server. Please check your server status and try again.');
     return;
   }
-
   const app = createApp(App);
-
   DayjsConfig.init();
 
   app.use(createVueI18n());
@@ -76,6 +72,7 @@ function setAppInfoStore(result) {
   appInfoStore.ribbonProfile = result['ribbonProfile'];
   appInfoStore.apiDocsEnabled = result['apiDocsEnabled'];
   if(result['build']) {
+    appInfoStore.appName = result['build']['name'];
     appInfoStore.appVersion = result['build']['version'];
   }
 }
