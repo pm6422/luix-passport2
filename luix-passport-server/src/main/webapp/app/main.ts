@@ -2,14 +2,11 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { Tooltip } from "bootstrap";
 import App from "./App.vue";
-
 import ElementPlus from "element-plus";
 import { createI18n } from "vue-i18n";
 import en from "@/i18n/en.json";
 import zh from "@/i18n/zh.json";
 import router from "@/config/router";
-
-//imports for app initialization
 import ApiService from "@/services/api-service";
 import { initApexCharts } from "@/plugins/apexcharts";
 import { initInlineSvg } from "@/plugins/inline-svg";
@@ -27,7 +24,7 @@ import "@/plugins/prismjs";
 
 AppInfoService.load().then(appInfo => {
   if (appInfo === null) {
-    alert('Failed to connect to server. Please check your server status and try again.');
+    ElMessage.error({ message: 'Failed to connect to server. Please check your server status and try again', showClose: true, duration: 6000 });
     return;
   }
   const app = createApp(App);
@@ -35,16 +32,16 @@ AppInfoService.load().then(appInfo => {
   ApiService.init(app);
 
   // get current user
-  AccountService.getCurrentAccount().then(user => {
+  AccountService.getCurrentAccount().then(userResp => {
     app.use(createPinia());
 
-    if(!user) {
+    if(!userResp.data) {
       // need to login
       AuthService.login();
       return;
     }
     useAppInfoStore().setAppInfo(appInfo);
-    useAuthStore().setAuth(user);
+    useAuthStore().setAuth(userResp.data);
 
     DayjsConfig.init();
     app.use(createVueI18n());
@@ -65,7 +62,7 @@ AppInfoService.load().then(appInfo => {
     app.mount("#app");
   })
   .catch(({errors}) => {
-    alert('Failed to get account.');
+    ElMessage.error({ message: 'Failed to get account', showClose: true, duration: 6000 });
   });
 });
 
