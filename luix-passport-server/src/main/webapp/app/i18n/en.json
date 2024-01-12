@@ -56,13 +56,10 @@
     "inbox": {
       "title": "Inbox"
     },
-    "user-management": {
-      "title": "User Management"
-    },
-    "security-reports": {
-      "title": "Security Reports",
-      "report-templates": {
-        "title": "Report Templates"
+    "user-authority": {
+      "title": "User Authority",
+      "user-management": {
+        "title": "User Management"
       }
     },
     "configuration": {

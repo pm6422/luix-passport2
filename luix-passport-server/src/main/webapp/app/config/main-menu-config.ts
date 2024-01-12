@@ -18,20 +18,14 @@ const MainMenuConfig: Array<MenuItem> = [
         bootstrapIcon: "bi-app-indicator",
       },
       {
-        heading: "menu.user-management.title",
-        route: "/user-mgmt",
+        sectionTitle: "menu.user-authority.title",
+        route: "/user-authority",
         keenthemesIcon: "profile-user",
-        bootstrapIcon: "bi-archive",
-      },
-      {
-        sectionTitle: "menu.security-reports.title",
-        route: "/security-reports",
-        keenthemesIcon: "chart-pie-4",
         bootstrapIcon: "bi-archive",
         sub: [
           {
-            heading: "menu.security-reports.report-templates.title",
-            route: "/security-reports/report-templates",
+            heading: "menu.user-authority.user-management.title",
+            route: "/user-authority/user-mgmt",
           }
         ]
       },

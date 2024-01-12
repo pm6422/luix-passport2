@@ -56,13 +56,10 @@
     "inbox": {
       "title": "待办任务"
     },
-    "user-management": {
-      "title": "用户管理"
-    },
-    "security-reports": {
-      "title": "安全报告",
-      "report-templates": {
-        "title": "报告模版"
+    "user-authority": {
+      "title": "用户权限",
+      "user-management": {
+        "title": "用户管理"
       }
     },
     "configuration": {

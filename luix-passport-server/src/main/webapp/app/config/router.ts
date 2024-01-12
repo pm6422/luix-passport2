@@ -26,6 +26,15 @@ const routes: Array<RouteRecordRaw> = [
         },
       },
       {
+        name: "user-mgmt",
+        path: "/user-authority/user-mgmt",
+        component: () => import("@/views/admin/user-authority/user-mgmt.vue"),
+        meta: {
+          pageTitle: "menu.user-authority.user-management.title",
+          breadcrumbs: ["menu.user-authority.title"],
+        },
+      },
+      {
         name: "my-profile",
         path: "/account/profile",
         component: () => import("@/views/account/profile.vue"),
@@ -105,29 +114,9 @@ const routes: Array<RouteRecordRaw> = [
           pageTitle: "menu.developer.loggers",
           breadcrumbs: [],
         },
-      },
-      {
-        name: "report-templates",
-        path: "/security-reports/report-templates",
-        component: () => import("@/views/admin/security-reports/report-template/report-template-list.vue"),
-        meta: {
-          pageTitle: "menu.security-reports.report-templates.title",
-          breadcrumbs: ["menu.security-reports.title"],
-        },
-      },
-      
-      {
-        name: "user-mgmt",
-        path: "/user-mgmt",
-        component: () => import("@/views/configuration/user/user-mgmt.vue"),
-        meta: {
-          pageTitle: "menu.user-management.title",
-          breadcrumbs: ["menu.configuration.title"],
-        },
       }
     ],
   },
-
 
   {
     path: "/",
