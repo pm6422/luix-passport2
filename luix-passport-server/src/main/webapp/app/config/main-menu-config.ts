@@ -17,22 +17,22 @@ const MainMenuConfig: Array<MenuItem> = [
         keenthemesIcon: "chart-line-up",
         bootstrapIcon: "bi-app-indicator",
       },
-      {
-        sectionTitle: "menu.user-authority.title",
-        route: "/user-authority",
-        keenthemesIcon: "profile-user",
-        bootstrapIcon: "bi-archive",
-        sub: [
-          {
-            heading: "menu.user-authority.users.title",
-            route: "/user-authority/users",
-          },
-          {
-            heading: "menu.user-authority.teams.title",
-            route: "/user-authority/teams",
-          },
-        ]
-      },
+      // {
+      //   sectionTitle: "menu.user-authority.title",
+      //   route: "/user-authority",
+      //   keenthemesIcon: "profile-user",
+      //   bootstrapIcon: "bi-archive",
+      //   sub: [
+      //     {
+      //       heading: "menu.user-authority.users.title",
+      //       route: "/user-authority/users",
+      //     },
+      //     {
+      //       heading: "menu.user-authority.teams.title",
+      //       route: "/user-authority/teams",
+      //     },
+      //   ]
+      // },
     ]
   },
 
