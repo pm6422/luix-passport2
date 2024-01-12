@@ -31,14 +31,15 @@ AppInfoService.load().then(appInfo => {
     return;
   }
   const app = createApp(App);
-  // Init services
+  // init services
   ApiService.init(app);
 
-  // get logged user
+  // get current user
   AccountService.getCurrentAccount().then(user => {
     app.use(createPinia());
 
     if(!user) {
+      // need to login
       AuthService.login();
       return;
     }
