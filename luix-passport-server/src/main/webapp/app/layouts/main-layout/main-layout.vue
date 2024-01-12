@@ -31,7 +31,6 @@
 
   <!-- <KTDrawers /> -->
   <KTScrollTop />
-  <KTModals />
   <!-- <KTCustomize /> -->
 </template>
 
@@ -48,8 +47,6 @@ import KTSidebar from "@/layouts/main-layout/sidebar/sidebar.vue";
 import KTContent from "@/layouts/main-layout/content/content.vue";
 import KTToolbar from "@/layouts/main-layout/toolbar/toolbar.vue";
 import KTFooter from "@/layouts/main-layout/footer/footer.vue";
-// import KTDrawers from "@/layouts/main-layout/drawers/Drawers.vue";
-import KTModals from "@/layouts/main-layout/modals/Modals.vue";
 import KTScrollTop from "@/layouts/main-layout/extras/scroll-top.vue";
 // import KTCustomize from "@/layouts/main-layout/extras/Customize.vue";
 import { useRoute } from "vue-router";
@@ -68,7 +65,6 @@ export default defineComponent({
     KTFooter,
     // KTDrawers,
     KTScrollTop,
-    KTModals,
     // KTCustomize,
     Ribbon,
   },
