@@ -7,6 +7,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
+import cn.luixtech.passport.server.pojo.AuthUser;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
@@ -65,7 +66,7 @@ public class AccountController {
     private final        ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "find current user")
-    @GetMapping("/api/accounts/user")
+    @GetMapping("/open-api/accounts/user")
     public ResponseEntity<ManagedUser> getCurrentSignedInUser() {
         ManagedUser user = AuthUtils.getCurrentUserId() != null ? userService.findById(AuthUtils.getCurrentUserId()) : null;
         return ResponseEntity.ok(user);

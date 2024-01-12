@@ -6,7 +6,7 @@ export const useAppInfoStore = defineStore("appInfo", () => {
   const apiDocsEnabled = ref<boolean>(false);
   const ribbonProfile = ref<string>('');
 
-  function setAppInfoStore(result: any) {
+  function setAppInfo(result: any) {
     ribbonProfile.value = result['ribbonProfile'];
     apiDocsEnabled.value = result['apiDocsEnabled'];
     if(result['build']) {
@@ -32,7 +32,7 @@ export const useAppInfoStore = defineStore("appInfo", () => {
   }
 
   return {
-    setAppInfoStore,
+    setAppInfo,
     getAppName,
     getAppVersion,
     getApiDocsEnabled,

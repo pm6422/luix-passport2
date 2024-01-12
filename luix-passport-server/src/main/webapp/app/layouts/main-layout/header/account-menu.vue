@@ -206,6 +206,7 @@ import { useI18n } from "vue-i18n";
 import { useAuthStore } from "@/stores/auth-store";
 import { useThemeStore } from "@/stores/theme-store";
 import { useConfigStore } from "@/stores/config-store.js";
+import { AuthService } from '@/services/services';
 import { useRouter, useRoute } from "vue-router";
 import { LanguageHelper } from "@/helpers/LanguageHelper";
 export default defineComponent({
@@ -216,7 +217,6 @@ export default defineComponent({
     const configStore = useConfigStore();
     const authStore = useAuthStore();
     const route = useRoute();
-    const router = useRouter();
     const i18n = useI18n();
     i18n.locale.value = LanguageHelper.getCurrentLanguage();
     const setLanguage = (lang: string) => {
@@ -238,7 +238,13 @@ export default defineComponent({
       themeStore.setThemeMode(configMode);
     };
     const signOut = () => {
-      authStore.logout();
+      AuthService.logout()
+      .then(({ data }) => {
+        authStore.deleteAuth();
+        window.location.reload();
+      })
+      .catch(({ response }) => {
+      });
     };
     return {
       signOut,

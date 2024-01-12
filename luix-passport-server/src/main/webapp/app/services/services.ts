@@ -33,6 +33,52 @@ export class AppInfoService {
   }
 }
 
+export class AuthService {
+  constructor() {
+  }
+
+  public static async getAccount(): Promise<any> {
+    return new Promise(resolve => {
+      axios
+        .get<any>("open-api/accounts/user")
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch((response) => {
+          resolve(null);
+        });
+    });
+  }
+
+  public static login() {
+    window.location.href = '/login';
+  }
+
+  public static logout() {
+    return ApiService.post("logout", {});
+  }
+
+  // function register(credentials: IAuthUser) {
+  //   return ApiService.post("register", credentials)
+  //     .then(({ data }) => {
+  //       setAuth(data);
+  //     })
+  //     .catch(({ response }) => {
+  //       setError(response.data.errors);
+  //     });
+  // }
+
+  // function forgotPassword(email: string) {
+  //   return ApiService.post("forgot_password", email)
+  //     .then(() => {
+  //       setError({});
+  //     })
+  //     .catch(({ response }) => {
+  //       setError(response.data.errors);
+  //     });
+  // }
+}
+
 export class DataDictService {
   constructor() {
   }

@@ -6,6 +6,7 @@ import {
 } from "vue-router";
 import { useAuthStore } from "@/stores/auth-store";
 import { useConfigStore } from "@/stores/config-store";
+import { AuthService } from '@/services/services';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -202,21 +203,17 @@ router.beforeEach((to, from, next) => {
   // reset config to initial state
   configStore.resetLayoutConfig();
 
-  // verify auth token before each page change
-  authStore.verifyAuth()
-    .then(() => {
-      // before page access check if page requires authentication
-      if (to.meta.requireAuth) {
-        if (authStore.isAuthenticated) {
-          next();
-        } else {
-          // go to login page if failed to authenticate
-          window.location.href = '/login';
-        }
-      } else {
-        next();
-      }
-    })
+  // before page access check if page requires authentication
+  if (to.meta.requireAuth) {
+    if (authStore.isAuthenticated) {
+      next();
+    } else {
+      // go to login page if failed to authenticate
+      AuthService.login();
+    }
+  } else {
+    next();
+  }
 
   // Scroll page to top on every route change
   window.scrollTo({

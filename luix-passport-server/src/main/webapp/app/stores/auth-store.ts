@@ -1,23 +1,11 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
-import ApiService from "@/services/api-service";
 import type { IAuthUser } from '@/domain/AuthUser';
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref<IAuthUser>({} as IAuthUser);
   const isAuthenticated = ref(false);
   const errors = ref({});
-
-  function verifyAuth() {
-    return ApiService.query("api/accounts/user", {})
-      .then(({data}) => {
-        setAuth(data);
-      })
-      .catch(({response}) => {
-        setError(response.data.errors);
-        deleteAuth();
-      });
-  }
 
   function setAuth(authUser: IAuthUser) {
     isAuthenticated.value = true;
@@ -35,52 +23,12 @@ export const useAuthStore = defineStore("auth", () => {
     errors.value = { ...error };
   }
 
-  // function login(credentials: IAuthUser) {
-  //   return ApiService.post("login", credentials)
-  //     .then(({ data }) => {
-  //       setAuth(data);
-  //     })
-  //     .catch(({ response }) => {
-  //       setError(response.data.errors);
-  //     });
-  // }
-
-  function logout() {
-    ApiService.post("logout", {})
-      .then(({ data }) => {
-        deleteAuth();
-        window.location.reload();
-      })
-      .catch(({ response }) => {
-
-      });
-  }
-
-  // function register(credentials: IAuthUser) {
-  //   return ApiService.post("register", credentials)
-  //     .then(({ data }) => {
-  //       setAuth(data);
-  //     })
-  //     .catch(({ response }) => {
-  //       setError(response.data.errors);
-  //     });
-  // }
-
-  // function forgotPassword(email: string) {
-  //   return ApiService.post("forgot_password", email)
-  //     .then(() => {
-  //       setError({});
-  //     })
-  //     .catch(({ response }) => {
-  //       setError(response.data.errors);
-  //     });
-  // }
-
   return {
+    setAuth,
+    deleteAuth,
+    setError,
     user,
     isAuthenticated,
-    errors,
-    logout,
-    verifyAuth,
+    errors
   };
 });
