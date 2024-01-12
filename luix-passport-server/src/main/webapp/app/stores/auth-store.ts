@@ -1,13 +1,12 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import ApiService from "@/services/ApiService";
-import JwtService from "@/services/JwtService";
 import type { IAuthUser } from '@/domain/AuthUser';
 
 export const useAuthStore = defineStore("auth", () => {
   const errors = ref({});
   const user = ref<IAuthUser>({} as IAuthUser);
-  const isAuthenticated = ref(!!JwtService.getToken());
+  const isAuthenticated = ref(false);
 
   function verifyAuth() {
     return ApiService.query("open-api/accounts/user", {})

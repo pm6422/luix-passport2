@@ -2,7 +2,6 @@ import type { App } from "vue";
 import type { AxiosResponse } from "axios";
 import axios from "axios";
 import VueAxios from "vue-axios";
-import JwtService from "@/services/JwtService";
 
 /**
  * @description service to call HTTP request via Axios
@@ -26,7 +25,6 @@ class ApiService {
    * @description set the default HTTP request headers
    */
   public static setHeader(): void {
-    ApiService.vueInstance.axios.defaults.headers.common["Authorization"] = `Token ${JwtService.getToken()}`;
     ApiService.vueInstance.axios.defaults.headers.common["Accept"] = "application/json";
   }
 
