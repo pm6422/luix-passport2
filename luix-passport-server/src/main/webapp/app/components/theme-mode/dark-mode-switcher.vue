@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent, computed } from "vue";
 import { getAssetPath } from "@/helpers/assets";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import { useConfigStore } from "@/stores/config-store.js";
 import { ThemeModeComponent } from "@/assets/ts/layout";
 

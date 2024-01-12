@@ -8,7 +8,7 @@
 import { defineComponent, nextTick, onBeforeMount, onMounted, computed } from "vue";
 import { RouterView } from "vue-router";
 import { useConfigStore } from "@/stores/config-store.js";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import { useBodyStore } from "@/stores/body-store";
 import { themeConfigValue } from "@/helpers/config";
 import { initializeComponents } from "@/plugins/keenthemes";

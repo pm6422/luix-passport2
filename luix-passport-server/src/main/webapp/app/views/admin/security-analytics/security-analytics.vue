@@ -461,7 +461,7 @@ import detectors from "@/data/json/detectors";
 import { getCSSVariableValue } from "@/assets/ts/_utils";
 import type VueApexCharts from "vue3-apexcharts";
 import type { ApexOptions } from "apexcharts";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import AmChartPie from '@/components/amchart/pie.vue';
 import { initCountUp } from "@/plugins/countup";
 

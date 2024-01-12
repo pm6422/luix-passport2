@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, watch } from "vue";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 
 export default defineComponent({
   name: "api",

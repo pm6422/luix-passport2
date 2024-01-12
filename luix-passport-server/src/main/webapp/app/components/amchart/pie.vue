@@ -22,7 +22,7 @@
 import { defineComponent, computed, watch, onMounted } from "vue";
 import { getCSSVariableValue } from "@/assets/ts/_utils";
 import { useI18n } from "vue-i18n";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';

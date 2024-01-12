@@ -204,7 +204,7 @@ import { getAssetPath } from "@/helpers/assets";
 import { computed, defineComponent } from "vue";
 import { useI18n } from "vue-i18n";
 import { useAuthStore } from "@/stores/auth-store";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import { useConfigStore } from "@/stores/config-store.js";
 import { useRouter, useRoute } from "vue-router";
 import { LanguageHelper } from "@/helpers/LanguageHelper";

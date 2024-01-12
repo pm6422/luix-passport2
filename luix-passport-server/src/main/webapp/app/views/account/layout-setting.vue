@@ -967,7 +967,7 @@ import { defineComponent, onMounted, ref, computed } from "vue";
 import { config, layout } from "@/helpers/config";
 import CodeHighlighter from "@/components/highlighters/CodeHighlighter.vue";
 import { themeName } from "@/helpers/documentation";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import { LS_CONFIG_NAME_KEY, useConfigStore } from "@/stores/config-store";
 
 // const LS_BUILDER_TAB_NAME = "layoutBuilderTabIndex_" + import.meta.env.VITE_APP_DEMO;

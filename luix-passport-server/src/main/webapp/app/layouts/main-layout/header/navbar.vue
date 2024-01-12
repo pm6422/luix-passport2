@@ -94,7 +94,7 @@ import KTQuickLinksMenu from "@/layouts/main-layout/header/QuickLinksMenu.vue";
 import KTDeveloperMenu from "@/layouts/main-layout/header/developer-menu.vue";
 import KTAccountMenu from "@/layouts/main-layout/header/account-menu.vue";
 import { ThemeModeComponent } from "@/assets/ts/layout";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 import { ElMessage } from 'element-plus';
 
 export default defineComponent({

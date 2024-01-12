@@ -1,5 +1,5 @@
 import { illustrationsSet } from "@/helpers/config";
-import { useThemeStore } from "@/stores/theme";
+import { useThemeStore } from "@/stores/theme-store";
 
 export const getIllustrationsPath = (illustrationName: string): string => {
   const extension = illustrationName.substring(
