@@ -206,7 +206,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
 
-  // Scroll page to top on every route change
+  // scroll page to top on every route change
   window.scrollTo({
     top: 0,
     left: 0,
