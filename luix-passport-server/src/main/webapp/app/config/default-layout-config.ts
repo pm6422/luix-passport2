@@ -5,7 +5,7 @@ const config: LayoutConfig = {
     "mode": "dark",
     "primaryColor": "#50CD89",
     "pageWidth": "fluid",
-    "layout": "dark-sidebar",
+    "layout": "dark-header",
     "iconsType": "duotone"
   },
   "sidebar": {
@@ -33,7 +33,7 @@ const config: LayoutConfig = {
       "menu": {
         "iconType": "keenthemes"
       },
-      "content": "page-title"
+      "content": "menu"
     }
   },
   "toolbar": {

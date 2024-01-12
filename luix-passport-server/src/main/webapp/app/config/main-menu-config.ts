@@ -33,6 +33,25 @@ const MainMenuConfig: Array<MenuItem> = [
           },
         ]
       },
+    ]
+  },
+
+  {
+    heading: "menu.administration.title",
+    route: "/admin",
+    pages: [
+      {
+        heading: "menu.administration.users.title",
+        route: "/admin/users",
+        keenthemesIcon: "user-tick",
+        bootstrapIcon: "bi-archive",
+      },
+      {
+        heading: "menu.administration.teams.title",
+        route: "/admin/teams",
+        keenthemesIcon: "profile-user",
+        bootstrapIcon: "bi-archive",
+      }
     ],
   }
 ];

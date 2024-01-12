@@ -57,18 +57,15 @@
       "title": "Inbox"
     },
     "user-authority": {
-      "title": "User Authority",
+      "title": "User Authority"
+    },
+    "administration": {
+      "title": "Administration",
       "users": {
         "title": "Users"
       },
       "teams": {
         "title": "Teams"
-      }
-    },
-    "configuration": {
-      "title": "Administration",
-      "form": {
-        "title": "Form"
       }
     }
   },

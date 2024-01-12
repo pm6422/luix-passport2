@@ -20,28 +20,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: "security-analytics",
         path: "/security-analytics",
-        component: () => import("@/views/admin/security-analytics/security-analytics.vue"),
+        component: () => import("@/views/account/security-analytics/security-analytics.vue"),
         meta: {
           pageTitle: "menu.security-analytics.title",
           breadcrumbs: [],
-        },
-      },
-      {
-        name: "users",
-        path: "/user-authority/users",
-        component: () => import("@/views/admin/user-authority/users.vue"),
-        meta: {
-          pageTitle: "menu.user-authority.users.title",
-          breadcrumbs: ["menu.user-authority.title"],
-        },
-      },
-      {
-        name: "teams",
-        path: "/user-authority/teams",
-        component: () => import("@/views/admin/user-authority/teams.vue"),
-        meta: {
-          pageTitle: "menu.user-authority.teams.title",
-          breadcrumbs: ["menu.user-authority.title"],
         },
       },
       {
@@ -60,6 +42,24 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           pageTitle: "menu.account.layout-settings",
           breadcrumbs: [],
+        },
+      },
+      {
+        name: "users",
+        path: "/admin/users",
+        component: () => import("@/views/admin/users.vue"),
+        meta: {
+          pageTitle: "menu.administration.users.title",
+          breadcrumbs: ["menu.administration.title"],
+        },
+      },
+      {
+        name: "teams",
+        path: "/admin/teams",
+        component: () => import("@/views/admin/teams.vue"),
+        meta: {
+          pageTitle: "menu.administration.teams.title",
+          breadcrumbs: ["menu.administration.title"],
         },
       },
       {

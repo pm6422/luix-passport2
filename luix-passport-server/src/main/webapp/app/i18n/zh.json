@@ -57,18 +57,15 @@
       "title": "待办任务"
     },
     "user-authority": {
-      "title": "用户权限",
+      "title": "用户权限"
+    },
+    "administration": {
+      "title": "管理配置",
       "users": {
         "title": "用户"
       },
       "teams": {
         "title": "团队"
-      }
-    },
-    "configuration": {
-      "title": "管理配置",
-      "form": {
-        "title": "表单"
       }
     }
   },
