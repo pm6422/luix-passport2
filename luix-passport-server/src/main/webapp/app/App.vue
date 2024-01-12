@@ -13,7 +13,6 @@ import { useBodyStore } from "@/stores/body-store";
 import { themeConfigValue } from "@/helpers/config";
 import { initializeComponents } from "@/plugins/keenthemes";
 import { useI18n } from "vue-i18n";
-import { ElConfigProvider } from 'element-plus'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import en from 'element-plus/dist/locale/en.mjs'
 
