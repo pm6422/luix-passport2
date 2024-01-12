@@ -584,7 +584,8 @@ export default defineComponent({
       lastName: "",
       email: "",
       mobileNo: "",
-      enabled: true
+      enabled: true,
+      roles: []
     };
     const modalData = ref(emptyModalData);
     const tableHeader = computed<Array<Column>>(() => {
