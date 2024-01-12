@@ -51,6 +51,12 @@ const MainMenuConfig: Array<MenuItem> = [
         route: "/admin/teams",
         keenthemesIcon: "profile-user",
         bootstrapIcon: "bi-archive",
+      },
+      {
+        heading: "menu.administration.oauth-clients.title",
+        route: "/admin/oauth-clients",
+        keenthemesIcon: "screen",
+        bootstrapIcon: "bi-archive",
       }
     ],
   }

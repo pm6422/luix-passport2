@@ -169,7 +169,7 @@ const routes: Array<RouteRecordRaw> = [
         // the 404 route, when none of the above matches
         path: "/404",
         name: "404",
-        component: () => import("@/views/Error404.vue"),
+        component: () => import("@/views/error404.vue"),
         meta: {
           pageTitle: "Error 404",
         },
@@ -177,7 +177,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "/500",
         name: "500",
-        component: () => import("@/views/Error500.vue"),
+        component: () => import("@/views/error500.vue"),
         meta: {
           pageTitle: "Error 500",
         },

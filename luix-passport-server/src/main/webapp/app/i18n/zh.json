@@ -66,6 +66,9 @@
       },
       "teams": {
         "title": "团队"
+      },
+      "oauth-clients": {
+        "title": "OAuth2客户端"
       }
     }
   },

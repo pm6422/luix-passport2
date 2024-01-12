@@ -66,6 +66,9 @@
       },
       "teams": {
         "title": "Teams"
+      },
+      "oauth-clients": {
+        "title": "OAuth2 Clients"
       }
     }
   },
