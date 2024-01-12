@@ -1,4 +1,4 @@
-import type LayoutConfigTypes from "@/config/LayoutConfigTypes";
+import type LayoutConfigTypes from "@/domain/LayoutConfig";
 
 const config: LayoutConfigTypes = {
   "general": {

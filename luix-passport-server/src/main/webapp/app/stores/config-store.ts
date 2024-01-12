@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import objectPath from "object-path";
-import type LayoutConfigTypes from "@/config/LayoutConfigTypes";
+import type LayoutConfigTypes from "@/domain/LayoutConfig";
 import layoutConfig from "@/config/default-layout-config";
 
 
