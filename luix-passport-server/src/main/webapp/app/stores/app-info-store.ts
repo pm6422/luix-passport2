@@ -15,27 +15,11 @@ export const useAppInfoStore = defineStore("appInfo", () => {
     }
   }
 
-  function getAppName() : string  {
-    return appName.value;
-  }
-
-  function getAppVersion() : string  {
-    return appVersion.value;
-  }
-
-  function getApiDocsEnabled() : boolean {
-    return apiDocsEnabled.value;
-  }
-
-  function getRibbonProfile() : string {
-    return ribbonProfile.value;
-  }
-
   return {
     setAppInfo,
-    getAppName,
-    getAppVersion,
-    getApiDocsEnabled,
-    getRibbonProfile
+    appName,
+    appVersion,
+    apiDocsEnabled,
+    ribbonProfile
   };
 });

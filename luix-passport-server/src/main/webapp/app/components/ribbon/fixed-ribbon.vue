@@ -1,6 +1,6 @@
 <template>
-  <div class="ribbon" v-if="appInfoStore.getRibbonProfile()">
-    <a href="">{{ appInfoStore.getRibbonProfile() }}</a>
+  <div class="ribbon" v-if="appInfoStore.ribbonProfile">
+    <a href="">{{ appInfoStore.ribbonProfile }}</a>
   </div>
 </template>
 
