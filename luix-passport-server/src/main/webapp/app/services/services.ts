@@ -37,19 +37,6 @@ export class AuthService {
   constructor() {
   }
 
-  public static async getAccount(): Promise<any> {
-    return new Promise(resolve => {
-      axios
-        .get<any>("open-api/accounts/user")
-        .then(response => {
-          resolve(response.data);
-        })
-        .catch((response) => {
-          resolve(null);
-        });
-    });
-  }
-
   public static login() {
     window.location.href = '/login';
   }

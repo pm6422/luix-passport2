@@ -35,11 +35,7 @@ AppInfoService.load().then(appInfo => {
   ApiService.init(app);
 
   // get logged user
-  AuthService.getAccount().then(user => {
-    const app = createApp(App);
-    // Init services
-    ApiService.init(app);
-
+  AccountService.getCurrentAccount().then(user => {
     app.use(createPinia());
 
     if(!user) {
