@@ -15,13 +15,13 @@
       >
         <img
           alt="Logo"
-          :src="getAssetPath('media/logos/logo.svg')"
+          :src="getAssetPath('assets/media/logos/logo.svg')"
           class="h-35px"
         />
         <router-link to="/">
           <span class="app-sidebar-logo-default ms-10 fs-2 -intro-x">
             <img
-            :src="getAssetPath('media/logos/secops.svg')"
+            :src="getAssetPath('assets/media/logos/logo-text.svg')"
             class="h-20px"
           />
     </span>
