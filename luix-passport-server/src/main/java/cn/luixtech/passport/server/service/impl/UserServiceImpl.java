@@ -30,6 +30,7 @@ import org.apache.commons.lang3.Validate;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -145,7 +146,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public ManagedUser findById(String id) {
         User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
         user.setPasswordHash("*");
-        return ManagedUser.of(user, findRoles(id));
+        ManagedUser managedUser = new ManagedUser();
+        BeanUtils.copyProperties(user, managedUser);
+        managedUser.setRoles(findRoles(id));
+
+        UserPreference preference = userPreferenceDao.findById(id);
+        // default handing
+        managedUser.setLocale(preference.getLocale());
+        managedUser.setTimezone(preference.getTimeZone());
+        return managedUser;
     }
 
     @Override

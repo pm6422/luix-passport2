@@ -31,12 +31,9 @@ public class ManagedUser extends User {
 
     private Set<String> roles;
 
-    public static ManagedUser of(User user, Set<String> roles) {
-        ManagedUser managedUser = new ManagedUser();
-        BeanUtils.copyProperties(user, managedUser);
-        managedUser.setRoles(roles);
-        return managedUser;
-    }
+    private String locale;
+
+    private String timezone;
 
     public User toUser() {
         User user = new User();
