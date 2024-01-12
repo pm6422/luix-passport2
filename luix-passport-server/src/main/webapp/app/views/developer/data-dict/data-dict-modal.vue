@@ -23,6 +23,7 @@
             clearable
             allow-create
             default-first-option
+            class="w-100"
           >
             <el-option v-for="(item, key) in dictCategoryCodes" :key="key" :value="item" :label="item">{{ item }}</el-option>
           </el-select>

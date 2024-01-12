@@ -15,7 +15,7 @@ import { initApexCharts } from "@/plugins/apexcharts";
 import { initInlineSvg } from "@/plugins/inline-svg";
 import { initVeeValidate } from "@/plugins/vee-validate";
 import { initKtIcon } from "@/plugins/keenthemes";
-import { AppInfoService, AuthService } from '@/services/services';
+import { AppInfoService, AuthService, AccountService } from '@/services/services';
 import { useAppInfoStore } from "@/stores/app-info-store";
 import { useBodyStore } from "@/stores/body-store";
 import { useAuthStore } from "@/stores/auth-store";
@@ -30,6 +30,9 @@ AppInfoService.load().then(appInfo => {
     alert('Failed to connect to server. Please check your server status and try again.');
     return;
   }
+  const app = createApp(App);
+  // Init services
+  ApiService.init(app);
 
   // get logged user
   AuthService.getAccount().then(user => {

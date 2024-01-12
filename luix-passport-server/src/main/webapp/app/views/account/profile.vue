@@ -560,7 +560,7 @@ import type { IUserSettings } from '@/domain/UserSettings';
 import OneOrMore  from '@/components/utilities/one-or-more.vue'
 import { useI18n } from "vue-i18n";
 import { DateTimeUtils, dateTimeFormats } from "@/helpers/DateTimeUtils";
-import {AccountService, UserService} from "@/services/services";
+import { AccountService, UserService } from "@/services/services";
 
 export default defineComponent({
   name: "my-profile",

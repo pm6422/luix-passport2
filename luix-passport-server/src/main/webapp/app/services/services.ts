@@ -125,7 +125,7 @@ export class AccountService {
   }
 
   public static getCurrentAccount(): Promise<any> {
-    return ApiService.query("api/accounts/user", null);
+    return ApiService.query("open-api/accounts/user", null);
   }
 
   public static update(model: IUser): Promise<any> {
