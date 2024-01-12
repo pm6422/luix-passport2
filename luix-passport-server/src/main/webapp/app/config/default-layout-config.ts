@@ -1,6 +1,6 @@
-import type LayoutConfigTypes from "@/domain/LayoutConfig";
+import type LayoutConfig from "@/domain/LayoutConfig";
 
-const config: LayoutConfigTypes = {
+const config: LayoutConfig = {
   "general": {
     "mode": "dark",
     "primaryColor": "#50CD89",
