@@ -69,46 +69,6 @@
         </el-form-item>
       </div>
       <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label fw-semobold" v-text="$t('form.data-dict-list.dict-name')"></label>
-        <el-form-item prop="dictName">
-          <el-input
-            name="dictName"
-            v-model="modalData.dictName"
-          ></el-input>
-        </el-form-item>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label fw-semobold" v-text="$t('form.global.description')"></label>
-        <el-form-item prop="desc">
-          <el-input
-            name="desc"
-            v-model="modalData.desc"
-          ></el-input>
-        </el-form-item>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="d-flex flex-stack mt-5">
-        <!--begin::Label-->
-        <div class="me-5">
-          <label class="fs-6 fw-semobold form-label" v-text="$t('form.global.enabled')"></label>
-          <div class="fs-7 fw-semobold text-gray-500" v-text="$t('msg.global.enabled-desc')"></div>
-        </div>
-        <!--end::Label-->
-        <!--begin::Switch-->
-        <label class="form-check form-switch form-check-custom form-check-solid">
-          <input class="form-check-input" type="checkbox" v-model="modalData.enabled"/>
-        </label>
-        <!--end::Switch-->
-      </div>
-      <!--end::Input group-->
     </template>
   </BasicEditableModal>
 </template>
