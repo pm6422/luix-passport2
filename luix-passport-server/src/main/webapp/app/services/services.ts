@@ -165,6 +165,14 @@ export class OauthClientService {
     return ApiService.query("api/oauth2-clients/" + id, null);
   }
 
+  public static findClientAuthenticationMethods(): Promise<any> {
+    return ApiService.query("api/oauth2-clients/client-authentication-methods", null);
+  }
+
+  public static findAuthorizationGrantTypes(): Promise<any> {
+    return ApiService.query("api/oauth2-clients/authorization-grant-types", null);
+  }
+
   public static create(model: IUser): Promise<any> {
     return ApiService.post("api/oauth2-clients", model);
   }

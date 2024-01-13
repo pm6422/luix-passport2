@@ -36,17 +36,35 @@
       <div class="row">
         <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-authentication-methods')">
         </label>
-        <el-form-item prop="categoryCode">
+        <el-form-item prop="clientAuthenticationMethods">
           <el-select
-              name="categoryCode"
+              name="clientAuthenticationMethods"
               v-model="modalData.clientAuthenticationMethods"
-              filterable
               clearable
-              allow-create
-              default-first-option
               class="w-100"
           >
-            <el-option v-for="(item, key) in dictCategoryCodes" :key="key" :value="item" :label="item">{{ item }}</el-option>
+            <el-option v-for="(item, key) in clientAuthenticationMethods" :key="key" :value="item" :label="item">{{ item }}</el-option>
+          </el-select>
+        </el-form-item>
+      </div>
+      <!--end::Input group-->
+
+      <!--begin::Input group-->
+      <div class="row">
+        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.authorization-grant-types')">
+        </label>
+        <el-form-item prop="authorizationGrantTypes">
+          <el-select
+              name="authorizationGrantTypes"
+              v-model="modalData.authorizationGrantTypes"
+              multiple
+              collapse-tags
+              collapse-tags-tooltip
+              :max-collapse-tags="2"
+              clearable
+              class="w-100"
+          >
+            <el-option v-for="(item, key) in authorizationGrantTypes" :key="key" :value="item" :label="item">{{ item }}</el-option>
           </el-select>
         </el-form-item>
       </div>
@@ -102,7 +120,7 @@ import { useI18n } from "vue-i18n";
 import type { FormRules } from 'element-plus';
 import { map, uniq } from "lodash";
 import type { IOauthClient } from '@/domain/OauthClient';
-import { DataDictService } from '@/services/services';
+import { OauthClientService } from '@/services/services';
 
 export default defineComponent({
   name: "oauth-client-modal",
@@ -118,10 +136,14 @@ export default defineComponent({
     const i18n = useI18n();
     const modalData = ref(props.modalData);
     const operation = ref(props.operation);
-    const dictCategoryCodes = ref<Array<any>>([]);
+    const clientAuthenticationMethods = ref<Array<string>>([]);
+    const authorizationGrantTypes = ref<Array<string>>([]);
 
-    DataDictService.findAll(true).then(r => {
-      dictCategoryCodes.value = uniq(map(r.data, "categoryCode"));
+    OauthClientService.findClientAuthenticationMethods().then(r => {
+      clientAuthenticationMethods.value = r.data;
+    });
+    OauthClientService.findAuthorizationGrantTypes().then(r => {
+      authorizationGrantTypes.value = r.data;
     });
     
     watch(
@@ -140,7 +162,7 @@ export default defineComponent({
 
     const save = (): Promise<any> => {
       return new Promise((resolve, reject) => {
-        var deferred = operation.value === "create" ? DataDictService.create(modalData.value) : DataDictService.update(modalData.value);
+        var deferred = operation.value === "create" ? OauthClientService.create(modalData.value) : OauthClientService.update(modalData.value);
         deferred.then(result => {
           if(props.afterSaveCallback) {
             props.afterSaveCallback(operation.value);
@@ -165,7 +187,8 @@ export default defineComponent({
 
     return {
       validationRules,
-      dictCategoryCodes,
+      clientAuthenticationMethods,
+      authorizationGrantTypes,
       save,
       operation,
       modalData

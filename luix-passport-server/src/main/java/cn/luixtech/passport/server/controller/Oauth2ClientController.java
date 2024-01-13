@@ -21,10 +21,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
+import static org.springframework.security.oauth2.core.AuthorizationGrantType.*;
+import static org.springframework.security.oauth2.core.ClientAuthenticationMethod.*;
+import static org.springframework.security.oauth2.server.authorization.OAuth2TokenType.REFRESH_TOKEN;
 
 @Slf4j
 @RestController
@@ -93,5 +98,29 @@ public class Oauth2ClientController {
     public ResponseEntity<byte[]> findPhotoById(@Parameter(description = "id", required = true) @PathVariable String id) {
         Optional<Oauth2RegisteredClient> oauth2RegisteredClient = Optional.ofNullable(oauth2RegisteredClientDao.findById(id));
         return oauth2RegisteredClient.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
+    }
+
+    @Operation(summary = "get client authentication methods")
+    @GetMapping("/api/oauth2-clients/client-authentication-methods")
+    public ResponseEntity<Set<String>> getClientAuthenticationMethods() {
+        Set<String> sets = new HashSet<>();
+        sets.add(CLIENT_SECRET_BASIC.getValue());
+        sets.add(CLIENT_SECRET_POST.getValue());
+        sets.add(CLIENT_SECRET_JWT.getValue());
+        sets.add(PRIVATE_KEY_JWT.getValue());
+        sets.add(NONE.getValue());
+        return ResponseEntity.ok(sets);
+    }
+
+    @Operation(summary = "get authorization grant types")
+    @GetMapping("/api/oauth2-clients/authorization-grant-types")
+    public ResponseEntity<Set<String>> getAuthorizationGrantTypes() {
+        Set<String> sets = new HashSet<>();
+        sets.add(AUTHORIZATION_CODE.getValue());
+        sets.add(REFRESH_TOKEN.getValue());
+        sets.add(CLIENT_CREDENTIALS.getValue());
+        sets.add(JWT_BEARER.getValue());
+        sets.add(DEVICE_CODE.getValue());
+        return ResponseEntity.ok(sets);
     }
 }
