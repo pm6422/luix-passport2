@@ -321,7 +321,7 @@
       "authorization-grant-types": "Authorization Grant Types",
       "redirect-uris": "Redirect Uris",
       "post-logout-redirect-uris": "Post Logout Redirect Uris",
-      "scopes": "scopes",
+      "scopes": "Scopes",
       "client-settings": "Client Settings",
       "token-settings": "Token Settings",
       "client-id-issued-at": "Client Id Issued At",

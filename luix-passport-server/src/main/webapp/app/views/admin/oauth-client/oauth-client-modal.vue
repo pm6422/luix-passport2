@@ -90,6 +90,49 @@
         </template>
       </div>
       <!--end::Input group-->
+
+      <!--begin::Input group-->
+      <div class="row w-xxl-500px">
+        <div class="d-flex flex-stack">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.post-logout-redirect-uris')"></label>
+          <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.postLogoutRedirectUris.push('')">
+            <KTIcon icon-name="plus" icon-class="fs-1"/>
+          </button>
+        </div>
+        <template v-for="(row, index) in modalData.postLogoutRedirectUris" :key="index">
+          <el-form-item prop="postLogoutRedirectUris">
+            <el-input
+                name="redirectUris"
+                v-model="modalData.postLogoutRedirectUris[index]"
+            >
+              <template #append>
+                <el-button :icon="CloseBold" @click="modalData.postLogoutRedirectUris.splice(index, 1)"/>
+              </template>
+            </el-input>
+          </el-form-item>
+        </template>
+      </div>
+      <!--end::Input group-->
+
+      <!--begin::Input group-->
+      <div class="row">
+        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.scopes')">
+        </label>
+        <el-form-item prop="scopes">
+          <el-select
+              name="scopes"
+              v-model="modalData.scopes"
+              multiple
+              collapse-tags
+              collapse-tags-tooltip
+              :max-collapse-tags="2"
+              clearable
+          >
+            <el-option v-for="(item, key) in authorizationGrantTypes" :key="key" :value="item" :label="item">{{ item }}</el-option>
+          </el-select>
+        </el-form-item>
+      </div>
+      <!--end::Input group-->
     </template>
   </BasicEditableModal>
 </template>
