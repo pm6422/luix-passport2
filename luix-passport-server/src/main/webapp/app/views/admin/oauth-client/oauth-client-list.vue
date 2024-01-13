@@ -49,52 +49,6 @@
         <div v-show="selectedIds.length > 0">
           <div class="d-flex justify-content-end align-items-center">
             <BatchDeleteButton :selectedIds="selectedIds" :deleteRecordCallback="deleteRecord"/>
-            <!--begin::batch edit-->
-            <button
-                type="button"
-                class="btn btn-primary ms-2"
-                data-kt-menu-trigger="click"
-                data-kt-menu-placement="bottom-end"
-            >
-              {{ $t('form.global.batch-edit') }}
-            </button>
-            <!--begin::Menu-->
-            <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true">
-              <!--begin::Header-->
-              <div class="px-7 py-5">
-                <div class="fs-5 text-dark fw-bold">{{ $t('form.global.replace') }}</div>
-              </div>
-              <!--end::Header-->
-              <!--begin::Menu separator-->
-              <div class="separator border-gray-200"></div>
-              <!--end::Menu separator-->
-              <!--begin::Form-->
-              <div class="px-7 py-5">
-                <!--begin::Input group-->
-                <div class="mb-10">
-                  <!--begin::Label-->
-                  <label class="form-label fw-semibold">{{ $t('form.data-dict-list.target-category-code') }}</label>
-                  <!--end::Label-->
-                  <!--begin::Input-->
-                  <div>
-                    <el-input
-                        name="categoryCode"
-                        v-model="targetCategoryCode"
-                    ></el-input>
-                  </div>
-                  <!--end::Input-->
-                </div>
-                <!--end::Input group-->
-                <!--begin::Actions-->
-                <div class="d-flex justify-content-end">
-                  <button type="submit" class="btn btn-sm btn-primary" :class="{'disabled': !targetCategoryCode }" data-kt-menu-dismiss="true" @click="batchUpdate()">{{ $t('form.global.apply') }}</button>
-                </div>
-                <!--end::Actions-->
-              </div>
-              <!--end::Form-->
-            </div>
-            <!--end::Menu-->
-            <!--end::batch edit-->
           </div>
         </div>
       </div>
