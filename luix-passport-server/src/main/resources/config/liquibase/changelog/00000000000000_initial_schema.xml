@@ -183,6 +183,15 @@
             </column>
             <column name="account_expires_at" type="timestamp"/>
             <column name="password_expires_at" type="timestamp"/>
+            <column name="locale" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_zone" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_format" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
@@ -271,25 +280,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="user_preference">
-            <column name="user_id" type="varchar(20)">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="locale" type="varchar(10)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="time_zone" type="varchar(30)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="date_format" type="varchar(20)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <loadData
-                file="config/liquibase/data/user_preference.csv"
-                separator=";"
-                tableName="user_preference">
-        </loadData>
         <createTable tableName="data_dict">
             <column name="id" type="varchar(20)">
                 <constraints primaryKey="true" nullable="false"/>
@@ -323,6 +313,5 @@
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_permission" constraintName="fk_user_permission_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_login" constraintName="fk_user_login_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_photo" constraintName="fk_user_photo_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_preference" constraintName="fk_user_preference_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
 </databaseChangeLog>

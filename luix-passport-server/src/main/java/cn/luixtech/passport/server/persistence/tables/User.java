@@ -11,17 +11,12 @@ import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function20;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Records;
-import org.jooq.Row20;
 import org.jooq.Schema;
-import org.jooq.SelectField;
 import org.jooq.Table;
 import org.jooq.TableField;
 import org.jooq.TableOptions;
@@ -133,6 +128,21 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, LocalDateTime> PASSWORD_EXPIRES_AT = createField(DSL.name("password_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
+     * The column <code>luix-passport.user.locale</code>.
+     */
+    public final TableField<UserRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user.time_zone</code>.
+     */
+    public final TableField<UserRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(30).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user.date_format</code>.
+     */
+    public final TableField<UserRecord, String> DATE_FORMAT = createField(DSL.name("date_format"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+
+    /**
      * The column <code>luix-passport.user.created_by</code>.
      */
     public final TableField<UserRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
@@ -237,29 +247,5 @@ public class User extends TableImpl<UserRecord> {
     @Override
     public User rename(Table<?> name) {
         return new User(name.getQualifiedName(), null);
-    }
-
-    // -------------------------------------------------------------------------
-    // Row20 type methods
-    // -------------------------------------------------------------------------
-
-    @Override
-    public Row20<String, String, String, String, String, String, String, String, String, LocalDateTime, Boolean, String, Boolean, Boolean, LocalDateTime, LocalDateTime, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
-        return (Row20) super.fieldsRow();
-    }
-
-    /**
-     * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
-     */
-    public <U> SelectField<U> mapping(Function20<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
-        return convertFrom(Records.mapping(from));
-    }
-
-    /**
-     * Convenience mapping calling {@link SelectField#convertFrom(Class,
-     * Function)}.
-     */
-    public <U> SelectField<U> mapping(Class<U> toType, Function20<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super LocalDateTime, ? super Boolean, ? super String, ? super Boolean, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
-        return convertFrom(toType, Records.mapping(from));
     }
 }

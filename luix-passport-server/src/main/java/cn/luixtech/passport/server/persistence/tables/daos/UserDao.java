@@ -341,6 +341,51 @@ public class UserDao extends DAOImpl<UserRecord, cn.luixtech.passport.server.per
     }
 
     /**
+     * Fetch records that have <code>locale BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfLocale(String lowerInclusive, String upperInclusive) {
+        return fetchRange(User.USER.LOCALE, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>locale IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByLocale(String... values) {
+        return fetch(User.USER.LOCALE, values);
+    }
+
+    /**
+     * Fetch records that have <code>time_zone BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfTimeZone(String lowerInclusive, String upperInclusive) {
+        return fetchRange(User.USER.TIME_ZONE, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>time_zone IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByTimeZone(String... values) {
+        return fetch(User.USER.TIME_ZONE, values);
+    }
+
+    /**
+     * Fetch records that have <code>date_format BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchRangeOfDateFormat(String lowerInclusive, String upperInclusive) {
+        return fetchRange(User.USER.DATE_FORMAT, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>date_format IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.User> fetchByDateFormat(String... values) {
+        return fetch(User.USER.DATE_FORMAT, values);
+    }
+
+    /**
      * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */

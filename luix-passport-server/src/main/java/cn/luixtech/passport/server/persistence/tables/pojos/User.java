@@ -32,6 +32,9 @@ public class User implements Serializable {
     private Boolean enabled;
     private LocalDateTime accountExpiresAt;
     private LocalDateTime passwordExpiresAt;
+    private String locale;
+    private String timeZone;
+    private String dateFormat;
     private String createdBy;
     private LocalDateTime createdTime;
     private String modifiedBy;
@@ -56,6 +59,9 @@ public class User implements Serializable {
         this.enabled = value.enabled;
         this.accountExpiresAt = value.accountExpiresAt;
         this.passwordExpiresAt = value.passwordExpiresAt;
+        this.locale = value.locale;
+        this.timeZone = value.timeZone;
+        this.dateFormat = value.dateFormat;
         this.createdBy = value.createdBy;
         this.createdTime = value.createdTime;
         this.modifiedBy = value.modifiedBy;
@@ -79,6 +85,9 @@ public class User implements Serializable {
         Boolean enabled,
         LocalDateTime accountExpiresAt,
         LocalDateTime passwordExpiresAt,
+        String locale,
+        String timeZone,
+        String dateFormat,
         String createdBy,
         LocalDateTime createdTime,
         String modifiedBy,
@@ -100,6 +109,9 @@ public class User implements Serializable {
         this.enabled = enabled;
         this.accountExpiresAt = accountExpiresAt;
         this.passwordExpiresAt = passwordExpiresAt;
+        this.locale = locale;
+        this.timeZone = timeZone;
+        this.dateFormat = dateFormat;
         this.createdBy = createdBy;
         this.createdTime = createdTime;
         this.modifiedBy = modifiedBy;
@@ -331,6 +343,48 @@ public class User implements Serializable {
     }
 
     /**
+     * Getter for <code>luix-passport.user.locale</code>.
+     */
+    public String getLocale() {
+        return this.locale;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.locale</code>.
+     */
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.time_zone</code>.
+     */
+    public String getTimeZone() {
+        return this.timeZone;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.time_zone</code>.
+     */
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.date_format</code>.
+     */
+    public String getDateFormat() {
+        return this.dateFormat;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.date_format</code>.
+     */
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    /**
      * Getter for <code>luix-passport.user.created_by</code>.
      */
     public String getCreatedBy() {
@@ -491,6 +545,24 @@ public class User implements Serializable {
         }
         else if (!this.passwordExpiresAt.equals(other.passwordExpiresAt))
             return false;
+        if (this.locale == null) {
+            if (other.locale != null)
+                return false;
+        }
+        else if (!this.locale.equals(other.locale))
+            return false;
+        if (this.timeZone == null) {
+            if (other.timeZone != null)
+                return false;
+        }
+        else if (!this.timeZone.equals(other.timeZone))
+            return false;
+        if (this.dateFormat == null) {
+            if (other.dateFormat != null)
+                return false;
+        }
+        else if (!this.dateFormat.equals(other.dateFormat))
+            return false;
         if (this.createdBy == null) {
             if (other.createdBy != null)
                 return false;
@@ -538,6 +610,9 @@ public class User implements Serializable {
         result = prime * result + ((this.enabled == null) ? 0 : this.enabled.hashCode());
         result = prime * result + ((this.accountExpiresAt == null) ? 0 : this.accountExpiresAt.hashCode());
         result = prime * result + ((this.passwordExpiresAt == null) ? 0 : this.passwordExpiresAt.hashCode());
+        result = prime * result + ((this.locale == null) ? 0 : this.locale.hashCode());
+        result = prime * result + ((this.timeZone == null) ? 0 : this.timeZone.hashCode());
+        result = prime * result + ((this.dateFormat == null) ? 0 : this.dateFormat.hashCode());
         result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
         result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
         result = prime * result + ((this.modifiedBy == null) ? 0 : this.modifiedBy.hashCode());
@@ -565,6 +640,9 @@ public class User implements Serializable {
         sb.append(", ").append(enabled);
         sb.append(", ").append(accountExpiresAt);
         sb.append(", ").append(passwordExpiresAt);
+        sb.append(", ").append(locale);
+        sb.append(", ").append(timeZone);
+        sb.append(", ").append(dateFormat);
         sb.append(", ").append(createdBy);
         sb.append(", ").append(createdTime);
         sb.append(", ").append(modifiedBy);
