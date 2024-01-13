@@ -5,7 +5,7 @@
     :operation="operation"
     :validationRules="validationRules"
     :saveCallback="save"
-    :debug=false
+    :debug=true
   >
     <template #body>
       <!--begin::Input group-->
@@ -40,6 +40,10 @@
           <el-select
               name="clientAuthenticationMethods"
               v-model="modalData.clientAuthenticationMethods"
+              multiple
+              collapse-tags
+              collapse-tags-tooltip
+              :max-collapse-tags="2"
               clearable
           >
             <el-option v-for="(item, key) in clientAuthenticationMethods" :key="key" :value="item" :label="item">{{ item }}</el-option>
