@@ -4,10 +4,8 @@ import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
-import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserRoleDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ManagedUser;
@@ -83,8 +81,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Resource
     private             UserRoleDao           userRoleDao;
     @Resource
-    private             UserPreferenceDao     userPreferenceDao;
-    @Resource
     private             UserRoleService       userRoleService;
     @Resource
     private             MessageCreator        messageCreator;
@@ -117,8 +113,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .collect(Collectors.toList());
         Set<String> teamIds = findTeamIds(user.getId());
 
-        UserPreference userPreference = userPreferenceDao.findById(user.getId());
-        String locale = userPreference != null ? userPreference.getLocale() : "";
         String modifiedTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(user.getModifiedTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
         String photoUrl = null;
@@ -128,7 +122,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new AuthUser(user.getId(), user.getUsername(),
                 user.getEmail(), user.getMobileNo(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
                 user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, photoUrl, locale, modifiedTime, authorities, roles, teamIds);
+                true, photoUrl, user.getLocale(), modifiedTime, authorities, roles, teamIds);
     }
 
     @Override
@@ -149,11 +143,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         ManagedUser managedUser = new ManagedUser();
         BeanUtils.copyProperties(user, managedUser);
         managedUser.setRoles(findRoles(id));
-
-        UserPreference preference = userPreferenceDao.findById(id);
-        // default handing
-        managedUser.setLocale(preference.getLocale());
-        managedUser.setTimezone(preference.getTimeZone());
+        managedUser.setLocale(user.getLocale());
+        managedUser.setTimezone(user.getTimeZone());
         return managedUser;
     }
 
@@ -215,6 +206,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setActivated(false);
         domain.setEnabled(true);
         domain.setPasswordExpiresAt(LocalDateTime.now().plusMonths(6));
+        domain.setLocale(defaultLocale);
+        domain.setDateFormat("2021-09-10 10:15:00");
+        domain.setTimeZone("Asia/Shanghai (GMT +08:00)");
+
         if (!permanentAccount) {
             domain.setAccountExpiresAt(LocalDateTime.now().plusDays(30));
         }
@@ -224,14 +219,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         List<UserRole> userAuthorities = userRoleService.generate(id, authorities);
         userRoleDao.insert(userAuthorities);
-
-        UserPreference userPreference = new UserPreference();
-        userPreference.setUserId(id);
-        userPreference.setLocale(defaultLocale);
-        userPreference.setDateFormat("2021-09-10 10:15:00");
-        userPreference.setTimeZone("Asia/Shanghai (GMT +08:00)");
-        userPreferenceDao.insert(userPreference);
-
         return domain;
     }
 

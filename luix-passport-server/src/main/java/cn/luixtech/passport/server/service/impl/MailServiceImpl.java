@@ -1,9 +1,7 @@
 package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.config.ApplicationProperties;
-import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
 import cn.luixtech.passport.server.service.MailService;
 import com.resend.Resend;
 import com.resend.services.emails.model.SendEmailRequest;
@@ -33,7 +31,6 @@ public class MailServiceImpl implements MailService {
     private final        ApplicationProperties applicationProperties;
     private final        MessageSource         messageSource;
     private final        SpringTemplateEngine  springTemplateEngine;
-    private final        UserPreferenceDao     userPreferenceDao;
 
     /**
      * System default email address that sends the e-mails.
@@ -60,8 +57,7 @@ public class MailServiceImpl implements MailService {
     @Async
     @Override
     public void sendEmailFromTemplate(User user, String templateName, String emailSubjectKey, String baseUrl) {
-        UserPreference userPreference = userPreferenceDao.findById(user.getId());
-        Locale locale = LocaleUtils.toLocale(userPreference.getLocale());
+        Locale locale = LocaleUtils.toLocale(user.getLocale());
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, baseUrl);

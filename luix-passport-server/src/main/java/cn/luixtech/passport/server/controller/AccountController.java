@@ -3,11 +3,8 @@ package cn.luixtech.passport.server.controller;
 import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
 import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
-import cn.luixtech.passport.server.persistence.tables.daos.UserPreferenceDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserPreference;
-import cn.luixtech.passport.server.pojo.AuthUser;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
@@ -60,7 +57,6 @@ public class AccountController {
     private final        MailService               mailService;
     private final        UserDao                   userDao;
     private final        UserPhotoDao              userPhotoDao;
-    private final        UserPreferenceDao         userPreferenceDao;
     private final        UserService               userService;
     private final        UserPhotoService          userPhotoService;
     private final        ApplicationEventPublisher applicationEventPublisher;
@@ -129,21 +125,6 @@ public class AccountController {
         }
         userService.resetPassword(resetCode, dto.getNewRawPassword());
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
-    }
-
-    @Operation(summary = "get user preference of the current user")
-    @GetMapping("/api/accounts/preference")
-    public ResponseEntity<UserPreference> getPreference() {
-        return ResponseEntity.ok(userPreferenceDao.findById(AuthUtils.getCurrentUserId()));
-    }
-
-    @Operation(summary = "update user preference of the current user")
-    @PutMapping("/api/accounts/preference")
-    public ResponseEntity<Void> updatePreference(@Parameter(description = "new user preference", required = true) @Valid @RequestBody UserPreference domain) {
-        Optional.ofNullable(userService.findById(domain.getUserId())).orElseThrow(() -> new DataNotFoundException(domain.getUserId()));
-        domain.setUserId(AuthUtils.getCurrentUserId());
-        userPreferenceDao.update(domain);
-        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("user.preference"))).build();
     }
 
     @Operation(summary = "get profile photo of the current user")
