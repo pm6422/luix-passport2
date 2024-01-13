@@ -41,7 +41,6 @@
               name="clientAuthenticationMethods"
               v-model="modalData.clientAuthenticationMethods"
               clearable
-              class="w-100"
           >
             <el-option v-for="(item, key) in clientAuthenticationMethods" :key="key" :value="item" :label="item">{{ item }}</el-option>
           </el-select>
@@ -62,7 +61,6 @@
               collapse-tags-tooltip
               :max-collapse-tags="2"
               clearable
-              class="w-100"
           >
             <el-option v-for="(item, key) in authorizationGrantTypes" :key="key" :value="item" :label="item">{{ item }}</el-option>
           </el-select>
