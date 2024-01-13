@@ -16,7 +16,7 @@
         <img
           alt="Logo"
           :src="getAssetPath('assets/media/logos/logo.svg')"
-          class="h-35px"
+          class="h-40px"
         />
         <router-link to="/">
           <span class="app-sidebar-logo-default ms-10 fs-2 -intro-x">
