@@ -115,29 +115,31 @@
           @onPageNoChange="changePage"
           @onPageSizeChange="changePage"
       >
-        <template v-slot:id="{ row: row }">
+        <template v-slot:clientId="{ row: row }">
           <div class="badge badge-light">
-            {{ row.id }}
+            {{ row.clientId }}
           </div>
         </template>
-        <template v-slot:categoryCode="{ row: row }">
-          {{ row.categoryCode }}
+        <template v-slot:clientName="{ row: row }">
+          {{ row.clientName }}
         </template>
-        <template v-slot:dictCode="{ row: row }">
-          {{ row.dictCode }}
+        <template v-slot:clientAuthenticationMethods="{ row: row }">
+          <OneOrMore :values="row.clientAuthenticationMethods"/>
         </template>
-        <template v-slot:dictName="{ row: row }">
-          <Abbreviation :text="row.dictName" :maxTextLength="30"/>
+        <template v-slot:authorizationGrantTypes="{ row: row }">
+          <OneOrMore :values="row.authorizationGrantTypes"/>
         </template>
-        <template v-slot:desc="{ row: row }">
-          <span class="fs-8">{{ row.desc }}</span>
+        <template v-slot:redirectUris="{ row: row }">
+          <OneOrMore :values="row.redirectUris"/>
         </template>
-        <template v-slot:modifiedTime="{ row: row }">
-          <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.createdTime) }}</div>
-          <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.modifiedTime) }}</div>
+        <template v-slot:postLogoutRedirectUris="{ row: row }">
+          <OneOrMore :values="row.postLogoutRedirectUris"/>
         </template>
-        <template v-slot:enabled="{ row: row }">
-          <YesOrNo :val="row.enabled"/>
+        <template v-slot:scopes="{ row: row }">
+          <OneOrMore :values="row.scopes"/>
+        </template>
+        <template v-slot:clientIdIssuedAt="{ row: row }">
+          <div>{{ DateTimeUtils.formatDateTime(row.clientIdIssuedAt) }}</div>
         </template>
         <template v-slot:actions="{ row: row }">
           <div class="d-flex justify-content-end">
@@ -175,16 +177,18 @@ import BatchDeleteButton  from '@/components/button/batch-delete-button.vue'
 import Abbreviation  from '@/components/utilities/abbreviation.vue'
 import UploadModal  from '@/components/upload/upload-modal.vue'
 import SearchBox  from '@/components/search/search-box.vue'
-import type { IDataDict } from '@/domain/DataDict';
+import type { IOauthClient } from '@/domain/OauthClient';
 import { cloneDeep } from "lodash";
-import { DataDictService } from '@/services/services';
+import { OauthClientService } from '@/services/services';
 import { useRouter, useRoute } from "vue-router";
 import { TableHelper } from "@/helpers/TableHelper";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+import OneOrMore from "@/components/utilities/one-or-more.vue";
 
 export default defineComponent({
   name: "teams",
   components: {
+    OneOrMore,
     KTDatatable,
     YesOrNo,
     // DictModal,
@@ -197,62 +201,66 @@ export default defineComponent({
   setup(props) {
     const i18n = useI18n();
     const selectedIds = ref<Array<string>>([]);
-    const initialTableData = ref<Array<IDataDict>>([]);
-    const tableData = ref<Array<IDataDict>>([]);
+    const initialTableData = ref<Array<IOauthClient>>([]);
+    const tableData = ref<Array<IOauthClient>>([]);
     const tableTotalItems = ref(0);
     const modalOperation = ref('create');
     const router = useRouter();
     const route = useRoute();
     const currentPageNo = ref<number>( 1);
     const currentPageSize = ref<number>(10);
-    const targetCategoryCode = ref<string>("");
 
-    const emptyModalData : IDataDict = {
+    const emptyModalData : IOauthClient = {
       id: "",
-      num: "",
-      categoryCode: "",
-      dictCode: "",
-      dictName: "",
-      desc: "",
-      enabled: true,
-      updatedTime: ""
+      clientId: "",
+      clientName: "",
+      clientSecret: "",
+      clientAuthenticationMethods: [],
+      authorizationGrantTypes: [],
+      redirectUris: [],
+      postLogoutRedirectUris: [],
+      scopes: [],
+      clientSettings: "",
+      tokenSettings: "",
+      clientIdIssuedAt: "",
+      clientSecretExpiresAt: "",
     };
     const modalData = ref(emptyModalData);
     const tableHeader = computed<Array<Column>>(() => {
       return [
         {
-          columnName: i18n.t('form.global.id'),
-          columnLabel: "id",
+          columnName: i18n.t('form.oauth-client.client-id'),
+          columnLabel: "clientId",
           sortEnabled: true,
         },
         {
-          columnName: i18n.t('form.data-dict-list.category-code'),
-          columnLabel: "categoryCode",
+          columnName: i18n.t('form.oauth-client.client-name'),
+          columnLabel: "clientName",
           sortEnabled: true,
         },
         {
-          columnName: i18n.t('form.data-dict-list.dict-code'),
-          columnLabel: "dictCode",
-          sortEnabled: true,
-        },
-        {
-          columnName: i18n.t('form.data-dict-list.dict-name'),
-          columnLabel: "dictName",
-          sortEnabled: true,
-        },
-        {
-          columnName: i18n.t('form.global.description'),
-          columnLabel: "desc",
+          columnName: i18n.t('form.oauth-client.client-authentication-methods'),
+          columnLabel: "clientAuthenticationMethods",
           sortEnabled: false,
         },
         {
-          columnName: i18n.t('form.global.enabled'),
-          columnLabel: "enabled",
+          columnName: i18n.t('form.oauth-client.authorization-grant-types'),
+          columnLabel: "authorizationGrantTypes",
           sortEnabled: true,
         },
         {
-          columnName: i18n.t('form.global.created-modified-time'),
-          columnLabel: "modifiedTime",
+          columnName: i18n.t('form.oauth-client.redirect-uris'),
+          columnLabel: "redirectUris",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.oauth-client.scopes'),
+          columnLabel: "scopes",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.oauth-client.client-id-issued-at'),
+          columnLabel: "clientIdIssuedAt",
           sortEnabled: true,
         },
         {
@@ -262,7 +270,7 @@ export default defineComponent({
       ]
     });
     const loadAll = () => {
-      DataDictService.findAll().then(r => {
+      OauthClientService.findAll().then(r => {
         initialTableData.value = r.data;
         const keyword = route.query.searchKeyword as string;
         tableData.value = keyword ? TableHelper.filter(r.data, keyword) : r.data;
@@ -280,9 +288,6 @@ export default defineComponent({
       currentPageNo.value = page;
       currentPageSize.value = size;
 
-      if(!props.urlQueryEnabled) {
-        return;
-      }
       if(page === 1 && size === 10) {
         let newQuery = JSON.parse(JSON.stringify(route.query));
         delete newQuery.pageNo;
@@ -315,7 +320,7 @@ export default defineComponent({
         showModal("modal");
         return;
       }
-      DataDictService.findById(row.id).then(r => {
+      OauthClientService.findById(row.id).then(r => {
         modalData.value = r.data;
         modalOperation.value = editMode ? "update" : "view";
         showModal("modal");
@@ -325,21 +330,8 @@ export default defineComponent({
       showModal("uploadModal");
     };
     const deleteRecord = (id: string) => {
-      DataDictService.deleteById(id).then(r => {
+      OauthClientService.deleteById(id).then(r => {
         loadAll();
-      })
-    };
-    const batchUpdate = () => {
-      DataDictService.batchUpdate(selectedIds.value, targetCategoryCode.value).then(r => {
-        Swal.fire({
-          text: i18n.t("msg.global.batch-update-successfully"),
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1000,
-          heightAuto: false,
-        }).then(() => {
-          loadAll();
-        });
       })
     };
     const afterSavedRecord = (operation: string) => {
@@ -371,8 +363,6 @@ export default defineComponent({
       changePage,
       DateTimeUtils,
       openUploadModal,
-      targetCategoryCode,
-      batchUpdate,
       afterUploadCallback,
       loadAll
     };
