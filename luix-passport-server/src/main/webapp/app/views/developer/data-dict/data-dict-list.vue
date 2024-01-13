@@ -383,6 +383,6 @@ export default defineComponent({
       afterUploadCallback,
       loadAll
     };
-  },
+  }
 });
 </script>
