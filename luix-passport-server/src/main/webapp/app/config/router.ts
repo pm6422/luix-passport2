@@ -65,7 +65,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: "oauth-client",
         path: "/admin/oauth-clients",
-        component: () => import("@/views/admin/oauth-clients.vue"),
+        component: () => import("@/views/admin/oauth-client/oauth-client-list.vue"),
         meta: {
           pageTitle: "menu.administration.oauth-client.title",
           breadcrumbs: ["menu.administration.title"],
