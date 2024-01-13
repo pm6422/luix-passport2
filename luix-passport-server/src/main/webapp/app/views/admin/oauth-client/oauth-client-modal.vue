@@ -71,15 +71,18 @@
       <!--begin::Input group-->
       <div class="row">
         <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
-        <el-form-item prop="redirectUris">
           <template v-for="(row, index) in modalData.redirectUris" :key="index">
-            <el-input
-                name="redirectUris"
-                v-model="modalData.redirectUris[index]"
-                class="mt-2"
-            ></el-input>
+            <el-form-item prop="redirectUris">
+              <el-input
+              name="redirectUris"
+              v-model="modalData.redirectUris[index]"
+              >
+                <template #append>
+                  <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
+                </template>
+              </el-input>
+            </el-form-item>
           </template>
-        </el-form-item>
       </div>
       <!--end::Input group-->
     </template>
@@ -93,11 +96,13 @@ import { useI18n } from "vue-i18n";
 import type { FormRules } from 'element-plus';
 import type { IOauthClient } from '@/domain/OauthClient';
 import { OauthClientService } from '@/services/services';
+import { CloseBold } from '@element-plus/icons-vue';
 
 export default defineComponent({
   name: "oauth-client-modal",
   components: {
-    BasicEditableModal
+    BasicEditableModal,
+    CloseBold
   },
   props: {
     modalData: { type: Object as () => IOauthClient , required: true },
@@ -163,7 +168,8 @@ export default defineComponent({
       authorizationGrantTypes,
       save,
       operation,
-      modalData
+      modalData,
+      CloseBold
     };
   },
 });
