@@ -128,7 +128,7 @@
               :max-collapse-tags="2"
               clearable
           >
-            <el-option v-for="(item, key) in authorizationGrantTypes" :key="key" :value="item" :label="item">{{ item }}</el-option>
+            <el-option v-for="(item, key) in scopes" :key="key" :value="item" :label="item">{{ item }}</el-option>
           </el-select>
         </el-form-item>
       </div>
@@ -163,12 +163,16 @@ export default defineComponent({
     const operation = ref(props.operation);
     const clientAuthenticationMethods = ref<Array<string>>([]);
     const authorizationGrantTypes = ref<Array<string>>([]);
+    const scopes = ref<Array<string>>([]);
 
     OauthClientService.findClientAuthenticationMethods().then(r => {
       clientAuthenticationMethods.value = r.data;
     });
     OauthClientService.findAuthorizationGrantTypes().then(r => {
       authorizationGrantTypes.value = r.data;
+    });
+    OauthClientService.findScopes().then(r => {
+      scopes.value = r.data;
     });
     
     watch(
@@ -214,6 +218,7 @@ export default defineComponent({
       validationRules,
       clientAuthenticationMethods,
       authorizationGrantTypes,
+      scopes,
       save,
       operation,
       modalData,

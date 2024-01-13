@@ -173,6 +173,10 @@ export class OauthClientService {
     return ApiService.query("api/oauth2-clients/authorization-grant-types", null);
   }
 
+  public static findScopes(): Promise<any> {
+    return ApiService.query("api/oauth2-clients/scopes", null);
+  }
+
   public static create(model: IUser): Promise<any> {
     return ApiService.post("api/oauth2-clients", model);
   }

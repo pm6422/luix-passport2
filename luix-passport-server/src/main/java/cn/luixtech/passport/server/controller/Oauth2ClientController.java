@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.core.oidc.OidcScopes;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -121,6 +122,19 @@ public class Oauth2ClientController {
         sets.add(CLIENT_CREDENTIALS.getValue());
         sets.add(JWT_BEARER.getValue());
         sets.add(DEVICE_CODE.getValue());
+        return ResponseEntity.ok(sets);
+    }
+
+    @Operation(summary = "get scopes")
+    @GetMapping("/api/oauth2-clients/scopes")
+    public ResponseEntity<Set<String>> getScopes() {
+        Set<String> sets = new HashSet<>();
+        sets.add(OidcScopes.OPENID);
+        sets.add(OidcScopes.PROFILE);
+        sets.add(OidcScopes.EMAIL);
+        sets.add(OidcScopes.PHONE);
+        sets.add("external:read");
+        sets.add("external:write");
         return ResponseEntity.ok(sets);
     }
 }
