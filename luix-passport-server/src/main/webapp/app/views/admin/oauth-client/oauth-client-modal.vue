@@ -8,135 +8,137 @@
     :debug=false
   >
     <template #body>
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-id')"></label>
-        <el-form-item prop="clientId">
-          <el-input
-            name="clientId"
-            v-model="modalData.clientId"
-          ></el-input>
-        </el-form-item>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-name')"></label>
-        <el-form-item prop="clientId">
-          <el-input
-              name="clientName"
-              v-model="modalData.clientName"
-          ></el-input>
-        </el-form-item>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-authentication-methods')">
-        </label>
-        <el-form-item prop="clientAuthenticationMethods">
-          <el-select
-              name="clientAuthenticationMethods"
-              v-model="modalData.clientAuthenticationMethods"
-              multiple
-              collapse-tags
-              collapse-tags-tooltip
-              :max-collapse-tags="2"
-              clearable
-          >
-            <el-option v-for="(item, key) in clientAuthenticationMethods" :key="key" :value="item" :label="item">{{ item }}</el-option>
-          </el-select>
-        </el-form-item>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.authorization-grant-types')">
-        </label>
-        <el-form-item prop="authorizationGrantTypes">
-          <el-select
-              name="authorizationGrantTypes"
-              v-model="modalData.authorizationGrantTypes"
-              multiple
-              collapse-tags
-              collapse-tags-tooltip
-              :max-collapse-tags="2"
-              clearable
-          >
-            <el-option v-for="(item, key) in authorizationGrantTypes" :key="key" :value="item" :label="item">{{ item }}</el-option>
-          </el-select>
-        </el-form-item>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row w-xxl-550px">
-        <div class="d-flex flex-stack">
-          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
-          <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.redirectUris.push('')">
-            <KTIcon icon-name="plus" icon-class="fs-1"/>
-          </button>
-        </div>
-        <template v-for="(row, index) in modalData.redirectUris" :key="index">
-          <el-form-item prop="redirectUris">
+      <div class=" w-xxl-550px">
+        <!--begin::Input group-->
+        <div class="row">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-id')"></label>
+          <el-form-item prop="clientId">
             <el-input
-            name="redirectUris"
-            v-model="modalData.redirectUris[index]"
-            >
-              <template #append>
-                <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
-              </template>
-            </el-input>
+                name="clientId"
+                v-model="modalData.clientId"
+            ></el-input>
           </el-form-item>
-        </template>
-      </div>
-      <!--end::Input group-->
-
-      <!--begin::Input group-->
-      <div class="row w-xxl-550px">
-        <div class="d-flex flex-stack">
-          <label class="col-form-label fw-semobold" v-text="$t('form.oauth-client.post-logout-redirect-uris')"></label>
-          <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.postLogoutRedirectUris.push('')">
-            <KTIcon icon-name="plus" icon-class="fs-1"/>
-          </button>
         </div>
-        <template v-for="(row, index) in modalData.postLogoutRedirectUris" :key="index">
-          <el-form-item prop="postLogoutRedirectUris">
-            <el-input
-                name="redirectUris"
-                v-model="modalData.postLogoutRedirectUris[index]"
-            >
-              <template #append>
-                <el-button :icon="CloseBold" @click="modalData.postLogoutRedirectUris.splice(index, 1)"/>
-              </template>
-            </el-input>
-          </el-form-item>
-        </template>
-      </div>
-      <!--end::Input group-->
+        <!--end::Input group-->
 
-      <!--begin::Input group-->
-      <div class="row">
-        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.scopes')">
-        </label>
-        <el-form-item prop="scopes">
-          <el-select
-              name="scopes"
-              v-model="modalData.scopes"
-              multiple
-              collapse-tags
-              collapse-tags-tooltip
-              :max-collapse-tags="2"
-              clearable
-          >
-            <el-option v-for="(item, key) in scopes" :key="key" :value="item" :label="item">{{ item }}</el-option>
-          </el-select>
-        </el-form-item>
+        <!--begin::Input group-->
+        <div class="row">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-name')"></label>
+          <el-form-item prop="clientId">
+            <el-input
+                name="clientName"
+                v-model="modalData.clientName"
+            ></el-input>
+          </el-form-item>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-authentication-methods')">
+          </label>
+          <el-form-item prop="clientAuthenticationMethods">
+            <el-select
+                name="clientAuthenticationMethods"
+                v-model="modalData.clientAuthenticationMethods"
+                multiple
+                collapse-tags
+                collapse-tags-tooltip
+                :max-collapse-tags="2"
+                clearable
+            >
+              <el-option v-for="(item, key) in clientAuthenticationMethods" :key="key" :value="item" :label="item">{{ item }}</el-option>
+            </el-select>
+          </el-form-item>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.authorization-grant-types')">
+          </label>
+          <el-form-item prop="authorizationGrantTypes">
+            <el-select
+                name="authorizationGrantTypes"
+                v-model="modalData.authorizationGrantTypes"
+                multiple
+                collapse-tags
+                collapse-tags-tooltip
+                :max-collapse-tags="2"
+                clearable
+            >
+              <el-option v-for="(item, key) in authorizationGrantTypes" :key="key" :value="item" :label="item">{{ item }}</el-option>
+            </el-select>
+          </el-form-item>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row">
+          <div class="d-flex flex-stack">
+            <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
+            <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.redirectUris.push('')">
+              <KTIcon icon-name="plus" icon-class="fs-1"/>
+            </button>
+          </div>
+          <template v-for="(row, index) in modalData.redirectUris" :key="index">
+            <el-form-item prop="redirectUris">
+              <el-input
+                  name="redirectUris"
+                  v-model="modalData.redirectUris[index]"
+              >
+                <template #append>
+                  <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
+                </template>
+              </el-input>
+            </el-form-item>
+          </template>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row">
+          <div class="d-flex flex-stack">
+            <label class="col-form-label fw-semobold" v-text="$t('form.oauth-client.post-logout-redirect-uris')"></label>
+            <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.postLogoutRedirectUris.push('')">
+              <KTIcon icon-name="plus" icon-class="fs-1"/>
+            </button>
+          </div>
+          <template v-for="(row, index) in modalData.postLogoutRedirectUris" :key="index">
+            <el-form-item prop="postLogoutRedirectUris">
+              <el-input
+                  name="redirectUris"
+                  v-model="modalData.postLogoutRedirectUris[index]"
+              >
+                <template #append>
+                  <el-button :icon="CloseBold" @click="modalData.postLogoutRedirectUris.splice(index, 1)"/>
+                </template>
+              </el-input>
+            </el-form-item>
+          </template>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.scopes')">
+          </label>
+          <el-form-item prop="scopes">
+            <el-select
+                name="scopes"
+                v-model="modalData.scopes"
+                multiple
+                collapse-tags
+                collapse-tags-tooltip
+                :max-collapse-tags="2"
+                clearable
+            >
+              <el-option v-for="(item, key) in scopes" :key="key" :value="item" :label="item">{{ item }}</el-option>
+            </el-select>
+          </el-form-item>
+        </div>
+        <!--end::Input group-->
       </div>
-      <!--end::Input group-->
     </template>
   </BasicEditableModal>
 </template>
