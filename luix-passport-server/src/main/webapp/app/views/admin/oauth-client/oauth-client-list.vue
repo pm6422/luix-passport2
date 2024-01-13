@@ -1,4 +1,5 @@
 <template>
+  <OauthClientModal id="modal" :modalData="modalData" :operation="modalOperation" :afterSaveCallback="afterSavedRecord" />
   <!--begin::Card-->
   <div class="card">
     <!--begin::Card header-->
@@ -30,20 +31,6 @@
             >
               <KTIcon icon-name="arrows-circle" icon-class="fs-3"/>
             </button>
-            <div>
-              <button class="btn btn-icon btn-bg-light btn-active-color-primary ms-1"
-                      data-kt-menu-trigger="click"
-                      data-kt-menu-placement="bottom-end"
-                      data-kt-menu-overflow="true"
-              >
-                <i class="bi bi-three-dots fs-3"></i>
-              </button>
-              <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-175px" data-kt-menu="true">
-                <div class="menu-item px-3">
-                  <a class="menu-link px-3 text-gray-800" @click="openUploadModal()"><KTIcon icon-name="file-up" icon-class="text-primary fs-2 fs-md-1 px-2 me-2" /><span v-text="$t('form.global.upload')"></span></a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <div v-show="selectedIds.length > 0">
@@ -122,21 +109,19 @@ import type { Sort } from "@/components/kt-datatable/domain/Sort";
 import type { Column } from "@/components/kt-datatable/domain/Column";
 import arraySort from "array-sort";
 import { useI18n } from "vue-i18n";
-import YesOrNo  from '@/components/utilities/yes-or-no.vue'
-// import DictModal from "./data-dict-modal.vue";
+import YesOrNo  from '@/components/utilities/yes-or-no.vue';
+import OauthClientModal from "./oauth-client-modal.vue";
 import { showModal } from "@/helpers/dom";
 import { DateTimeUtils } from "@/helpers/DateTimeUtils";
-import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue'
-import BatchDeleteButton  from '@/components/button/batch-delete-button.vue'
-import Abbreviation  from '@/components/utilities/abbreviation.vue'
-import UploadModal  from '@/components/upload/upload-modal.vue'
-import SearchBox  from '@/components/search/search-box.vue'
+import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue';
+import BatchDeleteButton  from '@/components/button/batch-delete-button.vue';
+import Abbreviation  from '@/components/utilities/abbreviation.vue';
+import SearchBox  from '@/components/search/search-box.vue';
 import type { IOauthClient } from '@/domain/OauthClient';
 import { cloneDeep } from "lodash";
 import { OauthClientService } from '@/services/services';
 import { useRouter, useRoute } from "vue-router";
 import { TableHelper } from "@/helpers/TableHelper";
-import Swal from "sweetalert2/dist/sweetalert2.js";
 import OneOrMore from "@/components/utilities/one-or-more.vue";
 
 export default defineComponent({
@@ -145,12 +130,11 @@ export default defineComponent({
     OneOrMore,
     KTDatatable,
     YesOrNo,
-    // DictModal,
+    OauthClientModal,
     ConfirmDeleteButton,
     BatchDeleteButton,
     SearchBox,
-    Abbreviation,
-    UploadModal
+    Abbreviation
   },
   setup(props) {
     const i18n = useI18n();
@@ -280,18 +264,12 @@ export default defineComponent({
         showModal("modal");
       });
     };
-    const openUploadModal = () => {
-      showModal("uploadModal");
-    };
     const deleteRecord = (id: string) => {
       OauthClientService.deleteById(id).then(r => {
         loadAll();
       })
     };
     const afterSavedRecord = (operation: string) => {
-      loadAll();
-    };
-    const afterUploadCallback = () => {
       loadAll();
     };
 
@@ -316,8 +294,6 @@ export default defineComponent({
       currentPageSize,
       changePage,
       DateTimeUtils,
-      openUploadModal,
-      afterUploadCallback,
       loadAll
     };
   }

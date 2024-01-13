@@ -1,7 +1,6 @@
 <template>
   <DictModal id="modal" :modalData="modalData" :operation="modalOperation" :afterSaveCallback="afterSavedRecord" />
   <UploadModal id="uploadModal" uploadUrl="api/data-dicts/import" downloadUrl="api/data-dicts/import-template" :afterUploadCallback="afterUploadCallback" :maxFileSize="1" :acceptFiles="['json', 'txt']" />
-
   <!--begin::Card-->
   <div class="card">
     <!--begin::Card header-->
@@ -173,11 +172,11 @@ import YesOrNo  from '@/components/utilities/yes-or-no.vue'
 import DictModal from "./data-dict-modal.vue";
 import { showModal } from "@/helpers/dom";
 import { DateTimeUtils } from "@/helpers/DateTimeUtils";
-import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue'
-import BatchDeleteButton  from '@/components/button/batch-delete-button.vue'
-import Abbreviation  from '@/components/utilities/abbreviation.vue'
-import UploadModal  from '@/components/upload/upload-modal.vue'
-import SearchBox  from '@/components/search/search-box.vue'
+import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue';
+import BatchDeleteButton  from '@/components/button/batch-delete-button.vue';
+import Abbreviation  from '@/components/utilities/abbreviation.vue';
+import UploadModal  from '@/components/upload/upload-modal.vue';
+import SearchBox  from '@/components/search/search-box.vue';
 import type { IDataDict } from '@/domain/DataDict';
 import { cloneDeep } from "lodash";
 import { DataDictService } from '@/services/services';

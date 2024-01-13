@@ -312,6 +312,8 @@
       "activated": "激活状态"
     },
     "oauth-client": {
+      "create": "创建OAuth2客户端",
+      "update": "更新OAuth2客户端",
       "client-id": "客户端ID",
       "client-name": "客户端名称",
       "client-secret": "客户端密钥",

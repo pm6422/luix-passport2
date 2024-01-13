@@ -99,7 +99,7 @@ public class Oauth2Client implements Serializable {
      */
     public RegisteredClient toRegisteredClient() {
         return RegisteredClient
-                .withId(Optional.ofNullable(this.id).orElse(IdGenerator.generateId()))
+                .withId(Optional.ofNullable(this.id).orElse(String.valueOf(IdGenerator.generateShortId())))
                 .clientId(Optional.ofNullable(this.clientId).orElse(IdGenerator.generateId()))
                 .clientName(this.clientName)
                 .clientSecret(DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(this.getRawClientSecret()))

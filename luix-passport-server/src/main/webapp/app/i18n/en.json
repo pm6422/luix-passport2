@@ -312,6 +312,8 @@
       "activated": "Activated"
     },
     "oauth-client": {
+      "create": "Create OAuth2 Client",
+      "update": "Update OAuth2 Client",
       "client-id": "Client ID",
       "client-name": "Client Name",
       "client-secret": "Client Secret",
