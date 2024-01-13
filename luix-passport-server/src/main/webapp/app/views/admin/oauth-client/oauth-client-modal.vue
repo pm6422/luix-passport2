@@ -70,8 +70,8 @@
 
       <!--begin::Input group-->
       <div class="row w-xxl-500px">
-        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex flex-stack">
+          <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
           <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.redirectUris.push('')">
             <KTIcon icon-name="plus" icon-class="fs-1"/>
           </button>
