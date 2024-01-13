@@ -71,18 +71,23 @@
       <!--begin::Input group-->
       <div class="row w-xxl-500px">
         <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
-          <template v-for="(row, index) in modalData.redirectUris" :key="index">
-            <el-form-item prop="redirectUris">
-              <el-input
-              name="redirectUris"
-              v-model="modalData.redirectUris[index]"
-              >
-                <template #append>
-                  <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
-                </template>
-              </el-input>
-            </el-form-item>
-          </template>
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.redirectUris.push('')">
+            <KTIcon icon-name="plus" icon-class="fs-1"/>
+          </button>
+        </div>
+        <template v-for="(row, index) in modalData.redirectUris" :key="index">
+          <el-form-item prop="redirectUris">
+            <el-input
+            name="redirectUris"
+            v-model="modalData.redirectUris[index]"
+            >
+              <template #append>
+                <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
+              </template>
+            </el-input>
+          </el-form-item>
+        </template>
       </div>
       <!--end::Input group-->
     </template>
