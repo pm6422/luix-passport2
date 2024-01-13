@@ -73,7 +73,7 @@
       <!--end::Input group-->
 
       <!--begin::Input group-->
-      <div class="row w-xxl-500px">
+      <div class="row w-xxl-550px">
         <div class="d-flex flex-stack">
           <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
           <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.redirectUris.push('')">
@@ -96,7 +96,7 @@
       <!--end::Input group-->
 
       <!--begin::Input group-->
-      <div class="row w-xxl-500px">
+      <div class="row w-xxl-550px">
         <div class="d-flex flex-stack">
           <label class="col-form-label fw-semobold" v-text="$t('form.oauth-client.post-logout-redirect-uris')"></label>
           <button type="button" class="btn w-10px btn-icon btn-color-success me-7" @click="modalData.postLogoutRedirectUris.push('')">
