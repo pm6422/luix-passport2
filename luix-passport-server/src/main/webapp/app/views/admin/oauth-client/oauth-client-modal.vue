@@ -69,7 +69,7 @@
       <!--end::Input group-->
 
       <!--begin::Input group-->
-      <div class="row">
+      <div class="row w-xxl-500px">
         <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
           <template v-for="(row, index) in modalData.redirectUris" :key="index">
             <el-form-item prop="redirectUris">
