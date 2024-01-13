@@ -69,6 +69,21 @@
         </el-form-item>
       </div>
       <!--end::Input group-->
+
+      <!--begin::Input group-->
+      <div class="row">
+        <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.redirect-uris')"></label>
+        <el-form-item prop="redirectUris">
+          <template v-for="(row, index) in modalData.redirectUris" :key="index">
+            <el-input
+                name="redirectUris"
+                v-model="modalData.redirectUris[index]"
+                class="mt-2"
+            ></el-input>
+          </template>
+        </el-form-item>
+      </div>
+      <!--end::Input group-->
     </template>
   </BasicEditableModal>
 </template>
