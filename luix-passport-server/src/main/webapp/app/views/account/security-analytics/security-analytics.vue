@@ -56,23 +56,6 @@
               <!--begin::Input group-->
               <el-form-item>
                 <el-select
-                  v-bind:placeholder="$t('form.security-analytics.select-asset-type')"
-                  v-model="filter.assetTypes"
-                  clearable
-                >
-                  <el-option v-for="(item, index) in getDicts('AssetType')" 
-                    :key="index" 
-                    :value="item.dictCode" 
-                    :label="$t(`dropdown.asset-type.${item.dictCode}`)"
-                  >
-                    {{ $t(`dropdown.asset-type.${item.dictCode}`) }}
-                  </el-option>
-                </el-select>
-              </el-form-item>
-              <!--end::Input group-->
-              <!--begin::Input group-->
-              <el-form-item>
-                <el-select
                   v-bind:placeholder="$t('form.security-analytics.select-asset-group')"
                   v-model="filter.assetGroups"
                   clearable
