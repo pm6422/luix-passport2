@@ -121,28 +121,7 @@
                 />
               </el-form-item>
               <!--end::Input group-->
-              <!--begin::Input group-->
-              <div class="mt-5 row">
-                <div class="col-lg-6 fv-row">
-                  <label class="form-label" v-text="$t('form.alert-list.severity')"></label>
-                  <div class="">
-                    <div class="form-check form-check-sm py-1" v-for="(item, key) in getDicts('Severity')" >
-                      <input class="form-check-input" type="checkbox" :value="item.dictCode" v-model="filter.severities"/>
-                      <label class="text-gray-600">{{$t(`dropdown.severity.${item.dictCode}`)}}</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-6 fv-row">
-                  <label class="form-label" v-text="$t('form.alert-list.status')"></label>
-                  <div>
-                    <div class="form-check form-check-sm py-1" v-for="(item, key) in getDicts('TicketStatus')">
-                      <input class="form-check-input" type="checkbox" :value="item.dictCode" v-model="filter.ticketStatuses"/>
-                      <label class="text-gray-600">{{$t(`dropdown.ticket-status.${item.dictCode}`)}}</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--end::Input group-->
+
               <!--begin::Input group-->
               <div class="mt-5">
                 <!--begin::Radio group-->
