@@ -78,7 +78,6 @@ import { defineComponent, computed, ref, watch } from "vue";
 import BasicEditableModal  from '@/components/modals/basic-editable-modal.vue'
 import { useI18n } from "vue-i18n";
 import type { FormRules } from 'element-plus';
-import { map, uniq } from "lodash";
 import type { IOauthClient } from '@/domain/OauthClient';
 import { OauthClientService } from '@/services/services';
 
