@@ -73,7 +73,7 @@ public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClient
 
     @Override
     public void update(Oauth2Client pojo) {
-        Oauth2RegisteredClient existingOne = Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getClientId()))
+        Oauth2RegisteredClient existingOne = Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getId()))
                 .orElseThrow(() -> new DataNotFoundException(pojo.getId()));
         Oauth2Client existingClient = Oauth2Client.fromRegisteredClient(existingOne);
         existingClient.setRawClientSecret(pojo.getRawClientSecret());
