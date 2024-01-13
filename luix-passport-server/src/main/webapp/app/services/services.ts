@@ -86,10 +86,6 @@ export class DataDictService {
     return ApiService.query("api/data-dicts/" + id, null);
   }
 
-  public static findByNum(num: String): Promise<any> {
-    return ApiService.query("api/data-dicts/num/" + num, null);
-  }
-
   public static create(model: IDataDict): Promise<any> {
     return ApiService.post("api/data-dicts", model);
   }
@@ -150,6 +146,35 @@ export class UserService {
 
   public static deleteById(id: String): Promise<any> {
     return ApiService.delete("api/users/" + id);
+  }
+}
+
+export class OauthClientService {
+  constructor() {
+  }
+
+  public static find(reqParams: any): Promise<any> {
+    return ApiService.query("api/oauth2-clients", { params: reqParams });
+  }
+
+  public static findAll(enabled: boolean | null = null): Promise<any> {
+    return ApiService.query("api/oauth2-clients", { params: { page: 0, size: 2000, enabled: enabled } });
+  }
+
+  public static findById(id: String): Promise<any> {
+    return ApiService.query("api/oauth2-clients/" + id, null);
+  }
+
+  public static create(model: IUser): Promise<any> {
+    return ApiService.post("api/oauth2-clients", model);
+  }
+
+  public static update(model: IUser): Promise<any> {
+    return ApiService.put("api/oauth2-clients", model);
+  }
+
+  public static deleteById(id: String): Promise<any> {
+    return ApiService.delete("api/oauth2-clients/" + id);
   }
 }
 
