@@ -155,7 +155,7 @@ export default defineComponent({
       clientSecret: "",
       clientAuthenticationMethods: [],
       authorizationGrantTypes: [],
-      redirectUris: [],
+      redirectUris: [""],
       postLogoutRedirectUris: [],
       scopes: [],
       clientSettings: "",

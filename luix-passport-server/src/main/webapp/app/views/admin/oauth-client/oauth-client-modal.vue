@@ -104,7 +104,14 @@
             </button>
           </div>
           <template v-for="(row, index) in modalData.redirectUris" :key="index">
-            <el-form-item prop="redirectUris">
+            <el-form-item
+                :prop="'redirectUris.' + index"
+                :rules="{
+                  required: true,
+                  message: i18n.t('validation.global.required'),
+                  trigger: 'change',
+                }"
+            >
               <el-input
                   name="redirectUris"
                   v-model="modalData.redirectUris[index]"
@@ -127,7 +134,14 @@
             </button>
           </div>
           <template v-for="(row, index) in modalData.postLogoutRedirectUris" :key="index">
-            <el-form-item prop="postLogoutRedirectUris">
+            <el-form-item
+              :prop="'postLogoutRedirectUris.' + index"
+              :rules="{
+                required: true,
+                message: i18n.t('validation.global.required'),
+                trigger: 'change',
+              }"
+            >
               <el-input
                   name="redirectUris"
                   v-model="modalData.postLogoutRedirectUris[index]"
@@ -243,9 +257,6 @@ export default defineComponent({
           { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
         ],
         authorizationGrantTypes: [
-          { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
-        ],
-        redirectUris: [
           { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
         ],
         scopes: [
