@@ -39,7 +39,14 @@
           <!--begin::Hint-->
           <div class="form-text mb-2" v-text="$t('form.oauth-client.do-forget-secret-tip')"></div>
           <!--end::Hint-->
-          <el-form-item prop="rawClientSecret">
+          <el-form-item
+              prop="rawClientSecret"
+              :rules="{
+                required: true,
+                message: i18n.t('validation.global.required'),
+                trigger: 'change',
+              }"
+          >
             <el-input
                 name="rawClientSecret"
                 v-model="modalData.rawClientSecret"
@@ -226,10 +233,22 @@ export default defineComponent({
     };
     const validationRules = computed<FormRules>(() => {
       return {
-        categoryCode: [
+        clientId: [
           { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
         ],
-        dictCode: [
+        clientName: [
+          { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
+        ],
+        clientAuthenticationMethods: [
+          { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
+        ],
+        authorizationGrantTypes: [
+          { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
+        ],
+        redirectUris: [
+          { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
+        ],
+        scopes: [
           { required: true, message: i18n.t("validation.global.required"), trigger: 'change' },
         ]
       };
@@ -243,7 +262,8 @@ export default defineComponent({
       save,
       operation,
       modalData,
-      CloseBold
+      CloseBold,
+      i18n
     };
   },
 });
