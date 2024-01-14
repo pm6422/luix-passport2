@@ -105,16 +105,16 @@
           </div>
           <template v-for="(row, index) in modalData.redirectUris" :key="index">
             <el-form-item
-                :prop="'redirectUris.' + index"
-                :rules="{
-                  required: true,
-                  message: i18n.t('validation.global.required'),
-                  trigger: 'change',
-                }"
+              :prop="'redirectUris.' + index"
+              :rules="{
+                required: true,
+                message: i18n.t('validation.global.required'),
+                trigger: 'change',
+              }"
             >
               <el-input
-                  name="redirectUris"
-                  v-model="modalData.redirectUris[index]"
+                name="redirectUris"
+                v-model="modalData.redirectUris[index]"
               >
                 <template #append>
                   <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
