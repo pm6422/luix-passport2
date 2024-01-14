@@ -5,10 +5,12 @@ import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClien
 import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
+import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
 import io.micrometer.common.util.StringUtils;
 import lombok.AllArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
@@ -37,9 +39,11 @@ public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClient
 
     @Override
     public void insert(Oauth2Client pojo) {
-        Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getClientId())).ifPresent((existingEntity) -> {
+        List<Oauth2RegisteredClient> oauth2RegisteredClients = oauth2RegisteredClientDao.fetchByClientId(pojo.getClientId());
+        if (CollectionUtils.isNotEmpty(oauth2RegisteredClients)) {
             throw new DuplicationException(Map.of("clientId", pojo.getClientId()));
-        });
+        }
+        pojo.setId("O" + IdGenerator.generateShortId());
         registeredClientRepository.save(pojo.toRegisteredClient());
     }
 
