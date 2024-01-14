@@ -117,7 +117,7 @@
                 v-model="modalData.redirectUris[index]"
               >
                 <template #append>
-                  <el-button :icon="CloseBold" @click="modalData.redirectUris.splice(index, 1)"/>
+                  <el-button :icon="CloseBold" class="text-danger" @click="modalData.redirectUris.splice(index, 1)"/>
                 </template>
               </el-input>
             </el-form-item>
@@ -147,7 +147,7 @@
                   v-model="modalData.postLogoutRedirectUris[index]"
               >
                 <template #append>
-                  <el-button :icon="CloseBold" @click="modalData.postLogoutRedirectUris.splice(index, 1)"/>
+                  <el-button :icon="CloseBold" class="text-danger" @click="modalData.postLogoutRedirectUris.splice(index, 1)"/>
                 </template>
               </el-input>
             </el-form-item>
