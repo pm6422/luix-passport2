@@ -24,10 +24,25 @@
         <!--begin::Input group-->
         <div class="row">
           <label class="col-form-label required fw-semobold" v-text="$t('form.oauth-client.client-name')"></label>
-          <el-form-item prop="clientId">
+          <el-form-item prop="clientName">
             <el-input
                 name="clientName"
                 v-model="modalData.clientName"
+            ></el-input>
+          </el-form-item>
+        </div>
+        <!--end::Input group-->
+
+        <!--begin::Input group-->
+        <div class="row" v-if="operation === 'create'">
+          <label class="col-form-label required fw-semobold py-0" v-text="$t('form.oauth-client.client-secret')"></label>
+          <!--begin::Hint-->
+          <div class="form-text mb-2" v-text="$t('form.oauth-client.do-forget-secret-tip')"></div>
+          <!--end::Hint-->
+          <el-form-item prop="rawClientSecret">
+            <el-input
+                name="rawClientSecret"
+                v-model="modalData.rawClientSecret"
             ></el-input>
           </el-form-item>
         </div>

@@ -325,7 +325,8 @@
       "client-settings": "Client Settings",
       "token-settings": "Token Settings",
       "client-id-issued-at": "Client Id Issued At",
-      "client-secret-expires-at": "Client Secret Expires At"
+      "client-secret-expires-at": "Client Secret Expires At",
+      "do-forget-secret-tip": "Do not forget the secret"
     },
     "data-dict-list": {
       "create": "Create Data Dictionary",

@@ -325,7 +325,8 @@
       "client-settings": "客户端设置",
       "token-settings": "Token设置",
       "client-id-issued-at": "客户端ID颁发时间",
-      "client-secret-expires-at": "客户端密钥过期时间"
+      "client-secret-expires-at": "客户端密钥过期时间",
+      "do-forget-secret-tip": "请不要忘记该密钥"
     },
     "data-dict-list": {
       "create": "创建数据字典",

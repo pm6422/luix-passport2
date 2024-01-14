@@ -2,7 +2,7 @@ export interface IOauthClient {
     id: string;
     clientId: string;
     clientName: string;
-    clientSecret: string;
+    rawClientSecret: string;
     clientAuthenticationMethods: Array<string>;
     authorizationGrantTypes: Array<string>;
     redirectUris: Array<string>;
