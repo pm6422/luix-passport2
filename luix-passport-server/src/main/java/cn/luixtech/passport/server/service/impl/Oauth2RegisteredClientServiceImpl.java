@@ -17,6 +17,7 @@ import org.jooq.impl.DSL;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.stereotype.Service;
 
@@ -79,9 +80,10 @@ public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClient
     public void update(Oauth2Client pojo) {
         Oauth2RegisteredClient existingOne = Optional.ofNullable(oauth2RegisteredClientDao.findById(pojo.getId()))
                 .orElseThrow(() -> new DataNotFoundException(pojo.getId()));
+
         Oauth2Client existingClient = Oauth2Client.fromRegisteredClient(existingOne);
-        existingClient.setRawClientSecret(pojo.getRawClientSecret());
-        existingClient.setClientIdIssuedAt(Instant.now());
+
+        existingClient.setClientSecret(existingOne.getClientSecret());
         existingClient.setClientAuthenticationMethods(pojo.getClientAuthenticationMethods());
         existingClient.setAuthorizationGrantTypes(pojo.getAuthorizationGrantTypes());
         existingClient.setRedirectUris(pojo.getRedirectUris());
@@ -90,6 +92,6 @@ public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClient
         existingClient.setClientSecretExpiresAt(pojo.getClientSecretExpiresAt());
         existingClient.setClientName(pojo.getClientName());
 
-        registeredClientRepository.save(pojo.toRegisteredClient());
+        registeredClientRepository.save(existingClient.toRegisteredClient());
     }
 }

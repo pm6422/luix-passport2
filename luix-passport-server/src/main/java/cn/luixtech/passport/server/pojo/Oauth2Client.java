@@ -15,11 +15,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER_PREFIX;
 import static cn.luixtech.passport.server.service.impl.UserServiceImpl.BCRYPT_PASSWORD_ENCODER;
@@ -37,6 +35,7 @@ public class Oauth2Client implements Serializable {
     private              String  clientId;
     private              String  clientName;
     private              String  rawClientSecret;
+    private              String  clientSecret;
     private              Instant clientIdIssuedAt;
     private              Instant clientSecretExpiresAt;
     private              Integer validityInDays;
@@ -101,11 +100,12 @@ public class Oauth2Client implements Serializable {
      * @return the registered client
      */
     public RegisteredClient toRegisteredClient() {
+        String clientSecret = StringUtils.defaultIfEmpty(this.clientSecret, DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(this.getRawClientSecret()));
         return RegisteredClient
                 .withId(Optional.ofNullable(this.id).orElse(String.valueOf(IdGenerator.generateShortId())))
                 .clientId(Optional.ofNullable(this.clientId).orElse(IdGenerator.generateId()))
                 .clientName(this.clientName)
-                .clientSecret(DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(this.getRawClientSecret()))
+                .clientSecret(clientSecret)
                 .clientIdIssuedAt(this.clientIdIssuedAt)
                 .clientAuthenticationMethods(clientAuthenticationMethodSet ->
                         clientAuthenticationMethodSet.addAll(clientAuthenticationMethods.stream()
@@ -116,8 +116,7 @@ public class Oauth2Client implements Serializable {
                                 .map(AuthorizationGrantType::new)
                                 .collect(Collectors.toSet())))
                 .redirectUris(redirectUriSet -> redirectUriSet.addAll(redirectUris))
-                .postLogoutRedirectUris(postLogoutRedirectUris ->
-                        postLogoutRedirectUris.addAll(postLogoutRedirectUris))
+                .postLogoutRedirectUris(postLogoutRedirectUris -> postLogoutRedirectUris.addAll(this.postLogoutRedirectUris))
                 .scopes(scopeSet -> scopeSet.addAll(scopes))
                 // add openid scope as default
                 .scope(OidcScopes.OPENID)
@@ -139,13 +138,13 @@ public class Oauth2Client implements Serializable {
         oauth2Client.setClientName(registeredClient.getClientName());
         oauth2Client.setRawClientSecret(StringUtils.EMPTY);
         oauth2Client.setClientIdIssuedAt(registeredClient.getClientIdIssuedAt().atZone(ZoneId.systemDefault()).toInstant());
-        oauth2Client.setClientAuthenticationMethods(Arrays.asList(registeredClient.getClientAuthenticationMethods().split(",")).stream().collect(Collectors.toSet()));
-        oauth2Client.setAuthorizationGrantTypes(Arrays.asList(registeredClient.getAuthorizationGrantTypes().split(",")).stream().collect(Collectors.toSet()));
-        oauth2Client.setRedirectUris(Arrays.asList(registeredClient.getRedirectUris().split(",")).stream().collect(Collectors.toSet()));
+        oauth2Client.setClientAuthenticationMethods(Arrays.stream(registeredClient.getClientAuthenticationMethods().split(",")).collect(Collectors.toSet()));
+        oauth2Client.setAuthorizationGrantTypes(Arrays.stream(registeredClient.getAuthorizationGrantTypes().split(",")).collect(Collectors.toSet()));
+        oauth2Client.setRedirectUris(new HashSet<>(Arrays.asList(registeredClient.getRedirectUris().split(","))));
         if (StringUtils.isNotEmpty(registeredClient.getPostLogoutRedirectUris())) {
-            oauth2Client.setPostLogoutRedirectUris(Arrays.asList(registeredClient.getPostLogoutRedirectUris()).stream().collect(Collectors.toSet()));
+            oauth2Client.setPostLogoutRedirectUris(Stream.of(registeredClient.getPostLogoutRedirectUris()).collect(Collectors.toSet()));
         }
-        oauth2Client.setScopes(Arrays.asList(registeredClient.getScopes().split(",")).stream().collect(Collectors.toSet()));
+        oauth2Client.setScopes(Arrays.stream(registeredClient.getScopes().split(",")).collect(Collectors.toSet()));
         if (registeredClient.getClientSecretExpiresAt() != null) {
             oauth2Client.setClientSecretExpiresAt(registeredClient.getClientSecretExpiresAt().atZone(ZoneId.systemDefault()).toInstant());
         }
