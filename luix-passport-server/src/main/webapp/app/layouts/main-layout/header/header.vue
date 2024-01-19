@@ -83,13 +83,7 @@ import { defineComponent } from "vue";
 import KTHeaderMenu from "@/layouts/main-layout/header/menu/menu.vue";
 import KTPageTitle from "@/layouts/main-layout/toolbar/page-title.vue";
 import KTHeaderNavbar from "@/layouts/main-layout/header/navbar.vue";
-import {
-  headerDisplay,
-  headerContent,
-  headerWidthFluid,
-  layout,
-  displaySidebar
-} from "@/helpers/config";
+import { headerDisplay, headerContent, headerWidthFluid, layout, displaySidebar } from "@/helpers/config";
 
 export default defineComponent({
   name: "layout-header",
