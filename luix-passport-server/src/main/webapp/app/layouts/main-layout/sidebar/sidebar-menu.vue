@@ -149,8 +149,6 @@
             </div>
           </template>
         </template>
-
-        
         <!--begin:Help Menu-->
         <!--end:Help Menu-->
       </div>
