@@ -24,7 +24,7 @@
             :src="getAssetPath('assets/media/logos/logo-text.svg')"
             class="h-20px"
           />
-    </span>
+          </span>
         </router-link>
       </div>
       <template v-else>
