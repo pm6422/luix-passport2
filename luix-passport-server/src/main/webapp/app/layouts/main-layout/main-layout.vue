@@ -28,20 +28,11 @@
     <!--end::Page-->
   </div>
   <!--end::App-->
-
-  <!-- <KTDrawers /> -->
   <KTScrollTop />
-  <!-- <KTCustomize /> -->
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  nextTick,
-  onBeforeMount,
-  onMounted,
-  watch,
-} from "vue";
+import { defineComponent, nextTick, onBeforeMount, onMounted, watch } from "vue";
 import KTHeader from "@/layouts/main-layout/header/header.vue";
 import KTSidebar from "@/layouts/main-layout/sidebar/sidebar.vue";
 import KTContent from "@/layouts/main-layout/content/content.vue";
