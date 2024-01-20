@@ -1,8 +1,8 @@
 {
-  "platform-name": "Luix Passport",
-  "platform-desc": "OAuth 2 authentication service",
-  "app-name": "SecOps",
-  "app-desc": "Automotive Cybersecurity Operations Platform",
+  "platform-name": "Luix",
+  "platform-desc": "Luix universe",
+  "app-name": "LuixPassport",
+  "app-desc": "A standard authorization service powered by Spring Security",
   "app-abbreviation": "BACS",
   "menu": {
     "account": {

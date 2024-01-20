@@ -1,8 +1,8 @@
 {
-  "platform-name": "Luix Passport",
-  "platform-desc": "Luix",
-  "app-name": "SecOps",
-  "app-desc": "安全检测运维平台",
+  "platform-name": "Luix",
+  "platform-desc": "Luix宇宙",
+  "app-name": "Luix通行证",
+  "app-desc": "标准的授权服务",
   "app-abbreviation": "BACS",
   "menu": {
     "account": {
