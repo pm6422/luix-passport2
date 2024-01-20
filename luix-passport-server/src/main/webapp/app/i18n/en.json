@@ -3,7 +3,7 @@
   "platform-desc": "Luix universe",
   "app-name": "LuixPassport",
   "app-desc": "A standard authorization service powered by Spring Security",
-  "app-abbreviation": "BACS",
+  "app-abbreviation": "Passport",
   "menu": {
     "account": {
       "profile": "Profile",

@@ -3,7 +3,7 @@
   "platform-desc": "Luix宇宙",
   "app-name": "Luix通行证",
   "app-desc": "标准的授权服务",
-  "app-abbreviation": "BACS",
+  "app-abbreviation": "Passport",
   "menu": {
     "account": {
       "profile": "个人信息",
