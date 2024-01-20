@@ -1,6 +1,6 @@
 {
-  "platform-name": "SecVector",
-  "platform-desc": "Automotive Cybersecurity Analysis Platform",
+  "platform-name": "Luix Passport",
+  "platform-desc": "OAuth 2 authentication service",
   "app-name": "SecOps",
   "app-desc": "Automotive Cybersecurity Operations Platform",
   "app-abbreviation": "BACS",
