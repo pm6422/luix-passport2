@@ -28,12 +28,12 @@ jobs:
         with:
           url: 'https://ntfy.sh'
           topic: 'luix-passport'
-          title: 'Successfully built docker image'
+          title: '😀Successfully built docker image'
       - name: Send failed ntfy notification
         uses: niniyas/ntfy-action@master
         if: failure()
         with:
           url: 'https://ntfy.sh'
           topic: 'luix-passport'
-          title: 'Failed to build docker image'
+          title: '🥲Failed to build docker image'
 
