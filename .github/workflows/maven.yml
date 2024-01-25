@@ -35,5 +35,5 @@ jobs:
         with:
           url: 'https://ntfy.sh'
           topic: 'luix-passport'
-          title: '🥲Failed to build docker image'
+          title: '😂Failed to build docker image'
 
