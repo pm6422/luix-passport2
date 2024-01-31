@@ -9,14 +9,14 @@ export default defineConfig({
   resolve: {
     alias: {
       "vue-i18n": "vue-i18n/dist/vue-i18n.cjs.js",
-      "@": fileURLToPath(new URL("./src/main/webapp/app", import.meta.url)),
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  root: "src/main/webapp",
   base: "/",
   build: {
     chunkSizeWarningLimit: 3000,
-    outDir: '../../../target/classes/static/'
+    // Output vite build results to target/classes/static/ of backend service
+    outDir: '../luix-passport-server/target/classes/static/'
   },
   server: {
     host: 'localhost',

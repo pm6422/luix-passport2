@@ -1,13 +1,11 @@
 {
-  "name": "bacs",
+  "name": "luix-passport-server-ui",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite --port 4000",
-    "clean-www": "rimraf target/classes/static/app/{src,target/}",
-    "webapp:build:dev": "vite build",
-    "webapp:build": "npm run clean-www && npm run webapp:build:dev --",
+    "build": "vite build",
     "check-build": "run-p type-check build-only",
     "preview": "vite preview",
     "type-check": "vue-tsc --noEmit",

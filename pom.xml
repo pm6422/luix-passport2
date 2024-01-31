@@ -10,6 +10,7 @@
 	<modules>
 		<module>luix-passport-dependencies-bom</module>
 		<module>luix-passport-server</module>
+		<module>luix-passport-server-ui</module>
 		<module>luix-passport-resource-server</module>
 		<module>luix-passport-client</module>
 	</modules>

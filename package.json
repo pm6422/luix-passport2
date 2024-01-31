@@ -1,8 +1,8 @@
 {
-  "name": "luix-passport",
+  "name": "luix-passport-server-ui",
   "version": "1.0.0",
   "private": true,
-  "description": "Luix Passport Package Management",
+  "description": "Luix Passport Server UI Package Management",
   "license": "UNLICENSED",
   "scripts": {
     "all:up": "docker compose -f docker/all.yml up --wait",
