@@ -50,7 +50,7 @@ nb-configuration.xml
 pom.xml.bak
 
 # Node
-luix-passport-server-ui/node/
+node/
 node_tmp/
 node_modules/
 npm-debug.log.*
