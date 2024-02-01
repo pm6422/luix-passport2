@@ -48,7 +48,6 @@ nb-configuration.xml
 
 # Misc
 pom.xml.bak
-src/main/webapp/app/constants.js
 
 # Node
 luix-passport-server-ui/node/
