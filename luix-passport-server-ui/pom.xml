@@ -12,8 +12,8 @@
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
     <properties>
-        <node.version>v18.18.0</node.version>
-        <npm.version>10.2.5</npm.version>
+        <node.version>v21.2.0</node.version>
+        <npm.version>10.2.3</npm.version>
         <revision>1.0.0</revision>
     </properties>
     <profiles>
