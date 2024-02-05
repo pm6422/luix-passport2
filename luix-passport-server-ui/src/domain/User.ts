@@ -12,7 +12,7 @@ export interface IUser {
     modifiedBy?: string;
     modifiedTime?: string;
     password?: string;
-    lastLogin: string;
+    lastLogin?: string;
     roles: Array<string>;
-    photoUrl: string;
+    photoUrl?: string;
   }

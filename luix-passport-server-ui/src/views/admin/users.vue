@@ -536,7 +536,7 @@ import BatchDeleteButton  from '@/components/button/batch-delete-button.vue';
 import SearchBox  from '@/components/search/search-box.vue';
 import { cloneDeep } from "lodash";
 import Abbreviation  from '@/components/utilities/abbreviation.vue';
-import type {IDataDict} from "@/main/webapp/app/domain/DataDict";
+import type { IDataDict } from "@/domain/DataDict";
 import { useRoute, useRouter } from "vue-router";
 import { UserService, DataDictService } from "@/services/services";
 import { TableHelper } from "@/helpers/TableHelper";
@@ -573,7 +573,7 @@ export default defineComponent({
 
     const enabledRoles = ref<Array<IDataDict>>([]);
 
-    DataDictService.lookup("Role", true).then(r => {
+    DataDictService.lookup("role", true).then(r => {
       enabledRoles.value = r.data;
     });
 
