@@ -80,7 +80,7 @@
           <OneOrMore :values="row.scopes"/>
         </template>
         <template v-slot:clientIdIssuedAt="{ row: row }">
-          <div>{{ DateTimeUtils.formatDateTime(row.clientIdIssuedAt) }}</div>
+          <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.clientIdIssuedAt) }}</div>
         </template>
         <template v-slot:actions="{ row: row }">
           <div class="d-flex justify-content-end">
@@ -136,7 +136,7 @@ export default defineComponent({
     SearchBox,
     Abbreviation
   },
-  setup(props) {
+  setup() {
     const i18n = useI18n();
     const selectedIds = ref<Array<string>>([]);
     const initialTableData = ref<Array<IOauthClient>>([]);
@@ -152,7 +152,7 @@ export default defineComponent({
       id: "",
       clientId: "",
       clientName: "",
-      clientSecret: "",
+      rawClientSecret: "",
       clientAuthenticationMethods: [],
       authorizationGrantTypes: [],
       redirectUris: [""],
