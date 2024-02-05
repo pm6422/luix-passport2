@@ -56,7 +56,7 @@
           @onPageNoChange="changePage"
           @onPageSizeChange="changePage"
       >
-        <template v-slot:clientId="{ row: row }">
+        <template v-slot:clientId="{ row : row }">
           <div class="badge badge-light">
             {{ row.clientId }}
           </div>
