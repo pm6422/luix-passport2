@@ -1,5 +1,4 @@
 import { getAssetPath } from "@/helpers/assets";
-import { useI18n } from "vue-i18n";
 import dayjs from "dayjs";
 import axios from 'axios';
 export class LanguageHelper {
@@ -13,7 +12,7 @@ export class LanguageHelper {
             name: "简体中文",
         }
     };
-    public static defaultLanguage = "zh";
+    public static defaultLanguage = "en";
     public static getCurrentLanguage(): string {
         const lang =  localStorage.getItem("ac_lang") ? (localStorage.getItem("ac_lang") as string) : LanguageHelper.defaultLanguage;
         LanguageHelper.setLang(lang);
