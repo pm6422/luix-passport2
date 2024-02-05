@@ -7,7 +7,7 @@
       <!--begin::Card title-->
       <div class="card-title">
         <!--begin::Search-->
-        <SearchBox :initTableData="initialTableData" @onUpdateTableData="updateTableData"/>
+        <SearchBox :initTableData="initTableData" @onUpdateTableData="updateTableData"/>
         <!--end::Search-->
       </div>
       <!--end::Card title-->
@@ -139,7 +139,7 @@ export default defineComponent({
   setup() {
     const i18n = useI18n();
     const selectedIds = ref<Array<string>>([]);
-    const initialTableData = ref<Array<IOauthClient>>([]);
+    const initTableData = ref<Array<IOauthClient>>([]);
     const tableData = ref<Array<IOauthClient>>([]);
     const tableTotalItems = ref(0);
     const modalOperation = ref('create');
@@ -209,7 +209,7 @@ export default defineComponent({
     });
     const loadAll = () => {
       OauthClientService.findAll().then(r => {
-        initialTableData.value = r.data;
+        initTableData.value = r.data;
         const keyword = route.query.searchKeyword as string;
         tableData.value = keyword ? TableHelper.filter(r.data, keyword) : r.data;
         tableTotalItems.value = tableData.value.length;
@@ -276,7 +276,7 @@ export default defineComponent({
     loadAll();
 
     return {
-      initialTableData,
+      initTableData,
       tableData,
       tableTotalItems,
       tableHeader,
