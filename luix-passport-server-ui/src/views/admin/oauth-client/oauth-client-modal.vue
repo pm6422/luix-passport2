@@ -201,7 +201,7 @@ export default defineComponent({
   },
   setup(props) {
     const i18n = useI18n();
-    const modalData = ref(props.modalData);
+    const modalData = ref<IOauthClient>(props.modalData);
     const operation = ref(props.operation);
     const clientAuthenticationMethods = ref<Array<string>>([]);
     const authorizationGrantTypes = ref<Array<string>>([]);

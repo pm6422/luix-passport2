@@ -2,6 +2,7 @@ import axios from 'axios';
 import ApiService from "@/services/api-service";
 import type { IDataDict } from '@/domain/DataDict';
 import type { IUser } from '@/domain/User';
+import type { IOauthClient } from '@/domain/OauthClient';
 
 export class AppInfoService {
   constructor() {
@@ -177,11 +178,11 @@ export class OauthClientService {
     return ApiService.query("api/oauth2-clients/scopes", null);
   }
 
-  public static create(model: IUser): Promise<any> {
+  public static create(model: IOauthClient): Promise<any> {
     return ApiService.post("api/oauth2-clients", model);
   }
 
-  public static update(model: IUser): Promise<any> {
+  public static update(model: IOauthClient): Promise<any> {
     return ApiService.put("api/oauth2-clients", model);
   }
 
