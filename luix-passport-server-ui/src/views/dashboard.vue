@@ -13,7 +13,7 @@
           <div class="card-body intro-y">
               <!--begin:Search-->
               <div class="position-relative">
-                <h3 class="fw-bold me-5 my-1" v-text="$t('form.security-analytics.query-criteria')"></h3>
+                <h3 class="fw-bold me-5 my-1" v-text="$t('form.dashboard.query-criteria')"></h3>
               </div>
               <!--end:Search-->
               <!--begin::Border-->
@@ -22,7 +22,7 @@
               <!--begin::Input group-->
               <el-form-item>
                 <el-select
-                  v-bind:placeholder="$t('form.security-analytics.select-detector')"
+                  v-bind:placeholder="$t('form.dashboard.select-detector')"
                   v-model="filter.detectors"
                   multiple
                   collapse-tags
@@ -39,7 +39,7 @@
               <!--begin::Input group-->
               <el-form-item>
                 <el-select
-                  v-bind:placeholder="$t('form.security-analytics.select-region')"
+                  v-bind:placeholder="$t('form.dashboard.select-region')"
                   v-model="filter.regions"
                   multiple
                   collapse-tags
@@ -56,7 +56,7 @@
               <!--begin::Input group-->
               <el-form-item>
                 <el-select
-                  v-bind:placeholder="$t('form.security-analytics.select-asset-group')"
+                  v-bind:placeholder="$t('form.dashboard.select-asset-group')"
                   v-model="filter.assetGroups"
                   clearable
                 >
@@ -72,7 +72,7 @@
               <!--begin::Input group-->
               <el-form-item>
                 <el-select
-                  v-bind:placeholder="$t('form.security-analytics.select-model')"
+                  v-bind:placeholder="$t('form.dashboard.select-model')"
                   v-model="filter.models"
                   multiple
                   collapse-tags
@@ -90,7 +90,7 @@
               <el-form-item>
                 <el-input
                   type="text"
-                  v-bind:placeholder="$t('form.security-analytics.input-vin')"
+                  v-bind:placeholder="$t('form.dashboard.input-vin')"
                   v-model="filter.vin"
                 />
               </el-form-item>
@@ -99,7 +99,7 @@
               <el-form-item>
                 <el-input
                   type="text"
-                  v-bind:placeholder="$t('form.security-analytics.input-alert-number')"
+                  v-bind:placeholder="$t('form.dashboard.input-alert-number')"
                   v-model="filter.alertNum"
                 />
               </el-form-item>
@@ -112,19 +112,19 @@
                   <!--begin::Option-->
                   <label>
                     <input type="radio" class="btn-check" name="type" value="has" checked />
-                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4" v-text="$t('form.security-analytics.today')"></span>
+                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4" v-text="$t('form.dashboard.today')"></span>
                   </label>
                   <!--end::Option-->
                   <!--begin::Option-->
                   <label>
                     <input type="radio" class="btn-check" name="type" value="users" />
-                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4" v-text="$t('form.security-analytics.week')"></span>
+                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4" v-text="$t('form.dashboard.week')"></span>
                   </label>
                   <!--end::Option-->
                   <!--begin::Option-->
                   <label>
                     <input type="radio" class="btn-check" name="type" value="orders" />
-                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4" v-text="$t('form.security-analytics.month')"></span>
+                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary fw-bold px-4" v-text="$t('form.dashboard.month')"></span>
                   </label>
                   <!--end::Option-->
                 </div>
@@ -245,7 +245,7 @@
                   </div>
                   <!--end::Number-->
                   <!--begin::Label-->
-                  <div class="fw-semobold fs-6 text-gray-700"><strong><span v-text="$t('form.security-analytics.affected-vehicle')"></span></strong></div>
+                  <div class="fw-semobold fs-6 text-gray-700"><strong><span v-text="$t('form.dashboard.affected-vehicle')"></span></strong></div>
                   <!--end::Label-->
                 </div>
                 <!--end::affected vehicle stat-->
@@ -265,7 +265,7 @@
                   </div>
                   <!--end::Number-->
                   <!--begin::Label-->
-                  <div class="fw-semobold fs-6 text-gray-700"><strong><span v-text="$t('form.security-analytics.affected-model')"></span></strong></div>
+                  <div class="fw-semobold fs-6 text-gray-700"><strong><span v-text="$t('form.dashboard.affected-model')"></span></strong></div>
                   <!--end::Label-->
                 </div>
                 <!--end::affected model stat-->
@@ -280,7 +280,7 @@
                 <div class="">
                   <!--begin::Title-->
                   <h3 class="card-title align-items-start flex-column">
-                    <span class="card-label fw-bold text-gray-800" v-text="$t('form.security-analytics.top-5-alerts')"></span>
+                    <span class="card-label fw-bold text-gray-800" v-text="$t('form.dashboard.top-5-alerts')"></span>
                   </h3>
                   <!--end::Title-->
                 </div>
@@ -377,7 +377,7 @@
             <!--begin::alerts-->
             <AmChartPie 
               unique-id="securityAnalyticsAlerts" 
-              :title-btn-text="$t('form.security-analytics.risk')"
+              :title-btn-text="$t('form.dashboard.risk')"
               :data="alertPerSeverityData"
               :inner-radius=50
               :legend-enabled=true
@@ -391,7 +391,7 @@
             <!--begin::ticket-->
             <AmChartPie 
               unique-id="securityAnalyticsTicket" 
-              :title-btn-text="$t('form.security-analytics.solutions')"
+              :title-btn-text="$t('form.dashboard.solutions')"
               title-btn-color="success"
               :data="ticketData"
               :inner-radius=50
@@ -428,7 +428,7 @@ import AmChartPie from '@/components/amchart/pie.vue';
 import { initCountUp } from "@/plugins/countup";
 
 export default defineComponent({
-  name: "security-analytics",
+  name: "dashboard",
   components: {
     AmChartPie
   },

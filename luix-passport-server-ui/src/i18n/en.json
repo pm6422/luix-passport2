@@ -38,7 +38,7 @@
     "home": {
       "title": "Home"
     },
-    "security-analytics": {
+    "dashboard": {
       "title": "Security Analytics"
     },
     "dashboard": {
@@ -276,7 +276,7 @@
       "footer": "Footer",
       "footer-tip": "Enable or disable footer"
     },
-    "security-analytics": {
+    "dashboard": {
       "query-criteria": "Query Criteria",
       "select-detector": "Select Detectors",
       "select-region": "Select Region",

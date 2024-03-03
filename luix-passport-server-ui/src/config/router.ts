@@ -11,18 +11,18 @@ import { AuthService } from '@/services/services';
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/security-analytics",
+    // redirect: "/dashboard",
     component: () => import("@/layouts/main-layout/main-layout.vue"),
     meta: {
       requireAuth: true,
     },
     children: [
       {
-        name: "security-analytics",
-        path: "/security-analytics",
-        component: () => import("@/views/account/security-analytics/security-analytics.vue"),
+        name: "dashboard",
+        path: "/",
+        component: () => import("@/views/dashboard.vue"),
         meta: {
-          pageTitle: "menu.security-analytics.title",
+          pageTitle: "menu.dashboard.title",
           breadcrumbs: [],
         },
       },

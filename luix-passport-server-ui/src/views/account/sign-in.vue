@@ -185,7 +185,7 @@ export default defineComponent({
 
       if (error.length === 0) {
         // Go to page after successfully login
-        router.push({ name: "security-analytics" });
+        router.push({ name: "dashboard" });
       } else {
         Swal.fire({
           text: error[0] as string,

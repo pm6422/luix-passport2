@@ -38,7 +38,7 @@
     "home": {
       "title": "首页"
     },
-    "security-analytics": {
+    "dashboard": {
       "title": "安全分析"
     },
     "dashboard": {
@@ -276,7 +276,7 @@
       "footer": "底部栏",
       "footer-tip": "启用或禁用底部栏"
     },
-    "security-analytics": {
+    "dashboard": {
       "query-criteria": "查询条件",
       "select-detector": "选择检测器",
       "select-region": "选择地区",

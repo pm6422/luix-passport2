@@ -12,8 +12,8 @@ const MainMenuConfig: Array<MenuItem> = [
   {
     pages: [
       {
-        heading: "menu.security-analytics.title",
-        route: "/security-analytics",
+        heading: "menu.dashboard.title",
+        route: "/",
         keenthemesIcon: "chart-line-up",
         bootstrapIcon: "bi-app-indicator",
       },
