@@ -11,7 +11,7 @@ import { AuthService } from '@/services/services';
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    // redirect: "/dashboard",
+    redirect: "/dashboard",
     component: () => import("@/layouts/main-layout/main-layout.vue"),
     meta: {
       requireAuth: true,
@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         name: "dashboard",
-        path: "/",
+        path: "/dashboard",
         component: () => import("@/views/dashboard.vue"),
         meta: {
           pageTitle: "menu.dashboard.title",
