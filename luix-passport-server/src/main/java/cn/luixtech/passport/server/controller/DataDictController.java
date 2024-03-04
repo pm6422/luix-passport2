@@ -5,6 +5,7 @@ import cn.luixtech.passport.server.persistence.tables.daos.DataDictDao;
 import cn.luixtech.passport.server.persistence.tables.pojos.DataDict;
 import cn.luixtech.passport.server.pojo.BatchUpdateDataDict;
 import cn.luixtech.passport.server.service.DataDictService;
+import cn.luixtech.passport.server.service.SeqNumberService;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
 import com.luixtech.utilities.exception.DataNotFoundException;
@@ -41,14 +42,16 @@ import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePag
 @AllArgsConstructor
 @Slf4j
 public class DataDictController {
-    private       DSLContext      dslContext;
-    private final DataDictDao     dataDictDao;
-    private final DataDictService dataDictService;
+    private final DSLContext       dslContext;
+    private final DataDictDao      dataDictDao;
+    private final DataDictService  dataDictService;
+    private final SeqNumberService seqNumberService;
 
     @Operation(summary = "create new data dict")
     @PostMapping("/api/data-dicts")
     public ResponseEntity<Void> create(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
         log.debug("REST request to create data dict: {}", domain);
+        domain.setNum("DCT" + seqNumberService.getNextSeqNumber(Tables.DATA_DICT));
         dataDictDao.insert(domain);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

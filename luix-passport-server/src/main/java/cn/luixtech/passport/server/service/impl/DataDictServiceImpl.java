@@ -24,7 +24,7 @@ import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 @Service
 @AllArgsConstructor
 public class DataDictServiceImpl implements DataDictService {
-    private       DSLContext  dslContext;
+    private final DSLContext  dslContext;
     private final DataDictDao dataDictDao;
 
     @Override

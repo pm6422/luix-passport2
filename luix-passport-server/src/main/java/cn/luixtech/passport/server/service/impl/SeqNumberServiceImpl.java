@@ -19,13 +19,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static cn.luixtech.passport.server.persistence.tables.SeqNumber.SEQ_NUMBER;
 
-
 @Service
 @AllArgsConstructor
 @Slf4j
 public class SeqNumberServiceImpl implements SeqNumberService {
-    private DSLContext   dslContext;
-    private SeqNumberDao seqNumberDao;
+    private final DSLContext   dslContext;
+    private final SeqNumberDao seqNumberDao;
 
     @Override
     public void init() {
@@ -33,9 +32,9 @@ public class SeqNumberServiceImpl implements SeqNumberService {
     }
 
     @Override
-    public long getNextSeqNumber(String tableName) {
+    public long getNextSeqNumber(TableLike<?> table) {
         SeqNumber seqNumber = dslContext.selectFrom(Tables.SEQ_NUMBER)
-                .where(SEQ_NUMBER.TABLE_NAME.eq(tableName))
+                .where(SEQ_NUMBER.TABLE_NAME.eq(table.asTable().getName()))
                 .limit(1)
                 // Convert User Record to POJO User
                 .fetchOneInto(SeqNumber.class);
