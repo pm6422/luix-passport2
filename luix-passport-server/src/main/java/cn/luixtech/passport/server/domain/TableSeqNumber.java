@@ -1,9 +1,9 @@
 package cn.luixtech.passport.server.domain;
 
+import cn.luixtech.passport.server.domain.base.BaseDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,14 +17,10 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
-public class TableSeqNumber implements Serializable {
+@EqualsAndHashCode(callSuper = true)
+public class TableSeqNumber extends BaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-
-    @Schema(description = "ID")
-    @Id
-    protected String id;
 
     @Schema(required = true)
     @NotEmpty(message = "tableName:{Validation.NotEmpty}")

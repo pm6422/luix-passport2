@@ -1,68 +1,56 @@
 package cn.luixtech.passport.server.service.impl;
 
 
-import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.daos.SeqNumberDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.SeqNumber;
+import cn.luixtech.passport.server.domain.DataDict;
+import cn.luixtech.passport.server.domain.TableSeqNumber;
+import cn.luixtech.passport.server.repository.TableSeqNumberRepository;
 import cn.luixtech.passport.server.service.SeqNumberService;
-import com.luixtech.uidgenerator.core.id.IdGenerator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jooq.DSLContext;
 import org.jooq.Record;
-import org.jooq.Table;
 import org.jooq.impl.DSL;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import static cn.luixtech.passport.server.persistence.tables.SeqNumber.SEQ_NUMBER;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 @Slf4j
 public class SeqNumberServiceImpl implements SeqNumberService {
-    private final DSLContext   dslContext;
-    private final SeqNumberDao seqNumberDao;
+    private final DSLContext               dslContext;
+    private final TableSeqNumberRepository tableSeqNumberRepository;
 
     @Override
     public void init() {
-        upsertSeqNumber(Tables.DATA_DICT);
+        upsertSeqNumber(DataDict.TABLE_NAME);
     }
 
     @Override
-    public long getNextSeqNumber(Table table) {
-        SeqNumber seqNumber = dslContext.selectFrom(Tables.SEQ_NUMBER)
-                .where(SEQ_NUMBER.TABLE_NAME.eq(table.asTable().getName()))
-                .limit(1)
-                // Convert User Record to POJO User
-                .fetchOneInto(SeqNumber.class);
-        if (seqNumber == null) {
-            throw new IllegalStateException("Failed to get the record");
+    public long getNextSeqNumber(String table) {
+        Optional<TableSeqNumber> tableSeqNumber = tableSeqNumberRepository.findOneByTableName(table);
+        if (!tableSeqNumber.isPresent()) {
+            throw new IllegalStateException("Failed to get the table seq number");
         }
-        seqNumber.setMaxSeqNum(seqNumber.getMaxSeqNum() + 1);
-        seqNumberDao.update(seqNumber);
-
-        return seqNumber.getMaxSeqNum();
+        tableSeqNumber.get().setMaxSeqNum(tableSeqNumber.get().getMaxSeqNum() + 1);
+        tableSeqNumberRepository.save(tableSeqNumber.get());
+        return tableSeqNumber.get().getMaxSeqNum();
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    protected void upsertSeqNumber(Table table) {
+    protected void upsertSeqNumber(String table) {
         String maxNumberStr = getMaxNumberStr(table);
 
-        SeqNumber existingOne = dslContext.selectFrom(Tables.SEQ_NUMBER)
-                .where(SEQ_NUMBER.TABLE_NAME.eq(table.asTable().getName()))
-                .limit(1)
-                // Convert User Record to POJO User
-                .fetchOneInto(SeqNumber.class);
-        if (existingOne == null) {
+        Optional<TableSeqNumber> existingOne = tableSeqNumberRepository.findOneByTableName(table);
+        if (!existingOne.isPresent()) {
             // insert
-            SeqNumber newOne = new SeqNumber();
-            newOne.setId(String.valueOf(IdGenerator.generateShortId()));
-            newOne.setTableName(table.asTable().getName());
+            TableSeqNumber newOne = new TableSeqNumber();
+            newOne.setTableName(table);
             newOne.setMaxSeqNum(StringUtils.isEmpty(maxNumberStr) ? 0L : Long.parseLong(maxNumberStr.substring(3)));
-            seqNumberDao.insert(newOne);
+            tableSeqNumberRepository.save(newOne);
             return;
         }
 
@@ -70,11 +58,11 @@ public class SeqNumberServiceImpl implements SeqNumberService {
         long maxValue = Long.parseLong(maxNumberStr.substring(3));
         log.info("Current table {}'s max number is {}", table, maxValue);
 
-        existingOne.setMaxSeqNum(maxValue);
-        seqNumberDao.update(existingOne);
+        existingOne.get().setMaxSeqNum(maxValue);
+        tableSeqNumberRepository.save(existingOne.get());
     }
 
-    private String getMaxNumberStr(Table table) {
+    private String getMaxNumberStr(String table) {
         Record exsitingRecord = dslContext.selectFrom(table)
                 .orderBy(DSL.field("num desc"))
                 .limit(1)

@@ -19,6 +19,7 @@ import java.io.Serializable;
 public class DataDict extends AbstractAuditableDomain implements Serializable {
     @Serial
     private static final long   serialVersionUID    = 1L;
+    public static final  String TABLE_NAME          = "data_dict";
     public static final  String FIELD_CATEGORY_CODE = "categoryCode";
     public static final  String FIELD_ENABLED       = "enabled";
 

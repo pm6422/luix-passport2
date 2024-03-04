@@ -1,6 +1,7 @@
 package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.domain.DataDict;
+import cn.luixtech.passport.server.domain.TableSeqNumber;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.pojo.BatchUpdateDataDict;
 import cn.luixtech.passport.server.repository.DataDictRepository;
@@ -50,7 +51,7 @@ public class DataDictController {
     @PostMapping("/api/data-dicts")
     public ResponseEntity<Void> create(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
         log.debug("REST request to create data dict: {}", domain);
-        domain.setNum("DCT" + seqNumberService.getNextSeqNumber(Tables.DATA_DICT));
+        domain.setNum("DCT" + seqNumberService.getNextSeqNumber(DataDict.TABLE_NAME));
         dataDictRepository.save(domain);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
