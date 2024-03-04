@@ -314,7 +314,7 @@
                 separator=";"
                 tableName="data_dict">
         </loadData>
-        <createTable tableName="seq_number">
+        <createTable tableName="table_seq_number">
             <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>

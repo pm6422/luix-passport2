@@ -8,9 +8,9 @@ import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
-import cn.luixtech.passport.server.persistence.tables.SeqNumber;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
+import cn.luixtech.passport.server.persistence.tables.TableSeqNumber;
 import cn.luixtech.passport.server.persistence.tables.Team;
 import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.User;
@@ -62,11 +62,6 @@ public class LuixPassport extends SchemaImpl {
     public final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
 
     /**
-     * The table <code>luix-passport.seq_number</code>.
-     */
-    public final SeqNumber SEQ_NUMBER = SeqNumber.SEQ_NUMBER;
-
-    /**
      * The table <code>luix-passport.spring_session</code>.
      */
     public final SpringSession SPRING_SESSION = SpringSession.SPRING_SESSION;
@@ -75,6 +70,11 @@ public class LuixPassport extends SchemaImpl {
      * The table <code>luix-passport.spring_session_attributes</code>.
      */
     public final SpringSessionAttributes SPRING_SESSION_ATTRIBUTES = SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES;
+
+    /**
+     * The table <code>luix-passport.table_seq_number</code>.
+     */
+    public final TableSeqNumber TABLE_SEQ_NUMBER = TableSeqNumber.TABLE_SEQ_NUMBER;
 
     /**
      * The table <code>luix-passport.team</code>.
@@ -136,9 +136,9 @@ public class LuixPassport extends SchemaImpl {
             Oauth2Authorization.OAUTH2_AUTHORIZATION,
             Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT,
             Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT,
-            SeqNumber.SEQ_NUMBER,
             SpringSession.SPRING_SESSION,
             SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES,
+            TableSeqNumber.TABLE_SEQ_NUMBER,
             Team.TEAM,
             TeamUser.TEAM_USER,
             User.USER,
