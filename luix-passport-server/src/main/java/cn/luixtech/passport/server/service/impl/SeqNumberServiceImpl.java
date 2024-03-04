@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jooq.DSLContext;
 import org.jooq.Record;
-import org.jooq.TableLike;
+import org.jooq.Table;
 import org.jooq.impl.DSL;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -32,7 +32,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
     }
 
     @Override
-    public long getNextSeqNumber(TableLike<?> table) {
+    public long getNextSeqNumber(Table table) {
         SeqNumber seqNumber = dslContext.selectFrom(Tables.SEQ_NUMBER)
                 .where(SEQ_NUMBER.TABLE_NAME.eq(table.asTable().getName()))
                 .limit(1)
@@ -48,7 +48,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    protected void upsertSeqNumber(TableLike<?> table) {
+    protected void upsertSeqNumber(Table table) {
         String maxNumberStr = getMaxNumberStr(table);
 
         SeqNumber existingOne = dslContext.selectFrom(Tables.SEQ_NUMBER)
@@ -74,7 +74,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
         seqNumberDao.update(existingOne);
     }
 
-    private String getMaxNumberStr(TableLike<?> table) {
+    private String getMaxNumberStr(Table table) {
         Record exsitingRecord = dslContext.selectFrom(table)
                 .orderBy(DSL.field("num desc"))
                 .limit(1)

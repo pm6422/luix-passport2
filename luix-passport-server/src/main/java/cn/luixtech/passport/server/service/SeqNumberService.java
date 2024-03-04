@@ -1,10 +1,10 @@
 package cn.luixtech.passport.server.service;
 
-import org.jooq.TableLike;
+import org.jooq.Table;
 
 public interface SeqNumberService {
 
     void init();
 
-    long getNextSeqNumber(TableLike<?> table);
+    long getNextSeqNumber(Table table);
 }
