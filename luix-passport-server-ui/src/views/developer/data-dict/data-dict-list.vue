@@ -1,6 +1,7 @@
 <template>
   <DictModal id="modal" :modalData="modalData" :operation="modalOperation" :afterSaveCallback="afterSavedRecord" />
   <UploadModal id="uploadModal" uploadUrl="api/data-dicts/import" downloadUrl="api/data-dicts/import-template" :afterUploadCallback="afterUploadCallback" :maxFileSize="1" :acceptFiles="['json', 'txt']" />
+
   <!--begin::Card-->
   <div class="card">
     <!--begin::Card header-->
@@ -16,27 +17,27 @@
       <div class="card-toolbar">
         <div v-show="selectedIds.length === 0">
           <div class="d-flex justify-content-end" data-kt-subscription-table-toolbar="base">
-            <button 
-              class="btn btn-icon btn-light-info" 
-              @click="openModal()"
-              data-bs-toggle="tooltip" 
-              :title="$t('form.global.create')"
+            <button
+                class="btn btn-icon btn-light-info"
+                @click="openModal()"
+                data-bs-toggle="tooltip"
+                :title="$t('form.global.create')"
             >
               <KTIcon icon-name="plus" icon-class="fs-3"/>
             </button>
-            <button 
-              class="btn btn-icon btn-light-warning ms-1" 
-              @click="loadAll()"
-              data-bs-toggle="tooltip" 
-              :title="$t('form.global.refresh')"
+            <button
+                class="btn btn-icon btn-light-warning ms-1"
+                @click="loadAll()"
+                data-bs-toggle="tooltip"
+                :title="$t('form.global.refresh')"
             >
               <KTIcon icon-name="arrows-circle" icon-class="fs-3"/>
             </button>
             <div>
-              <button class="btn btn-icon btn-bg-light btn-active-color-primary ms-1" 
-                data-kt-menu-trigger="click" 
-                data-kt-menu-placement="bottom-end" 
-                data-kt-menu-overflow="true"
+              <button class="btn btn-icon btn-bg-light btn-active-color-primary ms-1"
+                      data-kt-menu-trigger="click"
+                      data-kt-menu-placement="bottom-end"
+                      data-kt-menu-overflow="true"
               >
                 <i class="bi bi-three-dots fs-3"></i>
               </button>
@@ -53,10 +54,10 @@
             <BatchDeleteButton :selectedIds="selectedIds" :deleteRecordCallback="deleteRecord"/>
             <!--begin::batch edit-->
             <button
-              type="button"
-              class="btn btn-primary ms-2"
-              data-kt-menu-trigger="click" 
-              data-kt-menu-placement="bottom-end"
+                type="button"
+                class="btn btn-primary ms-2"
+                data-kt-menu-trigger="click"
+                data-kt-menu-placement="bottom-end"
             >
               {{ $t('form.global.batch-edit') }}
             </button>
@@ -80,8 +81,8 @@
                   <!--begin::Input-->
                   <div>
                     <el-input
-                      name="categoryCode"
-                      v-model="targetCategoryCode"
+                        name="categoryCode"
+                        v-model="targetCategoryCode"
                     ></el-input>
                   </div>
                   <!--end::Input-->
@@ -106,20 +107,20 @@
     <!--begin::Card body-->
     <div class="card-body pt-6">
       <KTDatatable
-        :header="tableHeader"
-        :data="tableData"
-        :page-no="currentPageNo"
-        :page-size="currentPageSize"
-        :totalItems=tableTotalItems
-        :checkboxEnabled=true
-        @onItemsSelect="selectItems"
-        @onSortChange="changeSort"
-        @onPageNoChange="changePage"
-        @onPageSizeChange="changePage"
+          :header="tableHeader"
+          :data="tableData"
+          :page-no="currentPageNo"
+          :page-size="currentPageSize"
+          :totalItems=tableTotalItems
+          :checkboxEnabled=true
+          @onItemsSelect="selectItems"
+          @onSortChange="changeSort"
+          @onPageNoChange="changePage"
+          @onPageSizeChange="changePage"
       >
-        <template v-slot:id="{ row: row }">
+        <template v-slot:num="{ row: row }">
           <div class="badge badge-light">
-            {{ row.id }}
+            {{ row.num }}
           </div>
         </template>
         <template v-slot:categoryCode="{ row: row }">
@@ -143,10 +144,10 @@
         </template>
         <template v-slot:actions="{ row: row }">
           <div class="d-flex justify-content-end">
-            <a class="btn btn-sm btn-icon btn-bg-light btn-light-primary me-1" 
-              @click="openModal(row, true)" 
-              data-bs-toggle="tooltip" 
-              :title="$t('form.global.update')"
+            <a class="btn btn-sm btn-icon btn-bg-light btn-light-primary me-1"
+               @click="openModal(row, true)"
+               data-bs-toggle="tooltip"
+               :title="$t('form.global.update')"
             >
               <KTIcon icon-name="pencil" icon-class="fs-3"/>
             </a>
@@ -172,11 +173,11 @@ import YesOrNo  from '@/components/utilities/yes-or-no.vue'
 import DictModal from "./data-dict-modal.vue";
 import { showModal } from "@/helpers/dom";
 import { DateTimeUtils } from "@/helpers/DateTimeUtils";
-import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue';
-import BatchDeleteButton  from '@/components/button/batch-delete-button.vue';
-import Abbreviation  from '@/components/utilities/abbreviation.vue';
-import UploadModal  from '@/components/upload/upload-modal.vue';
-import SearchBox  from '@/components/search/search-box.vue';
+import ConfirmDeleteButton  from '@/components/button/confirm-delete-button.vue'
+import BatchDeleteButton  from '@/components/button/batch-delete-button.vue'
+import Abbreviation  from '@/components/utilities/abbreviation.vue'
+import UploadModal  from '@/components/upload/upload-modal.vue'
+import SearchBox  from '@/components/search/search-box.vue'
 import type { IDataDict } from '@/domain/DataDict';
 import { cloneDeep } from "lodash";
 import { DataDictService } from '@/services/services';
@@ -213,7 +214,7 @@ export default defineComponent({
     const currentPageSize = ref<number>(props.urlQueryEnabled ? StringUtils.toNumber(route.query.pageSize, 10) : 10);
     const targetCategoryCode = ref<string>("");
 
-    const emptyModalData : IDataDict = { 
+    const emptyModalData : IDataDict = {
       id: "",
       num: "",
       categoryCode: "",
@@ -226,46 +227,46 @@ export default defineComponent({
     const modalData = ref(emptyModalData);
     const tableHeader = computed<Array<Column>>(() => {
       return [
-      {
-        columnName: i18n.t('form.global.id'),
-        columnLabel: "id",
-        sortEnabled: true,
-      },
-      {
-        columnName: i18n.t('form.data-dict-list.category-code'),
-        columnLabel: "categoryCode",
-        sortEnabled: true,
-      },
-      {
-        columnName: i18n.t('form.data-dict-list.dict-code'),
-        columnLabel: "dictCode",
-        sortEnabled: true,
-      },
-      {
-        columnName: i18n.t('form.data-dict-list.dict-name'),
-        columnLabel: "dictName",
-        sortEnabled: true,
-      },
-      {
-        columnName: i18n.t('form.global.description'),
-        columnLabel: "desc",
-        sortEnabled: false,
-      },
-      {
-        columnName: i18n.t('form.global.enabled'),
-        columnLabel: "enabled",
-        sortEnabled: true,
-      },
-      {
-        columnName: i18n.t('form.global.created-modified-time'),
-        columnLabel: "modifiedTime",
-        sortEnabled: true,
-      },
-      {
-        columnName: i18n.t('form.global.actions'),
-        columnLabel: "actions",
-      }
-    ]
+        {
+          columnName: "#",
+          columnLabel: "num",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.data-dict-list.category-code'),
+          columnLabel: "categoryCode",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.data-dict-list.dict-code'),
+          columnLabel: "dictCode",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.data-dict-list.dict-name'),
+          columnLabel: "dictName",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.global.description'),
+          columnLabel: "desc",
+          sortEnabled: false,
+        },
+        {
+          columnName: i18n.t('form.global.enabled'),
+          columnLabel: "enabled",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.global.created-modified-time'),
+          columnLabel: "modifiedTime",
+          sortEnabled: true,
+        },
+        {
+          columnName: i18n.t('form.global.actions'),
+          columnLabel: "actions",
+        }
+      ]
     });
     const loadAll = () => {
       DataDictService.findAll().then(r => {
@@ -382,6 +383,6 @@ export default defineComponent({
       afterUploadCallback,
       loadAll
     };
-  }
+  },
 });
 </script>

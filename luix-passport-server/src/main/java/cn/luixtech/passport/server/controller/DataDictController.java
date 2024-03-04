@@ -8,6 +8,7 @@ import cn.luixtech.passport.server.service.DataDictService;
 import cn.luixtech.passport.server.service.SeqNumberService;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
+import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -51,7 +52,10 @@ public class DataDictController {
     @PostMapping("/api/data-dicts")
     public ResponseEntity<Void> create(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
         log.debug("REST request to create data dict: {}", domain);
+        // todo:
+        domain.setId(IdGenerator.generateId());
         domain.setNum("DCT" + seqNumberService.getNextSeqNumber(Tables.DATA_DICT));
+        domain.setCreatedTime(LocalDateTime.now());
         dataDictDao.insert(domain);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

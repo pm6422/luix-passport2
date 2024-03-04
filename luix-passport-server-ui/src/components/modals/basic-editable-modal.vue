@@ -14,18 +14,18 @@
           <div class="mb-0">
             <div class="d-flex justify-content-center align-items-center">
               <KTIcon icon-name="question-2" icon-class="fs-2x text-warning me-3 mb-3" v-tooltip :title="modalDesc" v-if="modalDesc"/>
-              <img :src="getAssetPath('assets/media/logos/logo.svg')" class="h-30px me-5 mb-3 d-none d-lg-block" v-else/>
+              <img :src="getAssetPath('media/logos/logo.svg')" class="h-30px me-5 mb-3 d-none d-lg-block" v-else/>
               <!--begin::Title-->
               <h1 class="mb-3" v-text="props.modalTitle"></h1>
               <!--end::Title-->
+              <!--begin::Num-->
+              <div class="text-gray-500 fw-semobold ms-3 fs-7">
+                <span v-if="props.modalData && props.modalData.num" v-text="props.modalData.num"></span>
+                <!--there are trick bug, it cannot remove the next line-->
+                <a href="#"></a>
+              </div>
+              <!--end::Num-->
             </div>
-            <!--begin::ID-->
-            <div class="d-flex justify-content-center text-gray-500 fs-8">
-              <span v-if="props.modalData && props.modalData.id" v-text="props.modalData.id"></span>
-              <!--there are trick bug, it cannot remove the next line-->
-              <a href="#"></a>
-            </div>
-            <!--end::ID-->
           </div>
           <!--end::Title-->
 
