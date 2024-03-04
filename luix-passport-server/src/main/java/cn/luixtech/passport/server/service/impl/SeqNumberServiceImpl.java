@@ -14,6 +14,8 @@ import org.jooq.Record;
 import org.jooq.TableLike;
 import org.jooq.impl.DSL;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import static cn.luixtech.passport.server.persistence.tables.SeqNumber.SEQ_NUMBER;
 
@@ -27,7 +29,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
 
     @Override
     public void init() {
-//        upsertSeqNumber(Tables.DATA_DICT);
+        upsertSeqNumber(Tables.DATA_DICT);
     }
 
     @Override
@@ -46,31 +48,31 @@ public class SeqNumberServiceImpl implements SeqNumberService {
         return seqNumber.getMaxSeqNum();
     }
 
-    private void upsertSeqNumber(TableLike<?> table) {
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    protected void upsertSeqNumber(TableLike<?> table) {
         String maxNumberStr = getMaxNumberStr(table);
-        if (StringUtils.isEmpty(maxNumberStr)) {
-            // insert
-            SeqNumber seqNumber = new SeqNumber();
-            seqNumber.setId(String.valueOf(IdGenerator.generateShortId()));
-            seqNumber.setTableName(table.asTable().getName());
-            seqNumber.setMaxSeqNum(0L);
-            seqNumberDao.insert(seqNumber);
-            return;
-        }
-        long maxValue = Long.parseLong(maxNumberStr.substring(3));
-        log.info("Current table {}'s max number is {}", table, maxValue);
 
-        // update
-        SeqNumber seqNumber = dslContext.selectFrom(Tables.SEQ_NUMBER)
+        SeqNumber existingOne = dslContext.selectFrom(Tables.SEQ_NUMBER)
                 .where(SEQ_NUMBER.TABLE_NAME.eq(table.asTable().getName()))
                 .limit(1)
                 // Convert User Record to POJO User
                 .fetchOneInto(SeqNumber.class);
-        if (seqNumber == null) {
-            throw new IllegalStateException("Failed to get the record");
+        if (existingOne == null) {
+            // insert
+            SeqNumber newOne = new SeqNumber();
+            newOne.setId(String.valueOf(IdGenerator.generateShortId()));
+            newOne.setTableName(table.asTable().getName());
+            newOne.setMaxSeqNum(StringUtils.isEmpty(maxNumberStr) ? 0L : Long.parseLong(maxNumberStr.substring(3)));
+            seqNumberDao.insert(newOne);
+            return;
         }
-        seqNumber.setMaxSeqNum(maxValue);
-        seqNumberDao.update(seqNumber);
+
+        // update
+        long maxValue = Long.parseLong(maxNumberStr.substring(3));
+        log.info("Current table {}'s max number is {}", table, maxValue);
+
+        existingOne.setMaxSeqNum(maxValue);
+        seqNumberDao.update(existingOne);
     }
 
     private String getMaxNumberStr(TableLike<?> table) {
