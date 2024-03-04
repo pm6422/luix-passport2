@@ -32,7 +32,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
     @Override
     public long getNextSeqNumber(String table) {
         Optional<TableSeqNumber> tableSeqNumber = tableSeqNumberRepository.findOneByTableName(table);
-        if (!tableSeqNumber.isPresent()) {
+        if (tableSeqNumber.isEmpty()) {
             throw new IllegalStateException("Failed to get the table seq number");
         }
         tableSeqNumber.get().setMaxSeqNum(tableSeqNumber.get().getMaxSeqNum() + 1);
@@ -45,7 +45,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
         String maxNumberStr = getMaxNumberStr(table);
 
         Optional<TableSeqNumber> existingOne = tableSeqNumberRepository.findOneByTableName(table);
-        if (!existingOne.isPresent()) {
+        if (existingOne.isEmpty()) {
             // insert
             TableSeqNumber newOne = new TableSeqNumber();
             newOne.setTableName(table);
