@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.service;
 
-import cn.luixtech.passport.server.persistence.tables.pojos.DataDict;
+import cn.luixtech.passport.server.domain.DataDict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

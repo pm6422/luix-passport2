@@ -132,8 +132,8 @@
         <template v-slot:dictName="{ row: row }">
           <Abbreviation :text="row.dictName" :maxTextLength="30"/>
         </template>
-        <template v-slot:desc="{ row: row }">
-          <span class="fs-8">{{ row.desc }}</span>
+        <template v-slot:remark="{ row: row }">
+          <span class="fs-8">{{ row.remark }}</span>
         </template>
         <template v-slot:modifiedTime="{ row: row }">
           <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.createdTime) }}</div>
@@ -220,7 +220,7 @@ export default defineComponent({
       categoryCode: "",
       dictCode: "",
       dictName: "",
-      desc: "",
+      remark: "",
       enabled: true,
       updatedTime: ""
     };
@@ -248,8 +248,8 @@ export default defineComponent({
           sortEnabled: true,
         },
         {
-          columnName: i18n.t('form.global.description'),
-          columnLabel: "desc",
+          columnName: i18n.t('form.global.remark'),
+          columnLabel: "remark",
           sortEnabled: false,
         },
         {

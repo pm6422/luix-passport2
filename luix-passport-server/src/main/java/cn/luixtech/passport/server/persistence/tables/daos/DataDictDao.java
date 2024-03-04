@@ -134,18 +134,18 @@ public class DataDictDao extends DAOImpl<DataDictRecord, cn.luixtech.passport.se
     }
 
     /**
-     * Fetch records that have <code>desc BETWEEN lowerInclusive AND
+     * Fetch records that have <code>remark BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfDesc(String lowerInclusive, String upperInclusive) {
-        return fetchRange(DataDict.DATA_DICT.DESC, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfRemark(String lowerInclusive, String upperInclusive) {
+        return fetchRange(DataDict.DATA_DICT.REMARK, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>desc IN (values)</code>
+     * Fetch records that have <code>remark IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByDesc(String... values) {
-        return fetch(DataDict.DATA_DICT.DESC, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByRemark(String... values) {
+        return fetch(DataDict.DATA_DICT.REMARK, values);
     }
 
     /**
@@ -164,6 +164,21 @@ public class DataDictDao extends DAOImpl<DataDictRecord, cn.luixtech.passport.se
     }
 
     /**
+     * Fetch records that have <code>created_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfCreatedBy(String lowerInclusive, String upperInclusive) {
+        return fetchRange(DataDict.DATA_DICT.CREATED_BY, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>created_by IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByCreatedBy(String... values) {
+        return fetch(DataDict.DATA_DICT.CREATED_BY, values);
+    }
+
+    /**
      * Fetch records that have <code>created_time BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
@@ -176,6 +191,21 @@ public class DataDictDao extends DAOImpl<DataDictRecord, cn.luixtech.passport.se
      */
     public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByCreatedTime(LocalDateTime... values) {
         return fetch(DataDict.DATA_DICT.CREATED_TIME, values);
+    }
+
+    /**
+     * Fetch records that have <code>modified_by BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfModifiedBy(String lowerInclusive, String upperInclusive) {
+        return fetchRange(DataDict.DATA_DICT.MODIFIED_BY, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>modified_by IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByModifiedBy(String... values) {
+        return fetch(DataDict.DATA_DICT.MODIFIED_BY, values);
     }
 
     /**

@@ -296,13 +296,17 @@
             <column name="dict_name" type="varchar(20)">
                 <constraints nullable="true"/>
             </column>
-            <column name="desc" type="VARCHAR(256)"/>
+            <column name="remark" type="VARCHAR(256)"/>
             <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
             <column name="created_time" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+            <column name="modified_by" type="VARCHAR(50)"/>
             <column name="modified_time" type="timestamp"/>
         </createTable>
         <loadData

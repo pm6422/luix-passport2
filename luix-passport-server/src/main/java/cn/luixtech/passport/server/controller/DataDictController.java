@@ -1,14 +1,13 @@
 package cn.luixtech.passport.server.controller;
 
+import cn.luixtech.passport.server.domain.DataDict;
 import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.daos.DataDictDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.DataDict;
 import cn.luixtech.passport.server.pojo.BatchUpdateDataDict;
+import cn.luixtech.passport.server.repository.DataDictRepository;
 import cn.luixtech.passport.server.service.DataDictService;
 import cn.luixtech.passport.server.service.SeqNumberService;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONWriter;
-import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,11 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
 
@@ -43,20 +41,17 @@ import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePag
 @AllArgsConstructor
 @Slf4j
 public class DataDictController {
-    private final DSLContext       dslContext;
-    private final DataDictDao      dataDictDao;
-    private final DataDictService  dataDictService;
-    private final SeqNumberService seqNumberService;
+    private final DSLContext         dslContext;
+    private final DataDictRepository dataDictRepository;
+    private final DataDictService    dataDictService;
+    private final SeqNumberService   seqNumberService;
 
     @Operation(summary = "create new data dict")
     @PostMapping("/api/data-dicts")
     public ResponseEntity<Void> create(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
         log.debug("REST request to create data dict: {}", domain);
-        // todo:
-        domain.setId(IdGenerator.generateId());
         domain.setNum("DCT" + seqNumberService.getNextSeqNumber(Tables.DATA_DICT));
-        domain.setCreatedTime(LocalDateTime.now());
-        dataDictDao.insert(domain);
+        dataDictRepository.save(domain);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -72,14 +67,14 @@ public class DataDictController {
     @Operation(summary = "find data dict by id")
     @GetMapping("/api/data-dicts/{id}")
     public ResponseEntity<DataDict> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
-        DataDict domain = Optional.ofNullable(dataDictDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        DataDict domain = dataDictRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         return ResponseEntity.ok(domain);
     }
 
     @Operation(summary = "update data dict")
     @PutMapping("/api/data-dicts")
     public ResponseEntity<Void> update(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
-        dataDictDao.update(domain);
+        dataDictRepository.save(domain);
         return ResponseEntity.ok().build();
     }
 
@@ -93,7 +88,7 @@ public class DataDictController {
     @Operation(summary = "delete data dict by id")
     @DeleteMapping("/api/data-dicts/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
-        dataDictDao.deleteById(id);
+        dataDictRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
@@ -105,11 +100,11 @@ public class DataDictController {
         List<DataDict> all = new ArrayList<>(records.size());
         records.forEach(record -> {
             record.setId(null);
-            record.setCreatedTime(LocalDateTime.now());
+            record.setCreatedTime(Instant.now());
             record.setModifiedTime(record.getCreatedTime());
             all.add(record);
         });
-        dataDictDao.insert(all);
+        dataDictRepository.saveAll(all);
     }
 
     @Operation(summary = "download import template")

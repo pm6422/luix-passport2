@@ -56,11 +56,11 @@
 
       <!--begin::Input group-->
       <div class="row">
-        <label class="col-form-label fw-semobold" v-text="$t('form.global.description')"></label>
-        <el-form-item prop="desc">
+        <label class="col-form-label fw-semobold" v-text="$t('form.global.remark')"></label>
+        <el-form-item prop="remark">
           <el-input
-            name="desc"
-            v-model="modalData.desc"
+            name="remark"
+            v-model="modalData.remark"
           ></el-input>
         </el-form-item>
       </div>

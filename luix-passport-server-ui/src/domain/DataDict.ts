@@ -4,7 +4,7 @@ export interface IDataDict {
     categoryCode: string;
     dictCode: string;
     dictName?: string;
-    desc?: string;
+    remark?: string;
     enabled: boolean;
     updatedTime?: string;
   }

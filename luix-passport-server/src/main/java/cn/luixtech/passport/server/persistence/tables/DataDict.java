@@ -13,11 +13,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function9;
+import org.jooq.Function11;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row9;
+import org.jooq.Row11;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -76,9 +76,9 @@ public class DataDict extends TableImpl<DataDictRecord> {
     public final TableField<DataDictRecord, String> DICT_NAME = createField(DSL.name("dict_name"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.desc</code>.
+     * The column <code>luix-passport.data_dict.remark</code>.
      */
-    public final TableField<DataDictRecord, String> DESC = createField(DSL.name("desc"), SQLDataType.VARCHAR(256), this, "");
+    public final TableField<DataDictRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(256), this, "");
 
     /**
      * The column <code>luix-passport.data_dict.enabled</code>.
@@ -86,9 +86,19 @@ public class DataDict extends TableImpl<DataDictRecord> {
     public final TableField<DataDictRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
+     * The column <code>luix-passport.data_dict.created_by</code>.
+     */
+    public final TableField<DataDictRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+
+    /**
      * The column <code>luix-passport.data_dict.created_time</code>.
      */
     public final TableField<DataDictRecord, LocalDateTime> CREATED_TIME = createField(DSL.name("created_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.data_dict.modified_by</code>.
+     */
+    public final TableField<DataDictRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column <code>luix-passport.data_dict.modified_time</code>.
@@ -178,18 +188,18 @@ public class DataDict extends TableImpl<DataDictRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row9 type methods
+    // Row11 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row9<String, String, String, String, String, String, Boolean, LocalDateTime, LocalDateTime> fieldsRow() {
-        return (Row9) super.fieldsRow();
+    public Row11<String, String, String, String, String, String, Boolean, String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row11) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function9<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function11<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -197,7 +207,7 @@ public class DataDict extends TableImpl<DataDictRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function9<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super LocalDateTime, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function11<? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super Boolean, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

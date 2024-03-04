@@ -21,9 +21,11 @@ public class DataDict implements Serializable {
     private String categoryCode;
     private String dictCode;
     private String dictName;
-    private String desc;
+    private String remark;
     private Boolean enabled;
+    private String createdBy;
     private LocalDateTime createdTime;
+    private String modifiedBy;
     private LocalDateTime modifiedTime;
 
     public DataDict() {}
@@ -34,9 +36,11 @@ public class DataDict implements Serializable {
         this.categoryCode = value.categoryCode;
         this.dictCode = value.dictCode;
         this.dictName = value.dictName;
-        this.desc = value.desc;
+        this.remark = value.remark;
         this.enabled = value.enabled;
+        this.createdBy = value.createdBy;
         this.createdTime = value.createdTime;
+        this.modifiedBy = value.modifiedBy;
         this.modifiedTime = value.modifiedTime;
     }
 
@@ -46,9 +50,11 @@ public class DataDict implements Serializable {
         String categoryCode,
         String dictCode,
         String dictName,
-        String desc,
+        String remark,
         Boolean enabled,
+        String createdBy,
         LocalDateTime createdTime,
+        String modifiedBy,
         LocalDateTime modifiedTime
     ) {
         this.id = id;
@@ -56,9 +62,11 @@ public class DataDict implements Serializable {
         this.categoryCode = categoryCode;
         this.dictCode = dictCode;
         this.dictName = dictName;
-        this.desc = desc;
+        this.remark = remark;
         this.enabled = enabled;
+        this.createdBy = createdBy;
         this.createdTime = createdTime;
+        this.modifiedBy = modifiedBy;
         this.modifiedTime = modifiedTime;
     }
 
@@ -133,17 +141,17 @@ public class DataDict implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.desc</code>.
+     * Getter for <code>luix-passport.data_dict.remark</code>.
      */
-    public String getDesc() {
-        return this.desc;
+    public String getRemark() {
+        return this.remark;
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.desc</code>.
+     * Setter for <code>luix-passport.data_dict.remark</code>.
      */
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     /**
@@ -161,6 +169,20 @@ public class DataDict implements Serializable {
     }
 
     /**
+     * Getter for <code>luix-passport.data_dict.created_by</code>.
+     */
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+
+    /**
+     * Setter for <code>luix-passport.data_dict.created_by</code>.
+     */
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    /**
      * Getter for <code>luix-passport.data_dict.created_time</code>.
      */
     public LocalDateTime getCreatedTime() {
@@ -172,6 +194,20 @@ public class DataDict implements Serializable {
      */
     public void setCreatedTime(LocalDateTime createdTime) {
         this.createdTime = createdTime;
+    }
+
+    /**
+     * Getter for <code>luix-passport.data_dict.modified_by</code>.
+     */
+    public String getModifiedBy() {
+        return this.modifiedBy;
+    }
+
+    /**
+     * Setter for <code>luix-passport.data_dict.modified_by</code>.
+     */
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 
     /**
@@ -227,11 +263,11 @@ public class DataDict implements Serializable {
         }
         else if (!this.dictName.equals(other.dictName))
             return false;
-        if (this.desc == null) {
-            if (other.desc != null)
+        if (this.remark == null) {
+            if (other.remark != null)
                 return false;
         }
-        else if (!this.desc.equals(other.desc))
+        else if (!this.remark.equals(other.remark))
             return false;
         if (this.enabled == null) {
             if (other.enabled != null)
@@ -239,11 +275,23 @@ public class DataDict implements Serializable {
         }
         else if (!this.enabled.equals(other.enabled))
             return false;
+        if (this.createdBy == null) {
+            if (other.createdBy != null)
+                return false;
+        }
+        else if (!this.createdBy.equals(other.createdBy))
+            return false;
         if (this.createdTime == null) {
             if (other.createdTime != null)
                 return false;
         }
         else if (!this.createdTime.equals(other.createdTime))
+            return false;
+        if (this.modifiedBy == null) {
+            if (other.modifiedBy != null)
+                return false;
+        }
+        else if (!this.modifiedBy.equals(other.modifiedBy))
             return false;
         if (this.modifiedTime == null) {
             if (other.modifiedTime != null)
@@ -263,9 +311,11 @@ public class DataDict implements Serializable {
         result = prime * result + ((this.categoryCode == null) ? 0 : this.categoryCode.hashCode());
         result = prime * result + ((this.dictCode == null) ? 0 : this.dictCode.hashCode());
         result = prime * result + ((this.dictName == null) ? 0 : this.dictName.hashCode());
-        result = prime * result + ((this.desc == null) ? 0 : this.desc.hashCode());
+        result = prime * result + ((this.remark == null) ? 0 : this.remark.hashCode());
         result = prime * result + ((this.enabled == null) ? 0 : this.enabled.hashCode());
+        result = prime * result + ((this.createdBy == null) ? 0 : this.createdBy.hashCode());
         result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
+        result = prime * result + ((this.modifiedBy == null) ? 0 : this.modifiedBy.hashCode());
         result = prime * result + ((this.modifiedTime == null) ? 0 : this.modifiedTime.hashCode());
         return result;
     }
@@ -279,9 +329,11 @@ public class DataDict implements Serializable {
         sb.append(", ").append(categoryCode);
         sb.append(", ").append(dictCode);
         sb.append(", ").append(dictName);
-        sb.append(", ").append(desc);
+        sb.append(", ").append(remark);
         sb.append(", ").append(enabled);
+        sb.append(", ").append(createdBy);
         sb.append(", ").append(createdTime);
+        sb.append(", ").append(modifiedBy);
         sb.append(", ").append(modifiedTime);
 
         sb.append(")");
