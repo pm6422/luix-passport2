@@ -8,6 +8,7 @@ import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.SeqNumber;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.Team;
@@ -59,6 +60,11 @@ public class LuixPassport extends SchemaImpl {
      * The table <code>luix-passport.oauth2_registered_client</code>.
      */
     public final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
+
+    /**
+     * The table <code>luix-passport.seq_number</code>.
+     */
+    public final SeqNumber SEQ_NUMBER = SeqNumber.SEQ_NUMBER;
 
     /**
      * The table <code>luix-passport.spring_session</code>.
@@ -130,6 +136,7 @@ public class LuixPassport extends SchemaImpl {
             Oauth2Authorization.OAUTH2_AUTHORIZATION,
             Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT,
             Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT,
+            SeqNumber.SEQ_NUMBER,
             SpringSession.SPRING_SESSION,
             SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES,
             Team.TEAM,

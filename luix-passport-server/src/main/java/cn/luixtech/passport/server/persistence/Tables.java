@@ -8,6 +8,7 @@ import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.SeqNumber;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.Team;
@@ -45,6 +46,11 @@ public class Tables {
      * The table <code>luix-passport.oauth2_registered_client</code>.
      */
     public static final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
+
+    /**
+     * The table <code>luix-passport.seq_number</code>.
+     */
+    public static final SeqNumber SEQ_NUMBER = SeqNumber.SEQ_NUMBER;
 
     /**
      * The table <code>luix-passport.spring_session</code>.
