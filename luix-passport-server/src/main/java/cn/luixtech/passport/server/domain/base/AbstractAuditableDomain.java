@@ -17,7 +17,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
 
-import static cn.luixtech.passport.server.PassportServerApplication.getApplicationContext;
+import static cn.luixtech.passport.server.PassportServerApplication.applicationContext;
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 
@@ -77,9 +77,9 @@ public abstract class AbstractAuditableDomain extends BaseDomain implements Seri
                     String tableName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, this.getClass().getSimpleName());
 
                     if (StringUtils.isEmpty(incKeyAnnotation.prefix())) {
-                        num = StringUtils.EMPTY + getApplicationContext().getBean(SeqNumberService.class).getNextSeqNumber(tableName);
+                        num = StringUtils.EMPTY + applicationContext.getBean(SeqNumberService.class).getNextSeqNumber(tableName);
                     } else {
-                        num = incKeyAnnotation.prefix() + getApplicationContext().getBean(SeqNumberService.class).getNextSeqNumber(tableName);
+                        num = incKeyAnnotation.prefix() + applicationContext.getBean(SeqNumberService.class).getNextSeqNumber(tableName);
                     }
                     field.set(this, num);
                 }

@@ -5,12 +5,12 @@ import lombok.Getter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 @EnableLuixSpringBootFramework
 public class PassportServerApplication {
-    @Getter
-    private static ApplicationContext applicationContext;
+    public static ConfigurableApplicationContext applicationContext;
 
     public static void main(String[] args) {
         // Disable jooq's self-ad message
