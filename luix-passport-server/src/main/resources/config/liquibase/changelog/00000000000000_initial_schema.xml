@@ -307,6 +307,17 @@
                 separator=";"
                 tableName="data_dict">
         </loadData>
+        <createTable tableName="seq_number">
+            <column name="id" type="VARCHAR(20)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="table_name" type="VARCHAR(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="max_seq_num" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
 
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="team_user" constraintName="fk_team_user_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fk_user_role_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
