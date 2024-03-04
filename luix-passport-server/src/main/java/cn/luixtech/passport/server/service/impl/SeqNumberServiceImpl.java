@@ -27,7 +27,7 @@ public class SeqNumberServiceImpl implements SeqNumberService {
 
     @Override
     public void init() {
-        upsertSeqNumber(Tables.DATA_DICT);
+//        upsertSeqNumber(Tables.DATA_DICT);
     }
 
     @Override

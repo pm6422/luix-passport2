@@ -17,6 +17,7 @@ public class DataDict implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
+    private String num;
     private String categoryCode;
     private String dictCode;
     private String dictName;
@@ -29,6 +30,7 @@ public class DataDict implements Serializable {
 
     public DataDict(DataDict value) {
         this.id = value.id;
+        this.num = value.num;
         this.categoryCode = value.categoryCode;
         this.dictCode = value.dictCode;
         this.dictName = value.dictName;
@@ -40,6 +42,7 @@ public class DataDict implements Serializable {
 
     public DataDict(
         String id,
+        String num,
         String categoryCode,
         String dictCode,
         String dictName,
@@ -49,6 +52,7 @@ public class DataDict implements Serializable {
         LocalDateTime modifiedTime
     ) {
         this.id = id;
+        this.num = num;
         this.categoryCode = categoryCode;
         this.dictCode = dictCode;
         this.dictName = dictName;
@@ -70,6 +74,20 @@ public class DataDict implements Serializable {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Getter for <code>luix-passport.data_dict.num</code>.
+     */
+    public String getNum() {
+        return this.num;
+    }
+
+    /**
+     * Setter for <code>luix-passport.data_dict.num</code>.
+     */
+    public void setNum(String num) {
+        this.num = num;
     }
 
     /**
@@ -185,6 +203,12 @@ public class DataDict implements Serializable {
         }
         else if (!this.id.equals(other.id))
             return false;
+        if (this.num == null) {
+            if (other.num != null)
+                return false;
+        }
+        else if (!this.num.equals(other.num))
+            return false;
         if (this.categoryCode == null) {
             if (other.categoryCode != null)
                 return false;
@@ -235,6 +259,7 @@ public class DataDict implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+        result = prime * result + ((this.num == null) ? 0 : this.num.hashCode());
         result = prime * result + ((this.categoryCode == null) ? 0 : this.categoryCode.hashCode());
         result = prime * result + ((this.dictCode == null) ? 0 : this.dictCode.hashCode());
         result = prime * result + ((this.dictName == null) ? 0 : this.dictName.hashCode());
@@ -250,6 +275,7 @@ public class DataDict implements Serializable {
         StringBuilder sb = new StringBuilder("DataDict (");
 
         sb.append(id);
+        sb.append(", ").append(num);
         sb.append(", ").append(categoryCode);
         sb.append(", ").append(dictCode);
         sb.append(", ").append(dictName);

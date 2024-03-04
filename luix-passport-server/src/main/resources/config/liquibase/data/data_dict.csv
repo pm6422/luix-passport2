@@ -1,5 +1,5 @@
-id;category_code;dict_code;enabled;created_time;modified_time
-13;role;ROLE_ANONYMOUS;true;now;now
-14;role;ROLE_USER;true;now;now
-15;role;ROLE_ADMIN;true;now;now
-16;role;ROLE_DEVELOPER;true;now;now
+id;num;category_code;dict_code;enabled;created_time;modified_time
+13;DCT1001;role;ROLE_ANONYMOUS;true;now;now
+14;DCT1002;role;ROLE_USER;true;now;now
+15;DCT1003;role;ROLE_ADMIN;true;now;now
+16;DCT1004;role;ROLE_DEVELOPER;true;now;now

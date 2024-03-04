@@ -74,6 +74,21 @@ public class DataDictDao extends DAOImpl<DataDictRecord, cn.luixtech.passport.se
     }
 
     /**
+     * Fetch records that have <code>num BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchRangeOfNum(String lowerInclusive, String upperInclusive) {
+        return fetchRange(DataDict.DATA_DICT.NUM, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>num IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.DataDict> fetchByNum(String... values) {
+        return fetch(DataDict.DATA_DICT.NUM, values);
+    }
+
+    /**
      * Fetch records that have <code>category_code BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */

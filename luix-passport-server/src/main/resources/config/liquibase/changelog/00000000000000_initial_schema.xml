@@ -284,6 +284,9 @@
             <column name="id" type="varchar(20)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="num" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
             <column name="category_code" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
