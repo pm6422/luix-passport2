@@ -1,18 +1,14 @@
 package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.domain.Oauth2RegisteredClient;
-import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
 import cn.luixtech.passport.server.repository.Oauth2RegisteredClientRepository;
 import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
-import io.micrometer.common.util.StringUtils;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
-import org.jooq.Condition;
-import org.jooq.impl.DSL;
 import org.springframework.data.domain.*;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 import org.springframework.stereotype.Service;
@@ -56,14 +52,6 @@ public class Oauth2RegisteredClientServiceImpl implements Oauth2RegisteredClient
         Page<Oauth2RegisteredClient> domains = oauth2RegisteredClientRepository.findAll(queryExample, pageable);
         List<Oauth2Client> results = domains.stream().map(Oauth2Client::fromRegisteredClient).collect(Collectors.toList());
         return new PageImpl<>(results, pageable, domains.getNumberOfElements());
-    }
-
-    private Condition createCondition(String clientId) {
-        Condition condition = DSL.trueCondition();
-        if (StringUtils.isNotEmpty(clientId)) {
-            condition = condition.and(Tables.OAUTH2_REGISTERED_CLIENT.CLIENT_ID.eq(clientId));
-        }
-        return condition;
     }
 
     @Override
