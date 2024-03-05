@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.service;
 
-public interface SeqNumberService {
+public interface TableSeqNumberService {
 
     void init();
 

@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.component;
 
-import cn.luixtech.passport.server.service.SeqNumberService;
+import cn.luixtech.passport.server.service.TableSeqNumberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 @Slf4j
-public class InitSeqNumberAppRunner implements ApplicationRunner {
-    private final SeqNumberService seqNumberService;
+public class TableInitSeqNumberAppRunner implements ApplicationRunner {
+    private final TableSeqNumberService tableSeqNumberService;
 
     @Override
     public void run(ApplicationArguments args) {
-        seqNumberService.init();
+        tableSeqNumberService.init();
     }
 }

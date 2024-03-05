@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.domain.base;
 
-import cn.luixtech.passport.server.service.SeqNumberService;
+import cn.luixtech.passport.server.service.TableSeqNumberService;
 import com.google.common.base.CaseFormat;
 import com.luixtech.utilities.annotation.IncKey;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -78,9 +78,9 @@ public abstract class AbstractAuditableDomain extends BaseDomain implements Seri
                     String tableName = CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, this.getClass().getSimpleName());
 
                     if (StringUtils.isEmpty(incKeyAnnotation.prefix())) {
-                        num = StringUtils.EMPTY + applicationContext.getBean(SeqNumberService.class).getNextSeqNumber(tableName);
+                        num = StringUtils.EMPTY + applicationContext.getBean(TableSeqNumberService.class).getNextSeqNumber(tableName);
                     } else {
-                        num = incKeyAnnotation.prefix() + applicationContext.getBean(SeqNumberService.class).getNextSeqNumber(tableName);
+                        num = incKeyAnnotation.prefix() + applicationContext.getBean(TableSeqNumberService.class).getNextSeqNumber(tableName);
                     }
                     field.set(this, num);
                 }

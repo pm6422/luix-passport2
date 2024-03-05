@@ -4,7 +4,7 @@ package cn.luixtech.passport.server.service.impl;
 import cn.luixtech.passport.server.domain.DataDict;
 import cn.luixtech.passport.server.domain.TableSeqNumber;
 import cn.luixtech.passport.server.repository.TableSeqNumberRepository;
-import cn.luixtech.passport.server.service.SeqNumberService;
+import cn.luixtech.passport.server.service.TableSeqNumberService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +20,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class SeqNumberServiceImpl implements SeqNumberService {
+public class TableSeqNumberServiceImpl implements TableSeqNumberService {
     private final DSLContext               dslContext;
     private final TableSeqNumberRepository tableSeqNumberRepository;
 
