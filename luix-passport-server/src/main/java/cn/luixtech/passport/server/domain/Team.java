@@ -24,8 +24,6 @@ public class Team extends BaseDomain implements Serializable {
     private String  remark;
     private Boolean enabled;
 
-    @Schema(required = true)
-    @NotNull
     @Basic(fetch = FetchType.LAZY)
     @Lob
     @Column(columnDefinition = "longblob", nullable = false)

@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.pojo;
 
-import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.domain.Oauth2RegisteredClient;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;

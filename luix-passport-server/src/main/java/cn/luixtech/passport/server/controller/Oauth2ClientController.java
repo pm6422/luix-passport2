@@ -1,8 +1,8 @@
 package cn.luixtech.passport.server.controller;
 
-import cn.luixtech.passport.server.persistence.tables.daos.Oauth2RegisteredClientDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.domain.Oauth2RegisteredClient;
 import cn.luixtech.passport.server.pojo.Oauth2Client;
+import cn.luixtech.passport.server.repository.Oauth2RegisteredClientRepository;
 import cn.luixtech.passport.server.service.Oauth2RegisteredClientService;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.utilities.exception.DataNotFoundException;
@@ -36,9 +36,9 @@ import static org.springframework.security.oauth2.server.authorization.OAuth2Tok
 @RestController
 @AllArgsConstructor
 public class Oauth2ClientController {
-    private final HttpHeaderCreator             httpHeaderCreator;
-    private final Oauth2RegisteredClientDao     oauth2RegisteredClientDao;
-    private final Oauth2RegisteredClientService oauth2RegisteredClientService;
+    private final HttpHeaderCreator                httpHeaderCreator;
+    private final Oauth2RegisteredClientRepository oauth2RegisteredClientRepository;
+    private final Oauth2RegisteredClientService    oauth2RegisteredClientService;
 
     @Operation(summary = "create a new oauth2 registered client")
     @PostMapping("/api/oauth2-clients")
@@ -77,9 +77,8 @@ public class Oauth2ClientController {
     @Operation(summary = "delete oauth2 registered client by id", description = "the data may be referenced by other data, and some problems may occur after deletion")
     @DeleteMapping("/api/oauth2-clients/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
-        Oauth2RegisteredClient client = Optional.ofNullable(oauth2RegisteredClientDao.findById(id))
-                .orElseThrow(() -> new DataNotFoundException(id));
-        oauth2RegisteredClientDao.deleteById(id);
+        Oauth2RegisteredClient client = oauth2RegisteredClientRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
+        oauth2RegisteredClientRepository.deleteById(id);
         return ResponseEntity.ok()
                 .headers(httpHeaderCreator.createSuccessHeader("SM1003", client.getClientId())).build();
     }
@@ -88,16 +87,16 @@ public class Oauth2ClientController {
     @PutMapping("/api/oauth2-clients/photo/upload")
     public void uploadProfilePhoto(@Parameter(description = "id", required = true) @RequestPart String id,
                                    @Parameter(description = "photo", required = true) @RequestPart MultipartFile file) throws IOException {
-        Oauth2RegisteredClient oauth2RegisteredClient = Optional.ofNullable(oauth2RegisteredClientDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        Oauth2RegisteredClient oauth2RegisteredClient = oauth2RegisteredClientRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         oauth2RegisteredClient.setPhoto(file.getBytes());
-        oauth2RegisteredClientDao.update(oauth2RegisteredClient);
+        oauth2RegisteredClientRepository.save(oauth2RegisteredClient);
         log.info("Uploaded oauth2 registered client photo with file name {} and ID {}", file.getOriginalFilename(), id);
     }
 
     @Operation(summary = "find photo by id")
     @GetMapping("/api/oauth2-clients/photo/{id}")
     public ResponseEntity<byte[]> findPhotoById(@Parameter(description = "id", required = true) @PathVariable String id) {
-        Optional<Oauth2RegisteredClient> oauth2RegisteredClient = Optional.ofNullable(oauth2RegisteredClientDao.findById(id));
+        Optional<Oauth2RegisteredClient> oauth2RegisteredClient = oauth2RegisteredClientRepository.findById(id);
         return oauth2RegisteredClient.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
     }
 
