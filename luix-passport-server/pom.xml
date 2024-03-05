@@ -221,46 +221,6 @@
                     </generator>
                 </configuration>
             </plugin>
-            <!--            <plugin>-->
-            <!--                <groupId>org.liquibase</groupId>-->
-            <!--                <artifactId>liquibase-maven-plugin</artifactId>-->
-            <!--                <version>4.20.0</version>-->
-            <!--                <configuration>-->
-            <!--                    <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>-->
-            <!--                    <outputChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/00000000000001_initial_schema.xml</outputChangeLogFile>-->
-            <!--                    <driver>com.mysql.cj.jdbc.Driver</driver>-->
-            <!--                    <url>jdbc:mysql://localhost:3306/luix-passport?useSSL=false</url>-->
-            <!--                    <defaultSchemaName/>-->
-            <!--                    <username>root</username>-->
-            <!--                    <password/>-->
-            <!--                    <referenceUrl>hibernate:spring:com.mycompany.myapp.domain?dialect=org.hibernate.dialect.MySQL8Dialect&amp;hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>-->
-            <!--                    <verbose>true</verbose>-->
-            <!--                    <logging>debug</logging>-->
-            <!--                    <contexts>test</contexts>-->
-            <!--                </configuration>-->
-            <!--                <dependencies>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>jakarta.validation</groupId>-->
-            <!--                        <artifactId>jakarta.validation-api</artifactId>-->
-            <!--                        <version>3.0.2</version>-->
-            <!--                    </dependency>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>org.liquibase</groupId>-->
-            <!--                        <artifactId>liquibase-core</artifactId>-->
-            <!--                        <version>${liquibase.version}</version>-->
-            <!--                    </dependency>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>org.liquibase.ext</groupId>-->
-            <!--                        <artifactId>liquibase-hibernate6</artifactId>-->
-            <!--                        <version>4.23.1</version>-->
-            <!--                    </dependency>-->
-            <!--                    <dependency>-->
-            <!--                        <groupId>org.springframework.boot</groupId>-->
-            <!--                        <artifactId>spring-boot-starter-data-jpa</artifactId>-->
-            <!--                        <version>3.1.0</version>-->
-            <!--                    </dependency>-->
-            <!--                </dependencies>-->
-            <!--            </plugin>-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
