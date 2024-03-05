@@ -21,13 +21,13 @@ public class UserPhotoServiceImpl implements UserPhotoService {
     public void insert(String userId, byte[] photoData) {
         UserPhoto userPhoto = new UserPhoto();
         userPhoto.setId(userId);
-        userPhoto.setProfilePhoto(photoData);
+        userPhoto.setPhoto(photoData);
         userPhotoRepository.save(userPhoto);
     }
 
     @Override
     public void update(UserPhoto photo, byte[] photoData) {
-        photo.setProfilePhoto(photoData);
+        photo.setPhoto(photoData);
         userPhotoRepository.save(photo);
     }
 

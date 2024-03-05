@@ -131,7 +131,7 @@ public class AccountController {
     @GetMapping("/api/accounts/profile-photo")
     public ResponseEntity<byte[]> getProfilePhoto() {
         Optional<UserPhoto> userPhoto = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
-        return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
+        return userPhoto.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
     }
 
     @Operation(summary = "upload profile photo of the current user")
@@ -150,12 +150,12 @@ public class AccountController {
         if (existingOne.isEmpty()) {
             return ResponseEntity.ok().body(null);
         }
-        ByteArrayResource resource = new ByteArrayResource(existingOne.get().getProfilePhoto());
+        ByteArrayResource resource = new ByteArrayResource(existingOne.get().getPhoto());
         String fileName = "photo-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .contentLength(existingOne.get().getProfilePhoto().length)
+                .contentLength(existingOne.get().getPhoto().length)
                 .body(resource);
 
 //        String path = System.getProperty("user.home") + File.separator + "fileName.txt";

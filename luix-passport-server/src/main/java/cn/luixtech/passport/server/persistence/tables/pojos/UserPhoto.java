@@ -17,21 +17,21 @@ public class UserPhoto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
-    private byte[] profilePhoto;
+    private byte[] photo;
 
     public UserPhoto() {}
 
     public UserPhoto(UserPhoto value) {
         this.id = value.id;
-        this.profilePhoto = value.profilePhoto;
+        this.photo = value.photo;
     }
 
     public UserPhoto(
         String id,
-        byte[] profilePhoto
+        byte[] photo
     ) {
         this.id = id;
-        this.profilePhoto = profilePhoto;
+        this.photo = photo;
     }
 
     /**
@@ -49,17 +49,17 @@ public class UserPhoto implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.user_photo.profile_photo</code>.
+     * Getter for <code>luix-passport.user_photo.photo</code>.
      */
-    public byte[] getProfilePhoto() {
-        return this.profilePhoto;
+    public byte[] getPhoto() {
+        return this.photo;
     }
 
     /**
-     * Setter for <code>luix-passport.user_photo.profile_photo</code>.
+     * Setter for <code>luix-passport.user_photo.photo</code>.
      */
-    public void setProfilePhoto(byte[] profilePhoto) {
-        this.profilePhoto = profilePhoto;
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override
@@ -77,11 +77,11 @@ public class UserPhoto implements Serializable {
         }
         else if (!this.id.equals(other.id))
             return false;
-        if (this.profilePhoto == null) {
-            if (other.profilePhoto != null)
+        if (this.photo == null) {
+            if (other.photo != null)
                 return false;
         }
-        else if (!Arrays.equals(this.profilePhoto, other.profilePhoto))
+        else if (!Arrays.equals(this.photo, other.photo))
             return false;
         return true;
     }
@@ -91,7 +91,7 @@ public class UserPhoto implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
-        result = prime * result + ((this.profilePhoto == null) ? 0 : Arrays.hashCode(this.profilePhoto));
+        result = prime * result + ((this.photo == null) ? 0 : Arrays.hashCode(this.photo));
         return result;
     }
 

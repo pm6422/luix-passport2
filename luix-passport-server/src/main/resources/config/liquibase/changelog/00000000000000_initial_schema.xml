@@ -285,7 +285,7 @@
             <column name="id" type="varchar(20)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="profile_photo" type="longblob">
+            <column name="photo" type="longblob">
                 <constraints nullable="false"/>
             </column>
         </createTable>

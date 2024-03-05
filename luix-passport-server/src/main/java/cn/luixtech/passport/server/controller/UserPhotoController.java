@@ -31,7 +31,7 @@ public class UserPhotoController {
     @GetMapping("/api/user-photos/{userId}")
     public ResponseEntity<byte[]> findById(@Parameter(description = "userId", required = true) @PathVariable String userId) {
         Optional<UserPhoto> userPhoto = userPhotoRepository.findById(userId);
-        return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
+        return userPhoto.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
     }
 
     @Operation(summary = "find user profile photo by user token")

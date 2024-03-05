@@ -73,17 +73,17 @@ public class UserPhotoDao extends DAOImpl<UserPhotoRecord, cn.luixtech.passport.
     }
 
     /**
-     * Fetch records that have <code>profile_photo BETWEEN lowerInclusive AND
+     * Fetch records that have <code>photo BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchRangeOfProfilePhoto(byte[] lowerInclusive, byte[] upperInclusive) {
-        return fetchRange(UserPhoto.USER_PHOTO.PROFILE_PHOTO, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchRangeOfPhoto(byte[] lowerInclusive, byte[] upperInclusive) {
+        return fetchRange(UserPhoto.USER_PHOTO.PHOTO, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>profile_photo IN (values)</code>
+     * Fetch records that have <code>photo IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchByProfilePhoto(byte[]... values) {
-        return fetch(UserPhoto.USER_PHOTO.PROFILE_PHOTO, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchByPhoto(byte[]... values) {
+        return fetch(UserPhoto.USER_PHOTO.PHOTO, values);
     }
 }

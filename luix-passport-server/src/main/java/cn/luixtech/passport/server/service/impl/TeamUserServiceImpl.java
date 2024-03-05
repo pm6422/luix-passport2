@@ -1,12 +1,10 @@
 package cn.luixtech.passport.server.service.impl;
 
-import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.daos.TeamUserDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.TeamUser;
+import cn.luixtech.passport.server.domain.TeamUser;
+import cn.luixtech.passport.server.repository.TeamUserRepository;
 import cn.luixtech.passport.server.service.TeamUserService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.CollectionUtils;
-import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,27 +13,24 @@ import java.util.Set;
 @Service
 @AllArgsConstructor
 public class TeamUserServiceImpl implements TeamUserService {
-    private TeamUserDao teamUserDao;
-    private DSLContext  dslContext;
+    private TeamUserRepository teamUserRepository;
 
     @Override
     public void save(String teamId, Set<String> userIds) {
-        List<TeamUser> teamUsers = teamUserDao.fetchByTeamId(teamId);
+        List<TeamUser> teamUsers = teamUserRepository.findByTeamId(teamId);
         if (CollectionUtils.isEmpty(teamUsers)) {
             // insert
             userIds.forEach(userId -> {
                 TeamUser teamUser = new TeamUser(teamId, userId);
-                teamUserDao.insert(teamUser);
+                teamUserRepository.save(teamUser);
             });
         } else {
             // delete
-            dslContext.delete(Tables.TEAM_USER)
-                    .where(Tables.TEAM_USER.TEAM_ID.eq(teamId))
-                    .execute();
+            teamUserRepository.deleteByTeamId(teamId);
             // insert
             userIds.forEach(userId -> {
                 TeamUser teamUser = new TeamUser(teamId, userId);
-                teamUserDao.insert(teamUser);
+                teamUserRepository.save(teamUser);
             });
         }
     }
