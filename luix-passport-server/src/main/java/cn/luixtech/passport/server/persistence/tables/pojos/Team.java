@@ -17,7 +17,7 @@ public class Team implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String id;
-    private String description;
+    private String remark;
     private Boolean enabled;
     private byte[] photo;
 
@@ -25,19 +25,19 @@ public class Team implements Serializable {
 
     public Team(Team value) {
         this.id = value.id;
-        this.description = value.description;
+        this.remark = value.remark;
         this.enabled = value.enabled;
         this.photo = value.photo;
     }
 
     public Team(
         String id,
-        String description,
+        String remark,
         Boolean enabled,
         byte[] photo
     ) {
         this.id = id;
-        this.description = description;
+        this.remark = remark;
         this.enabled = enabled;
         this.photo = photo;
     }
@@ -57,17 +57,17 @@ public class Team implements Serializable {
     }
 
     /**
-     * Getter for <code>luix-passport.team.description</code>.
+     * Getter for <code>luix-passport.team.remark</code>.
      */
-    public String getDescription() {
-        return this.description;
+    public String getRemark() {
+        return this.remark;
     }
 
     /**
-     * Setter for <code>luix-passport.team.description</code>.
+     * Setter for <code>luix-passport.team.remark</code>.
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     /**
@@ -113,11 +113,11 @@ public class Team implements Serializable {
         }
         else if (!this.id.equals(other.id))
             return false;
-        if (this.description == null) {
-            if (other.description != null)
+        if (this.remark == null) {
+            if (other.remark != null)
                 return false;
         }
-        else if (!this.description.equals(other.description))
+        else if (!this.remark.equals(other.remark))
             return false;
         if (this.enabled == null) {
             if (other.enabled != null)
@@ -139,7 +139,7 @@ public class Team implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
-        result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
+        result = prime * result + ((this.remark == null) ? 0 : this.remark.hashCode());
         result = prime * result + ((this.enabled == null) ? 0 : this.enabled.hashCode());
         result = prime * result + ((this.photo == null) ? 0 : Arrays.hashCode(this.photo));
         return result;
@@ -150,7 +150,7 @@ public class Team implements Serializable {
         StringBuilder sb = new StringBuilder("Team (");
 
         sb.append(id);
-        sb.append(", ").append(description);
+        sb.append(", ").append(remark);
         sb.append(", ").append(enabled);
         sb.append(", ").append("[binary...]");
 

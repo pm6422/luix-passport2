@@ -55,9 +55,9 @@ public class Team extends TableImpl<TeamRecord> {
     public final TableField<TeamRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.team.description</code>.
+     * The column <code>luix-passport.team.remark</code>.
      */
-    public final TableField<TeamRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.VARCHAR(36), this, "");
+    public final TableField<TeamRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(36), this, "");
 
     /**
      * The column <code>luix-passport.team.enabled</code>.

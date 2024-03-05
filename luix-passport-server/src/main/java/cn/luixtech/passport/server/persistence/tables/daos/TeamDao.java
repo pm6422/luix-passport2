@@ -73,18 +73,18 @@ public class TeamDao extends DAOImpl<TeamRecord, cn.luixtech.passport.server.per
     }
 
     /**
-     * Fetch records that have <code>description BETWEEN lowerInclusive AND
+     * Fetch records that have <code>remark BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.Team> fetchRangeOfDescription(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Team.TEAM.DESCRIPTION, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Team> fetchRangeOfRemark(String lowerInclusive, String upperInclusive) {
+        return fetchRange(Team.TEAM.REMARK, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>description IN (values)</code>
+     * Fetch records that have <code>remark IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.Team> fetchByDescription(String... values) {
-        return fetch(Team.TEAM.DESCRIPTION, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.Team> fetchByRemark(String... values) {
+        return fetch(Team.TEAM.REMARK, values);
     }
 
     /**

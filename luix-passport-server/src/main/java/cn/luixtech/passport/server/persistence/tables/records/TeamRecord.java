@@ -36,16 +36,16 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
     }
 
     /**
-     * Setter for <code>luix-passport.team.description</code>.
+     * Setter for <code>luix-passport.team.remark</code>.
      */
-    public void setDescription(String value) {
+    public void setRemark(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.team.description</code>.
+     * Getter for <code>luix-passport.team.remark</code>.
      */
-    public String getDescription() {
+    public String getRemark() {
         return (String) get(1);
     }
 
@@ -107,7 +107,7 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
 
     @Override
     public Field<String> field2() {
-        return Team.TEAM.DESCRIPTION;
+        return Team.TEAM.REMARK;
     }
 
     @Override
@@ -127,7 +127,7 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
 
     @Override
     public String component2() {
-        return getDescription();
+        return getRemark();
     }
 
     @Override
@@ -147,7 +147,7 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
 
     @Override
     public String value2() {
-        return getDescription();
+        return getRemark();
     }
 
     @Override
@@ -168,7 +168,7 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
 
     @Override
     public TeamRecord value2(String value) {
-        setDescription(value);
+        setRemark(value);
         return this;
     }
 
@@ -207,11 +207,11 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
     /**
      * Create a detached, initialised TeamRecord
      */
-    public TeamRecord(String id, String description, Boolean enabled, byte[] photo) {
+    public TeamRecord(String id, String remark, Boolean enabled, byte[] photo) {
         super(Team.TEAM);
 
         setId(id);
-        setDescription(description);
+        setRemark(remark);
         setEnabled(enabled);
         setPhoto(photo);
         resetChangedOnNotNull();
@@ -225,7 +225,7 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
 
         if (value != null) {
             setId(value.getId());
-            setDescription(value.getDescription());
+            setRemark(value.getRemark());
             setEnabled(value.getEnabled());
             setPhoto(value.getPhoto());
             resetChangedOnNotNull();

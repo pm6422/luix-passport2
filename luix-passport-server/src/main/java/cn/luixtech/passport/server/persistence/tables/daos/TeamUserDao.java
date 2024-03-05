@@ -8,9 +8,9 @@ import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.records.TeamUserRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
-import org.jooq.Record2;
 import org.jooq.impl.DAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 @Repository
-public class TeamUserDao extends DAOImpl<TeamUserRecord, cn.luixtech.passport.server.persistence.tables.pojos.TeamUser, Record2<String, String>> {
+public class TeamUserDao extends DAOImpl<TeamUserRecord, cn.luixtech.passport.server.persistence.tables.pojos.TeamUser, String> {
 
     /**
      * Create a new TeamUserDao without any configuration
@@ -39,8 +39,37 @@ public class TeamUserDao extends DAOImpl<TeamUserRecord, cn.luixtech.passport.se
     }
 
     @Override
-    public Record2<String, String> getId(cn.luixtech.passport.server.persistence.tables.pojos.TeamUser object) {
-        return compositeKeyRecord(object.getTeamId(), object.getUserId());
+    public String getId(cn.luixtech.passport.server.persistence.tables.pojos.TeamUser object) {
+        return object.getId();
+    }
+
+    /**
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.TeamUser> fetchRangeOfId(String lowerInclusive, String upperInclusive) {
+        return fetchRange(TeamUser.TEAM_USER.ID, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>id IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.TeamUser> fetchById(String... values) {
+        return fetch(TeamUser.TEAM_USER.ID, values);
+    }
+
+    /**
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public cn.luixtech.passport.server.persistence.tables.pojos.TeamUser fetchOneById(String value) {
+        return fetchOne(TeamUser.TEAM_USER.ID, value);
+    }
+
+    /**
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<cn.luixtech.passport.server.persistence.tables.pojos.TeamUser> fetchOptionalById(String value) {
+        return fetchOptional(TeamUser.TEAM_USER.ID, value);
     }
 
     /**

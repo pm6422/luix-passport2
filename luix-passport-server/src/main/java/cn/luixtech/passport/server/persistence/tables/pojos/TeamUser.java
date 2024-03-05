@@ -15,22 +15,40 @@ public class TeamUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String teamId;
     private String userId;
 
     public TeamUser() {}
 
     public TeamUser(TeamUser value) {
+        this.id = value.id;
         this.teamId = value.teamId;
         this.userId = value.userId;
     }
 
     public TeamUser(
+        String id,
         String teamId,
         String userId
     ) {
+        this.id = id;
         this.teamId = teamId;
         this.userId = userId;
+    }
+
+    /**
+     * Getter for <code>luix-passport.team_user.id</code>.
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * Setter for <code>luix-passport.team_user.id</code>.
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -70,6 +88,12 @@ public class TeamUser implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final TeamUser other = (TeamUser) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
         if (this.teamId == null) {
             if (other.teamId != null)
                 return false;
@@ -89,6 +113,7 @@ public class TeamUser implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.teamId == null) ? 0 : this.teamId.hashCode());
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         return result;
@@ -98,7 +123,8 @@ public class TeamUser implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder("TeamUser (");
 
-        sb.append(teamId);
+        sb.append(id);
+        sb.append(", ").append(teamId);
         sb.append(", ").append(userId);
 
         sb.append(")");
