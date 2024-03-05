@@ -5,7 +5,6 @@ import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.domain.UserRole;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import cn.luixtech.passport.server.repository.UserRepository;
@@ -18,8 +17,8 @@ import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import com.luixtech.utilities.exception.DuplicationException;
-import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -28,7 +27,7 @@ import org.apache.commons.lang3.Validate;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -73,23 +72,18 @@ import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DA
  */
 @Slf4j
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    @Resource
-    private             DSLContext            dslContext;
-    @Resource
-    private             UserRepository        userRepository;
-    @Resource
-    private             UserRoleRepository    userRoleRepository;
-    @Resource
-    private             UserRoleService       userRoleService;
-    @Resource
-    private             MessageCreator        messageCreator;
-    @Resource
-    private             HttpServletRequest    httpServletRequest;
-    private             PasswordEncoder       passwordEncoder         = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    @Value("${spring.web.locale}")
-    private             String                defaultLocale;
+    public static final  BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private static final PasswordEncoder       PASSWORD_ENCODER        = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
+    private final DSLContext         dslContext;
+    private final UserRepository     userRepository;
+    private final UserRoleRepository userRoleRepository;
+    private final UserRoleService    userRoleService;
+    private final MessageCreator     messageCreator;
+    private final HttpServletRequest httpServletRequest;
+    private final Environment        env;
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
@@ -207,7 +201,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setActivated(false);
         domain.setEnabled(true);
         domain.setPasswordExpiresAt(LocalDateTime.now().plus(6, ChronoUnit.MONTHS));
-        domain.setLocale(defaultLocale);
+        domain.setLocale(env.getProperty("spring.web.locale"));
         domain.setDateFormat("2021-09-10 10:15:00");
         domain.setTimeZone("Asia/Shanghai (GMT +08:00)");
 
@@ -277,7 +271,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         if (StringUtils.isNotEmpty(oldRawPassword)) {
             try {
-                if (!passwordEncoder.matches(oldRawPassword, user.getPasswordHash())) {
+                if (!PASSWORD_ENCODER.matches(oldRawPassword, user.getPasswordHash())) {
                     throw new IllegalArgumentException(messageCreator.getMessage("UE5008"));
                 }
             } catch (Exception ex) {
