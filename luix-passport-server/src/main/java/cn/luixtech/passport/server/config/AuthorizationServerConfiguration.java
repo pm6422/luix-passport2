@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
@@ -37,21 +38,22 @@ import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
 public class AuthorizationServerConfiguration {
-    public static final String AUTHORIZATION_BEARER            = OAuth2AccessToken.TokenType.BEARER.getValue() + " ";
-    public static final String DEFAULT_PASSWORD_ENCODER_PREFIX = "{bcrypt}";
-    public static final String AUTHORIZATION_BASIC             = "Basic ";
-    public static final String AUTH_CODE_CLIENT_ID             = "messaging-client";
-    public static final String AUTH_CODE_CLIENT_SECRET         = "secret";
-    public static final String DEVICE_VERIFICATION_URI         = "/activate";
-    public static final String LOGIN_URI                       = "/login";
+    public static final String                AUTHORIZATION_BEARER            = OAuth2AccessToken.TokenType.BEARER.getValue() + " ";
+    public static final String                DEFAULT_PASSWORD_ENCODER_PREFIX = "{bcrypt}";
+    public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER         = new BCryptPasswordEncoder();
+    public static final String                AUTHORIZATION_BASIC             = "Basic ";
+    public static final String                AUTH_CODE_CLIENT_ID             = "messaging-client";
+    public static final String                AUTH_CODE_CLIENT_SECRET         = "secret";
+    public static final String                DEVICE_VERIFICATION_URI         = "/activate";
+    public static final String                LOGIN_URI                       = "/login";
     /**
      * Refer to Endpoint {@link org.springframework.security.oauth2.server.authorization.web.OAuth2TokenEndpointFilter}
      */
-    public static final String TOKEN_URI                       = "/oauth2/token";
-    public static final String INTROSPECT_TOKEN_URI            = "/oauth2/introspect";
-    public static final String VIEW_JWK_URI                    = "/oauth2/jwks";
-    public static final String REVOKE_TOKEN_URI                = "/oauth2/revoke";
-    public static final String CONSENT_PAGE_URI                = "/oauth2/consent";
+    public static final String                TOKEN_URI                       = "/oauth2/token";
+    public static final String                INTROSPECT_TOKEN_URI            = "/oauth2/introspect";
+    public static final String                VIEW_JWK_URI                    = "/oauth2/jwks";
+    public static final String                REVOKE_TOKEN_URI                = "/oauth2/revoke";
+    public static final String                CONSENT_PAGE_URI                = "/oauth2/consent";
 
 
     @Bean

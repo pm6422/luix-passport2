@@ -19,8 +19,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.BCRYPT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER_PREFIX;
-import static cn.luixtech.passport.server.service.impl.UserServiceImpl.BCRYPT_PASSWORD_ENCODER;
 
 @Data
 @NoArgsConstructor

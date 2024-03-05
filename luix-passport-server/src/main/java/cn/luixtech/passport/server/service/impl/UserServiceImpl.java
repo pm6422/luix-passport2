@@ -38,7 +38,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -55,6 +54,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.BCRYPT_PASSWORD_ENCODER;
 import static cn.luixtech.passport.server.config.AuthorizationServerConfiguration.DEFAULT_PASSWORD_ENCODER_PREFIX;
 import static cn.luixtech.passport.server.controller.UserPhotoController.USER_PHOTO_TOKEN_KEY;
 import static cn.luixtech.passport.server.controller.UserPhotoController.USER_PHOTO_URL;
@@ -73,15 +73,14 @@ import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DA
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    private final       PasswordEncoder       passwordEncoder;
-    private final       DSLContext            dslContext;
-    private final       UserRepository        userRepository;
-    private final       UserRoleRepository    userRoleRepository;
-    private final       UserRoleService       userRoleService;
-    private final       MessageCreator        messageCreator;
-    private final       HttpServletRequest    httpServletRequest;
-    private final       Environment           env;
+    private final PasswordEncoder    passwordEncoder;
+    private final DSLContext         dslContext;
+    private final UserRepository     userRepository;
+    private final UserRoleRepository userRoleRepository;
+    private final UserRoleService    userRoleService;
+    private final MessageCreator     messageCreator;
+    private final HttpServletRequest httpServletRequest;
+    private final Environment        env;
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
