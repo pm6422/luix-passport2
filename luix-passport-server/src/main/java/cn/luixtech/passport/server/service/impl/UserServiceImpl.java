@@ -134,12 +134,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public ManagedUser findById(String id) {
         User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
-        user.setPasswordHash("*");
         ManagedUser managedUser = new ManagedUser();
         BeanUtils.copyProperties(user, managedUser);
         managedUser.setRoles(findRoles(id));
         managedUser.setLocale(user.getLocale());
         managedUser.setTimezone(user.getTimeZone());
+        managedUser.setPasswordHash("*");
         return managedUser;
     }
 
