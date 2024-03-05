@@ -16,5 +16,4 @@ application:
     force-to-https: true
   allowed-cors:
     mappings:
-      "[/login]": http://passport.luixtech.cn/
       "[/logout]": https://passport.luixtech.cn/
