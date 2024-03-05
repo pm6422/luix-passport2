@@ -1,7 +1,6 @@
 package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.domain.DataDict;
-import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.pojo.BatchUpdateDataDict;
 import cn.luixtech.passport.server.repository.DataDictRepository;
 import cn.luixtech.passport.server.service.DataDictService;
@@ -14,7 +13,6 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.jooq.DSLContext;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
@@ -31,6 +29,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +39,6 @@ import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePag
 @AllArgsConstructor
 @Slf4j
 public class DataDictController {
-    private final DSLContext         dslContext;
     private final DataDictRepository dataDictRepository;
     private final DataDictService    dataDictService;
 
@@ -107,10 +105,8 @@ public class DataDictController {
     @Operation(summary = "download import template")
     @GetMapping("/api/data-dicts/import-template")
     public ResponseEntity<ByteArrayResource> getImportTemplate() {
-        List<DataDict> domains = dslContext.selectFrom(Tables.DATA_DICT)
-                .limit(1)
-                .fetchInto(DataDict.class);
-        byte[] data = JSON.toJSONString(domains, JSONWriter.Feature.PrettyFormat).getBytes();
+        DataDict dataDict = dataDictRepository.findFirstByOrderByIdAsc();
+        byte[] data = JSON.toJSONString(Arrays.asList(dataDict), JSONWriter.Feature.PrettyFormat).getBytes();
         ByteArrayResource resource = new ByteArrayResource(data);
         String fileName = "data-dict-" + DateFormatUtils.ISO_8601_EXTENDED_DATE_FORMAT.format(new Date()) + ".json";
         return ResponseEntity.ok()
