@@ -179,18 +179,4 @@ public class UserRoleRecord extends UpdatableRecordImpl<UserRoleRecord> implemen
         setRole(role);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised UserRoleRecord
-     */
-    public UserRoleRecord(cn.luixtech.passport.server.persistence.tables.pojos.UserRole value) {
-        super(UserRole.USER_ROLE);
-
-        if (value != null) {
-            setId(value.getId());
-            setUserId(value.getUserId());
-            setRole(value.getRole());
-            resetChangedOnNotNull();
-        }
-    }
 }

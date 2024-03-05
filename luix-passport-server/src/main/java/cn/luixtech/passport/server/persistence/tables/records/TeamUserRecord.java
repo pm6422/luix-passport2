@@ -179,18 +179,4 @@ public class TeamUserRecord extends UpdatableRecordImpl<TeamUserRecord> implemen
         setUserId(userId);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised TeamUserRecord
-     */
-    public TeamUserRecord(cn.luixtech.passport.server.persistence.tables.pojos.TeamUser value) {
-        super(TeamUser.TEAM_USER);
-
-        if (value != null) {
-            setId(value.getId());
-            setTeamId(value.getTeamId());
-            setUserId(value.getUserId());
-            resetChangedOnNotNull();
-        }
-    }
 }

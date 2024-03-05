@@ -216,19 +216,4 @@ public class TeamRecord extends UpdatableRecordImpl<TeamRecord> implements Recor
         setPhoto(photo);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised TeamRecord
-     */
-    public TeamRecord(cn.luixtech.passport.server.persistence.tables.pojos.Team value) {
-        super(Team.TEAM);
-
-        if (value != null) {
-            setId(value.getId());
-            setRemark(value.getRemark());
-            setEnabled(value.getEnabled());
-            setPhoto(value.getPhoto());
-            resetChangedOnNotNull();
-        }
-    }
 }

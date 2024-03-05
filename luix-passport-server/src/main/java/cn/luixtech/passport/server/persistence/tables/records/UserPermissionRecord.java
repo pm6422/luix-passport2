@@ -179,18 +179,4 @@ public class UserPermissionRecord extends UpdatableRecordImpl<UserPermissionReco
         setPermission(permission);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised UserPermissionRecord
-     */
-    public UserPermissionRecord(cn.luixtech.passport.server.persistence.tables.pojos.UserPermission value) {
-        super(UserPermission.USER_PERMISSION);
-
-        if (value != null) {
-            setId(value.getId());
-            setUserId(value.getUserId());
-            setPermission(value.getPermission());
-            resetChangedOnNotNull();
-        }
-    }
 }

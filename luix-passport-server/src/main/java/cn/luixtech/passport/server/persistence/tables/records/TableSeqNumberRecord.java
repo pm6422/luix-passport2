@@ -179,18 +179,4 @@ public class TableSeqNumberRecord extends UpdatableRecordImpl<TableSeqNumberReco
         setMaxSeqNum(maxSeqNum);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised TableSeqNumberRecord
-     */
-    public TableSeqNumberRecord(cn.luixtech.passport.server.persistence.tables.pojos.TableSeqNumber value) {
-        super(TableSeqNumber.TABLE_SEQ_NUMBER);
-
-        if (value != null) {
-            setId(value.getId());
-            setTableName(value.getTableName());
-            setMaxSeqNum(value.getMaxSeqNum());
-            resetChangedOnNotNull();
-        }
-    }
 }

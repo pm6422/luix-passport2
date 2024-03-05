@@ -603,48 +603,4 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
         setDeviceCodeMetadata(deviceCodeMetadata);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised Oauth2AuthorizationRecord
-     */
-    public Oauth2AuthorizationRecord(cn.luixtech.passport.server.persistence.tables.pojos.Oauth2Authorization value) {
-        super(Oauth2Authorization.OAUTH2_AUTHORIZATION);
-
-        if (value != null) {
-            setId(value.getId());
-            setRegisteredClientId(value.getRegisteredClientId());
-            setPrincipalName(value.getPrincipalName());
-            setAuthorizationGrantType(value.getAuthorizationGrantType());
-            setAuthorizedScopes(value.getAuthorizedScopes());
-            setAttributes(value.getAttributes());
-            setState(value.getState());
-            setAuthorizationCodeValue(value.getAuthorizationCodeValue());
-            setAuthorizationCodeIssuedAt(value.getAuthorizationCodeIssuedAt());
-            setAuthorizationCodeExpiresAt(value.getAuthorizationCodeExpiresAt());
-            setAuthorizationCodeMetadata(value.getAuthorizationCodeMetadata());
-            setAccessTokenValue(value.getAccessTokenValue());
-            setAccessTokenIssuedAt(value.getAccessTokenIssuedAt());
-            setAccessTokenExpiresAt(value.getAccessTokenExpiresAt());
-            setAccessTokenMetadata(value.getAccessTokenMetadata());
-            setAccessTokenType(value.getAccessTokenType());
-            setAccessTokenScopes(value.getAccessTokenScopes());
-            setOidcIdTokenValue(value.getOidcIdTokenValue());
-            setOidcIdTokenIssuedAt(value.getOidcIdTokenIssuedAt());
-            setOidcIdTokenExpiresAt(value.getOidcIdTokenExpiresAt());
-            setOidcIdTokenMetadata(value.getOidcIdTokenMetadata());
-            setRefreshTokenValue(value.getRefreshTokenValue());
-            setRefreshTokenIssuedAt(value.getRefreshTokenIssuedAt());
-            setRefreshTokenExpiresAt(value.getRefreshTokenExpiresAt());
-            setRefreshTokenMetadata(value.getRefreshTokenMetadata());
-            setUserCodeValue(value.getUserCodeValue());
-            setUserCodeIssuedAt(value.getUserCodeIssuedAt());
-            setUserCodeExpiresAt(value.getUserCodeExpiresAt());
-            setUserCodeMetadata(value.getUserCodeMetadata());
-            setDeviceCodeValue(value.getDeviceCodeValue());
-            setDeviceCodeIssuedAt(value.getDeviceCodeIssuedAt());
-            setDeviceCodeExpiresAt(value.getDeviceCodeExpiresAt());
-            setDeviceCodeMetadata(value.getDeviceCodeMetadata());
-            resetChangedOnNotNull();
-        }
-    }
 }

@@ -185,18 +185,4 @@ public class Oauth2AuthorizationConsentRecord extends UpdatableRecordImpl<Oauth2
         setAuthorities(authorities);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised Oauth2AuthorizationConsentRecord
-     */
-    public Oauth2AuthorizationConsentRecord(cn.luixtech.passport.server.persistence.tables.pojos.Oauth2AuthorizationConsent value) {
-        super(Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT);
-
-        if (value != null) {
-            setRegisteredClientId(value.getRegisteredClientId());
-            setPrincipalName(value.getPrincipalName());
-            setAuthorities(value.getAuthorities());
-            resetChangedOnNotNull();
-        }
-    }
 }

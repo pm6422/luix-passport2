@@ -255,20 +255,4 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
         setCreatedTime(createdTime);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised UserAuthEventRecord
-     */
-    public UserAuthEventRecord(cn.luixtech.passport.server.persistence.tables.pojos.UserAuthEvent value) {
-        super(UserAuthEvent.USER_AUTH_EVENT);
-
-        if (value != null) {
-            setId(value.getId());
-            setUserId(value.getUserId());
-            setEvent(value.getEvent());
-            setRemark(value.getRemark());
-            setCreatedTime(value.getCreatedTime());
-            resetChangedOnNotNull();
-        }
-    }
 }

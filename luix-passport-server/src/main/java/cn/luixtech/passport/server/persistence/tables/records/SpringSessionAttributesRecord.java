@@ -185,18 +185,4 @@ public class SpringSessionAttributesRecord extends UpdatableRecordImpl<SpringSes
         setAttributeBytes(attributeBytes);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised SpringSessionAttributesRecord
-     */
-    public SpringSessionAttributesRecord(cn.luixtech.passport.server.persistence.tables.pojos.SpringSessionAttributes value) {
-        super(SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES);
-
-        if (value != null) {
-            setSessionPrimaryId(value.getSessionPrimaryId());
-            setAttributeName(value.getAttributeName());
-            setAttributeBytes(value.getAttributeBytes());
-            resetChangedOnNotNull();
-        }
-    }
 }

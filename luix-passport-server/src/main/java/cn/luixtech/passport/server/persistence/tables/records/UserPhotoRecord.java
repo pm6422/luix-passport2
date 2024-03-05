@@ -142,17 +142,4 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
         setPhoto(photo);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised UserPhotoRecord
-     */
-    public UserPhotoRecord(cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto value) {
-        super(UserPhoto.USER_PHOTO);
-
-        if (value != null) {
-            setId(value.getId());
-            setPhoto(value.getPhoto());
-            resetChangedOnNotNull();
-        }
-    }
 }

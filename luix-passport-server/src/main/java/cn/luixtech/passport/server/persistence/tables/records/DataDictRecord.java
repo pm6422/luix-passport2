@@ -477,26 +477,4 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
         setModifiedTime(modifiedTime);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised DataDictRecord
-     */
-    public DataDictRecord(cn.luixtech.passport.server.persistence.tables.pojos.DataDict value) {
-        super(DataDict.DATA_DICT);
-
-        if (value != null) {
-            setId(value.getId());
-            setNum(value.getNum());
-            setCategoryCode(value.getCategoryCode());
-            setDictCode(value.getDictCode());
-            setDictName(value.getDictName());
-            setRemark(value.getRemark());
-            setEnabled(value.getEnabled());
-            setCreatedBy(value.getCreatedBy());
-            setCreatedTime(value.getCreatedTime());
-            setModifiedBy(value.getModifiedBy());
-            setModifiedTime(value.getModifiedTime());
-            resetChangedOnNotNull();
-        }
-    }
 }

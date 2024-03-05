@@ -209,11 +209,10 @@
                             <inputSchema>luix-passport</inputSchema>
                         </database>
                         <generate>
-                            <pojos>true</pojos>
+                            <pojos>false</pojos>
                             <daos>false</daos>
                             <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
                             <springAnnotations>true</springAnnotations>
-                            <!--                            <validationAnnotations>true</validationAnnotations>-->
                         </generate>
                         <target>
                             <packageName>cn.luixtech.passport.server.persistence</packageName>

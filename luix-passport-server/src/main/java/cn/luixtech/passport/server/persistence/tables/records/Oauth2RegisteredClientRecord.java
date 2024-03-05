@@ -608,29 +608,4 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
         setPhoto(photo);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised Oauth2RegisteredClientRecord
-     */
-    public Oauth2RegisteredClientRecord(cn.luixtech.passport.server.persistence.tables.pojos.Oauth2RegisteredClient value) {
-        super(Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT);
-
-        if (value != null) {
-            setId(value.getId());
-            setClientId(value.getClientId());
-            setClientIdIssuedAt(value.getClientIdIssuedAt());
-            setClientSecret(value.getClientSecret());
-            setClientSecretExpiresAt(value.getClientSecretExpiresAt());
-            setClientName(value.getClientName());
-            setClientAuthenticationMethods(value.getClientAuthenticationMethods());
-            setAuthorizationGrantTypes(value.getAuthorizationGrantTypes());
-            setRedirectUris(value.getRedirectUris());
-            setPostLogoutRedirectUris(value.getPostLogoutRedirectUris());
-            setScopes(value.getScopes());
-            setClientSettings(value.getClientSettings());
-            setTokenSettings(value.getTokenSettings());
-            setPhoto(value.getPhoto());
-            resetChangedOnNotNull();
-        }
-    }
 }

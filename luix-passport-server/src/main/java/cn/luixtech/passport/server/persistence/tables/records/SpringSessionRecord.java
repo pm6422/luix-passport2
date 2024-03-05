@@ -329,22 +329,4 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
         setPrincipalName(principalName);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised SpringSessionRecord
-     */
-    public SpringSessionRecord(cn.luixtech.passport.server.persistence.tables.pojos.SpringSession value) {
-        super(SpringSession.SPRING_SESSION);
-
-        if (value != null) {
-            setPrimaryId(value.getPrimaryId());
-            setSessionId(value.getSessionId());
-            setCreationTime(value.getCreationTime());
-            setLastAccessTime(value.getLastAccessTime());
-            setMaxInactiveInterval(value.getMaxInactiveInterval());
-            setExpiryTime(value.getExpiryTime());
-            setPrincipalName(value.getPrincipalName());
-            resetChangedOnNotNull();
-        }
-    }
 }

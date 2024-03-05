@@ -393,38 +393,4 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
         setModifiedTime(modifiedTime);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised UserRecord
-     */
-    public UserRecord(cn.luixtech.passport.server.persistence.tables.pojos.User value) {
-        super(User.USER);
-
-        if (value != null) {
-            setId(value.getId());
-            setUsername(value.getUsername());
-            setEmail(value.getEmail());
-            setMobileNo(value.getMobileNo());
-            setFirstName(value.getFirstName());
-            setLastName(value.getLastName());
-            setPasswordHash(value.getPasswordHash());
-            setActivationCode(value.getActivationCode());
-            setResetCode(value.getResetCode());
-            setResetTime(value.getResetTime());
-            setProfilePhotoEnabled(value.getProfilePhotoEnabled());
-            setRemarks(value.getRemarks());
-            setActivated(value.getActivated());
-            setEnabled(value.getEnabled());
-            setAccountExpiresAt(value.getAccountExpiresAt());
-            setPasswordExpiresAt(value.getPasswordExpiresAt());
-            setLocale(value.getLocale());
-            setTimeZone(value.getTimeZone());
-            setDateFormat(value.getDateFormat());
-            setCreatedBy(value.getCreatedBy());
-            setCreatedTime(value.getCreatedTime());
-            setModifiedBy(value.getModifiedBy());
-            setModifiedTime(value.getModifiedTime());
-            resetChangedOnNotNull();
-        }
-    }
 }

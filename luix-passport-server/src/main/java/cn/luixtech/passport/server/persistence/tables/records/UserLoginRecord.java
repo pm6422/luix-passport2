@@ -329,22 +329,4 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
         setBrowser(browser);
         resetChangedOnNotNull();
     }
-
-    /**
-     * Create a detached, initialised UserLoginRecord
-     */
-    public UserLoginRecord(cn.luixtech.passport.server.persistence.tables.pojos.UserLogin value) {
-        super(UserLogin.USER_LOGIN);
-
-        if (value != null) {
-            setId(value.getId());
-            setUserId(value.getUserId());
-            setLoggedTime(value.getLoggedTime());
-            setLocation(value.getLocation());
-            setIp(value.getIp());
-            setOs(value.getOs());
-            setBrowser(value.getBrowser());
-            resetChangedOnNotNull();
-        }
-    }
 }
