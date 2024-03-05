@@ -6,7 +6,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,10 +21,8 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 public class DataDict extends AbstractAuditableDomain implements Serializable {
     @Serial
-    private static final long   serialVersionUID    = 1L;
-    public static final  String TABLE_NAME          = "data_dict";
-    public static final  String FIELD_CATEGORY_CODE = "categoryCode";
-    public static final  String FIELD_ENABLED       = "enabled";
+    private static final long   serialVersionUID = 1L;
+    public static final  String TABLE_NAME       = "data_dict";
 
     @IncKey(prefix = "DCT")
     @Column(unique = true, nullable = false)
