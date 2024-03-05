@@ -34,7 +34,7 @@ public class AuthenticationEventListener {
             domain.setId(IdGenerator.generateId());
             domain.setUserId(userId);
             domain.setEvent("AuthenticationSuccess");
-            domain.setDescription(event.getSource().getClass().getSimpleName());
+            domain.setRemark(event.getSource().getClass().getSimpleName());
             domain.setCreatedTime(LocalDateTime.now());
             userAuthenticationEventDao.insert(domain);
             log.info("Authenticated successfully for user: {}", userId);
@@ -49,7 +49,7 @@ public class AuthenticationEventListener {
             domain.setId(IdGenerator.generateId());
             domain.setUserId(userId);
             domain.setEvent("AuthenticationFailure");
-            domain.setDescription(StringUtils.abbreviate(event.getException().getMessage(), 64));
+            domain.setRemark(StringUtils.abbreviate(event.getException().getMessage(), 64));
             domain.setCreatedTime(LocalDateTime.now());
             userAuthenticationEventDao.insert(domain);
             log.warn("Authenticate failure for user: " + userId + " with exception: " + event.getException().getMessage());
@@ -64,7 +64,7 @@ public class AuthenticationEventListener {
             domain.setId(IdGenerator.generateId());
             domain.setUserId(userId);
             domain.setEvent("LogoutSuccess");
-            domain.setDescription(event.getSource().getClass().getSimpleName());
+            domain.setRemark(event.getSource().getClass().getSimpleName());
             domain.setCreatedTime(LocalDateTime.now());
             userAuthenticationEventDao.insert(domain);
             log.info("Logged out for user: [{}] and initiated by {}", userId, event.getSource().getClass().getSimpleName());

@@ -238,7 +238,7 @@
                 separator=";"
                 tableName="user_permission">
         </loadData>
-        <createTable tableName="user_authentication_event">
+        <createTable tableName="user_auth_event">
             <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>

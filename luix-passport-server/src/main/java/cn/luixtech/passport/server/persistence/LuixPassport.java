@@ -14,7 +14,7 @@ import cn.luixtech.passport.server.persistence.tables.TableSeqNumber;
 import cn.luixtech.passport.server.persistence.tables.Team;
 import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.User;
-import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
+import cn.luixtech.passport.server.persistence.tables.UserAuthEvent;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.UserPhoto;
@@ -92,9 +92,9 @@ public class LuixPassport extends SchemaImpl {
     public final User USER = User.USER;
 
     /**
-     * The table <code>luix-passport.user_authentication_event</code>.
+     * The table <code>luix-passport.user_auth_event</code>.
      */
-    public final UserAuthenticationEvent USER_AUTHENTICATION_EVENT = UserAuthenticationEvent.USER_AUTHENTICATION_EVENT;
+    public final UserAuthEvent USER_AUTH_EVENT = UserAuthEvent.USER_AUTH_EVENT;
 
     /**
      * The table <code>luix-passport.user_login</code>.
@@ -142,7 +142,7 @@ public class LuixPassport extends SchemaImpl {
             Team.TEAM,
             TeamUser.TEAM_USER,
             User.USER,
-            UserAuthenticationEvent.USER_AUTHENTICATION_EVENT,
+            UserAuthEvent.USER_AUTH_EVENT,
             UserLogin.USER_LOGIN,
             UserPermission.USER_PERMISSION,
             UserPhoto.USER_PHOTO,

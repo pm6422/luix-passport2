@@ -14,7 +14,7 @@ import cn.luixtech.passport.server.persistence.tables.TableSeqNumber;
 import cn.luixtech.passport.server.persistence.tables.Team;
 import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.User;
-import cn.luixtech.passport.server.persistence.tables.UserAuthenticationEvent;
+import cn.luixtech.passport.server.persistence.tables.UserAuthEvent;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
 import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.UserPhoto;
@@ -28,7 +28,7 @@ import cn.luixtech.passport.server.persistence.tables.records.SpringSessionRecor
 import cn.luixtech.passport.server.persistence.tables.records.TableSeqNumberRecord;
 import cn.luixtech.passport.server.persistence.tables.records.TeamRecord;
 import cn.luixtech.passport.server.persistence.tables.records.TeamUserRecord;
-import cn.luixtech.passport.server.persistence.tables.records.UserAuthenticationEventRecord;
+import cn.luixtech.passport.server.persistence.tables.records.UserAuthEventRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserLoginRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 import cn.luixtech.passport.server.persistence.tables.records.UserPhotoRecord;
@@ -67,7 +67,7 @@ public class Keys {
     public static final UniqueKey<UserRecord> KEY_USER_MOBILE_NO = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_mobile_no"), new TableField[] { User.USER.MOBILE_NO }, true);
     public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_PRIMARY"), new TableField[] { User.USER.ID }, true);
     public static final UniqueKey<UserRecord> KEY_USER_USERNAME = Internal.createUniqueKey(User.USER, DSL.name("KEY_user_username"), new TableField[] { User.USER.USERNAME }, true);
-    public static final UniqueKey<UserAuthenticationEventRecord> KEY_USER_AUTHENTICATION_EVENT_PRIMARY = Internal.createUniqueKey(UserAuthenticationEvent.USER_AUTHENTICATION_EVENT, DSL.name("KEY_user_authentication_event_PRIMARY"), new TableField[] { UserAuthenticationEvent.USER_AUTHENTICATION_EVENT.ID }, true);
+    public static final UniqueKey<UserAuthEventRecord> KEY_USER_AUTH_EVENT_PRIMARY = Internal.createUniqueKey(UserAuthEvent.USER_AUTH_EVENT, DSL.name("KEY_user_auth_event_PRIMARY"), new TableField[] { UserAuthEvent.USER_AUTH_EVENT.ID }, true);
     public static final UniqueKey<UserLoginRecord> KEY_USER_LOGIN_PRIMARY = Internal.createUniqueKey(UserLogin.USER_LOGIN, DSL.name("KEY_user_login_PRIMARY"), new TableField[] { UserLogin.USER_LOGIN.ID }, true);
     public static final UniqueKey<UserPermissionRecord> KEY_USER_PERMISSION_PRIMARY = Internal.createUniqueKey(UserPermission.USER_PERMISSION, DSL.name("KEY_user_permission_PRIMARY"), new TableField[] { UserPermission.USER_PERMISSION.ID }, true);
     public static final UniqueKey<UserPhotoRecord> KEY_USER_PHOTO_PRIMARY = Internal.createUniqueKey(UserPhoto.USER_PHOTO, DSL.name("KEY_user_photo_PRIMARY"), new TableField[] { UserPhoto.USER_PHOTO.ID }, true);

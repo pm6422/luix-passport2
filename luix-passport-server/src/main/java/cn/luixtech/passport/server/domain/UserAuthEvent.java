@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class UserAuthenticationEvent extends BaseDomain implements Serializable {
+public class UserAuthEvent extends BaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
