@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.event;
 
-import cn.luixtech.passport.server.persistence.tables.daos.UserAuthenticationEventDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserAuthenticationEvent;
+import cn.luixtech.passport.server.domain.UserAuthEvent;
+import cn.luixtech.passport.server.repository.UserAuthEventRepository;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,19 +24,19 @@ import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 @Component
 @AllArgsConstructor
 public class AuthenticationEventListener {
-    private UserAuthenticationEventDao userAuthenticationEventDao;
+    private UserAuthEventRepository userAuthEventRepository;
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
         String userId = getCurrentUserId();
         if (StringUtils.isNotEmpty(userId)) {
-            UserAuthenticationEvent domain = new UserAuthenticationEvent();
-            domain.setId(IdGenerator.generateId());
+            // insert
+            UserAuthEvent domain = new UserAuthEvent();
             domain.setUserId(userId);
             domain.setEvent("AuthenticationSuccess");
             domain.setRemark(event.getSource().getClass().getSimpleName());
             domain.setCreatedTime(LocalDateTime.now());
-            userAuthenticationEventDao.insert(domain);
+            userAuthEventRepository.save(domain);
             log.info("Authenticated successfully for user: {}", userId);
         }
     }
@@ -45,13 +45,13 @@ public class AuthenticationEventListener {
     public void authenticationFailureEvent(AbstractAuthenticationFailureEvent event) {
         String userId = getCurrentUserId();
         if (StringUtils.isNotEmpty(userId)) {
-            UserAuthenticationEvent domain = new UserAuthenticationEvent();
-            domain.setId(IdGenerator.generateId());
+            // insert
+            UserAuthEvent domain = new UserAuthEvent();
             domain.setUserId(userId);
             domain.setEvent("AuthenticationFailure");
             domain.setRemark(StringUtils.abbreviate(event.getException().getMessage(), 64));
             domain.setCreatedTime(LocalDateTime.now());
-            userAuthenticationEventDao.insert(domain);
+            userAuthEventRepository.save(domain);
             log.warn("Authenticate failure for user: " + userId + " with exception: " + event.getException().getMessage());
         }
     }
@@ -60,13 +60,14 @@ public class AuthenticationEventListener {
     public void logoutSuccessEvent(LogoutSuccessEvent event) {
         String userId = getCurrentUserId();
         if (StringUtils.isNotEmpty(userId)) {
-            UserAuthenticationEvent domain = new UserAuthenticationEvent();
+            // insert
+            UserAuthEvent domain = new UserAuthEvent();
             domain.setId(IdGenerator.generateId());
             domain.setUserId(userId);
             domain.setEvent("LogoutSuccess");
             domain.setRemark(event.getSource().getClass().getSimpleName());
             domain.setCreatedTime(LocalDateTime.now());
-            userAuthenticationEventDao.insert(domain);
+            userAuthEventRepository.save(domain);
             log.info("Logged out for user: [{}] and initiated by {}", userId, event.getSource().getClass().getSimpleName());
         }
     }
