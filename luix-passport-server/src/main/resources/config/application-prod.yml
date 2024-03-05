@@ -18,5 +18,3 @@ application:
     mappings:
       "[/login]": http://passport.luixtech.cn/
       "[/logout]": https://passport.luixtech.cn/
-      "[/api/**]": http://passport.luixtech.cn
-      "[/open-api/**]": http://passport.luixtech.cn
