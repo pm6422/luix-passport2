@@ -39,7 +39,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -74,16 +73,15 @@ import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DA
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    public static final  BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
-    private static final PasswordEncoder       PASSWORD_ENCODER        = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-    private final DSLContext         dslContext;
-    private final UserRepository     userRepository;
-    private final UserRoleRepository userRoleRepository;
-    private final UserRoleService    userRoleService;
-    private final MessageCreator     messageCreator;
-    private final HttpServletRequest httpServletRequest;
-    private final Environment        env;
+    public static final BCryptPasswordEncoder BCRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private final       PasswordEncoder       passwordEncoder;
+    private final       DSLContext            dslContext;
+    private final       UserRepository        userRepository;
+    private final       UserRoleRepository    userRoleRepository;
+    private final       UserRoleService       userRoleService;
+    private final       MessageCreator        messageCreator;
+    private final       HttpServletRequest    httpServletRequest;
+    private final       Environment           env;
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
@@ -271,7 +269,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         if (StringUtils.isNotEmpty(oldRawPassword)) {
             try {
-                if (!PASSWORD_ENCODER.matches(oldRawPassword, user.getPasswordHash())) {
+                if (!passwordEncoder.matches(oldRawPassword, user.getPasswordHash())) {
                     throw new IllegalArgumentException(messageCreator.getMessage("UE5008"));
                 }
             } catch (Exception ex) {
