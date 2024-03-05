@@ -67,10 +67,9 @@ public class UserAuthenticationEvent extends TableImpl<UserAuthenticationEventRe
     public final TableField<UserAuthenticationEventRecord, String> EVENT = createField(DSL.name("event"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.user_authentication_event.description</code>.
+     * The column <code>luix-passport.user_authentication_event.remark</code>.
      */
-    public final TableField<UserAuthenticationEventRecord, String> DESCRIPTION = createField(DSL.name("description"), SQLDataType.VARCHAR(64), this, "");
+    public final TableField<UserAuthenticationEventRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(64), this, "");
 
     /**
      * The column

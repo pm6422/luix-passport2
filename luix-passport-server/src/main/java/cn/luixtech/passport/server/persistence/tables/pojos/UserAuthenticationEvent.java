@@ -19,7 +19,7 @@ public class UserAuthenticationEvent implements Serializable {
     private String id;
     private String userId;
     private String event;
-    private String description;
+    private String remark;
     private LocalDateTime createdTime;
 
     public UserAuthenticationEvent() {}
@@ -28,7 +28,7 @@ public class UserAuthenticationEvent implements Serializable {
         this.id = value.id;
         this.userId = value.userId;
         this.event = value.event;
-        this.description = value.description;
+        this.remark = value.remark;
         this.createdTime = value.createdTime;
     }
 
@@ -36,13 +36,13 @@ public class UserAuthenticationEvent implements Serializable {
         String id,
         String userId,
         String event,
-        String description,
+        String remark,
         LocalDateTime createdTime
     ) {
         this.id = id;
         this.userId = userId;
         this.event = event;
-        this.description = description;
+        this.remark = remark;
         this.createdTime = createdTime;
     }
 
@@ -89,19 +89,17 @@ public class UserAuthenticationEvent implements Serializable {
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.user_authentication_event.description</code>.
+     * Getter for <code>luix-passport.user_authentication_event.remark</code>.
      */
-    public String getDescription() {
-        return this.description;
+    public String getRemark() {
+        return this.remark;
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.user_authentication_event.description</code>.
+     * Setter for <code>luix-passport.user_authentication_event.remark</code>.
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     /**
@@ -147,11 +145,11 @@ public class UserAuthenticationEvent implements Serializable {
         }
         else if (!this.event.equals(other.event))
             return false;
-        if (this.description == null) {
-            if (other.description != null)
+        if (this.remark == null) {
+            if (other.remark != null)
                 return false;
         }
-        else if (!this.description.equals(other.description))
+        else if (!this.remark.equals(other.remark))
             return false;
         if (this.createdTime == null) {
             if (other.createdTime != null)
@@ -169,7 +167,7 @@ public class UserAuthenticationEvent implements Serializable {
         result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         result = prime * result + ((this.event == null) ? 0 : this.event.hashCode());
-        result = prime * result + ((this.description == null) ? 0 : this.description.hashCode());
+        result = prime * result + ((this.remark == null) ? 0 : this.remark.hashCode());
         result = prime * result + ((this.createdTime == null) ? 0 : this.createdTime.hashCode());
         return result;
     }
@@ -181,7 +179,7 @@ public class UserAuthenticationEvent implements Serializable {
         sb.append(id);
         sb.append(", ").append(userId);
         sb.append(", ").append(event);
-        sb.append(", ").append(description);
+        sb.append(", ").append(remark);
         sb.append(", ").append(createdTime);
 
         sb.append(")");
