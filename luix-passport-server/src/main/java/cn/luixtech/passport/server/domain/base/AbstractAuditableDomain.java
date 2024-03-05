@@ -57,6 +57,7 @@ public abstract class AbstractAuditableDomain extends BaseDomain implements Seri
     @Schema(description = "last modified time")
     protected Instant modifiedTime;
 
+    @Override
     @PrePersist
     protected void prePersist() {
         super.prePersist();
