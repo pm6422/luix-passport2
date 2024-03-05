@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.domain;
 
-import cn.luixtech.passport.server.domain.base.BaseDomain;
+import cn.luixtech.passport.server.domain.base.AbstractCreationDomain;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class UserRole extends BaseDomain implements Serializable {
+public class UserRole extends AbstractCreationDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

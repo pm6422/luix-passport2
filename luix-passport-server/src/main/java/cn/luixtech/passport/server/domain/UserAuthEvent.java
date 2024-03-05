@@ -1,6 +1,6 @@
 package cn.luixtech.passport.server.domain;
 
-import cn.luixtech.passport.server.domain.base.BaseDomain;
+import cn.luixtech.passport.server.domain.base.AbstractCreationDomain;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,12 +16,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class UserAuthEvent extends BaseDomain implements Serializable {
+public class UserAuthEvent extends AbstractCreationDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
     private String        userId;
     private String        event;
     private String        remark;
-    private LocalDateTime createdTime;
 }

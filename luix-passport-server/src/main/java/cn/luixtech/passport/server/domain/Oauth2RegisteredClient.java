@@ -1,10 +1,7 @@
 package cn.luixtech.passport.server.domain;
 
-import cn.luixtech.passport.server.domain.base.BaseDomain;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
+import cn.luixtech.passport.server.domain.base.AbstractCreationDomain;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Oauth2RegisteredClient extends BaseDomain implements Serializable {
+public class Oauth2RegisteredClient extends AbstractCreationDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

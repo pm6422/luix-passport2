@@ -1,9 +1,7 @@
 package cn.luixtech.passport.server.domain;
 
-import cn.luixtech.passport.server.domain.base.BaseDomain;
-import io.swagger.v3.oas.annotations.media.Schema;
+import cn.luixtech.passport.server.domain.base.AbstractCreationDomain;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Team extends BaseDomain implements Serializable {
+public class Team extends AbstractCreationDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

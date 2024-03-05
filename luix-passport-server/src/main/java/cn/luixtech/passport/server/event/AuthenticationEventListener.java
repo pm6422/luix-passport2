@@ -35,7 +35,6 @@ public class AuthenticationEventListener {
             domain.setUserId(userId);
             domain.setEvent("AuthenticationSuccess");
             domain.setRemark(event.getSource().getClass().getSimpleName());
-            domain.setCreatedTime(LocalDateTime.now());
             userAuthEventRepository.save(domain);
             log.info("Authenticated successfully for user: {}", userId);
         }
@@ -50,7 +49,6 @@ public class AuthenticationEventListener {
             domain.setUserId(userId);
             domain.setEvent("AuthenticationFailure");
             domain.setRemark(StringUtils.abbreviate(event.getException().getMessage(), 64));
-            domain.setCreatedTime(LocalDateTime.now());
             userAuthEventRepository.save(domain);
             log.warn("Authenticate failure for user: " + userId + " with exception: " + event.getException().getMessage());
         }
@@ -66,7 +64,6 @@ public class AuthenticationEventListener {
             domain.setUserId(userId);
             domain.setEvent("LogoutSuccess");
             domain.setRemark(event.getSource().getClass().getSimpleName());
-            domain.setCreatedTime(LocalDateTime.now());
             userAuthEventRepository.save(domain);
             log.info("Logged out for user: [{}] and initiated by {}", userId, event.getSource().getClass().getSimpleName());
         }
