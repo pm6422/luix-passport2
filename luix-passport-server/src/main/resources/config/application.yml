@@ -65,7 +65,7 @@ spring:
     properties:
       hibernate.jdbc.time_zone: Asia/Shanghai
       hibernate.timezone.default_storage: NORMALIZE
-      hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
+#      hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: false
       hibernate.cache.use_second_level_cache: false
