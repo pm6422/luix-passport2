@@ -210,7 +210,7 @@
                         </database>
                         <generate>
                             <pojos>true</pojos>
-                            <daos>true</daos>
+                            <daos>false</daos>
                             <pojosEqualsAndHashCode>true</pojosEqualsAndHashCode>
                             <springAnnotations>true</springAnnotations>
                             <!--                            <validationAnnotations>true</validationAnnotations>-->

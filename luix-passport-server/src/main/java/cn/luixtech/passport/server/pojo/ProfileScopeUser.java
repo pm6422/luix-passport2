@@ -1,10 +1,7 @@
 package cn.luixtech.passport.server.pojo;
 
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.BeanUtils;
 
 import java.util.Set;
 
