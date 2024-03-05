@@ -25,4 +25,8 @@ public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findOneByResetCode(String resetCode);
 
     Optional<User> findOneByActivationCode(String activationCode);
+
+    int countByEmailAndIdNot(String email, String id);
+
+    int countByMobileNoAndIdNot(String mobileNo, String id);
 }

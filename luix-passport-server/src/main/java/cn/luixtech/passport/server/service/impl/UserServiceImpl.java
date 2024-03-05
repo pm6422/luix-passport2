@@ -219,15 +219,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User update(User domain) {
         User existingOne = userRepository.findById(domain.getId()).orElseThrow(() -> new DataNotFoundException(domain.getId()));
 
-        int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
-                .where(USER.EMAIL.eq(domain.getEmail()))
-                .and(USER.ID.ne(domain.getId())));
+        int existingEmailCount = userRepository.countByEmailAndIdNot(domain.getEmail(), domain.getId());
         if (existingEmailCount > 0) {
             throw new DuplicationException(Map.of("email", domain.getEmail()));
         }
-        int existingMobileNoCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
-                .where(USER.MOBILE_NO.eq(domain.getEmail()))
-                .and(USER.ID.ne(domain.getId())));
+        int existingMobileNoCount = userRepository.countByMobileNoAndIdNot(domain.getMobileNo(), domain.getId());
         if (existingMobileNoCount > 0) {
             throw new DuplicationException(Map.of("mobileNo", domain.getMobileNo()));
         }
