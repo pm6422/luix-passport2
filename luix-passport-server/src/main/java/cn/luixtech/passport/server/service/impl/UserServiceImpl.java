@@ -1,15 +1,15 @@
 package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.config.oauth.AuthUser;
+import cn.luixtech.passport.server.domain.User;
+import cn.luixtech.passport.server.domain.UserRole;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
-import cn.luixtech.passport.server.persistence.tables.daos.UserRoleDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
 import cn.luixtech.passport.server.persistence.tables.records.UserRecord;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ProfileScopeUser;
+import cn.luixtech.passport.server.repository.UserRepository;
+import cn.luixtech.passport.server.repository.UserRoleRepository;
 import cn.luixtech.passport.server.service.UserRoleService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -25,13 +25,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.jooq.Condition;
 import org.jooq.DSLContext;
 import org.jooq.impl.DSL;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
@@ -46,8 +46,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +61,6 @@ import static cn.luixtech.passport.server.config.AuthorizationServerConfiguratio
 import static cn.luixtech.passport.server.controller.UserPhotoController.USER_PHOTO_TOKEN_KEY;
 import static cn.luixtech.passport.server.controller.UserPhotoController.USER_PHOTO_URL;
 import static cn.luixtech.passport.server.persistence.Tables.USER;
-import static cn.luixtech.passport.server.utils.sort.JooqSortUtils.buildOrderBy;
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 import static com.luixtech.utilities.encryption.JasyptEncryptUtils.DEFAULT_ALGORITHM;
 import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT;
@@ -77,9 +78,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Resource
     private             DSLContext            dslContext;
     @Resource
-    private             UserDao               userDao;
+    private             UserRepository        userRepository;
     @Resource
-    private             UserRoleDao           userRoleDao;
+    private             UserRoleRepository    userRoleRepository;
     @Resource
     private             UserRoleService       userRoleService;
     @Resource
@@ -127,18 +128,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Optional<User> findOne(String loginName) {
-        User user = dslContext.selectFrom(Tables.USER)
-                .where(USER.USERNAME.eq(loginName))
-                .or(USER.EMAIL.eq(loginName))
-                .limit(1)
-                // Convert User Record to POJO User
-                .fetchOneInto(User.class);
-        return Optional.ofNullable(user);
+//        User user = dslContext.selectFrom(Tables.USER)
+//                .where(USER.USERNAME.eq(loginName))
+//                .or(USER.EMAIL.eq(loginName))
+//                .limit(1)
+//                // Convert User Record to POJO User
+//                .fetchOneInto(User.class);
+        return userRepository.findOneByUsernameOrEmailOrMobileNo(loginName, loginName, loginName);
     }
 
     @Override
     public ManagedUser findById(String id) {
-        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         user.setPasswordHash("*");
         ManagedUser managedUser = new ManagedUser();
         BeanUtils.copyProperties(user, managedUser);
@@ -150,7 +151,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public ProfileScopeUser findByUsername(String username) {
-        User user = Optional.ofNullable(userDao.fetchOneByUsername(username)).orElseThrow(() -> new DataNotFoundException(username));
+        User user = userRepository.findOneByUsername(username).orElseThrow(() -> new DataNotFoundException(username));
         return ProfileScopeUser.of(user.getUsername(), user.getEmail(), findRoles(user.getId()));
     }
 
@@ -182,15 +183,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User insert(User domain, Set<String> authorities, String rawPassword, boolean permanentAccount) {
         // From pojo to record
-        UserRecord userRecord = dslContext.newRecord(USER, domain);
+//        UserRecord userRecord = dslContext.newRecord(USER, domain);
 
-        if (userDao.fetchOneByUsername(domain.getUsername().toLowerCase()) != null) {
+        if (userRepository.findOneByUsername(domain.getUsername().toLowerCase()).isPresent()) {
             throw new DuplicationException(Map.of("username", domain.getUsername()));
         }
-        if (userDao.fetchOneByEmail(domain.getEmail()) != null) {
+        if (userRepository.findOneByEmail(domain.getEmail()).isPresent()) {
             throw new DuplicationException(Map.of("email", domain.getEmail()));
         }
-        if (userDao.fetchOneByMobileNo(domain.getMobileNo()) != null) {
+        if (userRepository.findOneByMobileNo(domain.getMobileNo()).isPresent()) {
             throw new DuplicationException(Map.of("mobileNo", domain.getMobileNo()));
         }
 
@@ -205,27 +206,27 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setProfilePhotoEnabled(false);
         domain.setActivated(false);
         domain.setEnabled(true);
-        domain.setPasswordExpiresAt(LocalDateTime.now().plusMonths(6));
+        domain.setPasswordExpiresAt(LocalDateTime.now().plus(6, ChronoUnit.MONTHS));
         domain.setLocale(defaultLocale);
         domain.setDateFormat("2021-09-10 10:15:00");
         domain.setTimeZone("Asia/Shanghai (GMT +08:00)");
 
         if (!permanentAccount) {
-            domain.setAccountExpiresAt(LocalDateTime.now().plusDays(30));
+            domain.setAccountExpiresAt(LocalDateTime.now().plus(30, ChronoUnit.DAYS));
         }
 
-        userDao.insert(domain);
+        userRepository.save(domain);
         log.info("Created user: {}", domain);
 
         List<UserRole> userAuthorities = userRoleService.generate(id, authorities);
-        userRoleDao.insert(userAuthorities);
+        userRoleRepository.saveAll(userAuthorities);
         return domain;
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User update(User domain) {
-        User existingOne = Optional.ofNullable(userDao.findById(domain.getId())).orElseThrow(() -> new DataNotFoundException(domain.getId()));
+        User existingOne = userRepository.findById(domain.getId()).orElseThrow(() -> new DataNotFoundException(domain.getId()));
 
         int existingEmailCount = dslContext.fetchCount(DSL.selectFrom(Tables.USER)
                 .where(USER.EMAIL.eq(domain.getEmail()))
@@ -247,9 +248,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingOne.setEnabled(domain.getEnabled());
         existingOne.setRemarks(domain.getRemarks());
         existingOne.setModifiedBy(AuthUtils.getCurrentUsername());
-        existingOne.setModifiedTime(LocalDateTime.now());
+        existingOne.setModifiedTime(Instant.now());
 
-        userDao.update(existingOne);
+        userRepository.save(existingOne);
         log.debug("Updated user: {}", domain);
         return existingOne;
     }
@@ -264,7 +265,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
             // then insert user authorities
             List<UserRole> userRoles = userRoleService.generate(domain.getId(), roles);
-            userRoleDao.insert(userRoles);
+            userRoleRepository.saveAll(userRoles);
             log.info("Updated user authorities: {}", userRoles);
         }
         return updated;
@@ -273,7 +274,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User changePassword(String id, String oldRawPassword, String newRawPassword) {
-        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         if (StringUtils.isNotEmpty(oldRawPassword)) {
             try {
                 if (!passwordEncoder.matches(oldRawPassword, user.getPasswordHash())) {
@@ -284,7 +285,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             }
         }
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
-        userDao.update(user);
+        userRepository.save(user);
         log.info("Changed password for user: {}", user);
         return user;
     }
@@ -292,20 +293,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User requestPasswordRecovery(String email) {
-        User user = dslContext.selectFrom(Tables.USER)
-                .where(USER.EMAIL.eq(email))
-                .and(USER.ACTIVATED.eq(true))
-                .limit(1)
-                // Convert User Record to POJO User
-                .fetchOneInto(User.class);
-        if (user == null) {
-            throw new DataNotFoundException(email);
-        }
+        User user = userRepository.findOneByEmailAndActivated(email, true).orElseThrow(() -> new DataNotFoundException(email));
 
         user.setResetCode(JasyptEncryptUtils.encrypt(generateRandomCode()));
         user.setResetTime(LocalDateTime.now());
 
-        userDao.update(user);
+        userRepository.save(user);
         log.info("Requested password reset by reset code {}", user.getResetCode());
         return user;
     }
@@ -313,73 +306,47 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void resetPassword(String resetCode, String newRawPassword) {
-        User user = dslContext.selectFrom(Tables.USER)
-                .where(USER.RESET_CODE.eq(resetCode))
-                .limit(1)
-                // Convert User Record to POJO User
-                .fetchOneInto(User.class);
-        Validate.isTrue(user != null, messageCreator.getMessage("UE1022"));
-        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetTime().plusDays(1)), messageCreator.getMessage("UE1023"));
+        User user = userRepository.findOneByResetCode(resetCode).orElseThrow(() -> new DataNotFoundException(resetCode));
+
+        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetTime().plus(1, ChronoUnit.DAYS)), messageCreator.getMessage("UE1023"));
 
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         user.setResetCode(null);
         user.setResetTime(null);
 
-        userDao.update(user);
+        userRepository.save(user);
         log.debug("Reset password by reset code {}", resetCode);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void activate(String activationCode) {
-        User user = dslContext.selectFrom(Tables.USER)
-                .where(USER.ACTIVATION_CODE.eq(activationCode))
-                .limit(1)
-                // Convert User Record to POJO User
-                .fetchOneInto(User.class);
-        Validate.isTrue(user != null, messageCreator.getMessage("UE1024"));
+        User user = userRepository.findOneByActivationCode(activationCode).orElseThrow(() -> new DataNotFoundException(activationCode));
 
         user.setActivated(true);
         user.setActivationCode(null);
-        userDao.update(user);
+        userRepository.save(user);
         log.info("Activated user by activation code {}", activationCode);
     }
 
     @Override
     public Page<User> find(Pageable pageable, String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
-        List<User> domains = dslContext.selectFrom(Tables.USER)
-                .where(createCondition(username, email, mobileNo, enabled, activated))
-                .orderBy(buildOrderBy(pageable.getSort(), USER.fields()))
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetchInto(User.class);
-        return new PageImpl<>(domains, pageable, userDao.count());
-    }
-
-    private Condition createCondition(String username, String email, String mobileNo, Boolean enabled, Boolean activated) {
-        Condition condition = DSL.trueCondition();
-        if (StringUtils.isNotEmpty(username)) {
-            condition = condition.and(USER.USERNAME.eq(username));
-        }
-        if (StringUtils.isNotEmpty(email)) {
-            condition = condition.and(USER.EMAIL.eq(email));
-        }
-        if (StringUtils.isNotEmpty(mobileNo)) {
-            condition = condition.and(USER.MOBILE_NO.eq(mobileNo));
-        }
-        if (enabled != null) {
-            condition = condition.and(USER.ENABLED.eq(enabled));
-        }
-        if (activated != null) {
-            condition = condition.and(USER.ACTIVATED.eq(activated));
-        }
-        return condition;
+        // Ignore query parameter if it has a null value
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnoreNullValues();
+        User criteria = new User();
+        criteria.setUsername(username);
+        criteria.setEmail(email);
+        criteria.setMobileNo(mobileNo);
+        criteria.setEnabled(enabled);
+        criteria.setActivated(activated);
+        Example<User> queryExample = Example.of(criteria, matcher);
+        return userRepository.findAll(queryExample, pageable);
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteById(String userId) {
-        userDao.deleteById(userId);
+        userRepository.deleteById(userId);
     }
 
     @Override
@@ -394,13 +361,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User extendAccount(String id, long amountToAdd, TemporalUnit unit) {
-        User user = Optional.ofNullable(userDao.findById(id)).orElseThrow(() -> new DataNotFoundException(id));
+        User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         if (user.getAccountExpiresAt().isBefore(LocalDateTime.now())) {
             user.setAccountExpiresAt(LocalDateTime.now().plus(amountToAdd, unit));
         } else {
             user.setAccountExpiresAt(user.getAccountExpiresAt().plus(amountToAdd, unit));
         }
-        userDao.update(user);
+        userRepository.save(user);
         return user;
     }
 }

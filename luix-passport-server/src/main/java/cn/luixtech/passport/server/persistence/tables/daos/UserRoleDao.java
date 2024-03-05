@@ -8,9 +8,9 @@ import cn.luixtech.passport.server.persistence.tables.UserRole;
 import cn.luixtech.passport.server.persistence.tables.records.UserRoleRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
-import org.jooq.Record2;
 import org.jooq.impl.DAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 @Repository
-public class UserRoleDao extends DAOImpl<UserRoleRecord, cn.luixtech.passport.server.persistence.tables.pojos.UserRole, Record2<String, String>> {
+public class UserRoleDao extends DAOImpl<UserRoleRecord, cn.luixtech.passport.server.persistence.tables.pojos.UserRole, String> {
 
     /**
      * Create a new UserRoleDao without any configuration
@@ -39,8 +39,37 @@ public class UserRoleDao extends DAOImpl<UserRoleRecord, cn.luixtech.passport.se
     }
 
     @Override
-    public Record2<String, String> getId(cn.luixtech.passport.server.persistence.tables.pojos.UserRole object) {
-        return compositeKeyRecord(object.getUserId(), object.getRole());
+    public String getId(cn.luixtech.passport.server.persistence.tables.pojos.UserRole object) {
+        return object.getId();
+    }
+
+    /**
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserRole> fetchRangeOfId(String lowerInclusive, String upperInclusive) {
+        return fetchRange(UserRole.USER_ROLE.ID, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>id IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserRole> fetchById(String... values) {
+        return fetch(UserRole.USER_ROLE.ID, values);
+    }
+
+    /**
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public cn.luixtech.passport.server.persistence.tables.pojos.UserRole fetchOneById(String value) {
+        return fetchOne(UserRole.USER_ROLE.ID, value);
+    }
+
+    /**
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<cn.luixtech.passport.server.persistence.tables.pojos.UserRole> fetchOptionalById(String value) {
+        return fetchOptional(UserRole.USER_ROLE.ID, value);
     }
 
     /**

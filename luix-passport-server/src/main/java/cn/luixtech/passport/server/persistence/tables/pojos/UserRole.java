@@ -15,22 +15,40 @@ public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String userId;
     private String role;
 
     public UserRole() {}
 
     public UserRole(UserRole value) {
+        this.id = value.id;
         this.userId = value.userId;
         this.role = value.role;
     }
 
     public UserRole(
+        String id,
         String userId,
         String role
     ) {
+        this.id = id;
         this.userId = userId;
         this.role = role;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user_role.id</code>.
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user_role.id</code>.
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -70,6 +88,12 @@ public class UserRole implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final UserRole other = (UserRole) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
         if (this.userId == null) {
             if (other.userId != null)
                 return false;
@@ -89,6 +113,7 @@ public class UserRole implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         result = prime * result + ((this.role == null) ? 0 : this.role.hashCode());
         return result;
@@ -98,7 +123,8 @@ public class UserRole implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder("UserRole (");
 
-        sb.append(userId);
+        sb.append(id);
+        sb.append(", ").append(userId);
         sb.append(", ").append(role);
 
         sb.append(")");

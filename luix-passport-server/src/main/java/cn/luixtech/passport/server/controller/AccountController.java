@@ -1,13 +1,13 @@
 package cn.luixtech.passport.server.controller;
 
+import cn.luixtech.passport.server.domain.User;
+import cn.luixtech.passport.server.domain.UserPhoto;
 import cn.luixtech.passport.server.event.LogoutEvent;
-import cn.luixtech.passport.server.persistence.tables.daos.UserDao;
-import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
+import cn.luixtech.passport.server.repository.UserPhotoRepository;
+import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserPhotoService;
 import cn.luixtech.passport.server.service.UserService;
@@ -55,8 +55,8 @@ public class AccountController {
     private final        HttpHeaderCreator         httpHeaderCreator;
     private final        MessageCreator            messageCreator;
     private final        MailService               mailService;
-    private final        UserDao                   userDao;
-    private final        UserPhotoDao              userPhotoDao;
+    private final        UserRepository            userRepository;
+    private final        UserPhotoRepository       userPhotoRepository;
     private final        UserService               userService;
     private final        UserPhotoService          userPhotoService;
     private final        ApplicationEventPublisher applicationEventPublisher;
@@ -81,7 +81,7 @@ public class AccountController {
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
-        User currentUser = Optional.ofNullable(userDao.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         Validate.isTrue(StringUtils.isEmpty(domain.getId()) || currentUser.getId().equals(domain.getId()), "Invalid user ID!");
         userService.update(domain);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
@@ -130,7 +130,7 @@ public class AccountController {
     @Operation(summary = "get profile photo of the current user")
     @GetMapping("/api/accounts/profile-photo")
     public ResponseEntity<byte[]> getProfilePhoto() {
-        Optional<UserPhoto> userPhoto = Optional.ofNullable(userPhotoDao.findById(AuthUtils.getCurrentUserId()));
+        Optional<UserPhoto> userPhoto = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
         return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
     }
 
@@ -146,16 +146,16 @@ public class AccountController {
     @Operation(summary = "download profile photo of the current user")
     @GetMapping("/api/accounts/profile-photo/download")
     public ResponseEntity<Resource> downloadProfilePhoto() {
-        UserPhoto existingOne = userPhotoDao.findById(AuthUtils.getCurrentUserId());
-        if (existingOne == null) {
+        Optional<UserPhoto> existingOne = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
+        if (existingOne.isEmpty()) {
             return ResponseEntity.ok().body(null);
         }
-        ByteArrayResource resource = new ByteArrayResource(existingOne.getProfilePhoto());
+        ByteArrayResource resource = new ByteArrayResource(existingOne.get().getProfilePhoto());
         String fileName = "photo-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .contentLength(existingOne.getProfilePhoto().length)
+                .contentLength(existingOne.get().getProfilePhoto().length)
                 .body(resource);
 
 //        String path = System.getProperty("user.home") + File.separator + "fileName.txt";

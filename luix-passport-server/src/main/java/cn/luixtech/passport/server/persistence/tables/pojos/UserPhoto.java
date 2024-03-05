@@ -16,36 +16,36 @@ public class UserPhoto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String userId;
+    private String id;
     private byte[] profilePhoto;
 
     public UserPhoto() {}
 
     public UserPhoto(UserPhoto value) {
-        this.userId = value.userId;
+        this.id = value.id;
         this.profilePhoto = value.profilePhoto;
     }
 
     public UserPhoto(
-        String userId,
+        String id,
         byte[] profilePhoto
     ) {
-        this.userId = userId;
+        this.id = id;
         this.profilePhoto = profilePhoto;
     }
 
     /**
-     * Getter for <code>luix-passport.user_photo.user_id</code>.
+     * Getter for <code>luix-passport.user_photo.id</code>.
      */
-    public String getUserId() {
-        return this.userId;
+    public String getId() {
+        return this.id;
     }
 
     /**
-     * Setter for <code>luix-passport.user_photo.user_id</code>.
+     * Setter for <code>luix-passport.user_photo.id</code>.
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -71,11 +71,11 @@ public class UserPhoto implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final UserPhoto other = (UserPhoto) obj;
-        if (this.userId == null) {
-            if (other.userId != null)
+        if (this.id == null) {
+            if (other.id != null)
                 return false;
         }
-        else if (!this.userId.equals(other.userId))
+        else if (!this.id.equals(other.id))
             return false;
         if (this.profilePhoto == null) {
             if (other.profilePhoto != null)
@@ -90,7 +90,7 @@ public class UserPhoto implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.profilePhoto == null) ? 0 : Arrays.hashCode(this.profilePhoto));
         return result;
     }
@@ -99,7 +99,7 @@ public class UserPhoto implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder("UserPhoto (");
 
-        sb.append(userId);
+        sb.append(id);
         sb.append(", ").append("[binary...]");
 
         sb.append(")");

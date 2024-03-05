@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.config.ApplicationProperties;
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.service.MailService;
 import com.resend.Resend;
 import com.resend.services.emails.model.SendEmailRequest;

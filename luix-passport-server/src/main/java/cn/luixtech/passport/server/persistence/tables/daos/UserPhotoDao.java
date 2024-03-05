@@ -40,36 +40,36 @@ public class UserPhotoDao extends DAOImpl<UserPhotoRecord, cn.luixtech.passport.
 
     @Override
     public String getId(cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto object) {
-        return object.getUserId();
+        return object.getId();
     }
 
     /**
-     * Fetch records that have <code>user_id BETWEEN lowerInclusive AND
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
      * upperInclusive</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchRangeOfUserId(String lowerInclusive, String upperInclusive) {
-        return fetchRange(UserPhoto.USER_PHOTO.USER_ID, lowerInclusive, upperInclusive);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchRangeOfId(String lowerInclusive, String upperInclusive) {
+        return fetchRange(UserPhoto.USER_PHOTO.ID, lowerInclusive, upperInclusive);
     }
 
     /**
-     * Fetch records that have <code>user_id IN (values)</code>
+     * Fetch records that have <code>id IN (values)</code>
      */
-    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchByUserId(String... values) {
-        return fetch(UserPhoto.USER_PHOTO.USER_ID, values);
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchById(String... values) {
+        return fetch(UserPhoto.USER_PHOTO.ID, values);
     }
 
     /**
-     * Fetch a unique record that has <code>user_id = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
-    public cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto fetchOneByUserId(String value) {
-        return fetchOne(UserPhoto.USER_PHOTO.USER_ID, value);
+    public cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto fetchOneById(String value) {
+        return fetchOne(UserPhoto.USER_PHOTO.ID, value);
     }
 
     /**
-     * Fetch a unique record that has <code>user_id = value</code>
+     * Fetch a unique record that has <code>id = value</code>
      */
-    public Optional<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchOptionalByUserId(String value) {
-        return fetchOptional(UserPhoto.USER_PHOTO.USER_ID, value);
+    public Optional<cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto> fetchOptionalById(String value) {
+        return fetchOptional(UserPhoto.USER_PHOTO.ID, value);
     }
 
     /**

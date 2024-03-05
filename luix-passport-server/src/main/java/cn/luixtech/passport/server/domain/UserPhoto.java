@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
@@ -18,12 +19,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UserPhoto extends AbstractAuditableDomain implements Serializable {
+    @Serial
     private static final long serialVersionUID = -8375847941374800940L;
-
-    @Schema(required = true)
-    @NotEmpty
-    @Column(unique = true, nullable = false)
-    private String userId;
 
     @Schema(required = true)
     @NotNull

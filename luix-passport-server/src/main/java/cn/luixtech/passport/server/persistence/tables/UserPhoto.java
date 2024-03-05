@@ -52,9 +52,9 @@ public class UserPhoto extends TableImpl<UserPhotoRecord> {
     }
 
     /**
-     * The column <code>luix-passport.user_photo.user_id</code>.
+     * The column <code>luix-passport.user_photo.id</code>.
      */
-    public final TableField<UserPhotoRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
+    public final TableField<UserPhotoRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user_photo.profile_photo</code>.

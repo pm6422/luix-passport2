@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.service;
 
 
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.ProfileScopeUser;
 import org.springframework.data.domain.Page;

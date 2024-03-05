@@ -1,10 +1,11 @@
 package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.config.ApplicationProperties;
+import cn.luixtech.passport.server.domain.User;
+import cn.luixtech.passport.server.domain.UserRole;
 import cn.luixtech.passport.server.event.LogoutEvent;
-import cn.luixtech.passport.server.persistence.tables.daos.UserRoleDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
 import cn.luixtech.passport.server.pojo.ManagedUser;
+import cn.luixtech.passport.server.repository.UserRoleRepository;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -43,7 +44,7 @@ public class UserController {
     private final ApplicationProperties     applicationProperties;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final UserService               userService;
-    private final UserRoleDao               userRoleDao;
+    private final UserRoleRepository        userRoleRepository;
     private final MailService               mailService;
     private final HttpHeaderCreator         httpHeaderCreator;
 
@@ -70,7 +71,7 @@ public class UserController {
         domains.stream().forEach(domain -> {
             ManagedUser user = new ManagedUser();
             BeanUtils.copyProperties(domain, user);
-            Set<String> roles = userRoleDao.fetchByUserId(domain.getId()).stream().map(userRole -> userRole.getRole()).collect(Collectors.toSet());
+            Set<String> roles = userRoleRepository.findByUserId(domain.getId()).stream().map(UserRole::getRole).collect(Collectors.toSet());
             user.setRoles(roles);
             users.add(user);
         });

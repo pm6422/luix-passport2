@@ -8,9 +8,9 @@ import cn.luixtech.passport.server.persistence.tables.UserPermission;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.jooq.Configuration;
-import org.jooq.Record2;
 import org.jooq.impl.DAOImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,7 +21,7 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 @Repository
-public class UserPermissionDao extends DAOImpl<UserPermissionRecord, cn.luixtech.passport.server.persistence.tables.pojos.UserPermission, Record2<String, String>> {
+public class UserPermissionDao extends DAOImpl<UserPermissionRecord, cn.luixtech.passport.server.persistence.tables.pojos.UserPermission, String> {
 
     /**
      * Create a new UserPermissionDao without any configuration
@@ -39,8 +39,37 @@ public class UserPermissionDao extends DAOImpl<UserPermissionRecord, cn.luixtech
     }
 
     @Override
-    public Record2<String, String> getId(cn.luixtech.passport.server.persistence.tables.pojos.UserPermission object) {
-        return compositeKeyRecord(object.getUserId(), object.getPermission());
+    public String getId(cn.luixtech.passport.server.persistence.tables.pojos.UserPermission object) {
+        return object.getId();
+    }
+
+    /**
+     * Fetch records that have <code>id BETWEEN lowerInclusive AND
+     * upperInclusive</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPermission> fetchRangeOfId(String lowerInclusive, String upperInclusive) {
+        return fetchRange(UserPermission.USER_PERMISSION.ID, lowerInclusive, upperInclusive);
+    }
+
+    /**
+     * Fetch records that have <code>id IN (values)</code>
+     */
+    public List<cn.luixtech.passport.server.persistence.tables.pojos.UserPermission> fetchById(String... values) {
+        return fetch(UserPermission.USER_PERMISSION.ID, values);
+    }
+
+    /**
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public cn.luixtech.passport.server.persistence.tables.pojos.UserPermission fetchOneById(String value) {
+        return fetchOne(UserPermission.USER_PERMISSION.ID, value);
+    }
+
+    /**
+     * Fetch a unique record that has <code>id = value</code>
+     */
+    public Optional<cn.luixtech.passport.server.persistence.tables.pojos.UserPermission> fetchOptionalById(String value) {
+        return fetchOptional(UserPermission.USER_PERMISSION.ID, value);
     }
 
     /**

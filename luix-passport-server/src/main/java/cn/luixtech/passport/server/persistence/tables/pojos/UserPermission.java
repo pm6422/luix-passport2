@@ -15,22 +15,40 @@ public class UserPermission implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private String id;
     private String userId;
     private String permission;
 
     public UserPermission() {}
 
     public UserPermission(UserPermission value) {
+        this.id = value.id;
         this.userId = value.userId;
         this.permission = value.permission;
     }
 
     public UserPermission(
+        String id,
         String userId,
         String permission
     ) {
+        this.id = id;
         this.userId = userId;
         this.permission = permission;
+    }
+
+    /**
+     * Getter for <code>luix-passport.user_permission.id</code>.
+     */
+    public String getId() {
+        return this.id;
+    }
+
+    /**
+     * Setter for <code>luix-passport.user_permission.id</code>.
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -70,6 +88,12 @@ public class UserPermission implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         final UserPermission other = (UserPermission) obj;
+        if (this.id == null) {
+            if (other.id != null)
+                return false;
+        }
+        else if (!this.id.equals(other.id))
+            return false;
         if (this.userId == null) {
             if (other.userId != null)
                 return false;
@@ -89,6 +113,7 @@ public class UserPermission implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
         result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
         result = prime * result + ((this.permission == null) ? 0 : this.permission.hashCode());
         return result;
@@ -98,7 +123,8 @@ public class UserPermission implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder("UserPermission (");
 
-        sb.append(userId);
+        sb.append(id);
+        sb.append(", ").append(userId);
         sb.append(", ").append(permission);
 
         sb.append(")");

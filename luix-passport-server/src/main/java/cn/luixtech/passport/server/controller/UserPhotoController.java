@@ -1,7 +1,7 @@
 package cn.luixtech.passport.server.controller;
 
-import cn.luixtech.passport.server.persistence.tables.daos.UserPhotoDao;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserPhoto;
+import cn.luixtech.passport.server.domain.UserPhoto;
+import cn.luixtech.passport.server.repository.UserPhotoRepository;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,14 +23,14 @@ import static com.luixtech.utilities.encryption.JasyptEncryptUtils.DEFAULT_ALGOR
 @AllArgsConstructor
 @Slf4j
 public class UserPhotoController {
-    public static final String       USER_PHOTO_TOKEN_KEY = "dw4rfer54g&^@dsfd#";
-    public static final String       USER_PHOTO_URL       = "/open-api/user-photos/";
-    private final       UserPhotoDao userPhotoDao;
+    public static final String              USER_PHOTO_TOKEN_KEY = "dw4rfer54g&^@dsfd#";
+    public static final String              USER_PHOTO_URL       = "/open-api/user-photos/";
+    private final       UserPhotoRepository userPhotoRepository;
 
     @Operation(summary = "find user profile photo by user id")
     @GetMapping("/api/user-photos/{userId}")
     public ResponseEntity<byte[]> findById(@Parameter(description = "userId", required = true) @PathVariable String userId) {
-        Optional<UserPhoto> userPhoto = Optional.ofNullable(userPhotoDao.findById(userId));
+        Optional<UserPhoto> userPhoto = userPhotoRepository.findById(userId);
         return userPhoto.map(photo -> ResponseEntity.ok(photo.getProfilePhoto())).orElse(null);
     }
 

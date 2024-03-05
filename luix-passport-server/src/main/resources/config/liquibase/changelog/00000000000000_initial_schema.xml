@@ -207,11 +207,14 @@
                 tableName="user">
         </loadData>
         <createTable tableName="user_role">
-            <column name="user_id" type="VARCHAR(20)">
+            <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
+            <column name="user_id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
             <column name="role" type="VARCHAR(36)">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <loadData
@@ -220,11 +223,14 @@
                 tableName="user_role">
         </loadData>
         <createTable tableName="user_permission">
-            <column name="user_id" type="VARCHAR(20)">
+            <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
+            <column name="user_id" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
             <column name="permission" type="VARCHAR(36)">
-                <constraints nullable="false" primaryKey="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
         <loadData
@@ -273,7 +279,7 @@
             </column>
         </createTable>
         <createTable tableName="user_photo">
-            <column name="user_id" type="varchar(20)">
+            <column name="id" type="varchar(20)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="profile_photo" type="longblob">
@@ -330,6 +336,6 @@
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fk_user_role_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_permission" constraintName="fk_user_permission_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_login" constraintName="fk_user_login_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_photo" constraintName="fk_user_photo_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="id" baseTableName="user_photo" constraintName="fk_user_photo_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
     </changeSet>
 </databaseChangeLog>

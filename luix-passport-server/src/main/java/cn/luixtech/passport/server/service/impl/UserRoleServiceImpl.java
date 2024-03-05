@@ -1,10 +1,9 @@
 package cn.luixtech.passport.server.service.impl;
 
-import cn.luixtech.passport.server.persistence.Tables;
-import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
+import cn.luixtech.passport.server.domain.UserRole;
+import cn.luixtech.passport.server.repository.UserRoleRepository;
 import cn.luixtech.passport.server.service.UserRoleService;
 import lombok.AllArgsConstructor;
-import org.jooq.DSLContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +19,11 @@ import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
 @AllArgsConstructor
 public class UserRoleServiceImpl implements UserRoleService {
 
-    private final DSLContext dslContext;
+    private final UserRoleRepository userRoleRepository;
 
     @Override
     public List<UserRole> generate(String userId, Set<String> newAuthorities) {
-        List<UserRole> userAuthorities = newAuthorities.stream()
+        List<UserRole> userRoles = newAuthorities.stream()
                 .map(auth -> build(userId, auth))
                 .collect(Collectors.toList());
 
@@ -32,13 +31,13 @@ public class UserRoleServiceImpl implements UserRoleService {
         UserRole anoAuth = build(userId, AUTH_ANONYMOUS);
         UserRole userAuth = build(userId, AUTH_USER);
 
-        if (!userAuthorities.contains(anoAuth)) {
-            userAuthorities.add(anoAuth);
+        if (!userRoles.contains(anoAuth)) {
+            userRoles.add(anoAuth);
         }
-        if (!userAuthorities.contains(userAuth)) {
-            userAuthorities.add(userAuth);
+        if (!userRoles.contains(userAuth)) {
+            userRoles.add(userAuth);
         }
-        return userAuthorities;
+        return userRoles;
     }
 
     private UserRole build(String userId, String authority) {
@@ -51,8 +50,6 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteByUserId(String userId) {
-        dslContext.delete(Tables.USER_ROLE)
-                .where(Tables.USER_ROLE.USER_ID.eq(userId))
-                .execute();
+        userRoleRepository.deleteByUserId(userId);
     }
 }

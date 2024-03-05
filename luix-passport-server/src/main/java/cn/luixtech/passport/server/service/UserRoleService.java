@@ -1,6 +1,7 @@
 package cn.luixtech.passport.server.service;
 
-import cn.luixtech.passport.server.persistence.tables.pojos.UserRole;
+
+import cn.luixtech.passport.server.domain.UserRole;
 
 import java.util.List;
 import java.util.Set;

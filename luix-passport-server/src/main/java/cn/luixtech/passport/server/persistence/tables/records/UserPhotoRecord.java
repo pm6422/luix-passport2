@@ -22,16 +22,16 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.user_photo.user_id</code>.
+     * Setter for <code>luix-passport.user_photo.id</code>.
      */
-    public void setUserId(String value) {
+    public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_photo.user_id</code>.
+     * Getter for <code>luix-passport.user_photo.id</code>.
      */
-    public String getUserId() {
+    public String getId() {
         return (String) get(0);
     }
 
@@ -74,7 +74,7 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
 
     @Override
     public Field<String> field1() {
-        return UserPhoto.USER_PHOTO.USER_ID;
+        return UserPhoto.USER_PHOTO.ID;
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
 
     @Override
     public String component1() {
-        return getUserId();
+        return getId();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
 
     @Override
     public String value1() {
-        return getUserId();
+        return getId();
     }
 
     @Override
@@ -104,7 +104,7 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
 
     @Override
     public UserPhotoRecord value1(String value) {
-        setUserId(value);
+        setId(value);
         return this;
     }
 
@@ -135,10 +135,10 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
     /**
      * Create a detached, initialised UserPhotoRecord
      */
-    public UserPhotoRecord(String userId, byte[] profilePhoto) {
+    public UserPhotoRecord(String id, byte[] profilePhoto) {
         super(UserPhoto.USER_PHOTO);
 
-        setUserId(userId);
+        setId(id);
         setProfilePhoto(profilePhoto);
         resetChangedOnNotNull();
     }
@@ -150,7 +150,7 @@ public class UserPhotoRecord extends UpdatableRecordImpl<UserPhotoRecord> implem
         super(UserPhoto.USER_PHOTO);
 
         if (value != null) {
-            setUserId(value.getUserId());
+            setId(value.getId());
             setProfilePhoto(value.getProfilePhoto());
             resetChangedOnNotNull();
         }

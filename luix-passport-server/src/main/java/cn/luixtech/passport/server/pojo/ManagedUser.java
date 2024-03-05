@@ -1,9 +1,8 @@
 package cn.luixtech.passport.server.pojo;
 
 
-import cn.luixtech.passport.server.persistence.tables.pojos.User;
+import cn.luixtech.passport.server.domain.User;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
