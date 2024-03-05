@@ -17,3 +17,5 @@ application:
   allowed-cors:
     mappings:
       "[/logout]": https://passport.luixtech.cn/
+      "[/api/**]": http://passport.luixtech.cn
+      "[/open-api/**]": http://passport.luixtech.cn
