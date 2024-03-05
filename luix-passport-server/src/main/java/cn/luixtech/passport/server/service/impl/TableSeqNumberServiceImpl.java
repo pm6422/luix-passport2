@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.service.impl;
 
 import cn.luixtech.passport.server.domain.DataDict;
 import cn.luixtech.passport.server.domain.TableSeqNumber;
+import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.repository.TableSeqNumberRepository;
 import cn.luixtech.passport.server.service.TableSeqNumberService;
 import lombok.AllArgsConstructor;
@@ -26,7 +27,7 @@ public class TableSeqNumberServiceImpl implements TableSeqNumberService {
 
     @Override
     public void init() {
-        upsertSeqNumber(DataDict.TABLE_NAME);
+        upsertSeqNumber(Tables.DATA_DICT.getName());
     }
 
     @Override

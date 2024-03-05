@@ -22,7 +22,6 @@ import java.io.Serializable;
 public class DataDict extends AbstractAuditableDomain implements Serializable {
     @Serial
     private static final long   serialVersionUID = 1L;
-    public static final  String TABLE_NAME       = "data_dict";
 
     @IncKey(prefix = "DCT")
     @Column(unique = true, nullable = false)
