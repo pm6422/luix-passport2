@@ -109,10 +109,6 @@ export default defineComponent({
     const modalData = ref(props.modalData);
     const operation = ref(props.operation);
     const dictCategoryCodes = ref<Array<any>>([]);
-
-    DataDictService.findAll(true).then(r => {
-      dictCategoryCodes.value = uniq(map(r.data, "categoryCode"));
-    });
     
     watch(
       () => props.modalData,
@@ -128,6 +124,12 @@ export default defineComponent({
       }
     );
 
+    const loadCategoryCodes = () => {
+      DataDictService.findAll(true).then(r => {
+        dictCategoryCodes.value = uniq(map(r.data, "categoryCode"));
+      });
+    };
+
     const save = (): Promise<any> => {
       return new Promise((resolve, reject) => {
         var deferred = operation.value === "create" ? DataDictService.create(modalData.value) : DataDictService.update(modalData.value);
@@ -135,6 +137,8 @@ export default defineComponent({
           if(props.afterSaveCallback) {
             props.afterSaveCallback(operation.value);
           }
+          // load again
+          loadCategoryCodes();
           resolve(result.data);
         })
         .catch(error => {
@@ -152,6 +156,8 @@ export default defineComponent({
         ]
       };
     })
+
+    loadCategoryCodes();
 
     return {
       validationRules,
