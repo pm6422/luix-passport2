@@ -14,7 +14,7 @@
           <div class="mb-0">
             <div class="d-flex justify-content-center align-items-center">
               <KTIcon icon-name="question-2" icon-class="fs-2x text-warning me-3 mb-3" v-tooltip :title="modalDesc" v-if="modalDesc"/>
-              <img :src="getAssetPath('media/logos/logo.svg')" class="h-30px me-5 mb-3 d-none d-lg-block" v-else/>
+              <img :src="getAssetPath('assets/media/logos/logo.svg')" class="h-30px me-5 mb-3 d-none d-lg-block" v-else/>
               <!--begin::Title-->
               <h1 class="mb-3" v-text="props.modalTitle"></h1>
               <!--end::Title-->
