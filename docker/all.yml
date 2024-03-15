@@ -1,29 +1,10 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 name: luix
 services:
-  passport-client:
-    image: luix-passport-client
-    container_name: luix-passport-client
-    environment:
-      - _JAVA_OPTIONS=-Xmx512m -Xms256m
-      - SPRING_PROFILES_ACTIVE=test
-      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
-    ports:
-      - 127.0.0.1:4003:4003
-    # host network mode can access auth server in docker environment
-    network_mode: host
-    healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:4003/management/health
-      interval: 5s
-      timeout: 5s
-      retries: 40
-    depends_on:
-      passport-server:
-        condition: service_healthy
+  mysql:
+    extends:
+      file: ./mysql.yml
+      service: mysql
   passport-server:
     image: luix-passport-server
     container_name: luix-passport-server
@@ -35,6 +16,9 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/luix-passport?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     ports:
       - 127.0.0.1:4001:4001
+    depends_on:
+      mysql:
+        condition: service_healthy
     healthcheck:
       test:
         - CMD
@@ -44,9 +28,6 @@ services:
       interval: 5s
       timeout: 5s
       retries: 40
-    depends_on:
-      mysql:
-        condition: service_healthy
   passport-resource-server:
     image: luix-passport-resource-server
     container_name: luix-passport-resource-server
@@ -58,6 +39,9 @@ services:
       - 127.0.0.1:4002:4002
     # host network mode can access auth server in docker environment
     network_mode: host
+    depends_on:
+      mysql:
+        condition: service_healthy
     healthcheck:
       test:
         - CMD
@@ -67,10 +51,26 @@ services:
       interval: 5s
       timeout: 5s
       retries: 40
+  passport-client:
+    image: luix-passport-client
+    container_name: luix-passport-client
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=test
+      - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
+    ports:
+      - 127.0.0.1:4003:4003
+    # host network mode can access auth server in docker environment
+    network_mode: host
     depends_on:
-      mysql:
+      passport-server:
         condition: service_healthy
-  mysql:
-    extends:
-      file: ./mysql.yml
-      service: mysql
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost:4003/management/health
+      interval: 5s
+      timeout: 5s
+      retries: 40
