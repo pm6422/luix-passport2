@@ -20,11 +20,7 @@ services:
       mysql:
         condition: service_healthy
     healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:4001/management/health
+      test: ["CMD", "curl", "-f", "http://localhost:4001/management/health"]
       interval: 5s
       timeout: 5s
       retries: 40
@@ -43,11 +39,7 @@ services:
       mysql:
         condition: service_healthy
     healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:4002/management/health
+      test: ["CMD", "curl", "-f", "http://localhost:4002/management/health"]
       interval: 5s
       timeout: 5s
       retries: 40
@@ -66,11 +58,7 @@ services:
       passport-server:
         condition: service_healthy
     healthcheck:
-      test:
-        - CMD
-        - curl
-        - -f
-        - http://localhost:4003/management/health
+      test: ["CMD", "curl", "-f", "http://localhost:4003/management/health"]
       interval: 5s
       timeout: 5s
       retries: 40
