@@ -35,10 +35,10 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/switch-account")
-    public String switchAccount(Model model) {
+    @GetMapping("/sign-out")
+    public String signOut(Model model) {
         model.addAttribute("username", AuthUtils.getCurrentUsername());
-        return "switch-account";
+        return "sign-out";
     }
 
     @GetMapping(value = "/oauth2/consent")

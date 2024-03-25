@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse">
             <span class="me-3"><strong th:text="${username}"></strong></span>
             <form class="d-flex" th:action="@{/logout}" method="post">
                 <button class="btn btn-outline-dark" type="submit">Logout</button>
@@ -15,8 +17,5 @@
         </div>
     </div>
 </nav>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.js}"></script>
 </body>
 </html>
