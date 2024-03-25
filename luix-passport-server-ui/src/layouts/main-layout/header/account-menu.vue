@@ -190,7 +190,7 @@
     <!--end::Layout menu item-->
     <!--begin::Menu item-->
     <div class="menu-item px-3">
-      <a @click="signOut()" class="menu-link px-5">
+      <a href="switch-account" class="menu-link px-5">
         <KTIcon icon-name="entrance-left" icon-class="fs-2 fs-md-1 px-2" />
         <span v-text="$t('menu.account.logout')"></span>
       </a>

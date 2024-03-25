@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.controller;
 import cn.luixtech.passport.server.config.oauth.ScopeWithDescription;
 import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.repository.UserRepository;
+import cn.luixtech.passport.server.utils.AuthUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
 import org.springframework.security.oauth2.core.oidc.OidcScopes;
@@ -32,6 +33,12 @@ public class LoginController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/switch-account")
+    public String switchAccount(Model model) {
+        model.addAttribute("username", AuthUtils.getCurrentUsername());
+        return "switch-account";
     }
 
     @GetMapping(value = "/oauth2/consent")
