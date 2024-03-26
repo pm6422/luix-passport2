@@ -7,15 +7,45 @@
     <link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse">
-            <span class="me-3"><strong th:text="${username}"></strong></span>
-            <form class="d-flex" th:action="@{/logout}" method="post">
-                <button class="btn btn-outline-dark" type="submit">Logout</button>
-            </form>
+    <div class="d-flex flex-column flex-center p-10">
+        <!--begin::Card-->
+        <div class="card card-flush w-lg-400px">
+            <!--begin::Card body-->
+            <div class="card-body px-20 py-15 py-lg-20">
+                <form th:action="@{/logout}" method="post">
+                    <div class="row text-center">
+                        <img th:src="@{/assets/media/logos/logo.svg}" class="h-60px opacity-75"/>
+                        <span class="mt-5 fs-3 text-gray-800">Sign out your account</span>
+                    </div>
+
+                    <!--begin::Input group-->
+                    <div class="row mt-10">
+                        <div>
+                            <div class="form-check form-check-custom form-check-solid form-check-lg d-flex flex-stack px-3">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-circle symbol-40px">
+                                    <img th:src="@{/assets/media/logos/logo.svg}"/>
+                                </div>
+                                <!--end::Avatar-->
+                                <span class="text-gray-800 fw-semibold">Signed in as <span class="fw-bold text-gray-900" th:text="${username}"></span></span>
+                                <div>
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Input group-->
+
+                    <div class="row mt-10">
+                        <button type="submit" class="btn btn-danger min-w-90px">
+                            <span class="fw-semibold">Sign out</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!--end::Card body-->
         </div>
+        <!--end::Card-->
     </div>
-</nav>
 </body>
 </html>
