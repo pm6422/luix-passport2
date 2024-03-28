@@ -45,15 +45,15 @@ export default function Sidebar2({
         <LayoutHeader className='sticky top-0 justify-between px-4 py-3 shadow md:px-4'>
           <div className={`flex items-center ${!isCollapsed ? 'gap-2' : ''}`}>
             <img
-              src="images/logos/logo-round.svg"
+              src="images/favicon.svg"
               className='relative m-auto'
               width={45}
               height={45}
             />
             <div
-              className={`flex flex-col ms-3 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
+              className={`flex flex-col ms-1 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='font-extrabold text-primary text-xl'>LUIX PASSPORT</span>
+              <span className='font-extrabold text-primary text-3xl'>PASSPORT</span>
               {/* <span className='text-xs'>Vite + ShadcnUI</span> */}
             </div>
           </div>
