@@ -45,12 +45,6 @@ export const sidelinks: SideLink[] = [
     icon: <IconChecklist size={18} />,
   },
   {
-    title: 'Chats',
-    label: '9',
-    href: '/chats',
-    icon: <IconMessages size={18} />,
-  },
-  {
     title: 'Authentication',
     label: '',
     href: '',
@@ -87,26 +81,6 @@ export const sidelinks: SideLink[] = [
     label: '',
     href: '/users',
     icon: <IconUsers size={18} />,
-  },
-  {
-    title: 'Requests',
-    label: '10',
-    href: '/requests',
-    icon: <IconRouteAltLeft size={18} />,
-    sub: [
-      {
-        title: 'Trucks',
-        label: '9',
-        href: '/trucks',
-        icon: <IconTruck size={18} />,
-      },
-      {
-        title: 'Cargos',
-        label: '',
-        href: '/cargos',
-        icon: <IconBoxSeam size={18} />,
-      },
-    ],
   },
   {
     title: 'Analysis',
