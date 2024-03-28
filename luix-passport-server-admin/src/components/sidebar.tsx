@@ -51,9 +51,9 @@ export default function Sidebar2({
               height={45}
             />
             <div
-              className={`flex flex-col ms-5 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
+              className={`flex flex-col ms-3 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='font-extrabold text-primary'>LUIX PASSPORT</span>
+              <span className='font-extrabold text-primary text-xl'>LUIX PASSPORT</span>
               {/* <span className='text-xs'>Vite + ShadcnUI</span> */}
             </div>
           </div>
