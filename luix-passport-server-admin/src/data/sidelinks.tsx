@@ -18,6 +18,7 @@ import {
   IconTruck,
   IconUserShield,
   IconUsers,
+  IconUserPlus
 } from '@tabler/icons-react'
 
 export interface NavLink {
@@ -37,12 +38,6 @@ export const sidelinks: SideLink[] = [
     label: '',
     href: '/',
     icon: <IconLayoutDashboard size={18} />,
-  },
-  {
-    title: 'Tasks',
-    label: '3',
-    href: '/tasks',
-    icon: <IconChecklist size={18} />,
   },
   {
     title: 'Authentication',
@@ -77,40 +72,28 @@ export const sidelinks: SideLink[] = [
     ],
   },
   {
-    title: 'Users',
-    label: '',
-    href: '/users',
-    icon: <IconUsers size={18} />,
-  },
-  {
-    title: 'Extra Components',
-    label: '',
-    href: '/extra-components',
-    icon: <IconComponents size={18} />,
-  },
-  {
-    title: 'Error Pages',
+    title: 'User Roles',
     label: '',
     href: '',
-    icon: <IconExclamationCircle size={18} />,
+    icon: <IconUsers size={18} />,
     sub: [
       {
-        title: 'Not Found',
+        title: 'Users',
         label: '',
-        href: '/404',
-        icon: <IconError404 size={18} />,
+        href: '/users',
+        icon: <IconUsers size={18} />,
       },
       {
-        title: 'Internal Server Error',
+        title: 'Roles',
         label: '',
-        href: '/500',
-        icon: <IconServerOff size={18} />,
+        href: '/roles',
+        icon: <IconUserShield size={18} />,
       },
       {
-        title: 'Maintenance Error',
+        title: 'Permissions',
         label: '',
-        href: '/503',
-        icon: <IconBarrierBlock size={18} />,
+        href: '/permissions',
+        icon: <IconUserPlus size={18} />,
       },
     ],
   },
@@ -120,4 +103,10 @@ export const sidelinks: SideLink[] = [
     href: '/settings',
     icon: <IconSettings size={18} />,
   },
+  {
+    title: 'Extra Components',
+    label: '',
+    href: '/extra-components',
+    icon: <IconComponents size={18} />,
+  }
 ]

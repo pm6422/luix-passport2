@@ -45,7 +45,7 @@ export default function Sidebar2({
         <LayoutHeader className='sticky top-0 justify-between px-4 py-3 shadow md:px-4'>
           <div className={`flex items-center ${!isCollapsed ? 'gap-2' : ''}`}>
             <img
-              src="images/logo-round.svg"
+              src="images/logos/logo-round.svg"
               className='relative m-auto'
               width={40}
               height={40}
