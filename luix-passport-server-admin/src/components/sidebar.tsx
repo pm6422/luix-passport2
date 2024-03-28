@@ -47,13 +47,13 @@ export default function Sidebar2({
             <img
               src="images/logos/logo-round.svg"
               className='relative m-auto'
-              width={40}
-              height={40}
+              width={45}
+              height={45}
             />
             <div
-              className={`flex flex-col justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
+              className={`flex flex-col ms-5 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='font-medium'>Passport</span>
+              <span className='font-extrabold text-primary'>LUIX PASSPORT</span>
               {/* <span className='text-xs'>Vite + ShadcnUI</span> */}
             </div>
           </div>
