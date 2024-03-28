@@ -11,7 +11,7 @@ import { Separator } from '@/components/ui/separator'
 import { Input } from '@/components/ui/input'
 import { Search } from '@/components/search'
 import ThemeSwitch from '@/components/theme-switch'
-import { UserNav } from '@/components/user-nav'
+import { AccountNav } from '@/components/account-nav.tsx'
 
 export default function ExtraComponents() {
   const items = [
@@ -41,7 +41,7 @@ export default function ExtraComponents() {
         <div className='ml-auto flex items-center space-x-4'>
           <Search />
           <ThemeSwitch />
-          <UserNav />
+          <AccountNav />
         </div>
       </LayoutHeader>
 

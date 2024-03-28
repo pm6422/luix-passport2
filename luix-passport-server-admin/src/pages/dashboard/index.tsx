@@ -10,7 +10,7 @@ import { Search } from '@/components/search'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
 import { TopNav } from '@/components/top-nav'
-import { UserNav } from '@/components/user-nav'
+import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
@@ -24,7 +24,7 @@ export default function Dashboard() {
         <div className='ml-auto flex items-center space-x-4'>
           <Search />
           <ThemeSwitch />
-          <UserNav />
+          <AccountNav />
         </div>
       </LayoutHeader>
 

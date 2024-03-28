@@ -1,4 +1,4 @@
-import { UserNav } from '@/components/user-nav'
+import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
 import { DataTable } from './components/data-table'
 import { columns } from './components/columns'
@@ -10,7 +10,7 @@ export default function Tasks() {
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='ml-auto flex items-center space-x-4'>
-          <UserNav />
+          <AccountNav />
         </div>
       </LayoutHeader>
 
