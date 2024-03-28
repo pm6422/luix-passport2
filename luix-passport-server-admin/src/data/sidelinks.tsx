@@ -1,21 +1,12 @@
 import {
-  IconBarrierBlock,
-  IconBoxSeam,
-  IconChartHistogram,
-  IconChecklist,
   IconComponents,
-  IconError404,
-  IconExclamationCircle,
   IconHexagonNumber1,
   IconHexagonNumber2,
   IconHexagonNumber3,
   IconHexagonNumber4,
   IconLayoutDashboard,
-  IconMessages,
-  IconRouteAltLeft,
-  IconServerOff,
   IconSettings,
-  IconTruck,
+  IconUserCog,
   IconUserShield,
   IconUsers,
   IconUserPlus
@@ -75,7 +66,7 @@ export const sidelinks: SideLink[] = [
     title: 'User Roles',
     label: '',
     href: '',
-    icon: <IconUsers size={18} />,
+    icon: <IconUserCog size={18} />,
     sub: [
       {
         title: 'Users',
