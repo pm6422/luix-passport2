@@ -11,7 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import ThemeSwitch from '@/components/theme-switch'
 import { TopNav } from '@/components/top-nav'
 import { AccountNav } from '@/components/account-nav.tsx'
-import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
+import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 

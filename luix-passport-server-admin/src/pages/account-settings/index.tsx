@@ -10,7 +10,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import ThemeSwitch from '@/components/theme-switch'
 import { AccountNav } from '@/components/account-nav.tsx'
-import { Layout, LayoutBody, LayoutHeader } from '@/components/custom/layout'
+import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout'
 import SidebarNav from './components/sidebar-nav'
 
 export default function Settings() {
@@ -30,7 +30,7 @@ export default function Settings() {
             Account Settings
           </h1>
           <p className='text-muted-foreground'>
-            Manage your account settings and set e-mail preferences.
+            Manage your profile and account settings.
           </p>
         </div>
         <Separator className='my-6' />
