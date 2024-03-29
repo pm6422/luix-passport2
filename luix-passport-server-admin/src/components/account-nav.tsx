@@ -37,7 +37,7 @@ export function AccountNav() {
           <Link to="/account-settings">
             <DropdownMenuItem className='cursor-pointer'>
               Account Settings
-              <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+              {/*<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>*/}
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
@@ -45,7 +45,7 @@ export function AccountNav() {
         <Link to="/sign-in">
           <DropdownMenuItem className='cursor-pointer'>
             Sign out
-            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
           </DropdownMenuItem>
         </Link>
       </DropdownMenuContent>
