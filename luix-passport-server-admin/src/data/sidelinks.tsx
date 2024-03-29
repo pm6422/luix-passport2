@@ -10,7 +10,9 @@ import {
   IconUserShield,
   IconUsers,
   IconUserPlus,
-  IconDoorEnter
+  IconDoorEnter,
+  IconShieldCog,
+  IconShieldLock
 } from '@tabler/icons-react'
 
 export interface NavLink {
@@ -29,31 +31,69 @@ export const sidelinks: SideLink[] = [
     title: 'Dashboard',
     label: '',
     href: '/',
-    icon: <IconLayoutDashboard size={18} />,
+    icon: <IconLayoutDashboard size={25} />,
   },
   {
     title: 'User Roles',
     label: '',
     href: '',
-    icon: <IconUserCog size={18} />,
+    icon: <IconUserCog size={25} />,
     sub: [
       {
         title: 'Users',
         label: '',
         href: '/users',
-        icon: <IconUsers size={18} />,
+        icon: <IconUsers size={25} />,
       },
       {
         title: 'Roles',
         label: '',
         href: '/roles',
-        icon: <IconUserShield size={18} />,
+        icon: <IconUserShield size={25} />,
       },
       {
         title: 'Permissions',
         label: '',
         href: '/permissions',
-        icon: <IconUserPlus size={18} />,
+        icon: <IconUserPlus size={25} />,
+      },
+    ],
+  },
+  {
+    title: 'Authentication',
+    label: '',
+    href: '',
+    icon: <IconShieldCog size={25} />,
+    sub: [
+      {
+        title: 'Oauth2 Clients',
+        label: '',
+        href: '/oauth2-clients',
+        icon: <IconShieldLock size={25} />,
+      },
+      {
+        title: 'Sign In (email + password)',
+        label: '',
+        href: '/sign-in',
+        icon: <IconHexagonNumber1 size={25} />,
+      },
+      {
+        title: 'Sign In (Box)',
+        label: '',
+        href: '/sign-in-2',
+        icon: <IconHexagonNumber2 size={25} />,
+      },
+      {
+        title: 'Sign Up',
+        label: '',
+        href: '/sign-up',
+        icon: <IconHexagonNumber3 size={25} />,
+      },
+      {
+        title: 'Forgot Password',
+        label: '',
+        href: '/forgot-password',
+        icon: <IconHexagonNumber4 size={25} />,
       },
     ],
   },
@@ -61,44 +101,12 @@ export const sidelinks: SideLink[] = [
     title: 'Settings',
     label: '',
     href: '/settings',
-    icon: <IconSettings size={18} />,
-  },
-  {
-    title: 'Authentication',
-    label: '',
-    href: '',
-    icon: <IconDoorEnter size={18} />,
-    sub: [
-      {
-        title: 'Sign In (email + password)',
-        label: '',
-        href: '/sign-in',
-        icon: <IconHexagonNumber1 size={18} />,
-      },
-      {
-        title: 'Sign In (Box)',
-        label: '',
-        href: '/sign-in-2',
-        icon: <IconHexagonNumber2 size={18} />,
-      },
-      {
-        title: 'Sign Up',
-        label: '',
-        href: '/sign-up',
-        icon: <IconHexagonNumber3 size={18} />,
-      },
-      {
-        title: 'Forgot Password',
-        label: '',
-        href: '/forgot-password',
-        icon: <IconHexagonNumber4 size={18} />,
-      },
-    ],
+    icon: <IconSettings size={25} />,
   },
   {
     title: 'Extra Components',
     label: '',
     href: '/extra-components',
-    icon: <IconComponents size={18} />,
+    icon: <IconComponents size={25} />,
   }
 ]

@@ -53,7 +53,11 @@ export default function Sidebar2({
             <div
               className={`flex flex-col ms-1 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='font-extrabold text-primary text-3xl'>PASSPORT</span>
+              <img
+                src="images/logos/logo-text.svg"
+                width={150}
+                height={50}
+              />
               {/* <span className='text-xs'>Vite + ShadcnUI</span> */}
             </div>
           </div>

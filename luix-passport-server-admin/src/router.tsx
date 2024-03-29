@@ -64,6 +64,12 @@ const router = createBrowserRouter([
         }),
       },
       {
+        path: 'oauth2-clients',
+        lazy: async () => ({
+          Component: (await import('@/components/coming-soon')).default,
+        }),
+      },
+      {
         path: 'settings',
         lazy: async () => ({
           Component: (await import('./pages/settings')).default,
