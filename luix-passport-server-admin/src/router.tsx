@@ -72,45 +72,51 @@ const router = createBrowserRouter([
       {
         path: 'settings',
         lazy: async () => ({
-          Component: (await import('./pages/settings')).default,
+          Component: (await import('@/components/coming-soon')).default,
+        }),
+      },
+      {
+        path: 'account-settings',
+        lazy: async () => ({
+          Component: (await import('./pages/account-settings')).default,
         }),
         errorElement: <GeneralError />,
         children: [
           {
             index: true,
             lazy: async () => ({
-              Component: (await import('./pages/settings/profile')).default,
+              Component: (await import('./pages/account-settings/profile')).default,
             }),
           },
           {
             path: 'account',
             lazy: async () => ({
-              Component: (await import('./pages/settings/account')).default,
+              Component: (await import('./pages/account-settings/account')).default,
             }),
           },
           {
             path: 'appearance',
             lazy: async () => ({
-              Component: (await import('./pages/settings/appearance')).default,
+              Component: (await import('./pages/account-settings/appearance')).default,
             }),
           },
           {
             path: 'notifications',
             lazy: async () => ({
-              Component: (await import('./pages/settings/notifications'))
+              Component: (await import('./pages/account-settings/notifications'))
                 .default,
             }),
           },
           {
             path: 'display',
             lazy: async () => ({
-              Component: (await import('./pages/settings/display')).default,
+              Component: (await import('./pages/account-settings/display')).default,
             }),
           },
           {
             path: 'error-example',
             lazy: async () => ({
-              Component: (await import('./pages/settings/error-example'))
+              Component: (await import('./pages/account-settings/error-example'))
                 .default,
             }),
             errorElement: <GeneralError className='h-[50svh]' minimal />,
