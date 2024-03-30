@@ -16,6 +16,7 @@ import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 
 export default function Dashboard() {
+  
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
