@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { IconChevronsLeft, IconMenu2, IconX } from '@tabler/icons-react'
 import { Layout, LayoutHeader } from '../layouts/layout-definitions'
 import { Button } from './custom/button'
-import Nav from './nav'
+import SidebarMenu from './sidebar-menu'
 import { cn } from '@/utils/utils'
 import { sidelinks } from '@/data/sidelinks'
 
@@ -78,7 +78,7 @@ export default function Sidebar2({
         </LayoutHeader>
 
         {/* Navigation links */}
-        <Nav
+        <SidebarMenu
           id='sidebar-menu'
           className={`h-full flex-1 overflow-auto ${navOpened ? 'max-h-screen' : 'max-h-0 py-0 md:max-h-screen md:py-2'}`}
           closeNav={() => setNavOpened(false)}
