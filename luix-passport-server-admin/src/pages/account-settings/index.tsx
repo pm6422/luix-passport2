@@ -8,7 +8,6 @@ import {
   IconUser,
 } from '@tabler/icons-react'
 import { Separator } from '@/components/ui/separator'
-import ThemeSwitch from '@/components/theme-switch'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout'
 import SidebarNav from './components/sidebar-nav'
@@ -19,7 +18,6 @@ export default function Settings() {
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='ml-auto flex items-center space-x-4'>
-          <ThemeSwitch />
           <AccountNav />
         </div>
       </LayoutHeader>
