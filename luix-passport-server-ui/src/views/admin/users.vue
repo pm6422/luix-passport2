@@ -76,9 +76,8 @@
             <template v-slot:roles="{ row: row }">
               <OneOrMore :values="row.roles"/>
             </template>
-            <template v-slot:joinedTime="{ row: row }">
-              <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.lastLogin) }}</div>
-              <div class="fs-7">{{ DateTimeUtils.formatDateTime(row.createdTime) }}</div>
+            <template v-slot:lastSignInAt="{ row: row }">
+              <div>{{ DateTimeUtils.formatDateTime(row.lastSignInAt) }}</div>
             </template>
             <template v-slot:enabled="{ row: row }">
               <YesOrNo :val="row.enabled"/>
@@ -611,8 +610,8 @@ export default defineComponent({
         sortEnabled: false,
       },
       {
-        columnName: i18n.t('form.account.joined-last-login-time'),
-        columnLabel: "joinedTime",
+        columnName: i18n.t('form.account.last-sign-in-time'),
+        columnLabel: "lastSignInAt",
         sortEnabled: true,
       },
       {

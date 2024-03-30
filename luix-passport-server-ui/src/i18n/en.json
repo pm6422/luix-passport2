@@ -306,7 +306,7 @@
       "authorities": "Authorities",
       "last-login-time": "Last Login At",
       "joined-time": "Joined at",
-      "joined-last-login-time": "Joined/Last Login At",
+      "last-sign-in-time": "Last Sign In At",
       "user-details": "User Details",
       "create-user": "Create User",
       "update-user": "Update User",
