@@ -1,6 +1,5 @@
 import {
   IconComponents,
-  IconHexagonNumber2,
   IconHexagonNumber3,
   IconHexagonNumber4,
   IconLayoutDashboard,
@@ -88,11 +87,5 @@ export const sidelinks: SideLink[] = [
     label: '',
     href: '/extra-components',
     icon: <IconComponents size={25} />,
-  },
-  {
-    title: 'Settings',
-    label: '',
-    href: '/settings',
-    icon: <IconSettings size={25} />,
   }
 ]
