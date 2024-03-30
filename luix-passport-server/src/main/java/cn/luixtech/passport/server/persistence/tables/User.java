@@ -128,6 +128,16 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, LocalDateTime> PASSWORD_EXPIRES_AT = createField(DSL.name("password_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
+     * The column <code>luix-passport.user.last_sign_in_at</code>.
+     */
+    public final TableField<UserRecord, LocalDateTime> LAST_SIGN_IN_AT = createField(DSL.name("last_sign_in_at"), SQLDataType.LOCALDATETIME(0), this, "");
+
+    /**
+     * The column <code>luix-passport.user.language</code>.
+     */
+    public final TableField<UserRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.VARCHAR(25), this, "");
+
+    /**
      * The column <code>luix-passport.user.locale</code>.
      */
     public final TableField<UserRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
