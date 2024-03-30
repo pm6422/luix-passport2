@@ -40,36 +40,6 @@ const router = createBrowserRouter([
         }),
       },
       {
-        path: 'users',
-        lazy: async () => ({
-          Component: (await import('./pages/users')).default,
-        }),
-      },
-      {
-        path: 'roles',
-        lazy: async () => ({
-          Component: (await import('@/components/custom/coming-soon')).default,
-        }),
-      },
-      {
-        path: 'permissions',
-        lazy: async () => ({
-          Component: (await import('@/components/custom/coming-soon')).default,
-        }),
-      },
-      {
-        path: 'oauth2-clients',
-        lazy: async () => ({
-          Component: (await import('@/components/custom/coming-soon')).default,
-        }),
-      },
-      {
-        path: 'settings',
-        lazy: async () => ({
-          Component: (await import('@/components/custom/coming-soon')).default,
-        }),
-      },
-      {
         path: 'account-settings',
         lazy: async () => ({
           Component: (await import('./pages/account-settings')).default,
@@ -116,6 +86,36 @@ const router = createBrowserRouter([
             errorElement: <GeneralError className='h-[50svh]' minimal />,
           },
         ],
+      },
+      {
+        path: 'users',
+        lazy: async () => ({
+          Component: (await import('./pages/users')).default,
+        }),
+      },
+      {
+        path: 'roles',
+        lazy: async () => ({
+          Component: (await import('@/components/custom/coming-soon')).default,
+        }),
+      },
+      {
+        path: 'permissions',
+        lazy: async () => ({
+          Component: (await import('@/components/custom/coming-soon')).default,
+        }),
+      },
+      {
+        path: 'oauth2-clients',
+        lazy: async () => ({
+          Component: (await import('@/components/custom/coming-soon')).default,
+        }),
+      },
+      {
+        path: 'settings',
+        lazy: async () => ({
+          Component: (await import('@/components/custom/coming-soon')).default,
+        }),
       },
       {
         path: 'extra-components',
