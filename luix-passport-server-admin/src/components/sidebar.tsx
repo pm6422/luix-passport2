@@ -45,7 +45,7 @@ export default function Sidebar2({
         <LayoutHeader className='sticky top-0 justify-between px-4 py-3 shadow md:px-4'>
           <div className={`flex items-center ${!isCollapsed ? 'gap-2' : ''}`}>
             <img
-              src="favicon.svg"
+              src="/favicon.svg"
               className='relative m-auto'
               width={45}
               height={45}
@@ -55,7 +55,7 @@ export default function Sidebar2({
             >
               <span className='flex justify-end text-[8px]'>Test Env</span>
               <img
-                  src="logos/logo-text.svg"
+                  src="/logos/logo-text.svg"
                   width={150}
                   height={50}
               />

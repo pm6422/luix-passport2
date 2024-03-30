@@ -17,7 +17,7 @@ export function AccountNav() {
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
           <Avatar className='h-10 w-10'>
-            <AvatarImage src='avatars/louis.jpg' alt='@shadcn' />
+            <AvatarImage src='/avatars/louis.jpg' alt='@shadcn' />
             <AvatarFallback>Louis</AvatarFallback>
           </Avatar>
         </Button>
