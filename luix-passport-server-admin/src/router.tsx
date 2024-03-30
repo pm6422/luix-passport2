@@ -54,25 +54,25 @@ const router = createBrowserRouter([
       {
         path: 'roles',
         lazy: async () => ({
-          Component: (await import('@/components/coming-soon')).default,
+          Component: (await import('@/components/custom/coming-soon')).default,
         }),
       },
       {
         path: 'permissions',
         lazy: async () => ({
-          Component: (await import('@/components/coming-soon')).default,
+          Component: (await import('@/components/custom/coming-soon')).default,
         }),
       },
       {
         path: 'oauth2-clients',
         lazy: async () => ({
-          Component: (await import('@/components/coming-soon')).default,
+          Component: (await import('@/components/custom/coming-soon')).default,
         }),
       },
       {
         path: 'settings',
         lazy: async () => ({
-          Component: (await import('@/components/coming-soon')).default,
+          Component: (await import('@/components/custom/coming-soon')).default,
         }),
       },
       {
