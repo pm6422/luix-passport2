@@ -70,12 +70,6 @@ export const sidelinks: SideLink[] = [
         icon: <IconShieldLock size={25} />,
       },
       {
-        title: 'Sign In (Box)',
-        label: '',
-        href: '/sign-in-2',
-        icon: <IconHexagonNumber2 size={25} />,
-      },
-      {
         title: 'Sign Up',
         label: '',
         href: '/sign-up',
