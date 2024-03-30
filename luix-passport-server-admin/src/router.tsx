@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       {
         index: true,
         lazy: async () => ({
-          Component: (await import('./pages/dashboard')).default,
+          Component: (await import('./pages/dashboard/dashboard')).default,
         }),
       },
       {
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
       {
         path: 'users',
         lazy: async () => ({
-          Component: (await import('./pages/users')).default,
+          Component: (await import('./pages/users/uers')).default,
         }),
       },
       {
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
       {
         path: 'extra-components',
         lazy: async () => ({
-          Component: (await import('@/pages/extra-components')).default,
+          Component: (await import('@/pages/extra-components/components')).default,
         }),
       },
     ],
