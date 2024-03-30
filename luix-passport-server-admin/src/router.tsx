@@ -28,8 +28,8 @@ const router = createBrowserRouter([
   {
     path: '/',
     lazy: async () => {
-      const AppShell = await import('./layouts/main-layout')
-      return { Component: AppShell.default }
+      const MainLayout = await import('./layouts/main-layout')
+      return { Component: MainLayout.default }
     },
     errorElement: <GeneralError />,
     children: [
