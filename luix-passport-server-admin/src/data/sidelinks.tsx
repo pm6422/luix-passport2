@@ -1,6 +1,5 @@
 import {
   IconComponents,
-  IconHexagonNumber1,
   IconHexagonNumber2,
   IconHexagonNumber3,
   IconHexagonNumber4,
@@ -10,7 +9,6 @@ import {
   IconUserShield,
   IconUsers,
   IconUserPlus,
-  IconDoorEnter,
   IconShieldCog,
   IconShieldLock
 } from '@tabler/icons-react'

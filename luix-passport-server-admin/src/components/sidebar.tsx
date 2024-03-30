@@ -51,14 +51,15 @@ export default function Sidebar2({
               height={45}
             />
             <div
-              className={`flex flex-col ms-1 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
+                className={`flex flex-col ms-1 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
+              <span className='flex justify-end text-[8px]'>Test Env</span>
               <img
-                src="images/logos/logo-text.svg"
-                width={150}
-                height={50}
+                  src="images/logos/logo-text.svg"
+                  width={150}
+                  height={50}
               />
-              {/* <span className='text-xs'>Vite + ShadcnUI</span> */}
+
             </div>
           </div>
 
