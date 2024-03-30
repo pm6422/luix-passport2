@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from '../components/sidebar'
 import useIsCollapsed from '@/hooks/use-is-collapsed'
 
-export default function AppShell() {
+export default function MainLayout() {
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
   return (
     <div className='relative h-full overflow-hidden bg-background'>
