@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { IconChevronsLeft, IconMenu2, IconX } from '@tabler/icons-react'
-import { Layout, LayoutHeader } from '../layouts/layout'
+import { Layout, LayoutHeader } from '../layouts/layout-definitions'
 import { Button } from './custom/button'
 import Nav from './nav'
 import { cn } from '@/utils/utils'

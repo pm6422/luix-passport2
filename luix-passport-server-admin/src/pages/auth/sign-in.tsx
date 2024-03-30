@@ -1,5 +1,4 @@
 import { UserAuthForm } from './components/user-auth-form'
-import ViteLogo from '@/assets/vite.svg'
 
 export default function SignIn() {
   return (
@@ -20,15 +19,15 @@ export default function SignIn() {
             >
               <path d='M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3' />
             </svg>
-            Shadcn Admin
+            Luix Passport
           </div>
 
           <img
-            src={ViteLogo}
+            src='/logos/logo-round.svg'
             className='relative m-auto'
-            width={301}
+            width={350}
             height={60}
-            alt='Vite'
+            alt='Logo'
           />
 
           <div className='relative z-20 mt-auto'>

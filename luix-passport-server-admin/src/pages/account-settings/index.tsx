@@ -9,7 +9,7 @@ import {
 } from '@tabler/icons-react'
 import { Separator } from '@/components/ui/separator'
 import { AccountNav } from '@/components/account-nav.tsx'
-import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout'
+import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import SidebarNav from './components/sidebar-nav'
 
 export default function Settings() {
