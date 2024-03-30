@@ -53,7 +53,7 @@ export default function Sidebar2({
             <div
                 className={`flex flex-col ms-1 justify-end truncate ${isCollapsed ? 'invisible w-0' : 'visible w-auto'}`}
             >
-              <span className='flex justify-end text-[8px]'>Test Env</span>
+              <span className='flex justify-end text-[0.5rem]'>Test Env</span>
               <img
                   src="/logos/logo-text.svg"
                   width={150}
