@@ -80,16 +80,16 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
     }
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.created_time</code>.
+     * Setter for <code>luix-passport.user_auth_event.created_at</code>.
      */
-    public void setCreatedTime(LocalDateTime value) {
+    public void setCreatedAt(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.created_time</code>.
+     * Getter for <code>luix-passport.user_auth_event.created_at</code>.
      */
-    public LocalDateTime getCreatedTime() {
+    public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(4);
     }
 
@@ -138,7 +138,7 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
 
     @Override
     public Field<LocalDateTime> field5() {
-        return UserAuthEvent.USER_AUTH_EVENT.CREATED_TIME;
+        return UserAuthEvent.USER_AUTH_EVENT.CREATED_AT;
     }
 
     @Override
@@ -163,7 +163,7 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
 
     @Override
     public LocalDateTime component5() {
-        return getCreatedTime();
+        return getCreatedAt();
     }
 
     @Override
@@ -188,7 +188,7 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
 
     @Override
     public LocalDateTime value5() {
-        return getCreatedTime();
+        return getCreatedAt();
     }
 
     @Override
@@ -217,7 +217,7 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
 
     @Override
     public UserAuthEventRecord value5(LocalDateTime value) {
-        setCreatedTime(value);
+        setCreatedAt(value);
         return this;
     }
 
@@ -245,14 +245,14 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
     /**
      * Create a detached, initialised UserAuthEventRecord
      */
-    public UserAuthEventRecord(String id, String userId, String event, String remark, LocalDateTime createdTime) {
+    public UserAuthEventRecord(String id, String userId, String event, String remark, LocalDateTime createdAt) {
         super(UserAuthEvent.USER_AUTH_EVENT);
 
         setId(id);
         setUserId(userId);
         setEvent(event);
         setRemark(remark);
-        setCreatedTime(createdTime);
+        setCreatedAt(createdAt);
         resetChangedOnNotNull();
     }
 }

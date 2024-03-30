@@ -136,16 +136,16 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.created_time</code>.
+     * Setter for <code>luix-passport.data_dict.created_at</code>.
      */
-    public void setCreatedTime(LocalDateTime value) {
+    public void setCreatedAt(LocalDateTime value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.created_time</code>.
+     * Getter for <code>luix-passport.data_dict.created_at</code>.
      */
-    public LocalDateTime getCreatedTime() {
+    public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(8);
     }
 
@@ -164,16 +164,16 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.modified_time</code>.
+     * Setter for <code>luix-passport.data_dict.modified_at</code>.
      */
-    public void setModifiedTime(LocalDateTime value) {
+    public void setModifiedAt(LocalDateTime value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.modified_time</code>.
+     * Getter for <code>luix-passport.data_dict.modified_at</code>.
      */
-    public LocalDateTime getModifiedTime() {
+    public LocalDateTime getModifiedAt() {
         return (LocalDateTime) get(10);
     }
 
@@ -242,7 +242,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public Field<LocalDateTime> field9() {
-        return DataDict.DATA_DICT.CREATED_TIME;
+        return DataDict.DATA_DICT.CREATED_AT;
     }
 
     @Override
@@ -252,7 +252,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public Field<LocalDateTime> field11() {
-        return DataDict.DATA_DICT.MODIFIED_TIME;
+        return DataDict.DATA_DICT.MODIFIED_AT;
     }
 
     @Override
@@ -297,7 +297,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public LocalDateTime component9() {
-        return getCreatedTime();
+        return getCreatedAt();
     }
 
     @Override
@@ -307,7 +307,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public LocalDateTime component11() {
-        return getModifiedTime();
+        return getModifiedAt();
     }
 
     @Override
@@ -352,7 +352,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public LocalDateTime value9() {
-        return getCreatedTime();
+        return getCreatedAt();
     }
 
     @Override
@@ -362,7 +362,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public LocalDateTime value11() {
-        return getModifiedTime();
+        return getModifiedAt();
     }
 
     @Override
@@ -415,7 +415,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public DataDictRecord value9(LocalDateTime value) {
-        setCreatedTime(value);
+        setCreatedAt(value);
         return this;
     }
 
@@ -427,7 +427,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
 
     @Override
     public DataDictRecord value11(LocalDateTime value) {
-        setModifiedTime(value);
+        setModifiedAt(value);
         return this;
     }
 
@@ -461,7 +461,7 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
     /**
      * Create a detached, initialised DataDictRecord
      */
-    public DataDictRecord(String id, String num, String categoryCode, String dictCode, String dictName, String remark, Boolean enabled, String createdBy, LocalDateTime createdTime, String modifiedBy, LocalDateTime modifiedTime) {
+    public DataDictRecord(String id, String num, String categoryCode, String dictCode, String dictName, String remark, Boolean enabled, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt) {
         super(DataDict.DATA_DICT);
 
         setId(id);
@@ -472,9 +472,9 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
         setRemark(remark);
         setEnabled(enabled);
         setCreatedBy(createdBy);
-        setCreatedTime(createdTime);
+        setCreatedAt(createdAt);
         setModifiedBy(modifiedBy);
-        setModifiedTime(modifiedTime);
+        setModifiedAt(modifiedAt);
         resetChangedOnNotNull();
     }
 }

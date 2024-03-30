@@ -90,6 +90,14 @@
             <column name="photo" type="longblob">
                 <constraints nullable="true"/>
             </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_by" type="VARCHAR(50)"/>
+            <column name="modified_at" type="timestamp"/>
         </createTable>
         <loadData
                 file="config/liquibase/data/oauth2_registered_client.csv"
@@ -198,11 +206,11 @@
             <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_time" type="timestamp">
+            <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="modified_by" type="VARCHAR(50)"/>
-            <column name="modified_time" type="timestamp"/>
+            <column name="modified_at" type="timestamp"/>
         </createTable>
         <loadData
                 file="config/liquibase/data/user.csv"
@@ -254,7 +262,7 @@
             <column name="remark" type="VARCHAR(64)">
                 <constraints nullable="true"/>
             </column>
-            <column name="created_time" type="timestamp">
+            <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -312,11 +320,11 @@
             <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_time" type="timestamp">
+            <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="modified_by" type="VARCHAR(50)"/>
-            <column name="modified_time" type="timestamp"/>
+            <column name="modified_at" type="timestamp"/>
         </createTable>
         <loadData
                 file="config/liquibase/data/data_dict.csv"

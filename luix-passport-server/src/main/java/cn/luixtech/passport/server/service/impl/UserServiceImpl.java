@@ -103,7 +103,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .collect(Collectors.toList());
         Set<String> teamIds = findTeamIds(user.getId());
 
-        String modifiedTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(user.getModifiedTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        String modifiedTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(user.getModifiedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
         String photoUrl = null;
         if (httpServletRequest != null) {
@@ -233,7 +233,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingOne.setEnabled(domain.getEnabled());
         existingOne.setRemarks(domain.getRemarks());
         existingOne.setModifiedBy(AuthUtils.getCurrentUsername());
-        existingOne.setModifiedTime(Instant.now());
+        existingOne.setModifiedAt(Instant.now());
 
         userRepository.save(existingOne);
         log.debug("Updated user: {}", domain);

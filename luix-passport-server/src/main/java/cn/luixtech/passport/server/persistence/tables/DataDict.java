@@ -91,9 +91,9 @@ public class DataDict extends TableImpl<DataDictRecord> {
     public final TableField<DataDictRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.created_time</code>.
+     * The column <code>luix-passport.data_dict.created_at</code>.
      */
-    public final TableField<DataDictRecord, LocalDateTime> CREATED_TIME = createField(DSL.name("created_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<DataDictRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.data_dict.modified_by</code>.
@@ -101,9 +101,9 @@ public class DataDict extends TableImpl<DataDictRecord> {
     public final TableField<DataDictRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.modified_time</code>.
+     * The column <code>luix-passport.data_dict.modified_at</code>.
      */
-    public final TableField<DataDictRecord, LocalDateTime> MODIFIED_TIME = createField(DSL.name("modified_time"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<DataDictRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     private DataDict(Name alias, Table<DataDictRecord> aliased) {
         this(alias, aliased, null);

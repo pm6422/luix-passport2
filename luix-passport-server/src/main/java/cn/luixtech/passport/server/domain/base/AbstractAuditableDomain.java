@@ -34,20 +34,20 @@ public abstract class AbstractAuditableDomain extends AbstractCreationDomain imp
      * Set the current time when inserting or updating.
      */
     @Schema(description = "last modified time")
-    protected Instant modifiedTime;
+    protected Instant modifiedAt;
 
     @Override
     @PrePersist
     protected void prePersist() {
         super.prePersist();
 
-        modifiedTime = createdTime;
+        modifiedAt = createdAt;
         modifiedBy = createdBy;
     }
 
     @PreUpdate
     protected void preUpdate() {
-        modifiedTime = Instant.now();
+        modifiedAt = Instant.now();
         modifiedBy = defaultIfEmpty(getCurrentUsername(), "SYSTEM");
     }
 }

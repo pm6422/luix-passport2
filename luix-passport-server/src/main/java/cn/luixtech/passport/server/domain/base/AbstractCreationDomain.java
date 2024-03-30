@@ -29,13 +29,13 @@ public abstract class AbstractCreationDomain extends AbstractBaseDomain implemen
      */
     @Schema(description = "created time")
     @Column(updatable = false)
-    protected Instant createdTime;
+    protected Instant createdAt;
 
     @PrePersist
     protected void prePersist() {
         super.prePersist();
 
         createdBy = defaultIfEmpty(getCurrentUsername(), "SYSTEM");
-        createdTime = Instant.now();
+        createdAt = Instant.now();
     }
 }

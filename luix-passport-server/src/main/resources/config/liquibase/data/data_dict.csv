@@ -1,4 +1,4 @@
-id;num;category_code;dict_code;enabled;created_by;created_time;modified_time
+id;num;category_code;dict_code;enabled;created_by;created_at;modified_at
 13;DCT1001;role;ROLE_ANONYMOUS;true;SYSTEM;now;now
 14;DCT1002;role;ROLE_USER;true;SYSTEM;now;now
 15;DCT1003;role;ROLE_ADMIN;true;SYSTEM;now;now

@@ -95,8 +95,8 @@ public class DataDictController {
         List<DataDict> all = new ArrayList<>(records.size());
         records.forEach(record -> {
             record.setId(null);
-            record.setCreatedTime(Instant.now());
-            record.setModifiedTime(record.getCreatedTime());
+            record.setCreatedAt(Instant.now());
+            record.setModifiedAt(record.getCreatedAt());
             all.add(record);
         });
         dataDictRepository.saveAll(all);

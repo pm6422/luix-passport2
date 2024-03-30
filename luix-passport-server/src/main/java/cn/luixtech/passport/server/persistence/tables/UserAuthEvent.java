@@ -71,9 +71,9 @@ public class UserAuthEvent extends TableImpl<UserAuthEventRecord> {
     public final TableField<UserAuthEventRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(64), this, "");
 
     /**
-     * The column <code>luix-passport.user_auth_event.created_time</code>.
+     * The column <code>luix-passport.user_auth_event.created_at</code>.
      */
-    public final TableField<UserAuthEventRecord, LocalDateTime> CREATED_TIME = createField(DSL.name("created_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<UserAuthEventRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     private UserAuthEvent(Name alias, Table<UserAuthEventRecord> aliased) {
         this(alias, aliased, null);

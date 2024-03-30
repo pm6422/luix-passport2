@@ -301,16 +301,16 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     }
 
     /**
-     * Setter for <code>luix-passport.user.created_time</code>.
+     * Setter for <code>luix-passport.user.created_at</code>.
      */
-    public void setCreatedTime(LocalDateTime value) {
+    public void setCreatedAt(LocalDateTime value) {
         set(20, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user.created_time</code>.
+     * Getter for <code>luix-passport.user.created_at</code>.
      */
-    public LocalDateTime getCreatedTime() {
+    public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(20);
     }
 
@@ -329,16 +329,16 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     }
 
     /**
-     * Setter for <code>luix-passport.user.modified_time</code>.
+     * Setter for <code>luix-passport.user.modified_at</code>.
      */
-    public void setModifiedTime(LocalDateTime value) {
+    public void setModifiedAt(LocalDateTime value) {
         set(22, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user.modified_time</code>.
+     * Getter for <code>luix-passport.user.modified_at</code>.
      */
-    public LocalDateTime getModifiedTime() {
+    public LocalDateTime getModifiedAt() {
         return (LocalDateTime) get(22);
     }
 
@@ -365,7 +365,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     /**
      * Create a detached, initialised UserRecord
      */
-    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String resetCode, LocalDateTime resetTime, Boolean profilePhotoEnabled, String remarks, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, String locale, String timeZone, String dateFormat, String createdBy, LocalDateTime createdTime, String modifiedBy, LocalDateTime modifiedTime) {
+    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String resetCode, LocalDateTime resetTime, Boolean profilePhotoEnabled, String remarks, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, String locale, String timeZone, String dateFormat, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt) {
         super(User.USER);
 
         setId(id);
@@ -388,9 +388,9 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
         setTimeZone(timeZone);
         setDateFormat(dateFormat);
         setCreatedBy(createdBy);
-        setCreatedTime(createdTime);
+        setCreatedAt(createdAt);
         setModifiedBy(modifiedBy);
-        setModifiedTime(modifiedTime);
+        setModifiedAt(modifiedAt);
         resetChangedOnNotNull();
     }
 }

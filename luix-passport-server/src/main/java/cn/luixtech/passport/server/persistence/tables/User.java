@@ -148,9 +148,9 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user.created_time</code>.
+     * The column <code>luix-passport.user.created_at</code>.
      */
-    public final TableField<UserRecord, LocalDateTime> CREATED_TIME = createField(DSL.name("created_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<UserRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user.modified_by</code>.
@@ -158,9 +158,9 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column <code>luix-passport.user.modified_time</code>.
+     * The column <code>luix-passport.user.modified_at</code>.
      */
-    public final TableField<UserRecord, LocalDateTime> MODIFIED_TIME = createField(DSL.name("modified_time"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<UserRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     private User(Name alias, Table<UserRecord> aliased) {
         this(alias, aliased, null);
