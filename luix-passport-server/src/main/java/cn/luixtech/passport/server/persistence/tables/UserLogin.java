@@ -63,9 +63,9 @@ public class UserLogin extends TableImpl<UserLoginRecord> {
     public final TableField<UserLoginRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.logged_time</code>.
+     * The column <code>luix-passport.user_login.logged_at</code>.
      */
-    public final TableField<UserLoginRecord, LocalDateTime> LOGGED_TIME = createField(DSL.name("logged_time"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<UserLoginRecord, LocalDateTime> LOGGED_AT = createField(DSL.name("logged_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user_login.location</code>.

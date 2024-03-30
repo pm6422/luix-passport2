@@ -13,11 +13,11 @@ import java.util.function.Function;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
-import org.jooq.Function14;
+import org.jooq.Function18;
 import org.jooq.Name;
 import org.jooq.Record;
 import org.jooq.Records;
-import org.jooq.Row14;
+import org.jooq.Row18;
 import org.jooq.Schema;
 import org.jooq.SelectField;
 import org.jooq.Table;
@@ -131,6 +131,30 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
      */
     public final TableField<Oauth2RegisteredClientRecord, byte[]> PHOTO = createField(DSL.name("photo"), SQLDataType.BLOB, this, "");
 
+    /**
+     * The column
+     * <code>luix-passport.oauth2_registered_client.created_by</code>.
+     */
+    public final TableField<Oauth2RegisteredClientRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+
+    /**
+     * The column
+     * <code>luix-passport.oauth2_registered_client.created_at</code>.
+     */
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+
+    /**
+     * The column
+     * <code>luix-passport.oauth2_registered_client.modified_by</code>.
+     */
+    public final TableField<Oauth2RegisteredClientRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
+
+    /**
+     * The column
+     * <code>luix-passport.oauth2_registered_client.modified_at</code>.
+     */
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(0), this, "");
+
     private Oauth2RegisteredClient(Name alias, Table<Oauth2RegisteredClientRecord> aliased) {
         this(alias, aliased, null);
     }
@@ -217,18 +241,18 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     }
 
     // -------------------------------------------------------------------------
-    // Row14 type methods
+    // Row18 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row14<String, String, LocalDateTime, String, LocalDateTime, String, String, String, String, String, String, String, String, byte[]> fieldsRow() {
-        return (Row14) super.fieldsRow();
+    public Row18<String, String, LocalDateTime, String, LocalDateTime, String, String, String, String, String, String, String, String, byte[], String, LocalDateTime, String, LocalDateTime> fieldsRow() {
+        return (Row18) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function14<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super byte[], ? extends U> from) {
+    public <U> SelectField<U> mapping(Function18<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super byte[], ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -236,7 +260,7 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function14<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super byte[], ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function18<? super String, ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super String, ? super byte[], ? super String, ? super LocalDateTime, ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

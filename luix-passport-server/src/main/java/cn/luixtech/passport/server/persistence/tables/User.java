@@ -93,9 +93,9 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, String> RESET_CODE = createField(DSL.name("reset_code"), SQLDataType.VARCHAR(256), this, "");
 
     /**
-     * The column <code>luix-passport.user.reset_time</code>.
+     * The column <code>luix-passport.user.reset_at</code>.
      */
-    public final TableField<UserRecord, LocalDateTime> RESET_TIME = createField(DSL.name("reset_time"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<UserRecord, LocalDateTime> RESET_AT = createField(DSL.name("reset_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
      * The column <code>luix-passport.user.profile_photo_enabled</code>.
@@ -103,9 +103,9 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, Boolean> PROFILE_PHOTO_ENABLED = createField(DSL.name("profile_photo_enabled"), SQLDataType.BIT.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user.remarks</code>.
+     * The column <code>luix-passport.user.remark</code>.
      */
-    public final TableField<UserRecord, String> REMARKS = createField(DSL.name("remarks"), SQLDataType.VARCHAR(256), this, "");
+    public final TableField<UserRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(256), this, "");
 
     /**
      * The column <code>luix-passport.user.activated</code>.

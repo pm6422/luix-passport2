@@ -181,11 +181,11 @@
             </column>
             <column name="activation_code" type="VARCHAR(256)"/>
             <column name="reset_code" type="VARCHAR(256)"/>
-            <column name="reset_time" type="timestamp"/>
+            <column name="reset_at" type="timestamp"/>
             <column name="profile_photo_enabled" type="BIT(1)">
                 <constraints nullable="false"/>
             </column>
-            <column name="remarks" type="VARCHAR(256)"/>
+            <column name="remark" type="VARCHAR(256)"/>
             <column name="activated" type="BIT(1)">
                 <constraints nullable="false"/>
             </column>
@@ -273,7 +273,7 @@
             <column name="user_id" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="logged_time" type="timestamp">
+            <column name="logged_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="location" type="VARCHAR(20)">

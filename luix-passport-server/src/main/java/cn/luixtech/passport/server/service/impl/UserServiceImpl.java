@@ -191,7 +191,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setPasswordHash(DEFAULT_PASSWORD_ENCODER_PREFIX + BCRYPT_PASSWORD_ENCODER.encode(rawPassword));
         domain.setActivationCode(generateRandomCode());
         domain.setResetCode(null);
-        domain.setResetTime(null);
+        domain.setResetAt(null);
         domain.setProfilePhotoEnabled(false);
         domain.setActivated(false);
         domain.setEnabled(true);
@@ -231,7 +231,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingOne.setEmail(domain.getEmail().toLowerCase());
         existingOne.setMobileNo(domain.getMobileNo());
         existingOne.setEnabled(domain.getEnabled());
-        existingOne.setRemarks(domain.getRemarks());
+        existingOne.setRemark(domain.getRemark());
         existingOne.setModifiedBy(AuthUtils.getCurrentUsername());
         existingOne.setModifiedAt(Instant.now());
 
@@ -281,7 +281,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = userRepository.findOneByEmailAndActivated(email, true).orElseThrow(() -> new DataNotFoundException(email));
 
         user.setResetCode(JasyptEncryptUtils.encrypt(generateRandomCode()));
-        user.setResetTime(LocalDateTime.now());
+        user.setResetAt(LocalDateTime.now());
 
         userRepository.save(user);
         log.info("Requested password reset by reset code {}", user.getResetCode());
@@ -293,11 +293,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void resetPassword(String resetCode, String newRawPassword) {
         User user = userRepository.findOneByResetCode(resetCode).orElseThrow(() -> new DataNotFoundException(resetCode));
 
-        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetTime().plus(1, ChronoUnit.DAYS)), messageCreator.getMessage("UE1023"));
+        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetAt().plus(1, ChronoUnit.DAYS)), messageCreator.getMessage("UE1023"));
 
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         user.setResetCode(null);
-        user.setResetTime(null);
+        user.setResetAt(null);
 
         userRepository.save(user);
         log.debug("Reset password by reset code {}", resetCode);

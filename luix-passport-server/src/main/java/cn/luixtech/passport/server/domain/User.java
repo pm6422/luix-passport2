@@ -44,9 +44,9 @@ public class User extends AbstractAuditableDomain implements Serializable {
     private String        passwordHash;
     private String        activationCode;
     private String        resetCode;
-    private LocalDateTime resetTime;
+    private LocalDateTime resetAt;
     private Boolean       profilePhotoEnabled;
-    private String        remarks;
+    private String        remark;
     private Boolean       activated;
     private Boolean       enabled;
     private LocalDateTime accountExpiresAt;

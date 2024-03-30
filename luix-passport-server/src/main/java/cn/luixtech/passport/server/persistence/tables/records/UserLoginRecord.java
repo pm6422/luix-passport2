@@ -52,16 +52,16 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.logged_time</code>.
+     * Setter for <code>luix-passport.user_login.logged_at</code>.
      */
-    public void setLoggedTime(LocalDateTime value) {
+    public void setLoggedAt(LocalDateTime value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.logged_time</code>.
+     * Getter for <code>luix-passport.user_login.logged_at</code>.
      */
-    public LocalDateTime getLoggedTime() {
+    public LocalDateTime getLoggedAt() {
         return (LocalDateTime) get(2);
     }
 
@@ -156,7 +156,7 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
 
     @Override
     public Field<LocalDateTime> field3() {
-        return UserLogin.USER_LOGIN.LOGGED_TIME;
+        return UserLogin.USER_LOGIN.LOGGED_AT;
     }
 
     @Override
@@ -191,7 +191,7 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
 
     @Override
     public LocalDateTime component3() {
-        return getLoggedTime();
+        return getLoggedAt();
     }
 
     @Override
@@ -226,7 +226,7 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
 
     @Override
     public LocalDateTime value3() {
-        return getLoggedTime();
+        return getLoggedAt();
     }
 
     @Override
@@ -263,7 +263,7 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
 
     @Override
     public UserLoginRecord value3(LocalDateTime value) {
-        setLoggedTime(value);
+        setLoggedAt(value);
         return this;
     }
 
@@ -317,12 +317,12 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     /**
      * Create a detached, initialised UserLoginRecord
      */
-    public UserLoginRecord(String id, String userId, LocalDateTime loggedTime, String location, String ip, String os, String browser) {
+    public UserLoginRecord(String id, String userId, LocalDateTime loggedAt, String location, String ip, String os, String browser) {
         super(UserLogin.USER_LOGIN);
 
         setId(id);
         setUserId(userId);
-        setLoggedTime(loggedTime);
+        setLoggedAt(loggedAt);
         setLocation(location);
         setIp(ip);
         setOs(os);
