@@ -8,7 +8,7 @@ import '@/assets/main.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
+    <ThemeProvider defaultTheme='dark' storageKey='ui-theme'>
       <RouterProvider router={router} />
       <Toaster />
     </ThemeProvider>
