@@ -18,17 +18,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class TeamUser extends AbstractBaseDomain implements Serializable {
+public class OrgUser extends AbstractBaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    @Schema(required = true)
+    @NotEmpty(message = "orgId:{Validation.NotEmpty}")
+    @Column(nullable = false)
+    private String orgId;
 
     @Schema(required = true)
     @NotEmpty(message = "userId:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String userId;
-
-    @Schema(required = true)
-    @NotEmpty(message = "teamId:{Validation.NotEmpty}")
-    @Column(nullable = false)
-    private String teamId;
 }

@@ -136,7 +136,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="team">
+        <createTable tableName="org">
             <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -150,11 +150,11 @@
                 <constraints nullable="true"/>
             </column>
         </createTable>
-        <createTable tableName="team_user">
+        <createTable tableName="org_user">
             <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="team_id" type="VARCHAR(20)">
+            <column name="org_id" type="VARCHAR(20)">
                 <constraints nullable="false"/>
             </column>
             <column name="user_id" type="VARCHAR(20)">
@@ -345,7 +345,7 @@
             </column>
         </createTable>
 
-        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="team_user" constraintName="fk_team_user_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="org_user" constraintName="fk_org_user_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role" constraintName="fk_user_role_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_permission" constraintName="fk_user_permission_user_id" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>
         <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_login" constraintName="fk_user_login_user_id" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="id" referencedTableName="user" validate="true"/>

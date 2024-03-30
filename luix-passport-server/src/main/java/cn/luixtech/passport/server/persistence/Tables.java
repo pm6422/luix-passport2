@@ -8,11 +8,11 @@ import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.Org;
+import cn.luixtech.passport.server.persistence.tables.OrgUser;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.TableSeqNumber;
-import cn.luixtech.passport.server.persistence.tables.Team;
-import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthEvent;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
@@ -48,6 +48,16 @@ public class Tables {
     public static final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
 
     /**
+     * The table <code>luix-passport.org</code>.
+     */
+    public static final Org ORG = Org.ORG;
+
+    /**
+     * The table <code>luix-passport.org_user</code>.
+     */
+    public static final OrgUser ORG_USER = OrgUser.ORG_USER;
+
+    /**
      * The table <code>luix-passport.spring_session</code>.
      */
     public static final SpringSession SPRING_SESSION = SpringSession.SPRING_SESSION;
@@ -61,16 +71,6 @@ public class Tables {
      * The table <code>luix-passport.table_seq_number</code>.
      */
     public static final TableSeqNumber TABLE_SEQ_NUMBER = TableSeqNumber.TABLE_SEQ_NUMBER;
-
-    /**
-     * The table <code>luix-passport.team</code>.
-     */
-    public static final Team TEAM = Team.TEAM;
-
-    /**
-     * The table <code>luix-passport.team_user</code>.
-     */
-    public static final TeamUser TEAM_USER = TeamUser.TEAM_USER;
 
     /**
      * The table <code>luix-passport.user</code>.

@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-        Set<String> teamIds = findTeamIds(user.getId());
+        Set<String> teamIds = findOrgIds(user.getId());
 
         String modifiedTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(user.getModifiedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
@@ -153,11 +153,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public Set<String> findTeamIds(String userId) {
-        return dslContext.select(Tables.TEAM_USER.TEAM_ID)
-                .from(Tables.TEAM_USER)
-                .where(Tables.TEAM_USER.USER_ID.eq(userId))
-                .fetchSet(Tables.TEAM_USER.TEAM_ID);
+    public Set<String> findOrgIds(String userId) {
+        return dslContext.select(Tables.ORG_USER.ORG_ID)
+                .from(Tables.ORG_USER)
+                .where(Tables.ORG_USER.USER_ID.eq(userId))
+                .fetchSet(Tables.ORG_USER.ORG_ID);
     }
 
     @Override

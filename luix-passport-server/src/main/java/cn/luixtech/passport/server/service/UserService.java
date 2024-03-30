@@ -20,7 +20,7 @@ public interface UserService {
 
     Set<String> findRoles(String userId);
 
-    Set<String> findTeamIds(String userId);
+    Set<String> findOrgIds(String userId);
 
     Set<String> findPermissions(String userId);
 

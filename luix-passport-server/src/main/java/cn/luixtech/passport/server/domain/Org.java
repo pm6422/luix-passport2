@@ -1,7 +1,6 @@
 package cn.luixtech.passport.server.domain;
 
 import cn.luixtech.passport.server.domain.base.AbstractAuditableDomain;
-import cn.luixtech.passport.server.domain.base.AbstractBaseDomain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Team extends AbstractAuditableDomain implements Serializable {
+public class Org extends AbstractAuditableDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 

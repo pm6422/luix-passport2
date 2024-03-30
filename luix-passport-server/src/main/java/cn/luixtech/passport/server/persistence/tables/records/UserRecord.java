@@ -273,101 +273,101 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     }
 
     /**
-     * Setter for <code>luix-passport.user.locale</code>.
-     */
-    public void setLocale(String value) {
-        set(18, value);
-    }
-
-    /**
-     * Getter for <code>luix-passport.user.locale</code>.
-     */
-    public String getLocale() {
-        return (String) get(18);
-    }
-
-    /**
-     * Setter for <code>luix-passport.user.time_zone</code>.
-     */
-    public void setTimeZone(String value) {
-        set(19, value);
-    }
-
-    /**
-     * Getter for <code>luix-passport.user.time_zone</code>.
-     */
-    public String getTimeZone() {
-        return (String) get(19);
-    }
-
-    /**
-     * Setter for <code>luix-passport.user.date_format</code>.
-     */
-    public void setDateFormat(String value) {
-        set(20, value);
-    }
-
-    /**
-     * Getter for <code>luix-passport.user.date_format</code>.
-     */
-    public String getDateFormat() {
-        return (String) get(20);
-    }
-
-    /**
      * Setter for <code>luix-passport.user.created_by</code>.
      */
     public void setCreatedBy(String value) {
-        set(21, value);
+        set(18, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.created_by</code>.
      */
     public String getCreatedBy() {
-        return (String) get(21);
+        return (String) get(18);
     }
 
     /**
      * Setter for <code>luix-passport.user.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
-        set(22, value);
+        set(19, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
-        return (LocalDateTime) get(22);
+        return (LocalDateTime) get(19);
     }
 
     /**
      * Setter for <code>luix-passport.user.modified_by</code>.
      */
     public void setModifiedBy(String value) {
-        set(23, value);
+        set(20, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.modified_by</code>.
      */
     public String getModifiedBy() {
-        return (String) get(23);
+        return (String) get(20);
     }
 
     /**
      * Setter for <code>luix-passport.user.modified_at</code>.
      */
     public void setModifiedAt(LocalDateTime value) {
-        set(24, value);
+        set(21, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.modified_at</code>.
      */
     public LocalDateTime getModifiedAt() {
-        return (LocalDateTime) get(24);
+        return (LocalDateTime) get(21);
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.locale</code>.
+     */
+    public void setLocale(String value) {
+        set(22, value);
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.locale</code>.
+     */
+    public String getLocale() {
+        return (String) get(22);
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.time_zone</code>.
+     */
+    public void setTimeZone(String value) {
+        set(23, value);
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.time_zone</code>.
+     */
+    public String getTimeZone() {
+        return (String) get(23);
+    }
+
+    /**
+     * Setter for <code>luix-passport.user.date_format</code>.
+     */
+    public void setDateFormat(String value) {
+        set(24, value);
+    }
+
+    /**
+     * Getter for <code>luix-passport.user.date_format</code>.
+     */
+    public String getDateFormat() {
+        return (String) get(24);
     }
 
     // -------------------------------------------------------------------------
@@ -393,7 +393,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     /**
      * Create a detached, initialised UserRecord
      */
-    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String resetCode, LocalDateTime resetAt, Boolean profilePhotoEnabled, String remark, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, LocalDateTime lastSignInAt, String language, String locale, String timeZone, String dateFormat, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt) {
+    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String resetCode, LocalDateTime resetAt, Boolean profilePhotoEnabled, String remark, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, LocalDateTime lastSignInAt, String language, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt, String locale, String timeZone, String dateFormat) {
         super(User.USER);
 
         setId(id);
@@ -414,13 +414,13 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
         setPasswordExpiresAt(passwordExpiresAt);
         setLastSignInAt(lastSignInAt);
         setLanguage(language);
-        setLocale(locale);
-        setTimeZone(timeZone);
-        setDateFormat(dateFormat);
         setCreatedBy(createdBy);
         setCreatedAt(createdAt);
         setModifiedBy(modifiedBy);
         setModifiedAt(modifiedAt);
+        setLocale(locale);
+        setTimeZone(timeZone);
+        setDateFormat(dateFormat);
         resetChangedOnNotNull();
     }
 }

@@ -8,11 +8,11 @@ import cn.luixtech.passport.server.persistence.tables.DataDict;
 import cn.luixtech.passport.server.persistence.tables.Oauth2Authorization;
 import cn.luixtech.passport.server.persistence.tables.Oauth2AuthorizationConsent;
 import cn.luixtech.passport.server.persistence.tables.Oauth2RegisteredClient;
+import cn.luixtech.passport.server.persistence.tables.Org;
+import cn.luixtech.passport.server.persistence.tables.OrgUser;
 import cn.luixtech.passport.server.persistence.tables.SpringSession;
 import cn.luixtech.passport.server.persistence.tables.SpringSessionAttributes;
 import cn.luixtech.passport.server.persistence.tables.TableSeqNumber;
-import cn.luixtech.passport.server.persistence.tables.Team;
-import cn.luixtech.passport.server.persistence.tables.TeamUser;
 import cn.luixtech.passport.server.persistence.tables.User;
 import cn.luixtech.passport.server.persistence.tables.UserAuthEvent;
 import cn.luixtech.passport.server.persistence.tables.UserLogin;
@@ -62,6 +62,16 @@ public class LuixPassport extends SchemaImpl {
     public final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
 
     /**
+     * The table <code>luix-passport.org</code>.
+     */
+    public final Org ORG = Org.ORG;
+
+    /**
+     * The table <code>luix-passport.org_user</code>.
+     */
+    public final OrgUser ORG_USER = OrgUser.ORG_USER;
+
+    /**
      * The table <code>luix-passport.spring_session</code>.
      */
     public final SpringSession SPRING_SESSION = SpringSession.SPRING_SESSION;
@@ -75,16 +85,6 @@ public class LuixPassport extends SchemaImpl {
      * The table <code>luix-passport.table_seq_number</code>.
      */
     public final TableSeqNumber TABLE_SEQ_NUMBER = TableSeqNumber.TABLE_SEQ_NUMBER;
-
-    /**
-     * The table <code>luix-passport.team</code>.
-     */
-    public final Team TEAM = Team.TEAM;
-
-    /**
-     * The table <code>luix-passport.team_user</code>.
-     */
-    public final TeamUser TEAM_USER = TeamUser.TEAM_USER;
 
     /**
      * The table <code>luix-passport.user</code>.
@@ -136,11 +136,11 @@ public class LuixPassport extends SchemaImpl {
             Oauth2Authorization.OAUTH2_AUTHORIZATION,
             Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT,
             Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT,
+            Org.ORG,
+            OrgUser.ORG_USER,
             SpringSession.SPRING_SESSION,
             SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES,
             TableSeqNumber.TABLE_SEQ_NUMBER,
-            Team.TEAM,
-            TeamUser.TEAM_USER,
             User.USER,
             UserAuthEvent.USER_AUTH_EVENT,
             UserLogin.USER_LOGIN,

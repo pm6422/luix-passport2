@@ -138,21 +138,6 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.VARCHAR(25), this, "");
 
     /**
-     * The column <code>luix-passport.user.locale</code>.
-     */
-    public final TableField<UserRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
-
-    /**
-     * The column <code>luix-passport.user.time_zone</code>.
-     */
-    public final TableField<UserRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(30).nullable(false), this, "");
-
-    /**
-     * The column <code>luix-passport.user.date_format</code>.
-     */
-    public final TableField<UserRecord, String> DATE_FORMAT = createField(DSL.name("date_format"), SQLDataType.VARCHAR(20).nullable(false), this, "");
-
-    /**
      * The column <code>luix-passport.user.created_by</code>.
      */
     public final TableField<UserRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
@@ -171,6 +156,21 @@ public class User extends TableImpl<UserRecord> {
      * The column <code>luix-passport.user.modified_at</code>.
      */
     public final TableField<UserRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(0), this, "");
+
+    /**
+     * The column <code>luix-passport.user.locale</code>.
+     */
+    public final TableField<UserRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user.time_zone</code>.
+     */
+    public final TableField<UserRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(30).nullable(false), this, "");
+
+    /**
+     * The column <code>luix-passport.user.date_format</code>.
+     */
+    public final TableField<UserRecord, String> DATE_FORMAT = createField(DSL.name("date_format"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     private User(Name alias, Table<UserRecord> aliased) {
         this(alias, aliased, null);
