@@ -9,13 +9,16 @@ import { AppInfoService } from '@/api/services'
 
 AppInfoService.load().then(result => {
   console.log(result);
+
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <ThemeProvider defaultTheme='dark' storageKey='ui-theme'>
+        <RouterProvider router={router} />
+        <Toaster />
+      </ThemeProvider>
+    </React.StrictMode>
+  )
+  
 });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider defaultTheme='dark' storageKey='ui-theme'>
-      <RouterProvider router={router} />
-      <Toaster />
-    </ThemeProvider>
-  </React.StrictMode>
-)
+
