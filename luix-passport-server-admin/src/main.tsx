@@ -4,9 +4,9 @@ import { RouterProvider } from 'react-router-dom'
 import { Toaster } from '@/components/ui/toaster'
 import { AppInfoProvider } from '@/store/app-info-provider'
 import { ThemeProvider } from '@/store/theme-provider'
-import router from '@/router'
-import '@/assets/main.css'
 import { AppInfoService } from '@/api/app-info-service'
+import router from '@/router'
+import '@/main.css'
 
 AppInfoService.load().then(appInfo => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
