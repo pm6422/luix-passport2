@@ -36,5 +36,4 @@ export class AppInfoService {
         throw error;
     }
   }
-
 }
