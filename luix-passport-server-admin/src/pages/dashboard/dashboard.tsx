@@ -16,7 +16,7 @@ import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
 
 export default function Dashboard() {
-  
+
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -48,8 +48,6 @@ export default function Dashboard() {
             <TabsList>
               <TabsTrigger value='overview'>Overview</TabsTrigger>
               <TabsTrigger value='analytics'>Analytics</TabsTrigger>
-              <TabsTrigger value='reports'>Reports</TabsTrigger>
-              <TabsTrigger value='notifications'>Notifications</TabsTrigger>
             </TabsList>
           </div>
           <TabsContent value='overview' className='space-y-4'>
