@@ -7,7 +7,7 @@ import router from '@/router'
 import '@/assets/main.css'
 import { AppInfoService } from '@/api/app-info-service'
 
-AppInfoService.load().then(result => {
+AppInfoService.load().then(appInfo => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <ThemeProvider defaultTheme='dark' storageKey='ui-theme'>
