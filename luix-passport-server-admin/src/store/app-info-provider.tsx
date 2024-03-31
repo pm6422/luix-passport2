@@ -27,7 +27,7 @@ const initialState: AppInfoProviderState = {
     "apiDocsEnabled" : "true",
     "ribbonProfile" : "local",
     "build" : {
-      "artifact" : "luix-passport-server",
+      "artifact" : "luix-passport",
       "name" : "LUix Passport Server",
       "time" : "2024-03-20T02:22:27.985Z",
       "version" : "1.0.0",
@@ -44,15 +44,11 @@ export function AppInfoProvider({
   defaultAppInfo = initialState.appInfo,
   ...props
 }: AppInfoProviderProps) {
-  const [appInfo, setAppInfo] = useState<AppInfo>(defaultAppInfo);
+  const [appInfo, setAppInfo] = useState<AppInfo>(defaultAppInfo || initialState.appInfo);
 
   const value = {
     appInfo,
-    setAppInfo: (appInfo: AppInfo) => {
-      if(appInfo) {
-        setAppInfo(appInfo)
-      }
-    },
+    setAppInfo
   };
 
   return (
