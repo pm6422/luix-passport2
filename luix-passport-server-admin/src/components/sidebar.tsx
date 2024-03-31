@@ -5,7 +5,7 @@ import { Button } from './custom/button'
 import SidebarMenu from './sidebar-menu'
 import { cn } from '@/utils/utils'
 import { sidelinks } from '@/data/sidelinks'
-import { AppInfoService } from '@/api/services'
+import { AppInfoService } from '@/api/app-info-service'
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean
@@ -19,6 +19,7 @@ export default function Sidebar2({
 }: SidebarProps) {
   const [navOpened, setNavOpened] = useState(false)
   const appInfo = AppInfoService.getAppInfo()
+
 
   /* Make body not scrollable when navBar is opened */
   useEffect(() => {
