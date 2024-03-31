@@ -14,7 +14,7 @@ type AppInfo = {
 
 type AppInfoProviderProps = {
   children: React.ReactNode
-  defaultAppInfo?: AppInfo;
+  defaultValue?: AppInfo;
 };
 
 type AppInfoProviderState = {
@@ -41,10 +41,10 @@ const AppInfoProviderContext = createContext<AppInfoProviderState>(initialState)
 
 export function AppInfoProvider({
   children,
-  defaultAppInfo,
+  defaultValue,
   ...props
 }: AppInfoProviderProps) {
-  const [appInfo, setAppInfo] = useState<AppInfo>(defaultAppInfo || initialState.appInfo);
+  const [appInfo, setAppInfo] = useState<AppInfo>(defaultValue || initialState.appInfo);
 
   const value = {
     appInfo,
