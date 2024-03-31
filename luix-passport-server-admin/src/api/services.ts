@@ -6,12 +6,6 @@ export class AppInfoService {
   }
 
   public static async load(): Promise<any> {
-    // try {
-    //   const res = await ApiService.query("management/info", null);
-    //   return res.data;
-    // } catch (error) {
-    //   return null;
-    // }
     return new Promise(resolve => {
       axios
         .get<any>('management/info')
