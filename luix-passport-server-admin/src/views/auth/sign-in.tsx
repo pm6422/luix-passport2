@@ -23,9 +23,9 @@ export default function SignIn() {
           </div>
 
           <img
-            src='/logos/logo-round.svg'
-            className='relative m-auto'
-            width={350}
+            src='/logos/dynamic-logo.svg'
+            className='relative m-auto rounded-xl'
+            width={600}
             height={60}
             alt='Logo'
           />
