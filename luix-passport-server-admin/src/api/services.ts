@@ -6,17 +6,14 @@ export class AppInfoService {
   }
 
   public static async load(): Promise<any> {
-    return new Promise(resolve => {
-      axios
-        .get<any>('management/info')
-        .then(res => {
-          resolve(res.data);
-        })
-        .catch(() => {
-          // Load from local if failed
-          resolve(AppInfoService.loadFromLocal());
-        });
-    });
+    try {
+      const res = await axios.get<any>('management/info');
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      // Load from local if failed
+      return AppInfoService.loadFromLocal();
+    }
   }
 
   public static loadFromLocal(): Promise<any> {
