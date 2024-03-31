@@ -20,5 +20,3 @@ AppInfoService.load().then(appInfo => {
     </React.StrictMode>
   )
 });
-
-
