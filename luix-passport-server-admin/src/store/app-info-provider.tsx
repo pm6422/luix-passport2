@@ -48,7 +48,11 @@ export function AppInfoProvider({
 
   const value = {
     appInfo,
-    setAppInfo,
+    setAppInfo: (appInfo: AppInfo) => {
+      if(appInfo) {
+        setAppInfo(appInfo)
+      }
+    },
   };
 
   return (
