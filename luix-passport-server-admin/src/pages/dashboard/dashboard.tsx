@@ -14,12 +14,8 @@ import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
-import { AppInfoService } from '@/api/services'
 
 export default function Dashboard() {
-  AppInfoService.load().then(result => {
-    console.log(result);
-  });
   
   return (
     <Layout>

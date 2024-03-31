@@ -11,7 +11,7 @@ export class AppInfoService {
       return res.data;
     } catch (error) {
       console.error(error);
-      // Load from local if failed
+      // todo: Load from local if failed
     }
   }
 }
