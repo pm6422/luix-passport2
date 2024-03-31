@@ -12,18 +12,6 @@ export class AppInfoService {
     } catch (error) {
       console.error(error);
       // Load from local if failed
-      return AppInfoService.loadFromLocal();
     }
-  }
-
-  public static loadFromLocal(): Promise<any> {
-    return new Promise(resolve => {
-      axios
-        .get<any>('/src/data/app-info.json')
-        .then(res => {
-          resolve(res.data);
-        })
-        .catch(() => resolve(null));
-    });
   }
 }
