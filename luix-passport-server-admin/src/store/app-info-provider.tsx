@@ -41,7 +41,7 @@ const AppInfoProviderContext = createContext<AppInfoProviderState>(initialState)
 
 export function AppInfoProvider({
   children,
-  defaultAppInfo = initialState.appInfo,
+  defaultAppInfo,
   ...props
 }: AppInfoProviderProps) {
   const [appInfo, setAppInfo] = useState<AppInfo>(defaultAppInfo || initialState.appInfo);
