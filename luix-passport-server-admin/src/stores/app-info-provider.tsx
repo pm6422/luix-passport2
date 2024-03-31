@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type AppInfo = {
+export type AppInfo = {
   apiDocsEnabled: string;
   ribbonProfile: string;
   build: {
