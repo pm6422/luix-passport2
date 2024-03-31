@@ -1,26 +1,26 @@
 import { createBrowserRouter } from 'react-router-dom'
-import GeneralError from './pages/errors/general-error'
-import NotFoundError from './pages/errors/not-found-error'
-import MaintenanceError from './pages/errors/maintenance-error'
+import GeneralError from './views/errors/general-error'
+import NotFoundError from './views/errors/not-found-error'
+import MaintenanceError from './views/errors/maintenance-error'
 
 const router = createBrowserRouter([
   // Auth routes
   {
     path: '/sign-in',
     lazy: async () => ({
-      Component: (await import('./pages/auth/sign-in')).default,
+      Component: (await import('./views/auth/sign-in')).default,
     }),
   },
   {
     path: '/sign-up',
     lazy: async () => ({
-      Component: (await import('./pages/auth/sign-up')).default,
+      Component: (await import('./views/auth/sign-up')).default,
     }),
   },
   {
     path: '/forgot-password',
     lazy: async () => ({
-      Component: (await import('./pages/auth/forgot-password')).default,
+      Component: (await import('./views/auth/forgot-password')).default,
     }),
   },
 
@@ -36,51 +36,51 @@ const router = createBrowserRouter([
       {
         index: true,
         lazy: async () => ({
-          Component: (await import('./pages/dashboard/dashboard')).default,
+          Component: (await import('./views/dashboard/dashboard')).default,
         }),
       },
       {
         path: 'account-settings',
         lazy: async () => ({
-          Component: (await import('./pages/account-settings')).default,
+          Component: (await import('./views/account-settings')).default,
         }),
         errorElement: <GeneralError />,
         children: [
           {
             index: true,
             lazy: async () => ({
-              Component: (await import('./pages/account-settings/profile')).default,
+              Component: (await import('./views/account-settings/profile')).default,
             }),
           },
           {
             path: 'account',
             lazy: async () => ({
-              Component: (await import('./pages/account-settings/account')).default,
+              Component: (await import('./views/account-settings/account')).default,
             }),
           },
           {
             path: 'appearance',
             lazy: async () => ({
-              Component: (await import('./pages/account-settings/appearance')).default,
+              Component: (await import('./views/account-settings/appearance')).default,
             }),
           },
           {
             path: 'notifications',
             lazy: async () => ({
-              Component: (await import('./pages/account-settings/notifications'))
+              Component: (await import('./views/account-settings/notifications'))
                 .default,
             }),
           },
           {
             path: 'display',
             lazy: async () => ({
-              Component: (await import('./pages/account-settings/display')).default,
+              Component: (await import('./views/account-settings/display')).default,
             }),
           },
           {
             path: 'error-example',
             lazy: async () => ({
-              Component: (await import('./pages/account-settings/error-example'))
+              Component: (await import('./views/account-settings/error-example'))
                 .default,
             }),
             errorElement: <GeneralError className='h-[50svh]' minimal />,
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
       {
         path: 'users',
         lazy: async () => ({
-          Component: (await import('./pages/users/uers')).default,
+          Component: (await import('./views/users/uers')).default,
         }),
       },
       {
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
       {
         path: 'extra-components',
         lazy: async () => ({
-          Component: (await import('@/pages/extra-components/components')).default,
+          Component: (await import('@/views/extra-components/components')).default,
         }),
       },
     ],
