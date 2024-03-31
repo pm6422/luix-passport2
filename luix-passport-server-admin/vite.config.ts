@@ -11,6 +11,27 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8888
+    host: 'localhost',
+    port: 8888,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/management': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/management/, '')
+      },
+      '/swagger-ui': {
+        target: 'http://localhost:4001',
+        changeOrigin: true
+      },
+      '/v3/api-docs': {
+        target: 'http://localhost:4001',
+        changeOrigin: true
+      }
+    }
   }
 })
