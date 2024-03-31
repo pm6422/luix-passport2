@@ -25,7 +25,7 @@ type AppInfoProviderState = {
 const initialState: AppInfoProviderState = {
   appInfo: {
     "apiDocsEnabled" : "true",
-    "ribbonProfile" : "local",
+    "ribbonProfile" : "disconnected",
     "build" : {
       "artifact" : "luix-passport",
       "name" : "LUix Passport Server",
