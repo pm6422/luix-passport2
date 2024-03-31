@@ -12,7 +12,7 @@ AppInfoService.load().then(appInfo => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <AppInfoProvider defaultAppInfo={appInfo}>
-        <ThemeProvider defaultTheme='dark' storageKey='ui-theme'>
+        <ThemeProvider>
           <RouterProvider router={router} />
           <Toaster />
         </ThemeProvider>
