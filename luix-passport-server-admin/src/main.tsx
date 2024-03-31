@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { AppInfoService } from '@/api/app-info-service'
+import { AppInfoService } from '@/services/app-info-service'
 import { AppInfoProvider } from '@/store/app-info-provider'
 import { ThemeProvider } from '@/store/theme-provider'
 import { RouterProvider } from 'react-router-dom'
