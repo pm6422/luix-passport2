@@ -5,7 +5,7 @@ import { Button } from './custom/button'
 import SidebarMenu from './sidebar-menu'
 import { cn } from '@/utils/utils'
 import { sidelinks } from '@/data/sidelinks'
-import { useAppInfoProvider } from '@/store/app-info-provider'; 
+import { useAppInfoProvider } from '@/stores/app-info-provider'; 
 
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
   isCollapsed: boolean
