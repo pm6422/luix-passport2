@@ -8,8 +8,6 @@ import '@/assets/main.css'
 import { AppInfoService } from '@/api/services'
 
 AppInfoService.load().then(result => {
-  console.log(result);
-
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <ThemeProvider defaultTheme='dark' storageKey='ui-theme'>
@@ -18,7 +16,6 @@ AppInfoService.load().then(result => {
       </ThemeProvider>
     </React.StrictMode>
   )
-  
 });
 
 
