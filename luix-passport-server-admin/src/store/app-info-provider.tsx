@@ -1,53 +1,69 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-type AppInfoStoreProps = {
-  ribbonProfile?: string;
-};
-
-type AppInfoStoreState = {
+type AppInfo = {
+  apiDocsEnabled: string;
   ribbonProfile: string;
-  setRibbonProfile: (profile: string) => void;
+  build: {
+    artifact: string;
+    name: string;
+    time: string;
+    version: string;
+    group: string;
+  }
 };
 
-const initialState: AppInfoStoreState = {
-  ribbonProfile: '',
-  setRibbonProfile: () => null,
+type AppInfoProviderProps = {
+  children: React.ReactNode
+  defaultAppInfo?: AppInfo;
 };
 
-const AppInfoStoreContext = createContext<AppInfoStoreState>(initialState);
+type AppInfoProviderState = {
+  appInfo: AppInfo;
+  setAppInfo: (appInfo: AppInfo) => void;
+};
 
-export function AppInfoStore({
-  ribbonProfile = 'local',
+const initialState: AppInfoProviderState = {
+  appInfo: {
+    "apiDocsEnabled" : "true",
+    "ribbonProfile" : "local",
+    "build" : {
+      "artifact" : "luix-passport-server",
+      "name" : "LUix Passport Server",
+      "time" : "2024-03-20T02:22:27.985Z",
+      "version" : "1.0.0",
+      "group" : "cn.luixtech"
+    }
+  },
+  setAppInfo: () => null,
+};
+
+const AppInfoProviderContext = createContext<AppInfoProviderState>(initialState);
+
+export function AppInfoProvider({
+  children,
+  defaultAppInfo = initialState.appInfo,
   ...props
-}: AppInfoStoreProps) {
-  const [profile, setProfile] = useState<string>(ribbonProfile);
-
-  const setRibbonProfile = (newProfile: string) => {
-    setProfile(newProfile);
-  };
-
-  useEffect(() => {
-    // You can perform any side effects related to AppInfoStore here if needed
-    // For example, persisting `profile` to local storage
-  }, [profile]);
+}: AppInfoProviderProps) {
+  const [appInfo, setAppInfo] = useState<AppInfo>(defaultAppInfo);
 
   const value = {
-    ribbonProfile: profile,
-    setRibbonProfile,
+    appInfo,
+    setAppInfo,
   };
 
   return (
-    <AppInfoStoreContext.Provider {...props} value={value}>
-    </AppInfoStoreContext.Provider>
+    <AppInfoProviderContext.Provider {...props} value={value}>
+      {children}
+    </AppInfoProviderContext.Provider>
   );
 }
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-export const useAppInfoStore = () => {
-  const context = useContext(AppInfoStoreContext);
+export const useAppInfoProvider = () => {
+  const context = useContext(AppInfoProviderContext);
 
   if (context === undefined) {
-    throw new Error('useAppInfoStore must be used within a AppInfoStore');
+    throw new Error('useAppInfoProvider must be used within a AppInfoProvider');
   }
 
   return context;
