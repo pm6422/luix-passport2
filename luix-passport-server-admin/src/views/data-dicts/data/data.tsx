@@ -1,7 +1,4 @@
-import {
-  CheckCircledIcon,
-  CrossCircledIcon,
-} from '@radix-ui/react-icons'
+import { IconCircleCheck, IconCircleX } from '@tabler/icons-react'
 
 export const labels = [
   {
@@ -22,12 +19,12 @@ export const yesOrNo = [
   {
     value: true,
     label: 'Yes',
-    icon: CheckCircledIcon,
+    icon: IconCircleCheck,
   },
   {
     value: false,
     label: 'No',
-    icon: CrossCircledIcon,
+    icon: IconCircleX,
   }
 ]
 

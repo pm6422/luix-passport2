@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { CheckIcon } from '@radix-ui/react-icons'
-import { IconFilter } from '@tabler/icons-react'
+import { IconFilter, IconCheck } from '@tabler/icons-react'
 import { Column } from '@tanstack/react-table'
 
 import { cn } from '@/utils/utils'
@@ -112,7 +111,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                           : 'opacity-50 [&_svg]:invisible'
                       )}
                     >
-                      <CheckIcon className={cn('h-4 w-4')} />
+                      <IconCheck className={cn('h-4 w-4')} />
                     </div>
                     {option.icon && (
                       <option.icon className='mr-2 h-4 w-4 text-muted-foreground' />
