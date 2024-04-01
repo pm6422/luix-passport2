@@ -3,12 +3,13 @@ import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from './components/data-table'
 import { columns } from './components/columns'
-import { tasks } from './data/tasks'
+// import { tasks } from './data/tasks'
 import { DataDictService } from '@/services/data-dict-service'
+import { TaskService } from '@/services/task-service'
 
 export default function Tasks() {
   // State to hold the fetched data
-  const [dataDicts, setDataDicts] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     // Function to fetch data from backend
@@ -18,8 +19,8 @@ export default function Tasks() {
       //   const dicts = results[0];
       //   const users = results[1];
       // });
-      const response = await DataDictService.findAll();
-      setDataDicts(response.data);
+      const response = await TaskService.findAll();
+      setTasks(response.data);
     };
 
     // Call the fetchData function when component mounts

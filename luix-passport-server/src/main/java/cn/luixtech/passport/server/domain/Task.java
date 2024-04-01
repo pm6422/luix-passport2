@@ -1,10 +1,7 @@
 package cn.luixtech.passport.server.domain;
 
 import cn.luixtech.passport.server.domain.base.AbstractBaseDomain;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,13 +19,8 @@ public class Task extends AbstractBaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(required = true)
-    @NotEmpty(message = "orgId:{Validation.NotEmpty}")
-    @Column(nullable = false)
-    private String orgId;
-
-    @Schema(required = true)
-    @NotEmpty(message = "userId:{Validation.NotEmpty}")
-    @Column(nullable = false)
-    private String userId;
+    private String title;
+    private String status;
+    private String label;
+    private String priority;
 }
