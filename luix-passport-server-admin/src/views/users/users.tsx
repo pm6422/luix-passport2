@@ -8,7 +8,7 @@ import { DataDictService } from '@/services/data-dict-service'
 
 export default function Tasks() {
   // State to hold the fetched data
-  const [dataDicts, setDataDicts] = useState(null);
+  const [dataDicts, setDataDicts] = useState([]);
 
   useEffect(() => {
     // Function to fetch data from backend
