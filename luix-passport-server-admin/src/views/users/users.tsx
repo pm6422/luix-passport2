@@ -8,22 +8,22 @@ import { TaskService } from '@/services/task-service'
 
 export default function Tasks() {
   // State to hold the fetched data
-  const [tasks, setTasks] = useState([]);
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     // Function to fetch data from backend
-    const fetchData = async () => {
+    const fetchTableData = async () => {
       // Promise.all([DataDictService.findAll(), UserService.findAll()])
       // .then(function (results) {
       //   const dicts = results[0];
       //   const users = results[1];
       // });
       const response = await TaskService.findAll();
-      setTasks(response.data);
+      setTableData(response.data);
     };
 
-    // Call the fetchData function when component mounts
-    fetchData();
+    // Call the fetchTableData function when component mounts
+    fetchTableData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array ensures useEffect runs only once on component mount
@@ -40,7 +40,7 @@ export default function Tasks() {
 
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tasks} columns={columns} />
+          <DataTable data={tableData} columns={columns} />
         </div>
       </LayoutBody>
     </Layout>
