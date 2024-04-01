@@ -5,7 +5,7 @@ import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
 import { DataTableViewOptions } from '../components/data-table-view-options'
 
-import { statuses } from './data'
+import { yesOrNo } from './data'
 import { DataTableFacetedFilter } from '../components/data-table-faceted-filter'
 
 interface DataTableToolbarProps<TData> {
@@ -29,11 +29,11 @@ export function DataTableToolbar<TData>({
           className='h-8 w-[150px] lg:w-[250px]'
         />
         <div className='flex gap-x-2'>
-          {table.getColumn('status') && (
+          {table.getColumn('enabled') && (
             <DataTableFacetedFilter
-              column={table.getColumn('status')}
-              title='Status'
-              options={statuses}
+              column={table.getColumn('enabled')}
+              title='Enabled'
+              options={yesOrNo}
             />
           )}
         </div>
