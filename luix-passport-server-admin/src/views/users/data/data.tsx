@@ -52,3 +52,16 @@ export const statuses = [
   },
 ]
 
+export const yesOrNo = [
+  {
+    value: true,
+    label: 'Yes',
+    icon: CheckCircledIcon,
+  },
+  {
+    value: false,
+    label: 'No',
+    icon: QuestionMarkCircledIcon,
+  }
+]
+
