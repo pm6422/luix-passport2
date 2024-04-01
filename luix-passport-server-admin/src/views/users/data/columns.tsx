@@ -6,9 +6,9 @@ import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
 import { labels, priorities, statuses } from './data'
-import { Task } from './schema'
+import { DataDict } from './schema'
 
-export const columns: ColumnDef<Task>[] = [
+export const columns: ColumnDef<DataDict>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -36,84 +36,147 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Task' />
+      <DataTableColumnHeader column={column} title='ID' />
     ),
-    cell: ({ row }) => <div className='w-[100px]'>{row.getValue('id')}</div>,
+    cell: ({ row }) => <div className='w-[30px]'>{row.getValue('id')}</div>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: 'title',
+    accessorKey: 'num',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Title' />
+      <DataTableColumnHeader column={column} title='#' />
     ),
-    cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
-
-      return (
-        <div className='flex space-x-2'>
-          {label && <Badge variant='outline'>{label.label}</Badge>}
-          <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
-            {row.getValue('title')}
-          </span>
-        </div>
-      )
-    },
+    cell: ({ row }) => <div className='w-[30px]'>{row.getValue('num')}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
-    accessorKey: 'status',
+    accessorKey: 'categoryCode',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Status' />
+      <DataTableColumnHeader column={column} title='Category Code' />
     ),
-    cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue('status')
-      )
-
-      if (!status) {
-        return null
-      }
-
-      return (
-        <div className='flex w-[100px] items-center'>
-          {status.icon && (
-            <status.icon className='mr-2 h-4 w-4 text-muted-foreground' />
-          )}
-          <span>{status.label}</span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    cell: ({ row }) => <div className='w-[50px]'>{row.getValue('categoryCode')}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
-    accessorKey: 'priority',
+    accessorKey: 'dictCode',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Priority' />
+      <DataTableColumnHeader column={column} title='Dictionary Code' />
     ),
-    cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue('priority')
-      )
-
-      if (!priority) {
-        return null
-      }
-
-      return (
-        <div className='flex items-center'>
-          {priority.icon && (
-            <priority.icon className='mr-2 h-4 w-4 text-muted-foreground' />
-          )}
-          <span>{priority.label}</span>
-        </div>
-      )
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
-    },
+    cell: ({ row }) => <div className='w-[50px]'>{row.getValue('dictCode')}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
+  {
+    accessorKey: 'dictName',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Dictionary Name' />
+    ),
+    cell: ({ row }) => <div className='w-[50px]'>{row.getValue('dictName')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: 'remark',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Remark' />
+    ),
+    cell: ({ row }) => <div className='w-[100px]'>{row.getValue('remark')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: 'enabled',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Enabled' />
+    ),
+    cell: ({ row }) => <div className='w-[50px]'>{'' + row.getValue('enabled')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  {
+    accessorKey: 'modifiedAt',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title='Modified At' />
+    ),
+    cell: ({ row }) => <div className='w-[150px]'>{row.getValue('modifiedAt')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+  // {
+  //   accessorKey: 'title',
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title='Title' />
+  //   ),
+  //   cell: ({ row }) => {
+  //     const label = labels.find((label) => label.value === row.original.label)
+
+  //     return (
+  //       <div className='flex space-x-2'>
+  //         {label && <Badge variant='outline'>{label.label}</Badge>}
+  //         <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
+  //           {row.getValue('title')}
+  //         </span>
+  //       </div>
+  //     )
+  //   },
+  // },
+  // {
+  //   accessorKey: 'status',
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title='Status' />
+  //   ),
+  //   cell: ({ row }) => {
+  //     const status = statuses.find(
+  //       (status) => status.value === row.getValue('status')
+  //     )
+
+  //     if (!status) {
+  //       return null
+  //     }
+
+  //     return (
+  //       <div className='flex w-[100px] items-center'>
+  //         {status.icon && (
+  //           <status.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+  //         )}
+  //         <span>{status.label}</span>
+  //       </div>
+  //     )
+  //   },
+  //   filterFn: (row, id, value) => {
+  //     return value.includes(row.getValue(id))
+  //   },
+  // },
+  // {
+  //   accessorKey: 'priority',
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title='Priority' />
+  //   ),
+  //   cell: ({ row }) => {
+  //     const priority = priorities.find(
+  //       (priority) => priority.value === row.getValue('priority')
+  //     )
+
+  //     if (!priority) {
+  //       return null
+  //     }
+
+  //     return (
+  //       <div className='flex items-center'>
+  //         {priority.icon && (
+  //           <priority.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+  //         )}
+  //         <span>{priority.label}</span>
+  //       </div>
+  //     )
+  //   },
+  //   filterFn: (row, id, value) => {
+  //     return value.includes(row.getValue(id))
+  //   },
+  // },
   {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,

@@ -6,5 +6,5 @@ export interface IDataDict {
     dictName?: string;
     remark?: string;
     enabled: boolean;
-    updatedTime?: string;
+    modifiedAt?: string;
   }

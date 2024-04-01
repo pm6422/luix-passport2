@@ -4,10 +4,13 @@ import { z } from 'zod'
 // IRL, you will have a schema for your data models.
 export const schema = z.object({
   id: z.string(),
-  title: z.string(),
-  status: z.string(),
-  label: z.string(),
-  priority: z.string(),
+  num: z.string(),
+  categoryCode: z.string(),
+  dictCode: z.string(),
+  dictName: z.string().nullable(),
+  remark: z.string().nullable(),
+  enabled: z.boolean(),
+  modifiedAt: z.string()
 })
 
-export type Task = z.infer<typeof schema>
+export type DataDict = z.infer<typeof schema>

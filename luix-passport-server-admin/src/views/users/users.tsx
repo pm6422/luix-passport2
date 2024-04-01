@@ -4,7 +4,6 @@ import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from './components/data-table'
 import { columns } from './data/columns'
 import { DataDictService } from '@/services/data-dict-service'
-import { TaskService } from '@/services/task-service'
 
 export default function Tasks() {
   // State to hold the fetched data
@@ -18,7 +17,7 @@ export default function Tasks() {
       //   const dicts = results[0];
       //   const users = results[1];
       // });
-      const response = await TaskService.findAll();
+      const response = await DataDictService.findAll();
       setTableData(response.data);
     };
 
