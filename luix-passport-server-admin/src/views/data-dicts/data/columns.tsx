@@ -5,7 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
-import { labels, priorities, statuses } from './data'
+import { labels, priorities } from './data'
 import { DataDict } from './schema'
 
 export const columns: ColumnDef<DataDict>[] = [
@@ -57,8 +57,8 @@ export const columns: ColumnDef<DataDict>[] = [
       <DataTableColumnHeader column={column} title='Category Code' />
     ),
     cell: ({ row }) => <div className='w-[50px]'>{row.getValue('categoryCode')}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
+    enableHiding: true,
   },
   {
     accessorKey: 'dictCode',
