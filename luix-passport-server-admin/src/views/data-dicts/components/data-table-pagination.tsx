@@ -1,9 +1,5 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  DoubleArrowLeftIcon,
-  DoubleArrowRightIcon,
-} from '@radix-ui/react-icons'
+
+import { IconChevronLeft, IconChevronRight, IconChevronsLeft, IconChevronsRight } from '@tabler/icons-react'
 import { Table } from '@tanstack/react-table'
 
 import { Button } from '@/components/custom/button'
@@ -61,7 +57,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanPreviousPage()}
           >
             <span className='sr-only'>Go to first page</span>
-            <DoubleArrowLeftIcon className='h-4 w-4' />
+            <IconChevronsLeft className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -70,7 +66,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanPreviousPage()}
           >
             <span className='sr-only'>Go to previous page</span>
-            <ChevronLeftIcon className='h-4 w-4' />
+            <IconChevronLeft className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -79,7 +75,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanNextPage()}
           >
             <span className='sr-only'>Go to next page</span>
-            <ChevronRightIcon className='h-4 w-4' />
+            <IconChevronRight className='h-4 w-4' />
           </Button>
           <Button
             variant='outline'
@@ -88,7 +84,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanNextPage()}
           >
             <span className='sr-only'>Go to last page</span>
-            <DoubleArrowRightIcon className='h-4 w-4' />
+            <IconChevronsRight className='h-4 w-4' />
           </Button>
         </div>
       </div>
