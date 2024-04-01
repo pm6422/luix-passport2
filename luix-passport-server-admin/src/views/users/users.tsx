@@ -5,7 +5,7 @@ import { DataTable } from './components/data-table'
 import { columns } from './data/columns'
 import { DataDictService } from '@/services/data-dict-service'
 
-export default function Tasks() {
+export default function DataDict() {
   // State to hold the fetched data
   const [tableData, setTableData] = useState([]);
 
