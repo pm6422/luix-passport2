@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from './components/data-table'
-import { columns } from './components/columns'
+import { columns } from './data/columns'
 import { DataDictService } from '@/services/data-dict-service'
 import { TaskService } from '@/services/task-service'
 
