@@ -1,6 +1,6 @@
 import {
   CheckCircledIcon,
-  QuestionMarkCircledIcon,
+  CrossCircledIcon,
 } from '@radix-ui/react-icons'
 
 export const labels = [
@@ -27,7 +27,7 @@ export const yesOrNo = [
   {
     value: false,
     label: 'No',
-    icon: QuestionMarkCircledIcon,
+    icon: CrossCircledIcon,
   }
 ]
 
