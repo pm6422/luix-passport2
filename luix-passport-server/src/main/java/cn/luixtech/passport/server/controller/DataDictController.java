@@ -43,15 +43,14 @@ public class DataDictController {
     private final DataDictService    dataDictService;
 
     @Operation(summary = "create new data dict")
-    @PostMapping("/api/data-dicts")
+    @PostMapping("/open-api/data-dicts")
     public ResponseEntity<Void> create(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
-        log.debug("REST request to create data dict: {}", domain);
         dataDictRepository.save(domain);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @Operation(summary = "find data dict list")
-    @GetMapping("/api/data-dicts")
+    @GetMapping("/open-api/data-dicts")
     public ResponseEntity<List<DataDict>> find(@ParameterObject Pageable pageable,
                                                @RequestParam(value = "categoryCode", required = false) String categoryCode,
                                                @RequestParam(value = "enabled", required = false) Boolean enabled) {
@@ -60,35 +59,35 @@ public class DataDictController {
     }
 
     @Operation(summary = "find data dict by id")
-    @GetMapping("/api/data-dicts/{id}")
+    @GetMapping("/open-api/data-dicts/{id}")
     public ResponseEntity<DataDict> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
         DataDict domain = dataDictRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
         return ResponseEntity.ok(domain);
     }
 
     @Operation(summary = "update data dict")
-    @PutMapping("/api/data-dicts")
+    @PutMapping("/open-api/data-dicts")
     public ResponseEntity<Void> update(@Parameter(description = "domain", required = true) @Valid @RequestBody DataDict domain) {
         dataDictRepository.save(domain);
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "batch update data dict")
-    @PutMapping("/api/data-dicts/batch-update")
+    @PutMapping("/open-api/data-dicts/batch-update")
     public ResponseEntity<Void> batchUpdate(@Parameter(description = "target", required = true) @Valid @RequestBody BatchUpdateDataDict target) {
         dataDictService.batchUpdateCategoryCode(target.getIds(), target.getTargetCategoryCode());
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "delete data dict by id")
-    @DeleteMapping("/api/data-dicts/{id}")
+    @DeleteMapping("/open-api/data-dicts/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
         dataDictRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "import data dicts", description = "file format should be JSON")
-    @PostMapping(value = "/api/data-dicts/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/open-api/data-dicts/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void importData(@Parameter(description = "file", required = true) @RequestPart MultipartFile file) throws IOException {
         String jsonStr = StreamUtils.copyToString(file.getInputStream(), StandardCharsets.UTF_8);
         List<DataDict> records = JSON.parseArray(jsonStr, DataDict.class);
@@ -103,7 +102,7 @@ public class DataDictController {
     }
 
     @Operation(summary = "download import template")
-    @GetMapping("/api/data-dicts/import-template")
+    @GetMapping("/open-api/data-dicts/import-template")
     public ResponseEntity<ByteArrayResource> getImportTemplate() {
         DataDict dataDict = dataDictRepository.findFirstByOrderByIdAsc();
         byte[] data = JSON.toJSONString(Arrays.asList(dataDict), JSONWriter.Feature.PrettyFormat).getBytes();

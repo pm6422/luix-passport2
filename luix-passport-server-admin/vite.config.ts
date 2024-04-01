@@ -19,6 +19,11 @@ export default defineConfig({
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, '')
       },
+      '/open-api': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
       '/management': {
         target: 'http://localhost:4001',
         changeOrigin: true,
