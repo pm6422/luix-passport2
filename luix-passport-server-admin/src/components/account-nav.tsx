@@ -41,6 +41,14 @@ export function AccountNav() {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <Link to="/data-dicts">
+            <DropdownMenuItem className='cursor-pointer'>
+              Data Dictionaries
+            </DropdownMenuItem>
+          </Link>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
         <Link to="/sign-in">
           <DropdownMenuItem className='cursor-pointer'>
             Sign out

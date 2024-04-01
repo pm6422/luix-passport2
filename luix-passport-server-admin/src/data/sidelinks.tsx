@@ -9,7 +9,8 @@ import {
   IconUsers,
   IconUserPlus,
   IconShieldCog,
-  IconShieldLock
+  IconShieldLock,
+  IconFilter
 } from '@tabler/icons-react'
 
 export interface NavLink {
