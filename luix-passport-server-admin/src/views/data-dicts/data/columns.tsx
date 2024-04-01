@@ -66,8 +66,8 @@ export const columns: ColumnDef<DataDict>[] = [
       <DataTableColumnHeader column={column} title='Dictionary Code' />
     ),
     cell: ({ row }) => <div className='w-[50px]'>{row.getValue('dictCode')}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
+    enableHiding: true,
   },
   {
     accessorKey: 'dictName',
@@ -75,8 +75,8 @@ export const columns: ColumnDef<DataDict>[] = [
       <DataTableColumnHeader column={column} title='Dictionary Name' />
     ),
     cell: ({ row }) => <div className='w-[50px]'>{row.getValue('dictName')}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
+    enableHiding: true,
   },
   {
     accessorKey: 'remark',
@@ -93,8 +93,8 @@ export const columns: ColumnDef<DataDict>[] = [
       <DataTableColumnHeader column={column} title='Enabled' />
     ),
     cell: ({ row }) => <div className='w-[50px]'>{'' + row.getValue('enabled')}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
+    enableHiding: true,
   },
   {
     accessorKey: 'modifiedAt',
