@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge"
 import dayjs from 'dayjs'
 
 export const defaultDateTimeFormat = "YYYY-MM-DD HH:mm:ss";
-export const defaultDateFormat = "YYYY-MM-DD HH:mm:ss";
+export const defaultDateFormat = "YYYY-MM-DD";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
