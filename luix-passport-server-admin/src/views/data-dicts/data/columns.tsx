@@ -5,7 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 
-import { labels, priorities } from './data'
+import { yesOrNo } from './data'
 import { DataDict } from './schema'
 
 export const columns: ColumnDef<DataDict>[] = [
@@ -92,9 +92,23 @@ export const columns: ColumnDef<DataDict>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Enabled' />
     ),
-    cell: ({ row }) => <div className='w-[50px]'>{'' + row.getValue('enabled')}</div>,
-    enableSorting: true,
-    enableHiding: true,
+    cell: ({ row }) => {
+      const element = yesOrNo.find(
+        (element) => element.value === row.getValue('enabled')
+      )
+
+      return (
+        <div className='flex w-[100px] items-center'>
+          {element && element.icon && (
+            <element.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+          )}
+          <span>{element && element.label}</span>
+        </div>
+      )
+    },
+    filterFn: (row, id, value) => {
+      return value.includes(row.getValue(id))
+    },
   },
   {
     accessorKey: 'modifiedAt',
@@ -105,51 +119,6 @@ export const columns: ColumnDef<DataDict>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  // {
-  //   accessorKey: 'title',
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title='Title' />
-  //   ),
-  //   cell: ({ row }) => {
-  //     const label = labels.find((label) => label.value === row.original.label)
-
-  //     return (
-  //       <div className='flex space-x-2'>
-  //         {label && <Badge variant='outline'>{label.label}</Badge>}
-  //         <span className='max-w-32 truncate font-medium sm:max-w-72 md:max-w-[31rem]'>
-  //           {row.getValue('title')}
-  //         </span>
-  //       </div>
-  //     )
-  //   },
-  // },
-  // {
-  //   accessorKey: 'status',
-  //   header: ({ column }) => (
-  //     <DataTableColumnHeader column={column} title='Status' />
-  //   ),
-  //   cell: ({ row }) => {
-  //     const status = statuses.find(
-  //       (status) => status.value === row.getValue('status')
-  //     )
-
-  //     if (!status) {
-  //       return null
-  //     }
-
-  //     return (
-  //       <div className='flex w-[100px] items-center'>
-  //         {status.icon && (
-  //           <status.icon className='mr-2 h-4 w-4 text-muted-foreground' />
-  //         )}
-  //         <span>{status.label}</span>
-  //       </div>
-  //     )
-  //   },
-  //   filterFn: (row, id, value) => {
-  //     return value.includes(row.getValue(id))
-  //   },
-  // },
   {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,
