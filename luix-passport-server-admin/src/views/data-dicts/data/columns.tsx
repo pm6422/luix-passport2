@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
-import { yesNo } from '@/data/yes-no'
+import { YesNo } from '@/data/yes-no'
 import { DataDict } from './schema'
 import dayjs from "dayjs"
 
@@ -93,7 +93,7 @@ export const columns: ColumnDef<DataDict>[] = [
       <DataTableColumnHeader column={column} title='Enabled' />
     ),
     cell: ({ row }) => {
-      const element = yesNo.find(
+      const element = YesNo.find(
         (element) => element.value === row.getValue('enabled')
       )
 
