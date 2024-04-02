@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { IconCalendar, IconCaretUpDown, IconCheck } from '@tabler/icons-react'
+import { IconCalendar, IconSelector, IconCheck } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import dayjs from 'dayjs'
@@ -170,7 +170,7 @@ export function AccountForm() {
                             (language) => language.value === field.value
                           )?.label
                         : 'Select language'}
-                      <IconCaretUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                      <IconSelector className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { IconCaretUpDown, IconCheck, IconChevronUp, IconChevronDown } from '@tabler/icons-react'
+import { IconSelector, IconCheck, IconChevronUp, IconChevronDown } from '@tabler/icons-react'
 
 import * as SelectPrimitive from "@radix-ui/react-select"
 
@@ -25,7 +25,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <IconCaretUpDown className="h-4 w-4 opacity-50" />
+      <IconSelector className="h-4 w-4 opacity-50" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
