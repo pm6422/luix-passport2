@@ -26,8 +26,8 @@ export default function DataDict() {
     // });
     const r = await DataDictService.find({page: pageNo, size: pageSize});
     setTableData(r.data);
-    
-    const totalCount = parseInt(r.headers["x-total-count"]);
+
+    const totalCount = parseInt(r.headers['x-total-count']);
     setTotalPages(Math.ceil(totalCount / pageSize));
   };
 
