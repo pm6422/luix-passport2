@@ -3,7 +3,7 @@ import { Table } from '@tanstack/react-table'
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
 import { DataTableViewOptions } from '../components/data-table-view-options'
-import { yesOrNo } from './data'
+import { yesNo } from '@/data/yes-no'
 import { DataTableFacetedFilter } from '../components/data-table-faceted-filter'
 
 interface DataTableToolbarProps<TData> {
@@ -31,7 +31,7 @@ export function DataTableToolbar<TData>({
             <DataTableFacetedFilter
               column={table.getColumn('enabled')}
               title='Enabled'
-              options={yesOrNo}
+              options={yesNo}
             />
           )}
         </div>
