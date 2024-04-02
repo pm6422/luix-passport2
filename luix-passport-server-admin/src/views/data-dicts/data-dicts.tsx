@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
-import { DataTable } from '../../components/custom/client-side-pagination-table/data-table'
+import { DataTable } from '../../components/custom/data-table/client-side-pagination/data-table'
 import { columns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
 
