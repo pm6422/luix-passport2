@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table'
 
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { DataTableColumnHeader } from '../components/data-table-column-header'
+import { DataTableColumnHeader } from '../../../components/custom/client-side-pagination-table/data-table-column-header'
 import { DataTableRowActions } from './table-row-actions'
 import { YesNo } from '@/data/yes-no'
 import { DataDict } from './table-schema'
