@@ -4,9 +4,9 @@ import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
-
 import { yesOrNo } from './data'
 import { DataDict } from './schema'
+import dayjs from "dayjs"
 
 export const columns: ColumnDef<DataDict>[] = [
   {
@@ -115,9 +115,9 @@ export const columns: ColumnDef<DataDict>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Modified At' />
     ),
-    cell: ({ row }) => <div className='w-[150px]'>{row.getValue('modifiedAt')}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    cell: ({ row }) => <div className='w-[150px]'>{dayjs(row.getValue('modifiedAt')).format('YYYY-MM-DD HH:mm:ss')}</div>,
+    enableSorting: true,
+    enableHiding: true,
   },
   {
     id: 'actions',

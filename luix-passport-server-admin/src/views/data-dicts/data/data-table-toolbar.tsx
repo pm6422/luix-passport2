@@ -1,10 +1,8 @@
 import { IconX } from '@tabler/icons-react'
 import { Table } from '@tanstack/react-table'
-
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
 import { DataTableViewOptions } from '../components/data-table-view-options'
-
 import { yesOrNo } from './data'
 import { DataTableFacetedFilter } from '../components/data-table-faceted-filter'
 
