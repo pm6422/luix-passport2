@@ -17,7 +17,7 @@ export default function DataDict() {
       //   const dicts = results[0];
       //   const users = results[1];
       // });
-      const response = await DataDictService.findAll();
+      const response = await DataDictService.find({page: 1, size: 10});
       setTableData(response.data);
     };
 
