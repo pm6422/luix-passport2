@@ -33,22 +33,22 @@ export const columns: ColumnDef<DataDict>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: 'id',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='ID' />
-    ),
-    cell: ({ row }) => <div className='w-[30px]'>{row.getValue('id')}</div>,
-    enableSorting: false,
-    enableHiding: false,
-  },
+  // {
+  //   accessorKey: 'id',
+  //   header: ({ column }) => (
+  //     <DataTableColumnHeader column={column} title='ID' />
+  //   ),
+  //   cell: ({ row }) => <div className='w-[30px]'>{row.getValue('id')}</div>,
+  //   enableSorting: false,
+  //   enableHiding: true,
+  // },
   {
     accessorKey: 'num',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Number' />
     ),
     cell: ({ row }) => <div className='w-[30px]'>{row.getValue('num')}</div>,
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
   {
@@ -100,7 +100,7 @@ export const columns: ColumnDef<DataDict>[] = [
       return (
         <div className='flex w-[100px] items-center'>
           {element && element.icon && (
-            <element.icon className='mr-2 h-4 w-4 text-muted-foreground' />
+            <element.icon className='mr-2 h-5 w-5 text-muted-foreground' />
           )}
           <span>{element && element.label}</span>
         </div>
@@ -113,7 +113,7 @@ export const columns: ColumnDef<DataDict>[] = [
   {
     accessorKey: 'modifiedAt',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Modified At' />
+      <DataTableColumnHeader column={column} title='Modified at' />
     ),
     cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('modifiedAt'))}</div>,
     enableSorting: true,
