@@ -6,7 +6,7 @@ import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './table-row-actions'
 import { YesNo } from '@/data/yes-no'
 import { DataDict } from './table-schema'
-import dayjs from "dayjs"
+import { formatDateTime } from '@/utils/utils'
 
 export const columns: ColumnDef<DataDict>[] = [
   {
@@ -115,7 +115,7 @@ export const columns: ColumnDef<DataDict>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Modified At' />
     ),
-    cell: ({ row }) => <div className='w-[150px]'>{dayjs(row.getValue('modifiedAt')).format('YYYY-MM-DD HH:mm:ss')}</div>,
+    cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('modifiedAt'))}</div>,
     enableSorting: true,
     enableHiding: true,
   },
