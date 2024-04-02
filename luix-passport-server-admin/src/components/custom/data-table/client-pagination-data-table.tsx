@@ -13,6 +13,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { DataTablePagination } from './data-table-pagination'
+// import { DataTableToolbar } from '../custom/table-toolbar'
 
 import {
   Table,
@@ -22,9 +24,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-
-import { DataTablePagination } from './data-table-pagination'
-// import { DataTableToolbar } from '../custom/table-toolbar'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]

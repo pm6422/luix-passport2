@@ -13,6 +13,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { DataTablePagination } from './data-table-pagination'
+// import { DataTableToolbar } from '../custom/table-toolbar'
 
 import {
   Table,
@@ -23,19 +25,18 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-import { DataTablePagination } from './data-table-pagination'
-// import { DataTableToolbar } from '../custom/table-toolbar'
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  totalPages: number
+  totalPages: number,
+  onPaginationChange: Function
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  totalPages
+  totalPages,
+  onPaginationChange
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
@@ -55,7 +56,15 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
     manualPagination: true, //turn off client-side pagination
-    pageCount: totalPages, //
+    pageCount: totalPages,
+    onPaginationChange: (updater) => {
+      // make sure updater is callable (to avoid typescript warning)
+      if (typeof updater !== 'function') {
+        return;
+      }
+      const newPaginationInfo = updater(table.getState().pagination);
+      onPaginationChange(newPaginationInfo);
+    },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
