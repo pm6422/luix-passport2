@@ -45,7 +45,7 @@ export const columns: ColumnDef<DataDict>[] = [
   {
     accessorKey: 'num',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='#' />
+      <DataTableColumnHeader column={column} title='Number' />
     ),
     cell: ({ row }) => <div className='w-[30px]'>{row.getValue('num')}</div>,
     enableSorting: false,
