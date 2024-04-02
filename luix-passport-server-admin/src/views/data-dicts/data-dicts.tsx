@@ -35,7 +35,6 @@ export default function DataDict() {
     fetchTableData(pagination.pageIndex, pagination.pageSize);
   };
 
-
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
