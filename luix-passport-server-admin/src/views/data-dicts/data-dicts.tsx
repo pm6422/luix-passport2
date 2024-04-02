@@ -9,6 +9,7 @@ import { PaginationState } from '@tanstack/react-table'
 export default function DataDict() {
   // State to hold the fetched data
   const [tableData, setTableData] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     // Call the fetchTableData function when component mounts
@@ -17,14 +18,17 @@ export default function DataDict() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Empty dependency array ensures useEffect runs only once on component mount
 
-  const fetchTableData = async (page: number = 0, size: number = 10) => {
+  const fetchTableData = async (pageNo: number = 0, pageSize: number = 10) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
     // .then(function (results) {
     //   const dicts = results[0];
     //   const users = results[1];
     // });
-    const response = await DataDictService.find({page: page, size: size});
-    setTableData(response.data);
+    const r = await DataDictService.find({page: pageNo, size: pageSize});
+    setTableData(r.data);
+    
+    const totalCount = parseInt(r.headers["x-total-count"]);
+    setTotalPages(Math.ceil(totalCount / pageSize));
   };
 
   const handlePaginationChange = (pagination: PaginationState) => {
@@ -43,7 +47,7 @@ export default function DataDict() {
 
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={columns} totalPages={10} onPaginationChange={handlePaginationChange}/>
+          <DataTable data={tableData} columns={columns} totalPages={totalPages} onPaginationChange={handlePaginationChange}/>
         </div>
       </LayoutBody>
     </Layout>
