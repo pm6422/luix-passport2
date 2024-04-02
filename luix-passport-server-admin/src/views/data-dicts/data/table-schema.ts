@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 // We're keeping a simple non-relational schema here.
 // IRL, you will have a schema for your data models.
-export const schema = z.object({
+export const tableSchema = z.object({
   id: z.string(),
   num: z.string(),
   categoryCode: z.string(),
@@ -13,4 +13,4 @@ export const schema = z.object({
   modifiedAt: z.string()
 })
 
-export type DataDict = z.infer<typeof schema>
+export type DataDict = z.infer<typeof tableSchema>

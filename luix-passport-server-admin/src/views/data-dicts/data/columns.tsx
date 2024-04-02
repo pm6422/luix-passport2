@@ -5,7 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '../components/data-table-column-header'
 import { DataTableRowActions } from './data-table-row-actions'
 import { YesNo } from '@/data/yes-no'
-import { DataDict } from './schema'
+import { DataDict } from './table-schema'
 import dayjs from "dayjs"
 
 export const columns: ColumnDef<DataDict>[] = [

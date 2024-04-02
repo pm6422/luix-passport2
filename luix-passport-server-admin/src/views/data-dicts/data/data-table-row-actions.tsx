@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { schema } from './schema'
+import { tableSchema } from './table-schema'
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -16,7 +16,7 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const rowData = schema.parse(row.original)
+  const rowData = tableSchema.parse(row.original)
 
   return (
     <DropdownMenu>
