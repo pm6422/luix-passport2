@@ -78,15 +78,6 @@ export default function Sidebar2({
           </Button>
         </LayoutHeader>
 
-        {/* Navigation links */}
-        <SidebarMenu
-          id='sidebar-menu'
-          className={`h-full flex-1 overflow-auto ${navOpened ? 'max-h-screen' : 'max-h-0 py-0 md:max-h-screen md:py-2'}`}
-          closeNav={() => setNavOpened(false)}
-          isCollapsed={isCollapsed}
-          links={sidelinks}
-        />
-
         {/* Scrollbar width toggle button */}
         <Button
           onClick={() => setIsCollapsed((prev) => !prev)}
@@ -99,6 +90,15 @@ export default function Sidebar2({
             className={`h-5 w-5 ${isCollapsed ? 'rotate-180' : ''}`}
           />
         </Button>
+
+        {/* Navigation links */}
+        <SidebarMenu
+          id='sidebar-menu'
+          className={`h-full flex-1 overflow-auto ${navOpened ? 'max-h-screen' : 'max-h-0 py-0 md:max-h-screen md:py-2'}`}
+          closeNav={() => setNavOpened(false)}
+          isCollapsed={isCollapsed}
+          links={sidelinks}
+        />
       </Layout>
     </aside>
   )
