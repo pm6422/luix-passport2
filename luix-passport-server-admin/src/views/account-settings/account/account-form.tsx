@@ -3,7 +3,7 @@ import { IconCalendar, IconSelector, IconCheck } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import dayjs from 'dayjs'
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 import { Button } from '@/components/custom/button'
 import { Calendar } from '@/components/ui/calendar'
 import {

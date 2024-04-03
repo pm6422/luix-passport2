@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { cn } from '@/utils/utils'
+import { cn } from '@/lib/utils'
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
