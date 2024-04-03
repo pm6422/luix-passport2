@@ -7,8 +7,8 @@ export const tableSchema = z.object({
   num: z.string(),
   categoryCode: z.string(),
   dictCode: z.string(),
-  dictName: z.string().nullable(),
-  remark: z.string().nullable(),
+  dictName: z.string().optional(),
+  remark: z.string().optional(),
   enabled: z.boolean(),
   modifiedAt: z.string()
 })

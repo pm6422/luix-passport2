@@ -7,16 +7,17 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { tableSchema } from './table-schema'
+// import { tableSchema } from './table-schema'
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
 
 export function DataTableRowActions<TData>({
-  row,
+  row
 }: DataTableRowActionsProps<TData>) {
-  const rowData = tableSchema.parse(row.original)
+  // const rowData = tableSchema.parse(row.original)
+  // console.log(row.original);
 
   return (
     <DropdownMenu>
