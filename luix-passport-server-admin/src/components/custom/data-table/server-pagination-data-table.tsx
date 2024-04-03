@@ -78,13 +78,12 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
-  const currentPageIndex = table.getState().pagination.pageIndex;
-  const currentPageSize = table.getState().pagination.pageSize;
+  const currentPaginationState = table.getState().pagination;
 
-  // Use the useEffect hook to listen for changes in the current page index, current page size and trigger the onPaginationChange callback when it changes
+  // Use the useEffect hook to listen for changes in the currentPaginationState and trigger the onPaginationChange callback when it changes
   useEffect(() => {
-    onPaginationChange && onPaginationChange({pageIndex: currentPageIndex, pageSize: currentPageSize});
-  }, [currentPageIndex, currentPageSize]);
+    onPaginationChange && onPaginationChange(currentPaginationState);
+  }, [currentPaginationState]);
 
   return (
     <div className='space-y-4'>
