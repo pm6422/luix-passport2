@@ -4,7 +4,6 @@ import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
 import { YesNo } from '@/data/yes-no'
 import { DataTableFacetedFilter } from '@/components/custom/data-table/data-table-faceted-filter'
-import { DataTableViewOptions } from '@/components/custom/data-table/data-table-view-options'
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>
@@ -46,7 +45,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <DataTableViewOptions table={table} />
+      {/* <DataTableViewOptions table={table} /> */}
     </div>
   )
 }
