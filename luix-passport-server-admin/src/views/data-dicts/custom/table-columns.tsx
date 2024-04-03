@@ -120,5 +120,5 @@ export const columns: ColumnDef<DataDict>[] = [
   {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,
-  },
+  }
 ]
