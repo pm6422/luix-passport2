@@ -81,7 +81,7 @@ export const columns: ColumnDef<DataDict>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title='Remark' />
     ),
-    cell: ({ row }) => <div className='w-[100px]'>{row.getValue('remark')}</div>,
+    cell: ({ row }) => <div className='w-[150px]'>{row.getValue('remark')}</div>,
     enableSorting: false,
     enableHiding: false,
   },
@@ -96,9 +96,9 @@ export const columns: ColumnDef<DataDict>[] = [
       )
 
       return (
-        <div className='flex w-[100px] items-center'>
+        <div className='flex w-[50px] items-center'>
           {element && element.icon && (
-            <element.icon className='mr-2 h-5 w-5 text-muted-foreground' />
+            <element.icon className='mr-2 h-6 w-6 text-muted-foreground' />
           )}
           <span>{element && element.label}</span>
         </div>
