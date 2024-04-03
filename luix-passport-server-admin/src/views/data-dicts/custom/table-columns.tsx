@@ -31,15 +31,6 @@ export function getColumns(yesNo: Array<any>): ColumnDef<DataDictSchema>[] {
       enableSorting: false,
       enableHiding: false,
     },
-    // {
-    //   accessorKey: 'id',
-    //   header: ({ column }) => (
-    //     <DataTableColumnHeader column={column} title='ID' />
-    //   ),
-    //   cell: ({ row }) => <div className='w-[30px]'>{row.getValue('id')}</div>,
-    //   enableSorting: false,
-    //   enableHiding: true,
-    // },
     {
       accessorKey: 'num',
       header: ({ column }) => (
