@@ -4,7 +4,7 @@ import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { columns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
-import { PaginationState } from '@tanstack/react-table'
+import { PaginationState, SortingState } from '@tanstack/react-table'
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -35,6 +35,10 @@ export default function DataDict() {
     fetchTableData(paginationState.pageIndex, paginationState.pageSize);
   }
 
+  const handlePSortingChange = (sortingState: SortingState) => {
+    console.log();
+  }
+
   return (
     <Layout>
       <LayoutHeader>
@@ -44,7 +48,8 @@ export default function DataDict() {
       </LayoutHeader>
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} onPaginationChange={handlePaginationChange}/>
+          <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} 
+            onPaginationChange={handlePaginationChange} onSortingChange={handlePSortingChange}/>
         </div>
       </LayoutBody>
     </Layout>

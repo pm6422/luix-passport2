@@ -12,6 +12,7 @@ import {
   // getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  Sorting
 } from '@tanstack/react-table'
 import { DataTablePagination } from './data-table-pagination'
 // import { DataTableToolbar } from '../custom/table-toolbar'
@@ -31,7 +32,8 @@ interface DataTableProps<TData, TValue> {
   data: TData[],
   totalCount: number,
   totalPages: number,
-  onPaginationChange: Function
+  onPaginationChange: Function,
+  onSortingChange: Function
 }
 
 export function DataTable<TData, TValue>({
@@ -39,7 +41,8 @@ export function DataTable<TData, TValue>({
   data,
   totalCount,
   totalPages,
-  onPaginationChange
+  onPaginationChange,
+  onSortingChange
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] =
@@ -59,6 +62,7 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
     manualPagination: true, // turn off client-side pagination
+    manualSorting: true, // turn off client-side sorting
     pageCount: totalPages, // add page count
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -74,11 +78,16 @@ export function DataTable<TData, TValue>({
   })
 
   const currentPaginationState = table.getState().pagination;
-
   // Use the useEffect hook to listen for changes in the currentPaginationState and trigger the onPaginationChange callback when it changes
   useEffect(() => {
     onPaginationChange && onPaginationChange(currentPaginationState);
   }, [currentPaginationState]);
+
+  const currentSortingState = table.getState().sorting;
+  // Use the useEffect hook to listen for changes in the currentSortingState and trigger the onSortingChange callback when it changes
+  useEffect(() => {
+    onSortingChange && onSortingChange(currentSortingState);
+  }, [currentSortingState])
 
   return (
     <div className='space-y-4'>
