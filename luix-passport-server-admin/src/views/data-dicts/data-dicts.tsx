@@ -23,12 +23,12 @@ export default function DataDict() {
     //   const dicts = results[0];
     //   const users = results[1];
     // });
-    const r = await DataDictService.find({page: pageNo, size: pageSize});
-    setTableData(r.data);
-
-    const total = parseInt(r.headers['x-total-count']);
-    setTotalCount(total)
-    setTotalPages(Math.ceil(total / pageSize));
+    DataDictService.find({page: pageNo, size: pageSize}).then(r => {
+      setTableData(r.data)
+      const total = parseInt(r.headers['x-total-count'])
+      setTotalCount(total)
+      setTotalPages(Math.ceil(total / pageSize));
+    })
   }
 
   const handlePaginationChange = (paginationState: PaginationState) => {

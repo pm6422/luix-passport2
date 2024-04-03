@@ -111,7 +111,7 @@ export const columns: ColumnDef<DataDict>[] = [
   {
     accessorKey: 'modifiedAt',
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title='Modified at' />
+      <DataTableColumnHeader column={column} title='Modified At' />
     ),
     cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('modifiedAt'))}</div>,
     enableSorting: true,
