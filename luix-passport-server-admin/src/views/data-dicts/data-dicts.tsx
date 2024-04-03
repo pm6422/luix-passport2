@@ -4,13 +4,14 @@ import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { columns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
-import { PaginationState, SortingState, ColumnFiltersState } from '@tanstack/react-table'
+import { PaginationState, SortingState, ColumnFilter } from '@tanstack/react-table'
 
 export default function DataDict() {
   // State to hold the fetched data
   const [tableData, setTableData] = useState([])
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
+  const [tableColumns, setTableColumns] = useState([])
 
   useEffect(() => {
     // Call the fetchTableData function when component mounts
@@ -31,7 +32,7 @@ export default function DataDict() {
     })
   }
 
-  const loadPage = (pagination: PaginationState, sorting: SortingState, filter: ColumnFiltersState) => {
+  const loadPage = (pagination: PaginationState, sorting: SortingState, filter: Array<ColumnFilter>) => {
     fetchTableData(pagination.pageIndex, pagination.pageSize);
   }
 
