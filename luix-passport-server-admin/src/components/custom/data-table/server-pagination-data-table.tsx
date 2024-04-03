@@ -56,15 +56,7 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
     manualPagination: true, // turn off client-side pagination
-    pageCount: totalPages,
-    // onPaginationChange: (updater) => {
-    //   // make sure updater is callable (to avoid typescript warning)
-    //   if (typeof updater !== 'function') {
-    //     return;
-    //   }
-    //   const newPaginationInfo = updater(table.getState().pagination);
-    //   onPaginationChange(newPaginationInfo);
-    // },
+    pageCount: totalPages, // add page count
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
