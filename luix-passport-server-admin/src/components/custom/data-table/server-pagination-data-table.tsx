@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useState, useEffect } from 'react'
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -38,13 +38,13 @@ export function DataTable<TData, TValue>({
   totalPages,
   onPaginationChange
 }: DataTableProps<TData, TValue>) {
-  const [rowSelection, setRowSelection] = React.useState({})
+  const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    useState<VisibilityState>({})
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
     []
   )
-  const [sorting, setSorting] = React.useState<SortingState>([])
+  const [sorting, setSorting] = useState<SortingState>([])
 
   const table = useReactTable({
     data,
@@ -57,14 +57,14 @@ export function DataTable<TData, TValue>({
     },
     manualPagination: true, // turn off client-side pagination
     pageCount: totalPages,
-    onPaginationChange: (updater) => {
-      // make sure updater is callable (to avoid typescript warning)
-      if (typeof updater !== 'function') {
-        return;
-      }
-      const newPaginationInfo = updater(table.getState().pagination);
-      onPaginationChange(newPaginationInfo);
-    },
+    // onPaginationChange: (updater) => {
+    //   // make sure updater is callable (to avoid typescript warning)
+    //   if (typeof updater !== 'function') {
+    //     return;
+    //   }
+    //   const newPaginationInfo = updater(table.getState().pagination);
+    //   onPaginationChange(newPaginationInfo);
+    // },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
     onSortingChange: setSorting,
@@ -77,6 +77,14 @@ export function DataTable<TData, TValue>({
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
+
+  const currentPageIndex = table.getState().pagination.pageIndex;
+  const currentPageSize = table.getState().pagination.pageSize;
+
+  // Use the useEffect hook to listen for changes in the current page index, current page size and trigger the onPaginationChange callback when it changes
+  useEffect(() => {
+    onPaginationChange && onPaginationChange({pageIndex: currentPageIndex, pageSize: currentPageSize});
+  }, [currentPageIndex, currentPageSize]);
 
   return (
     <div className='space-y-4'>
