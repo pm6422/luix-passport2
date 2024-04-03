@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
-import { columns } from './custom/table-columns'
+import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
-import { PaginationState, SortingState, ColumnFilter } from '@tanstack/react-table'
+import { PaginationState, SortingState, ColumnFilter, ColumnDef } from '@tanstack/react-table'
+import { DataDict } from './custom/table-schema'
+import { YesNo } from '@/data/yes-no'
 
 export default function DataDict() {
   // State to hold the fetched data
   const [tableData, setTableData] = useState([])
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
-  const [tableColumns, setTableColumns] = useState([])
+  const [tableColumns, setTableColumns] = useState(Array<ColumnDef<DataDict>>)
 
   useEffect(() => {
     // Call the fetchTableData function when component mounts
@@ -30,6 +32,8 @@ export default function DataDict() {
       setTotalCount(total)
       setTotalPages(Math.ceil(total / pageSize));
     })
+
+    setTableColumns(getColumns(YesNo));
   }
 
   const loadPage = (pagination: PaginationState, sorting: SortingState, filter: Array<ColumnFilter>) => {
@@ -45,7 +49,7 @@ export default function DataDict() {
       </LayoutHeader>
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}/>
+          <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}/>
         </div>
       </LayoutBody>
     </Layout>
