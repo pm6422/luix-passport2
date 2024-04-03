@@ -14,9 +14,7 @@ export default function DataDict() {
   useEffect(() => {
     // Call the fetchTableData function when component mounts
     fetchTableData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Empty dependency array ensures useEffect runs only once on component mount
+  }, []);
 
   const fetchTableData = async (pageNo: number = 0, pageSize: number = 10) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
@@ -31,8 +29,8 @@ export default function DataDict() {
     setTotalPages(Math.ceil(totalCount / pageSize));
   };
 
-  const handlePaginationChange = (pagination: PaginationState) => {
-    fetchTableData(pagination.pageIndex, pagination.pageSize);
+  const handlePaginationChange = (paginationState: PaginationState) => {
+    fetchTableData(paginationState.pageIndex, paginationState.pageSize);
   };
 
   return (

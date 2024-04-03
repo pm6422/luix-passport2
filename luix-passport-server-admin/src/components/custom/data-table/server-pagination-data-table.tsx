@@ -55,7 +55,7 @@ export function DataTable<TData, TValue>({
       rowSelection,
       columnFilters,
     },
-    manualPagination: true, //turn off client-side pagination
+    manualPagination: true, // turn off client-side pagination
     pageCount: totalPages,
     onPaginationChange: (updater) => {
       // make sure updater is callable (to avoid typescript warning)
@@ -72,7 +72,7 @@ export function DataTable<TData, TValue>({
     onColumnVisibilityChange: setColumnVisibility,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    // getPaginationRowModel: getPaginationRowModel(), //load client-side pagination code
+    // getPaginationRowModel: getPaginationRowModel(), // load client-side pagination code
     getSortedRowModel: getSortedRowModel(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
