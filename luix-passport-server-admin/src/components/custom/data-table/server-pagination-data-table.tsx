@@ -62,6 +62,7 @@ export function DataTable<TData, TValue>({
     },
     manualPagination: true, // turn off client-side pagination
     manualSorting: true, // turn off client-side sorting
+    manualFiltering: true, // turn off client-side filtering
     pageCount: totalPages, // add page count
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
