@@ -31,12 +31,8 @@ export default function DataDict() {
     })
   }
 
-  const handlePaginationChange = (paginationState: PaginationState) => {
-    fetchTableData(paginationState.pageIndex, paginationState.pageSize);
-  }
-
-  const handlePSortingChange = (sortingState: SortingState) => {
-    console.log();
+  const loadPage = (pagination: PaginationState, sorting: SortingState) => {
+    fetchTableData(pagination.pageIndex, pagination.pageSize);
   }
 
   return (
@@ -48,8 +44,7 @@ export default function DataDict() {
       </LayoutHeader>
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} 
-            onPaginationChange={handlePaginationChange} onSortingChange={handlePSortingChange}/>
+          <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}/>
         </div>
       </LayoutBody>
     </Layout>

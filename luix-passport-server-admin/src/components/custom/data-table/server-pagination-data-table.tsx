@@ -31,8 +31,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[],
   totalCount: number,
   totalPages: number,
-  onPaginationChange: Function,
-  onSortingChange: Function
+  loadPage: Function
 }
 
 export function DataTable<TData, TValue>({
@@ -40,8 +39,7 @@ export function DataTable<TData, TValue>({
   data,
   totalCount,
   totalPages,
-  onPaginationChange,
-  onSortingChange
+  loadPage
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] =
@@ -78,16 +76,13 @@ export function DataTable<TData, TValue>({
   })
 
   const currentPaginationState = table.getState().pagination;
-  // Use the useEffect hook to listen for changes in the currentPaginationState and trigger the onPaginationChange callback when it changes
-  useEffect(() => {
-    onPaginationChange && onPaginationChange(currentPaginationState);
-  }, [currentPaginationState]);
-
   const currentSortingState = table.getState().sorting;
-  // Use the useEffect hook to listen for changes in the currentSortingState and trigger the onSortingChange callback when it changes
+  // Use the useEffect hook to listen for changes in the currentPaginationState, currentSortingState 
+  // and trigger the loadPage callback when it changes
   useEffect(() => {
-    onSortingChange && onSortingChange(currentSortingState);
-  }, [currentSortingState])
+    loadPage && loadPage(currentPaginationState, currentSortingState);
+  }, [currentPaginationState, currentSortingState]);
+
 
   return (
     <div className='space-y-4'>
