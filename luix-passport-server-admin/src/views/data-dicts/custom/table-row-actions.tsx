@@ -13,9 +13,7 @@ interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
 
-export function DataTableRowActions<TData>({
-  row
-}: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData>) {
   // const rowData = tableSchema.parse(row.original)
   // console.log(row.original);
 
