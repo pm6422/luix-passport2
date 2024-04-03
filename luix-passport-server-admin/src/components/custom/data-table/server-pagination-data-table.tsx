@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import {
   ColumnDef,
-  ColumnFiltersState,
   PaginationState,
   SortingState,
+  ColumnFiltersState,
   VisibilityState,
   flexRender,
   getCoreRowModel,
@@ -44,10 +44,7 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-  const [pagination, setPagination] = useState<PaginationState>({
-    pageIndex: 0, // initial page index
-    pageSize: 10, // default page size
-  })
+  const [pagination, setPagination] = useState<PaginationState>({pageIndex: 0, pageSize: 10})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
@@ -81,9 +78,8 @@ export function DataTable<TData, TValue>({
 
   // Use the useEffect hook to listen for changes and trigger the loadPage callback when it changes
   useEffect(() => {
-    loadPage && loadPage(pagination, sorting);
-  }, [pagination, sorting]);
-
+    loadPage && loadPage(pagination, sorting, columnFilters);
+  }, [pagination, sorting, columnFilters]);
 
   return (
     <div className='space-y-4'>

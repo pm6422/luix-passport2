@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
   ColumnDef,
-  ColumnFiltersState,
   SortingState,
+  ColumnFiltersState,
   VisibilityState,
   flexRender,
   getCoreRowModel,
@@ -43,9 +43,9 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     state: {
-      sorting,
       columnVisibility,
       rowSelection,
+      sorting,
       columnFilters,
     },
     enableRowSelection: true,
