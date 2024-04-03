@@ -52,6 +52,9 @@ Start the server
   pnpm run dev
 ```
 
+## Installing Shadcn UI component
+npx shadcn-ui@latest add label
+
 ## Author
 
 Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
