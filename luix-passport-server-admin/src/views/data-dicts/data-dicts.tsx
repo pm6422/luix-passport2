@@ -17,7 +17,7 @@ export default function DataDict() {
     fetchTableData();
   }, [])
 
-  const fetchTableData = async (pageNo: number = 0, pageSize: number = 10) => {
+  const fetchTableData = (pageNo: number = 0, pageSize: number = 10) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
     // .then(function (results) {
     //   const dicts = results[0];
