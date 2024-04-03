@@ -2,15 +2,13 @@ import {
   IconComponents,
   IconHexagonNumber3,
   IconHexagonNumber4,
-  IconLayoutDashboard,
-  IconSettings,
+  IconDashboard,
   IconUserCog,
   IconUserShield,
   IconUsers,
   IconUserPlus,
   IconShieldCog,
   IconShieldLock,
-  IconFilter
 } from '@tabler/icons-react'
 
 export interface NavLink {
@@ -29,7 +27,7 @@ export const sidelinks: SideLink[] = [
     title: 'Dashboard',
     label: '',
     href: '/',
-    icon: <IconLayoutDashboard size={25} />,
+    icon: <IconDashboard size={25} />,
   },
   {
     title: 'User Roles',
