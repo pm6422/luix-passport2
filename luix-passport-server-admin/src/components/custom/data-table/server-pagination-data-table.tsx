@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import {
   ColumnDef,
   ColumnFiltersState,
+  PaginationState,
   SortingState,
   VisibilityState,
   flexRender,
@@ -43,16 +44,21 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0, // initial page index
+    pageSize: 10, // default page size
+  })
   const [sorting, setSorting] = useState<SortingState>([])
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
   const table = useReactTable({
     data,
     columns,
     state: {
-      sorting,
       columnVisibility,
       rowSelection,
+      pagination,
+      sorting,
       columnFilters,
     },
     manualPagination: true, // turn off client-side pagination
@@ -61,6 +67,7 @@ export function DataTable<TData, TValue>({
     pageCount: totalPages, // add page count
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
+    onPaginationChange: setPagination,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
@@ -72,13 +79,10 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
-  const currentPaginationState = table.getState().pagination;
-  const currentSortingState = table.getState().sorting;
-  // Use the useEffect hook to listen for changes in the currentPaginationState, currentSortingState 
-  // and trigger the loadPage callback when it changes
+  // Use the useEffect hook to listen for changes and trigger the loadPage callback when it changes
   useEffect(() => {
-    loadPage && loadPage(currentPaginationState, currentSortingState);
-  }, [currentPaginationState, currentSortingState]);
+    loadPage && loadPage(pagination, sorting);
+  }, [pagination, sorting]);
 
 
   return (
