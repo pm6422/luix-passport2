@@ -37,13 +37,11 @@ export default function DataDict() {
 
   return (
     <Layout>
-      {/* ===== Top Heading ===== */}
       <LayoutHeader>
         <div className='ml-auto flex items-center space-x-4'>
           <AccountNav />
         </div>
       </LayoutHeader>
-
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
           <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} onPaginationChange={handlePaginationChange}/>
