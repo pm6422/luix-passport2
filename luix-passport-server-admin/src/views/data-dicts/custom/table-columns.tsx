@@ -1,6 +1,4 @@
 import { ColumnDef } from '@tanstack/react-table'
-
-import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
 import { DataTableRowActions } from './table-row-actions'
