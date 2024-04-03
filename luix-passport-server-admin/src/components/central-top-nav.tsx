@@ -9,7 +9,7 @@ import {
 import { Button } from './custom/button'
 import { IconMenu } from '@tabler/icons-react'
 
-interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
+interface CentralTopNavProps extends React.HTMLAttributes<HTMLElement> {
   links: {
     title: string
     href: string
@@ -17,7 +17,7 @@ interface TopNavProps extends React.HTMLAttributes<HTMLElement> {
   }[]
 }
 
-export function TopNav({ className, links, ...props }: TopNavProps) {
+export function CentralTopNav({ className, links, ...props }: CentralTopNavProps) {
   return (
     <>
       <div className='md:hidden'>

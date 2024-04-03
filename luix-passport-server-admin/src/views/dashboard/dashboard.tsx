@@ -5,11 +5,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Button } from '@/components/custom/button'
 import { Search } from '@/components/custom/search'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 // import ThemeSwitch from '@/components/theme-switch'
-import { TopNav } from '@/components/top-nav'
+import { CentralTopNav } from '@/components/central-top-nav'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { RecentSales } from './components/recent-sales'
@@ -21,7 +20,7 @@ export default function Dashboard() {
     <Layout>
       {/* ===== Top Heading ===== */}
       <LayoutHeader>
-        <TopNav links={topNav} />
+        <CentralTopNav links={topNav} />
         <div className='ml-auto flex items-center space-x-4'>
           <Search />
           {/* <ThemeSwitch /> */}
