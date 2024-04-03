@@ -4,7 +4,7 @@ import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
-import { PaginationState, SortingState, ColumnFilter, ColumnDef } from '@tanstack/react-table'
+import { PaginationState, ColumnSort, ColumnFilter, ColumnDef } from '@tanstack/react-table'
 import { DataDictSchema } from './custom/table-schema'
 import { YesNo } from '@/data/yes-no'
 
@@ -20,13 +20,13 @@ export default function DataDict() {
     fetchTableData();
   }, [])
 
-  const fetchTableData = (pageNo: number = 0, pageSize: number = 10) => {
+  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sort: string = 'modifiedAt,desc') => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
     // .then(function (results) {
     //   const dicts = results[0];
     //   const users = results[1];
     // });
-    DataDictService.find({page: pageNo, size: pageSize}).then(r => {
+    DataDictService.find({page: pageNo, size: pageSize, sort: sort}).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
       setTotalCount(total)
@@ -36,7 +36,13 @@ export default function DataDict() {
     setTableColumns(getColumns(YesNo));
   }
 
-  const loadPage = (pagination: PaginationState, sorting: SortingState, filter: Array<ColumnFilter>) => {
+  const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
+    var sortString = '';
+    if(sorting && sorting.length > 0) {
+      sorting.forEach(sort => {
+        sortString = sortString ? `${sortString},${sort.id},${sort.desc ? 'desc' : 'asc'}` : `${sort.id},${sort.desc ? 'desc' : 'asc'}`
+      })
+    }
     fetchTableData(pagination.pageIndex, pagination.pageSize);
   }
 
