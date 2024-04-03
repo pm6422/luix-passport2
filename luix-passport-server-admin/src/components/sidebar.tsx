@@ -61,7 +61,6 @@ export default function Sidebar2({
                   width={150}
                   height={50}
               />
-
             </div>
           </div>
 
