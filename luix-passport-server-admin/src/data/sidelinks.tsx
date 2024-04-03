@@ -1,6 +1,6 @@
 import {
   IconPoint,
-  IconComponents,
+  IconInputX,
   IconDashboard,
   IconUsers,
   IconShieldLock,
@@ -77,9 +77,9 @@ export const sidelinks: SideLink[] = [
     ],
   },
   {
-    title: 'Extra Components',
+    title: 'Forms',
     label: '',
     href: '/extra-components',
-    icon: <IconComponents size={25} />,
+    icon: <IconInputX size={25} />,
   }
 ]
