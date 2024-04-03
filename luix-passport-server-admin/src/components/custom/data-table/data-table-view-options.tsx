@@ -1,6 +1,6 @@
 import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
 import { IconAdjustmentsHorizontal } from '@tabler/icons-react'
-import { Table } from '@tanstack/react-table'
+import { Column } from '@tanstack/react-table'
 import { Button } from '@/components/custom/button'
 import {
   DropdownMenu,
@@ -11,11 +11,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 
 interface DataTableViewOptionsProps<TData> {
-  table: Table<TData>
+  columns: Array<Column<TData, unknown>>
 }
 
 export function DataTableViewOptions<TData>({
-  table,
+  columns,
 }: DataTableViewOptionsProps<TData>) {
   return (
     <DropdownMenu>
@@ -32,8 +32,7 @@ export function DataTableViewOptions<TData>({
       <DropdownMenuContent align='end' className='w-[150px]'>
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {table
-          .getAllColumns()
+        {columns
           .filter(
             (column) =>
               typeof column.accessorFn !== 'undefined' && column.getCanHide()

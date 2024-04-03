@@ -83,7 +83,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className='space-y-4'>
       {/* <DataTableToolbar table={table} /> */}
-      <DataTableViewOptions table={table} />
+      <DataTableViewOptions columns={table.getAllColumns()} />
       <div className='rounded-md border'>
         <Table>
           <TableHeader>
