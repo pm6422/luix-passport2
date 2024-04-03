@@ -26,9 +26,9 @@ export default function DataDict() {
     const r = await DataDictService.find({page: pageNo, size: pageSize});
     setTableData(r.data);
 
-    const totalCount = parseInt(r.headers['x-total-count']);
-    setTotalCount(totalCount)
-    setTotalPages(Math.ceil(totalCount / pageSize));
+    const total = parseInt(r.headers['x-total-count']);
+    setTotalCount(total)
+    setTotalPages(Math.ceil(total / pageSize));
   }
 
   const handlePaginationChange = (paginationState: PaginationState) => {
