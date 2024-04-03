@@ -11,8 +11,7 @@ import {
   getFilteredRowModel,
   // getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-  Sorting
+  useReactTable
 } from '@tanstack/react-table'
 import { DataTablePagination } from './data-table-pagination'
 // import { DataTableToolbar } from '../custom/table-toolbar'
