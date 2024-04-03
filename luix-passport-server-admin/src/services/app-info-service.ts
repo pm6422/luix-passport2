@@ -6,13 +6,13 @@ export class AppInfoService {
   constructor() {
   }
 
-  public static async load(): Promise<AppInfo | null> {
+  public static async load(): Promise<AppInfo | undefined> {
     try {
       const res = await axios.get<AppInfo>('management/info');
       return res.data;
     } catch (error) {
       console.error(error);
-      return null;
+      return undefined;
     }
   }
 }
