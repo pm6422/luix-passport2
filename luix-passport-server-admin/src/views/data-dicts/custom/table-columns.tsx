@@ -2,10 +2,10 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
 import { DataTableRowActions } from './table-row-actions'
-import { DataDict } from './table-schema'
+import { DataDictSchema } from './table-schema'
 import { formatDateTime } from '@/libs/utils'
 
-export function getColumns(yesNo: Array<any>): ColumnDef<DataDict>[] {
+export function getColumns(yesNo: Array<any>): ColumnDef<DataDictSchema>[] {
   return [
     {
       id: 'select',

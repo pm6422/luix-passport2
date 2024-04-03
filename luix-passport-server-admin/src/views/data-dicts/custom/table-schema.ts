@@ -13,4 +13,4 @@ export const tableSchema = z.object({
   modifiedAt: z.string()
 })
 
-export type DataDict = z.infer<typeof tableSchema>
+export type DataDictSchema = z.infer<typeof tableSchema>

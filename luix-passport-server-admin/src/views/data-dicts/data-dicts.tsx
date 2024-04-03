@@ -5,7 +5,7 @@ import { DataTable } from '@/components/custom/data-table/server-pagination-data
 import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
 import { PaginationState, SortingState, ColumnFilter, ColumnDef } from '@tanstack/react-table'
-import { DataDict } from './custom/table-schema'
+import { DataDictSchema } from './custom/table-schema'
 import { YesNo } from '@/data/yes-no'
 
 export default function DataDict() {
@@ -13,7 +13,7 @@ export default function DataDict() {
   const [tableData, setTableData] = useState([])
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
-  const [tableColumns, setTableColumns] = useState(Array<ColumnDef<DataDict>>)
+  const [tableColumns, setTableColumns] = useState(Array<ColumnDef<DataDictSchema>>)
 
   useEffect(() => {
     // Call the fetchTableData function when component mounts
