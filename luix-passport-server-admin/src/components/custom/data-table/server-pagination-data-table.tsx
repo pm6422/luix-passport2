@@ -28,6 +28,7 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
+  totalCount: number,
   totalPages: number,
   onPaginationChange: Function
 }
@@ -35,6 +36,7 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
+  totalCount,
   totalPages,
   onPaginationChange
 }: DataTableProps<TData, TValue>) {

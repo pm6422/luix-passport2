@@ -9,6 +9,7 @@ import { PaginationState } from '@tanstack/react-table'
 export default function DataDict() {
   // State to hold the fetched data
   const [tableData, setTableData] = useState([])
+  const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function DataDict() {
     setTableData(r.data);
 
     const totalCount = parseInt(r.headers['x-total-count']);
+    setTotalCount(totalCount)
     setTotalPages(Math.ceil(totalCount / pageSize));
   }
 
@@ -44,7 +46,7 @@ export default function DataDict() {
 
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={columns} totalPages={totalPages} onPaginationChange={handlePaginationChange}/>
+          <DataTable data={tableData} columns={columns} totalCount={totalCount} totalPages={totalPages} onPaginationChange={handlePaginationChange}/>
         </div>
       </LayoutBody>
     </Layout>
