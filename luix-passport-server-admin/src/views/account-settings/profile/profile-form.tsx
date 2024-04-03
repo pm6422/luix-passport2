@@ -21,7 +21,7 @@ import {
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from '@/components/ui/use-toast'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const profileFormSchema = z.object({

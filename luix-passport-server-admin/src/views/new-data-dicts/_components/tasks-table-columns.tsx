@@ -19,8 +19,8 @@ import {
 import { type ColumnDef } from "@tanstack/react-table"
 import { toast } from "sonner"
 
-import { getErrorMessage } from "@/lib/handle-error"
-import { formatDate } from "@/lib/utils"
+import { getErrorMessage } from "@/libs/handle-error"
+import { formatDate } from "@/libs/utils"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -39,7 +39,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header"
 import { DataDict } from './_lib/validations'
-import { formatDateTime } from '@/lib/utils'
+import { formatDateTime } from '@/libs/utils'
 import { YesNo } from '@/data/yes-no'
 import { updateTask } from "../_lib/actions"
 import { DeleteTasksDialog } from "./delete-tasks-dialog"

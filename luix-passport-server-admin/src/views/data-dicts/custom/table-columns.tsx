@@ -4,7 +4,7 @@ import { DataTableColumnHeader } from '@/components/custom/data-table/data-table
 import { DataTableRowActions } from './table-row-actions'
 import { YesNo } from '@/data/yes-no'
 import { DataDict } from './table-schema'
-import { formatDateTime } from '@/lib/utils'
+import { formatDateTime } from '@/libs/utils'
 
 export const columns: ColumnDef<DataDict>[] = [
   {

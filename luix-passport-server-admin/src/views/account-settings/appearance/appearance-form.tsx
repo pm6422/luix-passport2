@@ -3,7 +3,7 @@ import { IconChevronDown } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { Button, buttonVariants } from '@/components/custom/button'
 import {
   Form,

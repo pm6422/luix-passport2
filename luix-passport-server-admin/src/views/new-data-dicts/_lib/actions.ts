@@ -2,7 +2,7 @@
 import { customAlphabet } from "nanoid"
 
 // import { getErrorMessage } from "@/lib/handle-error"
-import { generateId } from "@/lib/utils"
+import { generateId } from "@/libs/utils"
 
 // import type { CreateTaskSchema, UpdateTaskSchema } from "./validations"
 

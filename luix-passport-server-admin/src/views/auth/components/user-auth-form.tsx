@@ -15,7 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 
 interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
 

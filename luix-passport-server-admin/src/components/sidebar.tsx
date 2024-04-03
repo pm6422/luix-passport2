@@ -3,7 +3,7 @@ import { IconChevronsLeft, IconMenu2, IconX } from '@tabler/icons-react'
 import { Layout, LayoutHeader } from '../layouts/layout-definitions'
 import { Button } from './custom/button'
 import SidebarMenu from './sidebar-menu'
-import { cn } from '@/lib/utils'
+import { cn } from '@/libs/utils'
 import { sidelinks } from '@/data/sidelinks'
 import { useAppInfoProvider } from '@/stores/app-info-provider'; 
 
