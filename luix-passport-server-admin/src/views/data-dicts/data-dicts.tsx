@@ -8,13 +8,13 @@ import { PaginationState } from '@tanstack/react-table'
 
 export default function DataDict() {
   // State to hold the fetched data
-  const [tableData, setTableData] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [tableData, setTableData] = useState([])
+  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
     // Call the fetchTableData function when component mounts
     fetchTableData();
-  }, []);
+  }, [])
 
   const fetchTableData = async (pageNo: number = 0, pageSize: number = 10) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
@@ -27,11 +27,11 @@ export default function DataDict() {
 
     const totalCount = parseInt(r.headers['x-total-count']);
     setTotalPages(Math.ceil(totalCount / pageSize));
-  };
+  }
 
   const handlePaginationChange = (paginationState: PaginationState) => {
     fetchTableData(paginationState.pageIndex, paginationState.pageSize);
-  };
+  }
 
   return (
     <Layout>
