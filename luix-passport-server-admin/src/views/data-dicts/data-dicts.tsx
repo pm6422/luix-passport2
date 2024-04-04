@@ -19,7 +19,7 @@ export default function DataDict() {
   //   fetchTableData();
   // }, [])
 
-  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']) => {
+  const fetchTableData = (pageNo: number, pageSize: number, sorts: Array<string> = ['modifiedAt,desc']) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
     // .then(function (results) {
     //   const dicts = results[0];
@@ -37,8 +37,9 @@ export default function DataDict() {
   }
 
   const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
-    var sorts : Array<string> = [];
+    var sorts = undefined;
     if(sorting && sorting.length > 0) {
+      sorts = []
       sorting.forEach(sort => {
         sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
       })
