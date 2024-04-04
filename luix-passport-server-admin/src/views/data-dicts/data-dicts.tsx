@@ -5,6 +5,7 @@ import { DataTable } from '@/components/custom/data-table/server-pagination-data
 import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
 import { PaginationState, ColumnSort, ColumnFilter } from '@tanstack/react-table'
+import qs from 'qs'
 import { YesNo } from '@/data/yes-no'
 
 export default function DataDict() {
@@ -14,18 +15,19 @@ export default function DataDict() {
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
 
-  useEffect(() => {
-    // Call the fetchTableData function when component mounts
-    fetchTableData();
-  }, [])
+  // useEffect(() => {
+  //   // Call the fetchTableData function when component mounts
+  //   fetchTableData();
+  // }, [])
 
-  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sort: string = 'modifiedAt,desc') => {
+  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
     // .then(function (results) {
     //   const dicts = results[0];
     //   const users = results[1];
     // });
-    DataDictService.find({page: pageNo, size: pageSize, sort: sort}).then(r => {
+
+    DataDictService.find({page: pageNo, size: pageSize, sort: sorts}).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
       setTotalCount(total)
@@ -36,13 +38,13 @@ export default function DataDict() {
   }
 
   const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
-    var sortString = '';
+    var sorts : Array<string> = [];
     if(sorting && sorting.length > 0) {
       sorting.forEach(sort => {
-        sortString = sortString ? `${sortString},${sort.id},${sort.desc ? 'desc' : 'asc'}` : `${sort.id},${sort.desc ? 'desc' : 'asc'}`
+        sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
       })
     }
-    fetchTableData(pagination.pageIndex, pagination.pageSize);
+    fetchTableData(pagination.pageIndex, pagination.pageSize, sorts);
   }
 
   return (
