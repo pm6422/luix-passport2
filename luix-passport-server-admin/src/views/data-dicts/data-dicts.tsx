@@ -15,10 +15,11 @@ export default function DataDict() {
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
 
-  // useEffect(() => {
-  //   // Call the fetchTableData function when component mounts
-  //   fetchTableData();
-  // }, [])
+  useEffect(() => {
+    // Call the fetchTableData function when component mounts
+    // fetchTableData();
+    setTableColumns(getColumns(YesNo));
+  }, [])
 
   const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
     fetchTableData(pagination.pageIndex, pagination.pageSize, parseSorts(sorting));
@@ -37,8 +38,6 @@ export default function DataDict() {
       setTotalCount(total)
       setTotalPages(Math.ceil(total / pageSize));
     })
-
-    setTableColumns(getColumns(YesNo));
   }
 
   return (
