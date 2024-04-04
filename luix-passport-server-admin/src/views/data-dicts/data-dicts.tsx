@@ -5,7 +5,6 @@ import { DataTable } from '@/components/custom/data-table/server-pagination-data
 import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
 import { PaginationState, ColumnSort, ColumnFilter } from '@tanstack/react-table'
-import qs from 'qs'
 import { YesNo } from '@/data/yes-no'
 
 export default function DataDict() {

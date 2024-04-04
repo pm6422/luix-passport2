@@ -8,9 +8,7 @@ export class DataDictService {
   public static find(reqParams: any): Promise<any> {
     return axios.get('open-api/data-dicts', {
       params: reqParams,
-      paramsSerializer: {
-        indexes: null, // no brackets for array params
-      }
+      paramsSerializer: { indexes: null }
     })
   }
 
