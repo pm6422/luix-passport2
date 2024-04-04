@@ -16,8 +16,12 @@ export default function DataDict() {
   const [tableColumns, setTableColumns] = useState(Array<any>)
 
   useEffect(() => {
-    // Call the fetchTableData function when component mounts
-    // fetchTableData();
+    // Promise.all([DataDictService.findAll(), UserService.findAll()])
+    // .then(function (results) {
+    //   const dicts = results[0];
+    //   const users = results[1];
+    // });
+
     setTableColumns(getColumns(YesNo));
   }, [])
 
@@ -26,12 +30,6 @@ export default function DataDict() {
   }
 
   const fetchTableData = (pageNo: number, pageSize: number, sorts: Array<string> = ['modifiedAt,desc']) => {
-    // Promise.all([DataDictService.findAll(), UserService.findAll()])
-    // .then(function (results) {
-    //   const dicts = results[0];
-    //   const users = results[1];
-    // });
-
     DataDictService.find({page: pageNo, size: pageSize, sort: sorts}).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
