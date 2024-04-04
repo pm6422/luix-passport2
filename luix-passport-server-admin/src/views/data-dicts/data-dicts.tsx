@@ -19,6 +19,17 @@ export default function DataDict() {
   //   fetchTableData();
   // }, [])
 
+  const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
+    var sorts = undefined;
+    if(sorting && sorting.length > 0) {
+      sorts = []
+      sorting.forEach(sort => {
+        sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
+      })
+    }
+    fetchTableData(pagination.pageIndex, pagination.pageSize, sorts);
+  }
+
   const fetchTableData = (pageNo: number, pageSize: number, sorts: Array<string> = ['modifiedAt,desc']) => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
     // .then(function (results) {
@@ -34,17 +45,6 @@ export default function DataDict() {
     })
 
     setTableColumns(getColumns(YesNo));
-  }
-
-  const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
-    var sorts = undefined;
-    if(sorting && sorting.length > 0) {
-      sorts = []
-      sorting.forEach(sort => {
-        sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
-      })
-    }
-    fetchTableData(pagination.pageIndex, pagination.pageSize, sorts);
   }
 
   return (
