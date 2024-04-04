@@ -20,7 +20,7 @@ export default function DataDict() {
   // }, [])
 
   const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
-    var sorts = undefined;
+    var sorts;
     if(sorting && sorting.length > 0) {
       sorts = []
       sorting.forEach(sort => {
