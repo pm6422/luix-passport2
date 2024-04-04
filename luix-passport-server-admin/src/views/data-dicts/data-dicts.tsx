@@ -6,6 +6,7 @@ import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
 import { PaginationState, ColumnSort, ColumnFilter } from '@tanstack/react-table'
 import { YesNo } from '@/data/yes-no'
+import { parseSorts } from '@/libs/utils'
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -20,14 +21,7 @@ export default function DataDict() {
   // }, [])
 
   const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
-    var sorts;
-    if(sorting && sorting.length > 0) {
-      sorts = []
-      sorting.forEach(sort => {
-        sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
-      })
-    }
-    fetchTableData(pagination.pageIndex, pagination.pageSize, sorts);
+    fetchTableData(pagination.pageIndex, pagination.pageSize, parseSorts(sorting));
   }
 
   const fetchTableData = (pageNo: number, pageSize: number, sorts: Array<string> = ['modifiedAt,desc']) => {

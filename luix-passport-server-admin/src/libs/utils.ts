@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import dayjs from 'dayjs'
 import { customAlphabet } from "nanoid"
+import { ColumnSort } from '@tanstack/react-table'
 
 export const defaultDateTimeFormat = "YYYY-MM-DD HH:mm:ss";
 export const defaultDateFormat = "YYYY-MM-DD";
@@ -42,4 +43,15 @@ export function generateId({ length = 8, prefix = "" } = {}) {
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
     length
   )()}`
+}
+
+export function parseSorts(sorting: Array<ColumnSort>): Array<string> | undefined {
+  var sorts;
+  if(sorting && sorting.length > 0) {
+    sorts = []
+    sorting.forEach(sort => {
+      sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
+    })
+  }
+  return sorts;
 }
