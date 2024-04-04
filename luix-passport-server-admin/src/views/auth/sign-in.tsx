@@ -10,7 +10,7 @@ export default function SignIn() {
           <img
             src='/logos/dynamic-logo.svg'
             className='relative m-auto rounded-xl'
-            width={500}
+            width={400}
             height={50}
             alt='Logo'
           />
