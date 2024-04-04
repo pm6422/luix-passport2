@@ -46,12 +46,7 @@ export function generateId({ length = 8, prefix = "" } = {}) {
 }
 
 export function parseSorts(sorting: Array<ColumnSort>): Array<string> | undefined {
-  var sorts;
-  if(sorting && sorting.length > 0) {
-    sorts = []
-    sorting.forEach(sort => {
-      sorts.push(`${sort.id},${sort.desc ? 'desc' : 'asc'}`)
-    })
-  }
-  return sorts;
+  return sorting?.length
+    ? sorting.map(({ id, desc }) => `${id},${desc ? 'desc' : 'asc'}`)
+    : undefined;
 }
