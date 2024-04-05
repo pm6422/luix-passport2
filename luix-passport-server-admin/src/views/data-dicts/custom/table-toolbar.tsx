@@ -41,7 +41,7 @@ export function DataTableToolbar ({
         <Button
           variant='secondary'
           onClick={() => setCriteria(initialCriteria)}
-          className='h-8 px-2 lg:px-3'
+          className='h-8 px-2 lg:px-3 lg:flex hidden'
         >
           <IconX className='mr-2 h-4 w-4' />
           Reset
