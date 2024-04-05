@@ -72,13 +72,11 @@ export default function DataDict() {
               onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
               className='h-8 w-[90px] lg:w-[130px]'
             />
-            <div className='flex gap-x-2'>
-              <DataTableFacetedFilter
-                // column={table.getColumn('enabled')}
-                title='Enabled'
-                options={YesNo}
-              />
-            </div>
+            <DataTableFacetedFilter
+              // column={table.getColumn('enabled')}
+              title='Enabled'
+              options={YesNo}
+            />
           </div>
           <Button
             variant='secondary'
