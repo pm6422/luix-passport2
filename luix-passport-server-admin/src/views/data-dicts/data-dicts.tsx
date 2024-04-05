@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
+import { DataTableToolbar } from './custom/table-toolbar'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './custom/table-columns'
-import { DataDictService } from '@/services/data-dict-service'
 import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './custom/table-schema'
 import { initialCriteria } from './custom/table-schema'
-import { DataTableToolbar } from './custom/table-toolbar'
+import { DataDictService } from '@/services/data-dict-service'
 
 export default function DataDict() {
   // State to hold the fetched data
