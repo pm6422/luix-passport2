@@ -64,7 +64,7 @@ export default function DataDict() {
               placeholder='Filter by number'
               value={criteria.num}
               onChange={(event) => setCriteria({ ...criteria, num: event.target.value })}
-              className='h-8 w-[150px] lg:w-[250px]'
+              className='h-8 w-[90px] lg:w-[130px]'
             />
             <div className='flex gap-x-2'>
               {/* {table.getColumn('enabled') && ( */}
