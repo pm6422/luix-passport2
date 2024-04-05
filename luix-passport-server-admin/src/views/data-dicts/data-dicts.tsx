@@ -61,9 +61,15 @@ export default function DataDict() {
         <div className='flex items-center justify-between'>
           <div className='flex flex-1 flex-col-reverse items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
             <Input
-              placeholder='Filter by number'
+              placeholder='Number'
               value={criteria.num}
               onChange={(event) => setCriteria({ ...criteria, num: event.target.value })}
+              className='h-8 w-[90px] lg:w-[130px]'
+            />
+            <Input
+              placeholder='Category code'
+              value={criteria.categoryCode}
+              onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
               className='h-8 w-[90px] lg:w-[130px]'
             />
             <div className='flex gap-x-2'>
