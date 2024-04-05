@@ -8,7 +8,7 @@ import { DataTableFacetedFilter } from '@/components/custom/data-table/data-tabl
 import { DataDictService } from '@/services/data-dict-service'
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
-import { IconX } from '@tabler/icons-react'
+import { IconX, IconSearch } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { parseSorts } from '@/libs/utils'
 
@@ -18,12 +18,10 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
-  const [filtering, setFiltering] = useState(false)
   const [criteria, setCriteria] = useState({
     num: '',
     categoryCode: '',
-    dictCode: '',
-    enabled: null,
+    enabled: undefined,
     modifiedAt: ''
   })
 
@@ -41,8 +39,9 @@ export default function DataDict() {
     fetchTableData(pagination.pageIndex, pagination.pageSize, parseSorts(sorting));
   }
 
-  const fetchTableData = (pageNo: number, pageSize: number, sorts: Array<string> = ['modifiedAt,desc']) => {
-    DataDictService.find({page: pageNo, size: pageSize, sort: sorts}).then(r => {
+  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc'],
+                          num: string | null = null, categoryCode: string | null = null, enabled: boolean | null = null) => {
+    DataDictService.find({page: pageNo, size: pageSize, sort: sorts, num: num, categoryCode: categoryCode, enabled: enabled}).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
       setTotalCount(total)
@@ -65,7 +64,6 @@ export default function DataDict() {
               value={criteria.num}
               onChange={(event) => {
                 setCriteria({ ...criteria, num: event.target.value })
-                setFiltering(true)
               }}
               className='h-8 w-[150px] lg:w-[250px]'
             />
@@ -78,17 +76,15 @@ export default function DataDict() {
                 />
               {/* )} */}
             </div>
-            {filtering && (
-              <Button
-                variant='ghost'
-                // onClick={() => table.resetColumnFilters()}
-                className='h-8 px-2 lg:px-3'
-              >
-                Reset
-                <IconX className='ml-2 h-4 w-4' />
-              </Button>
-            )}
           </div>
+          <Button
+              variant='secondary'
+              onClick={() => fetchTableData(undefined, undefined, undefined, criteria.num, criteria.categoryCode, criteria.enabled)}
+              className='h-8 px-2 lg:px-3'
+            >
+              <IconSearch className='mr-2 h-4 w-4' />
+              Search
+            </Button>
         </div>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
           <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}/>

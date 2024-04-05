@@ -52,9 +52,10 @@ public class DataDictController {
     @Operation(summary = "find data dict list")
     @GetMapping("/open-api/data-dicts")
     public ResponseEntity<List<DataDict>> find(@ParameterObject Pageable pageable,
+                                               @RequestParam(value = "num", required = false) String num,
                                                @RequestParam(value = "categoryCode", required = false) String categoryCode,
                                                @RequestParam(value = "enabled", required = false) Boolean enabled) {
-        Page<DataDict> domains = dataDictService.find(pageable, categoryCode, enabled);
+        Page<DataDict> domains = dataDictService.find(pageable, num, categoryCode, enabled);
         return ResponseEntity.ok().headers(generatePageHeaders(domains)).body(domains.getContent());
     }
 
