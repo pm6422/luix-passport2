@@ -20,3 +20,9 @@ export interface ICriteria {
   categoryCode: string;
   enabled: string;
 }
+
+export const initialCriteria: ICriteria = {
+  num: '',
+  categoryCode: '',
+  enabled: ''
+}

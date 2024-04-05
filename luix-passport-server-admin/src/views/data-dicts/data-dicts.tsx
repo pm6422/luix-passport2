@@ -10,6 +10,7 @@ import { EnabledSelect } from '@/components/custom/enabled-select'
 import { IconSearch, IconPlus, IconX } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './custom/table-schema'
+import { initialCriteria } from './custom/table-schema'
 
 
 export default function DataDict() {
@@ -18,11 +19,6 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
-  const initialCriteria: ICriteria = {
-    num: '',
-    categoryCode: '',
-    enabled: ''
-  }
   const [criteria, setCriteria] = useState<ICriteria>(initialCriteria)
 
   useEffect(() => {
