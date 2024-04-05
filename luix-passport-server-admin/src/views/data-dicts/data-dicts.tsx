@@ -18,6 +18,14 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
+  const [filtering, setFiltering] = useState(false)
+  const [criteria, setCriteria] = useState({
+    num: '',
+    categoryCode: '',
+    dictCode: '',
+    enabled: null,
+    modifiedAt: ''
+  })
 
   useEffect(() => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
@@ -54,10 +62,11 @@ export default function DataDict() {
           <div className='flex flex-1 flex-col-reverse items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
             <Input
               placeholder='Filter by number'
-              // value={(table.getColumn('num')?.getFilterValue() as string) ?? ''}
-              // onChange={(event) =>
-              //   table.getColumn('num')?.setFilterValue(event.target.value)
-              // }
+              value={criteria.num}
+              onChange={(event) => {
+                setCriteria({ ...criteria, num: event.target.value })
+                setFiltering(true)
+              }}
               className='h-8 w-[150px] lg:w-[250px]'
             />
             <div className='flex gap-x-2'>
@@ -69,7 +78,7 @@ export default function DataDict() {
                 />
               {/* )} */}
             </div>
-            {/* {isFiltered && ( */}
+            {filtering && (
               <Button
                 variant='ghost'
                 // onClick={() => table.resetColumnFilters()}
@@ -78,7 +87,7 @@ export default function DataDict() {
                 Reset
                 <IconX className='ml-2 h-4 w-4' />
               </Button>
-            {/* )} */}
+            )}
           </div>
         </div>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
