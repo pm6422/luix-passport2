@@ -7,7 +7,7 @@ import { DataTableFacetedFilter } from '@/components/custom/data-table/data-tabl
 import { DataDictService } from '@/services/data-dict-service'
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
-import { IconSearch } from '@tabler/icons-react'
+import { IconSearch, IconPlus } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './custom/table-schema'
 
@@ -73,13 +73,11 @@ export default function DataDict() {
               className='h-8 w-[90px] lg:w-[130px]'
             />
             <div className='flex gap-x-2'>
-              {/* {table.getColumn('enabled') && ( */}
-                <DataTableFacetedFilter
-                  // column={table.getColumn('enabled')}
-                  title='Enabled'
-                  options={YesNo}
-                />
-              {/* )} */}
+              <DataTableFacetedFilter
+                // column={table.getColumn('enabled')}
+                title='Enabled'
+                options={YesNo}
+              />
             </div>
           </div>
           <Button
@@ -89,6 +87,14 @@ export default function DataDict() {
           >
             <IconSearch className='mr-2 h-4 w-4' />
             Search
+          </Button>
+          <Button
+            variant='secondary'
+            onClick={() => loadPage()}
+            className='h-8 px-2 lg:px-3 ml-2'
+          >
+            <IconPlus className='mr-2 h-4 w-4' />
+            Create
           </Button>
         </div>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
