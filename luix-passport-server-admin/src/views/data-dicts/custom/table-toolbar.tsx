@@ -1,48 +1,66 @@
-import { IconX } from '@tabler/icons-react'
-import { Table } from '@tanstack/react-table'
-import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
-import { YesNo } from '@/data/yes-no'
-import { DataTableFacetedFilter } from '@/components/custom/data-table/data-table-faceted-filter'
+import { EnabledSelect } from '@/components/custom/enabled-select'
+import { Button } from '@/components/custom/button'
+import { IconSearch, IconPlus, IconX } from '@tabler/icons-react'
+import { ICriteria } from './table-schema'
+import { initialCriteria } from './table-schema'
 
-interface DataTableToolbarProps<TData> {
-  table: Table<TData>
+interface DataTableToolbarProps{
+  criteria: ICriteria
+  setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
+  loadPage: () => void,
+  create: () => void
 }
 
-export function DataTableToolbar<TData>({
-  table,
-}: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0
-
+export function DataTableToolbar ({ 
+  criteria, 
+  setCriteria,
+  loadPage,
+  create
+}: DataTableToolbarProps) {
   return (
+    <div className='flex items-center justify-between'>
       <div className='flex flex-1 flex-col-reverse items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
         <Input
-          placeholder='Filter by number'
-          value={(table.getColumn('num')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('num')?.setFilterValue(event.target.value)
-          }
-          className='h-8 w-[150px] lg:w-[250px]'
+          placeholder='Number'
+          value={criteria.num}
+          onChange={(event) => setCriteria({ ...criteria, num: event.target.value })}
+          className='h-8 w-[90px] lg:w-[130px]'
         />
-        <div className='flex gap-x-2'>
-          {table.getColumn('enabled') && (
-            <DataTableFacetedFilter
-              column={table.getColumn('enabled')}
-              title='Enabled'
-              options={YesNo}
-            />
-          )}
-        </div>
-        {isFiltered && (
-          <Button
-            variant='ghost'
-            onClick={() => table.resetColumnFilters()}
-            className='h-8 px-2 lg:px-3'
-          >
-            Reset
-            <IconX className='ml-2 h-4 w-4' />
-          </Button>
-        )}
+        <Input
+          placeholder='Category Code'
+          value={criteria.categoryCode}
+          onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
+          className='h-8 w-[90px] lg:w-[130px]'
+        />
+        <EnabledSelect
+          value={criteria.enabled}
+          onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
+          className='h-8 w-[90px] lg:w-[130px]'
+        />
+        <Button
+          variant='secondary'
+          onClick={() => setCriteria(initialCriteria)}
+          className='h-8 px-2 lg:px-3'
+        >
+          <IconX className='mr-2 h-4 w-4' />
+          Reset
+        </Button>
+        <Button
+          onClick={() => loadPage()}
+          className='h-8 px-2 lg:px-3'
+        >
+          <IconSearch className='mr-2 h-4 w-4' />
+          Search
+        </Button>
       </div>
+      <Button
+        onClick={() => create()}
+        className='h-8 px-2 lg:px-3'
+      >
+        <IconPlus className='mr-2 h-4 w-4' />
+        Create
+      </Button>
+    </div>
   )
 }
