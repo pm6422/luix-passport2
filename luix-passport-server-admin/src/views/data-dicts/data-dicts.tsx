@@ -77,19 +77,19 @@ export default function DataDict() {
               title='Enabled'
               options={YesNo}
             />
+            <Button
+              variant='secondary'
+              onClick={() => loadPage()}
+              className='h-8 px-2 lg:px-3'
+            >
+              <IconSearch className='mr-2 h-4 w-4' />
+              Search
+            </Button>
           </div>
           <Button
             variant='secondary'
             onClick={() => loadPage()}
             className='h-8 px-2 lg:px-3'
-          >
-            <IconSearch className='mr-2 h-4 w-4' />
-            Search
-          </Button>
-          <Button
-            variant='secondary'
-            onClick={() => loadPage()}
-            className='h-8 px-2 lg:px-3 ml-2'
           >
             <IconPlus className='mr-2 h-4 w-4' />
             Create
