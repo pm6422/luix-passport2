@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
-import { PaginationState, ColumnSort, ColumnFilter } from '@tanstack/react-table'
+import { PaginationState, ColumnSort } from '@tanstack/react-table'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './custom/table-columns'
 import { DataTableFacetedFilter } from '@/components/custom/data-table/data-table-faceted-filter'
@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/input'
 import { IconSearch } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { parseSorts } from '@/libs/utils'
+import { Criteria } from './custom/table-schema'
+
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -18,11 +20,10 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
-  const [criteria, setCriteria] = useState({
+  const [criteria, setCriteria] = useState<Criteria>({
     num: '',
     categoryCode: '',
-    enabled: null,
-    modifiedAt: ''
+    enabled: null
   })
 
   useEffect(() => {
@@ -35,13 +36,19 @@ export default function DataDict() {
     setTableColumns(getColumns(YesNo));
   }, [])
 
-  const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>, filter: Array<ColumnFilter>) => {
+  const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>) => {
     fetchTableData(pagination.pageIndex, pagination.pageSize, parseSorts(sorting));
   }
 
-  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc'],
-                          num: string | null = null, categoryCode: string | null = null, enabled: boolean | null = null) => {
-    DataDictService.find({page: pageNo, size: pageSize, sort: sorts, num: num || null, categoryCode: categoryCode || null, enabled: enabled}).then(r => {
+  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']) => {
+    DataDictService.find({
+      page: pageNo,
+      size: pageSize,
+      sort: sorts,
+      num: criteria.num || null,
+      categoryCode: criteria.categoryCode || null,
+      enabled: criteria.enabled,
+    }).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
       setTotalCount(total)
@@ -62,9 +69,7 @@ export default function DataDict() {
             <Input
               placeholder='Filter by number'
               value={criteria.num}
-              onChange={(event) => {
-                setCriteria({ ...criteria, num: event.target.value })
-              }}
+              onChange={(event) => setCriteria({ ...criteria, num: event.target.value })}
               className='h-8 w-[150px] lg:w-[250px]'
             />
             <div className='flex gap-x-2'>
@@ -78,13 +83,13 @@ export default function DataDict() {
             </div>
           </div>
           <Button
-              variant='secondary'
-              onClick={() => fetchTableData(undefined, undefined, undefined, criteria.num, criteria.categoryCode, criteria.enabled)}
-              className='h-8 px-2 lg:px-3'
-            >
-              <IconSearch className='mr-2 h-4 w-4' />
-              Search
-            </Button>
+            variant='secondary'
+            onClick={() => fetchTableData()}
+            className='h-8 px-2 lg:px-3'
+          >
+            <IconSearch className='mr-2 h-4 w-4' />
+            Search
+          </Button>
         </div>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
           <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}/>

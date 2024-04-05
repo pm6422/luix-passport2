@@ -14,3 +14,9 @@ export const tableSchema = z.object({
 })
 
 export type DataDictSchema = z.infer<typeof tableSchema>
+
+export interface Criteria {
+  num: string;
+  categoryCode: string;
+  enabled: boolean | null;
+}
