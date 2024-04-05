@@ -90,7 +90,7 @@ const router = createBrowserRouter([
       {
         path: 'data-dicts',
         lazy: async () => ({
-          Component: (await import('@/views/data-dicts/data-dicts')).default,
+          Component: (await import('@/views/data-dicts')).default,
         }),
       },
       {

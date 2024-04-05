@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
-import { DataTableToolbar } from './custom/table-toolbar'
+import { DataTableToolbar } from './table/table-toolbar'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
-import { getColumns } from './custom/table-columns'
+import { getColumns } from './table/table-columns'
 import { YesNo } from '@/data/yes-no'
-import { ICriteria } from './custom/table-schema'
-import { initialCriteria } from './custom/table-schema'
+import { ICriteria } from './table/table-schema'
+import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 
 export default function DataDict() {
