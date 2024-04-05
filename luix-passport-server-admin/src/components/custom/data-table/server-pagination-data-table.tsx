@@ -17,6 +17,7 @@ import {
 import { DataTablePagination } from './data-table-pagination'
 // import { DataTableToolbar } from '../custom/table-toolbar'
 import { DataTableViewOptions } from '@/components/custom/data-table/data-table-view-options'
+import { parseSorts } from '@/libs/utils'
 
 import {
   Table,
@@ -78,8 +79,8 @@ export function DataTable<TData, TValue>({
 
   // Use the useEffect hook to listen for changes and trigger the loadPage callback when it changes
   useEffect(() => {
-    loadPage && loadPage(pagination, sorting, columnFilters);
-  }, [pagination, sorting, columnFilters]);
+    loadPage && loadPage(pagination.pageIndex, pagination.pageSize, parseSorts(sorting));
+  }, [pagination, sorting]);
 
   return (
     <div className='space-y-4'>

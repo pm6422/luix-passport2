@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
-import { PaginationState, ColumnSort } from '@tanstack/react-table'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './custom/table-columns'
 import { DataTableFacetedFilter } from '@/components/custom/data-table/data-table-faceted-filter'
@@ -10,7 +9,6 @@ import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
 import { IconSearch } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
-import { parseSorts } from '@/libs/utils'
 import { ICriteria } from './custom/table-schema'
 
 
@@ -36,11 +34,7 @@ export default function DataDict() {
     setTableColumns(getColumns(YesNo));
   }, [])
 
-  const loadPage = (pagination: PaginationState, sorting: Array<ColumnSort>) => {
-    fetchTableData(pagination.pageIndex, pagination.pageSize, parseSorts(sorting));
-  }
-
-  const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']) => {
+  const loadPage = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']) => {
     DataDictService.find({
       page: pageNo,
       size: pageSize,
@@ -84,7 +78,7 @@ export default function DataDict() {
           </div>
           <Button
             variant='secondary'
-            onClick={() => fetchTableData()}
+            onClick={() => loadPage()}
             className='h-8 px-2 lg:px-3'
           >
             <IconSearch className='mr-2 h-4 w-4' />
