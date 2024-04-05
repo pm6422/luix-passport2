@@ -98,7 +98,7 @@ export default function DataDict() {
               </SelectContent>
             </Select>
             <Button
-              variant='ghost'
+              variant='secondary'
               onClick={() => setCriteria(initialCriteria)}
               className='h-8 px-2 lg:px-3'
             >
@@ -106,7 +106,6 @@ export default function DataDict() {
               Reset
             </Button>
             <Button
-              variant='secondary'
               onClick={() => loadPage()}
               className='h-8 px-2 lg:px-3'
             >
@@ -115,7 +114,6 @@ export default function DataDict() {
             </Button>
           </div>
           <Button
-            variant='secondary'
             onClick={() => loadPage()}
             className='h-8 px-2 lg:px-3'
           >
