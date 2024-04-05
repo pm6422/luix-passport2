@@ -41,12 +41,11 @@ export function DataTableToolbar ({
           />
         </div>
         <Button
-          variant='secondary'
+          variant='link'
           onClick={() => setCriteria(initialCriteria)}
-          className='h-8 px-2 lg:px-3 lg:flex hidden' // Hide on small screens
+          className='h-8 lg:px-3 lg:flex hidden' // Hide on small screens
         >
-          <IconX className='mr-2 h-4 w-4' />
-          Reset
+          <IconX className='h-4 w-4' />
         </Button>
         <Button
           onClick={() => loadPage()}
