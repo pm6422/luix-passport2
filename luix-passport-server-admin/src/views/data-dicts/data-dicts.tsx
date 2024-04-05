@@ -8,7 +8,7 @@ import { DataTableFacetedFilter } from '@/components/custom/data-table/data-tabl
 import { DataDictService } from '@/services/data-dict-service'
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
-import { IconX, IconSearch } from '@tabler/icons-react'
+import { IconSearch } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { parseSorts } from '@/libs/utils'
 
@@ -21,7 +21,7 @@ export default function DataDict() {
   const [criteria, setCriteria] = useState({
     num: '',
     categoryCode: '',
-    enabled: undefined,
+    enabled: null,
     modifiedAt: ''
   })
 
@@ -41,7 +41,7 @@ export default function DataDict() {
 
   const fetchTableData = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc'],
                           num: string | null = null, categoryCode: string | null = null, enabled: boolean | null = null) => {
-    DataDictService.find({page: pageNo, size: pageSize, sort: sorts, num: num, categoryCode: categoryCode, enabled: enabled}).then(r => {
+    DataDictService.find({page: pageNo, size: pageSize, sort: sorts, num: num || null, categoryCode: categoryCode || null, enabled: enabled}).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
       setTotalCount(total)
