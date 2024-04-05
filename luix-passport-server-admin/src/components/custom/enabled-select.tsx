@@ -6,7 +6,9 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
+  SelectSeparator
 } from '@/components/ui/select'
+import { Button } from '@/components/custom/button'
 
 type EnabledSelectProps = {
   value: string
@@ -29,6 +31,18 @@ export const EnabledSelect = ({
         <SelectItem value='true'>Yes</SelectItem>
         <SelectItem value='false'>No</SelectItem>
       </SelectGroup>
+      <SelectSeparator />
+      <Button
+        className="w-full px-2"
+        variant="secondary"
+        size="sm"
+        onClick={(e) => {
+          e.stopPropagation()
+          onValueChange('')
+        }}
+      >
+        Clear
+      </Button>
     </SelectContent>
   </Select>
 )
