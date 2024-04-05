@@ -51,9 +51,10 @@ export default function DataDict() {
         </div>
       </LayoutHeader>
       <LayoutBody className='flex flex-col' fixedHeight>
-        <DataTableToolbar criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={() => {}}></DataTableToolbar>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}/>
+          <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}
+            toolbar={<DataTableToolbar criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={() => {}} />}
+          />
         </div>
       </LayoutBody>
     </Layout>

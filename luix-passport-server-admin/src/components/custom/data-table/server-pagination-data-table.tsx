@@ -33,7 +33,8 @@ interface DataTableProps<TData, TValue> {
   data: TData[],
   totalCount: number,
   totalPages: number,
-  loadPage: Function
+  loadPage: Function,
+  toolbar: React.ReactNode
 }
 
 export function DataTable<TData, TValue>({
@@ -41,7 +42,8 @@ export function DataTable<TData, TValue>({
   data,
   totalCount,
   totalPages,
-  loadPage
+  loadPage,
+  toolbar
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -88,6 +90,7 @@ export function DataTable<TData, TValue>({
         {/* <DataTableToolbar table={table} /> */}
         {/* <DataTableViewOptions columns={table.getAllColumns()} /> */}
       </div>
+      {toolbar}
       <div className='rounded-md border'>
         <Table>
           <TableHeader>
