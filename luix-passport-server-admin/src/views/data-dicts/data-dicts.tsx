@@ -6,15 +6,7 @@ import { getColumns } from './custom/table-columns'
 import { DataDictService } from '@/services/data-dict-service'
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import { EnabledSelect } from '@/components/custom/enabled-select'
 import { IconSearch, IconPlus, IconX } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './custom/table-schema'
@@ -81,21 +73,11 @@ export default function DataDict() {
               onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
               className='h-8 w-[90px] lg:w-[130px]'
             />
-            <Select
+            <EnabledSelect
               value={criteria.enabled}
               onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
-            >
-              <SelectTrigger className='h-8 w-[90px] w-[130px]'>
-                <SelectValue placeholder='Enabled'/>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Enabled</SelectLabel>
-                  <SelectItem value='true'>Yes</SelectItem>
-                  <SelectItem value='false'>No</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+              className='h-8 w-[90px] lg:w-[130px]'
+            />
             <Button
               variant='secondary'
               onClick={() => setCriteria(initialCriteria)}
