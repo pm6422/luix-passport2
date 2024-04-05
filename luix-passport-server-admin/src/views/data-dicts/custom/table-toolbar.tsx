@@ -20,7 +20,7 @@ export function DataTableToolbar ({
 }: DataTableToolbarProps) {
   return (
     <div className='flex items-center justify-between w-full'>
-      <div className='flex flex-1 flex-col-reverse items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
+      <div className='flex flex-1 flex-col items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
         <Input
           placeholder='Number'
           value={criteria.num}
