@@ -27,7 +27,7 @@ export const EnabledSelect = ({
     </SelectTrigger>
     <SelectContent>
       <SelectGroup>
-        <SelectLabel>Enabled</SelectLabel>
+        {/* <SelectLabel>Enabled</SelectLabel> */}
         <SelectItem value='true'>Yes</SelectItem>
         <SelectItem value='false'>No</SelectItem>
       </SelectGroup>
