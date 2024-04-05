@@ -77,7 +77,7 @@ export default function DataDict() {
               className='h-8 w-[90px] lg:w-[130px]'
             />
             <Input
-              placeholder='Category code'
+              placeholder='Category Code'
               value={criteria.categoryCode}
               onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
               className='h-8 w-[90px] lg:w-[130px]'
