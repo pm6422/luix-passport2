@@ -18,5 +18,5 @@ export type DataDictSchema = z.infer<typeof tableSchema>
 export interface ICriteria {
   num: string;
   categoryCode: string;
-  enabled: boolean | null;
+  enabled: string;
 }

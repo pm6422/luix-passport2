@@ -7,6 +7,15 @@ import { DataTableFacetedFilter } from '@/components/custom/data-table/data-tabl
 import { DataDictService } from '@/services/data-dict-service'
 import { Button } from '@/components/custom/button'
 import { Input } from '@/components/ui/input'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { IconSearch, IconPlus } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './custom/table-schema'
@@ -21,7 +30,7 @@ export default function DataDict() {
   const [criteria, setCriteria] = useState<ICriteria>({
     num: '',
     categoryCode: '',
-    enabled: null
+    enabled: ''
   })
 
   useEffect(() => {
@@ -72,11 +81,21 @@ export default function DataDict() {
               onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
               className='h-8 w-[90px] lg:w-[130px]'
             />
-            <DataTableFacetedFilter
-              // column={table.getColumn('enabled')}
-              title='Enabled'
-              options={YesNo}
-            />
+            <Select
+               value={criteria.enabled}
+               onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
+            >
+              <SelectTrigger className='h-8 w-[90px] w-[130px]'>
+                <SelectValue placeholder='Enabled' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Enabled</SelectLabel>
+                  <SelectItem value='true'>Yes</SelectItem>
+                  <SelectItem value='false'>No</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
             <Button
               variant='secondary'
               onClick={() => loadPage()}
