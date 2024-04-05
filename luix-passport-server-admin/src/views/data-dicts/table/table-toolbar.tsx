@@ -26,13 +26,13 @@ export function DataTableToolbar ({
             placeholder='Number'
             value={criteria.num}
             onChange={(event) => setCriteria({ ...criteria, num: event.target.value })}
-            className='h-8 w-[90px] lg:w-[130px] mb-2 sm:mb-0' // Add mb-2 for spacing between fields
+            className='h-8 w-[90px] lg:w-[130px]'
           />
           <Input
             placeholder='Category Code'
             value={criteria.categoryCode}
             onChange={(event) => setCriteria({ ...criteria, categoryCode: event.target.value })}
-            className='h-8 w-[90px] lg:w-[130px]' // No bottom margin for the last field
+            className='h-8 w-[90px] lg:w-[130px]'
           />
           <EnabledSelect
             value={criteria.enabled}
