@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import { IconSearch } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { parseSorts } from '@/libs/utils'
-import { Criteria } from './custom/table-schema'
+import { ICriteria } from './custom/table-schema'
 
 
 export default function DataDict() {
@@ -20,7 +20,7 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
-  const [criteria, setCriteria] = useState<Criteria>({
+  const [criteria, setCriteria] = useState<ICriteria>({
     num: '',
     categoryCode: '',
     enabled: null
