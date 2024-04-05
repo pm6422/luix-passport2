@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { IconSearch, IconPlus } from '@tabler/icons-react'
+import { IconSearch, IconPlus, IconX } from '@tabler/icons-react'
 import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './custom/table-schema'
 
@@ -27,11 +27,12 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
   const [tableColumns, setTableColumns] = useState(Array<any>)
-  const [criteria, setCriteria] = useState<ICriteria>({
+  const initialCriteria: ICriteria = {
     num: '',
     categoryCode: '',
     enabled: ''
-  })
+  }
+  const [criteria, setCriteria] = useState<ICriteria>(initialCriteria)
 
   useEffect(() => {
     // Promise.all([DataDictService.findAll(), UserService.findAll()])
@@ -82,11 +83,11 @@ export default function DataDict() {
               className='h-8 w-[90px] lg:w-[130px]'
             />
             <Select
-               value={criteria.enabled}
-               onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
+              value={criteria.enabled}
+              onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
             >
               <SelectTrigger className='h-8 w-[90px] w-[130px]'>
-                <SelectValue placeholder='Enabled' />
+                <SelectValue placeholder='Enabled'/>
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
@@ -96,6 +97,14 @@ export default function DataDict() {
                 </SelectGroup>
               </SelectContent>
             </Select>
+            <Button
+              variant='ghost'
+              onClick={() => setCriteria(initialCriteria)}
+              className='h-8 px-2 lg:px-3'
+            >
+              <IconX className='mr-2 h-4 w-4' />
+              Reset
+            </Button>
             <Button
               variant='secondary'
               onClick={() => loadPage()}
