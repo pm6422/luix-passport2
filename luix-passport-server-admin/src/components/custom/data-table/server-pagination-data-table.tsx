@@ -29,21 +29,21 @@ import {
 } from '@/components/ui/table'
 
 interface DataTableProps<TData, TValue> {
+  children: React.ReactNode
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
   totalCount: number,
   totalPages: number,
-  loadPage: Function,
-  toolbar: React.ReactNode
+  loadPage: Function
 }
 
 export function DataTable<TData, TValue>({
+  children,
   columns,
   data,
   totalCount,
   totalPages,
-  loadPage,
-  toolbar
+  loadPage
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -87,7 +87,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className='space-y-4'>
       <div className='flex items-center justify-between'>
-        {toolbar}
+        {children}
         <DataTableViewOptions columns={table.getAllColumns()} />
       </div>
       <div className='rounded-md border'>
