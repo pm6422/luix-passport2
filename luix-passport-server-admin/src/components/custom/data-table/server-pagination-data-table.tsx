@@ -15,7 +15,6 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 import { DataTablePagination } from './data-table-pagination'
-// import { DataTableToolbar } from '../custom/table-toolbar'
 import { DataTableViewOptions } from '@/components/custom/data-table/data-table-view-options'
 import { parseSorts } from '@/libs/utils'
 
