@@ -34,7 +34,7 @@ export default function DataDict() {
       sort: sorts,
       num: criteria.num || null,
       categoryCode: criteria.categoryCode || null,
-      enabled: criteria.enabled,
+      enabled: criteria.enabled || null,
     }).then(r => {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
