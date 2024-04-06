@@ -17,6 +17,8 @@ import {
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableViewOptions } from '@/components/custom/data-table/data-table-view-options'
 import { parseSorts } from '@/libs/utils'
+import { Button } from '@/components/custom/button'
+import { IconTrash } from '@tabler/icons-react'
 
 import {
   Table,
@@ -87,6 +89,14 @@ export function DataTable<TData, TValue>({
     <div className='space-y-4'>
       <div className='flex items-center justify-between'>
         {children}
+        <Button
+          variant='destructive'
+          size='sm'
+          className='ml-auto hidden h-8 lg:flex mr-2'
+        >
+          <IconTrash className='mr-2 h-4 w-4' />
+          Delete
+        </Button>
         <DataTableViewOptions columns={table.getAllColumns()} />
       </div>
       <div className='rounded-md border'>
