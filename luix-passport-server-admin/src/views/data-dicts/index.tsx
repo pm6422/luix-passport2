@@ -43,6 +43,10 @@ export default function DataDict() {
     })
   }
 
+  const deleteRows = (rows: Array<any>) => {
+    console.log(rows)
+  }
+
   return (
     <Layout>
       <LayoutHeader>
@@ -52,7 +56,7 @@ export default function DataDict() {
       </LayoutHeader>
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
-          <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage}>
+          <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
             <DataTableToolbar criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={() => {}} />
           </DataTable>
         </div>

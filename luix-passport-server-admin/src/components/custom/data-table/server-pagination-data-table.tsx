@@ -35,7 +35,8 @@ interface DataTableProps<TData, TValue> {
   data: TData[],
   totalCount: number,
   totalPages: number,
-  loadPage: Function
+  loadPage: Function,
+  deleteRows?: Function
 }
 
 export function DataTable<TData, TValue>({
@@ -44,7 +45,8 @@ export function DataTable<TData, TValue>({
   data,
   totalCount,
   totalPages,
-  loadPage
+  loadPage,
+  deleteRows
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
@@ -91,12 +93,16 @@ export function DataTable<TData, TValue>({
         {children}
         { Object.keys(rowSelection).length > 0 && (
             <Button
-            variant='destructive'
-            size='sm'
-            className='ml-auto hidden h-8 lg:flex mr-2'
+              variant='destructive'
+              size='sm'
+              className='ml-auto hidden h-8 lg:flex mr-2'
+              onClick={() => {
+                const selectedRows = Object.keys(rowSelection).map(rowIndex => data[parseInt(rowIndex)]);
+                deleteRows && deleteRows(selectedRows);
+              }}
             >
-            <IconTrash className='mr-2 h-4 w-4' />
-            Delete{`(${Object.keys(rowSelection).length})`}
+              <IconTrash className='mr-2 h-4 w-4' />
+              Delete{`(${Object.keys(rowSelection).length})`}
             </Button>
         )}
         <DataTableViewOptions columns={table.getAllColumns()} />
