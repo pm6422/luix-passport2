@@ -5,6 +5,7 @@ import { DataTableToolbar } from './table/table-toolbar'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './table/table-columns'
 import { YesNo } from '@/data/yes-no'
+import { IDataDict } from '@/models/DataDict'
 import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
@@ -43,7 +44,7 @@ export default function DataDict() {
     })
   }
 
-  const deleteRows = (rows: Array<any>) => {
+  const deleteRows = (rows: Array<IDataDict>) => {
     console.log(rows)
   }
 
