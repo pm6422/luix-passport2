@@ -89,14 +89,16 @@ export function DataTable<TData, TValue>({
     <div className='space-y-4'>
       <div className='flex items-center justify-between'>
         {children}
-        <Button
-          variant='destructive'
-          size='sm'
-          className='ml-auto hidden h-8 lg:flex mr-2'
-        >
-          <IconTrash className='mr-2 h-4 w-4' />
-          Delete
-        </Button>
+        { Object.keys(rowSelection).length > 0 && (
+            <Button
+            variant='destructive'
+            size='sm'
+            className='ml-auto hidden h-8 lg:flex mr-2'
+            >
+            <IconTrash className='mr-2 h-4 w-4' />
+            Delete{`(${Object.keys(rowSelection).length})`}
+            </Button>
+        )}
         <DataTableViewOptions columns={table.getAllColumns()} />
       </div>
       <div className='rounded-md border'>
