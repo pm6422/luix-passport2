@@ -191,20 +191,20 @@ export function EditDialog({
               control={form.control}
               name="enabled"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                  <div className="space-y-0.5">
-                    <FormLabel className="text-base">Enabled</FormLabel>
-                    <FormDescription>
-                      After disabling, existing data can still reference the object, but new data can't.
-                    </FormDescription>
+                <FormItem >
+                  <div className="flex items-center space-x-2">
+                    <FormLabel>Enabled</FormLabel>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        aria-readonly
+                      />
+                    </FormControl>
                   </div>
-                  <FormControl>
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      aria-readonly
-                    />
-                  </FormControl>
+                  <FormDescription>
+                    After disabling, existing data can still reference the object, but new data can't.
+                  </FormDescription>
                 </FormItem>
               )}
             />
