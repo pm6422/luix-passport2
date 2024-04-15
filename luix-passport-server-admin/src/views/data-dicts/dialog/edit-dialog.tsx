@@ -1,6 +1,4 @@
-"use client"
-
-import * as React from "react"
+import { useState, useEffect, useTransition} from 'react'
 // import { tasks, type Task } from "@/db/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { IconPlus } from '@tabler/icons-react'
@@ -39,7 +37,9 @@ import {
 } from "@/components/ui/select"
 
 // import { createTask } from "../_lib/actions"
-import { createSchema, type CreateSchema } from "../table/table-schema"
+import { createSchema, type CreateSchema } from '../table/table-schema'
+import { DataDictService } from '@/services/data-dict-service'
+import { map, uniq } from 'lodash'
 
 interface CreateDialogProps {
   // prevTasks: Row<Task>[]
@@ -49,8 +49,18 @@ interface CreateDialogProps {
 export function EditDialog({ 
   create
 }: CreateDialogProps) {
-  const [open, setOpen] = React.useState(false)
-  const [isCreatePending, startCreateTransition] = React.useTransition()
+  const [open, setOpen] = useState(false)
+  const [categoryCodes, setCategoryCodes] = useState([])
+  const [isCreatePending, startCreateTransition] = useTransition()
+
+  useEffect(() => {
+    DataDictService.findAll(true)
+    .then(function (res) {
+      const codes = uniq(map(res.data, 'categoryCode'))
+      setCategoryCodes(codes)  
+    });
+  }, [])
+
 
   const form = useForm<CreateSchema>({
     resolver: zodResolver(createSchema),
