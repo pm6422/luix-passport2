@@ -96,7 +96,7 @@ export function EditDialog({
         <DialogHeader>
           <DialogTitle>Create Data Dictionary</DialogTitle>
           <DialogDescription>
-            Fill in the details below to create a new task.
+            Fill in the details below to create a new data dictionary.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -109,9 +109,9 @@ export function EditDialog({
               name="remark"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>Remark</FormLabel>
                   <FormControl>
-                    <Input placeholder="Do a kickflip" {...field} />
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -222,7 +222,7 @@ export function EditDialog({
                   Cancel
                 </Button>
               </DialogClose>
-              <Button disabled={isCreatePending}>Submit</Button>
+              <Button disabled={isCreatePending}>Save</Button>
             </DialogFooter>
           </form>
         </Form>
