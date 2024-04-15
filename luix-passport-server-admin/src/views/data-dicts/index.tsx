@@ -10,6 +10,7 @@ import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 
+
 export default function DataDict() {
   // State to hold the fetched data
   const [tableData, setTableData] = useState([])
@@ -23,7 +24,7 @@ export default function DataDict() {
     // .then(function (results) {
     //   const dicts = results[0];
     //   const users = results[1];
-    // })
+    // });
 
     setTableColumns(getColumns(YesNo));
   }, [])

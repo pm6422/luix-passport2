@@ -50,7 +50,7 @@ export function EditDialog({
   create
 }: CreateDialogProps) {
   const [open, setOpen] = useState(false)
-  const [categoryCodes, setCategoryCodes] = useState([])
+  const [categoryCodes, setCategoryCodes] = useState(Array<any>)
   const [isCreatePending, startCreateTransition] = useTransition()
 
   useEffect(() => {
@@ -113,6 +113,39 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
+            <FormField
+              control={form.control}
+              name="categoryCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category Code</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="capitalize">
+                        <SelectValue placeholder="Select a category code" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectGroup>
+                        {categoryCodes.map((item) => (
+                          <SelectItem
+                            key={item}
+                            value={item}
+                            className="capitalize"
+                          >
+                            {item}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="remark"
