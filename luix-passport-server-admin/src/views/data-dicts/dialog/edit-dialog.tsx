@@ -3,7 +3,7 @@
 import * as React from "react"
 // import { tasks, type Task } from "@/db/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { PlusIcon } from "@radix-ui/react-icons"
+import { IconPlus } from '@tabler/icons-react'
 import { type Row } from "@tanstack/react-table"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -41,11 +41,14 @@ import {
 // import { createTask } from "../_lib/actions"
 import { createSchema, type CreateSchema } from "../table/table-schema"
 
-interface CreateTaskDialogProps {
+interface CreateDialogProps {
   // prevTasks: Row<Task>[]
+  create: () => void
 }
 
-export function EditDialog() {
+export function EditDialog({ 
+  create
+}: CreateDialogProps) {
   const [open, setOpen] = React.useState(false)
   const [isCreatePending, startCreateTransition] = React.useTransition()
 
@@ -84,14 +87,14 @@ export function EditDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <PlusIcon className="mr-2 size-4" aria-hidden="true" />
+        <Button variant="secondary" size="sm" className="mr-2" onClick={() => create()}>
+          <IconPlus className="mr-2 size-4" aria-hidden="true" />
           Create
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create a Data Dictionary</DialogTitle>
+          <DialogTitle>Create Data Dictionary</DialogTitle>
           <DialogDescription>
             Fill in the details below to create a new task.
           </DialogDescription>

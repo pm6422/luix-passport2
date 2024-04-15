@@ -1,7 +1,7 @@
 import { Input } from '@/components/ui/input'
 import { EnabledSelect } from '@/components/custom/enabled-select'
 import { Button } from '@/components/custom/button'
-import { IconSearch, IconPlus, IconX } from '@tabler/icons-react'
+import { IconSearch, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria } from './table-schema'
 import { EditDialog } from "../dialog/edit-dialog"
@@ -58,14 +58,7 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <Button
-        onClick={() => create()}
-        className='h-8 px-2 lg:px-3 mr-2'
-      >
-        <IconPlus className='mr-2 h-4 w-4' />
-        Create
-      </Button>
-      <EditDialog />
+      <EditDialog create={create}/>
     </div>
   )
 }
