@@ -58,9 +58,8 @@ export function EditDialog({
     .then(function (res) {
       const codes = uniq(map(res.data, 'categoryCode'))
       setCategoryCodes(codes)  
-    });
+    })
   }, [])
-
 
   const form = useForm<CreateSchema>({
     resolver: zodResolver(createSchema),

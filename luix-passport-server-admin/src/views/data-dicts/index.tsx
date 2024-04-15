@@ -23,7 +23,7 @@ export default function DataDict() {
     // .then(function (results) {
     //   const dicts = results[0];
     //   const users = results[1];
-    // });
+    // })
 
     setTableColumns(getColumns(YesNo));
   }, [])
