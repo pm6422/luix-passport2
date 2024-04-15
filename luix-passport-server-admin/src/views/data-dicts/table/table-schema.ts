@@ -26,3 +26,14 @@ export const initialCriteria: ICriteria = {
   categoryCode: '',
   enabled: ''
 }
+
+export const createSchema = z.object({
+  // num: z.string(),
+  categoryCode: z.string(),
+  dictCode: z.string(),
+  dictName: z.string().optional(),
+  remark: z.string().optional(),
+  enabled: z.boolean(),
+})
+
+export type CreateSchema = z.infer<typeof createSchema>

@@ -4,6 +4,7 @@ import { Button } from '@/components/custom/button'
 import { IconSearch, IconPlus, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria } from './table-schema'
+import { EditDialog } from "../dialog/edit-dialog"
 
 interface DataTableToolbarProps{
   criteria: ICriteria
@@ -64,6 +65,7 @@ export function DataTableToolbar ({
         <IconPlus className='mr-2 h-4 w-4' />
         Create
       </Button>
+      <EditDialog />
     </div>
   )
 }
