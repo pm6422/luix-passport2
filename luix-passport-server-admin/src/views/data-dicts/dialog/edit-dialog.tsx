@@ -148,6 +148,32 @@ export function EditDialog({
             />
             <FormField
               control={form.control}
+              name="dictCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Dictionary Code</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dictName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Dictionary Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="remark"
               render={({ field }) => (
                 <FormItem>
@@ -159,7 +185,7 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            
+
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
               <DialogClose asChild>
                 <Button type="button" variant="outline">
