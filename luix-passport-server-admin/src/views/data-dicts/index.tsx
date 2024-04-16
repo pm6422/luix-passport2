@@ -53,7 +53,7 @@ export default function DataDict() {
   async function create(formData: CreateSchema): Promise<any> {
     try {
       const res = await DataDictService.create(formData);
-      await sleep(5000); // Sleep for 10 seconds
+      await sleep(1000); // Sleep for 1 seconds
       loadPage();
       return res.data;
     } catch (error) {
