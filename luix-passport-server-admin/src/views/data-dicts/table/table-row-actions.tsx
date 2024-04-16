@@ -62,7 +62,7 @@ export function DataTableRowActions<TData>({
           <span className='sr-only'>Open menu</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='w-[75px] space-y-1'>
+      <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
         <Button variant="ghost" className='w-full'>Edit</Button>
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
