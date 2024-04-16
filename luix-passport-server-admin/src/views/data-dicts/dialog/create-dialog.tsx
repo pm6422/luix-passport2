@@ -60,6 +60,9 @@ export function EditDialog({
   const form = useForm<CreateSchema>({
     resolver: zodResolver(createSchema),
     defaultValues: {
+      dictCode: '',
+      dictName: '',
+      remark: '',
       enabled: true
     }
   })
