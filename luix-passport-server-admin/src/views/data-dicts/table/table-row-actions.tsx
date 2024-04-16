@@ -63,10 +63,10 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[75px] space-y-1'>
-        <Button variant="outline" className='w-full'>Edit</Button>
+        <Button variant="ghost" className='w-full'>Edit</Button>
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
-            <Button variant="outline" className='w-full'>Delete</Button>
+            <Button variant="ghost" className='w-full'>Delete</Button>
           </PopoverTrigger>
           <PopoverContent className='w-[240px]'>
             Are your sure to delete it?
