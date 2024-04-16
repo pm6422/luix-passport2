@@ -31,19 +31,19 @@ import { saveSchema, type SaveSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq } from 'lodash'
 
-interface DialogProps {
+interface DialogProps<TData> {
   entityName: string,
-  modelData: object,
+  modelData: TData,
   save: (formData: SaveSchema) => Promise<any>,
   closeDialog: () => void
 }
 
-export function DialogForm({ 
+export function DialogForm<TData>({ 
   entityName,
   modelData,
   save,
   closeDialog
-}: DialogProps) {
+}: DialogProps<TData>) {
   const [saving, setSaving] = useState(false)
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
 
@@ -57,7 +57,7 @@ export function DialogForm({
 
   const form = useForm<SaveSchema>({
     resolver: zodResolver(saveSchema),
-    defaultValues: modelData
+    defaultValues: modelData as Object
   })
 
   function onSubmit(formData: SaveSchema) {
