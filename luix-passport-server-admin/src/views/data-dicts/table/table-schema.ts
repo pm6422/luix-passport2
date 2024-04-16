@@ -27,7 +27,8 @@ export const initialCriteria: ICriteria = {
   enabled: ''
 }
 
-export const createSchema = z.object({
+export const saveSchema = z.object({
+  id: z.string().optional(),
   categoryCode: z.string(),
   dictCode: z.string().min(1),
   dictName: z.string().optional(),
@@ -35,4 +36,4 @@ export const createSchema = z.object({
   enabled: z.boolean().optional(),
 })
 
-export type CreateSchema = z.infer<typeof createSchema>
+export type SaveSchema = z.infer<typeof saveSchema>

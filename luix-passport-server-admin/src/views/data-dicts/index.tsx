@@ -9,7 +9,7 @@ import { IDataDict } from '@/models/DataDict'
 import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
-import { type CreateSchema } from './table/table-schema'
+import { type SaveSchema } from './table/table-schema'
 
 
 export default function DataDict() {
@@ -28,7 +28,7 @@ export default function DataDict() {
     //   const users = results[1];
     // });
 
-    setTableColumns(getColumns(entityName, create, deleteRow, YesNo))
+    setTableColumns(getColumns(entityName, save, deleteRow, YesNo))
   }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']): void {
@@ -51,9 +51,9 @@ export default function DataDict() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async function create(formData: CreateSchema): Promise<any> {
+  async function save(formData: SaveSchema): Promise<any> {
     try {
-      const res = await DataDictService.create(formData)
+      const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
       await sleep(1000); // Sleep for 1 seconds
       loadPage();
       return res.data
@@ -86,7 +86,7 @@ export default function DataDict() {
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
           <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
-            <DataTableToolbar entityName={entityName} criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={create} />
+            <DataTableToolbar entityName={entityName} criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} save={save} />
           </DataTable>
         </div>
       </LayoutBody>

@@ -5,14 +5,14 @@ import { IconSearch, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria } from './table-schema'
 import { CreateDialog } from '../dialog/create-dialog'
-import { type CreateSchema } from '../table/table-schema'
+import { type SaveSchema } from '../table/table-schema'
 
 interface DataTableToolbarProps{
   entityName: string,
   criteria: ICriteria
   setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
   loadPage: () => void,
-  create: (formData: CreateSchema) => Promise<any>
+  save: (formData: SaveSchema) => Promise<any>
 }
 
 export function DataTableToolbar ({
@@ -20,7 +20,7 @@ export function DataTableToolbar ({
   criteria, 
   setCriteria,
   loadPage,
-  create
+  save
 }: DataTableToolbarProps) {
   return (
     <div className='flex items-center justify-between w-full'>
@@ -61,7 +61,7 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <CreateDialog entityName={entityName} create={create}/>
+      <CreateDialog entityName={entityName} save={save}/>
     </div>
   )
 }

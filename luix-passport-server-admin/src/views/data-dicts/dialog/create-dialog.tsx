@@ -34,18 +34,18 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from '@/components/ui/switch'
-import { createSchema, type CreateSchema } from '../table/table-schema'
+import { saveSchema, type SaveSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq } from 'lodash'
 
 interface CreateDialogProps {
   entityName: string,
-  create: (formData: CreateSchema) => Promise<any>
+  save: (formData: SaveSchema) => Promise<any>
 }
 
 export function CreateDialog({ 
   entityName,
-  create
+  save
 }: CreateDialogProps) {
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
@@ -59,8 +59,8 @@ export function CreateDialog({
     })
   }, [])
 
-  const form = useForm<CreateSchema>({
-    resolver: zodResolver(createSchema),
+  const form = useForm<SaveSchema>({
+    resolver: zodResolver(saveSchema),
     defaultValues: {
       dictCode: '',
       dictName: '',
@@ -69,9 +69,9 @@ export function CreateDialog({
     }
   })
 
-  function onSubmit(formData: CreateSchema) {
+  function onSubmit(formData: SaveSchema) {
     setSaving(true)
-    toast.promise(create(formData), {
+    toast.promise(save(formData), {
       loading: "Creating " + entityName + "...",
       success: () => {
         form.reset()

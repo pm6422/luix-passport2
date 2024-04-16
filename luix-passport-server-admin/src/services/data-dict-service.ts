@@ -28,7 +28,7 @@ export class DataDictService {
     return axios.post('open-api/data-dicts', model);
   }
 
-  public static update(model: IDataDict): Promise<any> {
+  public static update(model: any): Promise<any> {
     return axios.put('open-api/data-dicts', model);
   }
 
