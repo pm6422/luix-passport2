@@ -28,7 +28,6 @@ export const initialCriteria: ICriteria = {
 }
 
 export const createSchema = z.object({
-  // num: z.string(),
   categoryCode: z.string(),
   dictCode: z.string(),
   dictName: z.string().optional(),
