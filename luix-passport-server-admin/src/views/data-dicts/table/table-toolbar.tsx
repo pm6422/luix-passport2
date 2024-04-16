@@ -5,11 +5,13 @@ import { IconSearch, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria } from './table-schema'
 import { EditDialog } from '../dialog/create-dialog'
+import { type CreateSchema } from '../table/table-schema'
+
 interface DataTableToolbarProps{
   criteria: ICriteria
   setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
   loadPage: () => void,
-  create: () => void
+  create: (formData: CreateSchema) => Promise<any>
 }
 
 export function DataTableToolbar ({ 

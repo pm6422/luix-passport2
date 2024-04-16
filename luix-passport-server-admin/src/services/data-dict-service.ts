@@ -24,7 +24,7 @@ export class DataDictService {
     return axios.get('open-api/data-dicts/' + id);
   }
 
-  public static create(model: IDataDict): Promise<any> {
+  public static create(model: any): Promise<any> {
     return axios.post('open-api/data-dicts', model);
   }
 

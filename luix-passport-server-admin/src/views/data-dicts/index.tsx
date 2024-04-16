@@ -9,6 +9,8 @@ import { IDataDict } from '@/models/DataDict'
 import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
+import { type CreateSchema } from './table/table-schema'
+import { any } from 'zod'
 
 
 export default function DataDict() {
@@ -45,6 +47,16 @@ export default function DataDict() {
     })
   }
 
+  const create = async (formData: CreateSchema) : Promise<any> => {
+    try {
+      const res = await DataDictService.create(formData);
+      loadPage();
+      return res.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
   const deleteRows = (rows: Array<IDataDict>) => {
     console.log(rows)
   }
@@ -59,7 +71,7 @@ export default function DataDict() {
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
           <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
-            <DataTableToolbar criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={() => {}} />
+            <DataTableToolbar criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={create} />
           </DataTable>
         </div>
       </LayoutBody>

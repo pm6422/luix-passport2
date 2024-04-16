@@ -1,8 +1,6 @@
 import { useState, useEffect, useTransition} from 'react'
-// import { tasks, type Task } from "@/db/schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { IconPlus } from '@tabler/icons-react'
-import { type Row } from "@tanstack/react-table"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
@@ -36,15 +34,12 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from '@/components/ui/switch'
-
-// import { createTask } from "../_lib/actions"
 import { createSchema, type CreateSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq } from 'lodash'
 
 interface CreateDialogProps {
-  // prevTasks: Row<Task>[]
-  create: () => void
+  create: (formData: CreateSchema) => Promise<any>
 }
 
 export function EditDialog({ 
@@ -64,36 +59,30 @@ export function EditDialog({
 
   const form = useForm<CreateSchema>({
     resolver: zodResolver(createSchema),
-    // defaultValues: {
-    //   categoryCode: 'role2'
-    // }
+    defaultValues: {
+      enabled: true
+      // categoryCode: 'role2'
+    }
   })
 
-  function onSubmit(input: CreateSchema) {
-    // const anotherTaskId =
-    //   prevTasks[Math.floor(Math.random() * prevTasks.length)]?.id
-
-    // if (!anotherTaskId) return
+  function onSubmit(formData: CreateSchema) {
 
     startCreateTransition(() => {
-      // toast.promise(
-      //   createTask({
-      //     ...input,
-      //     anotherTaskId,
-      //   }),
-      //   {
-      //     loading: "Creating task...",
-      //     success: () => {
-      //       form.reset()
-      //       setOpen(false)
-      //       return "Task created"
-      //     },
-      //     error: (error) => {
-      //       setOpen(false)
-      //       return getErrorMessage(error)
-      //     },
-      //   }
-      // )
+      toast.promise(
+        create(formData),
+        {
+          loading: "Creating data dictionary...",
+          success: () => {
+            form.reset()
+            setOpen(false)
+            return "Data dictionary created"
+          },
+          error: (error) => {
+            setOpen(false)
+            return getErrorMessage(error)
+          },
+        }
+      )
     })
   }
 
