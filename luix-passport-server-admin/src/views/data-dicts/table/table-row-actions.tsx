@@ -15,16 +15,19 @@ import {
 } from '@/components/ui/popover'
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
+import { UpdateDialog } from '../dialog/update-dialog'
 
 interface DataTableRowActionsProps<TData> {
   entityName: string,
   row: Row<TData>,
+  save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>
 }
 
 export function DataTableRowActions<TData>({
   entityName,
   row,
+  save,
   deleteRow
 }: DataTableRowActionsProps<TData>) {
   const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false)
@@ -63,7 +66,7 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        <Button variant="ghost" className='w-full'>Edit</Button>
+        <UpdateDialog entityName={entityName} create={save}/>
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
             <Button variant="ghost" className='w-full'>Delete</Button>

@@ -28,7 +28,7 @@ export default function DataDict() {
     //   const users = results[1];
     // });
 
-    setTableColumns(getColumns(entityName, deleteRow, YesNo))
+    setTableColumns(getColumns(entityName, create, deleteRow, YesNo))
   }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']): void {
