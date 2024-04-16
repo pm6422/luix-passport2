@@ -43,7 +43,7 @@ interface CreateDialogProps {
   create: (formData: CreateSchema) => Promise<any>
 }
 
-export function EditDialog({ 
+export function CreateDialog({ 
   entityName,
   create
 }: CreateDialogProps) {

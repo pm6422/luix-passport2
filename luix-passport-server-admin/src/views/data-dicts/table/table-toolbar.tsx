@@ -4,7 +4,7 @@ import { Button } from '@/components/custom/button'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria } from './table-schema'
-import { EditDialog } from '../dialog/create-dialog'
+import { CreateDialog } from '../dialog/create-dialog'
 import { type CreateSchema } from '../table/table-schema'
 
 interface DataTableToolbarProps{
@@ -61,7 +61,7 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <EditDialog entityName={entityName} create={create}/>
+      <CreateDialog entityName={entityName} create={create}/>
     </div>
   )
 }
