@@ -41,13 +41,15 @@ import { map, uniq } from 'lodash'
 interface DialogProps {
   entityName: string,
   modelData: object,
-  save: (formData: SaveSchema) => Promise<any>
+  save: (formData: SaveSchema) => Promise<any>,
+  closeDialog: () => void
 }
 
 export function DialogForm({ 
   entityName,
   modelData,
-  save
+  save,
+  closeDialog
 }: DialogProps) {
   const [saving, setSaving] = useState(false)
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
@@ -71,12 +73,12 @@ export function DialogForm({
       loading: "Saving " + entityName + "...",
       success: () => {
         form.reset()
-        // setOpen(false)
+        closeDialog()
         setSaving(false)
         return "Saved " + entityName
       },
       error: (error) => {
-        // setOpen(false)
+        closeDialog()
         setSaving(false)
         return getErrorMessage(error)
       }

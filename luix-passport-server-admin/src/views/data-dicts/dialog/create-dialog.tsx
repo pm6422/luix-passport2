@@ -73,7 +73,7 @@ export function CreateDialog({
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}
         </DialogHeader>
-        <DialogForm entityName={entityName} modelData={modelData} save={save}></DialogForm>
+        <DialogForm entityName={entityName} modelData={modelData} save={save} closeDialog={() => setOpen(false)}></DialogForm>
       </DialogContent>
     </Dialog>
   )
