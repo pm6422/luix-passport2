@@ -48,9 +48,9 @@ export function DataTableRowActions<TData>({
           </PopoverTrigger>
           <PopoverContent className='w-[240px]'>
             Are your sure to delete it?
-            <div className="flex items-center justify-between mt-4 space-x-2">
+            <div className="mt-4 flex items-center justify-between space-x-2">
               <Button
-                className="w-full px-2"
+                className="w-full"
                 variant="destructive"
                 size="sm"
                 onClick={(e) => {
@@ -73,7 +73,7 @@ export function DataTableRowActions<TData>({
                 Yes
               </Button>
               <Button
-                className="w-full px-2"
+                className="w-full"
                 variant="secondary"
                 size="sm"
                 onClick={(e) => {
