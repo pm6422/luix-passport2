@@ -94,7 +94,7 @@ export function UpdateDialog({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Update Data Dictionary</DialogTitle>
+          <DialogTitle className='capitalize'>Update {entityName}</DialogTitle>
           {/* <DialogDescription>
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}

@@ -97,7 +97,7 @@ export function CreateDialog({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create Data Dictionary</DialogTitle>
+        <DialogTitle className='capitalize'>Create {entityName}</DialogTitle>
           {/* <DialogDescription>
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}
