@@ -5,7 +5,10 @@ import { DataTableRowActions } from './table-row-actions'
 import { DataDictSchema } from './table-schema'
 import { formatDateTime } from '@/libs/utils'
 
-export function getColumns(yesNo: Array<any>): ColumnDef<DataDictSchema>[] {
+export function getColumns(
+  deleteRow: (row: any) => Promise<any>, 
+  yesNo: Array<any>
+): ColumnDef<DataDictSchema>[] {
   return [
     {
       id: 'select',
@@ -110,7 +113,7 @@ export function getColumns(yesNo: Array<any>): ColumnDef<DataDictSchema>[] {
     },
     {
       id: 'actions',
-      cell: ({ row }) => <DataTableRowActions row={row} />,
+      cell: ({ row }) => <DataTableRowActions row={row} deleteRow={deleteRow}/>,
     }
   ]
 }

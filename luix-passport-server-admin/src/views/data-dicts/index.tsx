@@ -27,7 +27,7 @@ export default function DataDict() {
     //   const users = results[1];
     // });
 
-    setTableColumns(getColumns(YesNo));
+    setTableColumns(getColumns(deleteRow, YesNo));
   }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']): void {
@@ -54,6 +54,16 @@ export default function DataDict() {
     try {
       const res = await DataDictService.create(formData);
       await sleep(5000); // Sleep for 10 seconds
+      loadPage();
+      return res.data;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async function deleteRow(row: any): Promise<any> {
+    try {
+      const res = await DataDictService.deleteById(row.id);
       loadPage();
       return res.data;
     } catch (error) {

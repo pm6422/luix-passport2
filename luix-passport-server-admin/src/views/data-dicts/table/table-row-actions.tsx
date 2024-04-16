@@ -14,27 +14,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { DataDictService } from '@/services/data-dict-service'
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>,
+  deleteRow: (row: any) => Promise<any>
 }
 
 export function DataTableRowActions<TData>({
-  row
+  row,
+  deleteRow
 }: DataTableRowActionsProps<TData>) {
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
-
-  async function deleteRow(row: any): Promise<any> {
-    try {
-      const res = await DataDictService.deleteById(row.id);
-      return res.data;
-    } catch (error) {
-      return error;
-    }
-  }
 
   return (
     <DropdownMenu>
