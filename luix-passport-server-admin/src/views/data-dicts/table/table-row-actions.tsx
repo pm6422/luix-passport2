@@ -28,7 +28,7 @@ export function DataTableRowActions<TData>({
   const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false)
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
 
-  function clickDelete(): void {
+  function clickDeleteYes(): void {
     toast.promise(deleteRow(row.original), {
       loading: "Deleting data dictionary...",
       success: () => {
@@ -42,6 +42,11 @@ export function DataTableRowActions<TData>({
         return getErrorMessage(error)
       }
     })
+  }
+
+  function clickDeleteNo(): void {
+    setDelConfirmPopoverOpen(false)
+    setDropdownMenuOpen(false)
   }
 
   return (
@@ -68,7 +73,7 @@ export function DataTableRowActions<TData>({
                 className="w-full"
                 variant="destructive"
                 size="sm"
-                onClick={clickDelete}
+                onClick={clickDeleteYes}
               >
                 Yes
               </Button>
@@ -76,11 +81,7 @@ export function DataTableRowActions<TData>({
                 className="w-full"
                 variant="secondary"
                 size="sm"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  setDelConfirmPopoverOpen(false)
-                  setDropdownMenuOpen(false)
-                }}
+                onClick={clickDeleteNo}
               >
                 No
               </Button>
