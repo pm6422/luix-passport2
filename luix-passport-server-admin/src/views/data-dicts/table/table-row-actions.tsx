@@ -26,10 +26,11 @@ export function DataTableRowActions<TData>({
   row,
   deleteRow
 }: DataTableRowActionsProps<TData>) {
+  const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false)
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={dropdownMenuOpen} onOpenChange={setDropdownMenuOpen}>
       <DropdownMenuTrigger asChild>
         <Button
           variant='ghost'
@@ -58,10 +59,12 @@ export function DataTableRowActions<TData>({
                     loading: "Deleting data dictionary...",
                     success: () => {
                       setDelConfirmPopoverOpen(false)
+                      setDropdownMenuOpen(false)
                       return "Data dictionary deleted"
                     },
                     error: (error) => {
                       setDelConfirmPopoverOpen(false)
+                      setDropdownMenuOpen(false)
                       return getErrorMessage(error)
                     }
                   })
@@ -76,6 +79,7 @@ export function DataTableRowActions<TData>({
                 onClick={(e) => {
                   e.stopPropagation()
                   setDelConfirmPopoverOpen(false)
+                  setDropdownMenuOpen(false)
                 }}
               >
                 No

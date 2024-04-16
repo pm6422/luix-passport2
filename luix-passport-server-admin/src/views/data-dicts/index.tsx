@@ -42,7 +42,7 @@ export default function DataDict() {
       setTableData(r.data)
       const total = parseInt(r.headers['x-total-count'])
       setTotalCount(total)
-      setTotalPages(Math.ceil(total / pageSize));
+      setTotalPages(Math.ceil(total / pageSize))
     })
   }
 
@@ -52,23 +52,22 @@ export default function DataDict() {
 
   async function create(formData: CreateSchema): Promise<any> {
     try {
-      const res = await DataDictService.create(formData);
+      const res = await DataDictService.create(formData)
       await sleep(1000); // Sleep for 1 seconds
       loadPage();
-      return res.data;
+      return res.data
     } catch (error) {
-      return error;
+      return error
     }
   }
 
   async function deleteRow(row: any): Promise<any> {
     try {
-      const res = await DataDictService.deleteById(row.id);
-      await sleep(1000); // Sleep for 1 seconds
+      const res = await DataDictService.deleteById(row.id)
       loadPage();
-      return res.data;
+      return res.data
     } catch (error) {
-      return error;
+      return error
     }
   }
 
