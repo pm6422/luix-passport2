@@ -4,7 +4,7 @@ import { Button } from '@/components/custom/button'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria } from './table-schema'
-import { EditDialog } from '../dialog/edit-dialog'
+import { EditDialog } from '../dialog/create-dialog'
 interface DataTableToolbarProps{
   criteria: ICriteria
   setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>

@@ -100,7 +100,7 @@ export function EditDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary" size="sm" className="mr-2" onClick={() => create()}>
+        <Button variant="secondary" size="sm" className="mr-2">
           <IconPlus className="mr-2 size-4" aria-hidden="true" />
           Create
         </Button>
@@ -108,9 +108,9 @@ export function EditDialog({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create Data Dictionary</DialogTitle>
-          <DialogDescription>
+          {/* <DialogDescription>
             Fill in the details below to create a new data dictionary.
-          </DialogDescription>
+          </DialogDescription> */}
         </DialogHeader>
         <Form {...form}>
           <form
