@@ -10,7 +10,6 @@ import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { type CreateSchema } from './table/table-schema'
-import { any } from 'zod'
 
 
 export default function DataDict() {
