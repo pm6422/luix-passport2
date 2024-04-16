@@ -30,7 +30,7 @@ export default function DataDict() {
     setTableColumns(getColumns(YesNo));
   }, [])
 
-  const loadPage = (pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']) => {
+  function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']): void {
     DataDictService.find({
       page: pageNo,
       size: pageSize,
@@ -61,7 +61,7 @@ export default function DataDict() {
     }
   }
 
-  const deleteRows = (rows: Array<IDataDict>) => {
+  function deleteRows(rows: Array<IDataDict>): void {
     console.log(rows)
   }
 
