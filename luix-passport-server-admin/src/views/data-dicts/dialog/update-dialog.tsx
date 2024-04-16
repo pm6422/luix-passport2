@@ -13,15 +13,18 @@ import { DialogForm } from './dialog-form'
 interface UpdateDialogProps<TData> {
   entityName: string,
   modelData: TData,
-  save: (formData: SaveSchema) => Promise<any>
+  save: (formData: SaveSchema) => Promise<any>,
+  closeDropdownMenu: () => void
 }
 
 export function UpdateDialog<TData>({ 
   entityName,
   modelData,
-  save
+  save,
+  closeDropdownMenu
 }: UpdateDialogProps<TData>) {
   const [open, setOpen] = useState(false)
+  // closeDropdownMenu()
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
