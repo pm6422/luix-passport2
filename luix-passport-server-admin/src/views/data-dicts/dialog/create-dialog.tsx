@@ -61,7 +61,6 @@ export function EditDialog({
     resolver: zodResolver(createSchema),
     defaultValues: {
       enabled: true
-      // categoryCode: 'role2'
     }
   })
 
