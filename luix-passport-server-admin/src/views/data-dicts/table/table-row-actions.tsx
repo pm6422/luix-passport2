@@ -66,7 +66,7 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        <UpdateDialog entityName={entityName} create={save}/>
+        <UpdateDialog entityName={entityName} save={save}/>
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
             <Button variant="ghost" className='w-full'>Delete</Button>

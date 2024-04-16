@@ -46,6 +46,7 @@ interface DialogProps {
 
 export function DialogForm({ 
   entityName,
+  modelData,
   save
 }: DialogProps) {
   const [saving, setSaving] = useState(false)
@@ -61,12 +62,7 @@ export function DialogForm({
 
   const form = useForm<SaveSchema>({
     resolver: zodResolver(saveSchema),
-    defaultValues: {
-      dictCode: '',
-      dictName: '',
-      remark: '',
-      enabled: true
-    }
+    defaultValues: modelData
   })
 
   function onSubmit(formData: SaveSchema) {
