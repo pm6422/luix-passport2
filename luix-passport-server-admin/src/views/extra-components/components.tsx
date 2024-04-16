@@ -10,6 +10,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Separator } from '@/components/ui/separator'
 import { Input } from '@/components/ui/input'
 import { AccountNav } from '@/components/account-nav.tsx'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormDescription
+} from "@/components/ui/form"
+import MultiSelectFormField from '@/components/custom/multi-select'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { toast } from "sonner";
 
 export default function ExtraComponents() {
   const items = [
@@ -31,6 +45,49 @@ export default function ExtraComponents() {
   ))
 
   const [pinInput, setPinInput] = useState('')
+
+  const frameworksList = [
+    {
+      value: "next.js",
+      label: "Next.js"
+    },
+    {
+      value: "sveltekit",
+      label: "SvelteKit",
+    },
+    {
+      value: "nuxt.js",
+      label: "Nuxt.js",
+    },
+    {
+      value: "remix",
+      label: "Remix",
+    },
+    {
+      value: "astro",
+      label: "Astro"
+    },
+  ];
+
+  const FormSchema = z.object({
+    frameworks: z
+      .array(z.string().min(1))
+      .min(1)
+      .nonempty("Please select at least one framework."),
+  });
+
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      frameworks: ["remix"],
+    },
+  });
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    toast(
+      `You have selected following frameworks: ${data.frameworks.join(", ")}.`
+    );
+  }
 
   return (
     <Layout>
@@ -156,6 +213,34 @@ export default function ExtraComponents() {
             </Tabs>
           </div>
         </div>
+
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
+            <FormField
+              control={form.control}
+              name="frameworks"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category Code</FormLabel>
+                  <FormControl>
+                    <MultiSelectFormField
+                      options={frameworksList}
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="Select a category code"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </form>
+      </Form>
+        
+
       </LayoutBody>
     </Layout>
   )

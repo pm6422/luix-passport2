@@ -33,7 +33,7 @@ export const createSchema = z.object({
   dictCode: z.string(),
   dictName: z.string().optional(),
   remark: z.string().optional(),
-  enabled: z.boolean(),
+  enabled: z.boolean().optional(),
 })
 
 export type CreateSchema = z.infer<typeof createSchema>
