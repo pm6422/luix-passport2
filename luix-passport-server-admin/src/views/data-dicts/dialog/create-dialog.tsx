@@ -1,4 +1,4 @@
-import { useState, useEffect, useTransition} from 'react'
+import { useState, useEffect } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { IconPlus } from '@tabler/icons-react'
 import { useForm } from "react-hook-form"
@@ -46,8 +46,8 @@ export function EditDialog({
   create
 }: CreateDialogProps) {
   const [open, setOpen] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
-  const [isCreatePending, startCreateTransition] = useTransition()
 
   useEffect(() => {
     DataDictService.findAll(true)
@@ -68,20 +68,20 @@ export function EditDialog({
   })
 
   function onSubmit(formData: CreateSchema) {
-
-    startCreateTransition(() => {
-      toast.promise(create(formData), {
-        loading: "Creating data dictionary...",
-        success: () => {
-          form.reset()
-          setOpen(false)
-          return "Data dictionary created"
-        },
-        error: (error) => {
-          setOpen(false)
-          return getErrorMessage(error)
-        },
-      })
+    setSaving(true)
+    toast.promise(create(formData), {
+      loading: "Creating data dictionary...",
+      success: () => {
+        form.reset()
+        setOpen(false)
+        setSaving(false)
+        return "Data dictionary created"
+      },
+      error: (error) => {
+        setOpen(false)
+        setSaving(false)
+        return getErrorMessage(error)
+      }
     })
   }
 
@@ -204,7 +204,7 @@ export function EditDialog({
                   Cancel
                 </Button>
               </DialogClose>
-              <Button disabled={isCreatePending}>Save</Button>
+              <Button disabled={saving}>Save</Button>
             </DialogFooter>
           </form>
         </Form>
