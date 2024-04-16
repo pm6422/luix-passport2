@@ -70,21 +70,18 @@ export function EditDialog({
   function onSubmit(formData: CreateSchema) {
 
     startCreateTransition(() => {
-      toast.promise(
-        create(formData),
-        {
-          loading: "Creating data dictionary...",
-          success: () => {
-            form.reset()
-            setOpen(false)
-            return "Data dictionary created"
-          },
-          error: (error) => {
-            setOpen(false)
-            return getErrorMessage(error)
-          },
-        }
-      )
+      toast.promise(create(formData), {
+        loading: "Creating data dictionary...",
+        success: () => {
+          form.reset()
+          setOpen(false)
+          return "Data dictionary created"
+        },
+        error: (error) => {
+          setOpen(false)
+          return getErrorMessage(error)
+        },
+      })
     })
   }
 
