@@ -22,7 +22,9 @@ interface DataTableRowActionsProps<TData> {
   row: Row<TData>
 }
 
-export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions<TData>({
+  row
+}: DataTableRowActionsProps<TData>) {
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
 
   async function deleteRow(row: any): Promise<any> {
