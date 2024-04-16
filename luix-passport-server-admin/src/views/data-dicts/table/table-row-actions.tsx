@@ -34,7 +34,7 @@ export function DataTableRowActions<TData>({
       success: () => {
         setDelConfirmPopoverOpen(false)
         setDropdownMenuOpen(false)
-        return "Data dictionary deleted"
+        return "Deleted data dictionary"
       },
       error: (error) => {
         setDelConfirmPopoverOpen(false)

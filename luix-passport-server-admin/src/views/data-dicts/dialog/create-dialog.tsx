@@ -75,7 +75,7 @@ export function EditDialog({
         form.reset()
         setOpen(false)
         setSaving(false)
-        return "Data dictionary created"
+        return "Created data dictionary"
       },
       error: (error) => {
         setOpen(false)
