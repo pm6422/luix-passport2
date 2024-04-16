@@ -39,10 +39,12 @@ import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq } from 'lodash'
 
 interface CreateDialogProps {
+  entityName: string,
   create: (formData: CreateSchema) => Promise<any>
 }
 
 export function EditDialog({ 
+  entityName,
   create
 }: CreateDialogProps) {
   const [open, setOpen] = useState(false)
@@ -70,12 +72,12 @@ export function EditDialog({
   function onSubmit(formData: CreateSchema) {
     setSaving(true)
     toast.promise(create(formData), {
-      loading: "Creating data dictionary...",
+      loading: "Creating " + entityName + "...",
       success: () => {
         form.reset()
         setOpen(false)
         setSaving(false)
-        return "Created data dictionary"
+        return "Created " + entityName
       },
       error: (error) => {
         setOpen(false)

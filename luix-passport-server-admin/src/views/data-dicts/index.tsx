@@ -14,6 +14,7 @@ import { type CreateSchema } from './table/table-schema'
 
 export default function DataDict() {
   // State to hold the fetched data
+  const entityName = 'data dictionary'
   const [tableData, setTableData] = useState([])
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
@@ -27,7 +28,7 @@ export default function DataDict() {
     //   const users = results[1];
     // });
 
-    setTableColumns(getColumns(deleteRow, YesNo));
+    setTableColumns(getColumns(entityName, deleteRow, YesNo))
   }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']): void {
@@ -85,7 +86,7 @@ export default function DataDict() {
       <LayoutBody className='flex flex-col' fixedHeight>
         <div className='-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0'>
           <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
-            <DataTableToolbar criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={create} />
+            <DataTableToolbar entityName={entityName} criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} create={create} />
           </DataTable>
         </div>
       </LayoutBody>

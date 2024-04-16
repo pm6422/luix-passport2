@@ -17,11 +17,13 @@ import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 
 interface DataTableRowActionsProps<TData> {
+  entityName: string,
   row: Row<TData>,
   deleteRow: (row: any) => Promise<any>
 }
 
 export function DataTableRowActions<TData>({
+  entityName,
   row,
   deleteRow
 }: DataTableRowActionsProps<TData>) {
@@ -30,11 +32,11 @@ export function DataTableRowActions<TData>({
 
   function clickDeleteYes(): void {
     toast.promise(deleteRow(row.original), {
-      loading: "Deleting data dictionary...",
+      loading: "Deleting " + entityName + "...",
       success: () => {
         setDelConfirmPopoverOpen(false)
         setDropdownMenuOpen(false)
-        return "Deleted data dictionary"
+        return "Deleted " + entityName
       },
       error: (error) => {
         setDelConfirmPopoverOpen(false)

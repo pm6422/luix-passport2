@@ -6,6 +6,7 @@ import { DataDictSchema } from './table-schema'
 import { formatDateTime } from '@/libs/utils'
 
 export function getColumns(
+  entityName: string,
   deleteRow: (row: any) => Promise<any>, 
   yesNo: Array<any>
 ): ColumnDef<DataDictSchema>[] {
@@ -113,7 +114,7 @@ export function getColumns(
     },
     {
       id: 'actions',
-      cell: ({ row }) => <DataTableRowActions row={row} deleteRow={deleteRow}/>,
+      cell: ({ row }) => <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}/>,
     }
   ]
 }

@@ -8,13 +8,15 @@ import { EditDialog } from '../dialog/create-dialog'
 import { type CreateSchema } from '../table/table-schema'
 
 interface DataTableToolbarProps{
+  entityName: string,
   criteria: ICriteria
   setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
   loadPage: () => void,
   create: (formData: CreateSchema) => Promise<any>
 }
 
-export function DataTableToolbar ({ 
+export function DataTableToolbar ({
+  entityName,
   criteria, 
   setCriteria,
   loadPage,
@@ -59,7 +61,7 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <EditDialog create={create}/>
+      <EditDialog entityName={entityName} create={create}/>
     </div>
   )
 }
