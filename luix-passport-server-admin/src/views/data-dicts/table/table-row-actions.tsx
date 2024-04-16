@@ -8,7 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-// import { tableSchema } from './table-schema'
 import {
   Popover,
   PopoverContent,
@@ -28,6 +27,22 @@ export function DataTableRowActions<TData>({
 }: DataTableRowActionsProps<TData>) {
   const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false)
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
+
+  function clickDelete(): void {
+    toast.promise(deleteRow(row.original), {
+      loading: "Deleting data dictionary...",
+      success: () => {
+        setDelConfirmPopoverOpen(false)
+        setDropdownMenuOpen(false)
+        return "Data dictionary deleted"
+      },
+      error: (error) => {
+        setDelConfirmPopoverOpen(false)
+        setDropdownMenuOpen(false)
+        return getErrorMessage(error)
+      }
+    })
+  }
 
   return (
     <DropdownMenu open={dropdownMenuOpen} onOpenChange={setDropdownMenuOpen}>
@@ -53,22 +68,7 @@ export function DataTableRowActions<TData>({
                 className="w-full"
                 variant="destructive"
                 size="sm"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  toast.promise(deleteRow(row.original), {
-                    loading: "Deleting data dictionary...",
-                    success: () => {
-                      setDelConfirmPopoverOpen(false)
-                      setDropdownMenuOpen(false)
-                      return "Data dictionary deleted"
-                    },
-                    error: (error) => {
-                      setDelConfirmPopoverOpen(false)
-                      setDropdownMenuOpen(false)
-                      return getErrorMessage(error)
-                    }
-                  })
-                }}
+                onClick={clickDelete}
               >
                 Yes
               </Button>
