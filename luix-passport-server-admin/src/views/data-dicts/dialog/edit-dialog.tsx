@@ -64,6 +64,9 @@ export function EditDialog({
 
   const form = useForm<CreateSchema>({
     resolver: zodResolver(createSchema),
+    // defaultValues: {
+    //   categoryCode: 'role2'
+    // }
   })
 
   function onSubmit(input: CreateSchema) {
