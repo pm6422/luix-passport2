@@ -64,6 +64,7 @@ export default function DataDict() {
   async function deleteRow(row: any): Promise<any> {
     try {
       const res = await DataDictService.deleteById(row.id);
+      await sleep(1000); // Sleep for 1 seconds
       loadPage();
       return res.data;
     } catch (error) {
