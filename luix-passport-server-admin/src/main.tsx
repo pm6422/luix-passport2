@@ -3,7 +3,7 @@ import { AppInfoService } from '@/services/app-info-service'
 import { AppInfoProvider } from '@/stores/app-info-provider'
 import { ThemeProvider } from '@/stores/theme-provider'
 import { RouterProvider } from 'react-router-dom'
-import { Toaster } from 'sonner'
+import { Toaster } from '@/components/custom/toaster'
 import router from '@/router'
 import '@/main.css'
 
@@ -13,7 +13,7 @@ AppInfoService.load().then(appInfo => {
       <AppInfoProvider defaultValue={appInfo}>
         <ThemeProvider>
           <RouterProvider router={router} />
-          <Toaster position="top-right"/>
+          <Toaster/>
         </ThemeProvider>
       </AppInfoProvider>
     // </React.StrictMode>
