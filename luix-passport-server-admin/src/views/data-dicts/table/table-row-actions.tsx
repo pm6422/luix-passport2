@@ -14,6 +14,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import { DataDictService } from '@/services/data-dict-service'
+import { toast } from "sonner"
+import { getErrorMessage } from "@/libs/handle-error"
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>
@@ -21,8 +24,15 @@ interface DataTableRowActionsProps<TData> {
 
 export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData>) {
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
-  // const rowData = tableSchema.parse(row.original)
-  // console.log(row.original);
+
+  async function deleteRow(row: any): Promise<any> {
+    try {
+      const res = await DataDictService.deleteById(row.id);
+      return res.data;
+    } catch (error) {
+      return error;
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -46,11 +56,21 @@ export function DataTableRowActions<TData>({row}: DataTableRowActionsProps<TData
             <div className="flex items-center justify-between mt-4 space-x-2">
               <Button
                 className="w-full px-2"
-                variant="secondary"
+                variant="destructive"
                 size="sm"
                 onClick={(e) => {
                   e.stopPropagation()
-                  
+                  toast.promise(deleteRow(row.original), {
+                    loading: "Deleting data dictionary...",
+                    success: () => {
+                      setDelConfirmPopoverOpen(false)
+                      return "Data dictionary deleted"
+                    },
+                    error: (error) => {
+                      setDelConfirmPopoverOpen(false)
+                      return getErrorMessage(error)
+                    }
+                  })
                 }}
               >
                 Yes
