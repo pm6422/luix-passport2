@@ -128,7 +128,7 @@ export function EditDialog({
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="capitalize">
+                      <SelectTrigger>
                         <SelectValue placeholder="Select a category code" />
                       </SelectTrigger>
                     </FormControl>
@@ -138,7 +138,6 @@ export function EditDialog({
                           <SelectItem
                             key={item}
                             value={item}
-                            className="capitalize"
                           >
                             {item}
                           </SelectItem>
