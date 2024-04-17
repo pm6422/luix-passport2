@@ -155,7 +155,7 @@ export function EditDialog({
                 <FormItem>
                   <FormLabel>Dictionary Name</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                  <Input {...field} value={field.value || ''} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,7 +168,7 @@ export function EditDialog({
                 <FormItem>
                   <FormLabel>Remark</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                  <Input {...field} value={field.value || ''} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -183,7 +183,7 @@ export function EditDialog({
                     <FormLabel>Enabled</FormLabel>
                     <FormControl>
                       <Switch
-                        checked={field.value}
+                        checked={field.value || false}
                         onCheckedChange={field.onChange}
                         aria-readonly
                       />
