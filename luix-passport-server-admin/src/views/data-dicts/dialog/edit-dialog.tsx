@@ -113,18 +113,13 @@ export function EditDialog({
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue/>
-                      </SelectTrigger>
-                    </FormControl>
+                    <SelectTrigger>
+                      <SelectValue/>
+                    </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
                         {categoryCodes.map((item) => (
-                          <SelectItem
-                            key={item}
-                            value={item}
-                          >
+                          <SelectItem key={item} value={item}>
                             {item}
                           </SelectItem>
                         ))}
