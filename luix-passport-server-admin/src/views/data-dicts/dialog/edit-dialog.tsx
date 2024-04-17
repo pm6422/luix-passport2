@@ -90,7 +90,7 @@ export function EditDialog<TData>({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
-      <DialogContent>
+      <DialogContent className='max-w-screen-sm'>
         <DialogHeader>
         <DialogTitle className='capitalize'>{has(modelData, 'id') ? "Update" : "Create"} {entityName}</DialogTitle>
           {/* <DialogDescription>
