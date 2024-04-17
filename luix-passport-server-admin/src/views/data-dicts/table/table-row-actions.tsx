@@ -81,19 +81,19 @@ export function DataTableRowActions<TData>({
             <div className="mt-4 flex items-center justify-between space-x-2">
               <Button
                 className="w-full"
-                variant="destructive"
-                size="sm"
-                onClick={clickDeleteYes}
-              >
-                Yes
-              </Button>
-              <Button
-                className="w-full"
                 variant="secondary"
                 size="sm"
                 onClick={clickDeleteNo}
               >
                 No
+              </Button>
+              <Button
+                className="w-full"
+                variant="destructive"
+                size="sm"
+                onClick={clickDeleteYes}
+              >
+                Yes
               </Button>
             </div>
           </PopoverContent>
