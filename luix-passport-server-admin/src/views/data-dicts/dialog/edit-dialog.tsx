@@ -11,6 +11,7 @@ import {
   DialogTitle,
   DialogClose,
   DialogFooter,
+  DialogDescription
 } from "@/components/ui/dialog"
 import {
   Form,
@@ -93,9 +94,9 @@ export function EditDialog<TData>({
       <DialogContent className='max-w-screen-sm'>
         <DialogHeader>
         <DialogTitle className='capitalize'>{has(modelData, 'id') ? "Update" : "Create"} {entityName}</DialogTitle>
-          {/* <DialogDescription>
-            Fill in the details below to create a new data dictionary.
-          </DialogDescription> */}
+          { has(modelData, 'num') && 
+            <DialogDescription>Number: {modelData.num}</DialogDescription>
+          }
         </DialogHeader>
         <Form {...form}>
           <form
