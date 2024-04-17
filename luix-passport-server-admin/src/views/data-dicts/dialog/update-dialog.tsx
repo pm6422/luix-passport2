@@ -14,7 +14,7 @@ interface UpdateDialogProps<TData> {
   entityName: string,
   modelData: TData,
   save: (formData: SaveSchema) => Promise<any>,
-  afterSave: (success: boolean) => void
+  afterSave?: (success: boolean) => void
 }
 
 export function UpdateDialog<TData>({ 
@@ -38,7 +38,7 @@ export function UpdateDialog<TData>({
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}
         </DialogHeader>
-        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave(success);}}></DialogForm>
+        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}></DialogForm>
       </DialogContent>
     </Dialog>
   )
