@@ -1,5 +1,4 @@
 import axios from 'axios'
-import type { IDataDict } from '@/models/DataDict'
 
 export class DataDictService {
   constructor() {
