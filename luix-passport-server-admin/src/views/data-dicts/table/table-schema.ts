@@ -13,7 +13,7 @@ export const formSchema = z.object({
 
 export type FormSchema = z.infer<typeof formSchema>
 
-export const emptyFormState: FormSchema = {
+export const initialFormState: FormSchema = {
   id: '',
   num: '',
   categoryCode: '',

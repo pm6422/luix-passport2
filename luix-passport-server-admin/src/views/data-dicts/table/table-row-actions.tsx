@@ -18,7 +18,7 @@ import { getErrorMessage } from "@/libs/handle-error"
 import { EditDialog } from '../dialog/edit-dialog'
 import { DialogTrigger } from "@/components/ui/dialog"
 import { type FormSchema } from '../table/table-schema'
-import { emptyFormState } from './table-schema'
+import { initialFormState } from './table-schema'
 import { merge } from '@/libs/utils'
 
 interface DataTableRowActionsProps {
@@ -70,7 +70,7 @@ export function DataTableRowActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        <EditDialog entityName={entityName} modelData={merge(emptyFormState, row.original)} save={save} afterSave={(success) => setDropdownMenuOpen(false)}>
+        <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save} afterSave={(success) => setDropdownMenuOpen(false)}>
           <DialogTrigger asChild>
             <Button variant="ghost" className='w-full'>Update</Button>
           </DialogTrigger>
