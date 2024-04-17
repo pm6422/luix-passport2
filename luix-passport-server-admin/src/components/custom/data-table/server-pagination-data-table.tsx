@@ -14,6 +14,7 @@ import {
   getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { DataTablePagination } from './data-table-pagination'
 import { DataTableViewOptions } from '@/components/custom/data-table/data-table-view-options'
 import { parseSorts } from '@/libs/utils'
@@ -55,6 +56,7 @@ export function DataTable<TData, TValue>({
   const [pagination, setPagination] = useState<PaginationState>({pageIndex: 0, pageSize: 10})
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
+  const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
 
   const table = useReactTable({
     data,
@@ -94,29 +96,53 @@ export function DataTable<TData, TValue>({
       <div className='flex items-center justify-between'>
         {children}
         { Object.keys(rowSelection).length > 0 && (
+          <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
+          <PopoverTrigger asChild>
             <Button
               variant='destructive'
               size='sm'
               className='ml-auto hidden h-8 lg:flex mr-2'
-              onClick={() => {
-                const selectedRows = Object.keys(rowSelection).map(rowIndex => data[parseInt(rowIndex)]);
-                if(deleteRows) {
-                  toast.promise(deleteRows(selectedRows), {
-                    loading: "Deleting rows...",
-                    success: () => {
-                      setRowSelection({})
-                      return "Deleted selected rows"
-                    },
-                    error: (error) => {
-                      return getErrorMessage(error)
-                    }
-                  })
-                }
-              }}
             >
               <IconTrash className='mr-2 h-4 w-4' />
               Delete{`(${Object.keys(rowSelection).length})`}
             </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-[240px]'>
+            Are your sure to delete?
+            <div className="mt-4 flex items-center justify-between space-x-2">
+              <Button
+                className="w-full"
+                variant="secondary"
+                size="sm"
+                onClick={() => setDelConfirmPopoverOpen(false)}
+              >
+                No
+              </Button>
+              <Button
+                className="w-full"
+                variant="destructive"
+                size="sm"
+                onClick={() => {
+                  const selectedRows = Object.keys(rowSelection).map(rowIndex => data[parseInt(rowIndex)]);
+                  if(deleteRows) {
+                    toast.promise(deleteRows(selectedRows), {
+                      loading: "Deleting rows...",
+                      success: () => {
+                        setRowSelection({})
+                        return "Deleted selected rows"
+                      },
+                      error: (error) => {
+                        return getErrorMessage(error)
+                      }
+                    })
+                  }
+                }}
+              >
+                Yes
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
         )}
         <DataTableViewOptions columns={table.getAllColumns()} />
       </div>
