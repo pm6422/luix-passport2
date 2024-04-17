@@ -29,6 +29,7 @@ export const initialCriteria: ICriteria = {
 
 export const saveSchema = z.object({
   id: z.string().optional(),
+  num: z.string().optional(),
   categoryCode: z.string(),
   dictCode: z.string().min(1),
   dictName: z.string().optional(),
