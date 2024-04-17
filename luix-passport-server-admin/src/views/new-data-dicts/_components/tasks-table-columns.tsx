@@ -226,6 +226,7 @@ export function getColumns(): ColumnDef<DataDict>[] {
                 <DropdownMenuItem
                   onSelect={() => setShowDeleteTaskDialog(true)}
                 >
+                
                   Delete
                   <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
                 </DropdownMenuItem>
