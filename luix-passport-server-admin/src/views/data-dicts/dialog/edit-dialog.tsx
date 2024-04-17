@@ -34,7 +34,7 @@ import {
 import { Switch } from '@/components/ui/switch'
 import { formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
-import { map, uniq, has } from 'lodash'
+import { map, uniq } from 'lodash'
 
 interface EditDialogProps {
   children: React.ReactNode,
