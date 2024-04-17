@@ -94,7 +94,7 @@ export function getColumns(
         return (
           <div className='flex w-[50px] items-center'>
             {element && element.icon && (
-              <element.icon className='mr-2 h-6 w-6 text-muted-foreground' />
+              <element.icon className='mr-2 h-5 w-5 text-muted-foreground' />
             )}
             <span>{element && element.label}</span>
           </div>
