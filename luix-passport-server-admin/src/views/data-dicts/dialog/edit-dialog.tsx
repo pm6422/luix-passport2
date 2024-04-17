@@ -109,10 +109,7 @@ export function EditDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Category Code</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <SelectTrigger>
                       <SelectValue/>
                     </SelectTrigger>
@@ -126,7 +123,7 @@ export function EditDialog({
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage/>
                 </FormItem>
               )}
             />
