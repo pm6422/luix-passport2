@@ -63,7 +63,7 @@ export default function DataDict() {
   }
 
   function deleteRows(rows: Array<SaveSchema>): void {
-    console.log(rows)
+    rows.forEach(row => deleteRow(row))
   }
 
   return (
