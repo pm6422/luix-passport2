@@ -14,14 +14,14 @@ interface UpdateDialogProps<TData> {
   entityName: string,
   modelData: TData,
   save: (formData: SaveSchema) => Promise<any>,
-  closeDropdownMenu: () => void
+  afterSave: (success: boolean) => void
 }
 
 export function UpdateDialog<TData>({ 
   entityName,
   modelData,
   save,
-  closeDropdownMenu
+  afterSave
 }: UpdateDialogProps<TData>) {
   const [open, setOpen] = useState(false)
   // closeDropdownMenu()
@@ -38,7 +38,7 @@ export function UpdateDialog<TData>({
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}
         </DialogHeader>
-        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); closeDropdownMenu();}}></DialogForm>
+        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave(success);}}></DialogForm>
       </DialogContent>
     </Dialog>
   )
