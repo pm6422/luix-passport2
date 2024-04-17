@@ -7,8 +7,8 @@ export const tableSchema = z.object({
   num: z.string(),
   categoryCode: z.string(),
   dictCode: z.string(),
-  dictName: z.string().optional(),
-  remark: z.string().optional(),
+  dictName: z.string(),
+  remark: z.string(),
   enabled: z.boolean(),
   modifiedAt: z.string()
 })
@@ -28,13 +28,13 @@ export const initialCriteria: ICriteria = {
 }
 
 export const saveSchema = z.object({
-  id: z.string(),
-  num: z.string(),
+  id: z.string().optional(),
+  num: z.string().optional(),
   categoryCode: z.string().trim().min(1, { message: 'Required' }),
-  dictCode: z.string().min(1),
+  dictCode: z.string().trim().min(1, { message: 'Required' }),
   dictName: z.string().optional(),
   remark: z.string().optional(),
-  enabled: z.boolean().optional(),
+  enabled: z.boolean().optional()
 })
 
 export type SaveSchema = z.infer<typeof saveSchema>

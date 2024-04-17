@@ -57,6 +57,9 @@ export default function DataDict() {
   }
 
   async function deleteRow(row: SaveSchema): Promise<any> {
+    if(!row.id) {
+      return;
+    }
     const res = await DataDictService.deleteById(row.id)
     loadPage()
     return res.data
