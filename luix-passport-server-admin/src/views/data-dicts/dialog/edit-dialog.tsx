@@ -1,7 +1,39 @@
-import { useState } from 'react'
-import { Dialog } from "@/components/ui/dialog"
-import { type SaveSchema } from '../table/table-schema'
-import { DialogForm } from './dialog-form'
+import { useState, useEffect } from 'react'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
+import { getErrorMessage } from "@/libs/handle-error"
+import { Button } from "@/components/custom/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  FormDescription
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Switch } from '@/components/ui/switch'
+import { saveSchema, type SaveSchema } from '../table/table-schema'
+import { DataDictService } from '@/services/data-dict-service'
+import { map, uniq, has } from 'lodash'
 
 interface EditDialogProps<TData> {
   children: React.ReactNode,
@@ -19,11 +51,161 @@ export function EditDialog<TData>({
   afterSave
 }: EditDialogProps<TData>) {
   const [open, setOpen] = useState(false)
+  const [saving, setSaving] = useState(false)
+  const [categoryCodes, setCategoryCodes] = useState(Array<any>)
+
+  useEffect(() => {
+    DataDictService.findAll(true)
+    .then(function (res) {
+      const codes = uniq(map(res.data, 'categoryCode'))
+      setCategoryCodes(codes)  
+    })
+  }, [])
+
+  const form = useForm<SaveSchema>({
+    resolver: zodResolver(saveSchema),
+    defaultValues: modelData as Object
+  })
+
+  function onSubmit(formData: SaveSchema) {
+    setSaving(true)
+    toast.promise(save(formData), {
+      loading: "Saving " + entityName + "...",
+      success: () => {
+        form.reset()
+        setOpen(false)
+        afterSave && afterSave(true)
+        setSaving(false)
+        return "Saved " + entityName
+      },
+      error: (error) => {
+        setOpen(false)
+        afterSave && afterSave(false)
+        setSaving(false)
+        return getErrorMessage(error)
+      }
+    })
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
-      <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}/>
+      <DialogContent>
+        <DialogHeader>
+        <DialogTitle className='capitalize'>{has(modelData, 'id') ? "Update" : "Create"} {entityName}</DialogTitle>
+          {/* <DialogDescription>
+            Fill in the details below to create a new data dictionary.
+          </DialogDescription> */}
+        </DialogHeader>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
+            <FormField
+              control={form.control}
+              name="categoryCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category Code</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a category code" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectGroup>
+                        {categoryCodes.map((item) => (
+                          <SelectItem
+                            key={item}
+                            value={item}
+                          >
+                            {item}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dictCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Dictionary Code</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dictName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Dictionary Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="remark"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Remark</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="enabled"
+              render={({ field }) => (
+                <FormItem >
+                  <div className="flex items-center space-x-2">
+                    <FormLabel>Enabled</FormLabel>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        aria-readonly
+                      />
+                    </FormControl>
+                  </div>
+                  <FormDescription>
+                    After disabling, existing data can still reference the object, but new data can't.
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
+
+            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+              <DialogClose asChild>
+                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
+                  Cancel
+                </Button>
+              </DialogClose>
+              <Button disabled={saving}>Save</Button>
+            </DialogFooter>
+          </form>
+        </Form>
+      </DialogContent>
     </Dialog>
   )
 }
