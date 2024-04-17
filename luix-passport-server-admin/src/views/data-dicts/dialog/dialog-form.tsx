@@ -35,14 +35,14 @@ interface DialogProps<TData> {
   entityName: string,
   modelData: TData,
   save: (formData: SaveSchema) => Promise<any>,
-  closeDialog: () => void
+  afterSave: (success: boolean) => void
 }
 
 export function DialogForm<TData>({ 
   entityName,
   modelData,
   save,
-  closeDialog
+  afterSave
 }: DialogProps<TData>) {
   const [saving, setSaving] = useState(false)
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
@@ -66,12 +66,12 @@ export function DialogForm<TData>({
       loading: "Saving " + entityName + "...",
       success: () => {
         form.reset()
-        closeDialog()
+        afterSave(true)
         setSaving(false)
         return "Saved " + entityName
       },
       error: (error) => {
-        closeDialog()
+        afterSave(false)
         setSaving(false)
         return getErrorMessage(error)
       }
