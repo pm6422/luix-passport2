@@ -5,12 +5,10 @@ import { DataTableToolbar } from './table/table-toolbar'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './table/table-columns'
 import { YesNo } from '@/data/yes-no'
-import { IDataDict } from '@/models/DataDict'
 import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { type SaveSchema } from './table/table-schema'
-
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -54,21 +52,17 @@ export default function DataDict() {
   async function save(formData: SaveSchema): Promise<any> {
     const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
     await sleep(1000); // Sleep for 1 seconds
-    loadPage();
+    loadPage()
     return res.data
   }
 
-  async function deleteRow(row: any): Promise<any> {
-    try {
-      const res = await DataDictService.deleteById(row.id)
-      loadPage();
-      return res.data
-    } catch (error) {
-      return error
-    }
+  async function deleteRow(row: SaveSchema): Promise<any> {
+    const res = await DataDictService.deleteById(row.id)
+    loadPage()
+    return res.data
   }
 
-  function deleteRows(rows: Array<IDataDict>): void {
+  function deleteRows(rows: Array<SaveSchema>): void {
     console.log(rows)
   }
 

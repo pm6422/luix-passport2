@@ -17,20 +17,21 @@ import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { EditDialog } from '../dialog/edit-dialog'
 import { DialogTrigger } from "@/components/ui/dialog"
+import { type SaveSchema } from '../table/table-schema'
 
-interface DataTableRowActionsProps<TData> {
+interface DataTableRowActionsProps {
   entityName: string,
-  row: Row<TData>,
+  row: Row<SaveSchema>,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>
 }
 
-export function DataTableRowActions<TData>({
+export function DataTableRowActions({
   entityName,
   row,
   save,
   deleteRow
-}: DataTableRowActionsProps<TData>) {
+}: DataTableRowActionsProps) {
   const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false)
   const [delConfirmPopoverOpen, setDelConfirmPopoverOpen] = useState(false)
 

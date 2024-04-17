@@ -36,21 +36,21 @@ import { saveSchema, type SaveSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq, has } from 'lodash'
 
-interface EditDialogProps<TData> {
+interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
-  modelData: TData,
+  modelData: SaveSchema,
   save: (formData: SaveSchema) => Promise<any>,
   afterSave?: (success: boolean) => void
 }
 
-export function EditDialog<TData>({
+export function EditDialog({
   children,
   entityName,
   modelData,
   save,
   afterSave
-}: EditDialogProps<TData>) {
+}: EditDialogProps) {
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)

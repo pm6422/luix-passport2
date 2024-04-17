@@ -28,9 +28,9 @@ export const initialCriteria: ICriteria = {
 }
 
 export const saveSchema = z.object({
-  id: z.string().optional(),
-  num: z.string().optional(),
-  categoryCode: z.string(),
+  id: z.string(),
+  num: z.string(),
+  categoryCode: z.string().trim().min(1, { message: 'Required' }),
   dictCode: z.string().min(1),
   dictName: z.string().optional(),
   remark: z.string().optional(),
@@ -39,8 +39,10 @@ export const saveSchema = z.object({
 
 export type SaveSchema = z.infer<typeof saveSchema>
 
-export const emptyModelData = {
-  categoryCode: undefined,
+export const emptyModelData: SaveSchema = {
+  id: '',
+  num: '',
+  categoryCode: '',
   dictCode: '',
   dictName: '',
   remark: '',
