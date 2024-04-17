@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-// We're keeping a simple non-relational schema here.
-// IRL, you will have a schema for your data models.
 export const tableSchema = z.object({
   id: z.string(),
   num: z.string(),
@@ -34,7 +32,8 @@ export const saveSchema = z.object({
   dictCode: z.string().trim().min(1, { message: 'Required' }),
   dictName: z.string().optional(),
   remark: z.string().optional(),
-  enabled: z.boolean().optional()
+  enabled: z.boolean().optional(),
+  modifiedAt: z.string().optional()
 })
 
 export type SaveSchema = z.infer<typeof saveSchema>
