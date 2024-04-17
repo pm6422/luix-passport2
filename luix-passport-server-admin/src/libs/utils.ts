@@ -50,3 +50,12 @@ export function parseSorts(sorting: Array<ColumnSort>): Array<string> | undefine
     ? sorting.map(({ id, desc }) => `${id},${desc ? 'desc' : 'asc'}`)
     : undefined;
 }
+
+export function merge(target: any, source: any): any {
+  return Object.entries(source).reduce((acc, [key, value]) => {
+    if (value !== null && value !== undefined) {
+      acc[key] = value;
+    }
+    return acc;
+  }, { ...target });
+}

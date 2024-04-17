@@ -1,14 +1,14 @@
 import { z } from 'zod'
 
 export const formSchema = z.object({
-  id: z.string().nullable(),
-  num: z.string().nullable(),
+  id: z.string().optional(),
+  num: z.string().optional(),
   categoryCode: z.string().trim().min(1, { message: 'Required' }),
   dictCode: z.string().trim().min(1, { message: 'Required' }),
-  dictName: z.string().nullable(),
-  remark: z.string().nullable(),
-  enabled: z.boolean().nullable(),
-  modifiedAt: z.string().nullable()
+  dictName: z.string().optional(),
+  remark: z.string().optional(),
+  enabled: z.boolean().optional(),
+  modifiedAt: z.string().optional()
 })
 
 export type FormSchema = z.infer<typeof formSchema>
