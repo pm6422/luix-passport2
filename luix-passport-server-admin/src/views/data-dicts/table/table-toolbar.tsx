@@ -1,11 +1,12 @@
 import { Input } from '@/components/ui/input'
 import { EnabledSelect } from '@/components/custom/enabled-select'
 import { Button } from '@/components/custom/button'
-import { IconSearch, IconX } from '@tabler/icons-react'
+import { IconSearch, IconX, IconPlus } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
 import { initialCriteria, emptyModelData } from './table-schema'
-import { CreateDialog } from '../dialog/create-dialog'
+import { EditDialog } from '../dialog/edit-dialog'
 import { type SaveSchema } from '../table/table-schema'
+import { DialogTrigger } from "@/components/ui/dialog"
 
 interface DataTableToolbarProps{
   entityName: string,
@@ -61,7 +62,14 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <CreateDialog entityName={entityName} modelData={emptyModelData} save={save}/>
+      <EditDialog entityName={entityName} modelData={emptyModelData} save={save}>
+        <DialogTrigger asChild>
+          <Button variant="secondary" size="sm" className="mr-2">
+            <IconPlus className="mr-2 size-4" aria-hidden="true" />
+            Create
+          </Button>
+        </DialogTrigger>
+      </EditDialog>
     </div>
   )
 }

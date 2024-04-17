@@ -15,7 +15,8 @@ import {
 } from '@/components/ui/popover'
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
-import { UpdateDialog } from '../dialog/update-dialog'
+import { EditDialog } from '../dialog/edit-dialog'
+import { DialogTrigger } from "@/components/ui/dialog"
 
 interface DataTableRowActionsProps<TData> {
   entityName: string,
@@ -66,7 +67,11 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        <UpdateDialog entityName={entityName} modelData={row.original} save={save} afterSave={(success) => setDropdownMenuOpen(false)}/>
+        <EditDialog entityName={entityName} modelData={row.original} save={save} afterSave={(success) => setDropdownMenuOpen(false)}>
+          <DialogTrigger asChild>
+            <Button variant="ghost" className='w-full'>Update</Button>
+          </DialogTrigger>
+        </EditDialog>
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
             <Button variant="ghost" className='w-full'>Delete</Button>
