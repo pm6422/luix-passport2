@@ -5,6 +5,9 @@ import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
 import {
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog"
@@ -79,113 +82,121 @@ export function DialogForm<TData>({
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4"
-      >
-        <FormField
-          control={form.control}
-          name="categoryCode"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Category Code</FormLabel>
-              <Select
-                onValueChange={field.onChange}
-                defaultValue={field.value}
-              >
+    <DialogContent>
+      <DialogHeader>
+      <DialogTitle className='capitalize'>Create {entityName}</DialogTitle>
+        {/* <DialogDescription>
+          Fill in the details below to create a new data dictionary.
+        </DialogDescription> */}
+      </DialogHeader>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-4"
+        >
+          <FormField
+            control={form.control}
+            name="categoryCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Category Code</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a category code" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectGroup>
+                      {categoryCodes.map((item) => (
+                        <SelectItem
+                          key={item}
+                          value={item}
+                        >
+                          {item}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="dictCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Dictionary Code</FormLabel>
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a category code" />
-                  </SelectTrigger>
+                  <Input {...field} />
                 </FormControl>
-                <SelectContent>
-                  <SelectGroup>
-                    {categoryCodes.map((item) => (
-                      <SelectItem
-                        key={item}
-                        value={item}
-                      >
-                        {item}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="dictCode"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Dictionary Code</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="dictName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Dictionary Name</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="remark"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Remark</FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="enabled"
-          render={({ field }) => (
-            <FormItem >
-              <div className="flex items-center space-x-2">
-                <FormLabel>Enabled</FormLabel>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="dictName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Dictionary Name</FormLabel>
                 <FormControl>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                    aria-readonly
-                  />
+                  <Input {...field} />
                 </FormControl>
-              </div>
-              <FormDescription>
-                After disabling, existing data can still reference the object, but new data can't.
-              </FormDescription>
-            </FormItem>
-          )}
-        />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="remark"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Remark</FormLabel>
+                <FormControl>
+                  <Input {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="enabled"
+            render={({ field }) => (
+              <FormItem >
+                <div className="flex items-center space-x-2">
+                  <FormLabel>Enabled</FormLabel>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                      aria-readonly
+                    />
+                  </FormControl>
+                </div>
+                <FormDescription>
+                  After disabling, existing data can still reference the object, but new data can't.
+                </FormDescription>
+              </FormItem>
+            )}
+          />
 
-        <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-          <DialogClose asChild>
-            <Button type="button" variant="outline">
-              Cancel
-            </Button>
-          </DialogClose>
-          <Button disabled={saving}>Save</Button>
-        </DialogFooter>
-      </form>
-    </Form>
+          <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+            <DialogClose asChild>
+              <Button type="button" variant="outline">
+                Cancel
+              </Button>
+            </DialogClose>
+            <Button disabled={saving}>Save</Button>
+          </DialogFooter>
+        </form>
+      </Form>
+    </DialogContent>
   )
 }

@@ -1,13 +1,7 @@
 import { useState } from 'react'
 import { IconPlus } from '@tabler/icons-react'
 import { Button } from "@/components/custom/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import { type SaveSchema } from '../table/table-schema'
 import { DialogForm } from './dialog-form'
 
@@ -34,15 +28,7 @@ export function CreateDialog<TData>({
           Create
         </Button>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-        <DialogTitle className='capitalize'>Create {entityName}</DialogTitle>
-          {/* <DialogDescription>
-            Fill in the details below to create a new data dictionary.
-          </DialogDescription> */}
-        </DialogHeader>
-        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}/>
-      </DialogContent>
+      <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}/>
     </Dialog>
   )
 }
