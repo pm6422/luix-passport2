@@ -1,30 +1,5 @@
 import { z } from 'zod'
 
-export const tableSchema = z.object({
-  id: z.string(),
-  num: z.string(),
-  categoryCode: z.string(),
-  dictCode: z.string(),
-  dictName: z.string(),
-  remark: z.string(),
-  enabled: z.boolean(),
-  modifiedAt: z.string()
-})
-
-export type DataDictSchema = z.infer<typeof tableSchema>
-
-export interface ICriteria {
-  num: string;
-  categoryCode: string;
-  enabled: string;
-}
-
-export const initialCriteria: ICriteria = {
-  num: '',
-  categoryCode: '',
-  enabled: ''
-}
-
 export const saveSchema = z.object({
   id: z.string().optional(),
   num: z.string().optional(),
@@ -46,4 +21,16 @@ export const emptyModelData: SaveSchema = {
   dictName: '',
   remark: '',
   enabled: true
+}
+
+export interface ICriteria {
+  num: string;
+  categoryCode: string;
+  enabled: string;
+}
+
+export const initialCriteria: ICriteria = {
+  num: '',
+  categoryCode: '',
+  enabled: ''
 }
