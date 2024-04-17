@@ -65,8 +65,9 @@ export default function DataDict() {
     return res.data
   }
 
-  function deleteRows(rows: Array<FormSchema>): void {
-    rows.forEach(row => deleteRow(row))
+  async function deleteRows(rows: Array<FormSchema>): Promise<any> {
+    await rows.forEach(row => deleteRow(row))
+    return Promise.resolve(undefined)
   }
 
   return (

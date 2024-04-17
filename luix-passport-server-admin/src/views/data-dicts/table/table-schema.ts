@@ -20,7 +20,8 @@ export const emptyFormState: FormSchema = {
   dictCode: '',
   dictName: '',
   remark: '',
-  enabled: true
+  enabled: true,
+  modifiedAt: ''
 }
 
 export interface ICriteria {

@@ -19,6 +19,8 @@ import { DataTableViewOptions } from '@/components/custom/data-table/data-table-
 import { parseSorts } from '@/libs/utils'
 import { Button } from '@/components/custom/button'
 import { IconTrash } from '@tabler/icons-react'
+import { toast } from 'sonner'
+import { getErrorMessage } from '@/libs/handle-error'
 
 import {
   Table,
@@ -36,7 +38,7 @@ interface DataTableProps<TData, TValue> {
   totalCount: number,
   totalPages: number,
   loadPage: Function,
-  deleteRows?: Function
+  deleteRows?: (rows: Array<any>) => Promise<any>
 }
 
 export function DataTable<TData, TValue>({
@@ -98,7 +100,17 @@ export function DataTable<TData, TValue>({
               className='ml-auto hidden h-8 lg:flex mr-2'
               onClick={() => {
                 const selectedRows = Object.keys(rowSelection).map(rowIndex => data[parseInt(rowIndex)]);
-                deleteRows && deleteRows(selectedRows);
+                if(deleteRows) {
+                  toast.promise(deleteRows(selectedRows), {
+                    loading: "Deleting rows...",
+                    success: () => {
+                      return "Deleted selected rows"
+                    },
+                    error: (error) => {
+                      return getErrorMessage(error)
+                    }
+                  })
+                }
               }}
             >
               <IconTrash className='mr-2 h-4 w-4' />
