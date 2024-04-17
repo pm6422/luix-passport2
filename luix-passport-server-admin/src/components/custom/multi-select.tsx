@@ -40,9 +40,7 @@ const multiSelectVariants = cva(
   }
 );
 
-interface MultiSelectFormFieldProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof multiSelectVariants> {
+interface MultiSelectFormFieldProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof multiSelectVariants> {
   asChild?: boolean;
   options: {
     label: string;
