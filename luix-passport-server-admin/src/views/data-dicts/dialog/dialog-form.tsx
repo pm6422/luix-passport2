@@ -189,7 +189,7 @@ export function DialogForm<TData>({
 
           <DialogFooter className="gap-2 pt-2 sm:space-x-0">
             <DialogClose asChild>
-              <Button type="button" variant="outline">
+              <Button type="button" variant="outline" onClick={() => afterSave(true)}>
                 Cancel
               </Button>
             </DialogClose>
