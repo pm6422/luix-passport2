@@ -15,7 +15,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { toast } from '@/components/ui/use-toast'
+import { toast } from 'sonner'
 import { useTheme } from '@/stores/theme-provider'
 
 const appearanceFormSchema = z.object({
@@ -44,14 +44,14 @@ export function AppearanceForm() {
   })
   
   function onSubmit(data: AppearanceFormValues) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
+    toast(
+      <div>
+        <span>You submitted the following values:</span>
         <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
           <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
         </pre>
-      ),
-    })
+      </div>, 
+    { duration: 5000 })
     // set the theme
     setTheme(data.theme)
   }

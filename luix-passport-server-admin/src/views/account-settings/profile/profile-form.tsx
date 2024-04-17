@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { toast } from '@/components/ui/use-toast'
+import { toast } from 'sonner'
 import { cn } from '@/libs/utils'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -72,14 +72,14 @@ export default function ProfileForm() {
   })
 
   function onSubmit(data: ProfileFormValues) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
+    toast(
+      <div>
+        <span>You submitted the following values:</span>
         <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
           <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
         </pre>
-      ),
-    })
+      </div>, 
+    { duration: 5000 })
   }
 
   return (

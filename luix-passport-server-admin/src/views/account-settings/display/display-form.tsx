@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { toast } from '@/components/ui/use-toast'
+import { toast } from 'sonner'
 
 const items = [
   {
@@ -62,14 +62,14 @@ export function DisplayForm() {
   })
 
   function onSubmit(data: DisplayFormValues) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
+    toast(
+      <div>
+        <span>You submitted the following values:</span>
         <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
           <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
         </pre>
-      ),
-    })
+      </div>, 
+    { duration: 5000 })
   }
 
   return (
