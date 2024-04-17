@@ -3,7 +3,7 @@ import { EnabledSelect } from '@/components/custom/enabled-select'
 import { Button } from '@/components/custom/button'
 import { IconSearch, IconX } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
-import { initialCriteria } from './table-schema'
+import { initialCriteria, emptyModelData } from './table-schema'
 import { CreateDialog } from '../dialog/create-dialog'
 import { type SaveSchema } from '../table/table-schema'
 
@@ -61,7 +61,7 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <CreateDialog entityName={entityName} save={save}/>
+      <CreateDialog entityName={entityName} modelData={emptyModelData} save={save}/>
     </div>
   )
 }

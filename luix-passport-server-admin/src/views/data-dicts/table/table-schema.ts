@@ -38,3 +38,11 @@ export const saveSchema = z.object({
 })
 
 export type SaveSchema = z.infer<typeof saveSchema>
+
+export const emptyModelData = {
+  categoryCode: '',
+  dictCode: '',
+  dictName: '',
+  remark: '',
+  enabled: true
+}

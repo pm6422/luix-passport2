@@ -11,24 +11,20 @@ import {
 import { type SaveSchema } from '../table/table-schema'
 import { DialogForm } from './dialog-form'
 
-interface CreateDialogProps {
+interface CreateDialogProps<TData> {
   entityName: string,
-  save: (formData: SaveSchema) => Promise<any>
+  modelData: TData,
+  save: (formData: SaveSchema) => Promise<any>,
+  afterSave?: (success: boolean) => void
 }
 
-export function CreateDialog({ 
+export function CreateDialog<TData>({ 
   entityName,
-  save
-}: CreateDialogProps) {
+  modelData,
+  save,
+  afterSave
+}: CreateDialogProps<TData>) {
   const [open, setOpen] = useState(false)
-
-  const modelData = {
-    categoryCode: '',
-    dictCode: '',
-    dictName: '',
-    remark: '',
-    enabled: true
-  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -45,7 +41,7 @@ export function CreateDialog({
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}
         </DialogHeader>
-        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={() => setOpen(false)}></DialogForm>
+        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}/>
       </DialogContent>
     </Dialog>
   )

@@ -24,7 +24,6 @@ export function UpdateDialog<TData>({
   afterSave
 }: UpdateDialogProps<TData>) {
   const [open, setOpen] = useState(false)
-  // closeDropdownMenu()
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -38,7 +37,7 @@ export function UpdateDialog<TData>({
             Fill in the details below to create a new data dictionary.
           </DialogDescription> */}
         </DialogHeader>
-        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}></DialogForm>
+        <DialogForm entityName={entityName} modelData={modelData} save={save} afterSave={(success) => {setOpen(false); afterSave && afterSave(success);}}/>
       </DialogContent>
     </Dialog>
   )
