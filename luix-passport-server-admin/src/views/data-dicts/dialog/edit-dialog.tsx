@@ -110,9 +110,11 @@ export function EditDialog({
                 <FormItem>
                   <FormLabel>Category Code</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <SelectTrigger>
-                      <SelectValue/>
-                    </SelectTrigger>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue/>
+                      </SelectTrigger>
+                    </FormControl>
                     <SelectContent>
                       <SelectGroup>
                         {categoryCodes.map((item) => (
