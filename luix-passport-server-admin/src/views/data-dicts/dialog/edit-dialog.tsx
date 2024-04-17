@@ -32,15 +32,15 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from '@/components/ui/switch'
-import { saveSchema, type SaveSchema } from '../table/table-schema'
+import { formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq, has } from 'lodash'
 
 interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
-  modelData: SaveSchema,
-  save: (formData: SaveSchema) => Promise<any>,
+  modelData: FormSchema,
+  save: (formData: FormSchema) => Promise<any>,
   afterSave?: (success: boolean) => void
 }
 
@@ -63,12 +63,12 @@ export function EditDialog({
     })
   }, [])
 
-  const form = useForm<SaveSchema>({
-    resolver: zodResolver(saveSchema),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     defaultValues: modelData as Object
   })
 
-  function onSubmit(formData: SaveSchema) {
+  function onSubmit(formData: FormSchema) {
     setSaving(true)
     toast.promise(save(formData), {
       loading: "Saving " + entityName + "...",

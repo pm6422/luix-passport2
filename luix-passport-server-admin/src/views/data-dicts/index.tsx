@@ -8,7 +8,7 @@ import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
-import { type SaveSchema } from './table/table-schema'
+import { type FormSchema } from './table/table-schema'
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -49,14 +49,14 @@ export default function DataDict() {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async function save(formData: SaveSchema): Promise<any> {
+  async function save(formData: FormSchema): Promise<any> {
     const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
     await sleep(1000); // Sleep for 1 seconds
     loadPage()
     return res.data
   }
 
-  async function deleteRow(row: SaveSchema): Promise<any> {
+  async function deleteRow(row: FormSchema): Promise<any> {
     if(!row.id) {
       return;
     }
@@ -65,7 +65,7 @@ export default function DataDict() {
     return res.data
   }
 
-  function deleteRows(rows: Array<SaveSchema>): void {
+  function deleteRows(rows: Array<FormSchema>): void {
     rows.forEach(row => deleteRow(row))
   }
 

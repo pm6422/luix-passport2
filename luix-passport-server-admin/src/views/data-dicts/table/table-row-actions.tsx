@@ -17,11 +17,11 @@ import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { EditDialog } from '../dialog/edit-dialog'
 import { DialogTrigger } from "@/components/ui/dialog"
-import { type SaveSchema } from '../table/table-schema'
+import { type FormSchema } from '../table/table-schema'
 
 interface DataTableRowActionsProps {
   entityName: string,
-  row: Row<SaveSchema>,
+  row: Row<FormSchema>,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>
 }

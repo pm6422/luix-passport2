@@ -2,7 +2,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
 import { DataTableRowActions } from './table-row-actions'
-import { SaveSchema } from './table-schema'
+import { FormSchema } from './table-schema'
 import { formatDateTime } from '@/libs/utils'
 
 export function getColumns(
@@ -10,7 +10,7 @@ export function getColumns(
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>, 
   yesNo: Array<any>
-): ColumnDef<SaveSchema>[] {
+): ColumnDef<FormSchema>[] {
   return [
     {
       id: 'select',

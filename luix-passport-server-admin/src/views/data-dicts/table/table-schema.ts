@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const saveSchema = z.object({
+export const formSchema = z.object({
   id: z.string().optional(),
   num: z.string().optional(),
   categoryCode: z.string().trim().min(1, { message: 'Required' }),
@@ -11,9 +11,9 @@ export const saveSchema = z.object({
   modifiedAt: z.string().optional()
 })
 
-export type SaveSchema = z.infer<typeof saveSchema>
+export type FormSchema = z.infer<typeof formSchema>
 
-export const emptyModelData: SaveSchema = {
+export const emptyFormState: FormSchema = {
   id: '',
   num: '',
   categoryCode: '',

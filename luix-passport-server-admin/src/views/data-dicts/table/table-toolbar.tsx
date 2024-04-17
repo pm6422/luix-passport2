@@ -3,9 +3,9 @@ import { EnabledSelect } from '@/components/custom/enabled-select'
 import { Button } from '@/components/custom/button'
 import { IconSearch, IconX, IconPlus } from '@tabler/icons-react'
 import { ICriteria } from './table-schema'
-import { initialCriteria, emptyModelData } from './table-schema'
+import { initialCriteria, emptyFormState } from './table-schema'
 import { EditDialog } from '../dialog/edit-dialog'
-import { type SaveSchema } from '../table/table-schema'
+import { type FormSchema } from '../table/table-schema'
 import { DialogTrigger } from "@/components/ui/dialog"
 
 interface DataTableToolbarProps{
@@ -13,7 +13,7 @@ interface DataTableToolbarProps{
   criteria: ICriteria
   setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
   loadPage: () => void,
-  save: (formData: SaveSchema) => Promise<any>
+  save: (formData: FormSchema) => Promise<any>
 }
 
 export function DataTableToolbar ({
@@ -62,7 +62,7 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <EditDialog entityName={entityName} modelData={emptyModelData} save={save}>
+      <EditDialog entityName={entityName} modelData={emptyFormState} save={save}>
         <DialogTrigger asChild>
           <Button variant="secondary" size="sm" className="mr-2">
             <IconPlus className="mr-2 size-4" aria-hidden="true" />
