@@ -114,7 +114,7 @@ export function EditDialog<TData>({
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Select a category code" />
+                        <SelectValue/>
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -141,7 +141,7 @@ export function EditDialog<TData>({
                 <FormItem>
                   <FormLabel>Dictionary Code</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

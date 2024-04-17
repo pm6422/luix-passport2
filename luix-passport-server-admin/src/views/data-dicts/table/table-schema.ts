@@ -40,7 +40,7 @@ export const saveSchema = z.object({
 export type SaveSchema = z.infer<typeof saveSchema>
 
 export const emptyModelData = {
-  categoryCode: '',
+  categoryCode: undefined,
   dictCode: '',
   dictName: '',
   remark: '',
