@@ -104,6 +104,7 @@ export function DataTable<TData, TValue>({
                   toast.promise(deleteRows(selectedRows), {
                     loading: "Deleting rows...",
                     success: () => {
+                      setRowSelection([])
                       return "Deleted selected rows"
                     },
                     error: (error) => {
