@@ -32,7 +32,7 @@ import {
 import { Switch } from '@/components/ui/switch'
 import { saveSchema, type SaveSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
-import { map, uniq } from 'lodash'
+import { map, uniq, has } from 'lodash'
 
 interface DialogProps<TData> {
   entityName: string,
@@ -84,7 +84,7 @@ export function DialogForm<TData>({
   return (
     <DialogContent>
       <DialogHeader>
-      <DialogTitle className='capitalize'>Create {entityName}</DialogTitle>
+      <DialogTitle className='capitalize'>{has(modelData, 'id') ? "Update" : "Create"} {entityName}</DialogTitle>
         {/* <DialogDescription>
           Fill in the details below to create a new data dictionary.
         </DialogDescription> */}
