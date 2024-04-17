@@ -10,7 +10,11 @@ export function getErrorMessage(err: unknown) {
     })
     return errors.join("\n")
   } else if (err instanceof Error) {
-    return err.message
+    if(err.response) {
+      return err.response.data.message
+    } else {
+      return err.message
+    }
   } 
   // else if (isRedirectError(err)) {
   //   throw err

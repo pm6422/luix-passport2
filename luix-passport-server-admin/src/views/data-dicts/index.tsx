@@ -52,14 +52,10 @@ export default function DataDict() {
   }
 
   async function save(formData: SaveSchema): Promise<any> {
-    try {
-      const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
-      await sleep(1000); // Sleep for 1 seconds
-      loadPage();
-      return res.data
-    } catch (error) {
-      return error
-    }
+    const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
+    await sleep(1000); // Sleep for 1 seconds
+    loadPage();
+    return res.data
   }
 
   async function deleteRow(row: any): Promise<any> {
