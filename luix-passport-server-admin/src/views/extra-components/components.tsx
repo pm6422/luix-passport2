@@ -19,7 +19,7 @@ import {
   FormMessage,
   FormDescription
 } from "@/components/ui/form"
-import MultiSelectFormField from '@/components/custom/multi-select'
+import Combobox from '@/components/custom/combobox'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -226,7 +226,7 @@ export default function ExtraComponents() {
                 <FormItem>
                   <FormLabel>Category Code</FormLabel>
                   <FormControl>
-                    <MultiSelectFormField
+                    <Combobox
                       options={frameworksList}
                       defaultValue={field.value}
                       onValueChange={field.onChange}

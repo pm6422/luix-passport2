@@ -20,7 +20,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 
-const multiSelectVariants = cva(
+const comboboxVariants = cva(
   "m-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-none",
   {
     variants: {
@@ -40,7 +40,7 @@ const multiSelectVariants = cva(
   }
 );
 
-interface MultiSelectFormFieldProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof multiSelectVariants> {
+interface ComboboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof comboboxVariants> {
   asChild?: boolean;
   options: {
     label: string;
@@ -56,9 +56,9 @@ interface MultiSelectFormFieldProps extends React.ButtonHTMLAttributes<HTMLButto
   multiple?: boolean;
 }
 
-const MultiSelectFormField = React.forwardRef<
+const Combobox = React.forwardRef<
   HTMLButtonElement,
-  MultiSelectFormFieldProps
+  ComboboxProps
 >(
   (
     {
@@ -134,7 +134,7 @@ const MultiSelectFormField = React.forwardRef<
                       <Badge
                         key={value}
                         className={cn("",
-                          multiSelectVariants({ variant, className })
+                          comboboxVariants({ variant, className })
                         )}
                       >
                         {IconComponent && (
@@ -299,6 +299,6 @@ const MultiSelectFormField = React.forwardRef<
   }
 );
 
-MultiSelectFormField.displayName = "MultiSelectFormField";
+Combobox.displayName = "Combobox";
 
-export default MultiSelectFormField;
+export default Combobox;
