@@ -142,6 +142,7 @@ const MultiSelectFormField = React.forwardRef<
                               toggleOption(value);
                             } else {
                               setSelectedValues(selectedValues.filter((v) => v !== value));
+                              onValueChange(selectedValues.filter((v) => v !== value));
                             }
                           }}
                         />
@@ -198,6 +199,7 @@ const MultiSelectFormField = React.forwardRef<
               <CommandEmpty
                 onClick={() => {
                   setSelectedValues([...selectedValues, query])
+                  onValueChange([...selectedValues, query])
                   setQuery('')
                 }}
                 className='flex cursor-pointer items-center justify-center gap-1 my-2'

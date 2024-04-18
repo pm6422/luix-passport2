@@ -240,11 +240,13 @@ export default function ExtraComponents() {
                     />
                   </FormControl>
                   <FormMessage />
+                  <FormDescription>{field.value}</FormDescription>
                 </FormItem>
               )}
+
             />
 
-
+{/* 
             <FormField
               control={form.control}
               name="frameworks"
@@ -264,7 +266,7 @@ export default function ExtraComponents() {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
         </form>
       </Form>
       
