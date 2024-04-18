@@ -70,8 +70,7 @@ export default function ExtraComponents() {
   ];
 
   const FormSchema = z.object({
-    frameworks: z
-      .array(z.string().min(1))
+    frameworks: z.string()
       .min(1)
       .nonempty("Please select at least one framework."),
   });
@@ -79,13 +78,13 @@ export default function ExtraComponents() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      frameworks: ["remix"],
+      frameworks: "remix",
     },
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast(
-      `You have selected following frameworks: ${data.frameworks.join(", ")}.`
+      `You have selected following frameworks: ${data.frameworks}.`
     );
   }
 

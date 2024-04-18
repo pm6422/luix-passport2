@@ -47,19 +47,16 @@ interface ComboboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, V
     value: string;
     icon?: React.ComponentType<{ className?: string }>;
   }[];
-  defaultValue?: string[];
+  defaultValue?: string | string[]; // Adjusted type
   disabled?: boolean;
   placeholder: string;
   className?: string;
-  onValueChange: (value: string[]) => void;
+  onValueChange: (value: string | string[]) => void; // Adjusted type
   createable?: boolean;
   multiple?: boolean;
 }
 
-const Combobox = React.forwardRef<
-  HTMLButtonElement,
-  ComboboxProps
->(
+const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
   (
     {
       className,
@@ -77,15 +74,15 @@ const Combobox = React.forwardRef<
     ref
   ) => {
     const [selectedValues, setSelectedValues] = React.useState<string[]>(
-      defaultValue || []
+      Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []
     );
     const selectedValuesSet = React.useRef(new Set(selectedValues));
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
     const [query, setQuery] = React.useState<string>('');
 
     React.useEffect(() => {
-      setSelectedValues(defaultValue || []);
-      selectedValuesSet.current = new Set(defaultValue);
+      setSelectedValues(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
+      selectedValuesSet.current = new Set(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
     }, [defaultValue]);
 
     const handleInputKeyDown = (event: any) => {
@@ -106,7 +103,7 @@ const Combobox = React.forwardRef<
         selectedValuesSet.current.delete(value);
         setSelectedValues(selectedValues.filter((v) => v !== value));
       } else {
-        if(multiple || selectedValues.length == 0) {
+        if(multiple || selectedValues.length === 0) {
           selectedValuesSet.current.add(value);
           setSelectedValues([...selectedValues, value]);
         }
