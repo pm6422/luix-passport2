@@ -98,7 +98,7 @@ export function Combobox({
                   setQuery('');
                 }
               }}
-              className='flex cursor-pointer items-center justify-center gap-1 italic'
+              className='flex cursor-pointer items-center justify-center gap-1 my-2'
             >
               <p>Create: </p>
               <p className='block max-w-50 truncate font-semibold text-primary'>
