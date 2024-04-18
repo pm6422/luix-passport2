@@ -60,8 +60,7 @@ export function EditDialog({
     DataDictService.findAll(true)
     .then(function (res) {
       const codes = uniq(map(res.data, 'categoryCode'))
-      const categoryCodes = codes.map(code => ({ label: code, value: code }))
-      setCategoryCodes(categoryCodes)
+      setCategoryCodes(codes.map(code => ({ label: code, value: code })))
     })
   }, [])
 
