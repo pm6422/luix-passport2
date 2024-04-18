@@ -31,6 +31,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
 import { formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
@@ -59,7 +60,8 @@ export function EditDialog({
     DataDictService.findAll(true)
     .then(function (res) {
       const codes = uniq(map(res.data, 'categoryCode'))
-      setCategoryCodes(codes)  
+      const categoryCodes = codes.map(code => ({ label: code, value: code }))
+      setCategoryCodes(categoryCodes)
     })
   }, [])
 
@@ -103,7 +105,7 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            <FormField
+            {/* <FormField
               control={form.control}
               name="categoryCode"
               render={({ field }) => (
@@ -126,6 +128,25 @@ export function EditDialog({
                     </SelectContent>
                   </Select>
                   <FormMessage/>
+                </FormItem>
+              )}
+            /> */}
+            <FormField
+              control={form.control}
+              name="categoryCode"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category Code</FormLabel>
+                  <FormControl>
+                    <Combobox
+                      options={categoryCodes}
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="Select or create a category code"
+                      createable={true}
+                    />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

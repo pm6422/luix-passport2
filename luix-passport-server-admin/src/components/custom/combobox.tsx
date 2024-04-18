@@ -81,7 +81,11 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
       const lastValue = selectedValues[selectedValues.length - 1];
       setSelectedValues(prev => prev.slice(0, -1));
       selectedValuesSet.current.delete(lastValue);
-      onValueChange(selectedValues.filter(v => v !== lastValue));
+      if(multiple) {
+        onValueChange(selectedValues.filter(v => v !== lastValue));
+      } else {
+        onValueChange('')
+      }
     }
   };
 
@@ -95,13 +99,21 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
         setSelectedValues([...selectedValues, value]);
       }
     }
-    onValueChange([...selectedValuesSet.current]);
+    if(multiple) {
+      onValueChange([...selectedValuesSet.current]);
+    } else {
+      onValueChange(value);
+    }
   };
 
   const handleClearAll = () => {
     setSelectedValues([]);
     selectedValuesSet.current.clear();
-    onValueChange([]);
+    if(multiple) {
+      onValueChange([]);
+    } else {
+      onValueChange('');
+    }
   };
 
   return (
@@ -135,7 +147,11 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                             toggleOption(value);
                           } else {
                             setSelectedValues(selectedValues.filter(v => v !== value));
-                            onValueChange(selectedValues.filter(v => v !== value));
+                            if(multiple) {
+                              onValueChange(selectedValues.filter(v => v !== value));
+                            } else {
+                              onValueChange('')
+                            }
                           }
                         }}
                       />
@@ -185,7 +201,11 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
               <CommandEmpty
                 onClick={() => {
                   setSelectedValues([...selectedValues, query])
-                  onValueChange([...selectedValues, query])
+                  if(multiple) {
+                    onValueChange([...selectedValues, query])
+                  } else {
+                    onValueChange(query)
+                  }
                   setQuery('')
                 }}
                 className='flex cursor-pointer items-center justify-center gap-1 my-3'
