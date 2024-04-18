@@ -53,6 +53,7 @@ interface MultiSelectFormFieldProps extends React.ButtonHTMLAttributes<HTMLButto
   className?: string;
   onValueChange: (value: string[]) => void;
   createable?: boolean;
+  multiple?: boolean;
 }
 
 const MultiSelectFormField = React.forwardRef<
@@ -70,6 +71,7 @@ const MultiSelectFormField = React.forwardRef<
       disabled,
       placeholder,
       createable,
+      multiple,
       ...props
     },
     ref
@@ -104,8 +106,10 @@ const MultiSelectFormField = React.forwardRef<
         selectedValuesSet.current.delete(value);
         setSelectedValues(selectedValues.filter((v) => v !== value));
       } else {
-        selectedValuesSet.current.add(value);
-        setSelectedValues([...selectedValues, value]);
+        if(multiple || selectedValues.length == 0) {
+          selectedValuesSet.current.add(value);
+          setSelectedValues([...selectedValues, value]);
+        }
       }
       onValueChange([...selectedValuesSet.current]);
     };
@@ -117,6 +121,7 @@ const MultiSelectFormField = React.forwardRef<
             ref={ref}
             {...props}
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+            disabled={disabled}
             className="flex w-full rounded-md border min-h-8 h-auto pr-3 items-center justify-between bg-inherit hover:bg-card shadow-none"
           >
             {selectedValues.length > 0 ? (
