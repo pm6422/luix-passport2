@@ -237,6 +237,7 @@ export default function ExtraComponents() {
                       defaultValue={field.value}
                       onValueChange={field.onChange}
                       placeholder="Select a category code"
+                      createable={true}
                     />
                   </FormControl>
                   <FormMessage />

@@ -52,6 +52,7 @@ interface MultiSelectFormFieldProps extends React.ButtonHTMLAttributes<HTMLButto
   placeholder: string;
   className?: string;
   onValueChange: (value: string[]) => void;
+  createable?: boolean;
 }
 
 const MultiSelectFormField = React.forwardRef<
@@ -68,6 +69,7 @@ const MultiSelectFormField = React.forwardRef<
       onValueChange,
       disabled,
       placeholder,
+      createable,
       ...props
     },
     ref
@@ -133,7 +135,7 @@ const MultiSelectFormField = React.forwardRef<
                         {IconComponent && (
                           <IconComponent className="h-4 w-4 mr-2" />
                         )}
-                        {option ? option?.label : value}
+                        {createable ? (option ? option?.label : value) : option?.label}
                         <IconCircleX
                           className="ml-2 h-4 w-4 cursor-pointer"
                           onClick={(event) => {
@@ -195,20 +197,24 @@ const MultiSelectFormField = React.forwardRef<
               onValueChange={(value: string) => setQuery(value)}
             />
             <CommandList>
-              {/* <CommandEmpty>No results found.</CommandEmpty> */}
-              <CommandEmpty
-                onClick={() => {
-                  setSelectedValues([...selectedValues, query])
-                  onValueChange([...selectedValues, query])
-                  setQuery('')
-                }}
-                className='flex cursor-pointer items-center justify-center gap-1 my-2'
-              >
-                <p className="">Create: </p>
-                <p className='block max-w-50 truncate font-semibold text-primary'>
-                  {query}
-                </p>
-              </CommandEmpty>
+              { createable ? (
+                <CommandEmpty
+                  onClick={() => {
+                    setSelectedValues([...selectedValues, query])
+                    onValueChange([...selectedValues, query])
+                    setQuery('')
+                  }}
+                  className='flex cursor-pointer items-center justify-center gap-1 my-2'
+                >
+                  <p className="">Create: </p>
+                  <p className='block max-w-50 truncate font-semibold text-primary'>
+                    {query}
+                  </p>
+                </CommandEmpty>
+              ) : (
+                <CommandEmpty>No results found.</CommandEmpty>
+              )}
+  
               <CommandGroup>
                 {options.map((option) => {
                   const isSelected = selectedValuesSet.current.has(
