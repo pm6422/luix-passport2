@@ -257,10 +257,8 @@ export default function ExtraComponents() {
                       options={frameworksList}
                       placeholder='Select option...'
                       selected={typeSelected} // string or array
-                      onChange={(value) => console.log(value)}
-                      onCreate={(value) => {
-                          handleCreateOptions(value);
-                      }}
+                      onChange={(value) => setTypeSelected(value)}
+                      onCreate={(value) => { setTypeSelected(value)}}
                   />
                   </FormControl>
                   <FormMessage />

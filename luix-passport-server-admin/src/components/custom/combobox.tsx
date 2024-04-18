@@ -101,7 +101,7 @@ export function Combobox({
               className='flex cursor-pointer items-center justify-center gap-1 italic'
             >
               <p>Create: </p>
-              <p className='block max-w-48 truncate font-semibold text-primary'>
+              <p className='block max-w-50 truncate font-semibold text-primary'>
                 {query}
               </p>
             </CommandEmpty>
