@@ -22,10 +22,10 @@ const appearanceFormSchema = z.object({
   theme: z.enum(['light', 'dark'], {
     required_error: 'Please select a theme.',
   }),
-  font: z.enum(['inter', 'manrope', 'system'], {
-    invalid_type_error: 'Select a font',
-    required_error: 'Please select a font.',
-  }),
+  // font: z.enum(['inter', 'manrope', 'system'], {
+  //   invalid_type_error: 'Select a font',
+  //   required_error: 'Please select a font.',
+  // }),
 })
 
 type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
@@ -59,7 +59,7 @@ export function AppearanceForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-        <FormField
+        {/* <FormField
           control={form.control}
           name='font'
           render={({ field }) => (
@@ -87,7 +87,7 @@ export function AppearanceForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormField
           control={form.control}
           name='theme'
