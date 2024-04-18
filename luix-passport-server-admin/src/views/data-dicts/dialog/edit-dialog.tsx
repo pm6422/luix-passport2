@@ -49,10 +49,8 @@ export function EditDialog({
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
 
   useEffect(() => {
-    if (open) {
-      fetchCategoryCodes();
-    }
-  }, [open]);
+    open && fetchCategoryCodes()
+  }, [open])
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
