@@ -188,12 +188,10 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                   onValueChange([...selectedValues, query])
                   setQuery('')
                 }}
-                className='flex cursor-pointer items-center justify-center gap-1 my-2'
+                className='flex cursor-pointer items-center justify-center gap-1 my-3'
               >
-                <p className="">Create: </p>
-                <p className='block max-w-50 truncate font-semibold text-primary'>
-                  {query}
-                </p>
+                <p className="text-xs">Click to create: </p>
+                <p className='block max-w-50 truncate font-semibold text-xs'>{query}</p>
               </CommandEmpty>
             ) : (
               <CommandEmpty>No results found.</CommandEmpty>
