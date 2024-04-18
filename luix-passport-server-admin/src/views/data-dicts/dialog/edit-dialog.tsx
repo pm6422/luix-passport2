@@ -23,14 +23,6 @@ import {
   FormDescription
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
 import { formSchema, type FormSchema } from '../table/table-schema'
