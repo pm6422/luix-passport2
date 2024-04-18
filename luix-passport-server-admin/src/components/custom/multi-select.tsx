@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { IconCheck, IconX, IconCircleX, IconChevronDown } from '@tabler/icons-react'
+import { IconCheck, IconX, IconCircleX, IconSelector } from '@tabler/icons-react'
 import { cn } from "@/libs/utils";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/custom/button";
@@ -158,7 +158,7 @@ const MultiSelectFormField = React.forwardRef<
                     orientation="vertical"
                     className="flex min-h-6 h-full"
                   />
-                  <IconChevronDown className="h-4 ml-2 cursor-pointer text-muted-foreground" />
+                  <IconSelector className="h-4 ml-2 cursor-pointer text-muted-foreground" />
                 </div>
               </div>
             ) : (
@@ -166,7 +166,7 @@ const MultiSelectFormField = React.forwardRef<
                 <span className="text-sm text-muted-foreground">
                   {placeholder}
                 </span>
-                <IconChevronDown className="h-4 cursor-pointer text-muted-foreground ml-2" />
+                <IconSelector className="h-4 ml-2 cursor-pointer text-muted-foreground" />
               </div>
             )}
           </Button>

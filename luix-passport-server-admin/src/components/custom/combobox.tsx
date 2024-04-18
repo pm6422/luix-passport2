@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IconCheck, IconChevronDown, IconSelector } from '@tabler/icons-react'
+import { IconCheck, IconSelector } from '@tabler/icons-react'
 import { cn } from '@/libs/utils'
 import { Button } from '@/components/custom/button'
 import {
@@ -78,7 +78,7 @@ export function Combobox({
             <IconSelector className='ml-2 h-4 w-4 shrink-0 opacity-50' />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className='w-72 max-w-sm p-0'>
+        <PopoverContent className='w-72 max-w-sm p-0' align="start">
           <Command
             filter={(value, search) => {
               if (value.includes(search)) return 1;
