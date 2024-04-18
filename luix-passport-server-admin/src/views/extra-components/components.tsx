@@ -24,7 +24,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
-import { Combobox } from '@/components/custom/combobox'
 
 export default function ExtraComponents() {
   const items = [
@@ -88,11 +87,6 @@ export default function ExtraComponents() {
     toast(
       `You have selected following frameworks: ${data.frameworks.join(", ")}.`
     );
-  }
-
-  const [typeSelected, setTypeSelected] = useState('')
-  function handleCreateOptions(value: string) {
-    console.log(value)
   }
 
   return (
@@ -247,27 +241,6 @@ export default function ExtraComponents() {
 
             />
 
-{/* 
-            <FormField
-              control={form.control}
-              name="frameworks"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category Code</FormLabel>
-                  <FormControl>
-                  <Combobox
-                      mode='single' //single or multiple
-                      options={frameworksList}
-                      placeholder='Select option...'
-                      selected={typeSelected} // string or array
-                      onChange={(value) => setTypeSelected(value)}
-                      onCreate={(value) => { setTypeSelected(value)}}
-                  />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
         </form>
       </Form>
       
