@@ -49,19 +49,25 @@ export function EditDialog({
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
 
   useEffect(() => {
-    DataDictService.findAll(true)
-    .then(function (res) {
-      const codes = uniq(map(res.data, 'categoryCode'))
-      setCategoryCodes(codes.map(code => ({ label: code, value: code })))
-    })
-  }, [])
+    if (open) {
+      fetchCategoryCodes();
+    }
+  }, [open]);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: modelData as Object
   })
 
-  function onSubmit(formData: FormSchema) {
+  function fetchCategoryCodes(): void {
+    DataDictService.findAll(true)
+      .then(function (res) {
+        const codes = uniq(map(res.data, 'categoryCode'))
+        setCategoryCodes(codes.map(code => ({ label: code, value: code })))
+      })
+  };
+
+  function onSubmit(formData: FormSchema): void {
     setSaving(true)
     toast.promise(save(formData), {
       loading: "Saving " + entityName + "...",
