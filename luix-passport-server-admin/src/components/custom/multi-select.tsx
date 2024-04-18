@@ -77,6 +77,7 @@ const MultiSelectFormField = React.forwardRef<
     );
     const selectedValuesSet = React.useRef(new Set(selectedValues));
     const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
+    const [query, setQuery] = React.useState<string>('');
 
     React.useEffect(() => {
       setSelectedValues(defaultValue || []);
@@ -132,12 +133,16 @@ const MultiSelectFormField = React.forwardRef<
                         {IconComponent && (
                           <IconComponent className="h-4 w-4 mr-2" />
                         )}
-                        {option?.label}
+                        {option ? option?.label : value}
                         <IconCircleX
                           className="ml-2 h-4 w-4 cursor-pointer"
                           onClick={(event) => {
                             event.stopPropagation();
-                            toggleOption(value);
+                            if(option) {
+                              toggleOption(value);
+                            } else {
+                              setSelectedValues(selectedValues.filter((v) => v !== value));
+                            }
                           }}
                         />
                       </Badge>
@@ -185,9 +190,23 @@ const MultiSelectFormField = React.forwardRef<
             <CommandInput
               placeholder="Search..."
               onKeyDown={handleInputKeyDown}
+              value={query}
+              onValueChange={(value: string) => setQuery(value)}
             />
             <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
+              {/* <CommandEmpty>No results found.</CommandEmpty> */}
+              <CommandEmpty
+                onClick={() => {
+                  setSelectedValues([...selectedValues, query])
+                  setQuery('')
+                }}
+                className='flex cursor-pointer items-center justify-center gap-1 my-2'
+              >
+                <p className="">Create: </p>
+                <p className='block max-w-50 truncate font-semibold text-primary'>
+                  {query}
+                </p>
+              </CommandEmpty>
               <CommandGroup>
                 {options.map((option) => {
                   const isSelected = selectedValuesSet.current.has(
