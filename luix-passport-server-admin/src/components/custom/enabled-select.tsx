@@ -8,6 +8,7 @@ import {
   SelectSeparator
 } from '@/components/ui/select'
 import { Button } from '@/components/custom/button'
+import { useState } from 'react'
 
 type EnabledSelectProps = {
   value: string
@@ -19,8 +20,11 @@ export const EnabledSelect = ({
   value, 
   onValueChange, 
   className 
-}: EnabledSelectProps) => (
-  <Select value={value} onValueChange={onValueChange}>
+}: EnabledSelectProps) => {
+  const [open, setOpen] = useState(false)
+
+  return (
+  <Select value={value} onValueChange={onValueChange} open={open} onOpenChange={setOpen}>
     <SelectTrigger className={className}>
       <SelectValue placeholder='Enabled' />
     </SelectTrigger>
@@ -38,10 +42,12 @@ export const EnabledSelect = ({
         onClick={(e) => {
           e.stopPropagation()
           onValueChange('')
+          setOpen(false)
         }}
       >
         Clear
       </Button>
     </SelectContent>
   </Select>
-)
+  )
+}
