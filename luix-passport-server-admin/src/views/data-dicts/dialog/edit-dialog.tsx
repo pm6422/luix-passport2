@@ -90,7 +90,7 @@ export function EditDialog({
       {children}
       <DialogContent className='max-w-screen-sm'>
         <DialogHeader>
-        <DialogTitle className='capitalize'>{modelData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
+          <DialogTitle className='capitalize'>{modelData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
           { modelData.num && 
             <DialogDescription>Number: {modelData.num}</DialogDescription>
           }
