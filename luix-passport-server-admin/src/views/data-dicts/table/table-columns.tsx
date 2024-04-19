@@ -87,9 +87,7 @@ export function getColumns(
         <DataTableColumnHeader column={column} title='Enabled' />
       ),
       cell: ({ row }) => {
-        const element = YesNo.find((element) => 
-          element.value === row.getValue('enabled')
-        )
+        const element = YesNo.find(e => e.value === row.getValue('enabled'))
 
         return (
           <div className='flex w-[50px] items-center'>
