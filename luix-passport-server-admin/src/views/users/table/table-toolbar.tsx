@@ -41,11 +41,16 @@ export function DataTableToolbar ({
           />
         </div>
         <div className='flex flex-wrap w-full sm:w-auto space-x-2'>
-        <Input
+          <Input
             placeholder='Mobile No'
             value={criteria.mobileNo}
             onChange={(event) => setCriteria({ ...criteria, mobileNo: event.target.value })}
             className='h-8 w-[130px] lg:w-[130px] mb-2 sm:mb-0'
+          />
+          <EnabledSelect
+            value={criteria.enabled}
+            onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
+            className='h-8 w-[130px] lg:w-[130px]'
           />
           <Button
             variant='link'

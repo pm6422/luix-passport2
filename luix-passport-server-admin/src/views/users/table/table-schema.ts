@@ -43,12 +43,12 @@ export interface ICriteria {
   username: string;
   email: string;
   mobileNo: string;
-  enabled: boolean | null;
+  enabled: string;
 }
 
 export const initialCriteria: ICriteria = {
   username: '',
   email: '',
   mobileNo: '',
-  enabled: null
+  enabled: ''
 }
