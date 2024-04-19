@@ -35,7 +35,7 @@ public class User extends AbstractAuditableDomain implements Serializable {
     private String email;
 
     @Schema(required = true)
-    @NotEmpty(message = "email:{Validation.NotEmpty}")
+    @NotEmpty(message = "mobileNo:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String mobileNo;
 
