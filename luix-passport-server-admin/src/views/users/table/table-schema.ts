@@ -17,6 +17,7 @@ export const formSchema = z.object({
   accountExpiresAt: z.string().optional(),
   passwordExpiresAt: z.string().optional(),
   lastSignInAt: z.string().optional(),
+  roles: z.array(z.string()).optional(),
   modifiedAt: z.string().optional()
 })
 
@@ -36,6 +37,7 @@ export const initialFormState: FormSchema = {
   profilePhotoEnabled: false,
   activated: false,
   enabled: true,
+  roles: [],
   modifiedAt: ''
 }
 

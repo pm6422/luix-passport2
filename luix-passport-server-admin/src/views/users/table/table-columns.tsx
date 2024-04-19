@@ -82,6 +82,21 @@ export function getColumns(
       enableHiding: true,
     },
     {
+      accessorKey: 'roles',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title='Roles' />
+      ),
+      cell: ({ row }) => (
+        <div className='w-[100px] text-xs'>
+          {(row.getValue('roles') as string[]).map((role, index) => (
+            <div key={index}>{role}</div>
+          ))}
+        </div>
+      ),
+      enableSorting: false,
+      enableHiding: true,
+    },
+    {
       accessorKey: 'activated',
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Activated' />
