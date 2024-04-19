@@ -41,7 +41,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Username' />
       ),
-      cell: ({ row }) => <div className='w-[20px]'>{row.getValue('username')}</div>,
+      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('username')}</div>,
       enableSorting: true,
       enableHiding: false,
     },
@@ -50,7 +50,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Email' />
       ),
-      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('email')}</div>,
+      cell: ({ row }) => <div className='w-[100px]'>{row.getValue('email')}</div>,
       enableSorting: true,
       enableHiding: true,
     },
@@ -59,7 +59,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Mobile No' />
       ),
-      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('mobileNo')}</div>,
+      cell: ({ row }) => <div className='w-[100px]'>{row.getValue('mobileNo')}</div>,
       enableSorting: true,
       enableHiding: true,
     },
@@ -69,7 +69,7 @@ export function getColumns(
         <DataTableColumnHeader column={column} title='First Name' />
       ),
       cell: ({ row }) => <div className='w-[50px]'>{row.getValue('firstName')}</div>,
-      enableSorting: true,
+      enableSorting: false,
       enableHiding: true,
     },
     {
@@ -77,9 +77,30 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Last Name' />
       ),
-      cell: ({ row }) => <div className='w-[150px]'>{row.getValue('lastName')}</div>,
+      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('lastName')}</div>,
       enableSorting: false,
-      enableHiding: false,
+      enableHiding: true,
+    },
+    {
+      accessorKey: 'activated',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title='Activated' />
+      ),
+      cell: ({ row }) => {
+        const element = YesNo.find(e => e.value === row.getValue('activated'))
+
+        return (
+          <div className='flex w-[50px] items-center'>
+            {element && element.icon && (
+              <element.icon className='mr-2 h-5 w-5 text-muted-foreground' />
+            )}
+            <span>{element && element.label}</span>
+          </div>
+        )
+      },
+      filterFn: (row, id, value) => {
+        return value.includes(row.getValue(id))
+      },
     },
     {
       accessorKey: 'enabled',
