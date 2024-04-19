@@ -139,6 +139,15 @@ export function getColumns(
       },
     },
     {
+      accessorKey: 'lastSignInAt',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title='Last Sign In At' />
+      ),
+      cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('lastSignInAt'))}</div>,
+      enableSorting: true,
+      enableHiding: true,
+    },
+    {
       accessorKey: 'modifiedAt',
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Modified At' />
