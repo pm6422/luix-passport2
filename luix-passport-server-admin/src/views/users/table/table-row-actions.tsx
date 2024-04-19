@@ -11,7 +11,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { toast } from 'sonner'
 import { getErrorMessage } from '@/libs/handle-error'
-// import { EditDialog } from '../dialog/edit-dialog'
+import { EditDialog } from '../dialog/edit-dialog'
 import { DialogTrigger } from '@/components/ui/dialog'
 import { type FormSchema } from '../table/table-schema'
 import { initialFormState } from './table-schema'
@@ -66,11 +66,11 @@ export function DataTableRowActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        {/* <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save} afterSave={(success) => setDropdownMenuOpen(false)}>
+        <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save} afterSave={(success) => setDropdownMenuOpen(false)}>
           <DialogTrigger asChild>
             <Button variant="ghost" className='w-full'>Update</Button>
           </DialogTrigger>
-        </EditDialog> */}
+        </EditDialog>
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
             <Button variant="ghost" className='w-full'>Delete</Button>
