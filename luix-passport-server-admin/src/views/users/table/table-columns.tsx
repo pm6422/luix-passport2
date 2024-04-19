@@ -143,10 +143,9 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Modified At' />
       ),
-      // cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('modifiedAt'))}</div>,
       cell: ({ row }) => (
         <div className='w-[150px] text-xs'>
-          <div>{formatDateTime(row.getValue('modifiedAt'))}</div>
+          <div>{formatDateTime(row.getValue('createdAt'))}</div>
           <div>{formatDateTime(row.getValue('modifiedAt'))}</div>
         </div>
       ),
