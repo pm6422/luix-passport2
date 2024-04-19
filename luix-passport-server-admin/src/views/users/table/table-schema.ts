@@ -18,6 +18,7 @@ export const formSchema = z.object({
   passwordExpiresAt: z.string().optional(),
   lastSignInAt: z.string().optional(),
   roles: z.array(z.string()).optional(),
+  createdAt: z.string().optional(),
   modifiedAt: z.string().optional()
 })
 
@@ -38,6 +39,7 @@ export const initialFormState: FormSchema = {
   activated: false,
   enabled: true,
   roles: [],
+  createdAt: '',
   modifiedAt: ''
 }
 
