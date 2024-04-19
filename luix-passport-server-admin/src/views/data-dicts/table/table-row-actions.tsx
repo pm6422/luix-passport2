@@ -9,10 +9,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { toast } from "sonner"
-import { getErrorMessage } from "@/libs/handle-error"
+import { toast } from 'sonner'
+import { getErrorMessage } from '@/libs/handle-error'
 import { EditDialog } from '../dialog/edit-dialog'
-import { DialogTrigger } from "@/components/ui/dialog"
+import { DialogTrigger } from '@/components/ui/dialog'
 import { type FormSchema } from '../table/table-schema'
 import { initialFormState } from './table-schema'
 import { merge } from '@/libs/utils'
@@ -35,11 +35,11 @@ export function DataTableRowActions({
 
   function clickDeleteYes(): void {
     toast.promise(deleteRow(row.original), {
-      loading: "Deleting " + entityName + "...",
+      loading: 'Deleting ' + entityName + '...',
       success: () => {
         setDelConfirmPopoverOpen(false)
         setDropdownMenuOpen(false)
-        return "Deleted " + entityName
+        return 'Deleted ' + entityName
       },
       error: (error) => {
         setDelConfirmPopoverOpen(false)

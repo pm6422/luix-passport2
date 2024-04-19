@@ -6,7 +6,7 @@ import { ICriteria } from './table-schema'
 import { initialCriteria, initialFormState } from './table-schema'
 import { EditDialog } from '../dialog/edit-dialog'
 import { type FormSchema } from '../table/table-schema'
-import { DialogTrigger } from "@/components/ui/dialog"
+import { DialogTrigger } from '@/components/ui/dialog'
 
 interface DataTableToolbarProps{
   entityName: string,

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { toast } from "sonner"
-import { getErrorMessage } from "@/libs/handle-error"
-import { Button } from "@/components/custom/button"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
+import { getErrorMessage } from '@/libs/handle-error'
+import { Button } from '@/components/custom/button'
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogClose,
   DialogFooter,
   DialogDescription
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog'
 import {
   Form,
   FormControl,
@@ -21,8 +21,8 @@ import {
   FormLabel,
   FormMessage,
   FormDescription
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
 import { formSchema, type FormSchema } from '../table/table-schema'
@@ -68,13 +68,13 @@ export function EditDialog({
   function onSubmit(formData: FormSchema): void {
     setSaving(true)
     toast.promise(save(formData), {
-      loading: "Saving " + entityName + "...",
+      loading: 'Saving ' + entityName + '...',
       success: () => {
         form.reset()
         setOpen(false)
         afterSave && afterSave(true)
         setSaving(false)
-        return "Saved " + entityName
+        return 'Saved ' + entityName
       },
       error: (error) => {
         setOpen(false)
@@ -90,7 +90,7 @@ export function EditDialog({
       {children}
       <DialogContent className='max-w-screen-sm'>
         <DialogHeader>
-        <DialogTitle className='capitalize'>{modelData.id ? "Update" : "Create"} {entityName}</DialogTitle>
+        <DialogTitle className='capitalize'>{modelData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
           { modelData.num && 
             <DialogDescription>Number: {modelData.num}</DialogDescription>
           }
