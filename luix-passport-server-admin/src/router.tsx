@@ -96,7 +96,7 @@ const router = createBrowserRouter([
       {
         path: 'users',
         lazy: async () => ({
-          Component: (await import('@/components/custom/coming-soon')).default,
+          Component: (await import('@/views/users')).default,
         }),
       },
       {
