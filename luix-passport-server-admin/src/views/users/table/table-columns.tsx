@@ -4,12 +4,12 @@ import { DataTableColumnHeader } from '@/components/custom/data-table/data-table
 import { DataTableRowActions } from './table-row-actions'
 import { FormSchema } from './table-schema'
 import { formatDateTime } from '@/libs/utils'
+import { YesNo } from '@/data/yes-no'
 
 export function getColumns(
   entityName: string,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>, 
-  yesNo: Array<any>
 ): ColumnDef<FormSchema>[] {
   return [
     {
@@ -41,7 +41,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Username' />
       ),
-      cell: ({ row }) => <div className='w-[30px]'>{row.getValue('username')}</div>,
+      cell: ({ row }) => <div className='w-[20px]'>{row.getValue('username')}</div>,
       enableSorting: true,
       enableHiding: false,
     },
@@ -87,7 +87,7 @@ export function getColumns(
         <DataTableColumnHeader column={column} title='Enabled' />
       ),
       cell: ({ row }) => {
-        const element = yesNo.find((element) => 
+        const element = YesNo.find((element) => 
           element.value === row.getValue('enabled')
         )
 

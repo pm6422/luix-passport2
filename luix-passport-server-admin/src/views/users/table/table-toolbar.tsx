@@ -43,7 +43,7 @@ export function DataTableToolbar ({
         <div className='flex flex-wrap w-full sm:w-auto space-x-2'>
         <Input
             placeholder='Mobile No'
-            value={criteria.email}
+            value={criteria.mobileNo}
             onChange={(event) => setCriteria({ ...criteria, mobileNo: event.target.value })}
             className='h-8 w-[130px] lg:w-[130px] mb-2 sm:mb-0'
           />

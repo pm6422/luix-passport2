@@ -4,7 +4,6 @@ import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { DataTableToolbar } from './table/table-toolbar'
 import { DataTable } from '@/components/custom/data-table/server-pagination-data-table'
 import { getColumns } from './table/table-columns'
-import { YesNo } from '@/data/yes-no'
 import { ICriteria } from './table/table-schema'
 import { initialCriteria } from './table/table-schema'
 import { UserService } from '@/services/user-service'
@@ -20,7 +19,7 @@ export default function DataDict() {
   const [criteria, setCriteria] = useState<ICriteria>(initialCriteria)
 
   useEffect(() => {
-    setTableColumns(getColumns(entityName, save, deleteRow, YesNo))
+    setTableColumns(getColumns(entityName, save, deleteRow))
   }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ['modifiedAt,desc']): void {
