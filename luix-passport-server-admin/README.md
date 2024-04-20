@@ -65,7 +65,6 @@ Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
 
 ## Issues
 
-#### row action does not collapse menu after closed dialog
 #### datetime string to ms
 #### multiple data in same column of table
 #### required asterisk of form
