@@ -17,7 +17,7 @@ export const formSchema = z.object({
   accountExpiresAt: z.string().optional(),
   passwordExpiresAt: z.string().optional(),
   lastSignInAt: z.string().optional(),
-  roles: z.array(z.string()).optional(),
+  roles: z.array(z.string()).min(1, { message: 'Required' }),
   createdAt: z.string().optional(),
   modifiedAt: z.string().optional()
 })
