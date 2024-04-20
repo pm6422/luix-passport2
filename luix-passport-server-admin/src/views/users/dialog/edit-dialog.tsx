@@ -209,6 +209,9 @@ export function EditDialog({
                       multiple={true}
                     />
                   </FormControl>
+                  <FormDescription>
+                    ROLE_ANONYMOUS, ROLE_USER must be selected.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
