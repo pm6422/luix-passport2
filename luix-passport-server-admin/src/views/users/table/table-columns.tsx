@@ -1,5 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
+import { IconEdit } from '@tabler/icons-react'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
 import { DataTableRowActions } from '@/components/custom/data-table/data-table-row-actions'
 import { Button } from '@/components/custom/button'
@@ -165,7 +166,10 @@ export function getColumns(
         <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
           <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
             <DialogTrigger asChild>
-              <Button variant="ghost" className='w-full'>Update</Button>
+              <Button variant='secondary' className='flex h-8 w-8 p-0'>
+                <IconEdit className='h-4 w-4' />
+                <span className='sr-only'>Update</span>
+              </Button>
             </DialogTrigger>
           </EditDialog>
         </DataTableRowActions>
