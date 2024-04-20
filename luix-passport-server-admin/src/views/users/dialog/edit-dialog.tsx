@@ -248,8 +248,8 @@ export function EditDialog({
                 </Button>
               </DialogClose>
               <Button disabled={saving}>
-                {saving && (<IconReload className="mr-2 h-4 w-4 animate-spin"/>)}
-                Save
+                {saving ? 'Saving...' : 'Save'}
+                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
               </Button>
             </DialogFooter>
           </form>
