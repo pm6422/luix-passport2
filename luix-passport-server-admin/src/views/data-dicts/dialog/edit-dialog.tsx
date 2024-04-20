@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { getErrorMessage } from '@/libs/handle-error'
 import { Button } from '@/components/custom/button'
+import { IconReload } from '@tabler/icons-react'
 import {
   Dialog,
   DialogContent,
@@ -186,7 +187,10 @@ export function EditDialog({
                   Cancel
                 </Button>
               </DialogClose>
-              <Button disabled={saving}>Save</Button>
+              <Button disabled={saving}>
+                {saving ? 'Saving...' : 'Save'}
+                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
+              </Button>
             </DialogFooter>
           </form>
         </Form>
