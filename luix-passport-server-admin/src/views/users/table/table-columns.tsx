@@ -148,7 +148,7 @@ export function getColumns(
       enableHiding: true,
     },
     {
-      accessorKey: 'createdAt'
+      accessorKey: 'createdAt',
     },
     {
       accessorKey: 'modifiedAt',
