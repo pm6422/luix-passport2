@@ -10,8 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
-  DialogFooter,
-  DialogDescription
+  DialogFooter
 } from '@/components/ui/dialog'
 import {
   Form,
@@ -22,6 +21,14 @@ import {
   FormMessage,
   FormDescription
 } from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { formSchema, type FormSchema } from '../table/table-schema'
@@ -96,38 +103,51 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            {/* <FormField
-              control={form.control}
-              name="categoryCode"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category Code</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue/>
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectGroup>
-                        {categoryCodes.map((item) => (
-                          <SelectItem key={item} value={item}>
-                            {item}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            /> */}
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input {...field} disabled={modelData.id ? true : false}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input {...field}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="mobileNo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mobile No</FormLabel>
+                  <FormControl>
+                    <Input {...field}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -137,10 +157,44 @@ export function EditDialog({
             />
              <FormField
               control={form.control}
-              name="email"
+              name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input {...field}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="language"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Preferred Language</FormLabel>
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue/>
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value='English'>English</SelectItem>
+                      <SelectItem value='Chinese'>Chinese</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage/>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="remark"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Remark</FormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
