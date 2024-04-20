@@ -148,13 +148,7 @@ export function getColumns(
       enableHiding: true,
     },
     {
-      accessorKey: 'createdAt',
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Created At' />
-      ),
-      // cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('createdAt'))}</div>,
-      enableSorting: true,
-      enableHiding: true,
+      accessorKey: 'createdAt'
     },
     {
       accessorKey: 'modifiedAt',
