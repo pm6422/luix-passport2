@@ -5,6 +5,7 @@ import { toast } from 'sonner'
 import { getErrorMessage } from '@/libs/handle-error'
 import { Button } from '@/components/custom/button'
 import { IconReload } from '@tabler/icons-react'
+import { Separator } from '@/components/ui/separator'
 import {
   Dialog,
   DialogContent,
@@ -92,6 +93,7 @@ export function EditDialog({
         <DialogHeader>
           <DialogTitle className='capitalize'>{modelData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
         </DialogHeader>
+        <Separator/>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
