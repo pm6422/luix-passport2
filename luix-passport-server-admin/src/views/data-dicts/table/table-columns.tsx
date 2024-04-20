@@ -1,7 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/components/custom/data-table/table-row-actions'
+import { DataTableRowActions } from '@/components/custom/data-table/data-table-row-actions'
 import { Button } from '@/components/custom/button'
 import { YesNo } from '@/data/yes-no'
 import { DialogTrigger } from '@/components/ui/dialog'
