@@ -148,11 +148,25 @@ export function getColumns(
       enableHiding: true,
     },
     {
+      accessorKey: 'createdAt',
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title='Created At' />
+      ),
+      // cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('createdAt'))}</div>,
+      enableSorting: true,
+      enableHiding: true,
+    },
+    {
       accessorKey: 'modifiedAt',
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title='Modified At' />
       ),
-      cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('modifiedAt'))}</div>,
+      cell: ({ row }) => (
+        <div className='w-[150px] text-xs'>
+          <div>{formatDateTime(row.getValue('createdAt'))}</div>
+          <div>{formatDateTime(row.getValue('modifiedAt'))}</div>
+        </div>
+      ),
       enableSorting: true,
       enableHiding: true,
     },
