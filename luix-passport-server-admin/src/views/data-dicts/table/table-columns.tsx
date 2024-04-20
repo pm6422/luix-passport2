@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
-import { IconEdit } from '@tabler/icons-react'
+import { IconEdit, IconDots } from '@tabler/icons-react'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
 import { DataTableRowActions } from '@/components/custom/data-table/data-table-row-actions'
 import { Button } from '@/components/custom/button'
@@ -9,12 +9,19 @@ import { DialogTrigger } from '@/components/ui/dialog'
 import { FormSchema, initialFormState } from './table-schema'
 import { EditDialog } from '../dialog/edit-dialog'
 import { formatDateTime, merge } from '@/libs/utils'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
 export function getColumns(
   entityName: string,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>
 ): ColumnDef<FormSchema>[] {
+
   return [
     {
       id: 'select',
@@ -118,15 +125,34 @@ export function getColumns(
     {
       id: 'actions',
       cell: ({ row }) => (
-        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
-          <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
-            <DialogTrigger asChild>
-              <Button variant='secondary' className='flex h-8 w-8 p-0'>
-                <IconEdit className='h-4 w-4' />
-                <span className='sr-only'>Update</span>
-              </Button>
-            </DialogTrigger>
-          </EditDialog>
+        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow} 
+          children={
+            <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
+              <DialogTrigger asChild>
+                <Button variant='secondary' className='flex h-8 w-8 p-0'>
+                  <IconEdit className='h-4 w-4' />
+                  <span className='sr-only'>Update</span>
+                </Button>
+              </DialogTrigger>
+            </EditDialog>
+          } 
+          // moreActions={
+          //   <DropdownMenu>
+          //     <DropdownMenuTrigger asChild>
+          //       <Button
+          //         variant='ghost'
+          //         className='flex h-8 w-8 p-0 data-[state=open]:bg-muted'
+          //       >
+          //         <IconDots className='h-4 w-4' />
+          //         <span className='sr-only'>Open menu</span>
+          //       </Button>
+          //     </DropdownMenuTrigger>
+          //     <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
+          //       <Button variant="ghost" className='w-full'>TODO...</Button>
+          //     </DropdownMenuContent>
+          //   </DropdownMenu>
+          // }
+        >
         </DataTableRowActions>
       )
     }
