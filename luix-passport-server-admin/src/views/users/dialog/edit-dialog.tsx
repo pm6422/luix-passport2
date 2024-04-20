@@ -24,16 +24,15 @@ import {
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
+import Combobox from '@/components/custom/combobox'
 import { formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
-import { map, uniq } from 'lodash'
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -52,24 +51,18 @@ export function EditDialog({
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [categoryCodes, setCategoryCodes] = useState(Array<any>)
+  const [enabledRoles, setEnabledRoles] = useState(Array<any>)
 
   useEffect(() => {
-    open && fetchCategoryCodes()
-  }, [open])
+    DataDictService.lookup('role', true).then(r => {
+      setEnabledRoles(r.data.map((item: any) => ({ label: item.dictCode, value: item.dictCode })))
+    })
+  }, [])
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: modelData as Object
   })
-
-  function fetchCategoryCodes(): void {
-    DataDictService.findAll(true)
-      .then(function (res) {
-        const codes = uniq(map(res.data, 'categoryCode'))
-        setCategoryCodes(codes.map(code => ({ label: code, value: code })))
-      })
-  };
 
   function onSubmit(formData: FormSchema): void {
     setSaving(true)
@@ -174,7 +167,7 @@ export function EditDialog({
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Preferred Language</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue/>
@@ -197,6 +190,24 @@ export function EditDialog({
                   <FormLabel>Remark</FormLabel>
                   <FormControl>
                     <Input {...field}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="roles"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Roles</FormLabel>
+                  <FormControl>
+                    <Combobox
+                      options={enabledRoles}
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      multiple={true}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

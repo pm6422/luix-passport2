@@ -42,7 +42,7 @@ interface ComboboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, V
   options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
   defaultValue?: string | string[];
   disabled?: boolean;
-  placeholder: string;
+  placeholder?: string;
   onValueChange: (value: string | string[]) => void;
   createable?: boolean;
   multiple?: boolean;
