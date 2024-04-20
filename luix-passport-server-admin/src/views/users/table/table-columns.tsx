@@ -162,14 +162,14 @@ export function getColumns(
     {
       id: 'actions',
       cell: ({ row }) => (
-        <DataTableRowActions row={row} deleteRow={deleteRow}>
+        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
           <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
             <DialogTrigger asChild>
               <Button variant="ghost" className='w-full'>Update</Button>
             </DialogTrigger>
           </EditDialog>
         </DataTableRowActions>
-      ),
+      )
     }
   ]
 }

@@ -14,12 +14,14 @@ import { getErrorMessage } from '@/libs/handle-error'
 
 interface DataTableRowActionsProps {
   children: React.ReactNode,
+  entityName: string,
   row: Row<any>,
   deleteRow: (row: any) => Promise<any>
 }
 
 export function DataTableRowActions({
   children,
+  entityName,
   row,
   deleteRow
 }: DataTableRowActionsProps) {
@@ -28,11 +30,11 @@ export function DataTableRowActions({
 
   function clickDeleteYes(): void {
     toast.promise(deleteRow(row.original), {
-      loading: 'Deleting row...',
+      loading: 'Deleting ' + entityName + '...',
       success: () => {
         setDelConfirmPopoverOpen(false)
         setDropdownMenuOpen(false)
-        return 'Deleted row'
+        return 'Deleted ' + entityName
       },
       error: (error) => {
         setDelConfirmPopoverOpen(false)
