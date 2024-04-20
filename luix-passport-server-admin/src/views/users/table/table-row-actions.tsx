@@ -11,23 +11,16 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { toast } from 'sonner'
 import { getErrorMessage } from '@/libs/handle-error'
-import { EditDialog } from '../dialog/edit-dialog'
-import { DialogTrigger } from '@/components/ui/dialog'
-import { type FormSchema } from '../table/table-schema'
-import { initialFormState } from './table-schema'
-import { merge } from '@/libs/utils'
 
 interface DataTableRowActionsProps {
-  entityName: string,
-  row: Row<FormSchema>,
-  save: (formData: any) => Promise<any>,
+  children: React.ReactNode,
+  row: Row<any>,
   deleteRow: (row: any) => Promise<any>
 }
 
 export function DataTableRowActions({
-  entityName,
+  children,
   row,
-  save,
   deleteRow
 }: DataTableRowActionsProps) {
   const [dropdownMenuOpen, setDropdownMenuOpen] = useState(false)
@@ -35,11 +28,11 @@ export function DataTableRowActions({
 
   function clickDeleteYes(): void {
     toast.promise(deleteRow(row.original), {
-      loading: 'Deleting ' + entityName + '...',
+      loading: 'Deleting row...',
       success: () => {
         setDelConfirmPopoverOpen(false)
         setDropdownMenuOpen(false)
-        return 'Deleted ' + entityName
+        return 'Deleted row'
       },
       error: (error) => {
         setDelConfirmPopoverOpen(false)
@@ -66,11 +59,7 @@ export function DataTableRowActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
-          <DialogTrigger asChild>
-            <Button variant="ghost" className='w-full'>Update</Button>
-          </DialogTrigger>
-        </EditDialog>
+        {children}
         <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
             <Button variant="ghost" className='w-full'>Delete</Button>

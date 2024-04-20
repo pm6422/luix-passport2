@@ -33,8 +33,8 @@ import {
 } from '@/components/ui/table'
 
 interface DataTableProps<TData, TValue> {
-  children: React.ReactNode
-  columns: ColumnDef<TData, TValue>[]
+  children: React.ReactNode,
+  columns: ColumnDef<TData, TValue>[],
   data: TData[],
   totalCount: number,
   totalPages: number,

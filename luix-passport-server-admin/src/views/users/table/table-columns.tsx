@@ -2,9 +2,12 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Checkbox } from '@/components/ui/checkbox'
 import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
 import { DataTableRowActions } from './table-row-actions'
-import { FormSchema } from './table-schema'
-import { formatDateTime } from '@/libs/utils'
+import { Button } from '@/components/custom/button'
 import { YesNo } from '@/data/yes-no'
+import { DialogTrigger } from '@/components/ui/dialog'
+import { FormSchema, initialFormState } from './table-schema'
+import { EditDialog } from '../dialog/edit-dialog'
+import { formatDateTime, merge } from '@/libs/utils'
 
 export function getColumns(
   entityName: string,
@@ -158,7 +161,15 @@ export function getColumns(
     },
     {
       id: 'actions',
-      cell: ({ row }) => <DataTableRowActions entityName={entityName} row={row} save={save} deleteRow={deleteRow}/>,
+      cell: ({ row }) => (
+        <DataTableRowActions row={row} deleteRow={deleteRow}>
+          <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
+            <DialogTrigger asChild>
+              <Button variant="ghost" className='w-full'>Update</Button>
+            </DialogTrigger>
+          </EditDialog>
+        </DataTableRowActions>
+      ),
     }
   ]
 }
