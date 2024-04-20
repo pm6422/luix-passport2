@@ -66,7 +66,7 @@ export function DataTableRowActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-        <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save} afterSave={(success) => setDropdownMenuOpen(false)}>
+        <EditDialog entityName={entityName} modelData={merge(initialFormState, row.original)} save={save}>
           <DialogTrigger asChild>
             <Button variant="ghost" className='w-full'>Update</Button>
           </DialogTrigger>
