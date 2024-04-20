@@ -48,7 +48,7 @@ export default function Sidebar2({
           <div className={`flex items-center ${!isCollapsed ? 'gap-2' : ''}`}>
             <img
               src="/favicon.svg"
-              className='relative m-auto'
+              className='relative m-auto -intro-y'
               width={45}
               height={45}
             />
@@ -58,6 +58,7 @@ export default function Sidebar2({
               <span className='flex justify-end text-[0.5rem]'>{appInfoProvider.appInfo.ribbonProfile} env</span>
               <img
                   src="/logos/logo-text.svg"
+                  className='intro-y'
                   width={150}
                   height={50}
               />
