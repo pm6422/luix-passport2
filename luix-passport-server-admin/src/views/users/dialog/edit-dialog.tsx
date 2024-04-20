@@ -87,7 +87,7 @@ export function EditDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
-      <DialogContent className='max-w-screen-sm'>
+      <DialogContent className='lg:max-w-screen-sm max-h-screen overflow-y-auto'>
         <DialogHeader>
           <DialogTitle className='capitalize'>{modelData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
         </DialogHeader>
