@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/command";
 
 const comboboxVariants = cva(
-  "m-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-none",
+  "m-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-sm",
   {
     variants: {
       variant: {
@@ -124,7 +124,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
           {...props}
           onClick={() => setIsPopoverOpen(!isPopoverOpen)}
           disabled={disabled}
-          className="flex w-full rounded-md border min-h-8 h-auto pr-3 items-center justify-between bg-inherit hover:bg-card shadow-none"
+          className="flex w-full rounded-md border min-h-8 h-auto pr-3 items-center justify-between bg-inherit hover:bg-card shadow-sm"
         >
           {selectedValues.length > 0 ? (
             <div className="flex justify-between items-center w-full">
