@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom'
 import { Toaster } from '@/components/custom/toaster'
 import router from '@/router'
 import '@/main.css'
+import '@/intro.scss'
 
 AppInfoService.load().then(appInfo => {
   ReactDOM.createRoot(document.getElementById('root')!).render(

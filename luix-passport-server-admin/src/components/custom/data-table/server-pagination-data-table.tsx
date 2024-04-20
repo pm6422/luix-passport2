@@ -147,7 +147,7 @@ export function DataTable<TData, TValue>({
         <DataTableViewOptions columns={table.getAllColumns()} />
       </div>
       <div className='rounded-md border'>
-        <Table>
+        <Table className='intro-y'>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
