@@ -27,14 +27,15 @@ import {
 import { Input } from '@/components/ui/input'
 import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
-import { formSchema, type FormSchema } from '../table/table-schema'
+import { initialFormState, formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq } from 'lodash'
+import { merge } from '@/libs/utils'
 
 interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
-  formData: FormSchema,
+  id?: string,
   save: (formData: FormSchema) => Promise<any>,
   afterSave?: (success: boolean) => void
 }
@@ -42,7 +43,7 @@ interface EditDialogProps {
 export function EditDialog({
   children,
   entityName,
-  formData,
+  id,
   save,
   afterSave
 }: EditDialogProps) {
@@ -51,12 +52,23 @@ export function EditDialog({
   const [categoryCodes, setCategoryCodes] = useState(Array<any>)
 
   useEffect(() => {
-    open && fetchCategoryCodes()
+    if(!open) {
+      return
+    }
+
+    fetchCategoryCodes()
+    
+    if(id) {
+      // update mode
+      DataDictService.findById(id).then(r => {
+        form.reset(merge(initialFormState, r.data))
+      })
+    }
   }, [open])
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: formData as Object
+    defaultValues: initialFormState
   })
 
   function fetchCategoryCodes(): void {
@@ -92,9 +104,9 @@ export function EditDialog({
       {children}
       <DialogContent className='lg:max-w-screen-sm max-h-screen overflow-y-auto'>
         <DialogHeader>
-          <DialogTitle className='capitalize'>{formData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
-          { formData.num && 
-            <DialogDescription className='text-xs'>Number: {formData.num}</DialogDescription>
+          <DialogTitle className='capitalize'>{id ? 'Update' : 'Create'} {entityName}</DialogTitle>
+          { form.getValues().num && 
+            <DialogDescription className='text-xs'>Number: {form.getValues().num}</DialogDescription>
           }
         </DialogHeader>
         <Separator/>

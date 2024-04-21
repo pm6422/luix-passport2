@@ -33,13 +33,15 @@ import {
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import Combobox from '@/components/custom/combobox'
-import { formSchema, type FormSchema } from '../table/table-schema'
+import { initialFormState, formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
+import { UserService } from '@/services/user-service'
+import { merge } from '@/libs/utils'
 
 interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
-  formData: FormSchema,
+  id?: string,
   save: (formData: FormSchema) => Promise<any>,
   afterSave?: (success: boolean) => void
 }
@@ -47,7 +49,7 @@ interface EditDialogProps {
 export function EditDialog({
   children,
   entityName,
-  formData,
+  id,
   save,
   afterSave
 }: EditDialogProps) {
@@ -61,9 +63,21 @@ export function EditDialog({
     })
   }, [])
 
+  useEffect(() => {
+    if(!open) {
+      return
+    }
+    if(id) {
+      // update mode
+      UserService.findById(id).then(r => {
+        form.reset(merge(initialFormState, r.data))
+      })
+    }
+  }, [open])
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: formData as Object
+    defaultValues: initialFormState
   })
 
   function onSubmit(formData: FormSchema): void {
@@ -91,7 +105,7 @@ export function EditDialog({
       {children}
       <DialogContent className='lg:max-w-screen-sm max-h-screen overflow-y-auto'>
         <DialogHeader>
-          <DialogTitle className='capitalize'>{formData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
+          <DialogTitle className='capitalize'>{id ? 'Update' : 'Create'} {entityName}</DialogTitle>
         </DialogHeader>
         <Separator/>
         <Form {...form}>
@@ -106,7 +120,7 @@ export function EditDialog({
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input {...field} disabled={formData.id ? true : false}/>
+                    <Input {...field} disabled={id ? true : false}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

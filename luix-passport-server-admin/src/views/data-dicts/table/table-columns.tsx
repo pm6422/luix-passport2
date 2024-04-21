@@ -6,9 +6,9 @@ import { DataTableRowActions } from '@/components/custom/data-table/data-table-r
 import { Button } from '@/components/custom/button'
 import { YesNo } from '@/data/yes-no'
 import { DialogTrigger } from '@/components/ui/dialog'
-import { FormSchema, initialFormState } from './table-schema'
+import { FormSchema } from './table-schema'
 import { EditDialog } from '../dialog/edit-dialog'
-import { formatDateTime, merge } from '@/libs/utils'
+import { formatDateTime } from '@/libs/utils'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -127,7 +127,7 @@ export function getColumns(
       cell: ({ row }) => (
         <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow} 
           children={
-            <EditDialog entityName={entityName} formData={merge(initialFormState, row.original)} save={save}>
+            <EditDialog entityName={entityName} id={row.original.id} save={save}>
               <DialogTrigger asChild>
                 <Button variant='secondary' className='flex h-8 w-8 p-0'>
                   <IconEdit className='h-4 w-4' />
