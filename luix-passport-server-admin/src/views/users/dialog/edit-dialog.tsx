@@ -215,7 +215,7 @@ export function EditDialog({
                     />
                   </FormControl>
                   <FormDescription>
-                    ROLE_ANONYMOUS, ROLE_USER must be selected.
+                    ROLE_ANONYMOUS, ROLE_USER are required for each user.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
