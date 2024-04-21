@@ -57,15 +57,12 @@ export function EditDialog({
   const [enabledRoles, setEnabledRoles] = useState(Array<any>)
 
   useEffect(() => {
-    DataDictService.lookup('role', true).then(r => {
-      setEnabledRoles(r.data.map((item: any) => ({label: item.dictCode, value: item.dictCode})))
-    })
-  }, [])
-
-  useEffect(() => {
     if(!open) {
       return
     }
+    DataDictService.lookup('role', true).then(r => {
+      setEnabledRoles(r.data.map((item: any) => ({label: item.dictCode, value: item.dictCode})))
+    })
     if(id) {
       // update mode
       UserService.findById(id).then(r => {

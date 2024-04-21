@@ -54,9 +54,10 @@ export function EditDialog({
     if(!open) {
       return
     }
-
-    fetchCategoryCodes()
-
+    DataDictService.findAll(true).then(function (res) {
+      const codes = uniq(map(res.data, 'categoryCode'))
+      setCategoryCodes(codes.map(code => ({ label: code, value: code })))
+    })
     if(id) {
       // update mode
       DataDictService.findById(id).then(r => {
@@ -69,14 +70,6 @@ export function EditDialog({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
   })
-
-  function fetchCategoryCodes(): void {
-    DataDictService.findAll(true)
-      .then(function (res) {
-        const codes = uniq(map(res.data, 'categoryCode'))
-        setCategoryCodes(codes.map(code => ({ label: code, value: code })))
-      })
-  };
 
   function onSubmit(formData: FormSchema): void {
     setSaving(true)
