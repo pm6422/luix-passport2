@@ -36,7 +36,6 @@ import Combobox from '@/components/custom/combobox'
 import { initialFormState, formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { UserService } from '@/services/user-service'
-import { merge } from '@/libs/utils'
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -59,7 +58,7 @@ export function EditDialog({
 
   useEffect(() => {
     DataDictService.lookup('role', true).then(r => {
-      setEnabledRoles(r.data.map((item: any) => ({ label: item.dictCode, value: item.dictCode })))
+      setEnabledRoles(r.data.map((item: any) => ({label: item.dictCode, value: item.dictCode})))
     })
   }, [])
 
@@ -70,7 +69,7 @@ export function EditDialog({
     if(id) {
       // update mode
       UserService.findById(id).then(r => {
-        form.reset(merge(initialFormState, r.data))
+        form.reset(r.data)
       })
     }
   }, [open])
