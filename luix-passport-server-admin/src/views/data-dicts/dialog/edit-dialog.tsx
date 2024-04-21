@@ -34,7 +34,7 @@ import { map, uniq } from 'lodash'
 interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
-  modelData: FormSchema,
+  formData: FormSchema,
   save: (formData: FormSchema) => Promise<any>,
   afterSave?: (success: boolean) => void
 }
@@ -42,7 +42,7 @@ interface EditDialogProps {
 export function EditDialog({
   children,
   entityName,
-  modelData,
+  formData,
   save,
   afterSave
 }: EditDialogProps) {
@@ -56,7 +56,7 @@ export function EditDialog({
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: modelData as Object
+    defaultValues: formData as Object
   })
 
   function fetchCategoryCodes(): void {
@@ -92,9 +92,9 @@ export function EditDialog({
       {children}
       <DialogContent className='lg:max-w-screen-sm max-h-screen overflow-y-auto'>
         <DialogHeader>
-          <DialogTitle className='capitalize'>{modelData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
-          { modelData.num && 
-            <DialogDescription className='text-xs'>Number: {modelData.num}</DialogDescription>
+          <DialogTitle className='capitalize'>{formData.id ? 'Update' : 'Create'} {entityName}</DialogTitle>
+          { formData.num && 
+            <DialogDescription className='text-xs'>Number: {formData.num}</DialogDescription>
           }
         </DialogHeader>
         <Separator/>
