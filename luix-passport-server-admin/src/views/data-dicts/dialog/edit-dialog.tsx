@@ -114,7 +114,7 @@ export function EditDialog({
                       options={categoryCodes}
                       defaultValue={field.value}
                       onValueChange={field.onChange}
-                      placeholder="Select or create a category code"
+                      placeholder="Select or input a category code"
                       createable={true}
                     />
                   </FormControl>
