@@ -30,6 +30,7 @@ import { Switch } from '@/components/ui/switch'
 import { initialFormState, formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
 import { map, uniq } from 'lodash'
+import { merge } from '@/libs/utils'
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -61,7 +62,7 @@ export function EditDialog({
     if(id) {
       // update mode
       DataDictService.findById(id).then(r => {
-        form.reset(r.data)
+        form.reset(merge(initialFormState, r.data))
       })
     }
   }, [open])
