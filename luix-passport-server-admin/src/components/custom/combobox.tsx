@@ -124,7 +124,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
           {...props}
           onClick={() => setIsPopoverOpen(!isPopoverOpen)}
           disabled={disabled}
-          className="flex w-full rounded-md border min-h-8 h-auto pr-3 items-center justify-between bg-inherit hover:bg-card shadow-sm"
+          className="flex w-full rounded-md border min-h-9 h-auto py-0 px-1 items-center justify-between bg-inherit hover:bg-card shadow-sm"
         >
           {selectedValues.length > 0 ? (
             <div className="flex justify-between items-center w-full">
