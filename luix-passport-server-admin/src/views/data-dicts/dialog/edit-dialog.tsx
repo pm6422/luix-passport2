@@ -57,7 +57,7 @@ export function EditDialog({
     }
 
     fetchCategoryCodes()
-    
+
     if(id) {
       // update mode
       DataDictService.findById(id).then(r => {
@@ -84,7 +84,6 @@ export function EditDialog({
     toast.promise(save(formData), {
       loading: 'Saving ' + entityName + '...',
       success: () => {
-        form.reset()
         setOpen(false)
         afterSave && afterSave(true)
         setSaving(false)
