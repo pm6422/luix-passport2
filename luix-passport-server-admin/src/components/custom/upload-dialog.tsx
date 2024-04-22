@@ -30,22 +30,12 @@ import {
   FileUploaderItem
 } from "@/components/custom/file-uploader"
 import { Input } from "@/components/ui/input"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { DropzoneOptions } from "react-dropzone"
 import { z } from "zod"
 import { cn } from "@/libs/utils"
 
 export const formSchema = z.object({
-  files: z
-    .array(
-      z.instanceof(File).refine((file) => file.size < 4 * 1024 * 1024, {
-        message: "File size must be less than 4MB",
-      })
-    )
-    .max(5, {
-      message: "Maximum 5 files are allowed",
-    })
-    .nullable(),
+  files: z.array(z.instanceof(File)).min(1, { message: "Upload file(s) are required" })
 })
 
 export type UploadFormSchema = z.infer<typeof formSchema>
@@ -70,12 +60,12 @@ export function UploadDialog({
   const form = useForm<UploadFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      files: null
+      files: []
     }
   })
-  const dropzone = {
-    multiple: true,
-    maxFiles: 3,
+  const dropzoneOptions = {
+    multiple: false,
+    maxFiles: 1,
     maxSize: 4 * 1024 * 1024,
   } satisfies DropzoneOptions;
 
@@ -119,7 +109,7 @@ export function UploadDialog({
                   <FileUploader
                     value={field.value}
                     onValueChange={field.onChange}
-                    dropzoneOptions={dropzone}
+                    dropzoneOptions={dropzoneOptions}
                     reSelect={true}
                   >
                     <FileInput
@@ -134,7 +124,7 @@ export function UploadDialog({
                       <span className="sr-only">Select your files</span>
                     </FileInput>
                     {field.value && field.value.length > 0 && (
-                      <FileUploaderContent className="py-10">
+                      <FileUploaderContent className="py-5">
                         {field.value.map((file, i) => (
                           <FileUploaderItem
                             key={i}
