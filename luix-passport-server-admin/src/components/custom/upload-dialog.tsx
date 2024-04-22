@@ -117,7 +117,7 @@ export function UploadDialog({
                       )}
                     >
                       <IconPaperclip className="size-4" />
-                      <span className="sr-only">Select your files</span>
+                      <span className="sr-only">Select your file(s)</span>
                     </FileInput>
                     <FormDescription>{description}</FormDescription>
                     {field.value && field.value.length > 0 && (
