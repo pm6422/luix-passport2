@@ -1,20 +1,20 @@
-import { ColumnDef } from '@tanstack/react-table'
-import { Checkbox } from '@/components/ui/checkbox'
-import { IconEdit, IconDots } from '@tabler/icons-react'
-import { DataTableColumnHeader } from '@/components/custom/data-table/data-table-column-header'
-import { DataTableRowActions } from '@/components/custom/data-table/data-table-row-actions'
-import { Button } from '@/components/custom/button'
-import { YesNo } from '@/data/yes-no'
-import { DialogTrigger } from '@/components/ui/dialog'
-import { FormSchema } from './table-schema'
-import { EditDialog } from '../dialog/edit-dialog'
-import { formatDateTime } from '@/libs/utils'
+import { ColumnDef } from "@tanstack/react-table"
+import { Checkbox } from "@/components/ui/checkbox"
+import { IconEdit, IconDots } from "@tabler/icons-react"
+import { DataTableColumnHeader } from "@/components/custom/data-table/data-table-column-header"
+import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
+import { Button } from "@/components/custom/button"
+import { YesNo } from "@/data/yes-no"
+import { DialogTrigger } from "@/components/ui/dialog"
+import { FormSchema } from "./table-schema"
+import { EditDialog } from "../dialog/edit-dialog"
+import { formatDateTime } from "@/libs/utils"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu"
 
 export function getColumns(
   entityName: string,
@@ -24,86 +24,86 @@ export function getColumns(
 
   return [
     {
-      id: 'select',
+      id: "select",
       header: ({ table }) => (
         <Checkbox
           checked={
             table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && 'indeterminate')
+            (table.getIsSomePageRowsSelected() && "indeterminate")
           }
           onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label='Select all'
-          className='translate-y-[2px]'
+          aria-label="Select all"
+          className="translate-y-[2px]"
         />
       ),
       cell: ({ row }) => (
         <Checkbox
           checked={row.getIsSelected()}
           onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label='Select row'
-          className='translate-y-[2px]'
+          aria-label="Select row"
+          className="translate-y-[2px]"
         />
       ),
       enableSorting: false,
       enableHiding: false,
     },
     {
-      accessorKey: 'num',
+      accessorKey: "num",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Number' />
+        <DataTableColumnHeader column={column} title="Number" />
       ),
-      cell: ({ row }) => <div className='w-[30px]'>{row.getValue('num')}</div>,
+      cell: ({ row }) => <div className="w-[30px]">{row.getValue("num")}</div>,
       enableSorting: true,
       enableHiding: false,
     },
     {
-      accessorKey: 'categoryCode',
+      accessorKey: "categoryCode",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Category Code' />
+        <DataTableColumnHeader column={column} title="Category Code" />
       ),
-      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('categoryCode')}</div>,
+      cell: ({ row }) => <div className="w-[50px]">{row.getValue("categoryCode")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
     {
-      accessorKey: 'dictCode',
+      accessorKey: "dictCode",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Dictionary Code' />
+        <DataTableColumnHeader column={column} title="Dictionary Code" />
       ),
-      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('dictCode')}</div>,
+      cell: ({ row }) => <div className="w-[50px]">{row.getValue("dictCode")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
     {
-      accessorKey: 'dictName',
+      accessorKey: "dictName",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Dictionary Name' />
+        <DataTableColumnHeader column={column} title="Dictionary Name" />
       ),
-      cell: ({ row }) => <div className='w-[50px]'>{row.getValue('dictName')}</div>,
+      cell: ({ row }) => <div className="w-[50px]">{row.getValue("dictName")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
     {
-      accessorKey: 'remark',
+      accessorKey: "remark",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Remark' />
+        <DataTableColumnHeader column={column} title="Remark" />
       ),
-      cell: ({ row }) => <div className='w-[150px]'>{row.getValue('remark')}</div>,
+      cell: ({ row }) => <div className="w-[150px]">{row.getValue("remark")}</div>,
       enableSorting: false,
       enableHiding: false,
     },
     {
-      accessorKey: 'enabled',
+      accessorKey: "enabled",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Enabled' />
+        <DataTableColumnHeader column={column} title="Enabled" />
       ),
       cell: ({ row }) => {
-        const element = YesNo.find(e => e.value === row.getValue('enabled'))
+        const element = YesNo.find(e => e.value === row.getValue("enabled"))
 
         return (
-          <div className='flex w-[50px] items-center'>
+          <div className="flex w-[50px] items-center">
             {element && element.icon && (
-              <element.icon className='mr-2 h-5 w-5 text-muted-foreground' />
+              <element.icon className="mr-2 h-5 w-5 text-muted-foreground" />
             )}
             <span>{element && element.label}</span>
           </div>
@@ -114,24 +114,24 @@ export function getColumns(
       },
     },
     {
-      accessorKey: 'modifiedAt',
+      accessorKey: "modifiedAt",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title='Modified At' />
+        <DataTableColumnHeader column={column} title="Modified At" />
       ),
-      cell: ({ row }) => <div className='w-[150px]'>{formatDateTime(row.getValue('modifiedAt'))}</div>,
+      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("modifiedAt"))}</div>,
       enableSorting: true,
       enableHiding: true,
     },
     {
-      id: 'actions',
+      id: "actions",
       cell: ({ row }) => (
         <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow} 
           children={
             <EditDialog entityName={entityName} id={row.original.id} save={save}>
               <DialogTrigger asChild>
-                <Button variant='secondary' className='flex h-8 w-8 p-0'>
-                  <IconEdit className='h-4 w-4' />
-                  <span className='sr-only'>Update</span>
+                <Button variant="secondary" className="flex h-8 w-8 p-0">
+                  <IconEdit className="h-4 w-4" />
+                  <span className="sr-only">Update</span>
                 </Button>
               </DialogTrigger>
             </EditDialog>
@@ -140,15 +140,15 @@ export function getColumns(
           //   <DropdownMenu>
           //     <DropdownMenuTrigger asChild>
           //       <Button
-          //         variant='ghost'
-          //         className='flex h-8 w-8 p-0 data-[state=open]:bg-muted'
+          //         variant="ghost"
+          //         className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
           //       >
-          //         <IconDots className='h-4 w-4' />
-          //         <span className='sr-only'>Open menu</span>
+          //         <IconDots className="h-4 w-4" />
+          //         <span className="sr-only">Open menu</span>
           //       </Button>
           //     </DropdownMenuTrigger>
-          //     <DropdownMenuContent align='end' className='w-[100px] space-y-1'>
-          //       <Button variant="ghost" className='w-full'>TODO...</Button>
+          //     <DropdownMenuContent align="end" className="w-[100px] space-y-1">
+          //       <Button variant="ghost" className="w-full">TODO...</Button>
           //     </DropdownMenuContent>
           //   </DropdownMenu>
           // }

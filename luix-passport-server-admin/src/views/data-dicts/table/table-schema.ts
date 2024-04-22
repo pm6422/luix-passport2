@@ -1,10 +1,10 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const formSchema = z.object({
   id: z.string().optional(),
   num: z.string().optional(),
-  categoryCode: z.string().trim().min(1, { message: 'Required' }),
-  dictCode: z.string().trim().min(1, { message: 'Required' }),
+  categoryCode: z.string().trim().min(1, { message: "Required" }),
+  dictCode: z.string().trim().min(1, { message: "Required" }),
   dictName: z.string().optional(),
   remark: z.string().optional(),
   enabled: z.boolean().optional(),
@@ -14,14 +14,14 @@ export const formSchema = z.object({
 export type FormSchema = z.infer<typeof formSchema>
 
 export const initialFormState: FormSchema = {
-  id: '',
-  num: '',
-  categoryCode: '',
-  dictCode: '',
-  dictName: '',
-  remark: '',
+  id: "",
+  num: "",
+  categoryCode: "",
+  dictCode: "",
+  dictName: "",
+  remark: "",
   enabled: true,
-  modifiedAt: ''
+  modifiedAt: ""
 }
 
 export interface ICriteria {
@@ -31,7 +31,7 @@ export interface ICriteria {
 }
 
 export const initialCriteria: ICriteria = {
-  num: '',
-  categoryCode: '',
-  enabled: ''
+  num: "",
+  categoryCode: "",
+  enabled: ""
 }

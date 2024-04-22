@@ -1,10 +1,10 @@
-import { z } from 'zod'
+import { z } from "zod"
 
 export const formSchema = z.object({
   id: z.string().optional(),
-  username: z.string().trim().min(1, { message: 'Required' }),
-  email: z.string().trim().min(1, { message: 'Required' }),
-  mobileNo: z.string().trim().min(1, { message: 'Required' }),
+  username: z.string().trim().min(1, { message: "Required" }),
+  email: z.string().trim().min(1, { message: "Required" }),
+  mobileNo: z.string().trim().min(1, { message: "Required" }),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   activationCode: z.string().optional(),
@@ -17,7 +17,7 @@ export const formSchema = z.object({
   accountExpiresAt: z.string().optional(),
   passwordExpiresAt: z.string().optional(),
   lastSignInAt: z.string().optional(),
-  roles: z.array(z.string()).min(1, { message: 'Required' }),
+  roles: z.array(z.string()).min(1, { message: "Required" }),
   createdAt: z.string().optional(),
   modifiedAt: z.string().optional()
 })
@@ -25,22 +25,22 @@ export const formSchema = z.object({
 export type FormSchema = z.infer<typeof formSchema>
 
 export const initialFormState: FormSchema = {
-  id: '',
-  username: '',
-  email: '',
-  mobileNo: '',
-  firstName: '',
-  lastName: '',
-  activationCode: '',
-  resetAt: '',
-  remark: '',
-  language: '',
+  id: "",
+  username: "",
+  email: "",
+  mobileNo: "",
+  firstName: "",
+  lastName: "",
+  activationCode: "",
+  resetAt: "",
+  remark: "",
+  language: "",
   profilePhotoEnabled: false,
   activated: false,
   enabled: true,
   roles: [],
-  createdAt: '',
-  modifiedAt: ''
+  createdAt: "",
+  modifiedAt: ""
 }
 
 export interface ICriteria {
@@ -51,8 +51,8 @@ export interface ICriteria {
 }
 
 export const initialCriteria: ICriteria = {
-  username: '',
-  email: '',
-  mobileNo: '',
-  enabled: ''
+  username: "",
+  email: "",
+  mobileNo: "",
+  enabled: ""
 }
