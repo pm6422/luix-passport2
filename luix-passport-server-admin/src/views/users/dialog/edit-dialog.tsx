@@ -108,32 +108,34 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel required>Username</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field} disabled={id ? true : false}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel required>Email</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="flex items-center gap-2">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <RequiredFormLabel required>Username</RequiredFormLabel>
+                    <FormControl>
+                      <Input {...field} disabled={id ? true : false}/>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <RequiredFormLabel required>Email</RequiredFormLabel>
+                    <FormControl>
+                      <Input {...field}/>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="mobileNo"
