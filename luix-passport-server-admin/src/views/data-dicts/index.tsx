@@ -45,7 +45,7 @@ export default function DataDict() {
 
   async function save(formData: FormSchema): Promise<any> {
     const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
-    await sleep(1000); // Sleep for 1 seconds
+    await sleep(1000) // Sleep for 1 seconds
     loadPage()
     return res.data
   }
@@ -69,8 +69,7 @@ export default function DataDict() {
   }
 
   async function deleteRows(rows: Array<FormSchema>): Promise<any> {
-    const promises: Array<Promise<any>> = rows.map(deleteRow)
-    return Promise.all(promises)
+    return Promise.all(rows.map(deleteRow))
   }
 
   return (
