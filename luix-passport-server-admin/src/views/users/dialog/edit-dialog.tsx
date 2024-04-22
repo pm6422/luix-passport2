@@ -19,10 +19,10 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   FormDescription
 } from '@/components/ui/form'
+import { RequiredFormLabel } from '@/components/custom/required-form-label'
 import {
   Select,
   SelectContent,
@@ -113,7 +113,7 @@ export function EditDialog({
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <RequiredFormLabel required>Username</RequiredFormLabel>
                   <FormControl>
                     <Input {...field} disabled={id ? true : false}/>
                   </FormControl>
@@ -126,7 +126,7 @@ export function EditDialog({
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <RequiredFormLabel required>Email</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -139,7 +139,7 @@ export function EditDialog({
               name="mobileNo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mobile No</FormLabel>
+                  <RequiredFormLabel required>Mobile No</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -153,7 +153,7 @@ export function EditDialog({
                 name="firstName"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>First Name</FormLabel>
+                    <RequiredFormLabel>First Name</RequiredFormLabel>
                     <FormControl>
                       <Input {...field}/>
                     </FormControl>
@@ -166,7 +166,7 @@ export function EditDialog({
                 name="lastName"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Last Name</FormLabel>
+                    <RequiredFormLabel>Last Name</RequiredFormLabel>
                     <FormControl>
                       <Input {...field}/>
                     </FormControl>
@@ -180,7 +180,7 @@ export function EditDialog({
               name="language"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Preferred Language</FormLabel>
+                  <RequiredFormLabel>Preferred Language</RequiredFormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
@@ -201,7 +201,7 @@ export function EditDialog({
               name="remark"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Remark</FormLabel>
+                  <RequiredFormLabel>Remark</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -214,7 +214,7 @@ export function EditDialog({
               name="roles"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Roles</FormLabel>
+                  <RequiredFormLabel required>Roles</RequiredFormLabel>
                   <FormControl>
                     <Combobox
                       options={enabledRoles}
@@ -236,7 +236,7 @@ export function EditDialog({
               render={({ field }) => (
                 <FormItem >
                   <div className="flex items-center space-x-2">
-                    <FormLabel>Enabled</FormLabel>
+                    <RequiredFormLabel>Enabled</RequiredFormLabel>
                     <FormControl>
                       <Switch
                         checked={field.value}
