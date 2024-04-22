@@ -20,10 +20,10 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
   FormDescription
 } from '@/components/ui/form'
+import { InputFormLabel } from '@/components/custom/input-form-label'
 import { Input } from '@/components/ui/input'
 import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
@@ -110,7 +110,7 @@ export function EditDialog({
               name="categoryCode"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Category Code</FormLabel>
+                  <InputFormLabel required>Category Code</InputFormLabel>
                   <FormControl>
                     <Combobox
                       options={categoryCodes}
@@ -129,7 +129,7 @@ export function EditDialog({
               name="dictCode"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Dictionary Code</FormLabel>
+                  <InputFormLabel required>Dictionary Code</InputFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -142,7 +142,7 @@ export function EditDialog({
               name="dictName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Dictionary Name</FormLabel>
+                  <InputFormLabel>Dictionary Name</InputFormLabel>
                   <FormControl>
                   <Input {...field} />
                   </FormControl>
@@ -155,7 +155,7 @@ export function EditDialog({
               name="remark"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Remark</FormLabel>
+                  <InputFormLabel>Remark</InputFormLabel>
                   <FormControl>
                   <Input {...field} />
                   </FormControl>
@@ -169,7 +169,7 @@ export function EditDialog({
               render={({ field }) => (
                 <FormItem >
                   <div className="flex items-center space-x-2">
-                    <FormLabel>Enabled</FormLabel>
+                    <InputFormLabel>Enabled</InputFormLabel>
                     <FormControl>
                       <Switch
                         checked={field.value}
