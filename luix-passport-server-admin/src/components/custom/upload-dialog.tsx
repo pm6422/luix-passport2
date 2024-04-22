@@ -56,7 +56,10 @@ export function UploadDialog({
   multiple = false,
   maxFiles = 1,
   maxSize = 5 * 1024 * 1024,
-  accept = {},
+  accept = {
+    "text/*": [".txt", ".json"]
+    // "image/*": [".jpg", ".jpeg", ".png"]
+  },
   upload,
   afterUpload
 }: UploadDialogProps) {
