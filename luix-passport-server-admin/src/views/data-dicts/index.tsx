@@ -56,16 +56,7 @@ export default function DataDict() {
       formData.append("file", file)
       return DataDictService.upload(formData)
     })
-
     return Promise.all(promises)
-    .then(results => {
-      console.log(results);
-      return undefined;
-    })
-    .catch(error => {
-      console.error(error);
-      throw error;
-    })
   }
 
   async function deleteRow(row: FormSchema): Promise<any> {
@@ -78,8 +69,8 @@ export default function DataDict() {
   }
 
   async function deleteRows(rows: Array<FormSchema>): Promise<any> {
-    await rows.forEach(row => deleteRow(row))
-    return Promise.resolve(undefined)
+    const promises: Array<Promise<any>> = rows.map(deleteRow)
+    return Promise.all(promises)
   }
 
   return (
