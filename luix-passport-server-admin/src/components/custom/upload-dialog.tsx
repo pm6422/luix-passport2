@@ -3,8 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
-import { Button } from "@/components/custom/button"
-import { IconReload } from "@tabler/icons-react"
+import { Button, buttonVariants } from "@/components/custom/button"
+import { IconReload, IconPaperclip } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -23,11 +23,29 @@ import {
   FormMessage,
   FormDescription
 } from "@/components/ui/form"
+import {
+  FileUploader,
+  FileInput,
+  FileUploaderContent,
+  FileUploaderItem
+} from "@/components/custom/file-uploader"
 import { Input } from "@/components/ui/input"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { DropzoneOptions } from "react-dropzone"
 import { z } from "zod"
+import { cn } from "@/libs/utils"
 
 export const formSchema = z.object({
-  file: z.instanceof(File, { message: "Required" })
+  files: z
+    .array(
+      z.instanceof(File).refine((file) => file.size < 4 * 1024 * 1024, {
+        message: "File size must be less than 4MB",
+      })
+    )
+    .max(5, {
+      message: "Maximum 5 files are allowed",
+    })
+    .nullable(),
 })
 
 export type UploadFormSchema = z.infer<typeof formSchema>
@@ -50,8 +68,16 @@ export function UploadDialog({
   const [open, setOpen] = useState(false)
   const [uploading, setUploading] = useState(false)
   const form = useForm<UploadFormSchema>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      files: null
+    }
   })
+  const dropzone = {
+    multiple: true,
+    maxFiles: 3,
+    maxSize: 4 * 1024 * 1024,
+  } satisfies DropzoneOptions;
 
   function onSubmit(formData: UploadFormSchema): void {
     setUploading(true)
@@ -87,19 +113,53 @@ export function UploadDialog({
           >
             <FormField
               control={form.control}
-              name="file"
+              name="files"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>File</FormLabel>
-                  <FormControl>
-                    <Input type="file" {...field}/>
-                  </FormControl>
-                  <FormDescription>{description}</FormDescription>
-                  <FormMessage />
+                  <FileUploader
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    dropzoneOptions={dropzone}
+                    reSelect={true}
+                  >
+                    <FileInput
+                      className={cn(
+                        buttonVariants({
+                          size: "icon",
+                        }),
+                        "size-8"
+                      )}
+                    >
+                      <IconPaperclip className="size-4" />
+                      <span className="sr-only">Select your files</span>
+                    </FileInput>
+                    {field.value && field.value.length > 0 && (
+                      <FileUploaderContent className="py-10">
+                        {field.value.map((file, i) => (
+                          <FileUploaderItem
+                            key={i}
+                            index={i}
+                            aria-roledescription={`file ${i + 1} containing ${
+                              file.name
+                            }`}
+                            className="p-5"
+                          >
+                            {file.name}
+                          </FileUploaderItem>
+                        ))}
+                      </FileUploaderContent>
+                    )}
+                  </FileUploader>
                 </FormItem>
               )}
             />
-          
+            {form.formState.errors && (
+              <div className="text-destructive text-sm">
+                {Object.values(form.formState.errors).map((error) => (
+                  <p key={error.message}>{error.message}</p>
+                ))}
+              </div>
+            )}
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
               <DialogClose asChild>
                 <Button type="button" variant="outline" onClick={() => afterUpload && afterUpload(true)}>
