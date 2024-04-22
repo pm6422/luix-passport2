@@ -3,7 +3,7 @@ import { z } from "zod"
 export const formSchema = z.object({
   id: z.string().optional(),
   username: z.string().trim().min(1, { message: "Required" }),
-  email: z.string().trim().min(1, { message: "Required" }),
+  email: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
   mobileNo: z.string().trim().min(1, { message: "Required" }),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
