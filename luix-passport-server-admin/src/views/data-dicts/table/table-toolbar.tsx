@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input"
 import { EnabledSelect } from "@/components/custom/enabled-select"
 import { Button } from "@/components/custom/button"
-import { IconSearch, IconX, IconPlus } from "@tabler/icons-react"
+import { IconSearch, IconX, IconPlus, IconUpload } from "@tabler/icons-react"
 import { ICriteria } from "./table-schema"
 import { initialCriteria } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
@@ -78,7 +78,7 @@ export function DataTableToolbar ({
         <UploadDialog entityName={entityName} upload={upload} description="Supported file types: .txt, .json">
           <DialogTrigger asChild>
             <Button variant="secondary" size="sm" className="mr-2">
-              <IconPlus className="mr-2 size-4" aria-hidden="true" />
+              <IconUpload className="mr-2 size-4" aria-hidden="true" />
               Upload
             </Button>
           </DialogTrigger>
