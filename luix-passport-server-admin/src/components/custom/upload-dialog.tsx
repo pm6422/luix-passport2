@@ -128,10 +128,10 @@ export function UploadDialog({
                         buttonVariants({
                           size: "icon",
                         }),
-                        "size-8"
+                        "size-10"
                       )}
                     >
-                      <IconPaperclip className="size-4" />
+                      <IconPaperclip className="size-5" />
                       <span className="sr-only">Select your file(s)</span>
                     </FileInput>
                     <FormDescription className="mt-1">{description}</FormDescription>
