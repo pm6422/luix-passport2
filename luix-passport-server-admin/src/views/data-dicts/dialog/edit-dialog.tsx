@@ -23,7 +23,7 @@ import {
   FormMessage,
   FormDescription
 } from '@/components/ui/form'
-import { InputFormLabel } from '@/components/custom/input-form-label'
+import { RequiredFormLabel } from '@/components/custom/required-form-label'
 import { Input } from '@/components/ui/input'
 import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
@@ -110,7 +110,7 @@ export function EditDialog({
               name="categoryCode"
               render={({ field }) => (
                 <FormItem>
-                  <InputFormLabel required>Category Code</InputFormLabel>
+                  <RequiredFormLabel required>Category Code</RequiredFormLabel>
                   <FormControl>
                     <Combobox
                       options={categoryCodes}
@@ -129,7 +129,7 @@ export function EditDialog({
               name="dictCode"
               render={({ field }) => (
                 <FormItem>
-                  <InputFormLabel required>Dictionary Code</InputFormLabel>
+                  <RequiredFormLabel required>Dictionary Code</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -142,7 +142,7 @@ export function EditDialog({
               name="dictName"
               render={({ field }) => (
                 <FormItem>
-                  <InputFormLabel>Dictionary Name</InputFormLabel>
+                  <RequiredFormLabel>Dictionary Name</RequiredFormLabel>
                   <FormControl>
                   <Input {...field} />
                   </FormControl>
@@ -155,7 +155,7 @@ export function EditDialog({
               name="remark"
               render={({ field }) => (
                 <FormItem>
-                  <InputFormLabel>Remark</InputFormLabel>
+                  <RequiredFormLabel>Remark</RequiredFormLabel>
                   <FormControl>
                   <Input {...field} />
                   </FormControl>
@@ -169,7 +169,7 @@ export function EditDialog({
               render={({ field }) => (
                 <FormItem >
                   <div className="flex items-center space-x-2">
-                    <InputFormLabel>Enabled</InputFormLabel>
+                    <RequiredFormLabel>Enabled</RequiredFormLabel>
                     <FormControl>
                       <Switch
                         checked={field.value}
