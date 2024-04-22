@@ -20,12 +20,6 @@ export default function DataDict() {
   const [criteria, setCriteria] = useState<ICriteria>(initialCriteria)
 
   useEffect(() => {
-    // Promise.all([DataDictService.findAll(), UserService.findAll()])
-    // .then(function (results) {
-    //   const dicts = results[0];
-    //   const users = results[1];
-    // });
-
     setTableColumns(getColumns(entityName, save, deleteRow))
   }, [])
 
@@ -64,14 +58,14 @@ export default function DataDict() {
     })
 
     return Promise.all(promises)
-      .then(results => {
-        console.log(results);
-        return undefined;
-      })
-      .catch(error => {
-        console.error(error);
-        throw error;
-      });
+    .then(results => {
+      console.log(results);
+      return undefined;
+    })
+    .catch(error => {
+      console.error(error);
+      throw error;
+    })
   }
 
   async function deleteRow(row: FormSchema): Promise<any> {
