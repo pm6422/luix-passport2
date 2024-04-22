@@ -16,11 +16,8 @@ import {
 } from "@/components/ui/dialog"
 import {
   Form,
-  FormControl,
-  FormLabel,
   FormField,
   FormItem,
-  FormMessage,
   FormDescription
 } from "@/components/ui/form"
 import {
@@ -29,7 +26,6 @@ import {
   FileUploaderContent,
   FileUploaderItem
 } from "@/components/custom/file-uploader"
-import { Input } from "@/components/ui/input"
 import { DropzoneOptions } from "react-dropzone"
 import { z } from "zod"
 import { cn } from "@/libs/utils"
@@ -123,6 +119,7 @@ export function UploadDialog({
                       <IconPaperclip className="size-4" />
                       <span className="sr-only">Select your files</span>
                     </FileInput>
+                    <FormDescription>{description}</FormDescription>
                     {field.value && field.value.length > 0 && (
                       <FileUploaderContent className="py-5">
                         {field.value.map((file, i) => (
