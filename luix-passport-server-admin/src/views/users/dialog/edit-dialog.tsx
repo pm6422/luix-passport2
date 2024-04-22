@@ -56,6 +56,10 @@ export function EditDialog({
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [enabledRoles, setEnabledRoles] = useState(Array<any>)
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: initialFormState
+  })
 
   useEffect(() => {
     if(!open) {
@@ -71,11 +75,6 @@ export function EditDialog({
       })
     }
   }, [open])
-
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: initialFormState
-  })
 
   function onSubmit(formData: FormSchema): void {
     setSaving(true)
