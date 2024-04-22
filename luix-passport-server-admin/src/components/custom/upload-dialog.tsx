@@ -17,27 +17,25 @@ import {
 import {
   Form,
   FormControl,
+  FormLabel,
   FormField,
   FormItem,
-  FormMessage
+  FormMessage,
+  FormDescription
 } from "@/components/ui/form"
-import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import { Input } from "@/components/ui/input"
 import { z } from "zod"
 
 export const formSchema = z.object({
-  file: z.string()
+  file: z.instanceof(File, { message: "Required" })
 })
 
 export type UploadFormSchema = z.infer<typeof formSchema>
 
-export const initialFormState: UploadFormSchema = {
-  file: ""
-}
-
 interface UploadDialogProps {
   children: React.ReactNode,
   entityName: string,
+  description?: string,
   upload: (formData: UploadFormSchema) => Promise<any>,
   afterUpload?: (success: boolean) => void
 }
@@ -45,14 +43,14 @@ interface UploadDialogProps {
 export function UploadDialog({
   children,
   entityName,
+  description,
   upload,
   afterUpload
 }: UploadDialogProps) {
   const [open, setOpen] = useState(false)
   const [uploading, setUploading] = useState(false)
   const form = useForm<UploadFormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: initialFormState
+    resolver: zodResolver(formSchema)
   })
 
   function onSubmit(formData: UploadFormSchema): void {
@@ -92,10 +90,11 @@ export function UploadDialog({
               name="file"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel required>File</RequiredFormLabel>
+                  <FormLabel>File</FormLabel>
                   <FormControl>
                     <Input type="file" {...field}/>
                   </FormControl>
+                  <FormDescription>{description}</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
