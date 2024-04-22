@@ -57,13 +57,21 @@ export default function DataDict() {
   }
 
   async function upload(formData: UploadFormSchema): Promise<any> {
-    formData.files.forEach(file => {
-      var formData = new FormData();
-      formData.append("file", file);
-      DataDictService.upload(formData)
+    const promises: Array<Promise<any>> = formData.files.map(file => {
+      const formData = new FormData()
+      formData.append("file", file)
+      return DataDictService.upload(formData)
     })
-    await sleep(1000); // Sleep for 1 seconds
-    return Promise.resolve(undefined)
+
+    return Promise.all(promises)
+      .then(results => {
+        console.log(results);
+        return undefined;
+      })
+      .catch(error => {
+        console.error(error);
+        throw error;
+      });
   }
 
   async function deleteRow(row: FormSchema): Promise<any> {
