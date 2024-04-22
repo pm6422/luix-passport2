@@ -68,14 +68,16 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <EditDialog entityName={entityName} save={save}>
-        <DialogTrigger asChild>
-          <Button variant="secondary" size="sm" className="mr-2">
-            <IconPlus className="mr-2 size-4" aria-hidden="true" />
-            Create
-          </Button>
-        </DialogTrigger>
-      </EditDialog>
+      <div>
+        <EditDialog entityName={entityName} save={save}>
+          <DialogTrigger asChild>
+            <Button variant="secondary" size="sm" className="mr-2">
+              <IconPlus className="mr-2 size-4" aria-hidden="true" />
+              Create
+            </Button>
+          </DialogTrigger>
+        </EditDialog>
+      </div>
     </div>
   )
 }

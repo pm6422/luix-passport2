@@ -29,17 +29,16 @@ export const formSchema = z.object({
   file: z.string()
 })
 
-export type FormSchema = z.infer<typeof formSchema>
+export type UploadFormSchema = z.infer<typeof formSchema>
 
-export const initialFormState: FormSchema = {
+export const initialFormState: UploadFormSchema = {
   file: ""
 }
 
 interface UploadDialogProps {
   children: React.ReactNode,
   entityName: string,
-  id?: string,
-  upload: (formData: FormSchema) => Promise<any>,
+  upload: (formData: UploadFormSchema) => Promise<any>,
   afterUpload?: (success: boolean) => void
 }
 
@@ -51,12 +50,12 @@ export function UploadDialog({
 }: UploadDialogProps) {
   const [open, setOpen] = useState(false)
   const [uploading, setUploading] = useState(false)
-  const form = useForm<FormSchema>({
+  const form = useForm<UploadFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
   })
 
-  function onSubmit(formData: FormSchema): void {
+  function onSubmit(formData: UploadFormSchema): void {
     setUploading(true)
     toast.promise(upload(formData), {
       loading: "Uploading " + entityName + "...",

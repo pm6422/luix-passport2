@@ -6,14 +6,17 @@ import { ICriteria } from "./table-schema"
 import { initialCriteria } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
 import { type FormSchema } from "../table/table-schema"
+import { type UploadFormSchema } from "@/components/custom/upload-dialog"
 import { DialogTrigger } from "@/components/ui/dialog"
+import { UploadDialog } from "@/components/custom/upload-dialog"
 
 interface DataTableToolbarProps{
   entityName: string,
   criteria: ICriteria
   setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
   loadPage: () => void,
-  save: (formData: FormSchema) => Promise<any>
+  save: (formData: FormSchema) => Promise<any>,
+  upload: (formData: UploadFormSchema) => Promise<any>
 }
 
 export function DataTableToolbar ({
@@ -21,7 +24,8 @@ export function DataTableToolbar ({
   criteria, 
   setCriteria,
   loadPage,
-  save
+  save,
+  upload
 }: DataTableToolbarProps) {
   return (
     <div className="flex items-center justify-between w-full">
@@ -62,14 +66,24 @@ export function DataTableToolbar ({
           </Button>
         </div>
       </div>
-      <EditDialog entityName={entityName} save={save}>
-        <DialogTrigger asChild>
-          <Button variant="secondary" size="sm" className="mr-2">
-            <IconPlus className="mr-2 size-4" aria-hidden="true" />
-            Create
-          </Button>
-        </DialogTrigger>
-      </EditDialog>
+      <div>
+        <EditDialog entityName={entityName} save={save}>
+          <DialogTrigger asChild>
+            <Button variant="secondary" size="sm" className="mr-2">
+              <IconPlus className="mr-2 size-4" aria-hidden="true" />
+              Create
+            </Button>
+          </DialogTrigger>
+        </EditDialog>
+        <UploadDialog entityName={entityName} upload={upload}>
+          <DialogTrigger asChild>
+            <Button variant="secondary" size="sm" className="mr-2">
+              <IconPlus className="mr-2 size-4" aria-hidden="true" />
+              Upload
+            </Button>
+          </DialogTrigger>
+        </UploadDialog>
+      </div>
     </div>
   )
 }

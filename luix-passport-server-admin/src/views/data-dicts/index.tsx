@@ -8,6 +8,7 @@ import { ICriteria } from "./table/table-schema"
 import { initialCriteria } from "./table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { type FormSchema } from "./table/table-schema"
+import { type UploadFormSchema } from "@/components/custom/upload-dialog"
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -55,6 +56,13 @@ export default function DataDict() {
     return res.data
   }
 
+  async function upload(formData: UploadFormSchema): Promise<any> {
+    
+    await sleep(1000); // Sleep for 1 seconds
+
+    return null
+  }
+
   async function deleteRow(row: FormSchema): Promise<any> {
     if(!row.id) {
       return;
@@ -79,7 +87,7 @@ export default function DataDict() {
       <LayoutBody className="flex flex-col" fixedHeight>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
           <DataTable data={tableData} columns={tableColumns} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
-            <DataTableToolbar entityName={entityName} criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} save={save} />
+            <DataTableToolbar entityName={entityName} criteria={criteria} setCriteria={setCriteria} loadPage={loadPage} save={save} upload={upload}/>
           </DataTable>
         </div>
       </LayoutBody>
