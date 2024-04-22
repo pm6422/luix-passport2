@@ -75,7 +75,7 @@ export function DataTableToolbar ({
             </Button>
           </DialogTrigger>
         </EditDialog>
-        <UploadDialog entityName={entityName} upload={upload}>
+        <UploadDialog entityName={entityName} upload={upload} description="Supported file types: .txt, .json">
           <DialogTrigger asChild>
             <Button variant="secondary" size="sm" className="mr-2">
               <IconPlus className="mr-2 size-4" aria-hidden="true" />
