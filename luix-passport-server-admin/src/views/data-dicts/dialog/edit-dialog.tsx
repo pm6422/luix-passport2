@@ -29,7 +29,6 @@ import Combobox from '@/components/custom/combobox'
 import { Switch } from '@/components/ui/switch'
 import { initialFormState, formSchema, type FormSchema } from '../table/table-schema'
 import { DataDictService } from '@/services/data-dict-service'
-import { map, uniq } from 'lodash'
 import { merge } from '@/libs/utils'
 
 interface EditDialogProps {
@@ -56,8 +55,8 @@ export function EditDialog({
       return
     }
     DataDictService.findAll(true).then(function (res) {
-      const codes = uniq(map(res.data, 'categoryCode'))
-      setCategoryCodes(codes.map(code => ({ label: code, value: code })))
+      const categoryCodeOptions = Array.from(new Set(res.data.map((item: any) => item.categoryCode))).map(code => ({ label: code, value: code }))
+      setCategoryCodes(categoryCodeOptions)
     })
     if(id) {
       // update mode
