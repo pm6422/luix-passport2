@@ -40,7 +40,7 @@ export default function DataDict() {
   }
 
   async function sleep(ms: any) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms))
   }
 
   async function save(formData: FormSchema): Promise<any> {
