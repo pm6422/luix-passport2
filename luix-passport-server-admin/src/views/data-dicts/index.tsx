@@ -57,10 +57,13 @@ export default function DataDict() {
   }
 
   async function upload(formData: UploadFormSchema): Promise<any> {
-    
+    formData.files.forEach(file => {
+      var formData = new FormData();
+      formData.append("file", file);
+      DataDictService.upload(formData)
+    })
     await sleep(1000); // Sleep for 1 seconds
-
-    return null
+    return Promise.resolve(undefined)
   }
 
   async function deleteRow(row: FormSchema): Promise<any> {

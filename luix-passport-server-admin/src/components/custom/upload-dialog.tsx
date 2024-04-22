@@ -68,6 +68,8 @@ export function UploadDialog({
       files: []
     }
   })
+
+  // refer to https://react-dropzone.js.org/#src
   const dropzoneOptions = {
     multiple: multiple,
     maxFiles: maxFiles,

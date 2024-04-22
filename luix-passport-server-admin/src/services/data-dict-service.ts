@@ -35,6 +35,14 @@ export class DataDictService {
     return axios.delete('open-api/data-dicts/' + id);
   }
 
+  public static upload(formData: FormData): Promise<any> {
+    return axios.post('open-api/data-dicts/import', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+  }
+
   public static batchUpdate(ids: Array<string>, targetCategoryCode: string): Promise<any> {
     return axios.put('open-api/data-dicts/batch-update', { ids: ids, targetCategoryCode: targetCategoryCode });
   }
