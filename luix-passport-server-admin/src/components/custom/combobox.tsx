@@ -137,10 +137,10 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                       key={value}
                       className={cn("", comboboxVariants({ variant, className }))}
                     >
-                      {IconComponent && <IconComponent className="h-4 w-4 mr-2" />}
+                      {IconComponent && <IconComponent className="h-4 w-4 mr-1" />}
                       {createable ? (option ? option.label : value) : option?.label}
                       <IconCircleX
-                        className="ml-2 h-4 w-4 cursor-pointer"
+                        className="ml-1 h-4 w-4 cursor-pointer"
                         onClick={event => {
                           event.stopPropagation();
                           if (option) {
@@ -161,14 +161,14 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
               </div>
               <div className="flex items-center justify-between">
                 <IconX
-                  className="h-4 mx-2 cursor-pointer text-muted-foreground"
+                  className="h-4 mx-1 cursor-pointer text-muted-foreground"
                   onClick={event => {
                     handleClearAll();
                     event.stopPropagation();
                   }}
                 />
                 <Separator orientation="vertical" className="flex min-h-6 h-full" />
-                <IconSelector className="h-4 ml-2 cursor-pointer text-muted-foreground" />
+                <IconSelector className="h-4 ml-1 cursor-pointer text-muted-foreground" />
               </div>
             </div>
           ) : (
