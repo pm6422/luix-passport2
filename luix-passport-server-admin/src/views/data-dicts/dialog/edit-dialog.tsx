@@ -62,7 +62,7 @@ export function EditDialog({
     if(id) {
       // update mode
       DataDictService.findById(id).then(r => {
-        form.reset(merge(initialFormState, r.data))
+        form.reset(merge(r.data, initialFormState))
       })
     }
   }, [open])

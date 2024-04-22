@@ -51,7 +51,7 @@ export function parseSorts(sorting: Array<ColumnSort>): Array<string> | undefine
     : undefined;
 }
 
-export function merge(target: any, source: any): any {
+export function merge(source: any, target: any): any {
   return Object.entries(source).reduce((acc, [key, value]) => {
     if (value !== null && value !== undefined) {
       acc[key] = value;
