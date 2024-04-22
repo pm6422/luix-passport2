@@ -77,7 +77,7 @@ export function UploadDialog({
     multiple: multiple,
     maxFiles: maxFiles,
     maxSize: maxSize,
-    accept: accept,
+    accept: accept
   } satisfies DropzoneOptions
 
   function onSubmit(formData: UploadFormSchema): void {
