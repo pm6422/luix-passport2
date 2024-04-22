@@ -134,7 +134,7 @@ export function UploadDialog({
                       <IconPaperclip className="size-4" />
                       <span className="sr-only">Select your file(s)</span>
                     </FileInput>
-                    <FormDescription>{description}</FormDescription>
+                    <FormDescription className="mt-1">{description}</FormDescription>
                     {field.value && field.value.length > 0 && (
                       <FileUploaderContent className="py-5">
                         {field.value.map((file, i) => (

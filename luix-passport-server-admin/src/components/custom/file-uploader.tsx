@@ -300,10 +300,6 @@ export const FileUploaderItem = forwardRef<
       </div>
       <button
         type="button"
-        className={cn(
-          "absolute",
-          direction === "rtl" ? "top-2 left-2" : "top-2 right-2"
-        )}
         onClick={() => removeFileFromSet(index)}
       >
         <span className="sr-only">remove item {index}</span>
