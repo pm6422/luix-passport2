@@ -27,6 +27,7 @@ import {
   FileUploaderItem
 } from "@/components/custom/file-uploader"
 import { DropzoneOptions } from "react-dropzone"
+import { Accept } from "react-dropzone"
 import { z } from "zod"
 import { cn } from "@/libs/utils"
 
@@ -40,6 +41,10 @@ interface UploadDialogProps {
   children: React.ReactNode,
   entityName: string,
   description?: string,
+  multiple?: boolean,
+  maxFiles?: number,
+  maxSize?: number,
+  accept?: Accept,
   upload: (formData: UploadFormSchema) => Promise<any>,
   afterUpload?: (success: boolean) => void
 }
@@ -48,6 +53,10 @@ export function UploadDialog({
   children,
   entityName,
   description,
+  multiple = false,
+  maxFiles = 1,
+  maxSize = 5 * 1024 * 1024,
+  accept = {},
   upload,
   afterUpload
 }: UploadDialogProps) {
@@ -60,9 +69,10 @@ export function UploadDialog({
     }
   })
   const dropzoneOptions = {
-    multiple: false,
-    maxFiles: 1,
-    maxSize: 4 * 1024 * 1024,
+    multiple: multiple,
+    maxFiles: maxFiles,
+    maxSize: maxSize,
+    accept: accept,
   } satisfies DropzoneOptions;
 
   function onSubmit(formData: UploadFormSchema): void {
