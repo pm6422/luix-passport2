@@ -79,7 +79,7 @@ export default function ProfileForm() {
           name='username'
           render={({ field }) => (
             <FormItem>
-              <RequiredFormLabel required>Username</RequiredFormLabel>
+              <RequiredFormLabel>Username</RequiredFormLabel>
               <FormControl>
                 <Input placeholder='shadcn' {...field} />
               </FormControl>
@@ -96,7 +96,7 @@ export default function ProfileForm() {
           name="email"
           render={({ field }) => (
             <FormItem className="w-full">
-              <RequiredFormLabel required>Email</RequiredFormLabel>
+              <RequiredFormLabel>Email</RequiredFormLabel>
               <FormControl>
                 <Input {...field}/>
               </FormControl>

@@ -6,11 +6,10 @@ type RequiredFormLabelProps = {
 };
 
 export const RequiredFormLabel = ({
-  children,
-  required = false
+  children
 }: RequiredFormLabelProps) => (
   <FormLabel>
     {children}
-    {required && <span className="text-destructive text-xl align-middle"> *</span>}
+    <span className="text-destructive text-xl align-middle"> *</span>
   </FormLabel>
 )

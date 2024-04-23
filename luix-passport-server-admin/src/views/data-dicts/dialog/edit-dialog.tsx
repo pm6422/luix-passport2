@@ -18,6 +18,7 @@ import {
 import {
   Form,
   FormControl,
+  FormLabel,
   FormField,
   FormItem,
   FormMessage,
@@ -110,7 +111,7 @@ export function EditDialog({
               name="categoryCode"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel required>Category Code</RequiredFormLabel>
+                  <RequiredFormLabel>Category Code</RequiredFormLabel>
                   <FormControl>
                     <Combobox
                       options={categoryCodes}
@@ -129,7 +130,7 @@ export function EditDialog({
               name="dictCode"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel required>Dictionary Code</RequiredFormLabel>
+                  <RequiredFormLabel>Dictionary Code</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -142,7 +143,7 @@ export function EditDialog({
               name="dictName"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Dictionary Name</RequiredFormLabel>
+                  <FormLabel>Dictionary Name</FormLabel>
                   <FormControl>
                   <Input {...field} />
                   </FormControl>
@@ -155,7 +156,7 @@ export function EditDialog({
               name="remark"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Remark</RequiredFormLabel>
+                  <FormLabel>Remark</FormLabel>
                   <FormControl>
                   <Input {...field} />
                   </FormControl>
@@ -169,7 +170,7 @@ export function EditDialog({
               render={({ field }) => (
                 <FormItem >
                   <div className="flex items-center space-x-2">
-                    <RequiredFormLabel>Enabled</RequiredFormLabel>
+                    <FormLabel>Enabled</FormLabel>
                     <FormControl>
                       <Switch
                         checked={field.value}
