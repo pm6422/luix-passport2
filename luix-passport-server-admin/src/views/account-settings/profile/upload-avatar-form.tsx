@@ -14,7 +14,8 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 const formSchema = z.object({
-  file: z.string().min(1, { message: "Required"})
+  file: z.string().min(1, { message: "Required"}),
+  description: z.string().min(1, { message: "Required"})
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -23,7 +24,8 @@ export default function UploadAvatarForm() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { 
-      file: "" 
+      file: "",
+      description: "user avatar"
     },
     mode: "onChange",
   })
