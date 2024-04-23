@@ -1,10 +1,8 @@
-"use client";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/custom/button";
 import { Input } from "@/components/ui/input";
 import { toBase64 } from "@/libs/utils";
-import { IconPencil, IconUserCircle } from "@tabler/icons-react";
+import { IconPencil, IconUserScan } from "@tabler/icons-react";
 import React from "react";
 
 type AvatarUploaderProps = {
@@ -31,7 +29,7 @@ export function AvatarUploader({
 			<Avatar className="w-full h-full">
 				<AvatarImage src={defaultValue} className="object-cover"/>
 				<AvatarFallback className="bg-secondary">
-					<IconUserCircle className="w-16 h-16"/>
+					<IconUserScan className="w-16 h-16"/>
 				</AvatarFallback>
 			</Avatar>
 			<Button
