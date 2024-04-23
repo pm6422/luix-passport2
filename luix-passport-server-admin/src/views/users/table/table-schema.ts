@@ -38,7 +38,7 @@ export const initialFormState: FormSchema = {
   profilePhotoEnabled: false,
   activated: false,
   enabled: true,
-  roles: [],
+  roles: ["ROLE_ANONYMOUS", "ROLE_USER"],
   createdAt: "",
   modifiedAt: ""
 }
