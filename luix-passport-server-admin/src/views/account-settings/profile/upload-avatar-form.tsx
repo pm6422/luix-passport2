@@ -1,5 +1,5 @@
-import { useForm } from 'react-hook-form'
-import { Button } from '@/components/custom/button'
+import { useForm } from "react-hook-form"
+import { Button } from "@/components/custom/button"
 import {
   Form,
   FormControl,
@@ -7,14 +7,14 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from '@/components/ui/form'
-import { AvatarUpload } from '@/components/custom/avatar-upload'
-import { toast } from 'sonner'
-import { z } from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
+} from "@/components/ui/form"
+import { AvatarUpload } from "@/components/custom/avatar-upload"
+import { toast } from "sonner"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const formSchema = z.object({
-  file: z.string().min(1, { message: 'Required'})
+  file: z.string().min(1, { message: "Required"})
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -23,18 +23,18 @@ export default function UploadAvatarForm() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { 
-      file: '' 
+      file: "" 
     },
-    mode: 'onChange',
+    mode: "onChange",
   })
 
   function onSubmit(formData: FormSchema) {
-    console.log('upload avatar')
+    console.log("upload avatar")
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="file"
@@ -43,11 +43,12 @@ export default function UploadAvatarForm() {
               <FormControl>
                 <AvatarUpload onChange={field.onChange} value={field.value}/>
               </FormControl>
+              <FormDescription>This is how others will see you on the site</FormDescription>
               <FormMessage/>
             </FormItem>
           )}
         />
-        <Button type='submit'>Update avatar</Button>
+        <Button type="submit">Update avatar</Button>
       </form>
     </Form>
   )
