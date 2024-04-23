@@ -39,18 +39,15 @@ export default function DataDict() {
     })
   }
 
-  async function sleep(ms: any) {
-    return new Promise(resolve => setTimeout(resolve, ms))
+  function save(formData: FormSchema): Promise<any> {
+    const res = formData.id ? DataDictService.update(formData) : DataDictService.create(formData)
+    res.then(() => {
+      loadPage()
+    })
+    return res
   }
 
-  async function save(formData: FormSchema): Promise<any> {
-    const res = formData.id ? await DataDictService.update(formData) : await DataDictService.create(formData)
-    await sleep(1000) // Sleep for 1 seconds
-    loadPage()
-    return res.data
-  }
-
-  async function upload(formData: UploadFormSchema): Promise<any> {
+  function upload(formData: UploadFormSchema): Promise<any> {
     const promises: Array<Promise<any>> = formData.files.map(file => {
       const formData = new FormData()
       formData.append("file", file)
@@ -59,17 +56,17 @@ export default function DataDict() {
     return Promise.all(promises)
   }
 
-  async function deleteRow(row: FormSchema): Promise<any> {
+  function deleteRow(row: FormSchema): Promise<any> {
     if(!row.id) {
-      return Promise.reject("No id found")
+      return Promise.reject("Invlid empty id")
     }
-    const res = DataDictService.deleteById(row.id).then(r => {
+    const res = DataDictService.deleteById(row.id).then(() => {
       loadPage()
     })
     return res
   }
 
-  async function deleteRows(rows: Array<FormSchema>): Promise<any> {
+  function deleteRows(rows: Array<FormSchema>): Promise<any> {
     return Promise.all(rows.map(deleteRow))
   }
 

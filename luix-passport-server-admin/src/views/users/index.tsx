@@ -39,28 +39,25 @@ export default function DataDict() {
     })
   }
 
-  async function sleep(ms: any) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  async function save(formData: FormSchema): Promise<any> {
-    const res = formData.id ? await UserService.update(formData) : await UserService.create(formData)
-    await sleep(1000); // Sleep for 1 seconds
-    loadPage()
-    return res.data
-  }
-
-  async function deleteRow(row: FormSchema): Promise<any> {
-    if(!row.id) {
-      return Promise.reject("No id found")
-    }
-    const res = UserService.deleteById(row.id).then(r => {
+  function save(formData: FormSchema): Promise<any> {
+    const res = formData.id ? UserService.update(formData) : UserService.create(formData)
+    res.then(() => {
       loadPage()
     })
     return res
   }
 
-  async function deleteRows(rows: Array<FormSchema>): Promise<any> {
+  function deleteRow(row: FormSchema): Promise<any> {
+    if(!row.id) {
+      return Promise.reject("Invlid empty id")
+    }
+    const res = UserService.deleteById(row.id).then(() => {
+      loadPage()
+    })
+    return res
+  }
+
+  function deleteRows(rows: Array<FormSchema>): Promise<any> {
     return Promise.all(rows.map(deleteRow))
   }
 
