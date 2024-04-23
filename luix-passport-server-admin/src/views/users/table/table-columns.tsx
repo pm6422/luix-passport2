@@ -45,7 +45,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Username" />
       ),
-      cell: ({ row }) => <div className="w-[50px]">{row.getValue("username")}</div>,
+      cell: ({ row }) => <div className="w-[30px]">{row.getValue("username")}</div>,
       enableSorting: true,
       enableHiding: false,
     },
@@ -54,7 +54,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Email" />
       ),
-      cell: ({ row }) => <div className="w-[100px]">{row.getValue("email")}</div>,
+      cell: ({ row }) => <div className="w-[125px]">{row.getValue("email")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
@@ -63,7 +63,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Mobile No" />
       ),
-      cell: ({ row }) => <div className="w-[100px]">{row.getValue("mobileNo")}</div>,
+      cell: ({ row }) => <div className="w-[125px]">{row.getValue("mobileNo")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
