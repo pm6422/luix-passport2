@@ -11,7 +11,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogClose,
   DialogFooter
 } from "@/components/ui/dialog"
 import {
@@ -45,6 +44,7 @@ interface UploadDialogProps {
   maxFiles?: number,
   maxSize?: number,
   accept?: Accept,
+  templateUrl?: string,
   upload: (formData: UploadFormSchema) => Promise<any>,
   afterUpload?: (success: boolean) => void
 }
@@ -60,6 +60,7 @@ export function UploadDialog({
     "text/*": [".txt", ".json"]
     // "image/*": [".jpg", ".jpeg", ".png"]
   },
+  templateUrl,
   upload,
   afterUpload
 }: UploadDialogProps) {
@@ -163,9 +164,16 @@ export function UploadDialog({
               </div>
             )}
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-              <Button type="button" variant={"secondary"}>
-                Template
-              </Button>
+              {templateUrl && 
+                <a href={templateUrl} download="template" target="_blank">
+                  <Button 
+                    type="button" 
+                    variant={"secondary"}
+                  >
+                    Template
+                  </Button>
+                </a>
+              }
               <Button disabled={uploading}>
                 {uploading ? "Uploading..." : "Upload"}
                 {uploading && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
