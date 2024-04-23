@@ -8,6 +8,7 @@ import { IconReload, IconPaperclip } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -173,6 +174,13 @@ export function UploadDialog({
                     Template
                   </Button>
                 </a>
+              }
+              {!templateUrl && 
+                <DialogClose asChild>
+                  <Button type="button" variant="outline" onClick={() => afterUpload && afterUpload(true)}>
+                    Cancel
+                  </Button>
+                </DialogClose>
               }
               <Button disabled={uploading}>
                 {uploading ? "Uploading..." : "Upload"}
