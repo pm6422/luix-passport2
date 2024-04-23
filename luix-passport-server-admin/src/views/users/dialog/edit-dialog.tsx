@@ -34,6 +34,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import Combobox from "@/components/custom/combobox"
+import { PhoneInput } from "@/components/custom/phone-input";
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { UserService } from "@/services/user-service"
@@ -109,34 +110,32 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            <div className="flex items-center gap-2">
-              <FormField
-                control={form.control}
-                name="username"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <RequiredFormLabel>Username</RequiredFormLabel>
-                    <FormControl>
-                      <Input {...field} disabled={id ? true : false}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <RequiredFormLabel>Email</RequiredFormLabel>
-                    <FormControl>
-                      <Input {...field}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+                  <RequiredFormLabel>Username</RequiredFormLabel>
+                  <FormControl>
+                    <Input {...field} disabled={id ? true : false}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <RequiredFormLabel>Email</RequiredFormLabel>
+                  <FormControl>
+                    <Input {...field}/>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="mobileNo"
@@ -144,7 +143,7 @@ export function EditDialog({
                 <FormItem>
                   <RequiredFormLabel>Mobile No</RequiredFormLabel>
                   <FormControl>
-                    <Input {...field}/>
+                    <PhoneInput defaultCountry="CN" international placeholder="Enter a phone number" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
