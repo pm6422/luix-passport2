@@ -163,11 +163,9 @@ export function UploadDialog({
               </div>
             )}
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => afterUpload && afterUpload(true)}>
-                  Cancel
-                </Button>
-              </DialogClose>
+              <Button type="button" variant={"secondary"}>
+                Template
+              </Button>
               <Button disabled={uploading}>
                 {uploading ? "Uploading..." : "Upload"}
                 {uploading && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
