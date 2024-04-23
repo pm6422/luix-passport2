@@ -41,7 +41,7 @@ export default function UploadAvatarForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <AvatarUpload onChange={field.onChange} value={field.value}/>
+                <AvatarUpload defaultValue={field.value} onValueChange={field.onChange}/>
               </FormControl>
               <FormDescription>This is how others will see you on the site</FormDescription>
               <FormMessage/>

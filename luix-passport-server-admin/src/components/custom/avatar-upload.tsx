@@ -8,13 +8,13 @@ import { IconPencil, IconUser } from "@tabler/icons-react";
 import React from "react";
 
 type AvatarUploadProps = {
-	value?: string;
-	onChange?: (value?: string) => void;
+	defaultValue?: string;
+	onValueChange?: (value?: string) => void;
 }
 
 export function AvatarUpload({
-	value,
-	onChange
+	defaultValue,
+	onValueChange
 }: AvatarUploadProps) {
 	
 	const inputRef = React.useRef<HTMLInputElement>(null)
@@ -22,14 +22,14 @@ export function AvatarUpload({
 		if (e.target.files && e.target.files.length > 0) {
 			const file = e.target.files[0];
 			const base64 = await toBase64(file) as string;
-			onChange?.(base64);
+			onValueChange?.(base64);
 		}
 	}
 	
 	return (
 		<div className="relative w-40 h-40">
 			<Avatar className="w-full h-full">
-				<AvatarImage src={value} className="object-cover"/>
+				<AvatarImage src={defaultValue} className="object-cover"/>
 				<AvatarFallback className="bg-secondary">
 					<IconUser className="w-16 h-16"/>
 				</AvatarFallback>
