@@ -1,6 +1,4 @@
-import { z } from 'zod'
-import { Link } from 'react-router-dom'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { Button } from '@/components/custom/button'
 import {
   Form,
@@ -8,40 +6,29 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
 import { AvatarUpload } from '@/components/custom/avatar-upload'
 import { toast } from 'sonner'
-import { cn } from '@/libs/utils'
+import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-const uploadAvatarFormSchema = z.object({
-  image: z.string().min(1, { message: 'Required'} )
+const formSchema = z.object({
+  file: z.string().min(1, { message: 'Required'})
 })
 
-type UploadAvatarFormSchema = z.infer<typeof uploadAvatarFormSchema>
-
+type FormSchema = z.infer<typeof formSchema>
 
 export default function UploadAvatarForm() {
-  const form = useForm<UploadAvatarFormSchema>({
-    resolver: zodResolver(uploadAvatarFormSchema),
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
     defaultValues: { 
-      image: '' 
+      file: '' 
     },
     mode: 'onChange',
   })
 
-  function onSubmit(data: UploadAvatarFormSchema) {
+  function onSubmit(formData: FormSchema) {
     console.log('upload avatar')
   }
 
@@ -50,7 +37,7 @@ export default function UploadAvatarForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
         <FormField
           control={form.control}
-          name="image"
+          name="file"
           render={({ field }) => (
             <FormItem>
               <FormControl>
