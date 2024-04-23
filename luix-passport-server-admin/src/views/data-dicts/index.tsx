@@ -61,11 +61,12 @@ export default function DataDict() {
 
   async function deleteRow(row: FormSchema): Promise<any> {
     if(!row.id) {
-      return;
+      return Promise.reject("No id found")
     }
-    const res = await DataDictService.deleteById(row.id)
-    loadPage()
-    return res.data
+    const res = DataDictService.deleteById(row.id).then(r => {
+      loadPage()
+    })
+    return res
   }
 
   async function deleteRows(rows: Array<FormSchema>): Promise<any> {
