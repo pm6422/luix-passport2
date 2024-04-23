@@ -8,7 +8,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form"
-import { AvatarUpload } from "@/components/custom/avatar-upload"
+import { AvatarUploader } from "@/components/custom/avatar-uploader"
 import { toast } from "sonner"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -43,7 +43,7 @@ export default function UploadAvatarForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <AvatarUpload defaultValue={field.value} onValueChange={field.onChange}/>
+                <AvatarUploader defaultValue={field.value} onValueChange={field.onChange}/>
               </FormControl>
               <FormDescription>This is how others will see you on the site</FormDescription>
               <FormMessage/>

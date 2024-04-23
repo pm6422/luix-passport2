@@ -4,18 +4,18 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/custom/button";
 import { Input } from "@/components/ui/input";
 import { toBase64 } from "@/libs/utils";
-import { IconPencil, IconUser } from "@tabler/icons-react";
+import { IconPencil, IconUserCircle } from "@tabler/icons-react";
 import React from "react";
 
-type AvatarUploadProps = {
+type AvatarUploaderProps = {
 	defaultValue?: string;
 	onValueChange?: (value?: string) => void;
 }
 
-export function AvatarUpload({
+export function AvatarUploader({
 	defaultValue,
 	onValueChange
-}: AvatarUploadProps) {
+}: AvatarUploaderProps) {
 	
 	const inputRef = React.useRef<HTMLInputElement>(null)
 	const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,7 @@ export function AvatarUpload({
 			<Avatar className="w-full h-full">
 				<AvatarImage src={defaultValue} className="object-cover"/>
 				<AvatarFallback className="bg-secondary">
-					<IconUser className="w-16 h-16"/>
+					<IconUserCircle className="w-16 h-16"/>
 				</AvatarFallback>
 			</Avatar>
 			<Button
