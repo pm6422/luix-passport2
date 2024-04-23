@@ -37,13 +37,13 @@ export function AvatarUploader({
 			<Button
 				variant="ghost"
 				size="icon"
-				className="rounded-full p-1 bg-secondary-foreground/90 hover:bg-secondary-foreground absolute bottom-0 right-0"
+				className="rounded-full p-1 bg-secondary hover:bg-secondary-foreground/30 absolute bottom-0 right-0"
 				onClick={e => {
 					e.preventDefault()
 					inputRef.current?.click()
 				}}
 			>
-				<IconPencil className="w-4 h-4 text-black"/>
+				<IconPencil className="w-4 h-4"/>
 			</Button>
 			<Input
 				ref={inputRef}
