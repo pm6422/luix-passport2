@@ -49,7 +49,7 @@ export default function DataDict() {
 
   function deleteRow(row: FormSchema): Promise<any> {
     if(!row.id) {
-      return Promise.reject("Invlid empty id")
+      return Promise.reject("Invalid empty id")
     }
     const res = UserService.deleteById(row.id).then(() => {
       loadPage()

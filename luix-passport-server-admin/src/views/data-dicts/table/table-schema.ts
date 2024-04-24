@@ -24,13 +24,15 @@ export const initialFormState: FormSchema = {
   modifiedAt: ""
 }
 
-export interface ICriteria {
-  num: string;
-  categoryCode: string;
-  enabled: string;
-}
+export const criteriaSchema = z.object({
+  num: z.string().optional(),
+  categoryCode: z.string().optional(),
+  enabled: z.string().optional()
+})
 
-export const initialCriteria: ICriteria = {
+export type CriteriaSchema = z.infer<typeof criteriaSchema>
+
+export const initialCriteriaState: CriteriaSchema = {
   num: "",
   categoryCode: "",
   enabled: ""

@@ -11,9 +11,9 @@ import { Button } from '@/components/custom/button'
 import { useState } from 'react'
 
 type EnabledSelectProps = {
-  value: string
-  onValueChange: (value: string) => void
-  className: string
+  value?: string
+  onValueChange?: (value: string) => void
+  className?: string
 };
 
 export const EnabledSelect = ({ 
@@ -41,7 +41,7 @@ export const EnabledSelect = ({
         size="sm"
         onClick={(e) => {
           e.stopPropagation()
-          onValueChange('')
+          onValueChange && onValueChange('')
           setOpen(false)
         }}
       >
