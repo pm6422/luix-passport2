@@ -116,7 +116,7 @@ const CountrySelect = ({
           <CommandInput placeholder="Search country or region..." />
           <CommandList>
             <ScrollArea className="h-72">
-              <CommandEmpty>No country found.</CommandEmpty>
+              <CommandEmpty>No country or region found.</CommandEmpty>
               <CommandGroup>
                 {options
                   .filter((x) => x.value)
