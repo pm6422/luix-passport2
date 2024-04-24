@@ -84,6 +84,7 @@ export function EditDialog({
       loading: "Saving " + entityName + "...",
       success: () => {
         setOpen(false)
+        form.reset()
         afterSave && afterSave(true)
         setSaving(false)
         return "Saved " + entityName
