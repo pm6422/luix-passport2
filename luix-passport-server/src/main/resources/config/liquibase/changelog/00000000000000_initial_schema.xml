@@ -150,23 +150,6 @@
                 <constraints nullable="true"/>
             </column>
         </createTable>
-        <createTable tableName="task">
-            <column name="id" type="VARCHAR(20)">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="title" type="VARCHAR(300)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="status" type="VARCHAR(36)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="label" type="VARCHAR(36)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="priority" type="VARCHAR(36)">
-                <constraints nullable="true"/>
-            </column>
-        </createTable>
         <createTable tableName="org_user">
             <column name="id" type="VARCHAR(20)">
                 <constraints nullable="false" primaryKey="true"/>
