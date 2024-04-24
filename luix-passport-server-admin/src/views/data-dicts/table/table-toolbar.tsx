@@ -62,11 +62,8 @@ export function DataTableToolbar ({
             <IconFilterSearch className="size-4"/>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-4" align="start">
+        <PopoverContent className="w-auto p-3" align="start">
           <div className="grid gap-4">
-            <div className="space-y-2">
-              <h4 className="font-medium leading-none">Filter</h4>
-            </div>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
