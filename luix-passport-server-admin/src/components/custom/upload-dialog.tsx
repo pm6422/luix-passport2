@@ -170,6 +170,7 @@ export function UploadDialog({
                   <Button 
                     type="button" 
                     variant={"secondary"}
+                    className="w-full"
                   >
                     Template
                   </Button>
