@@ -119,6 +119,7 @@ const CountrySelect = ({
               <CommandEmpty>No country found.</CommandEmpty>
               <CommandGroup>
                 {options
+                  .filter((x) => x.value)
                   .map((option) => (
                     <CommandItem
                       className="gap-2"
