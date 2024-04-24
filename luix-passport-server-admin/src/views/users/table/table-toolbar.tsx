@@ -57,13 +57,13 @@ export function DataTableToolbar ({
             onClick={() => setCriteria(initialCriteria)}
             className="h-8 lg:px-3 lg:flex hidden" // Hide on small screens
           >
-            <IconX className="h-4 w-4" />
+            <IconX className="size-4" />
           </Button>
           <Button
             onClick={() => loadPage()}
             className="h-8 px-2 lg:px-3"
           >
-            <IconSearch className="mr-2 h-4 w-4" />
+            <IconSearch className="mr-2 size-4" />
             Search
           </Button>
         </div>

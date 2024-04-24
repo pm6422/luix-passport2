@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input"
 import { EnabledSelect } from "@/components/custom/enabled-select"
 import { Button } from "@/components/custom/button"
-import { IconSearch, IconX, IconPlus, IconUpload } from "@tabler/icons-react"
+import { IconSearch, IconX, IconPlus, IconUpload, IconFilterSearch } from "@tabler/icons-react"
 import { ICriteria } from "./table-schema"
 import { initialCriteria } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
@@ -29,6 +29,9 @@ export function DataTableToolbar ({
 }: DataTableToolbarProps) {
   return (
     <div className="flex items-center justify-between w-full">
+      <Button variant="outline" size="icon">
+        <IconFilterSearch className="size-4"/>
+      </Button>
       <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
         <div className="flex flex-wrap w-full sm:w-auto space-x-2">
           <Input
@@ -55,13 +58,13 @@ export function DataTableToolbar ({
             onClick={() => setCriteria(initialCriteria)}
             className="h-8 lg:px-3 lg:flex hidden" // Hide on small screens
           >
-            <IconX className="h-4 w-4" />
+            <IconX className="size-4" />
           </Button>
           <Button
             onClick={() => loadPage()}
             className="h-8 px-2 lg:px-3"
           >
-            <IconSearch className="mr-2 h-4 w-4" />
+            <IconSearch className="mr-2 size-4" />
             Search
           </Button>
         </div>
