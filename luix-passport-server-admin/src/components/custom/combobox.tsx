@@ -173,7 +173,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
             </div>
           ) : (
             <div className="flex items-center justify-between w-full mx-auto">
-              <span className="text-sm text-muted-foreground">{placeholder}</span>
+              <span className="text-sm text-muted-foreground px-2">{placeholder}</span>
               <IconSelector className="h-4 ml-2 cursor-pointer text-muted-foreground" />
             </div>
           )}
