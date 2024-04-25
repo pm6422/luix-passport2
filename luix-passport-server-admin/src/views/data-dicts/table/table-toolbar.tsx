@@ -129,10 +129,10 @@ export function DataTableToolbar ({
           </div>
         </PopoverContent>
       </Popover>
-      <div>
+      <div className="space-x-2">
         <EditDialog entityName={entityName} save={save}>
           <DialogTrigger asChild>
-            <Button variant="secondary" size="sm" className="mr-2">
+            <Button variant="secondary" size="sm">
               <IconPlus className="mr-2 size-4" aria-hidden="true" />
               Create
             </Button>
@@ -140,7 +140,7 @@ export function DataTableToolbar ({
         </EditDialog>
         <UploadDialog entityName={entityName} upload={upload} description="Supported file types: .txt, .json" templateUrl="open-api/data-dicts/import-template">
           <DialogTrigger asChild>
-            <Button variant="secondary" size="sm" className="mr-2">
+            <Button variant="secondary" size="sm">
               <IconUpload className="mr-2 size-4" aria-hidden="true" />
               Upload
             </Button>

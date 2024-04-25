@@ -23,7 +23,7 @@ export function DataTableViewOptions<TData>({
         <Button
           variant='secondary'
           size='sm'
-          className='ml-auto hidden h-8 lg:flex'
+          className='hidden h-8 lg:flex'
         >
           <IconAdjustmentsHorizontal className='mr-2 h-4 w-4' />
           View

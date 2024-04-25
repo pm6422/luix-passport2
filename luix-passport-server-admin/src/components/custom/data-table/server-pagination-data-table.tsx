@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className='space-y-4'>
-      <div className='flex items-center justify-between'>
+      <div className='flex items-center justify-between space-x-2'>
         {children}
         { Object.keys(rowSelection).length > 0 && (
           <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
@@ -101,7 +101,7 @@ export function DataTable<TData, TValue>({
             <Button
               variant='destructive'
               size='sm'
-              className='ml-auto hidden h-8 lg:flex mr-2'
+              className='hidden h-8 lg:flex'
             >
               <IconTrash className='mr-2 h-4 w-4' />
               Delete{`(${Object.keys(rowSelection).length})`}

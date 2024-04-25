@@ -139,10 +139,10 @@ export function DataTableToolbar ({
           </div>
         </PopoverContent>
       </Popover>
-      <div>
+      <div className="space-x-2">
         <EditDialog entityName={entityName} save={save}>
           <DialogTrigger asChild>
-            <Button variant="secondary" size="sm" className="mr-2">
+            <Button variant="secondary" size="sm">
               <IconPlus className="mr-2 size-4" aria-hidden="true" />
               Create
             </Button>
