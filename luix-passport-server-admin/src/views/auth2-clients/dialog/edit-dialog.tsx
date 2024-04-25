@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm, useFieldArray } from "react-hook-form"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
@@ -24,19 +24,12 @@ import {
   FormDescription
 } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
 import Combobox from "@/components/custom/combobox"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
+import { cn } from "@/libs/utils"
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -196,6 +189,7 @@ export function EditDialog({
                 </FormItem>
               )}
             />
+            
             <FormField
               control={form.control}
               name="scopes"
