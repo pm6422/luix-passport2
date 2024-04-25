@@ -34,12 +34,6 @@ Clone the project
   git clone https://github.com/satnaing/shadcn-admin.git
 ```
 
-Go to the project directory
-
-```bash
-  cd shadcn-admin
-```
-
 Install dependencies
 
 ```bash
@@ -55,19 +49,12 @@ Start the server
 ## Installing Shadcn UI component
 npx shadcn-ui@latest add label
 
-## Author
-
-Crafted with 🤍 by [@satnaing](https://github.com/satnaing)
-
-## License
-
-Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
-
 ## Issues
 
 - datetime string to ms
 - multiple data in same column of table
 - table page no url query param
 - layout
+- themeleaf use shadcn login
 
 
