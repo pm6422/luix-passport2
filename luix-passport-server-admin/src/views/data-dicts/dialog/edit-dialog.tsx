@@ -64,7 +64,7 @@ export function EditDialog({
       setCategoryCodes(categoryCodeOptions)
     })
     if(id) {
-      // update mode
+      // update form data on every dialog open
       DataDictService.findById(id).then(r => {
         form.reset(merge(r.data, initialFormState))
       })

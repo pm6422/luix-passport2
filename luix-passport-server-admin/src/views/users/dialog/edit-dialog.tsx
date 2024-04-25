@@ -71,7 +71,7 @@ export function EditDialog({
       setEnabledRoles(r.data.map((item: any) => ({label: item.dictCode, value: item.dictCode})))
     })
     if(id) {
-      // update mode
+      // update form data on every dialog open
       UserService.findById(id).then(r => {
         form.reset(merge(r.data, initialFormState))
       })
