@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { AccountNav } from "@/components/account-nav.tsx"
-import { Layout, LayoutBody, LayoutHeader } from "@/layouts/layout-definitions"
+import { Layout, LayoutHeader, LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/server-pagination-data-table"
 import { getColumns } from "./table/table-columns"
