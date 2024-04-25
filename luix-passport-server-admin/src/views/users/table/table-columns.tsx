@@ -111,7 +111,7 @@ export function getColumns(
         return (
           <div className="flex w-[50px] items-center">
             {element && element.icon && (
-              <element.icon className="mr-2 h-5 w-5 text-muted-foreground" />
+              <element.icon className="mr-2 size-5 text-muted-foreground" />
             )}
             <span>{element && element.label}</span>
           </div>
@@ -132,7 +132,7 @@ export function getColumns(
         return (
           <div className="flex w-[50px] items-center">
             {element && element.icon && (
-              <element.icon className="mr-2 h-5 w-5 text-muted-foreground" />
+              <element.icon className="mr-2 size-5 text-muted-foreground" />
             )}
             <span>{element && element.label}</span>
           </div>
@@ -166,8 +166,8 @@ export function getColumns(
         <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
           <EditDialog entityName={entityName} id={row.original.id} save={save}>
             <DialogTrigger asChild>
-              <Button variant="secondary" className="flex h-8 w-8 p-0">
-                <IconEdit className="h-4 w-4" />
+              <Button variant="secondary" className="flex size-8 p-0">
+                <IconEdit className="size-4" />
                 <span className="sr-only">Update</span>
               </Button>
             </DialogTrigger>
