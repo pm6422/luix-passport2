@@ -43,15 +43,16 @@ export const initialFormState: FormSchema = {
   createdAt: "",
   modifiedAt: ""
 }
+export const criteriaSchema = z.object({
+  username: z.string().optional(),
+  email: z.string().optional(),
+  mobileNo: z.string().optional(),
+  enabled: z.string().optional()
+})
 
-export interface ICriteria {
-  username: string;
-  email: string;
-  mobileNo: string;
-  enabled: string;
-}
+export type CriteriaSchema = z.infer<typeof criteriaSchema>
 
-export const initialCriteria: ICriteria = {
+export const initialCriteriaState: CriteriaSchema = {
   username: "",
   email: "",
   mobileNo: "",

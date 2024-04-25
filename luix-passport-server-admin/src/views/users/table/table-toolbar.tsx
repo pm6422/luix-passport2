@@ -1,73 +1,142 @@
+import { useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { Input } from "@/components/ui/input"
-import { EnabledSelect } from "@/components/custom/enabled-select"
 import { Button } from "@/components/custom/button"
-import { IconSearch, IconX, IconPlus } from "@tabler/icons-react"
-import { ICriteria } from "./table-schema"
-import { initialCriteria } from "./table-schema"
+import { IconPlus, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
-import { type FormSchema } from "../table/table-schema"
+import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
 import { DialogTrigger } from "@/components/ui/dialog"
+import {
+  Form,
+  FormControl,
+  FormLabel,
+  FormField,
+  FormItem,
+  FormMessage
+} from "@/components/ui/form"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 interface DataTableToolbarProps{
   entityName: string,
-  criteria: ICriteria
-  setCriteria: React.Dispatch<React.SetStateAction<ICriteria>>
-  loadPage: () => void,
+  loadPage: (pageNo: number | undefined, pageSize: number | undefined, sorts: Array<string> | undefined, criteria: CriteriaSchema) => void,
   save: (formData: FormSchema) => Promise<any>
 }
 
 export function DataTableToolbar ({
   entityName,
-  criteria, 
-  setCriteria,
   loadPage,
   save
 }: DataTableToolbarProps) {
+  const [isFilterPopoverOpen, setIsFilterPopoverOpen] = useState(false)
+  const form = useForm<CriteriaSchema>({
+    resolver: zodResolver(criteriaSchema),
+    defaultValues: initialCriteriaState
+  })
+
+  function onSubmit(formData: CriteriaSchema): void {
+    loadPage(undefined, undefined, undefined, formData)
+    setIsFilterPopoverOpen(false)
+  }
+
   return (
     <div className="flex items-center justify-between w-full">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-        <div className="flex flex-wrap w-full sm:w-auto space-x-2">
-          <Input
-            placeholder="Username"
-            value={criteria.username}
-            onChange={(event) => setCriteria({ ...criteria, username: event.target.value })}
-            className="h-8 w-[130px] lg:w-[130px]"
-          />
-          <Input
-            placeholder="Email"
-            value={criteria.email}
-            onChange={(event) => setCriteria({ ...criteria, email: event.target.value })}
-            className="h-8 w-[130px] lg:w-[130px] mb-2 sm:mb-0" // Add mb-2 for spacing between fields
-          />
-        </div>
-        <div className="flex flex-wrap w-full sm:w-auto space-x-2">
-          <Input
-            placeholder="Mobile No"
-            value={criteria.mobileNo}
-            onChange={(event) => setCriteria({ ...criteria, mobileNo: event.target.value })}
-            className="h-8 w-[130px] lg:w-[130px] mb-2 sm:mb-0"
-          />
-          <EnabledSelect
-            value={criteria.enabled}
-            onValueChange={(value) => setCriteria({ ...criteria, enabled: value })}
-            className="h-8 w-[130px] lg:w-[130px]"
-          />
-          <Button
-            variant="link"
-            onClick={() => setCriteria(initialCriteria)}
-            className="h-8 lg:px-3 lg:flex hidden" // Hide on small screens
-          >
-            <IconX className="size-4" />
+      <Popover open={isFilterPopoverOpen} onOpenChange={setIsFilterPopoverOpen}>
+        <PopoverTrigger asChild>
+          <Button variant="outline" size="icon">
+            <IconFilterSearch className="size-4"/>
           </Button>
-          <Button
-            onClick={() => loadPage()}
-            className="h-8 px-2 lg:px-3"
-          >
-            <IconSearch className="mr-2 size-4" />
-            Search
-          </Button>
-        </div>
-      </div>
+        </PopoverTrigger>
+        <PopoverContent className="max-w-[500px] w-auto p-3 -intro-y" align="start">
+          <div className="grid gap-4">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="flex flex-col gap-4"
+              >
+                <div className="flex items-center gap-2">
+                  <FormField
+                    name="username"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Username</FormLabel>
+                        <FormControl>
+                          <Input {...field}/>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input {...field}/>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="mobileNo"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Mobile No</FormLabel>
+                        <FormControl>
+                          <Input {...field}/>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="enabled"
+                    render={({ field }) => (
+                      <FormItem className="w-full">
+                        <FormLabel>Enabled</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue/>
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="true">Yes</SelectItem>
+                            <SelectItem value="false">No</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage/>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button type="button" variant="outline" className="w-full" onClick={() => form.reset()}>
+                    Reset
+                  </Button>
+                  <Button className="w-full">
+                    Apply
+                  </Button>
+                </div>
+              </form>
+            </Form>
+          </div>
+        </PopoverContent>
+      </Popover>
       <div>
         <EditDialog entityName={entityName} save={save}>
           <DialogTrigger asChild>
