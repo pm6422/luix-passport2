@@ -45,7 +45,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Client ID" />
       ),
-      cell: ({ row }) => <div className="w-[30px]">{row.getValue("clientId")}</div>,
+      cell: ({ row }) => <div className="w-[150px]">{row.getValue("clientId")}</div>,
       enableSorting: true,
       enableHiding: false,
     },
@@ -54,7 +54,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Client Name" />
       ),
-      cell: ({ row }) => <div className="w-[125px]">{row.getValue("clientName")}</div>,
+      cell: ({ row }) => <div className="w-[150px]">{row.getValue("clientName")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
@@ -94,7 +94,7 @@ export function getColumns(
         <DataTableColumnHeader column={column} title="Redirect URIs" />
       ),
       cell: ({ row }) => (
-        <div className="w-[100px] text-xs">
+        <div className="w-[200px] text-xs">
           {(row.getValue("redirectUris") as string[]).map((item, index) => (
             <div key={index}>{item}</div>
           ))}
@@ -109,22 +109,13 @@ export function getColumns(
         <DataTableColumnHeader column={column} title="Scopes" />
       ),
       cell: ({ row }) => (
-        <div className="w-[100px] text-xs">
+        <div className="w-[75px] text-xs">
           {(row.getValue("scopes") as string[]).map((item, index) => (
             <div key={index}>{item}</div>
           ))}
         </div>
       ),
       enableSorting: false,
-      enableHiding: true,
-    },
-    {
-      accessorKey: "clientIdIssuedAt",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Issued At" />
-      ),
-      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("clientIdIssuedAt"))}</div>,
-      enableSorting: true,
       enableHiding: true,
     },
     {
