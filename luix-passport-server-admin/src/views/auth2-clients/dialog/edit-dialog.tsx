@@ -56,6 +56,8 @@ export function EditDialog({
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [authenticationMethodOptions, setAuthenticationMethodOptions] = useState(Array<any>)
+  const [grantTypeOptions, setGrantTypeOptions] = useState(Array<any>)
+  const [scopeOptions, setScopeOptions] = useState(Array<any>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
@@ -68,6 +70,14 @@ export function EditDialog({
     Oauth2ClientService.findClientAuthenticationMethods().then(function (res) {
       const options = res.data.map((item: any) => ({ label: item, value: item }))
       setAuthenticationMethodOptions(options)
+    })
+    Oauth2ClientService.findAuthorizationGrantTypes().then(function (res) {
+      const options = res.data.map((item: any) => ({ label: item, value: item }))
+      setGrantTypeOptions(options)
+    })
+    Oauth2ClientService.findScopes().then(function (res) {
+      const options = res.data.map((item: any) => ({ label: item, value: item }))
+      setScopeOptions(options)
     })
     if(id) {
       // update form data on every dialog open
@@ -136,7 +146,7 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            <FormField
+            { !id && <FormField
               control={form.control}
               name="rawClientSecret"
               render={({ field }) => (
@@ -149,7 +159,7 @@ export function EditDialog({
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            />}
             <FormField
               control={form.control}
               name="clientAuthenticationMethods"
@@ -159,6 +169,42 @@ export function EditDialog({
                   <FormControl>
                     <Combobox
                       options={authenticationMethodOptions}
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      multiple={true}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="authorizationGrantTypes"
+              render={({ field }) => (
+                <FormItem>
+                  <RequiredFormLabel>Authentication Grant Types</RequiredFormLabel>
+                  <FormControl>
+                    <Combobox
+                      options={grantTypeOptions}
+                      defaultValue={field.value}
+                      onValueChange={field.onChange}
+                      multiple={true}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="scopes"
+              render={({ field }) => (
+                <FormItem>
+                  <RequiredFormLabel>Scopes</RequiredFormLabel>
+                  <FormControl>
+                    <Combobox
+                      options={scopeOptions}
                       defaultValue={field.value}
                       onValueChange={field.onChange}
                       multiple={true}
