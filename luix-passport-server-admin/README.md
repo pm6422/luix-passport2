@@ -65,7 +65,9 @@ Licensed under the [MIT License](https://choosealicense.com/licenses/mit/)
 
 ## Issues
 
-#### datetime string to ms
-#### multiple data in same column of table
-#### table page no url query param
+- datetime string to ms
+- multiple data in same column of table
+- table page no url query param
+- layout
+
 
