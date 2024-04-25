@@ -9,7 +9,7 @@
 	<description>This project provides you a standard auth2 server and client configuration powered by Spring Boot 2 with the ability to authenticate login and using MySQL DB as datastore.</description>
 	<modules>
 		<module>luix-passport-dependencies-bom</module>
-		<module>luix-passport-server-ui</module>
+		<module>luix-passport-server-admin</module>
 		<module>luix-passport-server</module>
 		<module>luix-passport-resource-server</module>
 		<module>luix-passport-client</module>

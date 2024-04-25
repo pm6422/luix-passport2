@@ -7,7 +7,7 @@
         <version>${revision}</version>
     </parent>
     <groupId>com.luixtech</groupId>
-    <artifactId>luix-passport-server-ui</artifactId>
+    <artifactId>luix-passport-server-admin</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
