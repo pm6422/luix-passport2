@@ -126,11 +126,11 @@ export function DataTableToolbar ({
                     )}
                   />
                 </div>
-                <div className="flex items-center gap-2">
-                  <Button type="button" variant="outline" className="w-full" onClick={() => form.reset()}>
+                <div className="flex justify-end gap-2">
+                  <Button type="button" variant="outline" className="max-w-20" onClick={() => form.reset()}>
                     Reset
                   </Button>
-                  <Button className="w-full">
+                  <Button className="max-w-20">
                     Apply
                   </Button>
                 </div>
