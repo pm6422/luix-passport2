@@ -49,7 +49,7 @@ export function EditDialog({
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [categoryCodes, setCategoryCodes] = useState(Array<any>)
+  const [categoryCodeOptions, setCategoryCodeOptions] = useState(Array<any>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
@@ -60,8 +60,8 @@ export function EditDialog({
       return
     }
     DataDictService.findAll(true).then(function (res) {
-      const categoryCodeOptions = Array.from(new Set(res.data.map((item: any) => item.categoryCode))).map(code => ({ label: code, value: code }))
-      setCategoryCodes(categoryCodeOptions)
+      const options = Array.from(new Set(res.data.map((item: any) => item.categoryCode))).map(code => ({ label: code, value: code }))
+      setCategoryCodeOptions(options)
     })
     if(id) {
       // update form data on every dialog open
@@ -115,7 +115,7 @@ export function EditDialog({
                   <RequiredFormLabel>Category Code</RequiredFormLabel>
                   <FormControl>
                     <Combobox
-                      options={categoryCodes}
+                      options={categoryCodeOptions}
                       defaultValue={field.value}
                       onValueChange={field.onChange}
                       placeholder="Select or input a category code"

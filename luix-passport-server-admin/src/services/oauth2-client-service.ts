@@ -23,4 +23,16 @@ export class Oauth2ClientService {
   public static deleteById(id: String): Promise<any> {
     return axios.delete('open-api/oauth2-clients/' + id);
   }
+
+  public static findClientAuthenticationMethods(): Promise<any> {
+    return axios.get("open-api/oauth2-clients/client-authentication-methods");
+  }
+
+  public static findAuthorizationGrantTypes(): Promise<any> {
+    return axios.get("open-api/oauth2-clients/authorization-grant-types");
+  }
+
+  public static findScopes(): Promise<any> {
+    return axios.get("open-api/oauth2-clients/scopes");
+  }
 }

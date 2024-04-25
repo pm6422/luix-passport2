@@ -34,10 +34,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import Combobox from "@/components/custom/combobox"
-import { PhoneInput } from "@/components/custom/phone-input";
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
-import { DataDictService } from "@/services/data-dict-service"
-import { UserService } from "@/services/user-service"
+import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
 
 interface EditDialogProps {
@@ -57,7 +55,7 @@ export function EditDialog({
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [enabledRoles, setEnabledRoles] = useState(Array<any>)
+  const [authenticationMethodOptions, setAuthenticationMethodOptions] = useState(Array<any>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
@@ -67,12 +65,13 @@ export function EditDialog({
     if(!open) {
       return
     }
-    DataDictService.lookup("role", true).then(r => {
-      setEnabledRoles(r.data.map((item: any) => ({label: item.dictCode, value: item.dictCode})))
+    Oauth2ClientService.findClientAuthenticationMethods().then(function (res) {
+      const options = res.data.map((item: any) => ({ label: item, value: item }))
+      setAuthenticationMethodOptions(options)
     })
     if(id) {
       // update form data on every dialog open
-      UserService.findById(id).then(r => {
+      Oauth2ClientService.findById(id).then(r => {
         form.reset(merge(r.data, initialFormState))
       })
     }
@@ -113,10 +112,10 @@ export function EditDialog({
           >
             <FormField
               control={form.control}
-              name="username"
+              name="clientId"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Username</RequiredFormLabel>
+                  <RequiredFormLabel>Client ID</RequiredFormLabel>
                   <FormControl>
                     <Input {...field} disabled={id ? true : false}/>
                   </FormControl>
@@ -126,10 +125,10 @@ export function EditDialog({
             />
             <FormField
               control={form.control}
-              name="email"
+              name="clientName"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Email</RequiredFormLabel>
+                  <RequiredFormLabel>Client Name</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
@@ -139,122 +138,36 @@ export function EditDialog({
             />
             <FormField
               control={form.control}
-              name="mobileNo"
+              name="rawClientSecret"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Mobile No</RequiredFormLabel>
-                  <FormControl>
-                    <PhoneInput defaultCountry="CN" international placeholder="Enter a phone number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex items-center gap-2">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input {...field}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input {...field}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormField
-              control={form.control}
-              name="language"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Preferred Language</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue/>
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="English">English</SelectItem>
-                      <SelectItem value="Chinese">Chinese</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage/>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="remark"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Remark</FormLabel>
+                  <RequiredFormLabel>Raw Client Secret</RequiredFormLabel>
                   <FormControl>
                     <Input {...field}/>
                   </FormControl>
+                  <FormDescription>Do not forget the secret.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="roles"
+              name="clientAuthenticationMethods"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Roles</RequiredFormLabel>
+                  <RequiredFormLabel>Authentication Methods</RequiredFormLabel>
                   <FormControl>
                     <Combobox
-                      options={enabledRoles}
+                      options={authenticationMethodOptions}
                       defaultValue={field.value}
                       onValueChange={field.onChange}
                       multiple={true}
                     />
                   </FormControl>
-                  <FormDescription>
-                    ROLE_ANONYMOUS, ROLE_USER are required for each user.
-                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="enabled"
-              render={({ field }) => (
-                <FormItem >
-                  <div className="flex items-center space-x-2">
-                    <FormLabel>Enabled</FormLabel>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        aria-readonly
-                      />
-                    </FormControl>
-                  </div>
-                  <FormDescription>
-                    After disabling, existing data can still reference the object, but new data can't.
-                  </FormDescription>
-                </FormItem>
-              )}
-            />
-
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
               <DialogClose asChild>
                 <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
