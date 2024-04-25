@@ -181,7 +181,7 @@ export function EditDialog({
                     </FormControl>
                   </div>
                   <FormDescription>
-                    After disabling, existing data can still reference the object, but new data can"t.
+                    After disabling, existing data can still reference the object, but new data can't.
                   </FormDescription>
                 </FormItem>
               )}
