@@ -2,42 +2,30 @@ import { useState, useEffect } from "react"
 import { AccountNav } from "@/components/account-nav.tsx"
 import { Layout, LayoutHeader, LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
-import { DataTable } from "@/components/custom/data-table/server-pagination-data-table"
+import { DataTable } from "@/components/custom/data-table/client-pagination-data-table"
 import { getColumns } from "./table/table-columns"
 import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
-import { UserService } from "@/services/user-service"
+import { Oauth2ClientService } from "@/services/oauth2-client-service"
 
 export default function DataDict() {
   // State to hold the fetched data
-  const entityName = "user"
+  const entityName = "oauth2 client"
   const [tableColumns, setTableColumns] = useState(Array<any>)
   const [tableData, setTableData] = useState([])
-  const [totalCount, setTotalCount] = useState(0)
-  const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
     setTableColumns(getColumns(entityName, save, deleteRow))
+    loadPage()
   }, [])
 
-  function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ["modifiedAt,desc"], criteria: CriteriaSchema = {}): void {
-    UserService.find({
-      page: pageNo,
-      size: pageSize,
-      sort: sorts,
-      username: criteria.username || null,
-      email: criteria.email || null,
-      mobileNo: criteria.mobileNo || null,
-      enabled: criteria.enabled || null
-    }).then(r => {
+  function loadPage(): void {
+    Oauth2ClientService.findAll().then(r => {
       setTableData(r.data)
-      const total = parseInt(r.headers["x-total-count"])
-      setTotalCount(total)
-      setTotalPages(Math.ceil(total / pageSize))
     })
   }
 
   function save(formData: FormSchema): Promise<any> {
-    const res = formData.id ? UserService.update(formData) : UserService.create(formData)
+    const res = formData.id ? Oauth2ClientService.update(formData) : Oauth2ClientService.create(formData)
     res.then(() => {
       loadPage()
     })
@@ -48,7 +36,7 @@ export default function DataDict() {
     if(!row.id) {
       return Promise.reject("Invalid empty id")
     }
-    return UserService.deleteById(row.id).then(() => {
+    return Oauth2ClientService.deleteById(row.id).then(() => {
       loadPage()
     })
   }
@@ -66,8 +54,8 @@ export default function DataDict() {
       </LayoutHeader>
       <LayoutBody className="flex flex-col" fixedHeight>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <DataTable columns={tableColumns} data={tableData} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
-            <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} />
+          <DataTable columns={tableColumns} data={tableData}>
+            {/* <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} /> */}
           </DataTable>
         </div>
       </LayoutBody>

@@ -41,58 +41,31 @@ export function getColumns(
       enableHiding: false,
     },
     {
-      accessorKey: "username",
+      accessorKey: "clientId",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Username" />
+        <DataTableColumnHeader column={column} title="Client ID" />
       ),
-      cell: ({ row }) => <div className="w-[30px]">{row.getValue("username")}</div>,
+      cell: ({ row }) => <div className="w-[30px]">{row.getValue("clientId")}</div>,
       enableSorting: true,
       enableHiding: false,
     },
     {
-      accessorKey: "email",
+      accessorKey: "clientName",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Email" />
+        <DataTableColumnHeader column={column} title="Client Name" />
       ),
-      cell: ({ row }) => <div className="w-[125px]">{row.getValue("email")}</div>,
+      cell: ({ row }) => <div className="w-[125px]">{row.getValue("clientName")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
     {
-      accessorKey: "mobileNo",
+      accessorKey: "clientAuthenticationMethods",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Mobile No" />
-      ),
-      cell: ({ row }) => <div className="w-[125px]">{row.getValue("mobileNo")}</div>,
-      enableSorting: true,
-      enableHiding: true,
-    },
-    {
-      accessorKey: "firstName",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="First Name" />
-      ),
-      cell: ({ row }) => <div className="w-[50px]">{row.getValue("firstName")}</div>,
-      enableSorting: false,
-      enableHiding: true,
-    },
-    {
-      accessorKey: "lastName",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Last Name" />
-      ),
-      cell: ({ row }) => <div className="w-[50px]">{row.getValue("lastName")}</div>,
-      enableSorting: false,
-      enableHiding: true,
-    },
-    {
-      accessorKey: "roles",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Roles" />
+        <DataTableColumnHeader column={column} title="Authentication Methods" />
       ),
       cell: ({ row }) => (
         <div className="w-[100px] text-xs">
-          {(row.getValue("roles") as string[]).map((item, index) => (
+          {(row.getValue("clientAuthenticationMethods") as string[]).map((item, index) => (
             <div key={index}>{item}</div>
           ))}
         </div>
@@ -101,62 +74,56 @@ export function getColumns(
       enableHiding: true,
     },
     {
-      accessorKey: "activated",
+      accessorKey: "authorizationGrantTypes",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Activated" />
+        <DataTableColumnHeader column={column} title="Authentication Grant Types" />
       ),
-      cell: ({ row }) => {
-        const element = YesNo.find(e => e.value === row.getValue("activated"))
-
-        return (
-          <div className="flex w-[50px] items-center">
-            {element && element.icon && (
-              <element.icon className="mr-2 size-5 text-muted-foreground" />
-            )}
-            <span>{element && element.label}</span>
-          </div>
-        )
-      },
-      filterFn: (row, id, value) => {
-        return value.includes(row.getValue(id))
-      },
-    },
-    {
-      accessorKey: "enabled",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Enabled" />
+      cell: ({ row }) => (
+        <div className="w-[100px] text-xs">
+          {(row.getValue("authorizationGrantTypes") as string[]).map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
+        </div>
       ),
-      cell: ({ row }) => {
-        const element = YesNo.find(e => e.value === row.getValue("enabled"))
-
-        return (
-          <div className="flex w-[50px] items-center">
-            {element && element.icon && (
-              <element.icon className="mr-2 size-5 text-muted-foreground" />
-            )}
-            <span>{element && element.label}</span>
-          </div>
-        )
-      },
-      filterFn: (row, id, value) => {
-        return value.includes(row.getValue(id))
-      },
-    },
-    {
-      accessorKey: "lastSignInAt",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Last Sign In" />
-      ),
-      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("lastSignInAt"))}</div>,
-      enableSorting: true,
+      enableSorting: false,
       enableHiding: true,
     },
     {
-      accessorKey: "modifiedAt",
+      accessorKey: "redirectUris",
       header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Modified At" />
+        <DataTableColumnHeader column={column} title="Redirect URIs" />
       ),
-      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("modifiedAt"))}</div>,
+      cell: ({ row }) => (
+        <div className="w-[100px] text-xs">
+          {(row.getValue("redirectUris") as string[]).map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
+        </div>
+      ),
+      enableSorting: false,
+      enableHiding: true,
+    },
+    {
+      accessorKey: "scopes",
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Scopes" />
+      ),
+      cell: ({ row }) => (
+        <div className="w-[100px] text-xs">
+          {(row.getValue("scopes") as string[]).map((item, index) => (
+            <div key={index}>{item}</div>
+          ))}
+        </div>
+      ),
+      enableSorting: false,
+      enableHiding: true,
+    },
+    {
+      accessorKey: "clientIdIssuedAt",
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Issued At" />
+      ),
+      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("clientIdIssuedAt"))}</div>,
       enableSorting: true,
       enableHiding: true,
     },
