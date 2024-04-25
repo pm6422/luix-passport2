@@ -138,7 +138,7 @@ export function DataTableToolbar ({
             </Button>
           </DialogTrigger>
         </EditDialog>
-        <UploadDialog entityName={entityName} upload={upload} description="Supported file types: .txt, .json" templateUrl="open-api/data-dicts/import-template">
+        <UploadDialog entityName={entityName} upload={upload} description="Supported file types: .txt, .json, you can use downloaded the template." templateUrl="open-api/data-dicts/import-template">
           <DialogTrigger asChild>
             <Button variant="secondary" size="sm">
               <IconUpload className="mr-2 size-4" aria-hidden="true" />
