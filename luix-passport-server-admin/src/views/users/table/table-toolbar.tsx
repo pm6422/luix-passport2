@@ -90,6 +90,8 @@ export function DataTableToolbar ({
                       </FormItem>
                     )}
                   />
+                </div>
+                <div className="flex items-center gap-2">
                   <FormField
                     name="mobileNo"
                     render={({ field }) => (
