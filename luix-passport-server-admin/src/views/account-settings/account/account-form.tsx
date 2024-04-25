@@ -28,7 +28,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { toast } from "sonner"
-import dayjs from "dayjs"
+import { formatDate } from "@/libs/utils"
 
 const languages = [
   { label: "English", value: "en" },
@@ -121,7 +121,7 @@ export function AccountForm() {
                       )}
                     >
                       {field.value ? (
-                        dayjs(field.value).format("MMM D, YYYY")
+                        formatDate(field.value)
                       ) : (
                         <span>Pick a date</span>
                       )}

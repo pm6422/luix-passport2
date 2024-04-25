@@ -12,14 +12,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 
-export function formatDateTime(value: string): string {
+export function formatDateTime(value: string | Date): string {
   if (!value) {
     return '';
   }
   return dayjs(value).format(defaultDateTimeFormat);
 }
 
-export function formatDate(value: string): string {
+export function formatDate(value: string | Date): string {
   if (!value) {
     return '';
   }
