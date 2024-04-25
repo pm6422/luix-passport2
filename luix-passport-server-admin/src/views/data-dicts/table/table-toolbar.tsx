@@ -62,7 +62,7 @@ export function DataTableToolbar ({
             <IconFilterSearch className="size-4"/>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="max-w-[500px] w-auto p-3 -intro-y" align="start">
+        <PopoverContent className="max-w-[500px] w-auto p-3" align="start">
           <div className="grid gap-4">
             <Form {...form}>
               <form
