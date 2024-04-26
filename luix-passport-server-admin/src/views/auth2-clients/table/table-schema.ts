@@ -34,17 +34,11 @@ export const initialFormState: FormSchema = {
   clientSecretExpiresAt: "",
 }
 export const criteriaSchema = z.object({
-  username: z.string().optional(),
-  email: z.string().optional(),
-  mobileNo: z.string().optional(),
-  enabled: z.string().optional()
+  keyword: z.string().optional(),
 })
 
 export type CriteriaSchema = z.infer<typeof criteriaSchema>
 
 export const initialCriteriaState: CriteriaSchema = {
-  username: "",
-  email: "",
-  mobileNo: "",
-  enabled: ""
+  keyword: ""
 }
