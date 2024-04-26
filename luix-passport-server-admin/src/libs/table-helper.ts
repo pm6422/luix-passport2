@@ -5,7 +5,7 @@ export class TableHelper {
     constructor() {
     }
 
-    public static filter(initialTableData: Array<any>, searchKeyword: string): Array<any> {
+    public static filter(initialTableData: Array<any>, searchKeyword: string): Array<never> {
         const tableData = cloneDeep(initialTableData);
         let results: Array<any> = [];
         for (let i = 0; i < tableData.length; i++) {
@@ -13,6 +13,7 @@ export class TableHelper {
             results.push(tableData[i]);
           }
         }
+        // @ts-ignore
         return cloneDeep(results);
     }
 
