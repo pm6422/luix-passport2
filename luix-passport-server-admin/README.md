@@ -57,6 +57,5 @@ npx shadcn-ui@latest add label
 - layout
 - themeleaf use shadcn login
 - form errors
-- table column no-sort column button
 
 
