@@ -12,7 +12,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
-  DialogFooter
+  DialogFooter,
+  DialogDescription
 } from "@/components/ui/dialog"
 import {
   Form,
@@ -39,6 +40,7 @@ import { initialFormState, formSchema, type FormSchema } from "../table/table-sc
 import { DataDictService } from "@/services/data-dict-service"
 import { UserService } from "@/services/user-service"
 import { merge } from "@/libs/utils"
+import { formatDateTime } from "@/libs/utils"
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -255,17 +257,22 @@ export function EditDialog({
               )}
             />
 
-            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-                  Cancel
+            <div className="flex items-center justify-between">
+              { form.getValues().modifiedAt && 
+                <DialogDescription className="flex items-center text-xs">Modified at: {formatDateTime(form.getValues().modifiedAt as string)}</DialogDescription>
+              }
+              <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+                <DialogClose asChild>
+                  <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button disabled={saving}>
+                  {saving ? "Saving..." : "Save"}
+                  {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
                 </Button>
-              </DialogClose>
-              <Button disabled={saving}>
-                {saving ? "Saving..." : "Save"}
-                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
-              </Button>
-            </DialogFooter>
+              </DialogFooter>
+            </div>
           </form>
         </Form>
       </DialogContent>
