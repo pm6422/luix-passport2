@@ -238,14 +238,16 @@ export function EditDialog({
                   )}
                 />
               ))}
-              <Button 
-                type="button"
-                variant='secondary' 
-                className='flex size-8 p-0 mt-2' 
-                onClick={() => addRedirectUri("")}>
-                  <IconPlus className='size-4' />
-                  <span className='sr-only'>Delete</span>
-              </Button>
+              <div className="flex items-center justify-end w-full">
+                <Button 
+                  type="button"
+                  variant="secondary" 
+                  className="flex size-8 p-0 mt-2" 
+                  onClick={() => addRedirectUri("")}>
+                    <IconPlus className="size-4" />
+                    <span className="sr-only">Delete</span>
+                </Button>
+              </div>
             </div>
             <FormField
               control={form.control}
