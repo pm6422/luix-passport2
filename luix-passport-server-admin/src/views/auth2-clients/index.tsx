@@ -20,12 +20,12 @@ export default function DataDict() {
   }, [])
 
   function loadPage(criteria: CriteriaSchema = {}): void {
+    if(criteria.keyword && tableData.length) {
+      setTableData(TableHelper.filter(tableData, criteria.keyword))
+      return
+    }
     Oauth2ClientService.findAll().then(r => {
-      if(criteria.keyword) {
-        setTableData(TableHelper.filter(r.data, criteria.keyword))
-      } else {
-        setTableData(r.data)
-      }
+      setTableData(r.data)
     })
   }
 
