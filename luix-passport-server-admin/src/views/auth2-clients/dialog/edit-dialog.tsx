@@ -215,9 +215,9 @@ export function EditDialog({
                   name={`redirectUris.${index}`}
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={cn(index !== 0 && "sr-only")}>
+                      <RequiredFormLabel>
                         Redirect URIs
-                      </FormLabel>
+                      </RequiredFormLabel>
                       <FormDescription className={cn(index !== 0 && "sr-only")}>
                         Valid redirect URIs after login successfully.
                       </FormDescription>

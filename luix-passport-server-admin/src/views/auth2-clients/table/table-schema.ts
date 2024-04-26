@@ -8,7 +8,6 @@ export const formSchema = z.object({
   clientAuthenticationMethods: z.array(z.string()).min(1, { message: "Required" }),
   authorizationGrantTypes: z.array(z.string()).min(1, { message: "Required" }),
   redirectUris: z.array(z.string()).min(1, { message: "Required" }),
-  // redirectUris: z.array(z.object({ value: z.string().url({ message: "Please enter a valid URL." })})).optional(),
   postLogoutRedirectUris: z.array(z.string()).optional(),
   scopes: z.array(z.string()).min(1, { message: "Required" }),
   clientSettings: z.string().optional(),
