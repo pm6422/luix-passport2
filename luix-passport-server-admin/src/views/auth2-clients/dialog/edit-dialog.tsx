@@ -235,7 +235,7 @@ export function EditDialog({
                         <div className="flex justify-between items-center w-full mt-2">
                           <Input {...field} className="w-full"/>
                           <IconX
-                            className="h-4 mx-1 cursor-pointer text-muted-foreground"
+                            className="h-4 mx-2 cursor-pointer text-muted-foreground"
                             type="button"
                             onClick={() => {
                               removeRedirectUri(index)
@@ -274,7 +274,7 @@ export function EditDialog({
                         <div className="flex justify-between items-center w-full mt-2">
                           <Input {...field} className="w-full"/>
                           <IconX
-                            className="h-4 mx-1 cursor-pointer text-muted-foreground"
+                            className="h-4 mx-2 cursor-pointer text-muted-foreground"
                             type="button"
                             onClick={() => {
                               removePostLogoutRedirectUri(index)
