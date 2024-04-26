@@ -46,8 +46,8 @@ export function DataTableRowActions({
       {children}
       <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
         <PopoverTrigger asChild>
-          <Button variant='secondary' className='flex h-8 w-8 p-0'>
-            <IconTrash className='h-4 w-4' />
+          <Button variant='secondary' className='flex size-8 p-0'>
+            <IconTrash className='size-4' />
             <span className='sr-only'>Delete</span>
           </Button>
         </PopoverTrigger>

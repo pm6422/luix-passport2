@@ -5,7 +5,7 @@ import { IconX } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconReload } from "@tabler/icons-react"
+import { IconReload, IconPlus } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -238,14 +238,13 @@ export function EditDialog({
                   )}
                 />
               ))}
-              <Button
+              <Button 
                 type="button"
-                variant="outline"
-                size="sm"
-                className="mt-2"
-                onClick={() => addRedirectUri("")}
-              >
-                Add redirect URI
+                variant='secondary' 
+                className='flex size-8 p-0 mt-2' 
+                onClick={() => addRedirectUri("")}>
+                  <IconPlus className='size-4' />
+                  <span className='sr-only'>Delete</span>
               </Button>
             </div>
             <FormField
