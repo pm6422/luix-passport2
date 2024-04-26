@@ -33,4 +33,5 @@ public class Oauth2RegisteredClient extends AbstractAuditableDomain implements S
     private String        clientSettings;
     private String        tokenSettings;
     private byte[]        photo;
+    private Boolean       enabled;
 }

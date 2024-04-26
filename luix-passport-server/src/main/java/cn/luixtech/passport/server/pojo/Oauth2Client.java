@@ -148,6 +148,7 @@ public class Oauth2Client implements Serializable {
         if (registeredClient.getClientSecretExpiresAt() != null) {
             oauth2Client.setClientSecretExpiresAt(registeredClient.getClientSecretExpiresAt().atZone(ZoneId.systemDefault()).toInstant());
         }
+        oauth2Client.setEnabled(registeredClient.getEnabled());
         return oauth2Client;
     }
 }
