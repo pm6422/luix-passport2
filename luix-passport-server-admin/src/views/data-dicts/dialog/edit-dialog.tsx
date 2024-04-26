@@ -182,26 +182,28 @@ export function EditDialog({
                     </FormControl>
                   </div>
                   <FormDescription>
-                    After disabling, existing data can still reference the object, but new data can't.
+                    After disabling, existing data can still reference the object, but new data can"t.
                   </FormDescription>
                 </FormItem>
               )}
             />
 
-            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+            <div className="flex items-center justify-between">
               { form.getValues().modifiedAt && 
                 <DialogDescription className="flex items-center text-xs">Modified at: {formatDateTime(form.getValues().modifiedAt as string)}</DialogDescription>
               }
-              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-                  Cancel
+              <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+                <DialogClose asChild>
+                  <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button disabled={saving}>
+                  {saving ? "Saving..." : "Save"}
+                  {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
                 </Button>
-              </DialogClose>
-              <Button disabled={saving}>
-                {saving ? "Saving..." : "Save"}
-                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
-              </Button>
-            </DialogFooter>
+              </DialogFooter>
+            </div>
           </form>
         </Form>
       </DialogContent>
