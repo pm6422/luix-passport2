@@ -137,10 +137,10 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                       key={value}
                       className={cn("", comboboxVariants({ variant, className }))}
                     >
-                      {IconComponent && <IconComponent className="h-4 w-4 mr-1" />}
+                      {IconComponent && <IconComponent className="size-4 mr-1" />}
                       {createable ? (option ? option.label : value) : option?.label}
                       <IconCircleX
-                        className="ml-1 h-4 w-4 cursor-pointer"
+                        className="ml-1 size-4 cursor-pointer"
                         onClick={event => {
                           event.stopPropagation();
                           if (option) {
@@ -180,7 +180,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="w-[200px] p-0 drop-shadow-sm"
+        className="min-w-fit p-0 drop-shadow-sm"
         align="start"
         onEscapeKeyDown={() => setIsPopoverOpen(false)}
         onInteractOutside={event => {
@@ -232,13 +232,13 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                   >
                     <div
                       className={cn(
-                        "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
+                        "mr-2 flex size-4 items-center justify-center rounded-sm border border-primary",
                         isSelected ? "bg-primary text-primary-foreground" : "opacity-50 [&_svg]:invisible"
                       )}
                     >
-                      <IconCheck className="h-4 w-4" />
+                      <IconCheck className="size-4" />
                     </div>
-                    {option.icon && <option.icon className="mr-2 h-4 w-4 text-muted-foreground" />}
+                    {option.icon && <option.icon className="mr-2 size-4 text-muted-foreground" />}
                     <span>{option.label}</span>
                   </CommandItem>
                 );
