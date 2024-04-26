@@ -5,7 +5,7 @@ import { IconX } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconReload, IconPlus } from "@tabler/icons-react"
+import { IconReload, IconPlus, IconExclamationCircle } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -24,6 +24,7 @@ import {
   FormMessage,
   FormDescription
 } from "@/components/ui/form"
+import { Alert, AlertTitle } from "@/components/ui/alert"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import { Input } from "@/components/ui/input"
 import Combobox from "@/components/custom/combobox"
@@ -134,6 +135,11 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
+            {Object.values(form.formState.errors).length > 0 && (
+              <Alert variant="destructive">
+                <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
+              </Alert>
+            )}
             <FormField
               control={form.control}
               name="clientId"

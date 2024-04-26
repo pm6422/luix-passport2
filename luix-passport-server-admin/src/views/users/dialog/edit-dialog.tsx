@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconReload } from "@tabler/icons-react"
+import { IconReload, IconExclamationCircle } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -32,6 +32,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select"
+import { Alert, AlertTitle } from "@/components/ui/alert"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import Combobox from "@/components/custom/combobox"
@@ -113,6 +114,11 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
+            {Object.values(form.formState.errors).length > 0 && (
+              <Alert variant="destructive">
+                <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
+              </Alert>
+            )}
             <FormField
               control={form.control}
               name="username"
