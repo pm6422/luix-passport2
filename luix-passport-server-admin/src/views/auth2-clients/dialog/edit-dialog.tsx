@@ -208,6 +208,12 @@ export function EditDialog({
               )}
             />
             <div>
+              <RequiredFormLabel>
+                Redirect URIs
+              </RequiredFormLabel>
+              <FormDescription className="mb-3">
+                Valid redirect URIs after login successfully.
+              </FormDescription>
               {redirectUriFields.map((field, index) => (
                 <FormField
                   control={form.control}
@@ -215,14 +221,8 @@ export function EditDialog({
                   name={`redirectUris.${index}`}
                   render={({ field }) => (
                     <FormItem>
-                      <RequiredFormLabel>
-                        Redirect URIs
-                      </RequiredFormLabel>
-                      <FormDescription className={cn(index !== 0 && "sr-only")}>
-                        Valid redirect URIs after login successfully.
-                      </FormDescription>
                       <FormControl>
-                        <div className="flex justify-between items-center w-full">
+                        <div className="flex justify-between items-center w-full mt-2">
                           <Input {...field} className="w-full"/>
                           <IconX
                             className="h-4 mx-1 cursor-pointer text-muted-foreground"
