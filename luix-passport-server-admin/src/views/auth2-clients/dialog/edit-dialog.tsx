@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, useFieldArray } from "react-hook-form"
+import { IconX } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
@@ -56,6 +57,16 @@ export function EditDialog({
     defaultValues: initialFormState
   })
 
+  const { 
+    fields: redirectUriFields, 
+    append: addRedirectUri, 
+    remove: removeRedirectUri
+  } = useFieldArray({
+    // @ts-ignore
+    name: "redirectUris",
+    control: form.control,
+  })
+
   useEffect(() => {
     if(!open) {
       return
@@ -109,6 +120,13 @@ export function EditDialog({
         </DialogHeader>
         <Separator/>
         <Form {...form}>
+          {form.formState.errors && (
+            <div className="text-destructive text-sm">
+              {Object.values(form.formState.errors).map((error) => (
+                <p key={error.message}>{error.message}</p>
+              ))}
+            </div>
+          )}
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
@@ -189,7 +207,47 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            
+            <div>
+              {redirectUriFields.map((field, index) => (
+                <FormField
+                  control={form.control}
+                  key={index}
+                  name={`redirectUris.${index}`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={cn(index !== 0 && "sr-only")}>
+                        Redirect URIs
+                      </FormLabel>
+                      <FormDescription className={cn(index !== 0 && "sr-only")}>
+                        Valid redirect URIs after login successfully.
+                      </FormDescription>
+                      <FormControl>
+                        <div className="flex justify-between items-center w-full">
+                          <Input {...field} className="w-full"/>
+                          <IconX
+                            className="h-4 mx-1 cursor-pointer text-muted-foreground"
+                            type="button"
+                            onClick={() => {
+                              removeRedirectUri(index)
+                            }}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              ))}
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                className="mt-2"
+                onClick={() => addRedirectUri("")}
+              >
+                Add redirect URI
+              </Button>
+            </div>
             <FormField
               control={form.control}
               name="scopes"
