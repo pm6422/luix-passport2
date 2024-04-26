@@ -257,22 +257,17 @@ export function EditDialog({
               )}
             />
 
-            <div className="flex items-center justify-between">
-              { form.getValues().modifiedAt && 
-                <DialogDescription className="flex items-center text-xs">Modified at: {formatDateTime(form.getValues().modifiedAt as string)}</DialogDescription>
-              }
-              <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-                <DialogClose asChild>
-                  <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-                    Cancel
-                  </Button>
-                </DialogClose>
-                <Button disabled={saving}>
-                  {saving ? "Saving..." : "Save"}
-                  {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
+            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+              <DialogClose asChild>
+                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
+                  Cancel
                 </Button>
-              </DialogFooter>
-            </div>
+              </DialogClose>
+              <Button disabled={saving}>
+                {saving ? "Saving..." : "Save"}
+                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
+              </Button>
+            </DialogFooter>
           </form>
         </Form>
       </DialogContent>
