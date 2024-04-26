@@ -31,6 +31,7 @@ import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { merge } from "@/libs/utils"
+import { formatDateTime } from "@/libs/utils"
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -188,6 +189,9 @@ export function EditDialog({
             />
 
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+              { form.getValues().modifiedAt && 
+                <DialogDescription className="flex items-center text-xs">Modified at: {formatDateTime(form.getValues().modifiedAt as string)}</DialogDescription>
+              }
               <DialogClose asChild>
                 <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
                   Cancel
