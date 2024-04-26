@@ -256,7 +256,7 @@ export function EditDialog({
               <FormLabel className="mb-3">
                 Post Logout Redirect URIs
               </FormLabel>
-              {redirectUriFields.map((field, index) => (
+              {postLogoutRedirectUriFields.map((field, index) => (
                 <FormField
                   control={form.control}
                   key={field.id}
@@ -285,7 +285,7 @@ export function EditDialog({
                   type="button"
                   variant="outline" 
                   className="flex size-8 p-0 mt-2" 
-                  onClick={() => addRedirectUri("")}>
+                  onClick={() => addPostLogoutRedirectUri("")}>
                     <IconPlus className="size-4" />
                     <span className="sr-only">Add</span>
                 </Button>
