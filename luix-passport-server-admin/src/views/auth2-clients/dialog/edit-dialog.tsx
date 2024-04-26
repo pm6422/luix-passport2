@@ -130,13 +130,6 @@ export function EditDialog({
         </DialogHeader>
         <Separator/>
         <Form {...form}>
-          {form.formState.errors && (
-            <div className="text-destructive text-sm">
-              {Object.values(form.formState.errors).map((error) => (
-                <p key={error.message}>{error.message}</p>
-              ))}
-            </div>
-          )}
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
