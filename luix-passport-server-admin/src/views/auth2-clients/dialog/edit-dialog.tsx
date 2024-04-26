@@ -251,7 +251,7 @@ export function EditDialog({
               <div className="flex items-center justify-end w-full">
                 <Button 
                   type="button"
-                  variant="secondary" 
+                  variant="outline" 
                   className="flex size-8 p-0 mt-2" 
                   onClick={() => addRedirectUri("")}>
                     <IconPlus className="size-4" />
@@ -290,7 +290,7 @@ export function EditDialog({
               <div className="flex items-center justify-end w-full">
                 <Button 
                   type="button"
-                  variant="secondary" 
+                  variant="outline" 
                   className="flex size-8 p-0 mt-2" 
                   onClick={() => addRedirectUri("")}>
                     <IconPlus className="size-4" />
