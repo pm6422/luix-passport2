@@ -45,7 +45,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Client ID" />
       ),
-      cell: ({ row }) => <div className="w-[150px]">{row.getValue("clientId")}</div>,
+      cell: ({ row }) => <div className="w-[180px]">{row.getValue("clientId")}</div>,
       enableSorting: true,
       enableHiding: false,
     },
@@ -54,7 +54,7 @@ export function getColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Client Name" />
       ),
-      cell: ({ row }) => <div className="w-[150px]">{row.getValue("clientName")}</div>,
+      cell: ({ row }) => <div className="w-[180px]">{row.getValue("clientName")}</div>,
       enableSorting: true,
       enableHiding: true,
     },
@@ -81,21 +81,6 @@ export function getColumns(
       cell: ({ row }) => (
         <div className="w-[100px] text-xs">
           {(row.getValue("authorizationGrantTypes") as string[]).map((item, index) => (
-            <div key={index}>{item}</div>
-          ))}
-        </div>
-      ),
-      enableSorting: false,
-      enableHiding: true,
-    },
-    {
-      accessorKey: "redirectUris",
-      header: ({ column }) => (
-        <DataTableColumnHeader column={column} title="Redirect URIs" />
-      ),
-      cell: ({ row }) => (
-        <div className="w-[200px] text-xs">
-          {(row.getValue("redirectUris") as string[]).map((item, index) => (
             <div key={index}>{item}</div>
           ))}
         </div>
