@@ -13,7 +13,8 @@ export const formSchema = z.object({
   clientSettings: z.string().optional(),
   tokenSettings: z.string().optional(),
   clientIdIssuedAt: z.string().optional(),
-  clientSecretExpiresAt: z.string().optional()
+  clientSecretExpiresAt: z.string().optional(),
+  enabled: z.boolean().optional(),
 })
 
 export type FormSchema = z.infer<typeof formSchema>
@@ -32,6 +33,7 @@ export const initialFormState: FormSchema = {
   tokenSettings: "",
   clientIdIssuedAt: "",
   clientSecretExpiresAt: "",
+  enabled: true
 }
 export const criteriaSchema = z.object({
   keyword: z.string().optional(),

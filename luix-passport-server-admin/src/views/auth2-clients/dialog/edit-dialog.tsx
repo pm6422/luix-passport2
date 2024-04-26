@@ -27,10 +27,10 @@ import {
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import { Input } from "@/components/ui/input"
 import Combobox from "@/components/custom/combobox"
+import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
-import { cn } from "@/libs/utils"
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -309,6 +309,28 @@ export function EditDialog({
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="enabled"
+              render={({ field }) => (
+                <FormItem >
+                  <div className="flex items-center space-x-2">
+                    <FormLabel>Enabled</FormLabel>
+                    <FormControl>
+                      <Switch
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                        aria-readonly
+                      />
+                    </FormControl>
+                  </div>
+                  <FormDescription>
+                    After disabling, existing data can still reference the object, but new data can't.
+                  </FormDescription>
+                </FormItem>
+              )}
+            />
+
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
               <DialogClose asChild>
                 <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>

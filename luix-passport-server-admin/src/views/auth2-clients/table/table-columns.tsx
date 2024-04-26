@@ -119,6 +119,27 @@ export function getColumns(
       enableHiding: true,
     },
     {
+      accessorKey: "enabled",
+      header: ({ column }) => (
+        <DataTableColumnHeader column={column} title="Enabled" />
+      ),
+      cell: ({ row }) => {
+        const element = YesNo.find(e => e.value === row.getValue("enabled"))
+
+        return (
+          <div className="flex w-[50px] items-center">
+            {element && element.icon && (
+              <element.icon className="mr-2 size-5 text-muted-foreground" />
+            )}
+            <span>{element && element.label}</span>
+          </div>
+        )
+      },
+      filterFn: (row, id, value) => {
+        return value.includes(row.getValue(id))
+      },
+    },
+    {
       id: "actions",
       cell: ({ row }) => (
         <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
