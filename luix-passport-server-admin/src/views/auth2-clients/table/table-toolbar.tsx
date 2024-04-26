@@ -48,7 +48,7 @@ export function DataTableToolbar ({
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormControl>
-                      <Input {...field} placeholder="Filter by keyword"/>
+                      <Input {...field} placeholder="Filter by keyword" onKeyDown={e => e.key === 'Enter' ? form.handleSubmit(onSubmit) : ''}/>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

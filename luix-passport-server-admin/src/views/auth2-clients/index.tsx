@@ -4,7 +4,7 @@ import { Layout, LayoutHeader, LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/client-pagination-data-table"
 import { getColumns } from "./table/table-columns"
-import { type FormSchema } from "./table/table-schema"
+import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 
 export default function DataDict() {
@@ -18,7 +18,7 @@ export default function DataDict() {
     loadPage()
   }, [])
 
-  function loadPage(): void {
+  function loadPage(criteria: CriteriaSchema = {}): void {
     Oauth2ClientService.findAll().then(r => {
       setTableData(r.data)
     })
