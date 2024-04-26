@@ -211,7 +211,7 @@ export function EditDialog({
               {redirectUriFields.map((field, index) => (
                 <FormField
                   control={form.control}
-                  key={index}
+                  key={field.id}
                   name={`redirectUris.${index}`}
                   render={({ field }) => (
                     <FormItem>
