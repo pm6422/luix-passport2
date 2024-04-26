@@ -67,6 +67,16 @@ export function EditDialog({
     control: form.control,
   })
 
+  const { 
+    fields: postLogoutRedirectUriFields, 
+    append: addPostLogoutRedirectUri, 
+    remove: removePostLogoutRedirectUri
+  } = useFieldArray({
+    // @ts-ignore
+    name: "postLogoutRedirectUris",
+    control: form.control,
+  })
+
   useEffect(() => {
     if(!open) {
       return
@@ -229,6 +239,45 @@ export function EditDialog({
                             type="button"
                             onClick={() => {
                               removeRedirectUri(index)
+                            }}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              ))}
+              <div className="flex items-center justify-end w-full">
+                <Button 
+                  type="button"
+                  variant="secondary" 
+                  className="flex size-8 p-0 mt-2" 
+                  onClick={() => addRedirectUri("")}>
+                    <IconPlus className="size-4" />
+                    <span className="sr-only">Delete</span>
+                </Button>
+              </div>
+            </div>
+            <div>
+              <FormLabel className="mb-3">
+                Post Logout Redirect URIs
+              </FormLabel>
+              {redirectUriFields.map((field, index) => (
+                <FormField
+                  control={form.control}
+                  key={field.id}
+                  name={`postLogoutRedirectUris.${index}`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <div className="flex justify-between items-center w-full mt-2">
+                          <Input {...field} className="w-full"/>
+                          <IconX
+                            className="h-4 mx-1 cursor-pointer text-muted-foreground"
+                            type="button"
+                            onClick={() => {
+                              removePostLogoutRedirectUri(index)
                             }}
                           />
                         </div>
