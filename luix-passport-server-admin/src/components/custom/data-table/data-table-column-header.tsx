@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/libs/utils'
+import { text } from 'stream/consumers'
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -22,7 +23,7 @@ export function DataTableColumnHeader<TData, TValue>({
   className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
-    return <div className={cn(className)}>{title}</div>
+    return <div className={cn(className, "text-xs")}>{title}</div>
   }
 
   return (
@@ -36,21 +37,21 @@ export function DataTableColumnHeader<TData, TValue>({
           >
             <span>{title}</span>
             {column.getIsSorted() === 'desc' ? (
-              <IconArrowDown className='ml-2 h-4 w-4' />
+              <IconArrowDown className='ml-2 size-4' />
             ) : column.getIsSorted() === 'asc' ? (
-              <IconArrowUp className='ml-2 h-4 w-4' />
+              <IconArrowUp className='ml-2 size-4' />
             ) : (
-              <IconSelector className='ml-2 h-4 w-4' />
+              <IconSelector className='ml-2 size-4' />
             )}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='start'>
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <IconArrowUp className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <IconArrowUp className='mr-2 size-4 text-muted-foreground/70' />
             Asc
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <IconArrowDown className='mr-2 h-4 w-4 text-muted-foreground/70' />
+            <IconArrowDown className='mr-2 size-4 text-muted-foreground/70' />
             Desc
           </DropdownMenuItem>
           {column.getCanHide() && (
@@ -58,7 +59,7 @@ export function DataTableColumnHeader<TData, TValue>({
           )}
           {column.getCanHide() && (
             <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-              <IconEyeOff className='mr-2 h-4 w-4 text-muted-foreground/70' />
+              <IconEyeOff className='mr-2 size-4 text-muted-foreground/70' />
               Hide
             </DropdownMenuItem>
           )}
