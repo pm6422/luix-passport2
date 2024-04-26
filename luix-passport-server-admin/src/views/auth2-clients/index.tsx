@@ -4,7 +4,7 @@ import { Layout, LayoutHeader, LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/client-pagination-data-table"
 import { getColumns } from "./table/table-columns"
-import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
+import { type FormSchema } from "./table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 
 export default function DataDict() {
@@ -54,7 +54,7 @@ export default function DataDict() {
       </LayoutHeader>
       <LayoutBody className="flex flex-col" fixedHeight>
         <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <DataTable columns={tableColumns} data={tableData}>
+          <DataTable columns={tableColumns} data={tableData} loadPage={loadPage} deleteRows={deleteRows}>
             <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} />
           </DataTable>
         </div>

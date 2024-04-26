@@ -34,6 +34,7 @@ interface DataTableProps<TData, TValue> {
   children: React.ReactNode,
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
+  loadPage: Function,
   deleteRows?: (rows: Array<any>) => Promise<any>
 }
 
@@ -41,6 +42,7 @@ export function DataTable<TData, TValue>({
   children,
   columns,
   data,
+  loadPage,
   deleteRows
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({})
@@ -109,6 +111,7 @@ export function DataTable<TData, TValue>({
                       loading: "Deleting rows...",
                       success: () => {
                         setRowSelection({})
+                        loadPage()
                         return "Deleted selected rows"
                       },
                       error: (error) => {
