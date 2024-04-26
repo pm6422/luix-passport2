@@ -90,6 +90,7 @@
             <column name="photo" type="longblob">
                 <constraints nullable="true"/>
             </column>
+            <column name="enabled" type="BIT(1)"/>
             <column name="created_by" type="VARCHAR(50)"/>
             <column name="created_at" type="timestamp"/>
             <column name="modified_by" type="VARCHAR(50)"/>
