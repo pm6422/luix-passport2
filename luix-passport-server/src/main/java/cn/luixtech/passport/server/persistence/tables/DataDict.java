@@ -9,6 +9,8 @@ import cn.luixtech.passport.server.persistence.LuixPassport;
 import cn.luixtech.passport.server.persistence.tables.records.DataDictRecord;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import org.jooq.Field;
@@ -146,6 +148,11 @@ public class DataDict extends TableImpl<DataDictRecord> {
     @Override
     public UniqueKey<DataDictRecord> getPrimaryKey() {
         return Keys.KEY_DATA_DICT_PRIMARY;
+    }
+
+    @Override
+    public List<UniqueKey<DataDictRecord>> getUniqueKeys() {
+        return Arrays.asList(Keys.KEY_DATA_DICT_UK_DATA_DICT_CATE_CODE_DICT_CODE);
     }
 
     @Override

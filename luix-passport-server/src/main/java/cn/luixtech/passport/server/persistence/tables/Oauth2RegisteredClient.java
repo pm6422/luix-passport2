@@ -135,13 +135,13 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
      * The column
      * <code>luix-passport.oauth2_registered_client.created_by</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
+    public final TableField<Oauth2RegisteredClientRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
      * The column
      * <code>luix-passport.oauth2_registered_client.created_at</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
      * The column
