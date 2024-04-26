@@ -56,5 +56,6 @@ npx shadcn-ui@latest add label
 - table page no url query param
 - layout
 - themeleaf use shadcn login
+- form errors
 
 
