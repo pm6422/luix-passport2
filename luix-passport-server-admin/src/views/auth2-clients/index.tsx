@@ -6,6 +6,7 @@ import { DataTable } from "@/components/custom/data-table/client-pagination-data
 import { getColumns } from "./table/table-columns"
 import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
+import { TableHelper } from "@/libs/table-helper";
 
 export default function DataDict() {
   // State to hold the fetched data
@@ -20,7 +21,11 @@ export default function DataDict() {
 
   function loadPage(criteria: CriteriaSchema = {}): void {
     Oauth2ClientService.findAll().then(r => {
-      setTableData(r.data)
+      if(criteria.keyword) {
+        setTableData(TableHelper.filter(r.data, criteria.keyword))
+      } else {
+        setTableData(r.data)
+      }
     })
   }
 
