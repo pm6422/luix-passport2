@@ -255,7 +255,7 @@ export function EditDialog({
                   className="flex size-8 p-0 mt-2" 
                   onClick={() => addRedirectUri("")}>
                     <IconPlus className="size-4" />
-                    <span className="sr-only">Delete</span>
+                    <span className="sr-only">Add</span>
                 </Button>
               </div>
             </div>
@@ -294,7 +294,7 @@ export function EditDialog({
                   className="flex size-8 p-0 mt-2" 
                   onClick={() => addRedirectUri("")}>
                     <IconPlus className="size-4" />
-                    <span className="sr-only">Delete</span>
+                    <span className="sr-only">Add</span>
                 </Button>
               </div>
             </div>
