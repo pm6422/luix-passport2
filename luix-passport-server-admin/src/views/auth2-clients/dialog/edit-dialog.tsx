@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, useFieldArray } from "react-hook-form"
-import { Button } from "@/components/custom/button"
-import { IconX, IconPlus } from "@tabler/icons-react"
 import { Dialog } from "@/components/ui/dialog"
-import {
-  FormLabel,
-  FormDescription
-} from "@/components/ui/form"
 import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
-import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
+import { Button } from "@/components/custom/button"
+import { IconX, IconPlus } from "@tabler/icons-react"
+import { FormLabel, FormDescription } from "@/components/ui/form"
+import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import SwitchFormField from "@/components/custom/form-field/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"

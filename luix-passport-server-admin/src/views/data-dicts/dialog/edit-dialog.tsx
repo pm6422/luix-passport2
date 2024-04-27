@@ -1,22 +1,8 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import FormErrors from "@/components/custom/form-errors"
-import { toast } from "sonner"
-import { getErrorMessage } from "@/libs/handle-error"
-import { Button } from "@/components/custom/button"
-import { IconReload } from "@tabler/icons-react"
-import { Separator } from "@/components/ui/separator"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-  DialogFooter,
-  DialogDescription
-} from "@/components/ui/dialog"
-import { Form } from "@/components/ui/form"
+import { Dialog } from "@/components/ui/dialog"
+import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
@@ -63,94 +49,46 @@ export function EditDialog({
     }
   }, [open])
 
-  function onSubmit(formData: FormSchema): void {
-    setSaving(true)
-    toast.promise(save(formData), {
-      loading: "Saving " + entityName + "...",
-      success: () => {
-        setOpen(false)
-        form.reset()
-        afterSave && afterSave(true)
-        setSaving(false)
-        return "Saved " + entityName
-      },
-      error: (error) => {
-        setOpen(false)
-        afterSave && afterSave(false)
-        setSaving(false)
-        return getErrorMessage(error)
-      }
-    })
-  }
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
-      <DialogContent className="lg:max-w-screen-sm max-h-screen overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
-          { form.getValues().num && 
-            <DialogDescription className="text-xs">Number: {form.getValues().num}</DialogDescription>
-          }
-        </DialogHeader>
-        <Separator/>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-4"
-          >
-            <FormErrors form={form}/>
+      <SaveDialogContent entityName={entityName} id={id} form={form} save={save} afterSave={afterSave} setOpen={setOpen}>
+        <ComboboxFormField
+          control={form.control} 
+          name="categoryCode"
+          label="Category Code"
+          required
+          options={categoryCodeOptions}
+          placeholder="Select or input a category code"
+          createable={true}
+        />
 
-            <ComboboxFormField
-              control={form.control} 
-              name="categoryCode"
-              label="Category Code"
-              required
-              options={categoryCodeOptions}
-              placeholder="Select or input a category code"
-              createable={true}
-            />
+        <InputFormField 
+          control={form.control} 
+          name="dictCode" 
+          label="Dictionary Code" 
+          required
+        />
 
-            <InputFormField 
-              control={form.control} 
-              name="dictCode" 
-              label="Dictionary Code" 
-              required
-            />
+        <InputFormField 
+          control={form.control} 
+          name="dictName" 
+          label="Dictionary Name"
+        />
 
-            <InputFormField 
-              control={form.control} 
-              name="dictName" 
-              label="Dictionary Name"
-            />
+        <InputFormField 
+          control={form.control} 
+          name="remark" 
+          label="Remark"
+        />
 
-            <InputFormField 
-              control={form.control} 
-              name="remark" 
-              label="Remark"
-            />
-
-            <SwitchFormField 
-              control={form.control} 
-              name="enabled" 
-              label="Enabled"
-              description="After disabling, existing data can still reference the object, but new data can"
-            />
-
-            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button disabled={saving}>
-                {saving ? "Saving..." : "Save"}
-                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
-      </DialogContent>
+        <SwitchFormField 
+          control={form.control} 
+          name="enabled" 
+          label="Enabled"
+          description="After disabling, existing data can still reference the object, but new data can"
+        />
+      </SaveDialogContent>
     </Dialog>
   )
 }
