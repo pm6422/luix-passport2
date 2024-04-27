@@ -8,7 +8,6 @@ import { YesNo } from "@/data/yes-no"
 import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
-import { formatDateTime } from "@/libs/utils"
 
 export function getColumns(
   entityName: string,

@@ -9,7 +9,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { AvatarUploader } from "@/components/custom/avatar-uploader"
-import { toast } from "sonner"
+// import { toast } from "sonner"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
@@ -31,7 +31,7 @@ export default function UploadAvatarForm() {
   })
 
   function onSubmit(formData: FormSchema) {
-    console.log("upload avatar")
+    console.log(formData)
   }
 
   return (

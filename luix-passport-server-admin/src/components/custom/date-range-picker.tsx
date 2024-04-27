@@ -1,13 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { CalendarIcon } from "@radix-ui/react-icons"
+import { IconCalendar } from "@tabler/icons-react"
 import { type PopoverContentProps } from "@radix-ui/react-popover"
 import { addDays, format } from "date-fns"
 import type { DateRange } from "react-day-picker"
 
 import { cn } from "@/libs/utils"
-import { Button, type ButtonProps } from "@/components/ui/button"
+import { Button, type ButtonProps } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
 import {
   Popover,
@@ -53,7 +53,7 @@ export function DateRangePicker({
   const [date, setDate] = React.useState<DateRange | undefined>({ from, to })
 
   // Create query string
-  const createQueryString = React.useCallback(
+  React.useCallback(
     (params: Record<string, string | number | null>) => {
       const newSearchParams = new URLSearchParams(searchParams?.toString())
 
@@ -98,7 +98,7 @@ export function DateRangePicker({
             )}
             {...props}
           >
-            <CalendarIcon className="mr-2 size-4" />
+            <IconCalendar className="mr-2 size-4" />
             {date?.from ? (
               date.to ? (
                 <>
