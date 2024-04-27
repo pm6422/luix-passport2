@@ -28,10 +28,10 @@ Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and a
 
 ## Run Locally
 
-Clone the project
+Install pnpm
 
 ```bash
-  git clone https://github.com/satnaing/shadcn-admin.git
+  npm install -g pnpm
 ```
 
 Install dependencies
