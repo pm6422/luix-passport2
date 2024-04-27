@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { RequiredFormLabel } from "./required-form-label";
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
@@ -50,10 +51,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
     key={key}
     render={({ field: { value: formFieldValue, ...rest } }) => (
       <FormItem className={formItemClassName}>
-        <FormLabel>
-          {label}
-          {required && <span className="ml-1 text-destructive text-xl align-middle">*</span>}
-        </FormLabel>
+        <RequiredFormLabel required={required}>{label}</RequiredFormLabel>
         <FormControl>
           <div className="relative flex w-full items-center gap-2">
             {type === "textarea" ? (

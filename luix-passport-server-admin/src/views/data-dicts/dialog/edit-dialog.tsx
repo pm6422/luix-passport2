@@ -25,7 +25,7 @@ import {
   FormMessage,
   FormDescription
 } from "@/components/ui/form"
-import { RequiredFormLabel } from "@/components/custom/required-form-label"
+import { RequiredFormLabel } from "@/components/custom/form/required-form-label"
 import InputFormField from "@/components/custom/form/input"
 import Combobox from "@/components/custom/combobox"
 import { Switch } from "@/components/ui/switch"
@@ -129,7 +129,7 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            
+
             <InputFormField 
               control={form.control} 
               name="dictCode" 
