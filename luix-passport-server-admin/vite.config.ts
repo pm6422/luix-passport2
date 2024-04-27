@@ -10,6 +10,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    // Output vite build results to target/classes/static/ of backend service
+    outDir: '../luix-passport-server/target/classes/static/'
+  },
   server: {
     host: 'localhost',
     port: 8888,
