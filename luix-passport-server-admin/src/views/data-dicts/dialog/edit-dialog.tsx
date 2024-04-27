@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import InputFormField from "@/components/custom/form-field/input"
-import Combobox from "@/components/custom/combobox"
+import Combobox from "@/components/custom/form-field/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
@@ -110,24 +110,14 @@ export function EditDialog({
           >
             <FormErrors form={form}/>
 
-            <FormField
-              control={form.control}
+            <Combobox
+              control={form.control} 
               name="categoryCode"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel required={true}>Category Code</RequiredFormLabel>
-                  <FormControl>
-                    <Combobox
-                      options={categoryCodeOptions}
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      placeholder="Select or input a category code"
-                      createable={true}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Category Code"
+              required
+              options={categoryCodeOptions}
+              placeholder="Select or input a category code"
+              createable={true}
             />
 
             <InputFormField 
