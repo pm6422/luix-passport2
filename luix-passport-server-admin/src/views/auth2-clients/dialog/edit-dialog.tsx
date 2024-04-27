@@ -190,28 +190,21 @@ export function EditDialog({
                 Valid redirect URIs after login successfully.
               </FormDescription>
               {redirectUriFields.map((field, index) => (
-                <FormField
-                  control={form.control}
+                <InputFormField 
+                  control={form.control} 
                   key={field.id}
+                  // @ts-ignore
                   name={`redirectUris.${index}`}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <div className="flex justify-between items-center w-full mt-2 gap-2">
-                          <Input {...field} className="w-full"/>
-                          <Button 
-                            type="button"
-                            variant="outline" 
-                            className="flex size-9 p-0" 
-                            onClick={() => removeRedirectUri(index)}>
-                              <IconX className="size-4" />
-                              <span className="sr-only">Delete</span>
-                          </Button>
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  icon={
+                    <Button 
+                      type="button"
+                      variant="outline" 
+                      className="flex size-9 p-0" 
+                      onClick={() => removeRedirectUri(index)}>
+                        <IconX className="size-4" />
+                        <span className="sr-only">Delete</span>
+                    </Button>
+                  }
                 />
               ))}
               <div className="flex items-center justify-end w-full mt-2">

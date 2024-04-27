@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
+  key?: string;
   label: string;
   value?: string;
   defaultValue?: string;
@@ -27,6 +28,7 @@ interface Props<TFieldValues extends FieldValues> {
 const InputFormField = <TFieldValues extends FieldValues>({
   control,
   name,
+  key,
   label,
   value,
   defaultValue,
@@ -45,6 +47,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
   <FormField
     control={disabled ? undefined : control}
     name={name as Path<TFieldValues>}
+    key={key}
     render={({ field: { value: formFieldValue, ...rest } }) => (
       <FormItem className={formItemClassName}>
         <FormLabel>
