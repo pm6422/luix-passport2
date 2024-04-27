@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Input } from "@/components/ui/input"
+import InputFormField from "@/components/custom/form/input"
 import { Button } from "@/components/custom/button"
 import { IconPlus, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
@@ -66,44 +66,11 @@ export function DataTableToolbar ({
                 className="flex flex-col gap-4"
               >
                 <div className="flex items-center gap-2">
-                  <FormField
-                    name="username"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                          <Input {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <InputFormField control={form.control} name="username" label="Username" formItemClassName="w-full"/>
+                  <InputFormField control={form.control} name="email" label="Email" formItemClassName="w-full"/>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FormField
-                    name="mobileNo"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>Mobile No</FormLabel>
-                        <FormControl>
-                          <Input {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <InputFormField control={form.control} name="mobileNo" label="Mobile No" formItemClassName="w-full"/>
                   <FormField
                     control={form.control}
                     name="enabled"
