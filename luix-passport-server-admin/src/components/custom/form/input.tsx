@@ -51,7 +51,6 @@ const InputFormField = <TFieldValues extends FieldValues>({
           {label}
           {required && <span className="ml-1 text-destructive text-xl align-middle">*</span>}
         </FormLabel>
-        {description && <FormDescription>{description}</FormDescription>}
         <FormControl>
           <div className="relative flex w-full items-center">
             {icon && <div className="pr-2 ">{icon}</div>}
@@ -79,6 +78,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
             {subComponent}
           </div>
         </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
         <FormMessage />
       </FormItem>
     )}
