@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import {
   DialogContent,
   DialogHeader,
@@ -11,60 +12,88 @@ import FormErrors from "@/components/custom/form-errors"
 import { Button } from "@/components/custom/button"
 import { Separator } from "@/components/ui/separator"
 import { IconReload } from "@tabler/icons-react"
+import { toast } from "sonner"
+import { getErrorMessage } from "@/libs/handle-error"
 
 interface Props {
   children: React.ReactNode;
-  title?: string;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  entityName: string;
+  id?: string;
   form: UseFormReturn<any, any, any>;
-  onSubmit: (data: any) => void;
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  save: (formData: any) => Promise<any>;
   afterSave?: (success: boolean) => void;
+  setOpen: (open: boolean) => void;
   readonly?: boolean;
-  saving?: boolean;
 }
 
 const SaveDialogContent = ({
   children,
-  title,
-  size = "md",
+  entityName,
+  id,
   form,
-  onSubmit,
+  size = "md",
+  save,
   afterSave,
-  readonly = false,
-  saving = false
-}: Props) => (
-  <DialogContent className={`lg:max-w-screen-${size} max-h-screen overflow-y-auto`}>
-    ( title && 
-      <DialogHeader>
-        <DialogTitle className="capitalize">{title}</DialogTitle>
-      </DialogHeader>
-    )
-    <Separator/>
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4"
-      >
-        <FormErrors form={form}/>
-        
-        {children}
-        
-        <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-          <DialogClose asChild>
-            <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-              Cancel
-            </Button>
-          </DialogClose>
-          ( !readonly && 
-            <Button disabled={saving}>
-              {saving ? "Saving..." : "Save"}
-              {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
-            </Button>
-          )
-        </DialogFooter>
-      </form>
-    </Form>
-  </DialogContent>
-);
+  setOpen,
+  readonly = false
+}: Props) => {
+  const [saving, setSaving] = useState(false)
+
+  function onSubmit(formData: any): void {
+    setSaving(true)
+    toast.promise(save(formData), {
+      loading: "Saving " + entityName + "...",
+      success: () => {
+        setOpen(false)
+        form.reset()
+        afterSave && afterSave(true)
+        setSaving(false)
+        return "Saved " + entityName
+      },
+      error: (error) => {
+        setOpen(false)
+        afterSave && afterSave(false)
+        setSaving(false)
+        return getErrorMessage(error)
+      }
+    })
+  }
+
+  return (
+    <DialogContent className={`lg:max-w-screen-${size} max-h-screen overflow-y-auto`}>
+      ( title && 
+        <DialogHeader>
+          <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
+        </DialogHeader>
+      )
+      <Separator/>
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-4"
+        >
+          <FormErrors form={form}/>
+          
+          {children}
+          
+          <DialogFooter className="gap-2 pt-2 sm:space-x-0">
+            <DialogClose asChild>
+              <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
+                Cancel
+              </Button>
+            </DialogClose>
+            ( !readonly && 
+              <Button disabled={saving}>
+                {saving ? "Saving..." : "Save"}
+                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
+              </Button>
+            )
+          </DialogFooter>
+        </form>
+      </Form>
+    </DialogContent>
+  )
+}
 
 export default SaveDialogContent;
