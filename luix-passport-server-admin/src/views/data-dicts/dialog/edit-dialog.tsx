@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/form"
 import { Alert, AlertTitle } from "@/components/ui/alert"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
-import { Input } from "@/components/ui/input"
+import InputFormField from "@/components/custom/form/input";
 import Combobox from "@/components/custom/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
@@ -132,45 +132,10 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="dictCode"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Dictionary Code</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="dictName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Dictionary Name</FormLabel>
-                  <FormControl>
-                  <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="remark"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Remark</FormLabel>
-                  <FormControl>
-                  <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <InputFormField control={form.control} name="dictCode" label="Dictionary Code" required/>
+            <InputFormField control={form.control} name="dictName" label="Dictionary Name"/>
+            <InputFormField control={form.control} name="remark" label="Remark"/>
+
             <FormField
               control={form.control}
               name="enabled"

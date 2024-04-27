@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import type { Control, FieldValues, Path } from 'react-hook-form';
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '~/modules/ui/form';
-import { Input } from '~/modules/ui/input';
-import { Textarea } from '~/modules/ui/textarea';
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
@@ -42,20 +42,19 @@ const InputFormField = <TFieldValues extends FieldValues>({
     control={disabled ? undefined : control}
     name={name as Path<TFieldValues>}
     render={({ field: { value: formFieldValue, ...rest } }) => (
-      <FormItem name={name?.toString()}>
+      <FormItem>
         <FormLabel>
           {label}
-          {required && <span className="ml-1 opacity-50">*</span>}
+          {required && <span className="ml-1 text-destructive text-xl align-middle">*</span>}
         </FormLabel>
         {description && <FormDescription>{description}</FormDescription>}
         <FormControl>
-          <div className="relative flex w-full items-center ">
+          <div className="relative flex w-full items-center">
             {icon && <div className="pr-2 ">{icon}</div>}
             {type === 'textarea' ? (
               <Textarea
                 placeholder={placeholder}
                 onFocus={onFocus}
-                autoResize={true}
                 defaultValue={defaultValue}
                 value={value || formFieldValue || ''}
                 disabled={disabled}
