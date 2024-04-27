@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/custom/button"
 import { Form } from "@/components/ui/form"
-import InputFormField from "@/components/custom/form/input"
+import InputFormField from "@/components/custom/form-field/input"
 import { toast } from "sonner"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"

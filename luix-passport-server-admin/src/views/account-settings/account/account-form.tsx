@@ -21,7 +21,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import InputFormField from "@/components/custom/form/input"
+import InputFormField from "@/components/custom/form-field/input"
 import {
   Popover,
   PopoverContent,
