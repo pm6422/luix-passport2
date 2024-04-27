@@ -1,18 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Input } from "@/components/ui/input"
+import InputFormField from "@/components/custom/form-field/input"
 import { Button } from "@/components/custom/button"
 import { IconPlus } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
 import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
 import { DialogTrigger } from "@/components/ui/dialog"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage
-} from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 
 interface DataTableToolbarProps{
   entityName: string,
@@ -42,16 +36,11 @@ export function DataTableToolbar ({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-              <FormField
-                name="keyword"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormControl>
-                      <Input {...field} placeholder="Filter by keyword" onKeyDown={e => e.key === 'Enter' ? form.handleSubmit(onSubmit) : ''}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+              <InputFormField 
+                control={form.control} 
+                name="keyword" 
+                placeholder="Filter by keyword"
+                onKeyDown={e => e.key === 'Enter' ? form.handleSubmit(onSubmit) : ''}
               />
           </form>
         </Form>

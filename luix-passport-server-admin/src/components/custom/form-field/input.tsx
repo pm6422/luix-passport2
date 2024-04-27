@@ -9,13 +9,14 @@ interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
   key?: string;
-  label: string;
+  label?: string;
   value?: string;
   defaultValue?: string;
   type?: Parameters<typeof Input>[0]["type"] | "textarea";
   description?: string;
   placeholder?: string;
   onFocus?: () => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   subComponent?: React.ReactNode;
   required?: boolean;
   disabled?: boolean;
@@ -34,6 +35,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
   defaultValue,
   description,
   onFocus,
+  onKeyDown,
   type = "text",
   placeholder,
   subComponent,
@@ -50,7 +52,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
     key={key}
     render={({ field: { value: formFieldValue, ...rest } }) => (
       <FormItem className={formItemClassName}>
-        <RequiredFormLabel required={required}>{label}</RequiredFormLabel>
+        {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
         <FormControl>
           <div className="relative flex w-full items-center gap-2">
             {type === "textarea" ? (
@@ -67,6 +69,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
                 className={inputClassName}
                 type={type}
                 onFocus={onFocus}
+                onKeyDown={onKeyDown}
                 placeholder={placeholder}
                 defaultValue={defaultValue}
                 value={value || formFieldValue || ""}
