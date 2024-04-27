@@ -31,7 +31,6 @@ import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
-import { Input } from "@/components/ui/input"
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -223,28 +222,21 @@ export function EditDialog({
                 Post Logout Redirect URIs
               </FormLabel>
               {postLogoutRedirectUriFields.map((field, index) => (
-                <FormField
-                  control={form.control}
+                <InputFormField 
+                  control={form.control} 
                   key={field.id}
+                  // @ts-ignore
                   name={`postLogoutRedirectUris.${index}`}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <div className="flex justify-between items-center w-full mt-2 gap-2">
-                          <Input {...field} className="w-full"/>
-                          <Button 
-                            type="button"
-                            variant="outline" 
-                            className="flex size-9 p-0" 
-                            onClick={() => removePostLogoutRedirectUri(index)}>
-                              <IconX className="size-4" />
-                              <span className="sr-only">Delete</span>
-                          </Button>
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+                  icon={
+                    <Button 
+                      type="button"
+                      variant="outline" 
+                      className="flex size-9 p-0" 
+                      onClick={() => removePostLogoutRedirectUri(index)}>
+                        <IconX className="size-4" />
+                        <span className="sr-only">Delete</span>
+                    </Button>
+                  }
                 />
               ))}
               <div className="flex items-center justify-end w-full mt-2">
