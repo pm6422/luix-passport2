@@ -142,6 +142,7 @@ export function EditDialog({
                 </FormItem>
               )}
             />
+            
             <div className="flex items-center gap-2">
               <InputFormField 
                 control={form.control} 
