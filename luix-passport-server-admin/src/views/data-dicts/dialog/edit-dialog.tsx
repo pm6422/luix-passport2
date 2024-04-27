@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import FormErrors from "@/components/custom/form/form-errors"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconReload, IconExclamationCircle } from "@tabler/icons-react"
+import { IconReload } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -24,7 +25,6 @@ import {
   FormMessage,
   FormDescription
 } from "@/components/ui/form"
-import { Alert, AlertTitle } from "@/components/ui/alert"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import InputFormField from "@/components/custom/form/input"
 import Combobox from "@/components/custom/combobox"
@@ -108,11 +108,8 @@ export function EditDialog({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            {Object.values(form.formState.errors).length > 0 && (
-              <Alert variant="destructive">
-                <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
-              </Alert>
-            )}
+            <FormErrors form={form}/>
+
             <FormField
               control={form.control}
               name="categoryCode"
