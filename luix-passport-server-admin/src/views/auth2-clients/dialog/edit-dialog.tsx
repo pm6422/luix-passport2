@@ -144,7 +144,7 @@ export function EditDialog({
 
             <InputFormField control={form.control} name="clientId" label="Client ID" required disabled={id ? true : false}/>
             <InputFormField control={form.control} name="clientName" label="Client Name" required/>
-            { !id && <InputFormField control={form.control} name="rawClientSecret" label="Raw Client Secret" required description="Do not forget the secret."/>}
+            <InputFormField control={form.control} name="rawClientSecret" label="Raw Client Secret" required description="Do not forget the secret." hide={id ? true : false}/>
 
             <FormField
               control={form.control}

@@ -21,6 +21,7 @@ interface Props<TFieldValues extends FieldValues> {
   icon?: ReactNode;
   inputClassName?: string;
   formItemClassName?: string;
+  hide?: boolean;
 }
 
 const InputFormField = <TFieldValues extends FieldValues>({
@@ -38,8 +39,9 @@ const InputFormField = <TFieldValues extends FieldValues>({
   disabled,
   icon,
   inputClassName,
-  formItemClassName
-}: Props<TFieldValues>) => (
+  formItemClassName,
+  hide = false
+}: Props<TFieldValues>) => ( !hide &&
   <FormField
     control={disabled ? undefined : control}
     name={name as Path<TFieldValues>}
