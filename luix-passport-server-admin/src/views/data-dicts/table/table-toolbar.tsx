@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/custom/button"
+import InputFormField from "@/components/custom/form/input"
 import { IconPlus, IconUpload, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
 import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
@@ -70,30 +70,9 @@ export function DataTableToolbar ({
                 className="flex flex-col gap-4"
               >
                 <div className="flex items-center gap-2">
-                  <FormField
-                    name="num"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>Number</FormLabel>
-                        <FormControl>
-                          <Input {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    name="categoryCode"
-                    render={({ field }) => (
-                      <FormItem className="w-full">
-                        <FormLabel>Category Code</FormLabel>
-                        <FormControl>
-                          <Input {...field}/>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                  <InputFormField control={form.control} name="num" label="Number" formItemClassName="w-full"/>
+                  <InputFormField control={form.control} name="categoryCode" label="Category Code" formItemClassName="w-full"/>
+                  
                   <FormField
                     control={form.control}
                     name="enabled"
