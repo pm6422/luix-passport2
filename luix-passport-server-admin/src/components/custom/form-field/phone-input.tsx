@@ -2,13 +2,14 @@ import type { Control, FieldValues, Path } from "react-hook-form";
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { RequiredFormLabel } from "../required-form-label";
 import { PhoneInput } from "@/components/custom/phone-input"
+import { CountryCode } from "libphonenumber-js"
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
   key?: string;
   label?: string;
-  defaultCountry?: string;
+  defaultCountry?: CountryCode;
   description?: string;
   placeholder?: string;
   required?: boolean;
