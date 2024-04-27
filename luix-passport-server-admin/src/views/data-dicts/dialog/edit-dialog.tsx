@@ -16,17 +16,10 @@ import {
   DialogFooter,
   DialogDescription
 } from "@/components/ui/dialog"
-import {
-  Form,
-  FormControl,
-  FormLabel,
-  FormField,
-  FormItem,
-  FormDescription
-} from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
-import { Switch } from "@/components/ui/switch"
+import SwitchFormField from "@/components/custom/form-field/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { merge } from "@/libs/utils"
@@ -137,26 +130,11 @@ export function EditDialog({
               label="Remark"
             />
 
-            <FormField
-              control={form.control}
-              name="enabled"
-              render={({ field }) => (
-                <FormItem >
-                  <div className="flex items-center space-x-2">
-                    <FormLabel>Enabled</FormLabel>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                        aria-readonly
-                      />
-                    </FormControl>
-                  </div>
-                  <FormDescription>
-                    After disabling, existing data can still reference the object, but new data can"t.
-                  </FormDescription>
-                </FormItem>
-              )}
+            <SwitchFormField 
+              control={form.control} 
+              name="enabled" 
+              label="Enabled"
+              description="After disabling, existing data can still reference the object, but new data can"
             />
 
             <DialogFooter className="gap-2 pt-2 sm:space-x-0">
