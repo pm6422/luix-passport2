@@ -6,7 +6,7 @@ import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
-import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
+import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { merge } from "@/libs/utils"
 

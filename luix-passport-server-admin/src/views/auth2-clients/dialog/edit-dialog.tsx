@@ -10,7 +10,7 @@ import { IconX, IconPlus } from "@tabler/icons-react"
 import { FormLabel, FormDescription } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import SwitchFormField from "@/components/custom/form-field/switch"
-import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
+import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
 
