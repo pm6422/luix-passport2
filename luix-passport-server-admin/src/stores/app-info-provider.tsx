@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import appInfoObj from '@/data/app-info.json';
 
 export type AppInfo = {
   apiDocsEnabled: string;
@@ -23,17 +24,7 @@ type AppInfoProviderState = {
 };
 
 const initialState: AppInfoProviderState = {
-  appInfo: {
-    "apiDocsEnabled" : "true",
-    "ribbonProfile" : "disconnected",
-    "build" : {
-      "artifact" : "luix-passport",
-      "name" : "LUix Passport Server",
-      "time" : "2024-03-20T02:22:27.985Z",
-      "version" : "1.0.0",
-      "group" : "cn.luixtech"
-    }
-  },
+  appInfo: appInfoObj,
   setAppInfo: () => null,
 };
 
