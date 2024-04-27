@@ -33,7 +33,7 @@ import {
   SelectValue
 } from "@/components/ui/select"
 import InputFormField from "@/components/custom/form-field/input"
-import Combobox from "@/components/custom/form-field/combobox"
+import ComboboxFormField from "@/components/custom/form-field/combobox"
 import { Switch } from "@/components/ui/switch"
 import { PhoneInput } from "@/components/custom/phone-input";
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
@@ -187,7 +187,7 @@ export function EditDialog({
               label="Remark"
             />
 
-            <Combobox
+            <ComboboxFormField
               control={form.control} 
               name="roles"
               label="Roles"

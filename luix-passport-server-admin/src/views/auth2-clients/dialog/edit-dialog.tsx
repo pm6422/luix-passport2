@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import InputFormField from "@/components/custom/form-field/input"
-import Combobox from "@/components/custom/form-field/combobox"
+import ComboboxFormField from "@/components/custom/form-field/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
@@ -159,7 +159,7 @@ export function EditDialog({
               hide={id ? true : false}
             />
 
-            <Combobox
+            <ComboboxFormField
               control={form.control} 
               name="clientAuthenticationMethods"
               label="Authentication Methods"
@@ -168,7 +168,7 @@ export function EditDialog({
               multiple={true}
             />
 
-            <Combobox
+            <ComboboxFormField
               control={form.control} 
               name="authorizationGrantTypes"
               label="Authentication Grant Types"
@@ -241,7 +241,7 @@ export function EditDialog({
               </div>
             </div>
 
-            <Combobox
+            <ComboboxFormField
               control={form.control} 
               name="scopes"
               label="Scopes"

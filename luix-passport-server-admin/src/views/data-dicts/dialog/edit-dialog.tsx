@@ -25,7 +25,7 @@ import {
   FormDescription
 } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
-import Combobox from "@/components/custom/form-field/combobox"
+import ComboboxFormField from "@/components/custom/form-field/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
@@ -108,7 +108,7 @@ export function EditDialog({
           >
             <FormErrors form={form}/>
 
-            <Combobox
+            <ComboboxFormField
               control={form.control} 
               name="categoryCode"
               label="Category Code"
