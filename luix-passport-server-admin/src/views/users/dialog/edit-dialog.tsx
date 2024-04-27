@@ -32,7 +32,7 @@ import {
   SelectValue
 } from "@/components/ui/select"
 import { Alert, AlertTitle } from "@/components/ui/alert"
-import { Input } from "@/components/ui/input"
+import InputFormField from "@/components/custom/form/input";
 import { Switch } from "@/components/ui/switch"
 import Combobox from "@/components/custom/combobox"
 import { PhoneInput } from "@/components/custom/phone-input";
@@ -117,32 +117,10 @@ export function EditDialog({
                 <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
               </Alert>
             )}
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Username</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field} disabled={id ? true : false}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Email</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
+            <InputFormField control={form.control} name="username" label="Username" required disabled={id ? true : false}/>
+            <InputFormField control={form.control} name="email" label="Email" required/>
+
             <FormField
               control={form.control}
               name="mobileNo"
@@ -157,32 +135,8 @@ export function EditDialog({
               )}
             />
             <div className="flex items-center gap-2">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>First Name</FormLabel>
-                    <FormControl>
-                      <Input {...field}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel>Last Name</FormLabel>
-                    <FormControl>
-                      <Input {...field}/>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <InputFormField control={form.control} name="firstName" label="First Name" formItemClassName="w-full"/>
+              <InputFormField control={form.control} name="lastName" label="Last Name" formItemClassName="w-full"/>
             </div>
             <FormField
               control={form.control}
@@ -205,19 +159,9 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="remark"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Remark</FormLabel>
-                  <FormControl>
-                    <Input {...field}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+
+            <InputFormField control={form.control} name="remark" label="Remark"/>
+
             <FormField
               control={form.control}
               name="roles"

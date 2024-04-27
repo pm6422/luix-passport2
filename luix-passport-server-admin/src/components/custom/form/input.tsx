@@ -20,6 +20,7 @@ interface Props<TFieldValues extends FieldValues> {
   disabled?: boolean;
   icon?: ReactNode;
   inputClassName?: string;
+  formItemClassName?: string;
 }
 
 const InputFormField = <TFieldValues extends FieldValues>({
@@ -37,12 +38,13 @@ const InputFormField = <TFieldValues extends FieldValues>({
   disabled,
   icon,
   inputClassName,
+  formItemClassName
 }: Props<TFieldValues>) => (
   <FormField
     control={disabled ? undefined : control}
     name={name as Path<TFieldValues>}
     render={({ field: { value: formFieldValue, ...rest } }) => (
-      <FormItem>
+      <FormItem className={formItemClassName}>
         <FormLabel>
           {label}
           {required && <span className="ml-1 text-destructive text-xl align-middle">*</span>}
