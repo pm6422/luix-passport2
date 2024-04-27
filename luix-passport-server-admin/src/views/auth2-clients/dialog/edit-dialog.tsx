@@ -207,14 +207,11 @@ export function EditDialog({
                 />
               ))}
               <div className="flex items-center justify-end w-full mt-2">
-                <Button 
+                <IconPlus
+                  className="size-6 mr-1 cursor-pointer text-muted-foreground"
                   type="button"
-                  variant="outline" 
-                  className="flex size-9 p-0" 
-                  onClick={() => addRedirectUri("")}>
-                    <IconPlus className="size-4" />
-                    <span className="sr-only">Add</span>
-                </Button>
+                  onClick={() => addRedirectUri("")}
+                />
               </div>
             </div>
             <div>
@@ -240,14 +237,11 @@ export function EditDialog({
                 />
               ))}
               <div className="flex items-center justify-end w-full mt-2">
-                <Button 
+                <IconPlus
+                  className="size-6 mr-1 cursor-pointer text-muted-foreground"
                   type="button"
-                  variant="outline" 
-                  className="flex size-9 p-0" 
-                  onClick={() => addPostLogoutRedirectUri("")}>
-                    <IconPlus className="size-4" />
-                    <span className="sr-only">Add</span>
-                </Button>
+                  onClick={() => addPostLogoutRedirectUri("")}
+                />
               </div>
             </div>
             <FormField
