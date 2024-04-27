@@ -10,7 +10,8 @@ export function getErrorMessage(err: unknown) {
     })
     return errors.join("\n")
   } else if (err instanceof Error) {
-    if(err.response) {
+    if("response" in err) {
+      // @ts-ignore
       return err.response.data.message
     } else {
       return err.message
