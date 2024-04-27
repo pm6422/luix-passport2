@@ -26,12 +26,13 @@ import {
 } from "@/components/ui/form"
 import { Alert, AlertTitle } from "@/components/ui/alert"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
-import { Input } from "@/components/ui/input"
+import InputFormField from "@/components/custom/form/input"
 import Combobox from "@/components/custom/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
+import { Input } from "@/components/ui/input"
 
 interface EditDialogProps {
   children: React.ReactNode,
@@ -140,46 +141,11 @@ export function EditDialog({
                 <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
               </Alert>
             )}
-            <FormField
-              control={form.control}
-              name="clientId"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Client ID</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field} disabled={id ? true : false}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="clientName"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Client Name</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            { !id && <FormField
-              control={form.control}
-              name="rawClientSecret"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Raw Client Secret</RequiredFormLabel>
-                  <FormControl>
-                    <Input {...field}/>
-                  </FormControl>
-                  <FormDescription>Do not forget the secret.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />}
+
+            <InputFormField control={form.control} name="clientId" label="Client ID" required disabled={id ? true : false}/>
+            <InputFormField control={form.control} name="clientName" label="Client Name" required/>
+            { !id && <InputFormField control={form.control} name="rawClientSecret" label="Raw Client Secret" required description="Do not forget the secret."/>}
+
             <FormField
               control={form.control}
               name="clientAuthenticationMethods"

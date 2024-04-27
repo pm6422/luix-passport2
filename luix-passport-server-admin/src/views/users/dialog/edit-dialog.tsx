@@ -32,7 +32,7 @@ import {
   SelectValue
 } from "@/components/ui/select"
 import { Alert, AlertTitle } from "@/components/ui/alert"
-import InputFormField from "@/components/custom/form/input";
+import InputFormField from "@/components/custom/form/input"
 import { Switch } from "@/components/ui/switch"
 import Combobox from "@/components/custom/combobox"
 import { PhoneInput } from "@/components/custom/phone-input";

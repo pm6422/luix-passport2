@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/form"
 import { Alert, AlertTitle } from "@/components/ui/alert"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
-import InputFormField from "@/components/custom/form/input";
+import InputFormField from "@/components/custom/form/input"
 import Combobox from "@/components/custom/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
