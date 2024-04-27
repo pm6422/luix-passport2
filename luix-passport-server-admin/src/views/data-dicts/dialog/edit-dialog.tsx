@@ -26,7 +26,6 @@ export function EditDialog({
   afterSave
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
-  const [saving, setSaving] = useState(false)
   const [categoryCodeOptions, setCategoryCodeOptions] = useState(Array<any>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
