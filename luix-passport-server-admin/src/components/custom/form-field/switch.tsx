@@ -1,7 +1,7 @@
 import type { Control, FieldValues, Path } from "react-hook-form";
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { RequiredFormLabel } from "../required-form-label";
-import { Switch } from "@/components/ui/switch"
+import { Switch } from "@/components/ui/switch";
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
@@ -34,15 +34,17 @@ const SwitchFormField = <TFieldValues extends FieldValues>({
     key={key}
     render={({ field }) => (
       <FormItem className={formItemClassName}>
-        {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
-        <FormControl>
-        <Switch
-          checked={field.value}
-          onCheckedChange={field.onChange}
-          className={switchClassName}
-          aria-readonly
-        />
-        </FormControl>
+        <div className="flex items-center space-x-2">
+          {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
+          <FormControl>
+            <Switch
+              checked={field.value}
+              onCheckedChange={field.onChange}
+              className={switchClassName}
+              aria-readonly
+            />
+          </FormControl>
+        </div>
         {description && <FormDescription>{description}</FormDescription>}
         <FormMessage />
       </FormItem>
