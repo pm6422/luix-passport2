@@ -134,7 +134,7 @@ export function EditDialog({
               name="mobileNo"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Mobile No</RequiredFormLabel>
+                  <RequiredFormLabel required={true}>Mobile No</RequiredFormLabel>
                   <FormControl>
                     <PhoneInput defaultCountry="CN" international placeholder="Enter a phone number" {...field} />
                   </FormControl>
@@ -190,7 +190,7 @@ export function EditDialog({
               name="roles"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Roles</RequiredFormLabel>
+                  <RequiredFormLabel required={true}>Roles</RequiredFormLabel>
                   <FormControl>
                     <Combobox
                       options={enabledRoles}

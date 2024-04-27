@@ -115,7 +115,7 @@ export function EditDialog({
               name="categoryCode"
               render={({ field }) => (
                 <FormItem>
-                  <RequiredFormLabel>Category Code</RequiredFormLabel>
+                  <RequiredFormLabel required={true}>Category Code</RequiredFormLabel>
                   <FormControl>
                     <Combobox
                       options={categoryCodeOptions}
