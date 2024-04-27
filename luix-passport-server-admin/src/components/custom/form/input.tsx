@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
-import type { Control, FieldValues, Path } from 'react-hook-form';
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
+import type { ReactNode } from "react";
+import type { Control, FieldValues, Path } from "react-hook-form";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
@@ -10,7 +10,7 @@ interface Props<TFieldValues extends FieldValues> {
   label: string;
   value?: string;
   defaultValue?: string;
-  type?: Parameters<typeof Input>[0]['type'] | 'textarea';
+  type?: Parameters<typeof Input>[0]["type"] | "textarea";
   description?: string;
   placeholder?: string;
   onFocus?: () => void;
@@ -31,7 +31,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
   defaultValue,
   description,
   onFocus,
-  type = 'text',
+  type = "text",
   placeholder,
   subComponent,
   required,
@@ -53,12 +53,12 @@ const InputFormField = <TFieldValues extends FieldValues>({
         <FormControl>
           <div className="relative flex w-full items-center">
             {icon && <div className="pr-2 ">{icon}</div>}
-            {type === 'textarea' ? (
+            {type === "textarea" ? (
               <Textarea
                 placeholder={placeholder}
                 onFocus={onFocus}
                 defaultValue={defaultValue}
-                value={value || formFieldValue || ''}
+                value={value || formFieldValue || ""}
                 disabled={disabled}
                 {...rest}
               />
@@ -69,7 +69,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
                 onFocus={onFocus}
                 placeholder={placeholder}
                 defaultValue={defaultValue}
-                value={value || formFieldValue || ''}
+                value={value || formFieldValue || ""}
                 disabled={disabled}
                 {...rest}
               />
