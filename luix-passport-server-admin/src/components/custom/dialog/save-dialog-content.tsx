@@ -19,7 +19,7 @@ interface Props {
   form: UseFormReturn<any, any, any>;
   onSubmit: (data: any) => void;
   afterSave?: (success: boolean) => void;
-  disabled?: boolean;
+  readonly?: boolean;
   saving?: boolean;
 }
 
@@ -30,7 +30,7 @@ const SaveDialogContent = ({
   form,
   onSubmit,
   afterSave,
-  disabled = false,
+  readonly = false,
   saving = false
 }: Props) => (
   <DialogContent className={`lg:max-w-screen-${size} max-h-screen overflow-y-auto`}>
@@ -55,7 +55,7 @@ const SaveDialogContent = ({
               Cancel
             </Button>
           </DialogClose>
-          ( !disabled && 
+          ( !readonly && 
             <Button disabled={saving}>
               {saving ? "Saving..." : "Save"}
               {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
