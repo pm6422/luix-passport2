@@ -5,7 +5,7 @@ import FormErrors from "@/components/custom/form-errors"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconX, IconReload, IconPlus, IconExclamationCircle } from "@tabler/icons-react"
+import { IconX, IconReload, IconPlus } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -21,12 +21,11 @@ import {
   FormLabel,
   FormField,
   FormItem,
-  FormMessage,
   FormDescription
 } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import InputFormField from "@/components/custom/form-field/input"
-import Combobox from "@/components/custom/combobox"
+import Combobox from "@/components/custom/form-field/combobox"
 import { Switch } from "@/components/ui/switch"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
@@ -160,41 +159,22 @@ export function EditDialog({
               hide={id ? true : false}
             />
 
-            <FormField
-              control={form.control}
+            <Combobox
+              control={form.control} 
               name="clientAuthenticationMethods"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Authentication Methods</RequiredFormLabel>
-                  <FormControl>
-                    <Combobox
-                      options={authenticationMethodOptions}
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      multiple={true}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Authentication Methods"
+              required
+              options={authenticationMethodOptions}
+              multiple={true}
             />
-            <FormField
-              control={form.control}
+
+            <Combobox
+              control={form.control} 
               name="authorizationGrantTypes"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Authentication Grant Types</RequiredFormLabel>
-                  <FormControl>
-                    <Combobox
-                      options={grantTypeOptions}
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      multiple={true}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Authentication Grant Types"
+              required
+              options={grantTypeOptions}
+              multiple={true}
             />
 
             <div>
@@ -260,24 +240,16 @@ export function EditDialog({
                 />
               </div>
             </div>
-            <FormField
-              control={form.control}
+
+            <Combobox
+              control={form.control} 
               name="scopes"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel>Scopes</RequiredFormLabel>
-                  <FormControl>
-                    <Combobox
-                      options={scopeOptions}
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      multiple={true}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Scopes"
+              required
+              options={scopeOptions}
+              multiple={true}
             />
+
             <FormField
               control={form.control}
               name="enabled"

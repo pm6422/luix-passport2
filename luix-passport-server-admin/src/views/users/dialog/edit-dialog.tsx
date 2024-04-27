@@ -33,8 +33,8 @@ import {
   SelectValue
 } from "@/components/ui/select"
 import InputFormField from "@/components/custom/form-field/input"
+import Combobox from "@/components/custom/form-field/combobox"
 import { Switch } from "@/components/ui/switch"
-import Combobox from "@/components/custom/combobox"
 import { PhoneInput } from "@/components/custom/phone-input";
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
@@ -157,6 +157,7 @@ export function EditDialog({
                 formItemClassName="w-full"
               />
             </div>
+            
             <FormField
               control={form.control}
               name="language"
@@ -185,27 +186,16 @@ export function EditDialog({
               label="Remark"
             />
 
-            <FormField
-              control={form.control}
+            <Combobox
+              control={form.control} 
               name="roles"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel required={true}>Roles</RequiredFormLabel>
-                  <FormControl>
-                    <Combobox
-                      options={enabledRoles}
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      multiple={true}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    ROLE_ANONYMOUS, ROLE_USER are required for each user.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
+              label="Roles"
+              required
+              options={enabledRoles}
+              multiple={true}
+              description="ROLE_ANONYMOUS, ROLE_USER are required for each user."
             />
+
             <FormField
               control={form.control}
               name="enabled"
