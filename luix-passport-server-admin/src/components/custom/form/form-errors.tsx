@@ -3,7 +3,7 @@ import { IconExclamationCircle } from "@tabler/icons-react"
 import { Alert, AlertTitle } from "@/components/ui/alert"
 
 interface Props {
-  form: UseFormReturn;
+  form: UseFormReturn<any, any, any>;
 }
 
 const FormErrors = ({
