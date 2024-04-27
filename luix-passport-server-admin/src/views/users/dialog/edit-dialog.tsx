@@ -15,19 +15,12 @@ import {
   DialogClose,
   DialogFooter
 } from "@/components/ui/dialog"
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage
-} from "@/components/ui/form"
-import { RequiredFormLabel } from "@/components/custom/required-form-label"
+import { Form } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
 import SelectFormField from "@/components/custom/form-field/select"
-import { PhoneInput } from "@/components/custom/phone-input";
+import PhoneInputFormField from "@/components/custom/form-field/phone-input"
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { UserService } from "@/services/user-service"
@@ -121,18 +114,12 @@ export function EditDialog({
               required
             />
 
-            <FormField
-              control={form.control}
-              name="mobileNo"
-              render={({ field }) => (
-                <FormItem>
-                  <RequiredFormLabel required={true}>Mobile No</RequiredFormLabel>
-                  <FormControl>
-                    <PhoneInput defaultCountry="CN" international placeholder="Enter a phone number" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+            <PhoneInputFormField 
+              control={form.control} 
+              name="mobileNo" 
+              label="Mobile No" 
+              required
+              placeholder="Enter a phone number"
             />
             
             <div className="flex items-center gap-2">
