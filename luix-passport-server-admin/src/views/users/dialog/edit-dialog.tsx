@@ -1,21 +1,8 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import FormErrors from "@/components/custom/form-errors"
-import { toast } from "sonner"
-import { getErrorMessage } from "@/libs/handle-error"
-import { Button } from "@/components/custom/button"
-import { IconReload } from "@tabler/icons-react"
-import { Separator } from "@/components/ui/separator"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-  DialogFooter
-} from "@/components/ui/dialog"
-import { Form } from "@/components/ui/form"
+import { Dialog } from "@/components/ui/dialog"
+import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
@@ -42,7 +29,6 @@ export function EditDialog({
   afterSave
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
-  const [saving, setSaving] = useState(false)
   const [enabledRoles, setEnabledRoles] = useState(Array<any>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -64,124 +50,79 @@ export function EditDialog({
     }
   }, [open])
 
-  function onSubmit(formData: FormSchema): void {
-    setSaving(true)
-    toast.promise(save(formData), {
-      loading: "Saving " + entityName + "...",
-      success: () => {
-        setOpen(false)
-        form.reset()
-        afterSave && afterSave(true)
-        setSaving(false)
-        return "Saved " + entityName
-      },
-      error: (error) => {
-        setOpen(false)
-        afterSave && afterSave(false)
-        setSaving(false)
-        return getErrorMessage(error)
-      }
-    })
-  }
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
-      <DialogContent className="lg:max-w-screen-md max-h-screen overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
-        </DialogHeader>
-        <Separator/>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-4"
-          >
-            <FormErrors form={form}/>
+      <SaveDialogContent entityName={entityName} id={id} form={form} save={save} afterSave={afterSave} setOpen={setOpen}>
+        <InputFormField 
+          control={form.control} 
+          name="username" 
+          label="Username" 
+          required 
+          disabled={id ? true : false}
+        />
 
-            <InputFormField 
-              control={form.control} 
-              name="username" 
-              label="Username" 
-              required 
-              disabled={id ? true : false}
-            />
+        <InputFormField 
+          control={form.control} 
+          name="email" 
+          label="Email" 
+          required
+        />
 
-            <InputFormField 
-              control={form.control} 
-              name="email" 
-              label="Email" 
-              required
-            />
+        <PhoneInputFormField 
+          control={form.control} 
+          name="mobileNo" 
+          label="Mobile No" 
+          required
+          placeholder="Enter a phone number"
+        />
+        
+        <div className="flex items-center gap-2">
+          <InputFormField 
+            control={form.control} 
+            name="firstName" 
+            label="First Name" 
+            formItemClassName="w-full"
+          />
+          
+          <InputFormField 
+            control={form.control} 
+            name="lastName" 
+            label="Last Name" 
+            formItemClassName="w-full"
+          />
+        </div>
 
-            <PhoneInputFormField 
-              control={form.control} 
-              name="mobileNo" 
-              label="Mobile No" 
-              required
-              placeholder="Enter a phone number"
-            />
-            
-            <div className="flex items-center gap-2">
-              <InputFormField 
-                control={form.control} 
-                name="firstName" 
-                label="First Name" 
-                formItemClassName="w-full"
-              />
-              
-              <InputFormField 
-                control={form.control} 
-                name="lastName" 
-                label="Last Name" 
-                formItemClassName="w-full"
-              />
-            </div>
+        <SelectFormField 
+          control={form.control} 
+          name="language" 
+          label="Preferred Language"
+          options={[{value: "English", label: "English"}, {value: "Chinese", label: "Chinese"}]}
+        />
 
-            <SelectFormField 
-              control={form.control} 
-              name="language" 
-              label="Preferred Language"
-              options={[{value: "English", label: "English"}, {value: "Chinese", label: "Chinese"}]}
-            />
+        <InputFormField 
+          control={form.control} 
+          name="remark" 
+          label="Remark"
+        />
 
-            <InputFormField 
-              control={form.control} 
-              name="remark" 
-              label="Remark"
-            />
+        <ComboboxFormField
+          control={form.control} 
+          name="roles"
+          label="Roles"
+          required
+          options={enabledRoles}
+          multiple={true}
+          description="ROLE_ANONYMOUS, ROLE_USER are required for each user."
+        />
 
-            <ComboboxFormField
-              control={form.control} 
-              name="roles"
-              label="Roles"
-              required
-              options={enabledRoles}
-              multiple={true}
-              description="ROLE_ANONYMOUS, ROLE_USER are required for each user."
-            />
-
-            <SwitchFormField 
-              control={form.control} 
-              name="enabled" 
-              label="Enabled"
-              description="After disabling, existing data can still reference the object, but new data can"
-            />
-
-            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button disabled={saving}>
-                {saving ? "Saving..." : "Save"}
-                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
-      </DialogContent>
+        <SwitchFormField 
+          control={form.control} 
+          name="enabled" 
+          label="Enabled"
+          description="After disabling, existing data can still reference the object, but new data can"
+        />
+      </SaveDialogContent>
     </Dialog>
   )
 }
