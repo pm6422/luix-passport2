@@ -1,0 +1,69 @@
+import type { Control, FieldValues, Path } from "react-hook-form";
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import { RequiredFormLabel } from "../required-form-label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select"
+
+interface Props<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues>;
+  name: keyof TFieldValues;
+  key?: string;
+  label?: string;
+  options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
+  description?: string;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  selectContentClassName?: string;
+  formItemClassName?: string;
+  hide?: boolean;
+}
+
+const SelectFormField = <TFieldValues extends FieldValues>({
+  control,
+  name,
+  key,
+  label,
+  options,
+  description,
+  placeholder,
+  required,
+  disabled,
+  selectContentClassName,
+  formItemClassName,
+  hide = false
+}: Props<TFieldValues>) => ( !hide &&
+  <FormField
+    control={disabled ? undefined : control}
+    name={name as Path<TFieldValues>}
+    key={key}
+    render={({ field }) => (
+      <FormItem className={formItemClassName}>
+        {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
+        <FormControl>
+          <Select onValueChange={field.onChange} defaultValue={field.value} >
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder={placeholder}/>
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent className={selectContentClassName}>
+              {options.map(option => (
+                <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </FormControl>
+        {description && <FormDescription>{description}</FormDescription>}
+        <FormMessage />
+      </FormItem>
+    )}
+  />
+);
+
+export default SelectFormField;

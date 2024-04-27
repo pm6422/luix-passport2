@@ -18,22 +18,15 @@ import {
 import {
   Form,
   FormControl,
-  FormLabel,
   FormField,
   FormItem,
   FormMessage
 } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "@/components/ui/select"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
+import SelectFormField from "@/components/custom/form-field/select"
 import { PhoneInput } from "@/components/custom/phone-input";
 import { initialFormState, formSchema, type FormSchema } from "../table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
@@ -157,27 +150,12 @@ export function EditDialog({
                 formItemClassName="w-full"
               />
             </div>
-            
-            <FormField
-              control={form.control}
-              name="language"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Preferred Language</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue/>
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="English">English</SelectItem>
-                      <SelectItem value="Chinese">Chinese</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage/>
-                </FormItem>
-              )}
+
+            <SelectFormField 
+              control={form.control} 
+              name="language" 
+              label="Preferred Language"
+              options={[{value: "English", label: "English"}, {value: "Chinese", label: "Chinese"}]}
             />
 
             <InputFormField 
