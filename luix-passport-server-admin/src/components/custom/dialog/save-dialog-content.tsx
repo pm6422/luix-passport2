@@ -62,11 +62,9 @@ const SaveDialogContent = ({
 
   return (
     <DialogContent className={`lg:max-w-screen-${size} max-h-screen overflow-y-auto`}>
-      ( title && 
-        <DialogHeader>
-          <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
-        </DialogHeader>
-      )
+      <DialogHeader>
+        <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
+      </DialogHeader>
       <Separator/>
       <Form {...form}>
         <form
@@ -83,12 +81,12 @@ const SaveDialogContent = ({
                 Cancel
               </Button>
             </DialogClose>
-            ( !readonly && 
+            { !readonly &&
               <Button disabled={saving}>
                 {saving ? "Saving..." : "Save"}
                 {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
               </Button>
-            )
+            }
           </DialogFooter>
         </form>
       </Form>

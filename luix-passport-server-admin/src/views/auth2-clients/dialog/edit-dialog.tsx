@@ -1,25 +1,14 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, useFieldArray } from "react-hook-form"
-import FormErrors from "@/components/custom/form-errors"
-import { toast } from "sonner"
-import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconX, IconReload, IconPlus } from "@tabler/icons-react"
-import { Separator } from "@/components/ui/separator"
+import { IconX, IconPlus } from "@tabler/icons-react"
+import { Dialog } from "@/components/ui/dialog"
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogClose,
-  DialogFooter
-} from "@/components/ui/dialog"
-import {
-  Form,
   FormLabel,
   FormDescription
 } from "@/components/ui/form"
+import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
@@ -44,7 +33,6 @@ export function EditDialog({
   afterSave
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
-  const [saving, setSaving] = useState(false)
   const [authenticationMethodOptions, setAuthenticationMethodOptions] = useState(Array<any>)
   const [grantTypeOptions, setGrantTypeOptions] = useState(Array<any>)
   const [scopeOptions, setScopeOptions] = useState(Array<any>)
@@ -97,177 +85,134 @@ export function EditDialog({
     }
   }, [open])
 
-  function onSubmit(formData: FormSchema): void {
-    setSaving(true)
-    toast.promise(save(formData), {
-      loading: "Saving " + entityName + "...",
-      success: () => {
-        setOpen(false)
-        form.reset()
-        afterSave && afterSave(true)
-        setSaving(false)
-        return "Saved " + entityName
-      },
-      error: (error) => {
-        setOpen(false)
-        afterSave && afterSave(false)
-        setSaving(false)
-        return getErrorMessage(error)
-      }
-    })
-  }
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
-      <DialogContent className="lg:max-w-screen-md max-h-screen overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
-        </DialogHeader>
-        <Separator/>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col gap-4"
-          >
-            <FormErrors form={form}/>
+      <SaveDialogContent entityName={entityName} id={id} form={form} save={save} afterSave={afterSave} setOpen={setOpen}>
+        <InputFormField 
+          control={form.control} 
+          name="clientId" 
+          label="Client ID" 
+          required 
+          disabled={id ? true : false}
+        />
 
+        <InputFormField 
+          control={form.control} 
+          name="clientName" 
+          label="Client Name" 
+          required
+        />
+
+        <InputFormField 
+          control={form.control} 
+          name="rawClientSecret" 
+          label="Raw Client Secret" 
+          required 
+          description="Do not forget the secret." 
+          hide={id ? true : false}
+        />
+
+        <ComboboxFormField
+          control={form.control} 
+          name="clientAuthenticationMethods"
+          label="Authentication Methods"
+          required
+          options={authenticationMethodOptions}
+          multiple={true}
+        />
+
+        <ComboboxFormField
+          control={form.control} 
+          name="authorizationGrantTypes"
+          label="Authentication Grant Types"
+          required
+          options={grantTypeOptions}
+          multiple={true}
+        />
+
+        <div>
+          <RequiredFormLabel>
+            Redirect URIs
+          </RequiredFormLabel>
+          <FormDescription className="mb-3">
+            Valid redirect URIs after login successfully.
+          </FormDescription>
+          {redirectUriFields.map((field, index) => (
             <InputFormField 
               control={form.control} 
-              name="clientId" 
-              label="Client ID" 
-              required 
-              disabled={id ? true : false}
-            />
-
-            <InputFormField 
-              control={form.control} 
-              name="clientName" 
-              label="Client Name" 
-              required
-            />
-
-            <InputFormField 
-              control={form.control} 
-              name="rawClientSecret" 
-              label="Raw Client Secret" 
-              required 
-              description="Do not forget the secret." 
-              hide={id ? true : false}
-            />
-
-            <ComboboxFormField
-              control={form.control} 
-              name="clientAuthenticationMethods"
-              label="Authentication Methods"
-              required
-              options={authenticationMethodOptions}
-              multiple={true}
-            />
-
-            <ComboboxFormField
-              control={form.control} 
-              name="authorizationGrantTypes"
-              label="Authentication Grant Types"
-              required
-              options={grantTypeOptions}
-              multiple={true}
-            />
-
-            <div>
-              <RequiredFormLabel>
-                Redirect URIs
-              </RequiredFormLabel>
-              <FormDescription className="mb-3">
-                Valid redirect URIs after login successfully.
-              </FormDescription>
-              {redirectUriFields.map((field, index) => (
-                <InputFormField 
-                  control={form.control} 
-                  key={field.id}
-                  // @ts-ignore
-                  name={`redirectUris.${index}`}
-                  icon={
-                    <Button 
-                      type="button"
-                      variant="outline" 
-                      className="flex size-9 p-0" 
-                      onClick={() => removeRedirectUri(index)}>
-                        <IconX className="size-4" />
-                        <span className="sr-only">Delete</span>
-                    </Button>
-                  }
-                />
-              ))}
-              <div className="flex items-center justify-end w-full mt-2">
-                <IconPlus
-                  className="size-6 mr-1 cursor-pointer text-muted-foreground"
+              key={field.id}
+              // @ts-ignore
+              name={`redirectUris.${index}`}
+              formItemClassName="mt-2"
+              icon={
+                <Button 
                   type="button"
-                  onClick={() => addRedirectUri("")}
-                />
-              </div>
-            </div>
-            <div>
-              <FormLabel className="mb-3">
-                Post Logout Redirect URIs
-              </FormLabel>
-              {postLogoutRedirectUriFields.map((field, index) => (
-                <InputFormField 
-                  control={form.control} 
-                  key={field.id}
-                  // @ts-ignore
-                  name={`postLogoutRedirectUris.${index}`}
-                  icon={
-                    <Button 
-                      type="button"
-                      variant="outline" 
-                      className="flex size-9 p-0" 
-                      onClick={() => removePostLogoutRedirectUri(index)}>
-                        <IconX className="size-4" />
-                        <span className="sr-only">Delete</span>
-                    </Button>
-                  }
-                />
-              ))}
-              <div className="flex items-center justify-end w-full mt-2">
-                <IconPlus
-                  className="size-6 mr-1 cursor-pointer text-muted-foreground"
-                  type="button"
-                  onClick={() => addPostLogoutRedirectUri("")}
-                />
-              </div>
-            </div>
-
-            <ComboboxFormField
-              control={form.control} 
-              name="scopes"
-              label="Scopes"
-              required
-              options={scopeOptions}
-              multiple={true}
-            />
-
-            <SwitchFormField 
-              control={form.control} 
-              name="enabled" 
-              label="Enabled"
-              description="After disabling, existing data can still reference the object, but new data can"
-            />
-
-            <DialogFooter className="gap-2 pt-2 sm:space-x-0">
-              <DialogClose asChild>
-                <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
-                  Cancel
+                  variant="outline" 
+                  className="flex size-9 p-0" 
+                  onClick={() => removeRedirectUri(index)}>
+                    <IconX className="size-4" />
+                    <span className="sr-only">Delete</span>
                 </Button>
-              </DialogClose>
-              <Button disabled={saving}>
-                {saving ? "Saving..." : "Save"}
-                {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
-              </Button>
-            </DialogFooter>
-          </form>
-        </Form>
-      </DialogContent>
+              }
+            />
+          ))}
+          <div className="flex items-center justify-end w-full mt-2">
+            <IconPlus
+              className="size-6 mr-1 cursor-pointer text-muted-foreground"
+              type="button"
+              onClick={() => addRedirectUri("")}
+            />
+          </div>
+        </div>
+        <div>
+          <FormLabel className="mb-3">
+            Post Logout Redirect URIs
+          </FormLabel>
+          {postLogoutRedirectUriFields.map((field, index) => (
+            <InputFormField 
+              control={form.control} 
+              key={field.id}
+              // @ts-ignore
+              name={`postLogoutRedirectUris.${index}`}
+              formItemClassName="mt-2"
+              icon={
+                <Button 
+                  type="button"
+                  variant="outline" 
+                  className="flex size-9 p-0" 
+                  onClick={() => removePostLogoutRedirectUri(index)}>
+                    <IconX className="size-4" />
+                    <span className="sr-only">Delete</span>
+                </Button>
+              }
+            />
+          ))}
+          <div className="flex items-center justify-end w-full mt-2">
+            <IconPlus
+              className="size-6 mr-1 cursor-pointer text-muted-foreground"
+              type="button"
+              onClick={() => addPostLogoutRedirectUri("")}
+            />
+          </div>
+        </div>
+
+        <ComboboxFormField
+          control={form.control} 
+          name="scopes"
+          label="Scopes"
+          required
+          options={scopeOptions}
+          multiple={true}
+        />
+
+        <SwitchFormField 
+          control={form.control} 
+          name="enabled" 
+          label="Enabled"
+          description="After disabling, existing data can still reference the object, but new data can"
+        />
+      </SaveDialogContent>
     </Dialog>
   )
 }
