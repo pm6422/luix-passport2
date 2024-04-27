@@ -17,7 +17,7 @@ import { Button } from '@/components/custom/button'
 import { PasswordInput } from '@/components/custom/password-input'
 import { cn } from '@/libs/utils'
 
-interface UserAuthFormProps extends HTMLAttributes<HTMLDivElement> {}
+interface SignInFormProps extends HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
   email: z
@@ -34,7 +34,7 @@ const formSchema = z.object({
     }),
 })
 
-export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
+export function SignInForm({ className, ...props }: SignInFormProps) {
   const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
