@@ -20,7 +20,7 @@ interface Props {
   entityName: string;
   id?: string;
   form: UseFormReturn<any, any, any>;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: "sm" | "md" | "lg";
   save: (formData: any) => Promise<any>;
   afterSave?: (success: boolean) => void;
   setOpen: (open: boolean) => void;
