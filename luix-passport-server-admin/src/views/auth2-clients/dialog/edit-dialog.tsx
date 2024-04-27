@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, useFieldArray } from "react-hook-form"
-import { IconX } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Button } from "@/components/custom/button"
-import { IconReload, IconPlus, IconExclamationCircle } from "@tabler/icons-react"
+import { IconX, IconReload, IconPlus, IconExclamationCircle } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import {
   Dialog,
@@ -182,6 +181,7 @@ export function EditDialog({
                 </FormItem>
               )}
             />
+
             <div>
               <RequiredFormLabel>
                 Redirect URIs
@@ -197,15 +197,16 @@ export function EditDialog({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <div className="flex justify-between items-center w-full mt-2">
+                        <div className="flex justify-between items-center w-full mt-2 gap-2">
                           <Input {...field} className="w-full"/>
-                          <IconX
-                            className="h-4 mx-2 cursor-pointer text-muted-foreground"
+                          <Button 
                             type="button"
-                            onClick={() => {
-                              removeRedirectUri(index)
-                            }}
-                          />
+                            variant="outline" 
+                            className="flex size-9 p-0" 
+                            onClick={() => removeRedirectUri(index)}>
+                              <IconX className="size-4" />
+                              <span className="sr-only">Delete</span>
+                          </Button>
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -213,11 +214,11 @@ export function EditDialog({
                   )}
                 />
               ))}
-              <div className="flex items-center justify-end w-full">
+              <div className="flex items-center justify-end w-full mt-2">
                 <Button 
                   type="button"
                   variant="outline" 
-                  className="flex size-8 p-0 mt-2" 
+                  className="flex size-9 p-0" 
                   onClick={() => addRedirectUri("")}>
                     <IconPlus className="size-4" />
                     <span className="sr-only">Add</span>
@@ -236,15 +237,16 @@ export function EditDialog({
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <div className="flex justify-between items-center w-full mt-2">
+                        <div className="flex justify-between items-center w-full mt-2 gap-2">
                           <Input {...field} className="w-full"/>
-                          <IconX
-                            className="h-4 mx-2 cursor-pointer text-muted-foreground"
+                          <Button 
                             type="button"
-                            onClick={() => {
-                              removePostLogoutRedirectUri(index)
-                            }}
-                          />
+                            variant="outline" 
+                            className="flex size-9 p-0" 
+                            onClick={() => removePostLogoutRedirectUri(index)}>
+                              <IconX className="size-4" />
+                              <span className="sr-only">Delete</span>
+                          </Button>
                         </div>
                       </FormControl>
                       <FormMessage />
@@ -252,11 +254,11 @@ export function EditDialog({
                   )}
                 />
               ))}
-              <div className="flex items-center justify-end w-full">
+              <div className="flex items-center justify-end w-full mt-2">
                 <Button 
                   type="button"
                   variant="outline" 
-                  className="flex size-8 p-0 mt-2" 
+                  className="flex size-9 p-0" 
                   onClick={() => addPostLogoutRedirectUri("")}>
                     <IconPlus className="size-4" />
                     <span className="sr-only">Add</span>
