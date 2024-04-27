@@ -59,7 +59,7 @@ export function EditDialog({
           required
           options={categoryCodeOptions}
           placeholder="Select or input a category code"
-          createable={true}
+          creatable={true}
         />
 
         <InputFormField 

@@ -44,7 +44,7 @@ interface ComboboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, V
   disabled?: boolean;
   placeholder?: string;
   onValueChange: (value: string | string[]) => void;
-  createable?: boolean;
+  creatable?: boolean;
   multiple?: boolean;
 }
 
@@ -58,7 +58,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
     onValueChange,
     disabled,
     placeholder,
-    createable,
+    creatable,
     multiple,
     ...props
   },
@@ -138,7 +138,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                       className={cn("", comboboxVariants({ variant, className }))}
                     >
                       {IconComponent && <IconComponent className="size-4 mr-1" />}
-                      {createable ? (option ? option.label : value) : option?.label}
+                      {creatable ? (option ? option.label : value) : option?.label}
                       <IconCircleX
                         className="ml-1 size-4 cursor-pointer"
                         onClick={event => {
@@ -197,7 +197,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
             onValueChange={(value: string) => setQuery(value)}
           />
           <CommandList>
-            {createable ? (
+            {creatable ? (
               <CommandEmpty
                 onClick={() => {
                   setSelectedValues([...selectedValues, query])

@@ -9,7 +9,7 @@ interface Props<TFieldValues extends FieldValues> {
   key?: string;
   label?: string;
   options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
-  createable?: boolean;
+  creatable?: boolean;
   multiple?: boolean;
   description?: string;
   placeholder?: string;
@@ -26,7 +26,7 @@ const ComboboxFormField = <TFieldValues extends FieldValues>({
   key,
   label,
   options,
-  createable,
+  creatable,
   multiple,
   description,
   placeholder,
@@ -48,7 +48,7 @@ const ComboboxFormField = <TFieldValues extends FieldValues>({
             options={options}
             defaultValue={field.value}
             onValueChange={field.onChange}
-            createable={createable}
+            creatable={creatable}
             multiple={multiple}
             placeholder={placeholder}
             className={comboboxClassName}

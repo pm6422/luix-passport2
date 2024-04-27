@@ -107,7 +107,7 @@ export function EditDialog({
           label="Raw Client Secret" 
           required 
           description="Do not forget the secret." 
-          hide={id ? true : false}
+          hide={!!id}
         />
 
         <ComboboxFormField
