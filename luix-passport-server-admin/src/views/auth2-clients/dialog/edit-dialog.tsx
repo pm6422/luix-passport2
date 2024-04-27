@@ -136,9 +136,29 @@ export function EditDialog({
           >
             <FormErrors form={form}/>
 
-            <InputFormField control={form.control} name="clientId" label="Client ID" required disabled={id ? true : false}/>
-            <InputFormField control={form.control} name="clientName" label="Client Name" required/>
-            <InputFormField control={form.control} name="rawClientSecret" label="Raw Client Secret" required description="Do not forget the secret." hide={id ? true : false}/>
+            <InputFormField 
+              control={form.control} 
+              name="clientId" 
+              label="Client ID" 
+              required 
+              disabled={id ? true : false}
+            />
+
+            <InputFormField 
+              control={form.control} 
+              name="clientName" 
+              label="Client Name" 
+              required
+            />
+
+            <InputFormField 
+              control={form.control} 
+              name="rawClientSecret" 
+              label="Raw Client Secret" 
+              required 
+              description="Do not forget the secret." 
+              hide={id ? true : false}
+            />
 
             <FormField
               control={form.control}

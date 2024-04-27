@@ -114,8 +114,20 @@ export function EditDialog({
           >
             <FormErrors form={form}/>
 
-            <InputFormField control={form.control} name="username" label="Username" required disabled={id ? true : false}/>
-            <InputFormField control={form.control} name="email" label="Email" required/>
+            <InputFormField 
+              control={form.control} 
+              name="username" 
+              label="Username" 
+              required 
+              disabled={id ? true : false}
+            />
+
+            <InputFormField 
+              control={form.control} 
+              name="email" 
+              label="Email" 
+              required
+            />
 
             <FormField
               control={form.control}
@@ -131,8 +143,19 @@ export function EditDialog({
               )}
             />
             <div className="flex items-center gap-2">
-              <InputFormField control={form.control} name="firstName" label="First Name" formItemClassName="w-full"/>
-              <InputFormField control={form.control} name="lastName" label="Last Name" formItemClassName="w-full"/>
+              <InputFormField 
+                control={form.control} 
+                name="firstName" 
+                label="First Name" 
+                formItemClassName="w-full"
+              />
+              
+              <InputFormField 
+                control={form.control} 
+                name="lastName" 
+                label="Last Name" 
+                formItemClassName="w-full"
+              />
             </div>
             <FormField
               control={form.control}
@@ -156,7 +179,11 @@ export function EditDialog({
               )}
             />
 
-            <InputFormField control={form.control} name="remark" label="Remark"/>
+            <InputFormField 
+              control={form.control} 
+              name="remark" 
+              label="Remark"
+            />
 
             <FormField
               control={form.control}

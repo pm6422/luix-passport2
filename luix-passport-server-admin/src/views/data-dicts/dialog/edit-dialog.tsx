@@ -129,9 +129,25 @@ export function EditDialog({
                 </FormItem>
               )}
             />
-            <InputFormField control={form.control} name="dictCode" label="Dictionary Code" required/>
-            <InputFormField control={form.control} name="dictName" label="Dictionary Name"/>
-            <InputFormField control={form.control} name="remark" label="Remark"/>
+            
+            <InputFormField 
+              control={form.control} 
+              name="dictCode" 
+              label="Dictionary Code" 
+              required
+            />
+
+            <InputFormField 
+              control={form.control} 
+              name="dictName" 
+              label="Dictionary Name"
+            />
+
+            <InputFormField 
+              control={form.control} 
+              name="remark" 
+              label="Remark"
+            />
 
             <FormField
               control={form.control}
