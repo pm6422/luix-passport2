@@ -52,7 +52,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
           {required && <span className="ml-1 text-destructive text-xl align-middle">*</span>}
         </FormLabel>
         <FormControl>
-          <div className="relative flex w-full items-center">
+          <div className="relative flex w-full items-center gap-2">
             {type === "textarea" ? (
               <Textarea
                 placeholder={placeholder}
@@ -74,7 +74,7 @@ const InputFormField = <TFieldValues extends FieldValues>({
                 {...rest}
               />
             )}
-            {icon && <div className="pl-1">{icon}</div>}
+            {icon && (icon)}
             {subComponent}
           </div>
         </FormControl>
