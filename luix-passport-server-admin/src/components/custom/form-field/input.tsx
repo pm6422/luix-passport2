@@ -16,7 +16,6 @@ interface Props<TFieldValues extends FieldValues> {
   description?: string;
   placeholder?: string;
   onFocus?: () => void;
-  minimal?: boolean;
   subComponent?: React.ReactNode;
   required?: boolean;
   disabled?: boolean;
