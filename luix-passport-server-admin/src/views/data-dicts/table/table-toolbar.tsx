@@ -70,8 +70,19 @@ export function DataTableToolbar ({
                 className="flex flex-col gap-4"
               >
                 <div className="flex items-center gap-2">
-                  <InputFormField control={form.control} name="num" label="Number" formItemClassName="w-full"/>
-                  <InputFormField control={form.control} name="categoryCode" label="Category Code" formItemClassName="w-full"/>
+                  <InputFormField 
+                    control={form.control} 
+                    name="num" 
+                    label="Number" 
+                    formItemClassName="w-full"
+                  />
+
+                  <InputFormField 
+                    control={form.control} 
+                    name="categoryCode" 
+                    label="Category Code" 
+                    formItemClassName="w-full"
+                  />
                   
                   <FormField
                     control={form.control}

@@ -66,11 +66,27 @@ export function DataTableToolbar ({
                 className="flex flex-col gap-4"
               >
                 <div className="flex items-center gap-2">
-                  <InputFormField control={form.control} name="username" label="Username" formItemClassName="w-full"/>
-                  <InputFormField control={form.control} name="email" label="Email" formItemClassName="w-full"/>
+                  <InputFormField 
+                    control={form.control} 
+                    name="username" 
+                    label="Username" 
+                    formItemClassName="w-full"
+                  />
+
+                  <InputFormField 
+                    control={form.control} 
+                    name="email" 
+                    label="Email" 
+                    formItemClassName="w-full"
+                  />
                 </div>
                 <div className="flex items-center gap-2">
-                  <InputFormField control={form.control} name="mobileNo" label="Mobile No" formItemClassName="w-full"/>
+                  <InputFormField 
+                    control={form.control} 
+                    name="mobileNo" 
+                    label="Mobile No" 
+                    formItemClassName="w-full"
+                  />
                   <FormField
                     control={form.control}
                     name="enabled"
