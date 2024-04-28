@@ -11,7 +11,6 @@ export default function AuthLayout() {
   useEffect(() => {
     console.log('Location changed: ', location)
     
-
   }, [location]);
 
   return (

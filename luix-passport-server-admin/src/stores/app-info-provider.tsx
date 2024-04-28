@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import appInfoObj from '@/data/app-info.json';
+import React, { createContext, useContext, useState } from "react"
+import appInfoObj from "@/data/app-info.json"
 
 export type AppInfo = {
   apiDocsEnabled: string;
@@ -54,7 +54,7 @@ export const useAppInfoProvider = () => {
   const context = useContext(AppInfoProviderContext);
 
   if (context === undefined) {
-    throw new Error('useAppInfoProvider must be used within a AppInfoProvider');
+    throw new Error("useAppInfoProvider must be used within a AppInfoProvider");
   }
 
   return context;
