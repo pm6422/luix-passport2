@@ -5,34 +5,34 @@ export class Oauth2ClientService {
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {
-    return axios.get('open-api/oauth2-clients', { params: { page: 0, size: 2000, enabled: enabled } });
+    return axios.get('api/oauth2-clients', { params: { page: 0, size: 2000, enabled: enabled } });
   }
 
   public static findById(id: String): Promise<any> {
-    return axios.get('open-api/oauth2-clients/' + id);
+    return axios.get('api/oauth2-clients/' + id);
   }
 
   public static create(model: any): Promise<any> {
-    return axios.post('open-api/oauth2-clients', model);
+    return axios.post('api/oauth2-clients', model);
   }
 
   public static update(model: any): Promise<any> {
-    return axios.put('open-api/oauth2-clients', model);
+    return axios.put('api/oauth2-clients', model);
   }
 
   public static deleteById(id: String): Promise<any> {
-    return axios.delete('open-api/oauth2-clients/' + id);
+    return axios.delete('api/oauth2-clients/' + id);
   }
 
   public static findClientAuthenticationMethods(): Promise<any> {
-    return axios.get("open-api/oauth2-clients/client-authentication-methods");
+    return axios.get("api/oauth2-clients/client-authentication-methods");
   }
 
   public static findAuthorizationGrantTypes(): Promise<any> {
-    return axios.get("open-api/oauth2-clients/authorization-grant-types");
+    return axios.get("api/oauth2-clients/authorization-grant-types");
   }
 
   public static findScopes(): Promise<any> {
-    return axios.get("open-api/oauth2-clients/scopes");
+    return axios.get("api/oauth2-clients/scopes");
   }
 }

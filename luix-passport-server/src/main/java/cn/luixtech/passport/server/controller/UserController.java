@@ -49,7 +49,7 @@ public class UserController {
     private final HttpHeaderCreator         httpHeaderCreator;
 
     @Operation(summary = "create new user and send a user creation email")
-    @PostMapping("/open-api/users")
+    @PostMapping("/api/users")
     public ResponseEntity<Void> create(HttpServletRequest request,
                                        @Parameter(description = "user", required = true) @Valid @RequestBody User domain) {
         User newUser = userService.insert(domain, null, applicationProperties.getAccount().getDefaultPassword(), true);
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @Operation(summary = "find user list")
-    @GetMapping("/open-api/users")
+    @GetMapping("/api/users")
     public ResponseEntity<List<ManagedUser>> find(@ParameterObject Pageable pageable,
                                                   @Parameter(description = "username") @RequestParam(value = "username", required = false) String username,
                                                   @Parameter(description = "email") @RequestParam(value = "email", required = false) String email,
@@ -79,13 +79,13 @@ public class UserController {
     }
 
     @Operation(summary = "find user by id")
-    @GetMapping("/open-api/users/{id}")
+    @GetMapping("/api/users/{id}")
     public ResponseEntity<ManagedUser> findById(@Parameter(description = "ID", required = true) @PathVariable String id) {
         return ResponseEntity.ok(userService.findById(id));
     }
 
     @Operation(summary = "update user")
-    @PutMapping("/open-api/users")
+    @PutMapping("/api/users")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody ManagedUser domain) {
         userService.update(domain, domain.getRoles());
         if (domain.getId().equals(AuthUtils.getCurrentUserId())) {
@@ -96,14 +96,14 @@ public class UserController {
     }
 
     @Operation(summary = "delete user by id", description = "the data may be referenced by other data, and some problems may occur after deletion")
-    @DeleteMapping("/open-api/users/{id}")
+    @DeleteMapping("/api/users/{id}")
     public ResponseEntity<Void> delete(@Parameter(description = "ID", required = true) @PathVariable String id) {
         userService.deleteById(id);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1003", id)).build();
     }
 
     @Operation(summary = "reset password to default one")
-    @PutMapping("/open-api/users/reset-password/{id}")
+    @PutMapping("/api/users/reset-password/{id}")
     public ResponseEntity<Void> resetPassword(@Parameter(description = "id", required = true) @PathVariable String id) {
         userService.changePassword(id, null, applicationProperties.getAccount().getDefaultPassword());
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
