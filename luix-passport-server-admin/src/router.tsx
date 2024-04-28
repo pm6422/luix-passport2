@@ -29,8 +29,8 @@ const router = createHashRouter([
   {
     path: "/",
     lazy: async () => {
-      const MainLayout = await import("./layouts/main-layout")
-      return { Component: MainLayout.default }
+      const AuthLayout = await import("./layouts/auth-layout")
+      return { Component: AuthLayout.default }
     },
     errorElement: <GeneralError />,
     children: [
