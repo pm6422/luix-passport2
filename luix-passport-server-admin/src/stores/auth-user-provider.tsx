@@ -8,7 +8,7 @@ export type AuthUser = {
 
 type AuthUserProviderProps = {
   children: React.ReactNode
-  defaultValue?: AuthUser
+  defaultValue?: AuthUser | null
 };
 
 type AuthUserProviderState = {

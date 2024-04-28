@@ -15,7 +15,7 @@ export type AppInfo = {
 
 type AppInfoProviderProps = {
   children: React.ReactNode
-  defaultValue?: AppInfo
+  defaultValue?: AppInfo | null
 };
 
 type AppInfoProviderState = {

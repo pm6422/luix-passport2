@@ -5,13 +5,13 @@ export class AccountService {
   constructor() {
   }
 
-  public static async getCurrentAccount(): Promise<any> {
+  public static async getCurrentAccount(): Promise<AuthUser | null> {
     try {
       const res = await axios.get<AuthUser>("open-api/accounts/user")
       return res.data
     } catch (error) {
       console.error(error)
-      return undefined
+      return null
     }
   }
 
