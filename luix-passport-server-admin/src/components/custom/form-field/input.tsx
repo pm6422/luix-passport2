@@ -4,11 +4,12 @@ import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { RequiredFormLabel } from "../required-form-label";
+import { Key } from "react";
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
-  key?: string;
+  key?: Key;
   label?: string;
   value?: string;
   defaultValue?: string;

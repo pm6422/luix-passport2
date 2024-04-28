@@ -3,11 +3,12 @@ import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "
 import { RequiredFormLabel } from "../required-form-label";
 import { PhoneInput } from "@/components/custom/phone-input"
 import { CountryCode } from "libphonenumber-js"
+import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
-  key?: string;
+  key?: Key;
   label?: string;
   defaultCountry?: CountryCode;
   description?: string;

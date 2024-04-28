@@ -2,11 +2,12 @@ import type { Control, FieldValues, Path } from "react-hook-form";
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { RequiredFormLabel } from "../required-form-label";
 import { Switch } from "@/components/ui/switch";
+import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
-  key?: string;
+  key?: Key;
   label?: string;
   description?: string;
   required?: boolean;

@@ -8,11 +8,12 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select"
+import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>;
   name: keyof TFieldValues;
-  key?: string;
+  key?: Key;
   label?: string;
   options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
   description?: string;
