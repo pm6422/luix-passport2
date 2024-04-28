@@ -1,11 +1,18 @@
-import axios from 'axios'
+import axios from "axios"
+import type { AuthUser } from "@/stores/auth-user-provider"
 
 export class AccountService {
   constructor() {
   }
 
-  public static getCurrentAccount(): Promise<any> {
-    return axios.get("open-api/accounts/user")
+  public static async getCurrentAccount(): Promise<any> {
+    try {
+      const res = await axios.get<AuthUser>("open-api/accounts/user")
+      return res.data
+    } catch (error) {
+      console.error(error)
+      return undefined
+    }
   }
 
   public static update(model: any): Promise<any> {

@@ -1,5 +1,5 @@
-import axios from 'axios'
-import type { AppInfo } from '@/stores/app-info-provider';
+import axios from "axios"
+import type { AppInfo } from "@/stores/app-info-provider"
 
 export class AppInfoService {
 
@@ -8,11 +8,11 @@ export class AppInfoService {
 
   public static async load(): Promise<AppInfo | undefined> {
     try {
-      const res = await axios.get<AppInfo>('management/info');
-      return res.data;
+      const res = await axios.get<AppInfo>("management/info")
+      return res.data
     } catch (error) {
-      console.error(error);
-      return undefined;
+      console.error(error)
+      return undefined
     }
   }
 }
