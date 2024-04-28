@@ -1,9 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import GeneralError from './views/errors/general-error'
 import NotFoundError from './views/errors/not-found-error'
 import MaintenanceError from './views/errors/maintenance-error'
 
-const router = createBrowserRouter([
+// const router = createBrowserRouter([
+const router = createHashRouter([
   // Auth routes
   {
     path: '/sign-in',
