@@ -12,7 +12,6 @@ import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
-import ThemeSwitch from "@/components/custom/theme-switch"
 
 export default function Dashboard() {
   return (
@@ -22,7 +21,6 @@ export default function Dashboard() {
         <CentralTopNav links={topNav} />
         <div className='ml-auto flex items-center space-x-4'>
           <Search />
-          <ThemeSwitch />
           <AccountNav />
         </div>
       </LayoutHeader>
