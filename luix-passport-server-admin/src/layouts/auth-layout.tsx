@@ -12,7 +12,6 @@ export default function AuthLayout() {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("Location changed: ", location)
     if(isEmpty(authUserProvider.authUser)) {
       // Redirect to login
       console.log("Redirecting to login")
