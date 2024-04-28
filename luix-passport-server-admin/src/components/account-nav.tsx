@@ -11,13 +11,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
-import { AuthUser } from '@/stores/auth-user-provider'
 
 export function AccountNav() {
   const authUserProvider = useAuthUserProvider()
 
   function signOut(): void {
-    authUserProvider.setAuthUser({} as AuthUser)
+    authUserProvider.setAuthUser(null)
     console.log(authUserProvider.authUser)
     window.location.href = "/sign-out"
   }

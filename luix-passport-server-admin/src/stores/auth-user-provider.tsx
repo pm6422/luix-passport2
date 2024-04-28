@@ -7,17 +7,17 @@ export type AuthUser = {
 };
 
 type AuthUserProviderProps = {
-  children: React.ReactNode
-  defaultValue?: AuthUser | null
+  children: React.ReactNode;
+  defaultValue?: AuthUser | null;
 };
 
 type AuthUserProviderState = {
-  authUser: AuthUser;
-  setAuthUser: (AuthUser: AuthUser) => void;
+  authUser: AuthUser | null;
+  setAuthUser: (AuthUser: AuthUser | null) => void;
 };
 
 const initialState: AuthUserProviderState = {
-  authUser: {} as AuthUser,
+  authUser: null,
   setAuthUser: () => {},
 };
 
@@ -28,11 +28,11 @@ export function AuthUserProvider({
   defaultValue,
   ...props
 }: AuthUserProviderProps) {
-  const [authUser, setAuthUser] = useState<AuthUser>(defaultValue || initialState.authUser);
+  const [authUser, setAuthUser] = useState<AuthUser | null>(defaultValue || null);
 
   const value = {
     authUser,
-    setAuthUser
+    setAuthUser,
   };
 
   return (
@@ -42,7 +42,6 @@ export function AuthUserProvider({
   );
 }
 
-// eslint-disable-next-line react-hooks/rules-of-hooks
 export const useAuthUserProvider = () => {
   const context = useContext(AuthUserProviderContext);
 
