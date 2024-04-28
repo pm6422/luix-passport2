@@ -4,6 +4,7 @@ import Sidebar from "../components/sidebar"
 import useIsCollapsed from "@/hooks/use-is-collapsed"
 import { useLocation } from "react-router-dom"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { isEmpty } from "lodash"
 
 export default function AuthLayout() {
   const authUserProvider = useAuthUserProvider();
@@ -12,7 +13,7 @@ export default function AuthLayout() {
 
   useEffect(() => {
     console.log("Location changed: ", location)
-    if(!authUserProvider.authUser) {
+    if(isEmpty(authUserProvider.authUser)) {
       // Redirect to login
       console.log("Redirecting to login")
       // window.location.href = "/login"
