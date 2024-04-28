@@ -61,7 +61,7 @@ const SaveDialogContent = ({
   }
 
   return (
-    <DialogContent className={`lg:max-w-screen-${size} max-h-screen overflow-y-auto`}>
+    <DialogContent className={`lg:max-w-screen-md max-h-screen overflow-y-auto`}>
       <DialogHeader>
         <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
       </DialogHeader>
