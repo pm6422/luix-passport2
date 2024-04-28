@@ -10,8 +10,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { AuthUser } from '@/stores/auth-user-provider'
 
 export function AccountNav() {
+  const authUserProvider = useAuthUserProvider()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -49,12 +53,10 @@ export function AccountNav() {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <Link to="/sign-in">
-          <DropdownMenuItem className='cursor-pointer'>
-            Sign out
-            {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
-          </DropdownMenuItem>
-        </Link>
+        <DropdownMenuItem className='cursor-pointer' onClick={() => { authUserProvider.setAuthUser({} as AuthUser); window.location.href = '/sign-out';}}>
+          Sign out
+          {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

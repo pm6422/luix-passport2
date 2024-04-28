@@ -7,7 +7,7 @@ import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { isEmpty } from "lodash"
 
 export default function AuthLayout() {
-  const authUserProvider = useAuthUserProvider();
+  const authUserProvider = useAuthUserProvider()
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
   const location = useLocation();
 
@@ -15,7 +15,7 @@ export default function AuthLayout() {
     if(isEmpty(authUserProvider.authUser)) {
       // Redirect to login
       console.log("Redirecting to login")
-      // window.location.href = "/login"
+      window.location.href = "/login"
     }
   }, [location]);
 
