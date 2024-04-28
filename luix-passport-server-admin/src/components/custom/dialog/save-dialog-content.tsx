@@ -14,6 +14,7 @@ import { Separator } from "@/components/ui/separator"
 import { IconReload } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
+import { cn } from "@/libs/utils";
 
 interface Props {
   children: React.ReactNode;
@@ -61,7 +62,7 @@ const SaveDialogContent = ({
   }
 
   return (
-    <DialogContent className={`lg:max-w-screen-${size} max-h-screen overflow-y-auto`}>
+    <DialogContent className={cn("max-h-screen overflow-y-auto lg:max-w-screen-md", `lg:max-w-screen-${size}`)}>
       <DialogHeader>
         <DialogTitle className="capitalize">{id ? "Update" : "Create"} {entityName}</DialogTitle>
       </DialogHeader>
