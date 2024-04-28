@@ -52,7 +52,7 @@ npx shadcn-ui@latest add label
 ## Issues
 
 - themeleaf use shadcn login
-- createWebHistory, createWebHashHistory
+- integrate auth to frontend
 - datetime string to ms
 - multiple data in same column of table
 - table page no url query param
