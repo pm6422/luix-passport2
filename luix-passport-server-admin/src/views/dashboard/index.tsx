@@ -7,15 +7,14 @@ import {
 } from '@/components/ui/card'
 import { Search } from '@/components/custom/search'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-// import ThemeSwitch from '@/components/theme-switch'
 import { CentralTopNav } from '@/components/central-top-nav'
 import { AccountNav } from '@/components/account-nav.tsx'
 import { Layout, LayoutBody, LayoutHeader } from '@/layouts/layout-definitions'
 import { RecentSales } from './components/recent-sales'
 import { Overview } from './components/overview'
+import ThemeSwitch from "@/components/custom/theme-switch"
 
 export default function Dashboard() {
-  
   return (
     <Layout>
       {/* ===== Top Heading ===== */}
@@ -23,7 +22,7 @@ export default function Dashboard() {
         <CentralTopNav links={topNav} />
         <div className='ml-auto flex items-center space-x-4'>
           <Search />
-          {/* <ThemeSwitch /> */}
+          <ThemeSwitch />
           <AccountNav />
         </div>
       </LayoutHeader>
@@ -34,9 +33,9 @@ export default function Dashboard() {
           <h1 className='text-2xl font-bold tracking-tight md:text-3xl'>
             Dashboard
           </h1>
-          {/* <div className='flex items-center space-x-2'>
-            <Button>Download</Button>
-          </div> */}
+          {/*<div className='flex items-center space-x-2'>*/}
+          {/*  <Button>Download</Button>*/}
+          {/*</div>*/}
         </div>
         <Tabs
           orientation='vertical'

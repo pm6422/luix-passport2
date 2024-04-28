@@ -37,7 +37,7 @@ const router = createHashRouter([
       {
         index: true,
         lazy: async () => ({
-          Component: (await import("./views/dashboard/dashboard")).default,
+          Component: (await import("./views/dashboard")).default,
         }),
       },
       {
