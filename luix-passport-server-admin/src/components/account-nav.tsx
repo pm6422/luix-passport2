@@ -16,6 +16,12 @@ import { AuthUser } from '@/stores/auth-user-provider'
 export function AccountNav() {
   const authUserProvider = useAuthUserProvider()
 
+  function signOut(): void {
+    authUserProvider.setAuthUser({} as AuthUser)
+    console.log(authUserProvider.authUser)
+    window.location.href = "/sign-out"
+  }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -53,7 +59,7 @@ export function AccountNav() {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className='cursor-pointer' onClick={() => { authUserProvider.setAuthUser({} as AuthUser); window.location.href = '/sign-out';}}>
+        <DropdownMenuItem className='cursor-pointer' onClick={() => signOut()}>
           Sign out
           {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
         </DropdownMenuItem>
