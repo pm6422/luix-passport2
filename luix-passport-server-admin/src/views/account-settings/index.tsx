@@ -12,6 +12,39 @@ import { LayoutBody } from "@/layouts/layout-definitions"
 import SidebarNav from "./components/sidebar-nav"
 
 export default function Settings() {
+  const sidebarNavItems = [
+    {
+      title: "Profile",
+      icon: <IconUser size={18} />,
+      href: "/account-settings",
+    },
+    {
+      title: "Account",
+      icon: <IconTool size={18} />,
+      href: "/account-settings/account",
+    },
+    {
+      title: "Appearance",
+      icon: <IconPalette size={18} />,
+      href: "/account-settings/appearance",
+    },
+    {
+      title: "Notifications",
+      icon: <IconNotification size={18} />,
+      href: "/account-settings/notifications",
+    },
+    {
+      title: "Display",
+      icon: <IconBrowserCheck size={18} />,
+      href: "/account-settings/display",
+    },
+    {
+      title: "Error Example",
+      icon: <IconExclamationCircle size={18} />,
+      href: "/account-settings/error-example",
+    },
+  ]
+  
   return (
     <LayoutBody className="flex flex-col" fixedHeight>
       <div className="space-y-0.5">
@@ -36,36 +69,3 @@ export default function Settings() {
     </LayoutBody>
   )
 }
-
-const sidebarNavItems = [
-  {
-    title: "Profile",
-    icon: <IconUser size={18} />,
-    href: "/account-settings",
-  },
-  {
-    title: "Account",
-    icon: <IconTool size={18} />,
-    href: "/account-settings/account",
-  },
-  {
-    title: "Appearance",
-    icon: <IconPalette size={18} />,
-    href: "/account-settings/appearance",
-  },
-  {
-    title: "Notifications",
-    icon: <IconNotification size={18} />,
-    href: "/account-settings/notifications",
-  },
-  {
-    title: "Display",
-    icon: <IconBrowserCheck size={18} />,
-    href: "/account-settings/display",
-  },
-  {
-    title: "Error Example",
-    icon: <IconExclamationCircle size={18} />,
-    href: "/account-settings/error-example",
-  },
-]
