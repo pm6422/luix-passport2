@@ -37,6 +37,7 @@
     "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
     "nanoid": "^5.0.6",
+    "qs": "^6.12.1",
     "react": "^18.2.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.2.0",
@@ -54,7 +55,6 @@
   "devDependencies": {
     "@types/lodash": "^4.17.0",
     "@types/node": "^20.12.7",
-    "@types/qs": "^6.9.15",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
     "@types/react-syntax-highlighter": "^15.5.11",
