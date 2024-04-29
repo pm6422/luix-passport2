@@ -264,6 +264,9 @@
             <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>
+            <column name="created_by" type="VARCHAR(64)">
+                <constraints nullable="true"/>
+            </column>
         </createTable>
         <createTable tableName="user_login">
             <column name="id" type="VARCHAR(20)">
