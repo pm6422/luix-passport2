@@ -7,7 +7,7 @@ export default function SettingsProfile() {
       <div>
         <h3 className="text-lg font-medium">Profile Picture</h3>
         <p className="text-sm text-muted-foreground">
-          This is how others will see you on the site
+          A picture helps people recognize you and lets you know when you’re signed in to your account.
         </p>
       </div>
       <Separator />
