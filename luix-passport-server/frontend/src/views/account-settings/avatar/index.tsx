@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import UploadAvatarForm from "./upload-avatar-form"
+import UploadAvatarForm from "./avatar-form"
 
 export default function SettingsAvatar() {
   return (
