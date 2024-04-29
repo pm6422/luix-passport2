@@ -4,7 +4,7 @@ import { IconEdit } from "@tabler/icons-react"
 import { DataTableColumnHeader } from "@/components/custom/data-table/data-table-column-header"
 import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
 import { Button } from "@/components/custom/button"
-import { YesNo } from "@/data/yes-no"
+import { yesNo } from "@/data/yes-no"
 import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
@@ -92,7 +92,7 @@ export function getColumns(
         <DataTableColumnHeader column={column} title="Enabled" />
       ),
       cell: ({ row }) => {
-        const element = YesNo.find(e => e.value === row.getValue("enabled"))
+        const element = yesNo.find(e => e.value === row.getValue("enabled"))
 
         return (
           <div className="flex w-[50px] items-center">

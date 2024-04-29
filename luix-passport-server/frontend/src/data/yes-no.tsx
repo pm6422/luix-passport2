@@ -1,6 +1,6 @@
 import { IconCircleCheck, IconCircleX } from "@tabler/icons-react"
 
-export const YesNo = [
+export const yesNo = [
   {
     value: true,
     label: "Yes",
