@@ -7,10 +7,7 @@ Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and a
 
 - Light/dark mode
 - Responsive
-- Accessible
 - Sidebar and header layouts
-- 10+ pages
-- Extra custom components
 
 ## Tech Stack
 
@@ -49,7 +46,7 @@ Start the server
 ## Installing Shadcn UI component
 npx shadcn-ui@latest add label
 
-## Issues
+## TODOs
 - server start vite
 - account page
 - dashboard page
