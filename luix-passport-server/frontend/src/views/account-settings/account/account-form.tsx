@@ -51,6 +51,23 @@ const accountFormSchema = z.object({
     .max(30, {
       message: "Name must not be longer than 30 characters.",
     }),
+  username: z
+    .string()
+    .min(2, {
+      message: "Username must be at least 2 characters.",
+    })
+    .max(30, {
+      message: "Username must not be longer than 30 characters.",
+    }),
+  email: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
+  bio: z.string().max(160).min(4),
+  urls: z
+    .array(
+      z.object({
+        value: z.string().url({ message: "Please enter a valid URL." }),
+      })
+    )
+    .optional(),
   dob: z.date({
     required_error: "A date of birth is required.",
   }),
@@ -90,6 +107,18 @@ export function AccountForm() {
         <InputFormField control={form.control} name="name" label="Name" required placeholder="Your name"
           description="This is the name that will be displayed on your profile and in emails."
         />
+
+        <InputFormField control={form.control} name="username" label="Username" required 
+          description="This is your public display name. It can be your real name or a
+          pseudonym. You can only change this once every 30 days."
+        />
+        <InputFormField control={form.control} name="email" label="Email" required/>
+
+        <InputFormField control={form.control} name="bio" label="Bio" type="textarea"
+          description="You can @mention other users and organizations to
+          link to them."
+        />
+
         <FormField
           control={form.control}
           name="dob"

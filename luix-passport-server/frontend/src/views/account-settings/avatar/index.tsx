@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator"
 import UploadAvatarForm from "./upload-avatar-form"
 
-export default function SettingsProfile() {
+export default function SettingsAvatar() {
   return (
     <div className="space-y-6">
       <div>
