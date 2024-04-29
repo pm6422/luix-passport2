@@ -14,28 +14,28 @@ export default function AuthLayout() {
   const authUserProvider = useAuthUserProvider()
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
   const location = useLocation()
-  const topNav = [
-    {
-      title: "Overview",
-      href: "dashboard/overview",
-      isActive: true,
-    },
-    {
-      title: "Customers",
-      href: "dashboard/customers",
-      isActive: false,
-    },
-    {
-      title: "Products",
-      href: "dashboard/products",
-      isActive: false,
-    },
-    {
-      title: "Settings",
-      href: "dashboard/settings",
-      isActive: false,
-    },
-  ]
+  // const topNav = [
+  //   {
+  //     title: "Overview",
+  //     href: "dashboard/overview",
+  //     isActive: true,
+  //   },
+  //   {
+  //     title: "Customers",
+  //     href: "dashboard/customers",
+  //     isActive: false,
+  //   },
+  //   {
+  //     title: "Products",
+  //     href: "dashboard/products",
+  //     isActive: false,
+  //   },
+  //   {
+  //     title: "Settings",
+  //     href: "dashboard/settings",
+  //     isActive: false,
+  //   },
+  // ]
 
   useEffect(() => {
     if(isEmpty(authUserProvider.authUser)) {
