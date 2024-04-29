@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react"
 
 export type AuthUser = {
   username: string;
@@ -13,12 +13,12 @@ type AuthUserProviderProps = {
 
 type AuthUserProviderState = {
   authUser: AuthUser | null;
-  setAuthUser: (AuthUser: AuthUser | null) => void;
+  clearAuthUser: () => void;
 };
 
 const initialState: AuthUserProviderState = {
   authUser: null,
-  setAuthUser: () => {},
+  clearAuthUser: () => {},
 };
 
 const AuthUserProviderContext = createContext<AuthUserProviderState>(initialState);
@@ -30,9 +30,17 @@ export function AuthUserProvider({
 }: AuthUserProviderProps) {
   const [authUser, setAuthUser] = useState<AuthUser | null>(defaultValue || null);
 
+  // watch auth user whether is null
+  useEffect(() => {
+    if(!authUser) {
+      // redirect the sign out page
+      window.location.href = "/sign-out"
+    }
+  }, [authUser])
+
   const value = {
     authUser,
-    setAuthUser,
+    clearAuthUser: () => setAuthUser(null)
   };
 
   return (
