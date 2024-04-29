@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios"
 
 export class Oauth2ClientService {
   constructor() {
