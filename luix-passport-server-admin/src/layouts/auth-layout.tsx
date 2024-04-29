@@ -1,15 +1,15 @@
 import { useEffect } from "react"
 import { Outlet } from "react-router-dom"
-import Sidebar from "../components/sidebar"
+import Sidebar from "@/components/sidebar"
 import useIsCollapsed from "@/hooks/use-is-collapsed"
-import { useLocation } from "react-router-dom"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { useLocation } from "react-router-dom"
 import { isEmpty } from "lodash"
 
 export default function AuthLayout() {
   const authUserProvider = useAuthUserProvider()
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
-  const location = useLocation();
+  const location = useLocation()
 
   useEffect(() => {
     if(isEmpty(authUserProvider.authUser)) {
