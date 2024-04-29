@@ -1,5 +1,5 @@
 
-export const Languages = [
+export const languages = [
   {
     value: "en",
     label: "English"

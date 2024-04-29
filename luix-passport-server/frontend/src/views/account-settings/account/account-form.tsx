@@ -29,11 +29,7 @@ import {
 } from "@/components/ui/popover"
 import { toast } from "sonner"
 import { formatDate } from "@/libs/utils"
-
-const languages = [
-  { label: "English", value: "en" },
-  { label: "简体中文", value: "zh" },
-] as const
+import { languages } from "@/data/languages"
 
 const accountFormSchema = z.object({
   name: z

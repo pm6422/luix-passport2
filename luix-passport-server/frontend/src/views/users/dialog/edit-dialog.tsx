@@ -9,6 +9,7 @@ import SwitchFormField from "@/components/custom/form-field/switch"
 import SelectFormField from "@/components/custom/form-field/select"
 import PhoneInputFormField from "@/components/custom/form-field/phone-input"
 import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
+import { languages } from "@/data/languages"
 import { DataDictService } from "@/services/data-dict-service"
 import { UserService } from "@/services/user-service"
 import { merge } from "@/libs/utils"
@@ -97,7 +98,7 @@ export function EditDialog({
           control={form.control} 
           name="language" 
           label="Preferred Language"
-          options={[{value: "English", label: "English"}, {value: "Chinese", label: "Chinese"}]}
+          options={languages}
         />
 
         <InputFormField 
