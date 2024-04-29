@@ -48,7 +48,7 @@ export default function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Update</Button>
+        <Button type="submit">Save picture</Button>
       </form>
     </Form>
   )
