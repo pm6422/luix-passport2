@@ -4,6 +4,10 @@ import Sidebar from "@/components/sidebar"
 import useIsCollapsed from "@/hooks/use-is-collapsed"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { useLocation } from "react-router-dom"
+import { CentralTopNav } from "@/components/central-top-nav"
+import { AccountNav } from "@/components/account-nav.tsx"
+import { Layout, LayoutHeader } from "@/layouts/layout-definitions"
+import { Search } from "@/components/custom/search"
 import { isEmpty } from "lodash"
 
 export default function AuthLayout() {
@@ -25,8 +29,43 @@ export default function AuthLayout() {
         id="content"
         className={`overflow-x-hidden pt-16 transition-[margin] md:overflow-y-hidden md:pt-0 ${isCollapsed ? "md:ml-14" : "md:ml-64"} h-full`}
       >
-        <Outlet />
+        <Layout>
+          <LayoutHeader>
+            <CentralTopNav links={topNav} />
+            <div className='ml-auto flex items-center space-x-4'>
+              <Search />
+              <AccountNav />
+            </div>
+          </LayoutHeader>
+          {/* ===== Content ===== */}
+          <Outlet />
+          {/* ===== Content ===== */}
+        </Layout>
       </main>
     </div>
   )
 }
+
+const topNav = [
+  {
+    title: "Overview",
+    href: "dashboard/overview",
+    isActive: true,
+  },
+  {
+    title: "Customers",
+    href: "dashboard/customers",
+    isActive: false,
+  },
+  {
+    title: "Products",
+    href: "dashboard/products",
+    isActive: false,
+  },
+  {
+    title: "Settings",
+    href: "dashboard/settings",
+    isActive: false,
+  },
+]
+

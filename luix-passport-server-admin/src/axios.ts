@@ -1,5 +1,5 @@
 import axios from "axios"
-import qs from "qs"
+// import qs from "qs"
 
 // const { REACT_APP_SERVER_URL } = process.env
 // const TIMEOUT = 1000000

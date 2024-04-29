@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
-import { AccountNav } from "@/components/account-nav.tsx"
-import { Layout, LayoutHeader, LayoutBody } from "@/layouts/layout-definitions"
+import { LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/server-pagination-data-table"
 import { getColumns } from "./table/table-columns"
@@ -67,19 +66,12 @@ export default function DataDict() {
   }
 
   return (
-    <Layout>
-      <LayoutHeader>
-        <div className="ml-auto flex items-center space-x-4">
-          <AccountNav />
-        </div>
-      </LayoutHeader>
-      <LayoutBody className="flex flex-col" fixedHeight>
-        <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-          <DataTable columns={tableColumns} data={tableData} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
-            <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} upload={upload}/>
-          </DataTable>
-        </div>
-      </LayoutBody>
-    </Layout>
+    <LayoutBody className="flex flex-col" fixedHeight>
+      <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
+        <DataTable columns={tableColumns} data={tableData} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
+          <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} upload={upload}/>
+        </DataTable>
+      </div>
+    </LayoutBody>
   )
 }
