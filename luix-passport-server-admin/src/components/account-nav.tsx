@@ -10,10 +10,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
 export function AccountNav() {
-  const authUserProvider = useAuthUserProvider()
 
   return (
     <DropdownMenu>
@@ -52,7 +50,7 @@ export function AccountNav() {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer" onClick={() => authUserProvider.clearAuthUser()}>
+        <DropdownMenuItem className="cursor-pointer">
           Sign out
           {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
         </DropdownMenuItem>
