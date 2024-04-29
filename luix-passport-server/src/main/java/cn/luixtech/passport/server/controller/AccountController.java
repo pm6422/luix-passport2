@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.controller;
 import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.domain.UserPhoto;
 import cn.luixtech.passport.server.event.LogoutEvent;
+import cn.luixtech.passport.server.pojo.AuthUser;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
@@ -61,11 +62,14 @@ public class AccountController {
     private final        UserPhotoService          userPhotoService;
     private final        ApplicationEventPublisher applicationEventPublisher;
 
-    @Operation(summary = "find current user")
+    @Operation(summary = "get current user who are signed in")
     @GetMapping("/open-api/accounts/user")
-    public ResponseEntity<ManagedUser> getCurrentSignedInUser() {
-        ManagedUser user = AuthUtils.getCurrentUserId() != null ? userService.findById(AuthUtils.getCurrentUserId()) : null;
-        return ResponseEntity.ok(user);
+    public ResponseEntity<AuthUser> getCurrentUser() {
+        if (AuthUtils.getCurrentUserId() == null) {
+            return ResponseEntity.ok(null);
+        }
+        ManagedUser user = userService.findById(AuthUtils.getCurrentUserId());
+        return ResponseEntity.ok(AuthUser.of(user));
     }
 
     @Operation(summary = "register a new user and send an account activation email")

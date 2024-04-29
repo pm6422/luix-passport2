@@ -11,12 +11,16 @@ public class AuthUser {
 
     private String      username;
     private String      email;
+    private Boolean     activated;
+    private Boolean     enabled;
     private Set<String> roles;
 
     public static AuthUser of(ManagedUser managedUser) {
         AuthUser authUser = new AuthUser();
         authUser.setUsername(managedUser.getUsername());
         authUser.setEmail(managedUser.getEmail());
+        authUser.setActivated(managedUser.getActivated());
+        authUser.setEnabled(managedUser.getEnabled());
         authUser.setRoles(managedUser.getRoles());
         return authUser;
     }
