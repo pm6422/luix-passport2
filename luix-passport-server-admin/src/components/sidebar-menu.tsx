@@ -20,9 +20,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip"
-import { cn } from "@/libs/utils"
 import useCheckActiveNav from "@/hooks/use-check-active-nav"
 import { SideLink } from "@/data/sidelinks"
+import { cn } from "@/libs/utils"
 
 interface NavProps extends React.HTMLAttributes<HTMLDivElement> {
   isCollapsed: boolean
@@ -138,7 +138,7 @@ function NavLinkDropdown({ title, icon, label, sub, closeNav }: NavLinkProps) {
         )}
         <span
           className={cn(
-            "ml-auto transition-all group-data-[state="open"]:-rotate-180"
+            'ml-auto transition-all group-data-[state="open"]:-rotate-180'
           )}
         >
           <IconChevronDown stroke={1} />
