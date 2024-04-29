@@ -53,7 +53,8 @@ npx shadcn-ui@latest add label
 - server start vite
 - account page
 - dashboard page
-- front auth check component 
+- front auth check component
+- user role return
 - themeleaf use shadcn login
 - datetime string to ms
 - multiple data in same column of table
