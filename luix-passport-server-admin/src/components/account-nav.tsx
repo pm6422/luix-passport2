@@ -50,7 +50,7 @@ export function AccountNav() {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = "/sign-out"}>
           Sign out
           {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
         </DropdownMenuItem>

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
+import { isEmpty } from "lodash"
 
 export type AuthUser = {
   username: string;
@@ -32,9 +33,8 @@ export function AuthUserProvider({
 
   // watch auth user whether is null
   useEffect(() => {
-    if(!authUser) {
-      // redirect the sign out page
-      window.location.href = "/sign-out"
+    if(!authUser || isEmpty(authUser)) {
+      // user is null
     }
   }, [authUser])
 
