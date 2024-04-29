@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { LayoutBody } from "@/layouts/layout-definitions"
 import SidebarNav from "./components/sidebar-nav"
 
-export default function Settings() {
+export default function AccountSettings() {
   const sidebarNavItems = [
     {
       title: "Profile",
@@ -44,7 +44,7 @@ export default function Settings() {
       href: "/account-settings/error-example",
     },
   ]
-  
+
   return (
     <LayoutBody className="flex flex-col" fixedHeight>
       <div className="space-y-0.5">
