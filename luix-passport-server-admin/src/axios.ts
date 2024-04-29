@@ -33,13 +33,13 @@ instance.interceptors.response.use(
   },
   function (error) {
     // Handle response errors
-    // For example, you can handle unauthorized errors or network failures
-    if (error.response.status === 401) {
-      // Handle unauthorized access
-      console.error("Unauthorized access")
+    if (error.response.status === 401 || error.response.status === 403) {
+      // Handle 401 unauthorized error or 403 forbidden error
+      console.log("Redirecting to login for unauthorized access")
+      window.location.href = "/login"
     } else {
       // Handle other errors
-      console.error("Request failed:", error.message)
+      console.error("Request failed: ", error.message)
     }
     return Promise.reject(error)
   }

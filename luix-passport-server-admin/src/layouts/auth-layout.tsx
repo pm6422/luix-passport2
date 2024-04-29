@@ -13,8 +13,7 @@ export default function AuthLayout() {
 
   useEffect(() => {
     if(isEmpty(authUserProvider.authUser)) {
-      // Redirect to login
-      console.log("Redirecting to login")
+      console.log("Redirecting to login for null auth user")
       window.location.href = "/login"
     }
   }, [location]);
