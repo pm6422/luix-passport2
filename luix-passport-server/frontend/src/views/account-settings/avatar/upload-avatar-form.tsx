@@ -3,7 +3,6 @@ import { Button } from "@/components/custom/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -45,7 +44,6 @@ export default function UploadAvatarForm() {
               <FormControl>
                 <AvatarUploader defaultValue={field.value} onValueChange={field.onChange}/>
               </FormControl>
-              <FormDescription>This is how others will see you on the site</FormDescription>
               <FormMessage/>
             </FormItem>
           )}
