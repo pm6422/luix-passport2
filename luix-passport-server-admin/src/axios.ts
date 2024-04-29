@@ -27,8 +27,10 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function (response) {
     // Modify response data before resolving the promise
-    // For example, you can handle success messages or extract data
-    console.log("Response Data:", response.data)
+    if(response.request.responseURL.indexOf("/login") !== -1) {
+      // Redirect to login
+      window.location.href = "/login"
+    }
     return response
   },
   function (error) {
