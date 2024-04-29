@@ -276,7 +276,6 @@
                                 </goals>
                                 <configuration>
                                     <arguments>install --prefix frontend</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
                                 </configuration>
                             </execution>
                             <execution>
@@ -287,7 +286,6 @@
                                 <phase>generate-resources</phase>
                                 <configuration>
                                     <arguments>run build --prefix frontend</arguments>
-                                    <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
                                 </configuration>
                             </execution>
                         </executions>
