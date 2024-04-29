@@ -50,7 +50,6 @@ Start the server
 npx shadcn-ui@latest add label
 
 ## Issues
-- server module integrate with frontend
 - server start vite
 - account page
 - dashboard page
