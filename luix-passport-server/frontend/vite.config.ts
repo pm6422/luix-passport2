@@ -11,8 +11,8 @@ export default defineConfig({
     },
   },
   build: {
-    // Output vite build results to target/classes/static/ of backend service
-    outDir: '../luix-passport-server/target/classes/static/'
+    // Output vite build results to target/classes/static/
+    outDir: '../target/classes/static/'
   },
   server: {
     host: 'localhost',
