@@ -5,10 +5,7 @@ export class UserService {
   }
 
   public static find(reqParams: any): Promise<any> {
-    return http.get('api/users', {
-      params: reqParams,
-      paramsSerializer: { indexes: null }
-    })
+    return http.get('api/users', { params: reqParams })
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {

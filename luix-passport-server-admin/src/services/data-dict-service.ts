@@ -5,10 +5,7 @@ export class DataDictService {
   }
 
   public static find(reqParams: any): Promise<any> {
-    return http.get('api/data-dicts', {
-      params: reqParams,
-      paramsSerializer: { indexes: null }
-    })
+    return http.get('api/data-dicts', { params: reqParams })
   }
 
   public static findAll(enabled: boolean | null = null): Promise<any> {

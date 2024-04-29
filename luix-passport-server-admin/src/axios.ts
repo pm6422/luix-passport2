@@ -6,9 +6,10 @@ import qs from "qs"
 
 const instance = axios.create({
   // baseURL: `${REACT_APP_SERVER_URL}`,
-  paramsSerializer(params) {
-    return qs.stringify(params, { indices: undefined })
-  },
+  // paramsSerializer(params) {
+  //   return qs.stringify(params, { indices: undefined })
+  // }
+  paramsSerializer: { indexes: null }
 })
 
 instance.interceptors.request.use(
