@@ -51,6 +51,7 @@ npx shadcn-ui@latest add label
 
 ## Issues
 - account page
+- dashboard page
 - themeleaf use shadcn login
 - datetime string to ms
 - multiple data in same column of table
