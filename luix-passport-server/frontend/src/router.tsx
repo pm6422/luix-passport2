@@ -50,7 +50,7 @@ const router = createHashRouter([
           {
             index: true,
             lazy: async () => ({
-              Component: (await import("./views/account-settings/avatar")).default,
+              Component: (await import("./views/account-settings/profile")).default,
             }),
           },
           {

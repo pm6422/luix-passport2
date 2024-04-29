@@ -14,7 +14,7 @@ import SidebarNav from "./components/sidebar-nav"
 export default function AccountSettings() {
   const sidebarNavItems = [
     {
-      title: "Avatar",
+      title: "Profile",
       icon: <IconUser size={18} />,
       href: "/account-settings",
     },

@@ -48,7 +48,7 @@ export default function UploadAvatarForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Update avatar</Button>
+        <Button type="submit">Update</Button>
       </form>
     </Form>
   )

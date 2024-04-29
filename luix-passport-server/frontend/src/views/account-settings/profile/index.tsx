@@ -1,11 +1,11 @@
 import { Separator } from "@/components/ui/separator"
-import UploadAvatarForm from "./avatar-form"
+import UploadAvatarForm from "./profile-form"
 
-export default function SettingsAvatar() {
+export default function SettingsProfile() {
   return (
     <div className="space-y-6">
       <div>
-        <h3 className="text-lg font-medium">Avatar</h3>
+        <h3 className="text-lg font-medium">Profile Picture</h3>
         <p className="text-sm text-muted-foreground">
           This is how others will see you on the site
         </p>
