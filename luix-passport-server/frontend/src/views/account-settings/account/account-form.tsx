@@ -1,35 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { IconCalendar, IconSelector, IconCheck } from "@tabler/icons-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { cn } from "@/libs/utils"
 import { Button } from "@/components/custom/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command"
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
+import { Form } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import { toast } from "sonner"
-import { formatDate } from "@/libs/utils"
+import SelectFormField from "@/components/custom/form-field/select"
 import { languages } from "@/data/languages"
+import { toast } from "sonner"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
 const formSchema = z.object({
@@ -73,7 +50,13 @@ export function AccountForm() {
 
         <InputFormField control={form.control} name="firstName" label="First Name"/>
         <InputFormField control={form.control} name="lastName" label="Last Name"/>
-
+        <SelectFormField 
+          control={form.control} 
+          name="language" 
+          label="Preferred Language"
+          options={languages}
+          required
+        />
 
 
         <Button type="submit">Update account</Button>
