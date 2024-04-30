@@ -14,7 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
+import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
+import { PinInput, PinInputField } from "@/components/custom/pin-input"
+import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
 
@@ -29,6 +32,7 @@ type FormSchema = z.infer<typeof formSchema>
 export function ChangeEmailForm() {
   const authUserProvider = useAuthUserProvider()
   const [saving, setSaving] = useState(false)
+  const [pinInput, setPinInput] = useState("")
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -77,6 +81,30 @@ export function ChangeEmailForm() {
                 Send
             </Button>
           }
+        />
+
+        <FormField
+          control={form.control}
+          name="verificationCode"
+          render={({ field }) => (
+            <FormItem>
+              <RequiredFormLabel required={true}>Verification code</RequiredFormLabel>
+              <FormControl>
+                <PinInput
+                  className='flex h-10 space-x-4'
+                  value={pinInput}
+                  onChange={setPinInput}
+                  onComplete={(str) => console.log('completed', str)}
+                >
+                  {Array.from({ length: 6 }, (_, i) => (
+                    <PinInputField key={i} component={Input} className="capitalize"/>
+                  ))}
+                </PinInput>
+              </FormControl>
+              <FormDescription className={form.getValues("newEmail") ? "" : "invisible"}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
         />
 
         <Button type="submit" disabled={Object.values(form.formState.errors).length > 0 || saving}>
