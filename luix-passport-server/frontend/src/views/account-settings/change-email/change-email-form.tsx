@@ -85,7 +85,7 @@ export function ChangeEmailForm() {
           label="New Email" 
           required
           formItemClassName="mt-2"
-          description="Click send buttion to send a verification code to your new email."
+          description="Click right button to send a verification code to your new email."
           icon={
             <Button 
               type="button"
@@ -117,7 +117,7 @@ export function ChangeEmailForm() {
                   ))}
                 </PinInput>
               </FormControl>
-              <FormDescription className={form.getValues("newEmail") ? "" : "invisible"}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
+              <FormDescription className={form.getValues("newEmail") && form.formState.errors.newEmail == null ? "" : "invisible"}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
