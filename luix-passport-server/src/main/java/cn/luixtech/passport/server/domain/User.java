@@ -48,7 +48,6 @@ public class User extends AbstractAuditableDomain implements Serializable {
     private String        newEmail;
     private String        resetCode;
     private LocalDateTime resetAt;
-    private Boolean       profilePhotoEnabled;
     private String        remark;
     private Boolean       activated;
     private Boolean       enabled;

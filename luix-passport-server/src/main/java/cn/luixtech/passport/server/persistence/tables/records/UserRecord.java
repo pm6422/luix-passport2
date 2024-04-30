@@ -203,213 +203,199 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     }
 
     /**
-     * Setter for <code>luix-passport.user.profile_photo_enabled</code>.
-     */
-    public void setProfilePhotoEnabled(Boolean value) {
-        set(13, value);
-    }
-
-    /**
-     * Getter for <code>luix-passport.user.profile_photo_enabled</code>.
-     */
-    public Boolean getProfilePhotoEnabled() {
-        return (Boolean) get(13);
-    }
-
-    /**
      * Setter for <code>luix-passport.user.remark</code>.
      */
     public void setRemark(String value) {
-        set(14, value);
+        set(13, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.remark</code>.
      */
     public String getRemark() {
-        return (String) get(14);
+        return (String) get(13);
     }
 
     /**
      * Setter for <code>luix-passport.user.activated</code>.
      */
     public void setActivated(Boolean value) {
-        set(15, value);
+        set(14, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.activated</code>.
      */
     public Boolean getActivated() {
-        return (Boolean) get(15);
+        return (Boolean) get(14);
     }
 
     /**
      * Setter for <code>luix-passport.user.enabled</code>.
      */
     public void setEnabled(Boolean value) {
-        set(16, value);
+        set(15, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.enabled</code>.
      */
     public Boolean getEnabled() {
-        return (Boolean) get(16);
+        return (Boolean) get(15);
     }
 
     /**
      * Setter for <code>luix-passport.user.account_expires_at</code>.
      */
     public void setAccountExpiresAt(LocalDateTime value) {
-        set(17, value);
+        set(16, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.account_expires_at</code>.
      */
     public LocalDateTime getAccountExpiresAt() {
-        return (LocalDateTime) get(17);
+        return (LocalDateTime) get(16);
     }
 
     /**
      * Setter for <code>luix-passport.user.password_expires_at</code>.
      */
     public void setPasswordExpiresAt(LocalDateTime value) {
-        set(18, value);
+        set(17, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.password_expires_at</code>.
      */
     public LocalDateTime getPasswordExpiresAt() {
-        return (LocalDateTime) get(18);
+        return (LocalDateTime) get(17);
     }
 
     /**
      * Setter for <code>luix-passport.user.last_sign_in_at</code>.
      */
     public void setLastSignInAt(LocalDateTime value) {
-        set(19, value);
+        set(18, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.last_sign_in_at</code>.
      */
     public LocalDateTime getLastSignInAt() {
-        return (LocalDateTime) get(19);
+        return (LocalDateTime) get(18);
     }
 
     /**
      * Setter for <code>luix-passport.user.language</code>.
      */
     public void setLanguage(String value) {
-        set(20, value);
+        set(19, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.language</code>.
      */
     public String getLanguage() {
-        return (String) get(20);
+        return (String) get(19);
     }
 
     /**
      * Setter for <code>luix-passport.user.created_by</code>.
      */
     public void setCreatedBy(String value) {
-        set(21, value);
+        set(20, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.created_by</code>.
      */
     public String getCreatedBy() {
-        return (String) get(21);
+        return (String) get(20);
     }
 
     /**
      * Setter for <code>luix-passport.user.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
-        set(22, value);
+        set(21, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
-        return (LocalDateTime) get(22);
+        return (LocalDateTime) get(21);
     }
 
     /**
      * Setter for <code>luix-passport.user.modified_by</code>.
      */
     public void setModifiedBy(String value) {
-        set(23, value);
+        set(22, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.modified_by</code>.
      */
     public String getModifiedBy() {
-        return (String) get(23);
+        return (String) get(22);
     }
 
     /**
      * Setter for <code>luix-passport.user.modified_at</code>.
      */
     public void setModifiedAt(LocalDateTime value) {
-        set(24, value);
+        set(23, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.modified_at</code>.
      */
     public LocalDateTime getModifiedAt() {
-        return (LocalDateTime) get(24);
+        return (LocalDateTime) get(23);
     }
 
     /**
      * Setter for <code>luix-passport.user.locale</code>.
      */
     public void setLocale(String value) {
-        set(25, value);
+        set(24, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.locale</code>.
      */
     public String getLocale() {
-        return (String) get(25);
+        return (String) get(24);
     }
 
     /**
      * Setter for <code>luix-passport.user.time_zone</code>.
      */
     public void setTimeZone(String value) {
-        set(26, value);
+        set(25, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.time_zone</code>.
      */
     public String getTimeZone() {
-        return (String) get(26);
+        return (String) get(25);
     }
 
     /**
      * Setter for <code>luix-passport.user.date_format</code>.
      */
     public void setDateFormat(String value) {
-        set(27, value);
+        set(26, value);
     }
 
     /**
      * Getter for <code>luix-passport.user.date_format</code>.
      */
     public String getDateFormat() {
-        return (String) get(27);
+        return (String) get(26);
     }
 
     // -------------------------------------------------------------------------
@@ -435,7 +421,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     /**
      * Create a detached, initialised UserRecord
      */
-    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String verificationCode, LocalDateTime verificationCodeSentAt, String newEmail, String resetCode, LocalDateTime resetAt, Boolean profilePhotoEnabled, String remark, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, LocalDateTime lastSignInAt, String language, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt, String locale, String timeZone, String dateFormat) {
+    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String verificationCode, LocalDateTime verificationCodeSentAt, String newEmail, String resetCode, LocalDateTime resetAt, String remark, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, LocalDateTime lastSignInAt, String language, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt, String locale, String timeZone, String dateFormat) {
         super(User.USER);
 
         setId(id);
@@ -451,7 +437,6 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
         setNewEmail(newEmail);
         setResetCode(resetCode);
         setResetAt(resetAt);
-        setProfilePhotoEnabled(profilePhotoEnabled);
         setRemark(remark);
         setActivated(activated);
         setEnabled(enabled);

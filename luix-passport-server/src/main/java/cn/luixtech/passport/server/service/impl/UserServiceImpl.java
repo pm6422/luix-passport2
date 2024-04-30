@@ -191,7 +191,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setActivationCode(generateRandomCode());
         domain.setResetCode(null);
         domain.setResetAt(null);
-        domain.setProfilePhotoEnabled(false);
         domain.setActivated(false);
         domain.setEnabled(true);
         domain.setPasswordExpiresAt(LocalDateTime.now().plus(6, ChronoUnit.MONTHS));

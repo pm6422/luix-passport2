@@ -113,11 +113,6 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, LocalDateTime> RESET_AT = createField(DSL.name("reset_at"), SQLDataType.LOCALDATETIME(0), this, "");
 
     /**
-     * The column <code>luix-passport.user.profile_photo_enabled</code>.
-     */
-    public final TableField<UserRecord, Boolean> PROFILE_PHOTO_ENABLED = createField(DSL.name("profile_photo_enabled"), SQLDataType.BIT.nullable(false), this, "");
-
-    /**
      * The column <code>luix-passport.user.remark</code>.
      */
     public final TableField<UserRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(256), this, "");
