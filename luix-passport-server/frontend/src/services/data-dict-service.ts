@@ -33,11 +33,7 @@ export class DataDictService {
   }
 
   public static upload(formData: FormData): Promise<any> {
-    return http.post("api/data-dicts/import", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
+    return http.post("api/data-dicts/import", formData)
   }
 
   public static batchUpdate(ids: Array<string>, targetCategoryCode: string): Promise<any> {

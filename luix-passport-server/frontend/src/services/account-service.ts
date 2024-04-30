@@ -33,10 +33,6 @@ export class AccountService {
   }
 
   public static uploadProfilePicture(formData: FormData): Promise<any> {
-    return http.post("api/accounts/profile-photo/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
+    return http.post("api/accounts/profile-photo/upload", formData)
   }
 }
