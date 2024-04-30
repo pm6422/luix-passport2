@@ -38,6 +38,8 @@ import { toast } from "sonner"
 import { cn } from "@/libs/utils"
 import { IconCalendar, IconSelector, IconCheck } from "@tabler/icons-react"
 import { Button } from "@/components/custom/button"
+import { Calendar } from "@/components/ui/calendar"
+import { formatDate } from "@/libs/utils"
 
 export default function ExtraComponents() {
   const items = [
@@ -61,13 +63,15 @@ export default function ExtraComponents() {
   const [pinInput, setPinInput] = useState('')
 
   const FormSchema = z.object({
-    language: z.string().optional()
+    language: z.string().optional(),
+    dob: z.date({ required_error: "A date of birth is required." }),
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       language: "en",
+      dob: new Date("2023-01-23")
     },
   });
 
@@ -256,6 +260,51 @@ export default function ExtraComponents() {
                 </Popover>
                 <FormDescription>
                   This is the language that will be used in the dashboard.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="dob"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Date of birth</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant={"outline"}
+                        className={cn(
+                          "w-[240px] pl-3 text-left font-normal",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value ? (
+                          formatDate(field.value)
+                        ) : (
+                          <span>Pick a date</span>
+                        )}
+                        <IconCalendar className="ml-auto h-4 w-4 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={field.value}
+                      onSelect={field.onChange}
+                      disabled={(date: Date) =>
+                        date > new Date() || date < new Date("1900-01-01")
+                      }
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormDescription>
+                  Your date of birth is used to calculate your age.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
