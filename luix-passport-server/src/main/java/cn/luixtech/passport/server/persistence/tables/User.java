@@ -135,7 +135,7 @@ public class User extends TableImpl<UserRecord> {
     /**
      * The column <code>luix-passport.user.language</code>.
      */
-    public final TableField<UserRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.VARCHAR(25), this, "");
+    public final TableField<UserRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.VARCHAR(25).nullable(false), this, "");
 
     /**
      * The column <code>luix-passport.user.created_by</code>.
