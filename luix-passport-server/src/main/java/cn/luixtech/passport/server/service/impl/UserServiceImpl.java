@@ -279,9 +279,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User requestVerificationCode(User user, String email) {
+    public User requestEmailChangeVerificationCode(User user, String email) {
         user.setVerificationCode(generateRandomVerificationCode());
         user.setVerificationCodeSentAt(LocalDateTime.now());
+        user.setNewEmail(email);
         userRepository.save(user);
         return user;
     }

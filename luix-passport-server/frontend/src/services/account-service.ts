@@ -24,7 +24,7 @@ export class AccountService {
     return http.put("api/accounts/password", model)
   }
 
-  public static sendVerificationCode(email: string): Promise<any> {
-    return http.post("api/accounts/request-verification-code?email=" + email)
+  public static sendEmailChangeVerificationCode(email: string): Promise<any> {
+    return http.post("api/accounts/request-email-change-verification-code?email=" + email)
   }
 }

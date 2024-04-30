@@ -107,12 +107,12 @@ public class AccountController {
         userService.activate(code);
     }
 
-    @Operation(summary = "send verification code email")
-    @PostMapping("/api/accounts/request-verification-code")
-    public ResponseEntity<Void> requestVerificationCode(HttpServletRequest request,
+    @Operation(summary = "send email change verification code email")
+    @PostMapping("/api/accounts/request-email-change-verification-code")
+    public ResponseEntity<Void> requestEmailChangeVerificationCode(HttpServletRequest request,
                                                        @Parameter(description = "email", required = true) @RequestParam String email) {
         User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
-        User user = userService.requestVerificationCode(currentUser, email);
+        User user = userService.requestEmailChangeVerificationCode(currentUser, email);
         mailService.sendVerificationCodeMail(user, email, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
     }

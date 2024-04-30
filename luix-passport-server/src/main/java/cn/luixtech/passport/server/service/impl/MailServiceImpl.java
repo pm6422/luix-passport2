@@ -42,12 +42,7 @@ public class MailServiceImpl implements MailService {
         log.info("Sending email to [{}] with subject [{}] and content: {}", StringUtils.arrayToCommaDelimitedString(sendTo), subject, content);
         try {
             Resend resend = new Resend(applicationProperties.getMail().getResendApiKey());
-            SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                    .from(applicationProperties.getCompany().getName() + " <" + applicationProperties.getMail().getFromUsername() + ">")
-                    .to(sendTo)
-                    .subject(subject)
-                    .html(content)
-                    .build();
+            SendEmailRequest sendEmailRequest = SendEmailRequest.builder().from(applicationProperties.getCompany().getName() + " <" + applicationProperties.getMail().getFromUsername() + ">").to(sendTo).subject(subject).html(content).build();
             SendEmailResponse result = resend.emails().send(sendEmailRequest);
             log.info("Successfully sent email to users [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
         } catch (Exception e) {

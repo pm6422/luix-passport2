@@ -51,7 +51,7 @@ export function ChangeEmailForm() {
   }, [])
 
   async function sendVerificationCode(email: string): Promise<void> {
-    await AccountService.sendVerificationCode(email)
+    await AccountService.sendEmailChangeVerificationCode(email)
     toast(
       <div>
         <span>Sent verification code</span>

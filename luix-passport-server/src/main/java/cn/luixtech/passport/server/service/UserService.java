@@ -34,7 +34,7 @@ public interface UserService {
 
     User changePassword(String id, String oldRawPassword, String newRawPassword);
 
-    User requestVerificationCode(User user, String email);
+    User requestEmailChangeVerificationCode(User user, String email);
 
     User requestPasswordRecovery(String email);
 
