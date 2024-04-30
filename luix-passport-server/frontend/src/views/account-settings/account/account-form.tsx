@@ -13,6 +13,7 @@ import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
 import { getErrorMessage } from "@/libs/handle-error"
 import { isValidPhoneNumber } from "react-phone-number-input"
+import { Link } from "react-router-dom"
 
 const formSchema = z.object({
   id: z.string().trim().min(1, { message: "Required" }),
@@ -78,10 +79,12 @@ export function AccountForm() {
               {form.getValues("email")}
             </p>
           </div>
-          <Button type="button">
-            <IconMailForward className="mr-2 size-4"/>
-            Change
-          </Button>
+          <Link to="/account-settings/change-email">
+            <Button type="button" variant={"link"}>
+              <IconMailForward className="mr-2 size-4"/>
+              Change Email
+            </Button>
+          </Link>
         </div>
 
         <div>
