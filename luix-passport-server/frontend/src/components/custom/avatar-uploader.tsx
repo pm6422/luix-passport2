@@ -1,13 +1,13 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/custom/button";
-import { Input } from "@/components/ui/input";
-import { toBase64 } from "@/libs/utils";
-import { IconPencil, IconUserScan } from "@tabler/icons-react";
-import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/custom/button"
+import { Input } from "@/components/ui/input"
+import { toBase64 } from "@/libs/utils"
+import { IconPencil, IconUserScan } from "@tabler/icons-react"
+import React from "react"
 
 type AvatarUploaderProps = {
-	defaultValue?: string;
-	onValueChange?: (value?: string) => void;
+	defaultValue?: string
+	onValueChange?: (value?: string) => void
 }
 
 export function AvatarUploader({
@@ -18,9 +18,9 @@ export function AvatarUploader({
 	const inputRef = React.useRef<HTMLInputElement>(null)
 	const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files.length > 0) {
-			const file = e.target.files[0];
-			const base64 = await toBase64(file) as string;
-			onValueChange?.(base64);
+			const file = e.target.files[0]
+			const base64 = await toBase64(file) as string
+			onValueChange?.(base64)
 		}
 	}
 	
