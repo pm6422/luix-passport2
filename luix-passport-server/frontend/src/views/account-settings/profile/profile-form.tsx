@@ -53,6 +53,7 @@ export default function ProfileForm() {
 
   function save(form: FormSchema): Promise<any> {
     const formData = new FormData()
+    // parse base64 to file
     formData.append("file", fromBase64(form.file, "profile.jpg"))
     return AccountService.uploadProfilePicture(formData)
   }
