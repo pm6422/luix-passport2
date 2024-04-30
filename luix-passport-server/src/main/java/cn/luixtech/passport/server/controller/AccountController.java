@@ -113,7 +113,7 @@ public class AccountController {
                                                        @Parameter(description = "email", required = true) @RequestParam String email) {
         User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         User user = userService.requestVerificationCode(currentUser, email);
-        mailService.sendVerificationCodeMail(user, getRequestUrl(request));
+        mailService.sendVerificationCodeMail(user, email, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
     }
 

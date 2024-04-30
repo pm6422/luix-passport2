@@ -8,6 +8,7 @@ import com.resend.services.emails.model.SendEmailRequest;
 import com.resend.services.emails.model.SendEmailResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.scheduling.annotation.Async;
@@ -56,7 +57,7 @@ public class MailServiceImpl implements MailService {
 
     @Async
     @Override
-    public void sendEmailFromTemplate(User user, String templateName, String emailSubjectKey, String baseUrl) {
+    public void sendEmailFromTemplate(User user, String[] emailsTo, String templateName, String emailSubjectKey, String baseUrl) {
         Locale locale = LocaleUtils.toLocale(user.getLocale());
         Context context = new Context(locale);
         context.setVariable(USER, user);
@@ -64,39 +65,39 @@ public class MailServiceImpl implements MailService {
         context.setVariable(DOMAIN, applicationProperties.getCompany().getDomain());
         String content = springTemplateEngine.process(templateName, context);
         String subject = messageSource.getMessage(emailSubjectKey, null, locale);
-        sendEmail(new String[]{user.getEmail()}, subject, content);
+        sendEmail(ArrayUtils.isNotEmpty(emailsTo) ? emailsTo : new String[]{user.getEmail()}, subject, content);
     }
 
     @Async
     @Override
     public void sendAccountActivationEmail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/activate-account-email", "activate.account.email.subject", baseUrl);
+        sendEmailFromTemplate(user, null, "email/activate-account-email", "activate.account.email.subject", baseUrl);
         log.info("Requested sending account activation email to [{}]", user.getEmail());
     }
 
     @Async
     @Override
     public void sendUserCreationEmail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/create-user-email", "create.user.email.subject", baseUrl);
+        sendEmailFromTemplate(user, null, "email/create-user-email", "create.user.email.subject", baseUrl);
         log.info("Requested sending user creation email to [{}]", user.getEmail());
     }
 
     @Async
     @Override
     public void sendPasswordRecoveryMail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/recover-password-email", "reset.password.email.subject", baseUrl);
+        sendEmailFromTemplate(user, null, "email/recover-password-email", "reset.password.email.subject", baseUrl);
         log.info("Requested sending password recovery email to [{}]", user.getEmail());
     }
 
     @Override
     public void sendPasswordChangedMail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/changed-password-email", "changed.password.email.subject", baseUrl);
+        sendEmailFromTemplate(user, null, "email/changed-password-email", "changed.password.email.subject", baseUrl);
         log.info("Requested sending password changed email to [{}]", user.getEmail());
     }
 
     @Override
-    public void sendVerificationCodeMail(User user, String baseUrl) {
-        sendEmailFromTemplate(user, "email/verification-code-email", "verification.code.email.subject", baseUrl);
+    public void sendVerificationCodeMail(User user, String emailTo, String baseUrl) {
+        sendEmailFromTemplate(user, new String[]{emailTo}, "email/verification-code-email", "verification.code.email.subject", baseUrl);
         log.info("Requested sending verification code email to [{}]", user.getEmail());
     }
 }
