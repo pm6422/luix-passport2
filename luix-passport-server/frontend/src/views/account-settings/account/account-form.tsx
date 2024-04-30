@@ -47,7 +47,6 @@ export function AccountForm() {
     toast.promise(save(formData), {
       loading: "Updating account...",
       success: () => {
-        form.reset()
         setSaving(false)
         return "Updated account"
       },
