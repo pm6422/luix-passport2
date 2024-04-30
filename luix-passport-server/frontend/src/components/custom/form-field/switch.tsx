@@ -35,8 +35,8 @@ const SwitchFormField = <TFieldValues extends FieldValues>({
     key={key}
     render={({ field }) => (
       <FormItem className={formItemClassName}>
-        <div className="flex items-center space-x-2">
-          {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
+        {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
+        <div className="flex items-center rounded-lg border p-3 space-x-2 shadow-sm">
           <FormControl>
             <Switch
               checked={field.value}
@@ -45,8 +45,8 @@ const SwitchFormField = <TFieldValues extends FieldValues>({
               aria-readonly
             />
           </FormControl>
+          {description && <FormDescription>{description}</FormDescription>}
         </div>
-        {description && <FormDescription>{description}</FormDescription>}
         <FormMessage />
       </FormItem>
     )}
