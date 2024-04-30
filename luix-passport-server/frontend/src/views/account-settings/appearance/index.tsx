@@ -10,7 +10,7 @@ export default function SettingsAppearance() {
           Customize the appearance of the app. Automatically switch between day and night themes.
         </p> */}
         <p className='text-sm text-muted-foreground'>
-          Customize the appearance of the app.
+          Customize the appearance of the application.
         </p>
       </div>
       <Separator />
