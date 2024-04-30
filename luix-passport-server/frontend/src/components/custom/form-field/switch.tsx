@@ -36,7 +36,7 @@ const SwitchFormField = <TFieldValues extends FieldValues>({
     render={({ field }) => (
       <FormItem className={formItemClassName}>
         {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
-        <div className="flex items-center rounded-lg border p-3 space-x-2 shadow-sm">
+        <div className="flex items-center space-x-2">
           <FormControl>
             <Switch
               checked={field.value}
