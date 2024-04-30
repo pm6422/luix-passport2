@@ -4,6 +4,7 @@ import cn.luixtech.passport.server.domain.UserRole;
 import cn.luixtech.passport.server.repository.UserRoleRepository;
 import cn.luixtech.passport.server.service.UserRoleService;
 import lombok.AllArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,5 +52,19 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void deleteByUserId(String userId) {
         userRoleRepository.deleteByUserId(userId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void update(String userId, Set<String> roles) {
+        if (CollectionUtils.isEmpty(roles)) {
+            return;
+        }
+        // first delete user authorities
+        deleteByUserId(userId);
+
+        // then insert user authorities
+        List<UserRole> userRoles = generate(userId, roles);
+        userRoleRepository.saveAll(userRoles);
     }
 }

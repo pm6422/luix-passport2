@@ -5,11 +5,13 @@ import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.domain.UserRole;
 import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.pojo.ManagedUser;
+import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.repository.UserRoleRepository;
 import cn.luixtech.passport.server.service.MailService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
+import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,6 +46,7 @@ public class UserController {
     private final ApplicationProperties     applicationProperties;
     private final ApplicationEventPublisher applicationEventPublisher;
     private final UserService               userService;
+    private final UserRepository            userRepository;
     private final UserRoleRepository        userRoleRepository;
     private final MailService               mailService;
     private final HttpHeaderCreator         httpHeaderCreator;
@@ -87,7 +90,16 @@ public class UserController {
     @Operation(summary = "update user")
     @PutMapping("/api/users")
     public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody ManagedUser domain) {
-        userService.update(domain, domain.getRoles());
+        User existingOne = userRepository.findById(domain.getId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        existingOne.setFirstName(domain.getFirstName());
+        existingOne.setLastName(domain.getLastName());
+        existingOne.setLanguage(domain.getLanguage());
+        existingOne.setLocale(domain.getLocale());
+        existingOne.setEmail(domain.getEmail().toLowerCase());
+        existingOne.setMobileNo(domain.getMobileNo());
+        existingOne.setRemark(domain.getRemark());
+        existingOne.setEnabled(domain.getEnabled());
+        userService.update(existingOne, domain.getRoles());
         if (domain.getId().equals(AuthUtils.getCurrentUserId())) {
             // Logout if current user were changed
             applicationEventPublisher.publishEvent(new LogoutEvent(this));

@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.FastDateFormat;
+import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -76,9 +77,13 @@ public class AccountController {
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
     public ResponseEntity<Void> update(@Parameter(description = "new user info", required = true) @Valid @RequestBody User domain) {
-        User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
-        Validate.isTrue(StringUtils.isNotEmpty(domain.getId()) && currentUser.getId().equals(domain.getId()), "Invalid user ID!");
-        userService.update(domain);
+        User existingOne = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        Validate.isTrue(StringUtils.isNotEmpty(domain.getId()) && existingOne.getId().equals(domain.getId()), "Invalid user ID!");
+        existingOne.setFirstName(domain.getFirstName());
+        existingOne.setLastName(domain.getLastName());
+        existingOne.setLanguage(domain.getLanguage());
+        existingOne.setLocale(domain.getLocale());
+        userService.update(existingOne);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 

@@ -20,7 +20,6 @@ import com.luixtech.utilities.exception.DuplicationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -214,9 +213,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User update(User domain) {
-        User existingOne = userRepository.findById(domain.getId()).orElseThrow(() -> new DataNotFoundException(domain.getId()));
+    public User update(User domain, Set<String> roles) {
+        User updated = update(domain);
+        userRoleService.update(domain.getId(), roles);
+        return updated;
+    }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public User update(User domain) {
         int existingEmailCount = userRepository.countByEmailAndIdNot(domain.getEmail(), domain.getId());
         if (existingEmailCount > 0) {
             throw new DuplicationException(Map.of("email", domain.getEmail()));
@@ -226,36 +231,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             throw new DuplicationException(Map.of("mobileNo", domain.getMobileNo()));
         }
 
-        existingOne.setFirstName(domain.getFirstName());
-        existingOne.setLastName(domain.getLastName());
-        existingOne.setLanguage(domain.getLanguage());
-        existingOne.setLocale(domain.getLocale());
-//        existingOne.setEmail(domain.getEmail().toLowerCase());
-//        existingOne.setMobileNo(domain.getMobileNo());
-//        existingOne.setRemark(domain.getRemark());
-//        existingOne.setEnabled(domain.getEnabled());
-        existingOne.setModifiedBy(AuthUtils.getCurrentUsername());
-        existingOne.setModifiedAt(Instant.now());
+        domain.setModifiedBy(AuthUtils.getCurrentUsername());
+        domain.setModifiedAt(Instant.now());
 
-        userRepository.save(existingOne);
+        userRepository.save(domain);
         log.debug("Updated user: {}", domain);
-        return existingOne;
-    }
-
-    @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User update(User domain, Set<String> roles) {
-        User updated = update(domain);
-        if (CollectionUtils.isNotEmpty(roles)) {
-            // first delete user authorities
-            userRoleService.deleteByUserId(domain.getId());
-
-            // then insert user authorities
-            List<UserRole> userRoles = userRoleService.generate(domain.getId(), roles);
-            userRoleRepository.saveAll(userRoles);
-            log.info("Updated user authorities: {}", userRoles);
-        }
-        return updated;
+        return domain;
     }
 
     @Override
