@@ -50,8 +50,13 @@ export function ChangeEmailForm() {
     })
   }, [])
 
-  function sendVerificationCode(email: string): void {
-    
+  async function sendVerificationCode(email: string): Promise<void> {
+    await AccountService.sendVerificationCode(email)
+    toast(
+      <div>
+        <span>Sent verification code</span>
+      </div>, 
+    { duration: 5000 })
   }
   
   function onSubmit(formData: FormSchema) {

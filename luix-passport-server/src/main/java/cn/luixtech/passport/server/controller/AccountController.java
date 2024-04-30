@@ -108,7 +108,7 @@ public class AccountController {
     }
 
     @Operation(summary = "send verification code email")
-    @PostMapping("/open-api/accounts/request-verification-code")
+    @PostMapping("/api/accounts/request-verification-code")
     public ResponseEntity<Void> requestVerificationCode(HttpServletRequest request,
                                                        @Parameter(description = "email", required = true) @RequestParam String email) {
         User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
