@@ -99,6 +99,7 @@ export function EditDialog({
           name="language" 
           label="Preferred Language"
           options={languages}
+          required
         />
 
         <InputFormField 

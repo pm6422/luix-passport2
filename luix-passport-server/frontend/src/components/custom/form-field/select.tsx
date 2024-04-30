@@ -47,7 +47,7 @@ const SelectFormField = <TFieldValues extends FieldValues>({
       <FormItem className={formItemClassName}>
         {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
         <FormControl>
-          <Select onValueChange={field.onChange} defaultValue={field.value} >
+          <Select onValueChange={field.onChange} value={field.value} >
             <FormControl>
               <SelectTrigger>
                 <SelectValue placeholder={placeholder}/>
