@@ -40,7 +40,7 @@ export function ChangeEmailForm() {
       newEmail: "",
       verificationCode: ""
     },
-    mode: "onBlur"
+    mode: "onChange"
   })
 
   useEffect(() => {
@@ -85,12 +85,12 @@ export function ChangeEmailForm() {
           label="New Email" 
           required
           formItemClassName="mt-2"
+          description="Click send buttion to send a verification code to your new email."
           icon={
             <Button 
               type="button"
               variant="outline" 
-              className="flex w-20 p-0"
-              disabled={Object.values(form.formState.errors).length > 0 || saving}
+              disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail")}
               onClick={() => form.setValue("newEmail", "")}>
                 <IconSend className="size-4 mr-1" />
                 Send
@@ -109,6 +109,7 @@ export function ChangeEmailForm() {
                   className="flex h-10 space-x-4"
                   value={field.value}
                   onChange={field.onChange}
+                  disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail")}
                   onComplete={(str) => console.log("completed", str)}
                 >
                   {Array.from({ length: 6 }, (_, i) => (
