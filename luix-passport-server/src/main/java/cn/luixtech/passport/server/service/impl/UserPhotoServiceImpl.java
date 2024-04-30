@@ -8,6 +8,8 @@ import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.service.UserPhotoService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -18,6 +20,7 @@ public class UserPhotoServiceImpl implements UserPhotoService {
     private final UserRepository      userRepository;
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void insert(String userId, byte[] photoData) {
         UserPhoto userPhoto = new UserPhoto();
         userPhoto.setId(userId);
@@ -26,12 +29,14 @@ public class UserPhotoServiceImpl implements UserPhotoService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void update(UserPhoto photo, byte[] photoData) {
         photo.setPhoto(photoData);
         userPhotoRepository.save(photo);
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void save(User user, byte[] photoData) {
         Optional<UserPhoto> existingOne = userPhotoRepository.findById(user.getId());
         if (existingOne.isPresent()) {
@@ -40,10 +45,6 @@ public class UserPhotoServiceImpl implements UserPhotoService {
         } else {
             // insert if not exists
             insert(user.getId(), photoData);
-
-            // update user
-            user.setProfilePhotoEnabled(true);
-            userRepository.save(user);
         }
     }
 }
