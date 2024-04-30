@@ -10,8 +10,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
 export function AccountNav() {
+  const authUserProvider = useAuthUserProvider()
 
   return (
     <DropdownMenu>
@@ -26,9 +28,9 @@ export function AccountNav() {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Louis Lau</p>
+            <p className="text-sm font-medium leading-none">{authUserProvider.authUser.firstName} {authUserProvider.authUser.lastName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              louis@luixtech.cn
+              {authUserProvider.authUser.email}
             </p>
           </div>
         </DropdownMenuLabel>
