@@ -377,4 +377,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.save(user);
         return user;
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public void changeToNewEmail(User currentUser) {
+        currentUser.setEmail(currentUser.getNewEmail());
+        currentUser.setNewEmail(StringUtils.EMPTY);
+        currentUser.setVerificationCode(StringUtils.EMPTY);
+        currentUser.setVerificationCodeSentAt(null);
+        currentUser.setModifiedBy(AuthUtils.getCurrentUsername());
+        currentUser.setModifiedAt(Instant.now());
+
+        userRepository.save(currentUser);
+    }
 }

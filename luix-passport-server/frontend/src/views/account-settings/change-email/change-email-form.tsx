@@ -21,6 +21,7 @@ import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
 import { getErrorMessage } from "@/libs/handle-error"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const formSchema = z.object({
   currentEmail: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
@@ -31,6 +32,7 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>
 
 export function ChangeEmailForm() {
+  const navigate = useNavigate()
   const authUserProvider = useAuthUserProvider()
   const [saving, setSaving] = useState(false)
 
@@ -65,6 +67,7 @@ export function ChangeEmailForm() {
       loading: "Updating account...",
       success: () => {
         setSaving(false)
+        navigate("/account-settings/account")
         return "Updated account"
       },
       error: (error) => {
@@ -75,8 +78,7 @@ export function ChangeEmailForm() {
   }
 
   function save(formData: FormSchema): Promise<any> {
-    console.log(formData)
-    return null
+    return AccountService.changeEmail(formData.verificationCode)
   }
 
   return (

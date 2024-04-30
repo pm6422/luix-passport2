@@ -27,4 +27,8 @@ export class AccountService {
   public static sendEmailChangeVerificationCode(email: string): Promise<any> {
     return http.post("api/accounts/request-email-change-verification-code?email=" + email)
   }
+
+  public static changeEmail(verificationCode: string): Promise<any> {
+    return http.post("api/accounts/change-email?verificationCode=" + verificationCode)
+  }
 }

@@ -37,6 +37,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -110,11 +111,23 @@ public class AccountController {
     @Operation(summary = "send email change verification code email")
     @PostMapping("/api/accounts/request-email-change-verification-code")
     public ResponseEntity<Void> requestEmailChangeVerificationCode(HttpServletRequest request,
-                                                       @Parameter(description = "email", required = true) @RequestParam String email) {
+                                                                   @Parameter(description = "email", required = true) @RequestParam String email) {
         User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         User user = userService.requestEmailChangeVerificationCode(currentUser, email);
         mailService.sendVerificationCodeMail(user, email, getRequestUrl(request));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
+    }
+
+    @Operation(summary = "change email with verification code")
+    @PostMapping("/api/accounts/change-email")
+    public ResponseEntity<Void> changeEmail(HttpServletRequest request,
+                                            @Parameter(description = "verificationCode", required = true) @RequestParam String verificationCode) {
+        User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        Validate.isTrue(StringUtils.isNotEmpty(currentUser.getVerificationCode()), "Please send verification code first!");
+        Validate.isTrue(verificationCode.equalsIgnoreCase(currentUser.getVerificationCode()), "Invalid verification code!");
+        Validate.isTrue(currentUser.getVerificationCodeSentAt().plusDays(1).isAfter(LocalDateTime.now()), "Invalid verification exceeds one day before!");
+        userService.changeToNewEmail(currentUser);
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002")).build();
     }
 
     @Operation(summary = "send password recovery email")
