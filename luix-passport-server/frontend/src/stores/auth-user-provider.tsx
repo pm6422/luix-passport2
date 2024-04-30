@@ -39,7 +39,7 @@ export function AuthUserProvider({
 
   // watch auth user whether is null
   useEffect(() => {
-    if(!authUser || isEmpty(authUser)) {
+    if(isEmpty(authUser)) {
       // user is null
     }
   }, [authUser])
