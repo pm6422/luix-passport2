@@ -50,6 +50,10 @@ spring:
     active: dev
   web:
     locale: en_US # default locale
+  servlet:
+    multipart:
+      max-request-size: 15MB
+      max-file-size: 15MB
   messages:
     basename: i18n/messages,i18n/luix-messages
   banner:
