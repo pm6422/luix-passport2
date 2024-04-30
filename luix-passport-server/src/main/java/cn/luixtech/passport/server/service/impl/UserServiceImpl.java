@@ -281,7 +281,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User requestVerificationCode(User user, String email) {
         user.setVerificationCode(generateRandomVerificationCode());
-        user.setVerifiedAt(LocalDateTime.now());
+        user.setVerificationCodeSentAt(LocalDateTime.now());
         userRepository.save(user);
         return user;
     }

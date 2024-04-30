@@ -172,7 +172,8 @@
             </column>
             <column name="activation_code" type="VARCHAR(256)"/>
             <column name="verification_code" type="VARCHAR(32)"/>
-            <column name="verified_at" type="timestamp"/>
+            <column name="verification_code_sent_at" type="timestamp"/>
+            <column name="new_email" type="VARCHAR(30)"/>
             <column name="reset_code" type="VARCHAR(256)"/>
             <column name="reset_at" type="timestamp"/>
             <column name="profile_photo_enabled" type="BIT(1)">

@@ -93,9 +93,14 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, String> VERIFICATION_CODE = createField(DSL.name("verification_code"), SQLDataType.VARCHAR(32), this, "");
 
     /**
-     * The column <code>luix-passport.user.verified_at</code>.
+     * The column <code>luix-passport.user.verification_code_sent_at</code>.
      */
-    public final TableField<UserRecord, LocalDateTime> VERIFIED_AT = createField(DSL.name("verified_at"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<UserRecord, LocalDateTime> VERIFICATION_CODE_SENT_AT = createField(DSL.name("verification_code_sent_at"), SQLDataType.LOCALDATETIME(0), this, "");
+
+    /**
+     * The column <code>luix-passport.user.new_email</code>.
+     */
+    public final TableField<UserRecord, String> NEW_EMAIL = createField(DSL.name("new_email"), SQLDataType.VARCHAR(30), this, "");
 
     /**
      * The column <code>luix-passport.user.reset_code</code>.
