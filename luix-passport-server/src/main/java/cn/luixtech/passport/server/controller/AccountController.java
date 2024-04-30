@@ -29,10 +29,12 @@ import org.apache.commons.lang3.time.FastDateFormat;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -120,8 +122,7 @@ public class AccountController {
 
     @Operation(summary = "change email with verification code")
     @PostMapping("/api/accounts/change-email")
-    public ResponseEntity<Void> changeEmail(HttpServletRequest request,
-                                            @Parameter(description = "verificationCode", required = true) @RequestParam String verificationCode) {
+    public ResponseEntity<Void> changeEmail(@Parameter(description = "verificationCode", required = true) @RequestParam String verificationCode) {
         User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         Validate.isTrue(StringUtils.isNotEmpty(currentUser.getVerificationCode()), "Please send verification code first!");
         Validate.isTrue(verificationCode.equalsIgnoreCase(currentUser.getVerificationCode()), "Invalid verification code!");
@@ -154,28 +155,34 @@ public class AccountController {
 
     @Operation(summary = "get profile picture of the current user")
     @GetMapping("/api/accounts/profile-picture")
-    public ResponseEntity<byte[]> getProfilePhoto() {
+    public ResponseEntity<byte[]> getProfilePicture(HttpServletRequest request) throws IOException {
         Optional<UserPhoto> userPhoto = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
-        return userPhoto.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
+        if (userPhoto.isPresent()) {
+            return ResponseEntity.ok(userPhoto.get().getPhoto());
+        }
+        // Set default profile picture
+        byte[] bytes = StreamUtils.copyToByteArray(
+                new UrlResource(getRequestUrl(request) + "/assets/images/logos/logo-round.png").getInputStream());
+        return ResponseEntity.ok(bytes);
     }
 
     @Operation(summary = "upload profile picture of the current user")
     @PostMapping(value = "/api/accounts/profile-picture/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void uploadProfilePhoto(@Parameter(description = "user profile photo", required = true) @RequestPart MultipartFile file) throws IOException {
+    public void uploadProfilePicture(@Parameter(description = "user profile photo", required = true) @RequestPart MultipartFile file) throws IOException {
         User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         userPhotoService.save(user, file.getBytes());
-        log.info("Uploaded profile photo with file name {}", file.getOriginalFilename());
+        log.info("Uploaded profile picture with file name {}", file.getOriginalFilename());
     }
 
     @Operation(summary = "download profile picture of the current user")
     @GetMapping("/api/accounts/profile-picture/download")
-    public ResponseEntity<Resource> downloadProfilePhoto() {
+    public ResponseEntity<Resource> downloadProfilePicture() {
         Optional<UserPhoto> existingOne = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
         if (existingOne.isEmpty()) {
             return ResponseEntity.ok().body(null);
         }
         ByteArrayResource resource = new ByteArrayResource(existingOne.get().getPhoto());
-        String fileName = "photo-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
+        String fileName = "pic-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
