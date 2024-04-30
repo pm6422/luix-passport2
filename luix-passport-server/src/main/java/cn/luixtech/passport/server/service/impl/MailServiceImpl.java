@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.service.impl;
 import cn.luixtech.passport.server.config.ApplicationProperties;
 import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.service.MailService;
+import com.luixtech.utilities.exception.ThirdPartyServiceException;
 import com.resend.Resend;
 import com.resend.services.emails.model.SendEmailRequest;
 import com.resend.services.emails.model.SendEmailResponse;
@@ -11,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.LocaleUtils;
 import org.springframework.context.MessageSource;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.thymeleaf.context.Context;
@@ -36,7 +36,6 @@ public class MailServiceImpl implements MailService {
     /**
      * System default email address that sends the e-mails.
      */
-    @Async
     @Override
     public void sendEmail(String[] sendTo, String subject, String content) {
         log.info("Sending email to [{}] with subject [{}] and content: {}", StringUtils.arrayToCommaDelimitedString(sendTo), subject, content);
@@ -47,10 +46,10 @@ public class MailServiceImpl implements MailService {
             log.info("Successfully sent email to users [{}] with message id [{}]", StringUtils.arrayToCommaDelimitedString(sendTo), result.getId());
         } catch (Exception e) {
             log.error("Failed to send email to users [{}] with exception: {}", StringUtils.arrayToCommaDelimitedString(sendTo), e.getMessage());
+            throw new ThirdPartyServiceException(e.getMessage());
         }
     }
 
-    @Async
     @Override
     public void sendEmailFromTemplate(User user, String[] emailsTo, String templateName, String emailSubjectKey, String baseUrl) {
         Locale locale = LocaleUtils.toLocale(user.getLocale());
@@ -63,21 +62,18 @@ public class MailServiceImpl implements MailService {
         sendEmail(ArrayUtils.isNotEmpty(emailsTo) ? emailsTo : new String[]{user.getEmail()}, subject, content);
     }
 
-    @Async
     @Override
     public void sendAccountActivationEmail(User user, String baseUrl) {
         sendEmailFromTemplate(user, null, "email/activate-account-email", "activate.account.email.subject", baseUrl);
         log.info("Requested sending account activation email to [{}]", user.getEmail());
     }
 
-    @Async
     @Override
     public void sendUserCreationEmail(User user, String baseUrl) {
         sendEmailFromTemplate(user, null, "email/create-user-email", "create.user.email.subject", baseUrl);
         log.info("Requested sending user creation email to [{}]", user.getEmail());
     }
 
-    @Async
     @Override
     public void sendPasswordRecoveryMail(User user, String baseUrl) {
         sendEmailFromTemplate(user, null, "email/recover-password-email", "reset.password.email.subject", baseUrl);
