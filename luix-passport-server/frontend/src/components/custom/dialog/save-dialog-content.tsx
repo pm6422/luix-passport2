@@ -83,7 +83,7 @@ const SaveDialogContent = ({
               </Button>
             </DialogClose>
             { !readonly &&
-              <Button disabled={saving}>
+              <Button type="submit" disabled={saving}>
                 {saving ? "Saving..." : "Save"}
                 {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
               </Button>

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react"
 import { isEmpty } from "lodash"
 
 export type AuthUser = {
+  id: string
   username: string
   email: string
   fisrtName: string
