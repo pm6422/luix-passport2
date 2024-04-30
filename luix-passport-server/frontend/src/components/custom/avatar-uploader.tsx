@@ -25,7 +25,7 @@ export function AvatarUploader({
 	}
 	
 	return (
-		<div className="relative w-40 h-40">
+		<div className="relative size-40">
 			<Avatar className="w-full h-full">
 				<AvatarImage src={defaultValue} className="object-cover"/>
 				<AvatarFallback className="bg-secondary">
