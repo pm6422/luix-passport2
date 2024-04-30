@@ -1,16 +1,16 @@
 package cn.luixtech.passport.server.controller;
 
 import cn.luixtech.passport.server.domain.User;
-import cn.luixtech.passport.server.domain.UserPhoto;
+import cn.luixtech.passport.server.domain.UserProfilePic;
 import cn.luixtech.passport.server.event.LogoutEvent;
 import cn.luixtech.passport.server.pojo.AuthUser;
 import cn.luixtech.passport.server.pojo.ChangePassword;
 import cn.luixtech.passport.server.pojo.ManagedUser;
 import cn.luixtech.passport.server.pojo.PasswordRecovery;
-import cn.luixtech.passport.server.repository.UserPhotoRepository;
+import cn.luixtech.passport.server.repository.UserProfilePicRepository;
 import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.service.MailService;
-import cn.luixtech.passport.server.service.UserPhotoService;
+import cn.luixtech.passport.server.service.UserProfilePicService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.HttpHeaderCreator;
@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.springframework.beans.BeanUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -60,11 +59,11 @@ public class AccountController {
     private final        HttpHeaderCreator         httpHeaderCreator;
     private final        MessageCreator            messageCreator;
     private final        MailService               mailService;
-    private final        UserRepository            userRepository;
-    private final        UserPhotoRepository       userPhotoRepository;
-    private final        UserService               userService;
-    private final        UserPhotoService          userPhotoService;
-    private final        ApplicationEventPublisher applicationEventPublisher;
+    private final UserRepository           userRepository;
+    private final UserProfilePicRepository userProfilePicRepository;
+    private final UserService               userService;
+    private final UserProfilePicService     userProfilePicService;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "get current user who are signed in")
     @GetMapping("/open-api/accounts/user")
@@ -159,11 +158,11 @@ public class AccountController {
     }
 
     @Operation(summary = "get profile picture of the current user")
-    @GetMapping("/api/accounts/profile-picture")
+    @GetMapping("/api/accounts/profile-pic")
     public ResponseEntity<byte[]> getProfilePicture(HttpServletRequest request) throws IOException {
-        Optional<UserPhoto> userPhoto = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
+        Optional<UserProfilePic> userPhoto = userProfilePicRepository.findById(AuthUtils.getCurrentUserId());
         if (userPhoto.isPresent()) {
-            return ResponseEntity.ok(userPhoto.get().getPhoto());
+            return ResponseEntity.ok(userPhoto.get().getProfilePic());
         }
         // Set default profile picture
         byte[] bytes = StreamUtils.copyToByteArray(
@@ -172,26 +171,26 @@ public class AccountController {
     }
 
     @Operation(summary = "upload profile picture of the current user")
-    @PostMapping(value = "/api/accounts/profile-picture/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/api/accounts/profile-pic/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void uploadProfilePicture(@Parameter(description = "user profile photo", required = true) @RequestPart MultipartFile file) throws IOException {
         User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
-        userPhotoService.save(user, file.getBytes());
+        userProfilePicService.save(user, file.getBytes());
         log.info("Uploaded profile picture with file name {}", file.getOriginalFilename());
     }
 
     @Operation(summary = "download profile picture of the current user")
-    @GetMapping("/api/accounts/profile-picture/download")
+    @GetMapping("/api/accounts/profile-pic/download")
     public ResponseEntity<Resource> downloadProfilePicture() {
-        Optional<UserPhoto> existingOne = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
+        Optional<UserProfilePic> existingOne = userProfilePicRepository.findById(AuthUtils.getCurrentUserId());
         if (existingOne.isEmpty()) {
             return ResponseEntity.ok().body(null);
         }
-        ByteArrayResource resource = new ByteArrayResource(existingOne.get().getPhoto());
+        ByteArrayResource resource = new ByteArrayResource(existingOne.get().getProfilePic());
         String fileName = "pic-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .contentLength(existingOne.get().getPhoto().length)
+                .contentLength(existingOne.get().getProfilePic().length)
                 .body(resource);
 
 //        String path = System.getProperty("user.home") + File.separator + "fileName.txt";

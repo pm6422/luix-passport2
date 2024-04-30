@@ -17,7 +17,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class UserPhoto extends AbstractBaseDomain implements Serializable {
+public class UserProfilePic extends AbstractBaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = -8375847941374800940L;
 
@@ -26,5 +26,5 @@ public class UserPhoto extends AbstractBaseDomain implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     @Lob
     @Column(columnDefinition = "longblob", nullable = false)
-    private byte[] photo;
+    private byte[] profilePic;
 }
