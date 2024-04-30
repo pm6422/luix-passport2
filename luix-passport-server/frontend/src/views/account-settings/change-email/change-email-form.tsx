@@ -20,6 +20,7 @@ import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
 import { getErrorMessage } from "@/libs/handle-error"
+import { Link } from "react-router-dom"
 
 const formSchema = z.object({
   currentEmail: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
@@ -127,10 +128,17 @@ export function ChangeEmailForm() {
           )}
         />
 
-        <Button type="submit" disabled={Object.values(form.formState.errors).length > 0 || saving}>
-          {saving ? "Saving..." : "Save"}
-          {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
-        </Button>
+        <div className='flex items-center gap-2'>
+          <Link to="/account-settings/account">
+            <Button type="button" variant="outline">
+              Back
+            </Button>
+          </Link>
+          <Button type="submit" disabled={Object.values(form.formState.errors).length > 0 || saving}>
+            {saving ? "Saving..." : "Save"}
+            {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
+          </Button>
+        </div>
       </form>
     </Form>
   )
