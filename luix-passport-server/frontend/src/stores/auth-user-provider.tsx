@@ -4,6 +4,9 @@ import { isEmpty } from "lodash"
 export type AuthUser = {
   username: string
   email: string
+  fisrtName: string
+  lastName: string
+  language: string
   activated: boolean
   enabled: boolean
   roles: Array<string>

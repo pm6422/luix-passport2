@@ -30,56 +30,27 @@ import {
 import { toast } from "sonner"
 import { formatDate } from "@/libs/utils"
 import { languages } from "@/data/languages"
+import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
-const accountFormSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Name must not be longer than 30 characters.",
-    }),
-  username: z
-    .string()
-    .min(2, {
-      message: "Username must be at least 2 characters.",
-    })
-    .max(30, {
-      message: "Username must not be longer than 30 characters.",
-    }),
+const formSchema = z.object({
+  username: z.string().trim().min(1, { message: "Required" }),
   email: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
-  bio: z.string().max(160).min(4),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
-  dob: z.date({
-    required_error: "A date of birth is required.",
-  }),
-  language: z.string({
-    required_error: "Please select a language.",
-  }),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  language: z.string().trim().min(1, { message: "Required" }),
 })
 
-type AccountFormValues = z.infer<typeof accountFormSchema>
-
-// This can come from your database or API.
-const defaultValues: Partial<AccountFormValues> = {
-  // name: "Your name",
-  // dob: new Date("2023-01-23"),
-}
+type FormSchema = z.infer<typeof formSchema>
 
 export function AccountForm() {
-  const form = useForm<AccountFormValues>({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues,
+  const authUserProvider = useAuthUserProvider()
+
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: authUserProvider.authUser
   })
 
-  function onSubmit(data: AccountFormValues) {
+  function onSubmit(data: FormSchema) {
     toast(
       <div>
         <span>You submitted the following values:</span>
@@ -93,126 +64,18 @@ export function AccountForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <InputFormField control={form.control} name="name" label="Name" required placeholder="Your name"
-          description="This is the name that will be displayed on your profile and in emails."
-        />
+        <div>
+          <h3 className="text-sm font-medium">Username</h3>
+          <p className="text-sm text-muted-foreground mt-2">
+            {form.getValues("username")}
+          </p>
+        </div>
 
-        <InputFormField control={form.control} name="username" label="Username" required 
-          description="This is your public display name. It can be your real name or a
-          pseudonym. You can only change this once every 30 days."
-        />
-        <InputFormField control={form.control} name="email" label="Email" required/>
+        <InputFormField control={form.control} name="firstName" label="First Name"/>
+        <InputFormField control={form.control} name="lastName" label="Last Name"/>
 
-        <InputFormField control={form.control} name="bio" label="Bio" type="textarea"
-          description="You can @mention other users and organizations to
-          link to them."
-        />
 
-        <FormField
-          control={form.control}
-          name="dob"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Date of birth</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value ? (
-                        formatDate(field.value)
-                      ) : (
-                        <span>Pick a date</span>
-                      )}
-                      <IconCalendar className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={field.value}
-                    onSelect={field.onChange}
-                    disabled={(date: Date) =>
-                      date > new Date() || date < new Date("1900-01-01")
-                    }
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Your date of birth is used to calculate your age.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="language"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? languages.find(
-                            (language) => language.value === field.value
-                          )?.label
-                        : "Select language"}
-                      <IconSelector className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandEmpty>No language found.</CommandEmpty>
-                    <CommandGroup>
-                      {languages.map((language) => (
-                        <CommandItem
-                          value={language.label}
-                          key={language.value}
-                          onSelect={() => {
-                            form.setValue("language", language.value)
-                          }}
-                        >
-                          <IconCheck
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              language.value === field.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                          {language.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+
         <Button type="submit">Update account</Button>
       </form>
     </Form>

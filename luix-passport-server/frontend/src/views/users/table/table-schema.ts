@@ -11,7 +11,7 @@ export const formSchema = z.object({
   activationCode: z.string().optional(),
   resetAt: z.string().optional(),
   remark: z.string().optional(),
-  language: z.string().optional(),
+  language: z.string().trim().min(1, { message: "Required" }),
   profilePhotoEnabled: z.boolean().optional(),
   activated: z.boolean().optional(),
   enabled: z.boolean().optional(),

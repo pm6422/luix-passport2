@@ -192,7 +192,9 @@
             <column name="account_expires_at" type="timestamp"/>
             <column name="password_expires_at" type="timestamp"/>
             <column name="last_sign_in_at" type="timestamp"/>
-            <column name="language" type="VARCHAR(25)"/>
+            <column name="language" type="VARCHAR(25)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>

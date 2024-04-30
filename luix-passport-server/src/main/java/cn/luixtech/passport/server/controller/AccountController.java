@@ -65,26 +65,14 @@ public class AccountController {
     @Operation(summary = "get current user who are signed in")
     @GetMapping("/open-api/accounts/user")
     public ResponseEntity<AuthUser> getCurrentUser() {
-        if (AuthUtils.getCurrentUserId() == null) {
-            return ResponseEntity.ok(null);
-        }
-        ManagedUser user = userService.findById(AuthUtils.getCurrentUserId());
-        return ResponseEntity.ok(AuthUser.of(user));
-    }
-
-    @Operation(summary = "register a new user and send an account activation email")
-    @PostMapping("/open-api/accounts/register")
-    public ResponseEntity<Void> register(HttpServletRequest request,
-                                         @Parameter(description = "user", required = true) @Valid @RequestBody ManagedUser managedUser) {
-        User newUser = userService.insert(managedUser.toUser(), managedUser.getRoles(), managedUser.getPassword(), false);
-        mailService.sendAccountActivationEmail(newUser, getRequestUrl(request));
-        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("SM1021", newUser.getUsername());
-        return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
+        return AuthUtils.getCurrentUserId() == null ?
+                ResponseEntity.ok(null) :
+                ResponseEntity.ok(AuthUser.of(userService.findById(AuthUtils.getCurrentUserId())));
     }
 
     @Operation(summary = "update current user")
     @PutMapping("/api/accounts/user")
-    public ResponseEntity<Void> update(@Parameter(description = "new user", required = true) @Valid @RequestBody User domain) {
+    public ResponseEntity<Void> update(@Parameter(description = "new user info", required = true) @Valid @RequestBody User domain) {
         User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         Validate.isTrue(StringUtils.isEmpty(domain.getId()) || currentUser.getId().equals(domain.getId()), "Invalid user ID!");
         userService.update(domain);
@@ -101,6 +89,16 @@ public class AccountController {
         // Logout asynchronously
         applicationEventPublisher.publishEvent(new LogoutEvent(this));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("password"))).build();
+    }
+
+    @Operation(summary = "register a new user and send an account activation email")
+    @PostMapping("/open-api/accounts/register")
+    public ResponseEntity<Void> register(HttpServletRequest request,
+                                         @Parameter(description = "user", required = true) @Valid @RequestBody ManagedUser managedUser) {
+        User newUser = userService.insert(managedUser.toUser(), managedUser.getRoles(), managedUser.getPassword(), false);
+        mailService.sendAccountActivationEmail(newUser, getRequestUrl(request));
+        HttpHeaders headers = httpHeaderCreator.createSuccessHeader("SM1021", newUser.getUsername());
+        return ResponseEntity.status(HttpStatus.CREATED).headers(headers).build();
     }
 
     @Operation(summary = "activate the account by activation code")

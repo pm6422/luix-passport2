@@ -228,10 +228,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
         existingOne.setFirstName(domain.getFirstName());
         existingOne.setLastName(domain.getLastName());
-        existingOne.setEmail(domain.getEmail().toLowerCase());
-        existingOne.setMobileNo(domain.getMobileNo());
-        existingOne.setRemark(domain.getRemark());
+//        existingOne.setEmail(domain.getEmail().toLowerCase());
+//        existingOne.setMobileNo(domain.getMobileNo());
+//        existingOne.setRemark(domain.getRemark());
         existingOne.setLanguage(domain.getLanguage());
+        existingOne.setLocale(domain.getLocale());
         existingOne.setEnabled(domain.getEnabled());
         existingOne.setModifiedBy(AuthUtils.getCurrentUsername());
         existingOne.setModifiedAt(Instant.now());
