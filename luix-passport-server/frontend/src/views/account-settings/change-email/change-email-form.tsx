@@ -90,7 +90,7 @@ export function ChangeEmailForm() {
             <Button 
               type="button"
               variant="outline" 
-              disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail")}
+              disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail") || form.getValues("currentEmail") == form.getValues("newEmail")}
               onClick={() => form.setValue("newEmail", "")}>
                 <IconSend className="size-4 mr-1" />
                 Send
@@ -109,7 +109,7 @@ export function ChangeEmailForm() {
                   className="flex h-10 space-x-4"
                   value={field.value}
                   onChange={field.onChange}
-                  disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail")}
+                  disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail") || form.getValues("currentEmail") == form.getValues("newEmail")}
                   onComplete={(str) => console.log("completed", str)}
                 >
                   {Array.from({ length: 6 }, (_, i) => (
@@ -117,7 +117,7 @@ export function ChangeEmailForm() {
                   ))}
                 </PinInput>
               </FormControl>
-              <FormDescription className={form.getValues("newEmail") && form.formState.errors.newEmail == null ? "" : "invisible"}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
+              <FormDescription className={form.getValues("newEmail") && form.formState.errors.newEmail == null && form.getValues("currentEmail") != form.getValues("newEmail") ? "" : "invisible"}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
