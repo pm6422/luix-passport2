@@ -34,6 +34,7 @@ type FormSchema = z.infer<typeof formSchema>
 export function ChangeEmailForm() {
   const navigate = useNavigate()
   const authUserProvider = useAuthUserProvider()
+  const [verificationCodeInputDisabled, setVerificationCodeInputDisabled] = useState(true)
   const [saving, setSaving] = useState(false)
 
   const form = useForm<FormSchema>({
@@ -58,6 +59,7 @@ export function ChangeEmailForm() {
       loading: "Sending verification code...",
       success: () => {
         setSaving(false)
+        setVerificationCodeInputDisabled(false)
         return "Sent verification code"
       },
       error: (error) => {
@@ -131,7 +133,7 @@ export function ChangeEmailForm() {
                   className="flex h-10 space-x-4"
                   value={field.value}
                   onChange={field.onChange}
-                  disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail") || form.getValues("currentEmail") == form.getValues("newEmail")}
+                  disabled={verificationCodeInputDisabled}
                   onComplete={(str) => console.log("completed", str)}
                 >
                   {Array.from({ length: 6 }, (_, i) => (
@@ -139,7 +141,7 @@ export function ChangeEmailForm() {
                   ))}
                 </PinInput>
               </FormControl>
-              <FormDescription className={form.getValues("newEmail") && form.formState.errors.newEmail == null && form.getValues("currentEmail") != form.getValues("newEmail") ? "" : "invisible"}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
+              <FormDescription className={verificationCodeInputDisabled ? "invisible" : ""}>Enter the verification code sent to {form.getValues("newEmail")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
