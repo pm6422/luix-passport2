@@ -31,4 +31,12 @@ export class AccountService {
   public static changeEmail(verificationCode: string): Promise<any> {
     return http.post("api/accounts/change-email?verificationCode=" + verificationCode)
   }
+
+  public static uploadProfilePicture(formData: FormData): Promise<any> {
+    return http.post("api/accounts/profile-photo/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    })
+  }
 }
