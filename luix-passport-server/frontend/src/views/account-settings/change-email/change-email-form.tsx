@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/custom/button"
-import { IconReload } from "@tabler/icons-react"
+import { IconReload, IconSend } from "@tabler/icons-react"
 import {
   Form,
   FormControl,
@@ -65,6 +65,18 @@ export function ChangeEmailForm() {
           name="newEmail" 
           label="New Email" 
           required
+          formItemClassName="mt-2"
+          icon={
+            <Button 
+              type="button"
+              variant="outline" 
+              className="flex w-20 p-0"
+              disabled={Object.values(form.formState.errors).length > 0 || saving}
+              onClick={() => form.setValue("newEmail", "")}>
+                <IconSend className="size-4 mr-1" />
+                Send
+            </Button>
+          }
         />
 
         <Button type="submit" disabled={Object.values(form.formState.errors).length > 0 || saving}>
