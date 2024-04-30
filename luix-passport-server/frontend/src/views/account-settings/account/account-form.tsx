@@ -6,7 +6,7 @@ import { Button } from "@/components/custom/button"
 import { Form } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
 import SelectFormField from "@/components/custom/form-field/select"
-import { IconReload } from "@tabler/icons-react"
+import { IconReload, IconMailForward } from "@tabler/icons-react"
 import { languages } from "@/data/languages"
 import { toast } from "sonner"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
@@ -71,11 +71,17 @@ export function AccountForm() {
           </p>
         </div>
 
-        <div>
-          <h3 className="text-sm font-medium">Email</h3>
-          <p className="text-sm text-muted-foreground mt-2">
-            {form.getValues("email")}
-          </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-medium">Email</h3>
+            <p className="text-sm text-muted-foreground mt-2">
+              {form.getValues("email")}
+            </p>
+          </div>
+          <Button type="button">
+            <IconMailForward className="mr-2 size-4"/>
+            Change
+          </Button>
         </div>
 
         <div>
@@ -97,7 +103,7 @@ export function AccountForm() {
 
         <Button type="submit" disabled={saving}>
           {saving ? "Updating account..." : "Update account"}
-          {saving && (<IconReload className="ml-1 h-4 w-4 animate-spin"/>)}
+          {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
         </Button>
       </form>
     </Form>
