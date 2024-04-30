@@ -48,6 +48,10 @@ export function ChangeEmailForm() {
       form.reset({ currentEmail: user.email })
     })
   }, [])
+
+  function sendVerificationCode(): void {
+    
+  }
   
   function onSubmit(formData: FormSchema) {
     setSaving(true)
@@ -91,7 +95,7 @@ export function ChangeEmailForm() {
               type="button"
               variant="outline" 
               disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail") || form.getValues("currentEmail") == form.getValues("newEmail")}
-              onClick={() => form.setValue("newEmail", "")}>
+              onClick={() => sendVerificationCode()}>
                 <IconSend className="size-4 mr-1" />
                 Send
             </Button>
