@@ -26,6 +26,7 @@ interface Props {
   afterSave?: (success: boolean) => void;
   setOpen: (open: boolean) => void;
   readonly?: boolean;
+  debug?: boolean;
 }
 
 const SaveDialogContent = ({
@@ -37,7 +38,8 @@ const SaveDialogContent = ({
   save,
   afterSave,
   setOpen,
-  readonly = false
+  readonly = false,
+  debug = false
 }: Props) => {
   const [saving, setSaving] = useState(false)
 
@@ -76,6 +78,12 @@ const SaveDialogContent = ({
           
           {children}
           
+          { debug && 
+            <pre className="mt-2 rounded-md bg-slate-950 p-4">
+              <code className="text-red-500">{JSON.stringify(form.getValues(), null, 2)}</code>
+            </pre>
+          }
+
           <DialogFooter className="gap-2 pt-2 sm:space-x-0">
             <DialogClose asChild>
               <Button type="button" variant="outline" onClick={() => afterSave && afterSave(true)}>
