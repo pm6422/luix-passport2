@@ -4,6 +4,7 @@ import { Button } from "@/components/custom/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormMessage,
@@ -67,11 +68,11 @@ export default function ProfileForm() {
               <FormControl>
                 <AvatarUploader defaultValue={field.value} onValueChange={field.onChange}/>
               </FormControl>
+              <FormDescription>The size of profile picture should be smaller than 15MB.</FormDescription>
               <FormMessage/>
             </FormItem>
           )}
         />
-
         <Button type="submit" disabled={saving}>
           {saving ? "Saving picture..." : "Save picture"}
           {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
