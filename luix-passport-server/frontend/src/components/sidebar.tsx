@@ -57,7 +57,7 @@ export default function Sidebar2({
             >
               <span className="flex justify-end text-[0.5rem]">{appInfoProvider.appInfo.ribbonProfile} env</span>
               <img
-                  src="/logos/logo-text.svg"
+                  src="/assets/images/logos/logo-text.svg"
                   className="intro-y"
                   width={150}
                   height={50}

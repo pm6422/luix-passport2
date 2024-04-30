@@ -14,7 +14,7 @@
             <div class="card-body px-20 py-15 py-lg-20">
                 <form th:action="@{/logout}" method="post">
                     <div class="row text-center">
-                        <img th:src="@{/assets/media/logos/logo.svg}" class="h-60px opacity-75"/>
+                        <img th:src="@{/assets/images/logos/logo.svg}" class="h-60px opacity-75"/>
                         <span class="mt-5 fs-3 text-gray-800">Sign out your account</span>
                     </div>
 
@@ -24,7 +24,7 @@
                             <div class="form-check form-check-custom form-check-solid form-check-lg d-flex flex-stack px-3">
                                 <!--begin::Avatar-->
                                 <div class="symbol symbol-circle symbol-40px">
-                                    <img th:src="@{/assets/media/logos/logo.svg}"/>
+                                    <img th:src="@{/assets/images/logos/logo.svg}"/>
                                 </div>
                                 <!--end::Avatar-->
                                 <span class="text-gray-800 fw-semibold">Signed in as <span class="fw-bold text-gray-900" th:text="${username}"></span></span>
