@@ -10,7 +10,6 @@ import {
   FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
@@ -20,6 +19,7 @@ import { PinInput, PinInputField } from "@/components/custom/pin-input"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
+import { getErrorMessage } from "@/libs/handle-error"
 
 const formSchema = z.object({
   currentEmail: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
@@ -32,7 +32,6 @@ type FormSchema = z.infer<typeof formSchema>
 export function ChangeEmailForm() {
   const authUserProvider = useAuthUserProvider()
   const [saving, setSaving] = useState(false)
-  const [pinInput, setPinInput] = useState("")
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -51,7 +50,23 @@ export function ChangeEmailForm() {
   }, [])
   
   function onSubmit(formData: FormSchema) {
+    setSaving(true)
+    toast.promise(save(formData), {
+      loading: "Updating account...",
+      success: () => {
+        setSaving(false)
+        return "Updated account"
+      },
+      error: (error) => {
+        setSaving(false)
+        return getErrorMessage(error)
+      }
+    })
+  }
 
+  function save(formData: FormSchema): Promise<any> {
+    console.log(formData)
+    return null
   }
 
   return (
@@ -91,10 +106,10 @@ export function ChangeEmailForm() {
               <RequiredFormLabel required={true}>Verification code</RequiredFormLabel>
               <FormControl>
                 <PinInput
-                  className='flex h-10 space-x-4'
-                  value={pinInput}
-                  onChange={setPinInput}
-                  onComplete={(str) => console.log('completed', str)}
+                  className="flex h-10 space-x-4"
+                  value={field.value}
+                  onChange={field.onChange}
+                  onComplete={(str) => console.log("completed", str)}
                 >
                   {Array.from({ length: 6 }, (_, i) => (
                     <PinInputField key={i} component={Input} className="capitalize"/>
