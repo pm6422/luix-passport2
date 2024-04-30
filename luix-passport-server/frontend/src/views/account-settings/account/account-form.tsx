@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -8,6 +9,7 @@ import SelectFormField from "@/components/custom/form-field/select"
 import { languages } from "@/data/languages"
 import { toast } from "sonner"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { AccountService } from "@/services/account-service"
 
 const formSchema = z.object({
   username: z.string().trim().min(1, { message: "Required" }),
@@ -15,6 +17,7 @@ const formSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   language: z.string().trim().min(1, { message: "Required" }),
+  locale: z.string().trim().min(1, { message: "Required" })
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -26,6 +29,12 @@ export function AccountForm() {
     resolver: zodResolver(formSchema),
     defaultValues: authUserProvider.authUser
   })
+
+  useEffect(() => {
+    AccountService.getCurrentAccount().then(user => {
+      form.reset(user)
+    })
+  }, [])
 
   function onSubmit(data: FormSchema) {
     toast(

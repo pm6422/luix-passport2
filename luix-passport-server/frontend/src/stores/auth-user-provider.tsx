@@ -7,6 +7,7 @@ export type AuthUser = {
   fisrtName: string
   lastName: string
   language: string
+  locale: string
   activated: boolean
   enabled: boolean
   roles: Array<string>
@@ -14,16 +15,16 @@ export type AuthUser = {
 
 type AuthUserProviderProps = {
   children: React.ReactNode
-  defaultValue?: AuthUser | null
+  defaultValue?: AuthUser
 }
 
 type AuthUserProviderState = {
-  authUser: AuthUser | null
+  authUser: AuthUser
   clearAuthUser: () => void
 }
 
 const initialState: AuthUserProviderState = {
-  authUser: null,
+  authUser: {} as AuthUser,
   clearAuthUser: () => {},
 }
 
@@ -31,10 +32,10 @@ const AuthUserProviderContext = createContext<AuthUserProviderState>(initialStat
 
 export function AuthUserProvider({
   children,
-  defaultValue,
+  defaultValue = {} as AuthUser,
   ...props
 }: AuthUserProviderProps) {
-  const [authUser, setAuthUser] = useState<AuthUser | null>(defaultValue || null)
+  const [authUser, setAuthUser] = useState<AuthUser>(defaultValue)
 
   // watch auth user whether is null
   useEffect(() => {
@@ -45,7 +46,7 @@ export function AuthUserProvider({
 
   const value = {
     authUser,
-    clearAuthUser: () => setAuthUser(null)
+    clearAuthUser: () => setAuthUser({} as AuthUser),
   }
 
   return (
