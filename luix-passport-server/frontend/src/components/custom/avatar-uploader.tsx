@@ -48,7 +48,7 @@ export function AvatarUploader({
 				type="file"
 				className="hidden"
 				onChange={handleChange}
-				accept="image/*"
+				accept="image/png,image/jpeg,image/jpg"
 			/>
 		</div>
 	)
