@@ -52,13 +52,23 @@ export function ChangeEmailForm() {
     })
   }, [])
 
-  async function sendVerificationCode(email: string): Promise<void> {
-    await AccountService.sendEmailChangeVerificationCode(email)
-    toast(
-      <div>
-        <span>Sent verification code</span>
-      </div>, 
-    { duration: 5000 })
+ function sendVerificationCode(email: string): void {
+    setSaving(true)
+    toast.promise(send(email), {
+      loading: "Sending verification code...",
+      success: () => {
+        setSaving(false)
+        return "Sent verification code"
+      },
+      error: (error) => {
+        setSaving(false)
+        return getErrorMessage(error)
+      }
+    })
+  }
+
+  function send(email: string): Promise<any> {
+    return AccountService.sendEmailChangeVerificationCode(email)
   }
   
   function onSubmit(formData: FormSchema) {
