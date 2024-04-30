@@ -19,11 +19,27 @@ import {
   FormMessage,
   FormDescription
 } from "@/components/ui/form"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { languages } from "@/data/languages"
 import Combobox from '@/components/custom/combobox'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { toast } from "sonner";
+import { toast } from "sonner"
+import { cn } from "@/libs/utils"
+import { IconCalendar, IconSelector, IconCheck } from "@tabler/icons-react"
+import { Button } from "@/components/custom/button"
 
 export default function ExtraComponents() {
   const items = [
@@ -46,45 +62,20 @@ export default function ExtraComponents() {
 
   const [pinInput, setPinInput] = useState('')
 
-  const frameworksList = [
-    {
-      value: "next.js",
-      label: "Next.js"
-    },
-    {
-      value: "sveltekit",
-      label: "SvelteKit",
-    },
-    {
-      value: "nuxt.js",
-      label: "Nuxt.js",
-    },
-    {
-      value: "remix",
-      label: "Remix",
-    },
-    {
-      value: "astro",
-      label: "Astro"
-    },
-  ];
-
   const FormSchema = z.object({
-    frameworks: z.string()
-      .min(1)
-      .nonempty("Please select at least one framework."),
+    language: z.string().optional()
   });
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      frameworks: "remix",
+      language: "en",
     },
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast(
-      `You have selected following frameworks: ${data.frameworks}.`
+      `You have selected following frameworks: ${data}.`
     );
   }
 
@@ -218,30 +209,72 @@ export default function ExtraComponents() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
+
             <FormField
               control={form.control}
-              name="frameworks"
+              name="language"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Category Code</FormLabel>
-                  <FormControl>
-                    <Combobox
-                      options={frameworksList}
-                      defaultValue={field.value}
-                      onValueChange={field.onChange}
-                      placeholder="Select a category code"
-                      creatable={true}
-                    />
-                  </FormControl>
+                <FormItem className="flex flex-col">
+                  <FormLabel>Language</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          role="combobox"
+                          className={cn(
+                            "w-[200px] justify-between",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value
+                            ? languages.find(
+                                (language) => language.value === field.value
+                              )?.label
+                            : "Select language"}
+                          <IconSelector className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[200px] p-0">
+                      <Command>
+                        <CommandInput placeholder="Search language..." />
+                        <CommandEmpty>No language found.</CommandEmpty>
+                        <CommandGroup>
+                          {languages.map((language) => (
+                            <CommandItem
+                              value={language.label}
+                              key={language.value}
+                              onSelect={() => {
+                                form.setValue("language", language.value)
+                              }}
+                            >
+                              <IconCheck
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  language.value === field.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                              {language.label}
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </Command>
+                    </PopoverContent>
+                  </Popover>
+                  <FormDescription>
+                    This is the language that will be used in the dashboard.
+                  </FormDescription>
                   <FormMessage />
-                  <FormDescription>{field.value}</FormDescription>
                 </FormItem>
               )}
-
             />
+          </form>
+        </Form>
 
-        </form>
-      </Form>
+        
       
       </LayoutBody>
     </Layout>
