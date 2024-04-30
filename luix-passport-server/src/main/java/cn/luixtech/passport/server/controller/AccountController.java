@@ -107,6 +107,16 @@ public class AccountController {
         userService.activate(code);
     }
 
+    @Operation(summary = "send verification code email")
+    @PostMapping("/open-api/accounts/request-verification-code")
+    public ResponseEntity<Void> requestVerificationCode(HttpServletRequest request,
+                                                       @Parameter(description = "email", required = true) @RequestParam String email) {
+        User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        User user = userService.requestVerificationCode(currentUser, email);
+        mailService.sendVerificationCodeMail(user, getRequestUrl(request));
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
+    }
+
     @Operation(summary = "send password recovery email")
     @PostMapping("/open-api/accounts/request-password-recovery")
     public ResponseEntity<Void> requestRecoverPassword(HttpServletRequest request,

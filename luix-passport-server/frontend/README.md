@@ -49,7 +49,6 @@ npx shadcn-ui@latest add label
 ## TODOs
 - server start vite
 - profile page
-- change email page
 - dashboard page
 - front auth check component
 - themeleaf use shadcn login

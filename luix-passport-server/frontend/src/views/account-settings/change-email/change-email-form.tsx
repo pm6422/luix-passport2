@@ -50,7 +50,7 @@ export function ChangeEmailForm() {
     })
   }, [])
 
-  function sendVerificationCode(): void {
+  function sendVerificationCode(email: string): void {
     
   }
   
@@ -96,7 +96,7 @@ export function ChangeEmailForm() {
               type="button"
               variant="outline" 
               disabled={form.formState.errors.newEmail != null || saving || !form.getValues("newEmail") || form.getValues("currentEmail") == form.getValues("newEmail")}
-              onClick={() => sendVerificationCode()}>
+              onClick={() => sendVerificationCode(form.getValues("newEmail"))}>
                 <IconSend className="size-4 mr-1" />
                 Send
             </Button>

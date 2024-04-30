@@ -17,4 +17,5 @@ public interface MailService {
 
     void sendPasswordChangedMail(User user, String baseUrl);
 
+    void sendVerificationCodeMail(User user, String baseUrl);
 }

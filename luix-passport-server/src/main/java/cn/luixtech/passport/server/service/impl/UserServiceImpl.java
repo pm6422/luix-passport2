@@ -279,6 +279,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+    public User requestVerificationCode(User user, String email) {
+        user.setVerificationCode(generateRandomVerificationCode());
+        user.setVerifiedAt(LocalDateTime.now());
+        userRepository.save(user);
+        return user;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User requestPasswordRecovery(String email) {
         User user = userRepository.findOneByEmailAndActivated(email, true).orElseThrow(() -> new DataNotFoundException(email));
 
@@ -343,6 +352,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
                 + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
                 + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase();
+    }
+
+    @Override
+    public String generateRandomVerificationCode() {
+        return RandomStringUtils.randomAlphabetic(1).toUpperCase()
+                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
+                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
+                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
+                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
+                + RandomStringUtils.randomAlphabetic(1).toUpperCase();
     }
 
     @Override

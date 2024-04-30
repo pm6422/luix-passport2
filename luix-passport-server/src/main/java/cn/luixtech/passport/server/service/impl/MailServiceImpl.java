@@ -93,4 +93,10 @@ public class MailServiceImpl implements MailService {
         sendEmailFromTemplate(user, "email/changed-password-email", "changed.password.email.subject", baseUrl);
         log.info("Requested sending password changed email to [{}]", user.getEmail());
     }
+
+    @Override
+    public void sendVerificationCodeMail(User user, String baseUrl) {
+        sendEmailFromTemplate(user, "email/verification-code-email", "verification.code.email.subject", baseUrl);
+        log.info("Requested sending verification code email to [{}]", user.getEmail());
+    }
 }

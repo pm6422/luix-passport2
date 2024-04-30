@@ -21,15 +21,15 @@
             <div class="mb-10">
                 <img alt="logo2" class="h-125px" th:src="@{|${domain}/assets/media/email/icon-positive-vote-1.svg|}"/>
             </div>
-            <h1 class="fw-bolder text-gray-900 mb-10" th:text="#{activate.account.email.title}"></h1>
+            <h1 class="fw-bolder text-gray-900 mb-10" th:text="#{verification.code.email.title}"></h1>
             <div class="fs-5 mb-1">
                 <span class="fw-bold text-gray-800" th:text="#{email.greeting(${user.username})}"></span>
             </div>
             <div class="fs-5 mb-15">
-                <span class="fw-semibold text-gray-800" th:text="#{activate.account.email.text}"></span>
+                <span class="fw-semibold text-gray-800" th:text="#{verification.code.email.text}"></span>
             </div>
             <div class="mb-15">
-                <a th:href="@{|${baseUrl}/#/activate?code=${user.activationCode}|}" class="btn btn-lg btn-primary hover-elevate-down" th:text="#{activate.account.email.button.text}"></a>
+                <span th:text="${user.verificationCode}"></span>
             </div>
         </div>
         <div class="fw-semibold">

@@ -34,6 +34,8 @@ public interface UserService {
 
     User changePassword(String id, String oldRawPassword, String newRawPassword);
 
+    User requestVerificationCode(User user, String email);
+
     User requestPasswordRecovery(String email);
 
     void resetPassword(String resetCode, String newRawPassword);
@@ -43,6 +45,8 @@ public interface UserService {
     void deleteById(String id);
 
     String generateRandomCode();
+
+    String generateRandomVerificationCode();
 
     User extendAccount(String id, long amountToAdd, TemporalUnit unit);
 }

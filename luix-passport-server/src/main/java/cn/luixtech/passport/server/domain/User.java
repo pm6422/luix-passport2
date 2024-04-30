@@ -43,6 +43,8 @@ public class User extends AbstractAuditableDomain implements Serializable {
     private String        lastName;
     private String        passwordHash;
     private String        activationCode;
+    private String        verificationCode;
+    private LocalDateTime verifiedAt;
     private String        resetCode;
     private LocalDateTime resetAt;
     private Boolean       profilePhotoEnabled;
@@ -54,7 +56,7 @@ public class User extends AbstractAuditableDomain implements Serializable {
     private LocalDateTime lastSignInAt;
     private String        language;
 
-    private String        locale;
-    private String        timeZone;
-    private String        dateFormat;
+    private String locale;
+    private String timeZone;
+    private String dateFormat;
 }
