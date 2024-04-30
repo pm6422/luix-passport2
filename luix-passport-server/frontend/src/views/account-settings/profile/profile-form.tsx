@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/custom/button"
 import {
@@ -8,29 +9,50 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { AvatarUploader } from "@/components/custom/avatar-uploader"
-// import { toast } from "sonner"
+import { IconReload } from "@tabler/icons-react"
+import { toast } from "sonner"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { getErrorMessage } from "@/libs/handle-error"
+import { AccountService } from "@/services/account-service"
 
 const formSchema = z.object({
-  file: z.string().min(1, { message: "Required"}),
+  file: z.any().optional(),
   description: z.string().min(1, { message: "Required"})
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export default function ProfileForm() {
+  const [saving, setSaving] = useState(false)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { 
-      file: "",
+      file: "/api/accounts/profile-photo",
       description: "user avatar"
     },
     mode: "onChange",
   })
 
   function onSubmit(formData: FormSchema) {
-    console.log(formData)
+    setSaving(true)
+    toast.promise(save(formData), {
+      loading: "Updating picture...",
+      success: () => {
+        setSaving(false)
+        return "Updated picture"
+      },
+      error: (error) => {
+        setSaving(false)
+        return getErrorMessage(error)
+      }
+    })
+  }
+
+  function save(form: FormSchema): Promise<any> {
+    const formData = new FormData()
+    formData.append("file", form.file)
+    return AccountService.uploadProfilePicture(formData)
   }
 
   return (
@@ -48,7 +70,11 @@ export default function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Save picture</Button>
+
+        <Button type="submit" disabled={saving}>
+          {saving ? "Saving picture..." : "Save picture"}
+          {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
+        </Button>
       </form>
     </Form>
   )
