@@ -152,23 +152,23 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1003")).build();
     }
 
-    @Operation(summary = "get profile photo of the current user")
-    @GetMapping("/api/accounts/profile-photo")
+    @Operation(summary = "get profile picture of the current user")
+    @GetMapping("/api/accounts/profile-picture")
     public ResponseEntity<byte[]> getProfilePhoto() {
         Optional<UserPhoto> userPhoto = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
         return userPhoto.map(photo -> ResponseEntity.ok(photo.getPhoto())).orElse(null);
     }
 
-    @Operation(summary = "upload profile photo of the current user")
-    @PostMapping(value = "/api/accounts/profile-photo/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "upload profile picture of the current user")
+    @PostMapping(value = "/api/accounts/profile-picture/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void uploadProfilePhoto(@Parameter(description = "user profile photo", required = true) @RequestPart MultipartFile file) throws IOException {
         User user = Optional.ofNullable(userService.findById(AuthUtils.getCurrentUserId())).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         userPhotoService.save(user, file.getBytes());
         log.info("Uploaded profile photo with file name {}", file.getOriginalFilename());
     }
 
-    @Operation(summary = "download profile photo of the current user")
-    @GetMapping("/api/accounts/profile-photo/download")
+    @Operation(summary = "download profile picture of the current user")
+    @GetMapping("/api/accounts/profile-picture/download")
     public ResponseEntity<Resource> downloadProfilePhoto() {
         Optional<UserPhoto> existingOne = userPhotoRepository.findById(AuthUtils.getCurrentUserId());
         if (existingOne.isEmpty()) {

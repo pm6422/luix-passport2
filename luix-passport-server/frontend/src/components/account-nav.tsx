@@ -18,8 +18,8 @@ export function AccountNav() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-10 w-10 rounded-full">
           <Avatar className="h-10 w-10">
-            <AvatarImage src="/assets/images/avatars/louis.jpg" alt="@shadcn" />
-            <AvatarFallback>Louis</AvatarFallback>
+            <AvatarImage src="api/accounts/profile-picture"/>
+            <AvatarFallback>Picture</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

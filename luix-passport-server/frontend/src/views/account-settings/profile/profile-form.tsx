@@ -29,7 +29,7 @@ export default function ProfileForm() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { 
-      file: "api/accounts/profile-photo",
+      file: "api/accounts/profile-picture",
       description: "user avatar"
     },
     mode: "onChange",
