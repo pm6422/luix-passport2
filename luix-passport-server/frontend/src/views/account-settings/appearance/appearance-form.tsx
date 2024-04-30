@@ -15,38 +15,30 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { toast } from "sonner"
 import { useTheme } from "@/stores/theme-provider"
 
-const appearanceFormSchema = z.object({
-  theme: z.enum(["light", "dark"], {
-    required_error: "Please select a theme.",
-  })
+const formSchema = z.object({
+  theme: z.enum(["light", "dark"], {required_error: "Please select a theme."})
 })
 
-type AppearanceFormValues = z.infer<typeof appearanceFormSchema>
-
-// This can come from your database or API.
-const defaultValues: Partial<AppearanceFormValues> = {
-  theme: "light",
-}
+type FormSchema = z.infer<typeof formSchema>
 
 export function AppearanceForm() {
   const { setTheme } = useTheme()
 
-  const form = useForm<AppearanceFormValues>({
-    resolver: zodResolver(appearanceFormSchema),
-    defaultValues,
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      theme: "light"
+    }
   })
   
-  function onSubmit(data: AppearanceFormValues) {
+  function onSubmit(formData: FormSchema) {
     toast(
       <div>
-        <span>You submitted the following values:</span>
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
+        <span>Applied theme</span>
       </div>, 
     { duration: 5000 })
     // set the theme
-    setTheme(data.theme)
+    setTheme(formData.theme)
   }
 
   return (
