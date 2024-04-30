@@ -77,6 +77,31 @@ export function toBase64(file: File) {
 	});
 }
 
+export function fromBase64(base64String: string, fileName: string) {
+  // Remove metadata prefix from base64 string
+  const base64WithoutMetadata = base64String.replace(/^data:\w+\/\w+;base64,/, '');
+
+  // Convert Base64 to Blob
+  const byteCharacters = atob(base64WithoutMetadata);
+  const byteArrays = [];
+  for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+    const slice = byteCharacters.slice(offset, offset + 512);
+    const byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+  const blob = new Blob(byteArrays, { type: 'application/octet-stream' });
+
+  // Convert Blob to File
+  const file = new File([blob], fileName, { type: blob.type });
+  
+  return file;
+}
+
+
 export function filterTable(initialTableData: Array<any>, searchKeyword: string): Array<never> {
   const tableData = cloneDeep(initialTableData);
   let results: Array<any> = [];

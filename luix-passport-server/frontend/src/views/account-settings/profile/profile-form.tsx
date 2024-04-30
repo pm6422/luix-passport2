@@ -15,6 +15,7 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { getErrorMessage } from "@/libs/handle-error"
 import { AccountService } from "@/services/account-service"
+import { fromBase64 } from "@/libs/utils";
 
 const formSchema = z.object({
   file: z.any().optional(),
@@ -51,7 +52,7 @@ export default function ProfileForm() {
 
   function save(form: FormSchema): Promise<any> {
     const formData = new FormData()
-    formData.append("file", form.file)
+    formData.append("file", fromBase64(form.file, "profile.jpg"))
     return AccountService.uploadProfilePicture(formData)
   }
 

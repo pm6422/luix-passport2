@@ -29,7 +29,7 @@ export function AvatarUploader({
 			<Avatar className="w-full h-full">
 				<AvatarImage src={defaultValue} className="object-cover"/>
 				<AvatarFallback className="bg-secondary">
-					<IconUserScan className="w-16 h-16"/>
+					<IconUserScan className="size-16"/>
 				</AvatarFallback>
 			</Avatar>
 			<Button
@@ -41,7 +41,7 @@ export function AvatarUploader({
 					inputRef.current?.click()
 				}}
 			>
-				<IconPencil className="w-5 h-5"/>
+				<IconPencil className="size-5"/>
 			</Button>
 			<Input
 				ref={inputRef}
