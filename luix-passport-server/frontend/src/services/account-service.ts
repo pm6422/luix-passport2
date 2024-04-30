@@ -25,6 +25,6 @@ export class AccountService {
   }
 
   public static sendVerificationCode(email: string): Promise<any> {
-    return http.post("api/accounts/request-verification-code", email)
+    return http.post("api/accounts/request-verification-code?email=" + email)
   }
 }
