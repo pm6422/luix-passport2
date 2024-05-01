@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { IconCodeCircle2 } from "@tabler/icons-react"
+import { IconUser, IconCodeCircle2, IconApi, IconAssembly, IconLogout } from "@tabler/icons-react"
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
@@ -40,32 +40,32 @@ export function AccountNav() {
         <DropdownMenuGroup>
           <Link to="/account-settings">
             <DropdownMenuItem className="cursor-pointer">
-              Account Settings
+              <IconUser className="size-4 mr-2"/>Account Settings
               {/*<DropdownMenuShortcut>⌘S</DropdownMenuShortcut>*/}
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <RoleDeveloper>
-          <DropdownMenuLabel className="flex items-center justify-between">
-            Developer Tools<IconCodeCircle2 className="size-6"/>
+          <DropdownMenuLabel className="flex items-center gap-2">
+            <IconCodeCircle2 className="size-6"/>Developer Tools
           </DropdownMenuLabel>
           <DropdownMenuGroup>
             <Link to="/api-docs">
               <DropdownMenuItem className="cursor-pointer">
-                API Documentation
+                <IconApi className="size-4 mr-2"/>API Documentation
               </DropdownMenuItem>
             </Link>
             <Link to="/data-dicts">
               <DropdownMenuItem className="cursor-pointer">
-                Data Dictionaries
+                <IconAssembly className="size-4 mr-2"/>Data Dictionaries
               </DropdownMenuItem>
             </Link>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
         </RoleDeveloper>
         <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = "/sign-out"}>
-          Sign out
+          <IconLogout className="size-4 mr-2"/>Sign out
           {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
         </DropdownMenuItem>
       </DropdownMenuContent>
