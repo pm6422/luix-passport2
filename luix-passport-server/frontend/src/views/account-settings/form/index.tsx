@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { Link } from "react-router-dom"
 import { IconChevronRight } from "@tabler/icons-react"
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism"
