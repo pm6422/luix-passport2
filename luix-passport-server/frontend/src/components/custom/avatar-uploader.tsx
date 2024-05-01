@@ -1,4 +1,4 @@
-import React from "react"
+import { useEffect, useState, useRef } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/custom/button"
 import { Input } from "@/components/ui/input"
@@ -14,7 +14,7 @@ export function AvatarUploader({
 	defaultValue,
 	onValueChange
 }: AvatarUploaderProps) {
-	const inputRef = React.useRef<HTMLInputElement>(null)
+	const inputRef = useRef<HTMLInputElement>(null)
 
 	const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files.length > 0) {
