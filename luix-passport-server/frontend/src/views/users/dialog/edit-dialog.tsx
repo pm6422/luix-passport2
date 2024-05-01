@@ -8,6 +8,7 @@ import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
 import SelectFormField from "@/components/custom/form-field/select"
 import PhoneInputFormField from "@/components/custom/form-field/phone-input"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
 import { languages } from "@/data/languages"
 import { DataDictService } from "@/services/data-dict-service"
@@ -55,13 +56,20 @@ export function EditDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
       <SaveDialogContent entityName={entityName} id={id} form={form} save={save} afterSave={afterSave} setOpen={setOpen}>
-        <InputFormField 
-          control={form.control} 
-          name="username" 
-          label="Username" 
-          required 
-          disabled={id ? true : false}
-        />
+        <div className="flex items-center gap-2">
+          <InputFormField 
+            control={form.control} 
+            name="username" 
+            label="Username"
+            formItemClassName="w-full"
+            required 
+            disabled={id ? true : false}
+          />
+           <Avatar className="size-20">
+            <AvatarImage src={"api/user-profile-pics/" + id} alt="profile" />
+            <AvatarFallback>Avatar</AvatarFallback>
+          </Avatar>
+        </div>
 
         <InputFormField 
           control={form.control} 
