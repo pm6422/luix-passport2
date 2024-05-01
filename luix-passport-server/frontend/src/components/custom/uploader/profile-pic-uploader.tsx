@@ -5,15 +5,15 @@ import { Input } from "@/components/ui/input"
 import { toBase64 } from "@/libs/utils"
 import { IconPencil, IconUserScan } from "@tabler/icons-react"
 
-type AvatarUploaderProps = {
+type Props = {
   defaultValue?: string
   onValueChange?: (value?: File) => void
 }
 
-export function AvatarUploader({
+export function ProfilePicUploader({
   defaultValue,
   onValueChange
-}: AvatarUploaderProps) {
+}: Props) {
   const [imageSrc, setImageSrc] = useState<string | undefined>(defaultValue)
   const fileInputRef = useRef<HTMLInputElement>(null)
 

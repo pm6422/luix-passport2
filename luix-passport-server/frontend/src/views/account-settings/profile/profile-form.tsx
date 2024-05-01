@@ -9,7 +9,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form"
-import { AvatarUploader } from "@/components/custom/uploader/avatar-uploader"
+import { ProfilePicUploader } from "@/components/custom/uploader/profile-pic-uploader"
 import { IconReload } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { z } from "zod"
@@ -66,7 +66,7 @@ export default function ProfileForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <AvatarUploader defaultValue={field.value} onValueChange={field.onChange}/>
+                <ProfilePicUploader defaultValue={field.value} onValueChange={field.onChange}/>
               </FormControl>
               <FormDescription>The size of profile picture should be smaller than 15MB.</FormDescription>
               <FormMessage/>
