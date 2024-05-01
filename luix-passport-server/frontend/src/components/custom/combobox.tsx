@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, forwardRef } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-import { IconCheck, IconX, IconCircleX, IconSelector } from "@tabler/icons-react"
+import { IconCheck, IconX, IconCircleX, IconSelector, IconCirclePlus } from "@tabler/icons-react"
 import { cn } from "@/libs/utils"
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/custom/button"
@@ -225,10 +225,12 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                   }
                   setQuery("")
                 }}
-                className="flex cursor-pointer items-center justify-center gap-1 my-3"
+                className="flex cursor-pointer items-center justify-center gap-1 my-1"
               >
-                <p className="text-xs">Click to create: </p>
-                <p className="block max-w-50 truncate font-semibold text-xs">{query}</p>
+                <Button variant="ghost" className="flex-1 justify-center cursor-pointer gap-2">
+                  <IconCirclePlus className="size-5" />
+                  Create: {query}
+                </Button>
               </CommandEmpty>
             ) : (
               <CommandEmpty>No results found.</CommandEmpty>
