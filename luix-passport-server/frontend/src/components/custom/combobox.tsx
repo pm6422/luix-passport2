@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { IconCheck, IconX, IconCircleX, IconSelector } from '@tabler/icons-react'
+import { IconCheck, IconX, IconCircleX, IconSelector } from "@tabler/icons-react"
 import { cn } from "@/libs/utils";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/custom/button";
@@ -67,7 +67,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
   const [selectedValues, setSelectedValues] = React.useState<string[]>(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
   const selectedValuesSet = React.useRef(new Set(selectedValues));
   const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
-  const [query, setQuery] = React.useState<string>('');
+  const [query, setQuery] = React.useState<string>("");
   const [showSelectButton, setShowSelectButton] = React.useState(true);
   const [showClearButton, setShowClearButton] = React.useState(false);
 
@@ -86,7 +86,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
       if(multiple) {
         onValueChange(selectedValues.filter(v => v !== lastValue));
       } else {
-        onValueChange('')
+        onValueChange("")
       }
     }
   };
@@ -114,7 +114,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
     if(multiple) {
       onValueChange([]);
     } else {
-      onValueChange('');
+      onValueChange("");
     }
   };
 
@@ -152,7 +152,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                             if(multiple) {
                               onValueChange(selectedValues.filter(v => v !== value));
                             } else {
-                              onValueChange('')
+                              onValueChange("")
                             }
                           }
                         }}
@@ -223,12 +223,12 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                   } else {
                     onValueChange(query)
                   }
-                  setQuery('')
+                  setQuery("")
                 }}
-                className='flex cursor-pointer items-center justify-center gap-1 my-3'
+                className="flex cursor-pointer items-center justify-center gap-1 my-3"
               >
                 <p className="text-xs">Click to create: </p>
-                <p className='block max-w-50 truncate font-semibold text-xs'>{query}</p>
+                <p className="block max-w-50 truncate font-semibold text-xs">{query}</p>
               </CommandEmpty>
             ) : (
               <CommandEmpty>No results found.</CommandEmpty>
