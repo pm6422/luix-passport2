@@ -229,7 +229,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
               >
                 <Button variant="ghost" className="flex-1 justify-center cursor-pointer gap-2">
                   <IconCirclePlus className="size-5" />
-                  Create: {query}
+                  {query}
                 </Button>
               </CommandEmpty>
             ) : (
