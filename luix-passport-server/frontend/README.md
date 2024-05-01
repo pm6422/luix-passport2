@@ -53,7 +53,6 @@ npx shadcn-ui@latest add label
 - datetime string to ms
 - multiple data in same column of table
 - table page no url query param
-- developer view
 - Breadcrumbs
 - role and permissions view
 - avatar uploader
@@ -61,6 +60,7 @@ npx shadcn-ui@latest add label
 - user locale
 - show error details
 - 401 vs 403 code of axios
+- api docs view
 
 
 
