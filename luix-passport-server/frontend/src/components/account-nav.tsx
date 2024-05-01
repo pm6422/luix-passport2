@@ -46,6 +46,7 @@ export function AccountNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <RoleDeveloper>
+          <DropdownMenuLabel>Developer Tools</DropdownMenuLabel>
           <DropdownMenuGroup>
             <Link to="/data-dicts">
               <DropdownMenuItem className="cursor-pointer">
