@@ -56,6 +56,8 @@ npx shadcn-ui@latest add label
 - table page no url query param
 - user layout vs. admin layout
 - developer view
+- Breadcrumbs
+- role and permissions view
 
 
 
