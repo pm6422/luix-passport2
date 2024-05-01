@@ -60,6 +60,8 @@ npx shadcn-ui@latest add label
 - role and permissions view
 - avatar uploader
 - last sign in at
+- user locale
+- show error details
 
 
 
