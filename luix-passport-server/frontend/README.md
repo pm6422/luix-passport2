@@ -55,6 +55,7 @@ npx shadcn-ui@latest add label
 - multiple data in same column of table
 - table page no url query param
 - user layout vs. admin layout
+- developer view
 
 
 
