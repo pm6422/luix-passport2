@@ -55,9 +55,8 @@ npx shadcn-ui@latest add label
 - table page no url query param
 - Breadcrumbs
 - role and permissions view
-- avatar uploader
-- last sign in at
 - user locale
+- last sign in at
 - show error details
 - 401 vs 403 code of axios
 
