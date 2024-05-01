@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useState, useEffect, useRef, forwardRef } from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { IconCheck, IconX, IconCircleX, IconSelector } from "@tabler/icons-react"
 import { cn } from "@/libs/utils"
@@ -64,14 +64,14 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
   },
   ref
 ) => {
-  const [selectedValues, setSelectedValues] = React.useState<string[]>(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
-  const selectedValuesSet = React.useRef(new Set(selectedValues))
-  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
-  const [query, setQuery] = React.useState<string>("")
-  const [showSelectButton, setShowSelectButton] = React.useState(true)
-  const [showClearButton, setShowClearButton] = React.useState(false)
+  const [selectedValues, setSelectedValues] = useState<string[]>(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
+  const selectedValuesSet = useRef(new Set(selectedValues))
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+  const [query, setQuery] = useState<string>("")
+  const [showSelectButton, setShowSelectButton] = useState(true)
+  const [showClearButton, setShowClearButton] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedValues(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
     selectedValuesSet.current = new Set(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
   }, [defaultValue])
@@ -302,4 +302,4 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
 
 Combobox.displayName = "Combobox"
 
-export default React.forwardRef<HTMLButtonElement, ComboboxProps>(Combobox)
+export default forwardRef<HTMLButtonElement, ComboboxProps>(Combobox)
