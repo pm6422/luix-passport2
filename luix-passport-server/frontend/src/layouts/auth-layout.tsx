@@ -4,6 +4,7 @@ import Sidebar from "@/components/sidebar"
 import useIsCollapsed from "@/hooks/use-is-collapsed"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { RoleAdmin } from "@/components/custom/role/role-admin"
+import { RoleOnlyUser } from "@/components/custom/role/role-only-user"
 import { useLocation } from "react-router-dom"
 import { CentralTopNav } from "@/components/central-top-nav"
 import { AccountNav } from "@/components/account-nav.tsx"
@@ -56,7 +57,9 @@ export default function AuthLayout() {
       >
         <Layout>
           <LayoutHeader>
-            <CentralTopNav links={topNav} />
+            <RoleOnlyUser>
+              <CentralTopNav links={topNav}/>
+            </RoleOnlyUser>
             <div className='ml-auto flex items-center space-x-4'>
               {/* <Search /> */}
               <AccountNav />

@@ -24,13 +24,15 @@ type AuthUserProviderState = {
   clearAuthUser: () => void
   isAdmin: () => boolean
   isDeveloper: () => boolean
+  isOnlyUser: () => boolean
 }
 
 const initialState: AuthUserProviderState = {
   authUser: {} as AuthUser,
   clearAuthUser: () => {},
   isAdmin: () => false,
-  isDeveloper: () => false
+  isDeveloper: () => false,
+  isOnlyUser: () => false
 }
 
 const AuthUserProviderContext = createContext<AuthUserProviderState>(initialState)
@@ -57,6 +59,9 @@ export function AuthUserProvider({
     },
     isDeveloper: () => {
       return authUser.roles.includes("ROLE_DEVELOPER")
+    },
+    isOnlyUser: () => {
+      return authUser.roles.length ===2 && authUser.roles.includes("ROLE_USER") && authUser.roles.includes("ROLE_ANONYMOUS")
     }
   }
 
