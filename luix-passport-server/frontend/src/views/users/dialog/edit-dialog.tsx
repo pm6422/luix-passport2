@@ -56,12 +56,12 @@ export function EditDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       {children}
       <SaveDialogContent entityName={entityName} id={id} form={form} save={save} afterSave={afterSave} setOpen={setOpen}>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-2">
           <InputFormField 
             control={form.control} 
             name="username" 
             label="Username"
-            formItemClassName="w-full"
+            formItemClassName=""
             required 
             disabled={id ? true : false}
           />
