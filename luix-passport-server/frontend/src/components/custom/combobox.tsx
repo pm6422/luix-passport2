@@ -1,15 +1,15 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 import { IconCheck, IconX, IconCircleX, IconSelector } from "@tabler/icons-react"
-import { cn } from "@/libs/utils";
-import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/custom/button";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/libs/utils"
+import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/custom/button"
+import { Badge } from "@/components/ui/badge"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
+} from "@/components/ui/popover"
 import {
   Command,
   CommandEmpty,
@@ -18,7 +18,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
+} from "@/components/ui/command"
 
 const comboboxVariants = cva(
   "m-1 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 shadow-sm",
@@ -35,17 +35,17 @@ const comboboxVariants = cva(
       variant: "default",
     },
   }
-);
+)
 
 interface ComboboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof comboboxVariants> {
-  asChild?: boolean;
+  asChild?: boolean
   options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
-  defaultValue?: string | string[];
-  disabled?: boolean;
-  placeholder?: string;
-  onValueChange: (value: string | string[]) => void;
-  creatable?: boolean;
-  multiple?: boolean;
+  defaultValue?: string | string[]
+  disabled?: boolean
+  placeholder?: string
+  onValueChange: (value: string | string[]) => void
+  creatable?: boolean
+  multiple?: boolean
 }
 
 const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps> = (
@@ -64,59 +64,59 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
   },
   ref
 ) => {
-  const [selectedValues, setSelectedValues] = React.useState<string[]>(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
-  const selectedValuesSet = React.useRef(new Set(selectedValues));
-  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
-  const [query, setQuery] = React.useState<string>("");
-  const [showSelectButton, setShowSelectButton] = React.useState(true);
-  const [showClearButton, setShowClearButton] = React.useState(false);
+  const [selectedValues, setSelectedValues] = React.useState<string[]>(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
+  const selectedValuesSet = React.useRef(new Set(selectedValues))
+  const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
+  const [query, setQuery] = React.useState<string>("")
+  const [showSelectButton, setShowSelectButton] = React.useState(true)
+  const [showClearButton, setShowClearButton] = React.useState(false)
 
   React.useEffect(() => {
-    setSelectedValues(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
-    selectedValuesSet.current = new Set(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
-  }, [defaultValue]);
+    setSelectedValues(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
+    selectedValuesSet.current = new Set(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : [])
+  }, [defaultValue])
 
   const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      setIsPopoverOpen(true);
+      setIsPopoverOpen(true)
     } else if (event.key === "Backspace" && !event.currentTarget.value) {
-      const lastValue = selectedValues[selectedValues.length - 1];
-      setSelectedValues(prev => prev.slice(0, -1));
-      selectedValuesSet.current.delete(lastValue);
+      const lastValue = selectedValues[selectedValues.length - 1]
+      setSelectedValues(prev => prev.slice(0, -1))
+      selectedValuesSet.current.delete(lastValue)
       if(multiple) {
-        onValueChange(selectedValues.filter(v => v !== lastValue));
+        onValueChange(selectedValues.filter(v => v !== lastValue))
       } else {
         onValueChange("")
       }
     }
-  };
+  }
 
   const toggleOption = (value: string) => {
     if (selectedValuesSet.current.has(value)) {
-      selectedValuesSet.current.delete(value);
-      setSelectedValues(selectedValues.filter(v => v !== value));
+      selectedValuesSet.current.delete(value)
+      setSelectedValues(selectedValues.filter(v => v !== value))
     } else {
       if (multiple || selectedValues.length === 0) {
-        selectedValuesSet.current.add(value);
-        setSelectedValues([...selectedValues, value]);
+        selectedValuesSet.current.add(value)
+        setSelectedValues([...selectedValues, value])
       }
     }
     if(multiple) {
-      onValueChange([...selectedValuesSet.current]);
+      onValueChange([...selectedValuesSet.current])
     } else {
-      onValueChange(value);
+      onValueChange(value)
     }
-  };
+  }
 
   const handleClearAll = () => {
-    setSelectedValues([]);
-    selectedValuesSet.current.clear();
+    setSelectedValues([])
+    selectedValuesSet.current.clear()
     if(multiple) {
-      onValueChange([]);
+      onValueChange([])
     } else {
-      onValueChange("");
+      onValueChange("")
     }
-  };
+  }
 
   return (
     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -132,8 +132,8 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
             <div className="flex justify-between items-center w-full">
               <div className="flex flex-wrap items-center">
                 {selectedValues.map(value => {
-                  const option = options.find(o => o.value === value);
-                  const IconComponent = option?.icon;
+                  const option = options.find(o => o.value === value)
+                  const IconComponent = option?.icon
                   return (
                     <Badge
                       key={value}
@@ -144,13 +144,13 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                       <IconCircleX
                         className="ml-1 size-4 cursor-pointer"
                         onClick={event => {
-                          event.stopPropagation();
+                          event.stopPropagation()
                           if (option) {
-                            toggleOption(value);
+                            toggleOption(value)
                           } else {
-                            setSelectedValues(selectedValues.filter(v => v !== value));
+                            setSelectedValues(selectedValues.filter(v => v !== value))
                             if(multiple) {
-                              onValueChange(selectedValues.filter(v => v !== value));
+                              onValueChange(selectedValues.filter(v => v !== value))
                             } else {
                               onValueChange("")
                             }
@@ -158,7 +158,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                         }}
                       />
                     </Badge>
-                  );
+                  )
                 })}
               </div>
               <div className="flex items-center justify-between">
@@ -166,8 +166,8 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                   <IconX
                     className="h-4 mr-1 cursor-pointer text-muted-foreground"
                     onClick={event => {
-                      handleClearAll();
-                      event.stopPropagation();
+                      handleClearAll()
+                      event.stopPropagation()
                     }}
                     onMouseLeave={() => {
                       setShowClearButton(false)
@@ -202,7 +202,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
         onEscapeKeyDown={() => setIsPopoverOpen(false)}
         onInteractOutside={event => {
           if (!event.defaultPrevented) {
-            setIsPopoverOpen(false);
+            setIsPopoverOpen(false)
           }
         }}
       >
@@ -236,7 +236,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
 
             <CommandGroup>
               {options.map(option => {
-                const isSelected = selectedValuesSet.current.has(option.value);
+                const isSelected = selectedValuesSet.current.has(option.value)
                 return (
                   <CommandItem
                     key={option.value}
@@ -258,7 +258,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                     {option.icon && <option.icon className="mr-2 size-4 text-muted-foreground" />}
                     <span>{option.label}</span>
                   </CommandItem>
-                );
+                )
               })}
             </CommandGroup>
             <CommandSeparator />
@@ -297,9 +297,9 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
       </PopoverContent>
     </Popover>
     
-  );
-};
+  )
+}
 
-Combobox.displayName = "Combobox";
+Combobox.displayName = "Combobox"
 
-export default React.forwardRef<HTMLButtonElement, ComboboxProps>(Combobox);
+export default React.forwardRef<HTMLButtonElement, ComboboxProps>(Combobox)
