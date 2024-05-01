@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
 export function AccountNav() {
@@ -44,14 +45,16 @@ export function AccountNav() {
           </Link>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <Link to="/data-dicts">
-            <DropdownMenuItem className="cursor-pointer">
-              Data Dictionaries
-            </DropdownMenuItem>
-          </Link>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
+        <RoleDeveloper>
+          <DropdownMenuGroup>
+            <Link to="/data-dicts">
+              <DropdownMenuItem className="cursor-pointer">
+                Data Dictionaries
+              </DropdownMenuItem>
+            </Link>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+        </RoleDeveloper>
         <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = "/sign-out"}>
           Sign out
           {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
