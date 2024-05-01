@@ -55,13 +55,13 @@ export function AuthUserProvider({
     authUser,
     clearAuthUser: () => setAuthUser({} as AuthUser),
     isAdmin: () => {
-      return authUser.roles.includes("ROLE_ADMIN")
+      return authUser.roles && authUser.roles.includes("ROLE_ADMIN")
     },
     isDeveloper: () => {
-      return authUser.roles.includes("ROLE_DEVELOPER")
+      return authUser.roles && authUser.roles.includes("ROLE_DEVELOPER")
     },
     isOnlyUser: () => {
-      return authUser.roles.length ===2 && authUser.roles.includes("ROLE_USER") && authUser.roles.includes("ROLE_ANONYMOUS")
+      return authUser.roles && authUser.roles.length ===2 && authUser.roles.includes("ROLE_USER") && authUser.roles.includes("ROLE_ANONYMOUS")
     }
   }
 
