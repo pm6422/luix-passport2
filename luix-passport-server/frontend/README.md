@@ -58,6 +58,7 @@ npx shadcn-ui@latest add label
 - developer view
 - Breadcrumbs
 - role and permissions view
+- avatar uploader
 
 
 
