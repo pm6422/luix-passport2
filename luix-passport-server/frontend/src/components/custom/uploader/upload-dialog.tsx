@@ -37,7 +37,7 @@ export const formSchema = z.object({
 
 export type UploadFormSchema = z.infer<typeof formSchema>
 
-interface UploadDialogProps {
+interface Props {
   children: React.ReactNode,
   entityName: string,
   description?: string,
@@ -64,7 +64,7 @@ export function UploadDialog({
   templateUrl,
   upload,
   afterUpload
-}: UploadDialogProps) {
+}: Props) {
   const [open, setOpen] = useState(false)
   const [uploading, setUploading] = useState(false)
   const form = useForm<UploadFormSchema>({
