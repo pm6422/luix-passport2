@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { IconApi } from "@tabler/icons-react"
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
@@ -46,16 +47,18 @@ export function AccountNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <RoleDeveloper>
-          <DropdownMenuLabel>Developer Tools</DropdownMenuLabel>
+          <DropdownMenuLabel className="flex items-center gap-2">
+            Developer Tools<IconApi className="size-5"/>
+          </DropdownMenuLabel>
           <DropdownMenuGroup>
-            <Link to="/data-dicts">
-              <DropdownMenuItem className="cursor-pointer">
-                Data Dictionaries
-              </DropdownMenuItem>
-            </Link>
             <Link to="/api-docs">
               <DropdownMenuItem className="cursor-pointer">
                 API Documentation
+              </DropdownMenuItem>
+            </Link>
+            <Link to="/data-dicts">
+              <DropdownMenuItem className="cursor-pointer">
+                Data Dictionaries
               </DropdownMenuItem>
             </Link>
           </DropdownMenuGroup>
