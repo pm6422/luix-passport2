@@ -1,14 +1,14 @@
-import { FormLabel } from '@/components/ui/form'
+import { FormLabel } from "@/components/ui/form"
 
-type RequiredFormLabelProps = {
+type Props = {
   children: string
   required?: boolean
-};
+}
 
 export const RequiredFormLabel = ({
   children,
   required = false
-}: RequiredFormLabelProps) => (
+}: Props) => (
   <FormLabel>
     {children}
     {required && <span className="ml-1 text-destructive text-xl align-middle">*</span>}
