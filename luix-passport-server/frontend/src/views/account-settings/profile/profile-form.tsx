@@ -9,7 +9,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form"
-import { AvatarUploader } from "@/components/custom/avatar-uploader"
+import { AvatarUploader } from "@/components/custom/uploader/avatar-uploader"
 import { IconReload } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { z } from "zod"

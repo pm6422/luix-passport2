@@ -25,7 +25,7 @@ import {
   FileInput,
   FileUploaderContent,
   FileUploaderItem
-} from "@/components/custom/file-uploader"
+} from "@/components/custom/uploader/file-uploader"
 import { DropzoneOptions } from "react-dropzone"
 import { Accept } from "react-dropzone"
 import { z } from "zod"

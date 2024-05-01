@@ -6,9 +6,9 @@ import InputFormField from "@/components/custom/form-field/input"
 import { IconPlus, IconUpload, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
 import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
-import { type UploadFormSchema } from "@/components/custom/upload-dialog"
+import { type UploadFormSchema } from "@/components/custom/uploader/upload-dialog"
 import { DialogTrigger } from "@/components/ui/dialog"
-import { UploadDialog } from "@/components/custom/upload-dialog"
+import { UploadDialog } from "@/components/custom/uploader/upload-dialog"
 import {
   Form,
   FormControl,
