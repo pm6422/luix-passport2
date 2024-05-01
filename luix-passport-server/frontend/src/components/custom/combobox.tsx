@@ -68,6 +68,8 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
   const selectedValuesSet = React.useRef(new Set(selectedValues));
   const [isPopoverOpen, setIsPopoverOpen] = React.useState(false);
   const [query, setQuery] = React.useState<string>('');
+  const [showSelectButton, setShowSelectButton] = React.useState(true);
+  const [showClearButton, setShowClearButton] = React.useState(false);
 
   React.useEffect(() => {
     setSelectedValues(Array.isArray(defaultValue) ? defaultValue : defaultValue ? [defaultValue] : []);
@@ -160,21 +162,36 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
                 })}
               </div>
               <div className="flex items-center justify-between">
-                <IconX
-                  className="h-4 mx-1 cursor-pointer text-muted-foreground"
-                  onClick={event => {
-                    handleClearAll();
-                    event.stopPropagation();
-                  }}
-                />
-                <Separator orientation="vertical" className="flex min-h-6 h-full" />
-                <IconSelector className="h-4 ml-1 cursor-pointer text-muted-foreground" />
+                { showClearButton && (
+                  <IconX
+                    className="h-4 mr-1 cursor-pointer text-muted-foreground"
+                    onClick={event => {
+                      handleClearAll();
+                      event.stopPropagation();
+                    }}
+                    onMouseLeave={() => {
+                      setShowClearButton(false)
+                      setShowSelectButton(true)
+                    }}
+                  />
+                )}
+                { showSelectButton && (
+                  <IconSelector 
+                    className="h-4 mr-1 cursor-pointer text-muted-foreground"
+                    onMouseEnter={() => {
+                      setShowSelectButton(false)
+                      setShowClearButton(true)
+                    }}
+                  />
+                )}
               </div>
             </div>
           ) : (
             <div className="flex items-center justify-between w-full mx-auto">
               <span className="text-sm text-muted-foreground px-2">{placeholder}</span>
-              <IconSelector className="h-4 ml-2 cursor-pointer text-muted-foreground" />
+              <IconSelector 
+                className="h-4 ml-2 cursor-pointer text-muted-foreground"
+              />
             </div>
           )}
         </Button>
@@ -279,6 +296,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
         </Command>
       </PopoverContent>
     </Popover>
+    
   );
 };
 
