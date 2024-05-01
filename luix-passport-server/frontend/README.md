@@ -49,12 +49,10 @@ npx shadcn-ui@latest add label
 ## TODOs
 - server start vite
 - dashboard page
-- front auth check component
 - themeleaf use shadcn login
 - datetime string to ms
 - multiple data in same column of table
 - table page no url query param
-- user layout vs. admin layout
 - developer view
 - Breadcrumbs
 - role and permissions view
@@ -62,6 +60,7 @@ npx shadcn-ui@latest add label
 - last sign in at
 - user locale
 - show error details
+- 401 vs 403 code of axios
 
 
 

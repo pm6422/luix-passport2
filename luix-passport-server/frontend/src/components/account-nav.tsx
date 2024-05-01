@@ -52,6 +52,11 @@ export function AccountNav() {
                 Data Dictionaries
               </DropdownMenuItem>
             </Link>
+            <Link to="/api-docs">
+              <DropdownMenuItem className="cursor-pointer">
+                API Documentation
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
         </RoleDeveloper>
