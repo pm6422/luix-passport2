@@ -41,7 +41,7 @@ import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
 import { formatDate } from "@/libs/utils"
 
-export default function ExtraComponents() {
+export default function FormExample() {
   const items = [
     { title: "Extra Components", href: "/extra-components" },
     { title: "Breadcrumb" },
@@ -59,8 +59,6 @@ export default function ExtraComponents() {
       )}
     </BreadcrumbItem>
   ))
-
-  const [pinInput, setPinInput] = useState("")
 
   const FormSchema = z.object({
     language: z.string().optional(),

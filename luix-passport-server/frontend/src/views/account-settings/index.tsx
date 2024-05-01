@@ -6,6 +6,7 @@ import {
   IconPalette,
   IconTool,
   IconUser,
+  IconForms
 } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import { LayoutBody } from "@/layouts/layout-definitions"
@@ -39,7 +40,12 @@ export default function AccountSettings() {
       href: "/account-settings/display",
     },
     {
-      title: "Error Example",
+      title: "Form",
+      icon: <IconForms size={18} />,
+      href: "/account-settings/form",
+    },
+    {
+      title: "Error",
       icon: <IconExclamationCircle size={18} />,
       href: "/account-settings/error-example",
     },

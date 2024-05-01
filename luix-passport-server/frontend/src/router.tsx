@@ -85,6 +85,12 @@ const router = createHashRouter([
             }),
           },
           {
+            path: "form",
+            lazy: async () => ({
+              Component: (await import("./views/account-settings/form")).default,
+            }),
+          },
+          {
             path: "error-example",
             lazy: async () => ({
               Component: (await import("./views/account-settings/error-example"))
@@ -123,13 +129,7 @@ const router = createHashRouter([
         lazy: async () => ({
           Component: (await import("@/views/auth2-clients")).default,
         }),
-      },
-      {
-        path: "extra-components",
-        lazy: async () => ({
-          Component: (await import("@/views/extra-components/components")).default,
-        }),
-      },
+      }
     ],
   },
 
