@@ -44,7 +44,7 @@ export const useFileUpload = () => {
   return context;
 };
 
-type FileUploaderProps = {
+type Props = {
   value: File[] | null;
   reSelect?: boolean;
   onValueChange: (value: File[] | null) => void;
@@ -54,7 +54,7 @@ type FileUploaderProps = {
 
 export const FileUploader = forwardRef<
   HTMLDivElement,
-  FileUploaderProps & React.HTMLAttributes<HTMLDivElement>
+  Props & React.HTMLAttributes<HTMLDivElement>
 >(
   (
     {
