@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { IconApi } from "@tabler/icons-react"
+import { IconCodeCircle2 } from "@tabler/icons-react"
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 
@@ -27,7 +27,7 @@ export function AccountNav() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent className="w-48" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
             <p className="text-sm font-medium leading-none">{authUserProvider.authUser.firstName} {authUserProvider.authUser.lastName}</p>
@@ -47,8 +47,8 @@ export function AccountNav() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <RoleDeveloper>
-          <DropdownMenuLabel className="flex items-center gap-2">
-            Developer Tools<IconApi className="size-5"/>
+          <DropdownMenuLabel className="flex items-center justify-between">
+            Developer Tools<IconCodeCircle2 className="size-6"/>
           </DropdownMenuLabel>
           <DropdownMenuGroup>
             <Link to="/api-docs">

@@ -60,7 +60,6 @@ npx shadcn-ui@latest add label
 - user locale
 - show error details
 - 401 vs 403 code of axios
-- api docs view
 
 
 
