@@ -85,7 +85,7 @@ export function EditDialog({
           control={form.control} 
           name="enabled" 
           label="Enabled"
-          description="After disabling, existing data can still reference the object, but new data can"
+          description="After disabling, existing data can still reference the object, but new data cannot."
         />
       </SaveDialogContent>
     </Dialog>
