@@ -103,7 +103,7 @@ const router = createHashRouter([
       {
         path: "data-dicts",
         lazy: async () => ({
-          Component: (await import("@/views/data-dicts")).default,
+          Component: (await import("@/views/developer/data-dicts")).default,
         }),
       },
       {
