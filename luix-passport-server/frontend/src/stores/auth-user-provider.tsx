@@ -22,11 +22,15 @@ type AuthUserProviderProps = {
 type AuthUserProviderState = {
   authUser: AuthUser
   clearAuthUser: () => void
+  isAdmin: () => boolean
+  isDeveloper: () => boolean
 }
 
 const initialState: AuthUserProviderState = {
   authUser: {} as AuthUser,
   clearAuthUser: () => {},
+  isAdmin: () => false,
+  isDeveloper: () => false
 }
 
 const AuthUserProviderContext = createContext<AuthUserProviderState>(initialState)
@@ -48,6 +52,12 @@ export function AuthUserProvider({
   const value = {
     authUser,
     clearAuthUser: () => setAuthUser({} as AuthUser),
+    isAdmin: () => {
+      return authUser.roles.includes("ROLE_ADMIN")
+    },
+    isDeveloper: () => {
+      return authUser.roles.includes("ROLE_DEVELOPER")
+    }
   }
 
   return (
