@@ -66,7 +66,7 @@ export default function ProfileForm() {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <ProfilePicUploader defaultValue={field.value} onValueChange={field.onChange}/>
+                <ProfilePicUploader defaultValue={field.value} onValueChange={field.onChange} avatarClassName="-intro-y"/>
               </FormControl>
               <FormDescription>The size of profile picture should be smaller than 15MB.</FormDescription>
               <FormMessage/>
