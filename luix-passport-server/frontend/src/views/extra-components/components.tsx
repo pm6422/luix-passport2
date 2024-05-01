@@ -146,56 +146,6 @@ export default function ExtraComponents() {
             </TabsContent>
           </Tabs>
         </div>
-        <div className="flex-1">
-          <h3 className="mb-2 font-medium">Controlled</h3>
-          <Tabs defaultValue="preview">
-            <TabsList>
-              <TabsTrigger value="preview">Preview</TabsTrigger>
-              <TabsTrigger value="code">Code</TabsTrigger>
-            </TabsList>
-            <TabsContent value="preview">
-              <div className="flex min-h-56 items-center justify-center rounded border">
-                <PinInput
-                  className="flex h-10 space-x-4"
-                  value={pinInput}
-                  onChange={setPinInput}
-                  onComplete={(str) => console.log("completed", str)}
-                >
-                  {Array.from({ length: 4 }, (_, i) => (
-                    <PinInputField key={i} component={Input} />
-                  ))}
-                </PinInput>
-              </div>
-            </TabsContent>
-            <TabsContent value="code">
-              <SyntaxHighlighter
-                language="tsx"
-                style={nord}
-                wrapLines
-                wrapLongLines
-              >
-                {`function ControlledPinInput() {
-                  const [pinInput, setPinInput] = useState("");
-                
-                  return (
-                    <PinInput
-                      className="flex h-10 space-x-4"
-                      value={pinInput}
-                      onChange={setPinInput}
-                      onComplete={(str) => 
-                        console.log("completed", str)
-                      }
-                    >
-                      {Array.from({ length: 4 }, (_, i) => (
-                        <PinInputField key={i} component={Input} />
-                      ))}
-                    </PinInput>
-                  )
-                }`}
-              </SyntaxHighlighter>
-            </TabsContent>
-          </Tabs>
-        </div>
       </div>
 
       <Form {...form}>
