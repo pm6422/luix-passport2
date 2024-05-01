@@ -29,7 +29,7 @@ export function ProfilePicUploader({
   
   return (
     <div className="relative size-40">
-      <Avatar className="w-full h-full">
+      <Avatar className="w-full h-full -intro-y">
         <AvatarImage src={imageSrc} className="object-cover"/>
         <AvatarFallback className="bg-secondary">
           <IconUserScan className="size-16"/>
