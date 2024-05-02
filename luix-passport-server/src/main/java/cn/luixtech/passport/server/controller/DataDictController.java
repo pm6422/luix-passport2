@@ -21,6 +21,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,10 +34,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static cn.luixtech.passport.server.domain.UserRole.ROLE_DEVELOPER;
 import static com.luixtech.springbootframework.utils.HttpHeaderUtils.generatePageHeaders;
 
 @RestController
 @AllArgsConstructor
+@PreAuthorize("hasAuthority(\"" + ROLE_DEVELOPER + "\")")
 @Slf4j
 public class DataDictController {
     private final DataDictRepository dataDictRepository;
