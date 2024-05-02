@@ -47,7 +47,6 @@ Start the server
 npx shadcn-ui@latest add label
 
 ## TODOs
-- Clearable select
 - role and permissions view
 - user locale
 - 401 vs 403 code of axios
