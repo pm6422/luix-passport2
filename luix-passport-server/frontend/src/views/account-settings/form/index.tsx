@@ -40,7 +40,6 @@ import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
 import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import { formatDate } from "@/libs/utils"
-import { yesNo } from "@/data/yes-no"
 
 export default function FormExample() {
   const items = [
@@ -159,68 +158,7 @@ export default function FormExample() {
             label="Preferred Language"
             options={languages}
             required
-          />
-
-          <FormField
-            control={form.control}
-            name="language"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>Language</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        className={cn(
-                          "w-[200px] justify-between",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value
-                          ? languages.find(
-                              (language) => language.value === field.value
-                            )?.label
-                          : "Select language"}
-                        <IconSelector className="ml-2 size-4 shrink-0 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-[200px] p-0">
-                    <Command>
-                      <CommandInput placeholder="Search language..." />
-                      <CommandEmpty>No language found.</CommandEmpty>
-                      <CommandGroup>
-                        {languages.map((language) => (
-                          <CommandItem
-                            value={language.label}
-                            key={language.value}
-                            onSelect={() => {
-                              form.setValue("language", language.value)
-                            }}
-                          >
-                            <IconCheck
-                              className={cn(
-                                "mr-2 size-4",
-                                language.value === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {language.label}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
-                <FormDescription>
-                  This is the language that will be used in the dashboard.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+            description="This is the language that will be used in the dashboard."
           />
 
           <FormField

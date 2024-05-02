@@ -1,60 +1,84 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectSeparator,
-  // SelectLabel
-} from "@/components/ui/select"
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from "@/components/ui/command"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 import { Button } from "@/components/custom/button"
+import { IconSelector, IconCheck } from "@tabler/icons-react"
+import { cn } from "@/libs/utils"
 
 
 type Props = {
   options: { label: string; value: string; }[]
-  value?: string
+  defaultValue?: string
   onValueChange?: (value: string) => void
-  className?: string,
   placeholder?: string
 };
 
 export const ClearableSelect = ({
   options,
-  value, 
+  defaultValue, 
   onValueChange, 
-  className,
-  placeholder
+  placeholder = "Select..."
 }: Props) => {
-  const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState<string>(defaultValue || "")
+
+  useEffect(() => {
+    setQuery(defaultValue || "")
+  }, [defaultValue])
 
   return (
-    <Select value={value} onValueChange={onValueChange} open={open} onOpenChange={setOpen}>
-      <SelectTrigger className={className}>
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          {/* <SelectLabel>Enabled</SelectLabel> */}
-          {options.map(option => (
-            <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
-          ))}
-        </SelectGroup>
-        <SelectSeparator />
+    <Popover>
+      <PopoverTrigger asChild>
         <Button
-          type="button"
-          className="w-full px-2"
-          variant="secondary"
-          size="sm"
-          onClick={() => {
-            onValueChange && onValueChange("")
-            setOpen(false)
-          }}
+          variant="outline"
+          role="combobox"
+          className="w-full justify-between text-muted-foreground"
         >
-          Clear
+          {query
+            ? options.find(
+                (option) => option.value === query
+              )?.label
+            : placeholder}
+          <IconSelector className="size-4 shrink-0 opacity-50" />
         </Button>
-      </SelectContent>
-    </Select>
+      </PopoverTrigger>
+      <PopoverContent className="min-w-fit p-0 drop-shadow-sm" align="start">
+        <Command>
+          <CommandInput placeholder="Search..." />
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup>
+            {options.map((option) => (
+              <CommandItem
+                value={option.label}
+                key={option.value}
+                onSelect={() => {
+                  setQuery(option.value)
+                  onValueChange && onValueChange(option.value)
+                }}
+              >
+                <IconCheck
+                  className={cn(
+                    "mr-2 size-4",
+                    option.value === query
+                      ? "opacity-100"
+                      : "opacity-0"
+                  )}
+                />
+                {option.label}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        </Command>
+      </PopoverContent>
+    </Popover>
   )
 }

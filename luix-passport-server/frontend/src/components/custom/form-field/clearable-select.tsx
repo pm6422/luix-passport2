@@ -40,7 +40,7 @@ const ClearableSelectFormField = <TFieldValues extends FieldValues>({
       <FormItem className={formItemClassName}>
         {label && <RequiredFormLabel required={required}>{label}</RequiredFormLabel>}
         <FormControl>
-          <ClearableSelect options={options} value={field.value} onValueChange={field.onChange} placeholder={placeholder}/>
+          <ClearableSelect options={options} defaultValue={field.value} onValueChange={field.onChange} placeholder={placeholder}/>
         </FormControl>
         {description && <FormDescription>{description}</FormDescription>}
         <FormMessage />
