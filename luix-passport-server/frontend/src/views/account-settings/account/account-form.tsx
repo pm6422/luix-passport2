@@ -8,6 +8,9 @@ import InputFormField from "@/components/custom/form-field/input"
 import SelectFormField from "@/components/custom/form-field/select"
 import { IconReload, IconMailForward } from "@tabler/icons-react"
 import { languages } from "@/data/languages"
+import { locales } from "@/data/locales"
+import { timeZones } from "@/data/time-zones"
+import { dateFormats } from "@/data/date-formats"
 import { toast } from "sonner"
 import { useAuthUserProvider } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
@@ -23,7 +26,9 @@ const formSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   language: z.string().trim().min(1, { message: "Required" }),
-  locale: z.string().trim().min(1, { message: "Required" })
+  locale: z.string().trim().min(1, { message: "Required" }),
+  timeZone: z.string().trim().optional(),
+  dateFormat: z.string().trim().optional(),
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -102,6 +107,25 @@ export function AccountForm() {
           label="Preferred Language"
           options={languages}
           required
+        />
+        <SelectFormField 
+          control={form.control} 
+          name="locale" 
+          label="Locale"
+          options={locales}
+          required
+        />
+        <SelectFormField 
+          control={form.control} 
+          name="timeZone" 
+          label="Time Zone"
+          options={timeZones}
+        />
+        <SelectFormField 
+          control={form.control} 
+          name="dateFormat" 
+          label="Date Format"
+          options={dateFormats}
         />
 
         <Button type="submit" disabled={saving}>
