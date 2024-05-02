@@ -48,7 +48,6 @@ npx shadcn-ui@latest add label
 
 ## TODOs
 - user locale
-- 401 vs 403 code of axios
 - show error details
 - themeleaf use shadcn login
 - role and permissions view
