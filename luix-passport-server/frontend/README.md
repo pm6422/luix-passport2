@@ -48,7 +48,6 @@ npx shadcn-ui@latest add label
 
 ## TODOs
 - user locale
-- show error details
 - themeleaf use shadcn login
 - role and permissions view
 - server start vite
