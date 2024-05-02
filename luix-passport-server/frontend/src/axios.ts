@@ -30,9 +30,12 @@ instance.interceptors.response.use(
   },
   function (error) {
     // Handle response errors
-    if (error.response.status === 401 || error.response.status === 403) {
-      // Handle 401 unauthorized error or 403 forbidden error
-      console.log("Redirecting to login for unauthorized access")
+    if (error.response.status === 403) {
+      // Handle 403 forbidden error
+      window.location.href = "/#/403"
+    } else if (error.response.status === 401) {
+      // Handle 401 unauthorized error
+      console.log("Redirecting to login")
       window.location.href = "/login"
     } else {
       // Handle other errors

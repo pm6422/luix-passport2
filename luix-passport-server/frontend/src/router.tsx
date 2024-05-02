@@ -1,5 +1,6 @@
 import { createHashRouter } from "react-router-dom"
 import GeneralError from "./views/errors/general-error"
+import ForbiddenError from "./views/errors/forbidden-error"
 import NotFoundError from "./views/errors/not-found-error"
 import MaintenanceError from "./views/errors/maintenance-error"
 
@@ -141,6 +142,7 @@ const router = createHashRouter([
 
   // Error routes
   { path: "/500", Component: GeneralError },
+  { path: "/403", Component: ForbiddenError },
   { path: "/404", Component: NotFoundError },
   { path: "/503", Component: MaintenanceError },
 
