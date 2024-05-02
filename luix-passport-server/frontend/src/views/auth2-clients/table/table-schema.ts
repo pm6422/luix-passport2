@@ -7,7 +7,7 @@ export const formSchema = z.object({
   rawClientSecret: z.string().trim().optional(),
   clientAuthenticationMethods: z.array(z.string()).min(1, { message: "Required" }),
   authorizationGrantTypes: z.array(z.string()).min(1, { message: "Required" }),
-  redirectUris: z.array(z.string().url({ message: "Invalid redirect URI" })).min(1, { message: "Required" }),
+  redirectUris: z.array(z.string().url({ message: "Invalid redirect URI" })).optional(),
   postLogoutRedirectUris: z.array(z.string().url({ message: "Invalid post logout redirect URI" })).optional(),
   scopes: z.array(z.string()).min(1, { message: "Required" }),
   clientSettings: z.string().optional(),
