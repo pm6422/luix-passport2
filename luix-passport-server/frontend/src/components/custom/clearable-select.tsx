@@ -6,7 +6,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectSeparator
+  SelectSeparator,
+  // SelectLabel
 } from "@/components/ui/select"
 import { Button } from "@/components/custom/button"
 
@@ -43,7 +44,7 @@ export const ClearableSelect = ({
         className="w-full px-2"
         variant="secondary"
         size="sm"
-        onClick={(e) => {
+        onClick={() => {
           onValueChange && onValueChange("")
           setOpen(false)
         }}
