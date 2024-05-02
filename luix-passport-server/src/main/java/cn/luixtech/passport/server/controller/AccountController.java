@@ -101,8 +101,7 @@ public class AccountController {
     @PutMapping("/api/accounts/password")
     public ResponseEntity<Void> changePassword(HttpServletRequest request,
                                                @Parameter(description = "new password", required = true) @Valid @RequestBody ChangePassword dto) {
-        // For security reason
-        User user = userService.changePassword(AuthUtils.getCurrentUserId(), dto.getOldRawPassword(), dto.getNewRawPassword());
+        User user = userService.changePassword(AuthUtils.getCurrentUserId(), dto.getOldRawPassword(), dto.getNewRawPassword(), dto.getVerificationCode());
         mailService.sendPasswordChangedMail(user, getRequestUrl(request));
         // Logout asynchronously
         applicationEventPublisher.publishEvent(new LogoutEvent(this));

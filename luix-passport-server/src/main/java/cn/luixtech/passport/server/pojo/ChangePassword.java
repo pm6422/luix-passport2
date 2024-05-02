@@ -23,4 +23,8 @@ public class ChangePassword {
     @NotEmpty
     @Size(min = ManagedUser.RAW_PASSWORD_MIN_LENGTH, max = ManagedUser.RAW_PASSWORD_MAX_LENGTH)
     private String newRawPassword;
+
+    @Schema(description = "verification code")
+    @NotEmpty
+    private String verificationCode;
 }

@@ -240,8 +240,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public User changePassword(String id, String oldRawPassword, String newRawPassword) {
+    public User changePassword(String id, String oldRawPassword, String newRawPassword, String verificationCode) {
         User user = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException(id));
+        if (StringUtils.isNotEmpty(verificationCode)) {
+            Validate.isTrue(verificationCode.equalsIgnoreCase(user.getVerificationCode()), "Invalid verification code!");
+            Validate.isTrue(user.getVerificationCodeSentAt().plusDays(1).isAfter(LocalDateTime.now()), "Invalid verification exceeds one day before!");
+        }
         if (StringUtils.isNotEmpty(oldRawPassword)) {
             try {
                 if (!passwordEncoder.matches(oldRawPassword, user.getPasswordHash())) {

@@ -32,7 +32,7 @@ public interface UserService {
 
     void activate(String activationCode);
 
-    User changePassword(String id, String oldRawPassword, String newRawPassword);
+    User changePassword(String id, String oldRawPassword, String newRawPassword, String verificationCode);
 
     User requestEmailChangeVerificationCode(User user, String email);
 
