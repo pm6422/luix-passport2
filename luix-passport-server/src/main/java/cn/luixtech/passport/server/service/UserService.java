@@ -36,6 +36,8 @@ public interface UserService {
 
     User requestEmailChangeVerificationCode(User user, String email);
 
+    User requestPasswordChangeVerificationCode(User user);
+
     User requestPasswordRecovery(String email);
 
     void resetPassword(String resetCode, String newRawPassword);

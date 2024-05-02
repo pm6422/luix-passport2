@@ -268,6 +268,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User requestPasswordChangeVerificationCode(User user) {
+        user.setVerificationCode(generateRandomVerificationCode());
+        user.setVerificationCodeSentAt(LocalDateTime.now());
+        userRepository.save(user);
+        return user;
+    }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public User requestPasswordRecovery(String email) {
         User user = userRepository.findOneByEmailAndActivated(email, true).orElseThrow(() -> new DataNotFoundException(email));
