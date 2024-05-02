@@ -20,16 +20,16 @@ export class AccountService {
     return http.put("api/accounts/user", model)
   }
 
-  public static updatePassword(model: any): Promise<any> {
-    return http.put("api/accounts/password", model)
-  }
-
   public static sendEmailChangeVerificationCode(email: string): Promise<any> {
     return http.post("api/accounts/request-email-change-verification-code?email=" + email)
   }
 
   public static sendPasswordChangeVerificationCode(): Promise<any> {
     return http.post("api/accounts/request-password-change-verification-code")
+  }
+
+  public static updatePassword(model: any): Promise<any> {
+    return http.put("api/accounts/password", model)
   }
 
   public static changeEmail(verificationCode: string): Promise<any> {

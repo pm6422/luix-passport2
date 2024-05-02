@@ -80,7 +80,7 @@ export function ChangePasswordForm() {
   }
 
   function save(formData: FormSchema): Promise<any> {
-    return AccountService.update(formData)
+    return AccountService.updatePassword(formData)
   }
 
   return (
