@@ -41,14 +41,16 @@ export const ClearableSelect = ({
         <Button
           variant="outline"
           role="combobox"
-          className="w-full justify-between text-muted-foreground"
+          className="flex w-full rounded-md border min-h-9 h-auto py-0 px-1 items-center justify-between bg-inherit hover:bg-card shadow-sm"
         >
-          {query
-            ? options.find(
-                (option) => option.value === query
-              )?.label
-            : placeholder}
-          <IconSelector className="size-4 shrink-0 opacity-50" />
+            <span className="text-sm font-normal px-2">
+              {query
+              ? options.find(
+                  (option) => option.value === query
+                )?.label
+              : placeholder}
+            </span>
+          <IconSelector className="h-4 mr-1 cursor-pointer text-muted-foreground" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="min-w-fit p-0 drop-shadow-sm" align="start">
