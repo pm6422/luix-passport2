@@ -13,13 +13,15 @@ import { Button } from "@/components/custom/button"
 
 
 type Props = {
+  options: { label: string; value: string; }[]
   value?: string
   onValueChange?: (value: string) => void
   className?: string,
   placeholder?: string
 };
 
-export const ClearableSelect = ({ 
+export const ClearableSelect = ({
+  options,
   value, 
   onValueChange, 
   className,
@@ -35,8 +37,11 @@ export const ClearableSelect = ({
     <SelectContent>
       <SelectGroup>
         {/* <SelectLabel>Enabled</SelectLabel> */}
-        <SelectItem value="true">Yes</SelectItem>
-        <SelectItem value="false">No</SelectItem>
+        { options && options.map(option => {
+          return (
+            <SelectItem key={option.value} value={option.value} />
+          )
+        })}
       </SelectGroup>
       <SelectSeparator />
       <Button
