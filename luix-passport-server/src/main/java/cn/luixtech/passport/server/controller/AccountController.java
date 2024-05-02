@@ -88,6 +88,15 @@ public class AccountController {
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 
+    @Operation(summary = "send password change verification code email")
+    @PostMapping("/api/accounts/request-password-change-verification-code")
+    public ResponseEntity<Void> requestPasswordChangeVerificationCode(HttpServletRequest request) {
+        User currentUser = userRepository.findById(AuthUtils.getCurrentUserId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
+        User user = userService.requestPasswordChangeVerificationCode(currentUser);
+        mailService.sendVerificationCodeMail(user, user.getEmail(), getRequestUrl(request));
+        return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("NM1002")).build();
+    }
+
     @Operation(summary = "update password of the current user")
     @PutMapping("/api/accounts/password")
     public ResponseEntity<Void> changePassword(HttpServletRequest request,

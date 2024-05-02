@@ -28,6 +28,10 @@ export class AccountService {
     return http.post("api/accounts/request-email-change-verification-code?email=" + email)
   }
 
+  public static sendPasswordChangeVerificationCode(): Promise<any> {
+    return http.post("api/accounts/request-password-change-verification-code")
+  }
+
   public static changeEmail(verificationCode: string): Promise<any> {
     return http.post("api/accounts/change-email?verificationCode=" + verificationCode)
   }
