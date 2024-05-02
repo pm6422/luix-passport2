@@ -3,15 +3,17 @@ import { IconExclamationCircle } from "@tabler/icons-react"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 
 interface Props {
-  children?: React.ReactNode;
-  form: UseFormReturn<any, any, any>;
-  variant?: "default" | "destructive";
+  children?: React.ReactNode
+  form: UseFormReturn<any, any, any>
+  variant?: "default" | "destructive"
+  showDetails?: boolean
 }
 
 const FormErrors = ({
   children,
   form,
-  variant = "destructive"
+  variant = "destructive",
+  showDetails = false
 }: Props) => (
   Object.values(form.formState.errors).length > 0 && (
     <Alert variant={variant}>
