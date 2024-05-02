@@ -91,7 +91,7 @@ export function ChangePasswordForm() {
           name="currentPassword"
           render={({ field }) => (
             <FormItem className='space-y-1'>
-              <RequiredFormLabel>Current Password</RequiredFormLabel>
+              <RequiredFormLabel required={true}>Current Password</RequiredFormLabel>
               <FormControl>
                 <PasswordInput {...field} placeholder="********"/>
               </FormControl>
@@ -104,7 +104,7 @@ export function ChangePasswordForm() {
           name="newPassword"
           render={({ field }) => (
             <FormItem className='space-y-1'>
-              <RequiredFormLabel>New Password</RequiredFormLabel>
+              <RequiredFormLabel required={true}>New Password</RequiredFormLabel>
               <FormControl>
                 <PasswordInput {...field} placeholder="********"/>
               </FormControl>
