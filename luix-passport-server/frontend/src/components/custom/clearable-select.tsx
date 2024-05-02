@@ -12,7 +12,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import { Button } from "@/components/custom/button"
-import { IconSelector, IconCheck } from "@tabler/icons-react"
+import { IconSelector, IconCheck, IconX } from "@tabler/icons-react"
 import { cn } from "@/libs/utils"
 
 
@@ -30,6 +30,8 @@ export const ClearableSelect = ({
   placeholder = "Select..."
 }: Props) => {
   const [query, setQuery] = useState<string>(defaultValue || "")
+  const [showSelectButton, setShowSelectButton] = useState(true)
+  const [showClearButton, setShowClearButton] = useState(false)
 
   useEffect(() => {
     setQuery(defaultValue || "")
@@ -43,14 +45,37 @@ export const ClearableSelect = ({
           role="combobox"
           className="flex w-full rounded-md border min-h-9 h-auto py-0 px-1 items-center justify-between bg-inherit hover:bg-card shadow-sm"
         >
-            <span className="text-sm font-normal px-2">
-              {query
-              ? options.find(
-                  (option) => option.value === query
-                )?.label
-              : placeholder}
-            </span>
-          <IconSelector className="h-4 mr-1 cursor-pointer text-muted-foreground" />
+          <span className="text-sm font-normal px-2">
+            {query
+            ? options.find(
+                (option) => option.value === query
+              )?.label
+            : placeholder}
+          </span>
+          { showClearButton && (
+            <IconX
+              className="h-4 mr-1 cursor-pointer text-muted-foreground"
+              onClick={event => {
+                onValueChange && onValueChange("")
+                event.stopPropagation()
+              }}
+              onMouseLeave={() => {
+                setShowClearButton(false)
+                setShowSelectButton(true)
+              }}
+            />
+          )}
+          { showSelectButton && (
+            <IconSelector 
+              className="h-4 mr-1 cursor-pointer text-muted-foreground"
+              onMouseEnter={() => {
+                if(query) {
+                  setShowSelectButton(false)
+                  setShowClearButton(true)
+                }
+              }}
+            />
+          )}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="min-w-fit p-0 drop-shadow-sm" align="start">
