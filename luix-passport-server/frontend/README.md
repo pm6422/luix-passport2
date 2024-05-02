@@ -58,6 +58,7 @@ npx shadcn-ui@latest add label
 - table page no url query param
 - Breadcrumbs
 - last sign in at
+- createHashRouter vs. createBrowserRouter
 
 
 
