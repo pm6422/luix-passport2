@@ -41,7 +41,7 @@ export const initialFormState: FormSchema = {
   language: "en",
   locale: "en_US",
   timeZone: "Asia/Shanghai",
-  dateFormat: "YYYY-MM-DD",
+  dateFormat: "1",
   profilePhotoEnabled: false,
   activated: false,
   enabled: true,

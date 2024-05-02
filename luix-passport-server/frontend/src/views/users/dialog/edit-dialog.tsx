@@ -107,13 +107,46 @@ export function EditDialog({
           />
         </div>
 
-        <SelectFormField 
-          control={form.control} 
-          name="language" 
-          label="Preferred Language"
-          options={languages}
-          required
-        />
+        <div className="flex items-center gap-2">
+          <SelectFormField 
+            control={form.control} 
+            name="language" 
+            label="Preferred Language"
+            options={languages}
+            formItemClassName="w-full"
+            required
+          />
+
+          <SelectFormField 
+            control={form.control} 
+            name="locale" 
+            label="Locale"
+            options={locales}
+            formItemClassName="w-full"
+            required
+          />
+        </div>
+
+
+        <div className="flex items-center gap-2">
+          <SelectFormField 
+            control={form.control} 
+            name="timeZone" 
+            label="Time Zone"
+            options={timeZones}
+            formItemClassName="w-full"
+            required
+          />
+
+          <SelectFormField 
+            control={form.control} 
+            name="dateFormat" 
+            label="Date Format"
+            options={dateFormats}
+            formItemClassName="w-full"
+            required
+          />
+        </div>
 
         <InputFormField 
           control={form.control} 
