@@ -6,6 +6,7 @@ import { Button } from "@/components/custom/button"
 import { Form } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
 import SelectFormField from "@/components/custom/form-field/select"
+import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import { IconReload, IconMailForward } from "@tabler/icons-react"
 import { languages } from "@/data/languages"
 import { locales } from "@/data/locales"
@@ -115,13 +116,13 @@ export function AccountForm() {
           options={locales}
           required
         />
-        <SelectFormField 
+        <ClearableSelectFormField 
           control={form.control} 
           name="timeZone" 
           label="Time Zone"
           options={timeZones}
         />
-        <SelectFormField 
+        <ClearableSelectFormField 
           control={form.control} 
           name="dateFormat" 
           label="Date Format"

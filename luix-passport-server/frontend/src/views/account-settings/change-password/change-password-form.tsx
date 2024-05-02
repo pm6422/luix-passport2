@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/custom/button"
 import InputFormField from "@/components/custom/form-field/input"
+import { PasswordInput } from "@/components/custom/password-input"
 import { IconReload, IconSend } from "@tabler/icons-react"
 import {
   Form,
@@ -85,8 +86,32 @@ export function ChangePasswordForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <InputFormField control={form.control} name="currentPassword" label="Current Password" required/>
-        <InputFormField control={form.control} name="newPassword" label="New Password" required/>
+        <FormField
+          control={form.control}
+          name="currentPassword"
+          render={({ field }) => (
+            <FormItem className='space-y-1'>
+              <RequiredFormLabel>Current Password</RequiredFormLabel>
+              <FormControl>
+                <PasswordInput {...field} placeholder="********"/>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="newPassword"
+          render={({ field }) => (
+            <FormItem className='space-y-1'>
+              <RequiredFormLabel>New Password</RequiredFormLabel>
+              <FormControl>
+                <PasswordInput {...field} placeholder="********"/>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <InputFormField 
           control={form.control} 
           name="email" 
