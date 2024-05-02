@@ -7,13 +7,14 @@ import {
   DialogFooter
 } from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form"
-import { SubmitErrorHandler, UseFormReturn } from "react-hook-form"
+import { UseFormReturn } from "react-hook-form"
 import FormErrors from "@/components/custom/form-errors"
 import { Button } from "@/components/custom/button"
 import { Separator } from "@/components/ui/separator"
 import { IconReload } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
+import { transform } from "lodash"
 import { cn } from "@/libs/utils";
 
 interface Props {
@@ -42,6 +43,7 @@ const SaveDialogContent = ({
   debug = false
 }: Props) => {
   const [saving, setSaving] = useState(false)
+  const [errors, setErrors] = useState<any>([])
 
   function onSubmit(formData: any): void {
     setSaving(true)
@@ -64,7 +66,11 @@ const SaveDialogContent = ({
   }
 
   function onFormError(error: any): void {
-    console.log(error)
+    const results = transform(error, (result: any, value: any, key: any) => {
+      result.push({ field: key, message: value.message })
+      return { field: key, message: value.message }
+    }, [])
+    setErrors(results)
   }
 
   return (
@@ -78,7 +84,7 @@ const SaveDialogContent = ({
           onSubmit={form.handleSubmit(onSubmit, onFormError)}
           className="flex flex-col gap-4"
         >
-          <FormErrors form={form}/>
+          <FormErrors form={form} errors={errors}/>
           
           {children}
           
