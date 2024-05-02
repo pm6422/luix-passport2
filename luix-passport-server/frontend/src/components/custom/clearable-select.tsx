@@ -18,7 +18,7 @@ type Props = {
   placeholder?: string
 };
 
-export const EnabledSelect = ({ 
+export const ClearableSelect = ({ 
   value, 
   onValueChange, 
   className,

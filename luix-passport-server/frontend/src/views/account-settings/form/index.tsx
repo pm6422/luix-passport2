@@ -38,6 +38,7 @@ import { cn } from "@/libs/utils"
 import { IconCalendar, IconSelector, IconCheck } from "@tabler/icons-react"
 import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
+import { ClearableSelect } from "@/components/custom/clearable-select"
 import { formatDate } from "@/libs/utils"
 
 export default function FormExample() {
@@ -257,6 +258,8 @@ export default function FormExample() {
               </FormItem>
             )}
           />
+
+          <ClearableSelect/>
         </form>
       </Form>
 
