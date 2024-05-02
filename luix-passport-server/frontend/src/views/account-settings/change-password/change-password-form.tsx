@@ -155,7 +155,7 @@ export function ChangePasswordForm() {
         />
 
         <Button type="submit" disabled={saving}>
-          {saving ? "Updating password..." : "Update password"}
+          {saving ? "Waiting..." : "Update password"}
           {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
         </Button>
       </form>

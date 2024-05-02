@@ -155,7 +155,7 @@ export function ChangeEmailForm() {
             </Button>
           </Link>
           <Button type="submit" disabled={Object.values(form.formState.errors).length > 0 || saving}>
-            {saving ? "Saving..." : "Save"}
+            {saving ? "Waiting..." : "Save"}
             {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
           </Button>
         </div>
