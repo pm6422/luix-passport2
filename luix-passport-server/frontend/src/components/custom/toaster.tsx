@@ -1,4 +1,4 @@
-import { useTheme } from '@/stores/theme-provider'
+import { useTheme } from "@/stores/theme-provider"
 import { Toaster as Sonner } from "sonner"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
@@ -11,7 +11,7 @@ function Toaster({ ...props }: ToasterProps) {
       theme={theme as ToasterProps["theme"]}
       // eslint-disable-next-line tailwindcss/no-custom-classname
       className="toaster group"
-      position="top-right"
+      position="top-center"
       toastOptions={{
         classNames: {
           toast:
