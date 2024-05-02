@@ -19,6 +19,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class UserRole extends AbstractBaseDomain implements Serializable {
+
+    public static final String ROLE_ANONYMOUS = "ROLE_ANONYMOUS";
+    public static final String ROLE_USER      = "ROLE_USER";
+    public static final String ROLE_ADMIN     = "ROLE_ADMIN";
+    public static final String ROLE_DEVELOPER = "ROLE_DEVELOPER";
+    
     @Serial
     private static final long serialVersionUID = 1L;
 

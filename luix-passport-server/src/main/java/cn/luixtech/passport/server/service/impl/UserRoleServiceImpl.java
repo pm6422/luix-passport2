@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static cn.luixtech.passport.server.service.AuthorityService.AUTH_ANONYMOUS;
-import static cn.luixtech.passport.server.service.AuthorityService.AUTH_USER;
+import static cn.luixtech.passport.server.domain.UserRole.ROLE_ANONYMOUS;
+import static cn.luixtech.passport.server.domain.UserRole.ROLE_USER;
 
 @Service
 @AllArgsConstructor
@@ -29,8 +29,8 @@ public class UserRoleServiceImpl implements UserRoleService {
                 .collect(Collectors.toList());
 
         // set default user newAuthorities
-        UserRole anoAuth = build(userId, AUTH_ANONYMOUS);
-        UserRole userAuth = build(userId, AUTH_USER);
+        UserRole anoAuth = build(userId, ROLE_ANONYMOUS);
+        UserRole userAuth = build(userId, ROLE_USER);
 
         if (!userRoles.contains(anoAuth)) {
             userRoles.add(anoAuth);

@@ -45,7 +45,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static cn.luixtech.passport.server.service.AuthorityService.*;
+import static cn.luixtech.passport.server.domain.UserRole.*;
 import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 
 /**
@@ -59,11 +59,11 @@ public class AccountController {
     private final        HttpHeaderCreator         httpHeaderCreator;
     private final        MessageCreator            messageCreator;
     private final        MailService               mailService;
-    private final UserRepository           userRepository;
-    private final UserProfilePicRepository userProfilePicRepository;
-    private final UserService               userService;
-    private final UserProfilePicService     userProfilePicService;
-    private final ApplicationEventPublisher applicationEventPublisher;
+    private final        UserRepository            userRepository;
+    private final        UserProfilePicRepository  userProfilePicRepository;
+    private final        UserService               userService;
+    private final        UserProfilePicService     userProfilePicService;
+    private final        ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "get current user who are signed in")
     @GetMapping("/open-api/accounts/user")
@@ -201,7 +201,7 @@ public class AccountController {
     @Operation(summary = "get all authority names")
     @GetMapping("/api/accounts/all-authorities")
     public ResponseEntity<List<String>> getAuthorityNames() {
-        return ResponseEntity.ok(Arrays.asList(AUTH_ANONYMOUS, AUTH_USER, AUTH_ADMIN, AUTH_DEVELOPER));
+        return ResponseEntity.ok(Arrays.asList(ROLE_ANONYMOUS, ROLE_USER, ROLE_ADMIN, ROLE_DEVELOPER));
     }
 
     @Operation(summary = "delete current user")
