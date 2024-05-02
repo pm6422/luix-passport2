@@ -14,20 +14,22 @@ import { Button } from "@/components/custom/button"
 type Props = {
   value?: string
   onValueChange?: (value: string) => void
-  className?: string
+  className?: string,
+  placeholder?: string
 };
 
 export const EnabledSelect = ({ 
   value, 
   onValueChange, 
-  className 
+  className,
+  placeholder
 }: Props) => {
   const [open, setOpen] = useState(false)
 
   return (
   <Select value={value} onValueChange={onValueChange} open={open} onOpenChange={setOpen}>
     <SelectTrigger className={className}>
-      <SelectValue placeholder="Enabled" />
+      <SelectValue placeholder={placeholder} />
     </SelectTrigger>
     <SelectContent>
       <SelectGroup>
