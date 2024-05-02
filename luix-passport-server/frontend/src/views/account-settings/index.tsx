@@ -6,7 +6,8 @@ import {
   IconPalette,
   IconTool,
   IconUser,
-  IconForms
+  IconForms,
+  IconKey
 } from "@tabler/icons-react"
 import { Separator } from "@/components/ui/separator"
 import { LayoutBody } from "@/layouts/layout-definitions"
@@ -23,6 +24,11 @@ export default function AccountSettings() {
       title: "Account",
       icon: <IconTool size={18} />,
       href: "/account-settings/account",
+    },
+    {
+      title: "Password",
+      icon: <IconKey size={18} />,
+      href: "/account-settings/password",
     },
     {
       title: "Appearance",

@@ -61,6 +61,12 @@ const router = createHashRouter([
             }),
           },
           {
+            path: "password",
+            lazy: async () => ({
+              Component: (await import("./views/account-settings/password")).default,
+            }),
+          },
+          {
             path: "change-email",
             lazy: async () => ({
               Component: (await import("./views/account-settings/change-email")).default,
