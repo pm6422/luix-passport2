@@ -18,13 +18,6 @@ import {
   FormDescription
 } from "@/components/ui/form"
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command"
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -35,7 +28,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner"
 import { cn } from "@/libs/utils"
-import { IconCalendar, IconSelector, IconCheck } from "@tabler/icons-react"
+import { IconCalendar } from "@tabler/icons-react"
 import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
 import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
