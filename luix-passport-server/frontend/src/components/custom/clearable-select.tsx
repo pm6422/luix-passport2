@@ -30,31 +30,31 @@ export const ClearableSelect = ({
   const [open, setOpen] = useState(false)
 
   return (
-  <Select value={value} onValueChange={onValueChange} open={open} onOpenChange={setOpen}>
-    <SelectTrigger className={className}>
-      <SelectValue placeholder={placeholder} />
-    </SelectTrigger>
-    <SelectContent>
-      <SelectGroup>
-        {/* <SelectLabel>Enabled</SelectLabel> */}
-        {options.map(option => (
-          <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
-        ))}
-      </SelectGroup>
-      <SelectSeparator />
-      <Button
-        type="button"
-        className="w-full px-2"
-        variant="secondary"
-        size="sm"
-        onClick={() => {
-          onValueChange && onValueChange("")
-          setOpen(false)
-        }}
-      >
-        Clear
-      </Button>
-    </SelectContent>
-  </Select>
+    <Select value={value} onValueChange={onValueChange} open={open} onOpenChange={setOpen}>
+      <SelectTrigger className={className}>
+        <SelectValue placeholder={placeholder} />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          {/* <SelectLabel>Enabled</SelectLabel> */}
+          {options.map(option => (
+            <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+          ))}
+        </SelectGroup>
+        <SelectSeparator />
+        <Button
+          type="button"
+          className="w-full px-2"
+          variant="secondary"
+          size="sm"
+          onClick={() => {
+            onValueChange && onValueChange("")
+            setOpen(false)
+          }}
+        >
+          Clear
+        </Button>
+      </SelectContent>
+    </Select>
   )
 }
