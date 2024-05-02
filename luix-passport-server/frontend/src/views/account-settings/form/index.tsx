@@ -38,8 +38,9 @@ import { cn } from "@/libs/utils"
 import { IconCalendar, IconSelector, IconCheck } from "@tabler/icons-react"
 import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
-import { ClearableSelect } from "@/components/custom/clearable-select"
+import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import { formatDate } from "@/libs/utils"
+import { yesNo } from "@/data/yes-no"
 
 export default function FormExample() {
   const items = [
@@ -152,6 +153,14 @@ export default function FormExample() {
           className="flex flex-col gap-4"
         >
 
+          <ClearableSelectFormField 
+            control={form.control} 
+            name="language" 
+            label="Preferred Language"
+            options={languages}
+            required
+          />
+
           <FormField
             control={form.control}
             name="language"
@@ -193,7 +202,7 @@ export default function FormExample() {
                           >
                             <IconCheck
                               className={cn(
-                                "mr-2 h-4 w-4",
+                                "mr-2 size-4",
                                 language.value === field.value
                                   ? "opacity-100"
                                   : "opacity-0"
@@ -259,7 +268,6 @@ export default function FormExample() {
             )}
           />
 
-          <ClearableSelect/>
         </form>
       </Form>
 

@@ -37,11 +37,9 @@ export const ClearableSelect = ({
     <SelectContent>
       <SelectGroup>
         {/* <SelectLabel>Enabled</SelectLabel> */}
-        { options && options.map(option => {
-          return (
-            <SelectItem key={option.value} value={option.value} />
-          )
-        })}
+        {options.map(option => (
+          <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+        ))}
       </SelectGroup>
       <SelectSeparator />
       <Button
