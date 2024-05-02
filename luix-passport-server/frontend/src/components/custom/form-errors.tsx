@@ -33,7 +33,7 @@ const FormErrors = ({
     Object.values(form.formState.errors).length > 0 && (
       <Alert variant={variant}>
         <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
-        { errors && errors.map(err => <p>{err.field}: {err.message}</p>) }
+        { errors && errors.map(err => <p className="ms-6">{err.field}: {err.message}</p>) }
         {children && <AlertDescription className="pr-8 font-light">{children}</AlertDescription>}
       </Alert>
     )
