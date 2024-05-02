@@ -140,7 +140,9 @@ public class Oauth2Client implements Serializable {
         oauth2Client.setClientIdIssuedAt(registeredClient.getClientIdIssuedAt().atZone(ZoneId.systemDefault()).toInstant());
         oauth2Client.setClientAuthenticationMethods(Arrays.stream(registeredClient.getClientAuthenticationMethods().split(",")).collect(Collectors.toSet()));
         oauth2Client.setAuthorizationGrantTypes(Arrays.stream(registeredClient.getAuthorizationGrantTypes().split(",")).collect(Collectors.toSet()));
-        oauth2Client.setRedirectUris(new HashSet<>(Arrays.asList(registeredClient.getRedirectUris().split(","))));
+        if(StringUtils.isNotEmpty(registeredClient.getRedirectUris())) {
+            oauth2Client.setRedirectUris(new HashSet<>(Arrays.asList(registeredClient.getRedirectUris().split(","))));
+        }
         if (StringUtils.isNotEmpty(registeredClient.getPostLogoutRedirectUris())) {
             oauth2Client.setPostLogoutRedirectUris(Stream.of(registeredClient.getPostLogoutRedirectUris()).collect(Collectors.toSet()));
         }
