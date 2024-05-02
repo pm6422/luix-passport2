@@ -9,11 +9,6 @@ interface Props {
   errors?: Array<any>
 }
 
-function Errors(props: {errors?: any[]}){
-  if(!props.errors?.length) return null;
-  return <div>{props.errors.map(err => <p>{err.field}: {err.message}</p>)}</div>
-}
-
 const FormErrors = ({
   children,
   form,
@@ -23,7 +18,7 @@ const FormErrors = ({
   Object.values(form.formState.errors).length > 0 && (
     <Alert variant={variant}>
       <AlertTitle className="flex items-center"><IconExclamationCircle className="size-5 me-1" />Please check your input.</AlertTitle>
-      <Errors errors={errors} />
+      { errors && errors.map(err => <p>{err.field}: {err.message}</p>) }
       {children && <AlertDescription className="pr-8 font-light">{children}</AlertDescription>}
     </Alert>
   )
