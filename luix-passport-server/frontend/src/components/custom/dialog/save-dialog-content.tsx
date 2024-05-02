@@ -14,8 +14,7 @@ import { Separator } from "@/components/ui/separator"
 import { IconReload } from "@tabler/icons-react"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
-import { transform } from "lodash"
-import { cn } from "@/libs/utils";
+import { cn } from "@/libs/utils"
 
 interface Props {
   children: React.ReactNode;
@@ -43,7 +42,8 @@ const SaveDialogContent = ({
   debug = false
 }: Props) => {
   const [saving, setSaving] = useState(false)
-  const [errors, setErrors] = useState<any>([])
+  const [error, setError] = useState<Object>({})
+
 
   function onSubmit(formData: any): void {
     setSaving(true)
@@ -66,11 +66,7 @@ const SaveDialogContent = ({
   }
 
   function onFormError(error: any): void {
-    const results = transform(error, (result: any, value: any, key: any) => {
-      result.push({ field: key, message: value.message })
-      return { field: key, message: value.message }
-    }, [])
-    setErrors(results)
+    setError(error)
   }
 
   return (
@@ -84,7 +80,7 @@ const SaveDialogContent = ({
           onSubmit={form.handleSubmit(onSubmit, onFormError)}
           className="flex flex-col gap-4"
         >
-          <FormErrors form={form} errors={errors}/>
+          <FormErrors form={form} error={error}/>
           
           {children}
           
