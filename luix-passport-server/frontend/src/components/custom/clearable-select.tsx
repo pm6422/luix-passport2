@@ -114,7 +114,7 @@ export const ClearableSelect = ({
                 {query && (
                   <>
                     <CommandItem
-                      onSelect={event => {
+                      onSelect={() => {
                         onValueChange && onValueChange("")
                       }}
                       style={{
