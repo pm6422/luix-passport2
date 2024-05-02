@@ -47,13 +47,13 @@ Start the server
 npx shadcn-ui@latest add label
 
 ## TODOs
-- role and permissions view
 - user locale
 - 401 vs 403 code of axios
 - show error details
+- themeleaf use shadcn login
+- role and permissions view
 - server start vite
 - dashboard page
-- themeleaf use shadcn login
 - datetime string to ms
 - multiple data in same column of table
 - table page no url query param
