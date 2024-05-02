@@ -11,6 +11,7 @@ import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -130,8 +131,18 @@ public class ExceptionTranslatorAdvice {
     @ResponseBody
     public ResponseEntity<Result<Void>> handleIncorrectCredentialsException(BadCredentialsException ex) {
         log.warn("Incorrect user credentials: {}", ex.getMessage());
+        // Http status: 400
         String message = messageCreator.getMessage("UE5006");
         return ResponseEntity.badRequest().body(Result.illegalArgument(message));
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseBody
+    public ResponseEntity<Result<Void>> handleAccessDeniedException(AccessDeniedException ex) {
+        log.warn("Access denied for requesting improper resource");
+        // Http status: 403
+        String message = messageCreator.getMessage("UE1010");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Result.dataNotFound(message));
     }
 
     @ExceptionHandler(DataNotFoundException.class)
