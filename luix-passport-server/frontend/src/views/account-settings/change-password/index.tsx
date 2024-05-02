@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator"
-import { PasswordForm } from "./password-form"
+import { ChangePasswordForm } from "./change-password-form"
 
 export default function SettingsPassword() {
   return (
@@ -11,7 +11,7 @@ export default function SettingsPassword() {
         </p>
       </div>
       <Separator />
-      <PasswordForm />
+      <ChangePasswordForm />
     </div>
   )
 }

@@ -17,7 +17,7 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>
 
-export function PasswordForm() {
+export function ChangePasswordForm() {
   const [saving, setSaving] = useState(false)
 
   const form = useForm<FormSchema>({

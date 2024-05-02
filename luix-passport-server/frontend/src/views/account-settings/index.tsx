@@ -28,7 +28,7 @@ export default function AccountSettings() {
     {
       title: "Password",
       icon: <IconKey size={18} />,
-      href: "/account-settings/password",
+      href: "/account-settings/change-password",
     },
     {
       title: "Appearance",
