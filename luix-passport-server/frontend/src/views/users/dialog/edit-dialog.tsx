@@ -135,7 +135,6 @@ export function EditDialog({
             label="Time Zone"
             options={timeZones}
             formItemClassName="w-full"
-            required
           />
 
           <SelectFormField 
@@ -144,7 +143,6 @@ export function EditDialog({
             label="Date Format"
             options={dateFormats}
             formItemClassName="w-full"
-            required
           />
         </div>
 

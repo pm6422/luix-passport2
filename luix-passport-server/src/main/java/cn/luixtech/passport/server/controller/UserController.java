@@ -98,6 +98,8 @@ public class UserController {
         existingOne.setLastName(domain.getLastName());
         existingOne.setLanguage(domain.getLanguage());
         existingOne.setLocale(domain.getLocale());
+        existingOne.setTimeZone(domain.getTimeZone());
+        existingOne.setDateFormat(domain.getDateFormat());
         existingOne.setEmail(domain.getEmail().toLowerCase());
         existingOne.setMobileNo(domain.getMobileNo());
         existingOne.setRemark(domain.getRemark());
