@@ -14,7 +14,6 @@ import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.utilities.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -44,6 +43,7 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
  */
 @RestController
 @AllArgsConstructor
+@PreAuthorize("hasAuthority(\"" + ROLE_ADMIN + "\")")
 @Slf4j
 public class UserController {
     private final ApplicationProperties     applicationProperties;
@@ -66,7 +66,6 @@ public class UserController {
 
     @Operation(summary = "find user list")
     @GetMapping("/api/users")
-    @PreAuthorize("hasAuthority(\"" + ROLE_ADMIN + "\")")
     public ResponseEntity<List<ManagedUser>> find(@ParameterObject Pageable pageable,
                                                   @Parameter(description = "username") @RequestParam(value = "username", required = false) String username,
                                                   @Parameter(description = "email") @RequestParam(value = "email", required = false) String email,
