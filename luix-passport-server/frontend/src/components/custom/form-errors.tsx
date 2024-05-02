@@ -6,14 +6,12 @@ interface Props {
   children?: React.ReactNode
   form: UseFormReturn<any, any, any>
   variant?: "default" | "destructive"
-  showDetails?: boolean
 }
 
 const FormErrors = ({
   children,
   form,
-  variant = "destructive",
-  showDetails = false
+  variant = "destructive"
 }: Props) => (
   Object.values(form.formState.errors).length > 0 && (
     <Alert variant={variant}>

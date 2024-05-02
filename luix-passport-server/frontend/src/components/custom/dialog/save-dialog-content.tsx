@@ -7,7 +7,7 @@ import {
   DialogFooter
 } from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form"
-import { UseFormReturn } from "react-hook-form"
+import { SubmitErrorHandler, UseFormReturn } from "react-hook-form"
 import FormErrors from "@/components/custom/form-errors"
 import { Button } from "@/components/custom/button"
 import { Separator } from "@/components/ui/separator"
@@ -63,6 +63,10 @@ const SaveDialogContent = ({
     })
   }
 
+  function onFormError(error: any): void {
+    console.log(error)
+  }
+
   return (
     <DialogContent className={cn("max-h-screen overflow-y-auto lg:max-w-screen-md", `lg:max-w-screen-${size}`)}>
       <DialogHeader>
@@ -71,7 +75,7 @@ const SaveDialogContent = ({
       <Separator/>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(onSubmit, onFormError)}
           className="flex flex-col gap-4"
         >
           <FormErrors form={form}/>
