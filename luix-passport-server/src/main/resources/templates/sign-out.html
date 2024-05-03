@@ -1,51 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link th:href="@{/assets/css/tailwind.css}" rel="stylesheet" type="text/css" />
 </head>
-<body>
-    <div class="d-flex flex-column flex-center p-10">
-        <!--begin::Card-->
-        <div class="card card-flush w-lg-400px">
-            <!--begin::Card body-->
-            <div class="card-body px-20 py-15 py-lg-20">
-                <form th:action="@{/logout}" method="post">
-                    <div class="row text-center">
-                        <img th:src="@{/assets/images/logos/logo.svg}" class="h-60px opacity-75"/>
-                        <span class="mt-5 fs-3 text-gray-800">Sign out your account</span>
-                    </div>
+<body class="bg-gray-100">
+  <div class="flex flex-col items-center p-10">
+    <div class="bg-white shadow-lg rounded-lg w-lg-400px">
+      <div class="p-10 my-10">
+        <form th:action="@{/logout}" method="post">
+          <div class="flex flex-col items-center">
+            <img th:src="@{/assets/images/logos/logo-with-text.svg}" class="h-12 opacity-75"/>
+            <span class="mt-10 text-3xl text-gray-800 font-semibold">Sign out of your account</span>
+          </div>
 
-                    <!--begin::Input group-->
-                    <div class="row mt-10">
-                        <div>
-                            <div class="form-check form-check-custom form-check-solid form-check-lg d-flex flex-stack px-3">
-                                <!--begin::Avatar-->
-                                <div class="symbol symbol-circle symbol-40px">
-                                    <img th:src="@{/assets/images/logos/logo.svg}"/>
-                                </div>
-                                <!--end::Avatar-->
-                                <span class="text-gray-800 fw-semibold">Signed in as <span class="fw-bold text-gray-900" th:text="${username}"></span></span>
-                                <div>
-                                    &nbsp;
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end::Input group-->
-
-                    <div class="row mt-10">
-                        <button type="submit" class="btn btn-danger min-w-90px">
-                            <span class="fw-semibold">Sign out</span>
-                        </button>
-                    </div>
-                </form>
+          <div class="mt-10">
+            <div class="flex items-center justify-center space-x-5">
+              <div class="h-10 w-10 rounded-full overflow-hidden">
+                <img th:src="@{/api/accounts/profile-pic}" alt="Avatar"/>
+              </div>
+              <div class="ms-10 text-gray-800 font-semibold">
+                Signed in as <span class="font-bold text-gray-900" th:text="${username}"></span>
+              </div>
             </div>
-            <!--end::Card body-->
-        </div>
-        <!--end::Card-->
+          </div>
+
+          <div class="mt-10">
+            <button type="submit" class="w-full">
+              <span class="w-[200px] px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign out</span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </body>
 </html>
