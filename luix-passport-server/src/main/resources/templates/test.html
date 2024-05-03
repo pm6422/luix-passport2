@@ -37,16 +37,6 @@
           <p class="mx-4 text-grey-600 uppercase">or continue with</p>
           <hr class="h-0 border-b border-solid border-grey-500 grow">
         </div>
-        <div th:if="${param.error}" class="py-5">
-          <div class="flex justify-center">
-            <div class="text-purple-blue-500">Invalid username or password.</div>
-          </div>
-        </div>
-        <div th:if="${param.logout}" class="py-5">
-          <div class="flex justify-center">
-            <div class="text-purple-blue-500">You have been logged out.</div>
-          </div>
-        </div>
         <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
         <input id="email" type="email" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
         <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
