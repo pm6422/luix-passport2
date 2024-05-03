@@ -8,14 +8,12 @@ import { yesNo } from "@/data/yes-no"
 import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
-import { ConfirmDialog } from "@/components/custom/confirm-dialog"
-import { AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenuItem
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { formatDateTime } from "@/libs/utils"
@@ -27,7 +25,7 @@ export function tableColumns(
   resetPassword: (row: any) => Promise<any>
 ): ColumnDef<FormSchema>[] {
 
-  function reset(row: FormSchema): void {
+  function clickResetYes(row: FormSchema): void {
     toast.promise(resetPassword(row), {
       loading: "Resetting password ...",
       success: () => {
@@ -210,11 +208,24 @@ export function tableColumns(
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-fit space-y-1">
-                <ConfirmDialog title="Reset Password" description="Are you sure to reset password?" onConfirm={() => reset(row.original)}>
-                  <AlertDialogTrigger asChild>
+                <Popover>
+                  <PopoverTrigger asChild>
                     <Button variant="secondary">Reset password</Button>
-                  </AlertDialogTrigger>
-                </ConfirmDialog>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-fit">
+                    Are your sure to reset password?
+                    <div className="mt-4 flex items-center justify-between space-x-2">
+                      <Button
+                        className="w-full"
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => clickResetYes(row.original)}
+                      >
+                        Yes
+                      </Button>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </DropdownMenuContent>
             </DropdownMenu>
           }
