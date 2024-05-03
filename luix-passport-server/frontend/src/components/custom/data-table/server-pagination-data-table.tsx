@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
 import {
   ColumnDef,
   PaginationState,
@@ -13,15 +13,15 @@ import {
   // getPaginationRowModel,
   getSortedRowModel,
   useReactTable
-} from '@tanstack/react-table'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { DataTablePagination } from './data-table-pagination'
-import { DataTableViewOptions } from '@/components/custom/data-table/data-table-view-options'
-import { parseSorts } from '@/libs/utils'
-import { Button } from '@/components/custom/button'
-import { IconTrash } from '@tabler/icons-react'
-import { toast } from 'sonner'
-import { getErrorMessage } from '@/libs/handle-error'
+} from "@tanstack/react-table"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { DataTablePagination } from "./data-table-pagination"
+import { DataTableViewOptions } from "@/components/custom/data-table/data-table-view-options"
+import { parseSorts } from "@/libs/utils"
+import { Button } from "@/components/custom/button"
+import { IconTrash } from "@tabler/icons-react"
+import { toast } from "sonner"
+import { getErrorMessage } from "@/libs/handle-error"
 
 import {
   Table,
@@ -30,7 +30,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
+} from "@/components/ui/table"
 
 interface DataTableProps<TData, TValue> {
   children: React.ReactNode,
@@ -92,22 +92,22 @@ export function DataTable<TData, TValue>({
   }, [pagination, sorting]);
 
   return (
-    <div className='space-y-4'>
-      <div className='flex items-center justify-between space-x-2'>
+    <div className="space-y-4">
+      <div className="flex items-center justify-between space-x-2">
         {children}
         { Object.keys(rowSelection).length > 0 && (
           <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
           <PopoverTrigger asChild>
             <Button
-              variant='destructive'
-              size='sm'
-              className='hidden h-8 lg:flex'
+              variant="destructive"
+              size="sm"
+              className="hidden h-8 lg:flex"
             >
-              <IconTrash className='mr-2 h-4 w-4' />
+              <IconTrash className="mr-2 h-4 w-4" />
               Delete{`(${Object.keys(rowSelection).length})`}
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[240px]'>
+          <PopoverContent className="w-[240px]">
             Are your sure to delete?
             <div className="mt-4 flex items-center justify-between space-x-2">
               <Button
@@ -146,8 +146,8 @@ export function DataTable<TData, TValue>({
         )}
         <DataTableViewOptions columns={table.getAllColumns()} />
       </div>
-      <div className='rounded-md border'>
-        <Table className='-intro-y'>
+      <div className="rounded-md border">
+        <Table className="-intro-y">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -171,7 +171,7 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -187,7 +187,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className='h-24 text-center'
+                  className="h-24 text-center"
                 >
                   No results.
                 </TableCell>

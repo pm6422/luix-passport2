@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { IconTrash } from '@tabler/icons-react'
-import { Row } from '@tanstack/react-table'
-import { Button } from '@/components/custom/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { toast } from 'sonner'
-import { getErrorMessage } from '@/libs/handle-error'
+import { useState } from "react"
+import { IconTrash } from "@tabler/icons-react"
+import { Row } from "@tanstack/react-table"
+import { Button } from "@/components/custom/button"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { toast } from "sonner"
+import { getErrorMessage } from "@/libs/handle-error"
 
 interface DataTableRowActionsProps {
   children: React.ReactNode,
@@ -25,10 +25,10 @@ export function DataTableRowActions({
 
   function clickDeleteYes(): void {
     toast.promise(deleteRow(row.original), {
-      loading: 'Deleting ' + entityName + '...',
+      loading: "Deleting " + entityName + "...",
       success: () => {
         setDelConfirmPopoverOpen(false)
-        return 'Deleted ' + entityName
+        return "Deleted " + entityName
       },
       error: (error) => {
         setDelConfirmPopoverOpen(false)
@@ -42,16 +42,16 @@ export function DataTableRowActions({
   }
 
   return (
-    <div className='flex items-center space-x-2'>
+    <div className="flex items-center space-x-2">
       {children}
       <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
         <PopoverTrigger asChild>
-          <Button variant='secondary' className='flex size-8 p-0'>
-            <IconTrash className='size-4' />
-            <span className='sr-only'>Delete</span>
+          <Button variant="secondary" className="flex size-8 p-0">
+            <IconTrash className="size-4" />
+            <span className="sr-only">Delete</span>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className='w-[240px]'>
+        <PopoverContent className="w-[240px]">
           Are your sure to delete it?
           <div className="mt-4 flex items-center justify-between space-x-2">
             <Button

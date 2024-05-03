@@ -1,14 +1,14 @@
-import { DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
-import { IconAdjustmentsHorizontal } from '@tabler/icons-react'
-import { Column } from '@tanstack/react-table'
-import { Button } from '@/components/custom/button'
+import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu"
+import { IconAdjustmentsHorizontal } from "@tabler/icons-react"
+import { Column } from "@tanstack/react-table"
+import { Button } from "@/components/custom/button"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu"
 
 interface DataTableViewOptionsProps<TData> {
   columns: Array<Column<TData, unknown>>
@@ -21,27 +21,27 @@ export function DataTableViewOptions<TData>({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          variant='secondary'
-          size='sm'
-          className='hidden h-8 lg:flex'
+          variant="secondary"
+          size="sm"
+          className="hidden h-8 lg:flex"
         >
-          <IconAdjustmentsHorizontal className='mr-2 h-4 w-4' />
+          <IconAdjustmentsHorizontal className="mr-2 h-4 w-4" />
           View
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end' className='min-w-fit'>
+      <DropdownMenuContent align="end" className="min-w-fit">
         <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {columns
           .filter(
             (column) =>
-              typeof column.accessorFn !== 'undefined' && column.getCanHide()
+              typeof column.accessorFn !== "undefined" && column.getCanHide()
           )
           .map((column) => {
             return (
               <DropdownMenuCheckboxItem
                 key={column.id}
-                className='capitalize'
+                className="capitalize"
                 checked={column.getIsVisible()}
                 onCheckedChange={(value) => column.toggleVisibility(!!value)}
               >
