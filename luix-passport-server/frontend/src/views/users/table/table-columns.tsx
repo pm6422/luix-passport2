@@ -207,7 +207,7 @@ export function getColumns(
                   <span className="sr-only">Open menu</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[150px] space-y-1">
+              <DropdownMenuContent align="end" className="w-fit space-y-1">
                 <DropdownMenuItem onClick={() => reset(row.original)}>Reset Password</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
