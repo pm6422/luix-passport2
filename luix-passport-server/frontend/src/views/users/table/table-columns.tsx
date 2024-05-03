@@ -213,7 +213,7 @@ export function tableColumns(
                     <Button variant="secondary">Reset password</Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-fit">
-                    Are your sure to reset password?
+                    Reset password?
                     <div className="mt-4 flex items-center justify-between space-x-2">
                       <Button
                         className="w-full"
