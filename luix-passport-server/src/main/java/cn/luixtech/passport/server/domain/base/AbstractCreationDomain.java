@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -13,6 +14,7 @@ import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 
 @Data
+@EqualsAndHashCode(callSuper=false)
 @MappedSuperclass
 public abstract class AbstractCreationDomain extends AbstractBaseDomain implements Serializable {
     private static final long serialVersionUID = -322694592498870599L;
