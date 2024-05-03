@@ -19,6 +19,7 @@ export function getColumns(
   entityName: string,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>, 
+  resetPassword: (row: any) => Promise<any>
 ): ColumnDef<FormSchema>[] {
   return [
     {
@@ -191,7 +192,7 @@ export function getColumns(
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[100px] space-y-1">
-                <Button variant="ghost" className="w-full">Reset Password</Button>
+                <Button variant="ghost" className="w-full" onClick={() => resetPassword(row.original)}>Reset Password</Button>
               </DropdownMenuContent>
             </DropdownMenu>
           }

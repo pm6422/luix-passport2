@@ -15,7 +15,7 @@ export default function DataDict() {
   const [totalPages, setTotalPages] = useState(0)
 
   useEffect(() => {
-    setTableColumns(getColumns(entityName, save, deleteRow))
+    setTableColumns(getColumns(entityName, save, deleteRow, resetPassword))
   }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ["modifiedAt,desc"], criteria: CriteriaSchema = {}): void {
@@ -54,6 +54,13 @@ export default function DataDict() {
 
   function deleteRows(rows: Array<FormSchema>): Promise<any> {
     return Promise.all(rows.map(deleteRow))
+  }
+
+  function resetPassword(row: FormSchema): Promise<any> {
+    if(!row.id) {
+      return Promise.reject("Invalid empty id")
+    }
+    return UserService.resetPassword(row.id)
   }
 
   return (

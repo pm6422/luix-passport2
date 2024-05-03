@@ -27,4 +27,8 @@ export class UserService {
   public static deleteById(id: String): Promise<any> {
     return http.delete("api/users/" + id)
   }
+
+  public static resetPassword(id: String): Promise<any> {
+    return http.put("api/users/reset-password/" + id)
+  }
 }
