@@ -57,6 +57,7 @@ npx shadcn-ui@latest add label
 - breadcrumbs
 - last sign in at
 - createHashRouter vs. createBrowserRouter
+- forget password page
 
 
 
