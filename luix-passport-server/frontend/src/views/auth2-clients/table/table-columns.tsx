@@ -9,7 +9,7 @@ import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
 
-export function getColumns(
+export function tableColumns(
   entityName: string,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>, 

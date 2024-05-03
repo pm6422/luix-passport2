@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/server-pagination-data-table"
-import { getColumns } from "./table/table-columns"
+import { tableColumns } from "./table/table-columns"
 import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
 import { DataDictService } from "@/services/data-dict-service"
 import { type UploadFormSchema } from "@/components/custom/uploader/upload-dialog"
@@ -10,14 +10,9 @@ import { type UploadFormSchema } from "@/components/custom/uploader/upload-dialo
 export default function DataDict() {
   // State to hold the fetched data
   const entityName = "data dictionary"
-  const [tableColumns, setTableColumns] = useState(Array<any>)
   const [tableData, setTableData] = useState([])
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
-
-  useEffect(() => {
-    setTableColumns(getColumns(entityName, save, deleteRow))
-  }, [])
 
   function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ["modifiedAt,desc"], criteria: CriteriaSchema = {}): void {
     DataDictService.find({
@@ -68,7 +63,7 @@ export default function DataDict() {
   return (
     <LayoutBody className="flex flex-col" fixedHeight>
       <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-        <DataTable columns={tableColumns} data={tableData} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
+        <DataTable columns={tableColumns(entityName, save, deleteRow)} data={tableData} totalCount={totalCount} totalPages={totalPages} loadPage={loadPage} deleteRows={deleteRows}>
           <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} upload={upload}/>
         </DataTable>
       </div>

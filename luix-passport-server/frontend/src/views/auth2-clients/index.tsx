@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/client-pagination-data-table"
-import { getColumns } from "./table/table-columns"
+import { tableColumns } from "./table/table-columns"
 import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { filterTable } from "@/libs/utils"
@@ -10,11 +10,9 @@ import { filterTable } from "@/libs/utils"
 export default function DataDict() {
   // State to hold the fetched data
   const entityName = "oauth2 client"
-  const [tableColumns, setTableColumns] = useState(Array<any>)
   const [tableData, setTableData] = useState([])
 
   useEffect(() => {
-    setTableColumns(getColumns(entityName, save, deleteRow))
     loadPage()
   }, [])
 
@@ -52,7 +50,7 @@ export default function DataDict() {
   return (
     <LayoutBody className="flex flex-col" fixedHeight>
       <div className="-mx-4 flex-1 overflow-auto px-4 py-1 lg:flex-row lg:space-x-12 lg:space-y-0">
-        <DataTable columns={tableColumns} data={tableData} loadPage={loadPage} deleteRows={deleteRows}>
+        <DataTable columns={tableColumns(entityName, save, deleteRow)} data={tableData} loadPage={loadPage} deleteRows={deleteRows}>
           <DataTableToolbar entityName={entityName} loadPage={loadPage} save={save} />
         </DataTable>
       </div>
