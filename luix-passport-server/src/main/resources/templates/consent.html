@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="font-bold text-gray-900 text-2xl text-center">Application <span th:text="${clientId}"></span> wants to access your account</div>
-			<div class="mt-8 mb-8">
+			<div class="my-12">
 				<div class="font-bold text-gray-900 text-xl text-center"><span th:text="${principalName}"></span></div>
 			</div>
 			<div th:if="${userCode}" class="row">
@@ -37,7 +37,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="mb-8">
+			<div class="mb-15">
 				<div class="font-bold text-gray-900 text-xl text-center mb-5">When you allow this access, <span class="text-gray-800" th:text="${clientId}"></span> will be able to
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 							<div class="border-b border-dashed"></div>
 						</div>
 
-						<div class="flex flex-wrap justify-between gap-3 pb-lg-0 mt-10 w-full">
+						<div class="flex items-center justify-between gap-3 py-16">
 							<button
 								id="cancel-consent"
 								type="button"
