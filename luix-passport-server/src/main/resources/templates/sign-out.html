@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link th:href="@{/assets/css/tailwind.css}" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body>
   <div class="flex flex-col items-center p-10">
     <div class="bg-white shadow-lg rounded-lg w-lg-400px">
       <div class="p-10 my-10">
         <form th:action="@{/logout}" method="post">
           <div class="flex flex-col items-center">
-            <img th:src="@{/assets/images/logos/logo-with-text.svg}" class="h-12 opacity-75"/>
+            <img th:src="@{/assets/images/logos/logo-with-text.svg}" class="h-12"/>
             <span class="mt-10 text-3xl text-gray-800 font-semibold">Sign out of your account</span>
           </div>
 
@@ -26,9 +26,9 @@
             </div>
           </div>
 
-          <div class="mt-10">
-            <button type="submit" class="w-full">
-              <span class="px-6 py-3 text-sm font-bold leading-none text-white transition duration-300 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign out</span>
+          <div class="mt-10 flex justify-center">
+            <button type="submit" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+              Sign out
             </button>
           </div>
         </form>
