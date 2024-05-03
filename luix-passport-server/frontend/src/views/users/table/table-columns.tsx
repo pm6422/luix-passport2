@@ -18,7 +18,7 @@ import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 import { formatDateTime } from "@/libs/utils"
 
-export function getColumns(
+export function tableColumns(
   entityName: string,
   save: (formData: any) => Promise<any>,
   deleteRow: (row: any) => Promise<any>, 
