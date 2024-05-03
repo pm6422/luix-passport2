@@ -5,40 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Passport | Device Activation</title>
     <link rel="shortcut icon" th:href="@{/favicon.ico}"/>
-    <link th:href="@{/assets/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/assets/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/assets/css/tailwind.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div class="container">
+<div class="container mx-auto">
     <div class="row py-5">
         <div class="col-md-6">
-            <h2>Device Activation</h2>
-            <p>Enter the security code to activate the device.</p>
+            <h2 class="text-2xl font-bold">Device Activation</h2>
+            <p class="mt-2">Enter the security code to activate the device.</p>
             <div class="mt-5">
                 <form th:action="@{/oauth2/device_verification}" method="post">
                     <div class="mb-3">
                         <label for="user_code" class="form-label">Security Code</label>
                         <input type="text" id="user_code" name="user_code" class="form-control" required autofocus>
-                        <!--begin::Section-->
-                        <div class="mb-10">
-                            <!--begin::Label-->
-<!--                            <div class="fw-bold text-start text-dark fs-6 mb-1 ms-1" data-kt-translate="two-step-label">Type your 8 digit activation code</div>-->
-                            <!--end::Label-->
-                            <!--begin::Input group-->
-<!--                            <div class="d-flex flex-wrap flex-stack">-->
-<!--                                <input type="text" id="user_code_1" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <input type="text" id="user_code_2" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <input type="text" id="user_code_3" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <input type="text" id="user_code_4" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <span class="fs-2qx text-primary">-</span>-->
-<!--                                <input type="text" id="user_code_5" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <input type="text" id="user_code_6" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <input type="text" id="user_code_7" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                                <input type="text" id="user_code_8" name="user_code" data-inputmask="'mask': '9', 'placeholder': ''" maxlength="1" class="form-control bg-transparent h-60px w-60px fs-2qx text-center border-primary mx-1 my-2 text-uppercase" value="" />-->
-<!--                            </div>-->
-                            <!--begin::Input group-->
-                        </div>
-                        <!--end::Section-->
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Submit</button>
