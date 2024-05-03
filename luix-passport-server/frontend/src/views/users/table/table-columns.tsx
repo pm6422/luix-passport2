@@ -13,6 +13,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { toast } from "sonner"
+import { getErrorMessage } from "@/libs/handle-error"
 import { formatDateTime } from "@/libs/utils"
 
 export function getColumns(
@@ -21,6 +23,19 @@ export function getColumns(
   deleteRow: (row: any) => Promise<any>, 
   resetPassword: (row: any) => Promise<any>
 ): ColumnDef<FormSchema>[] {
+
+  function reset(row: FormSchema): void {
+    toast.promise(resetPassword(row), {
+      loading: "Resetting password ...",
+      success: () => {
+        return "Reset password "
+      },
+      error: (error) => {
+        return getErrorMessage(error)
+      }
+    })
+  }
+
   return [
     {
       id: "select",
@@ -192,7 +207,7 @@ export function getColumns(
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-[100px] space-y-1">
-                <Button variant="ghost" className="w-full" onClick={() => resetPassword(row.original)}>Reset Password</Button>
+                <Button variant="ghost" className="w-full" onClick={() => reset(row.original)}>Reset Password</Button>
               </DropdownMenuContent>
             </DropdownMenu>
           }
