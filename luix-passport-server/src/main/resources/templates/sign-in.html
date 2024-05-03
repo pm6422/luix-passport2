@@ -3,46 +3,61 @@
   <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
   </head>
-  <body class="bg-white rounded-lg py-5">    
-    <div class="container flex flex-col mx-auto bg-white rounded-lg pt-12 my-5">
-      <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
-      <div class="flex items-center justify-center w-full lg:p-12">
-        <div class="flex items-center xl:p-10">
-          <form class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
-            <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign In</h3>
-            <p class="mb-4 text-grey-700">Enter your email and password</p>
-            <button class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
-              <svg width="30px" baseProfile="tiny"
-                x="0px" y="0px" viewBox="0 0 2350 2314.8" xml:space="preserve">
-                  <path d="M1175,0C525.8,0,0,525.8,0,1175c0,552.2,378.9,1010.5,890.1,1139.7c-5.9-14.7-8.8-35.3-8.8-55.8v-199.8H734.4
-                  c-79.3,0-152.8-35.2-185.1-99.9c-38.2-70.5-44.1-179.2-141-246.8c-29.4-23.5-5.9-47,26.4-44.1c61.7,17.6,111.6,58.8,158.6,120.4
-                  c47,61.7,67.6,76.4,155.7,76.4c41.1,0,105.7-2.9,164.5-11.8c32.3-82.3,88.1-155.7,155.7-190.9c-393.6-47-581.6-240.9-581.6-505.3
-                  c0-114.6,49.9-223.3,132.2-317.3c-26.4-91.1-61.7-279.1,11.8-352.5c176.3,0,282,114.6,308.4,143.9c88.1-29.4,185.1-47,284.9-47
-                  c102.8,0,196.8,17.6,284.9,47c26.4-29.4,132.2-143.9,308.4-143.9c70.5,70.5,38.2,261.4,8.8,352.5c82.3,91.1,129.3,202.7,129.3,317.3
-                  c0,264.4-185.1,458.3-575.7,499.4c108.7,55.8,185.1,214.4,185.1,331.9V2256c0,8.8-2.9,17.6-2.9,26.4
-                  C2021,2123.8,2350,1689.1,2350,1175C2350,525.8,1824.2,0,1175,0L1175,0z"/>
-              </svg>
-              <span class="ml-3">
-                Sign in with GitHub
-              </span>
-            </button>
-            <div class="flex items-center mb-3">
-              <hr class="h-0 border-b border-solid border-grey-500 grow">
-              <p class="mx-4 text-grey-600 uppercase">or continue with</p>
-              <hr class="h-0 border-b border-solid border-grey-500 grow">
-            </div>
-            <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
-            <input id="email" type="email" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
-            <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
-            <input id="password" type="password" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
-            <div class="flex flex-row justify-end mb-8">
-              <a href="javascript:void(0)" class="mr-4 text-sm font-medium text-purple-blue-500">Forget password?</a>
-            </div>
-            <button class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
-            <p class="text-sm leading-relaxed text-grey-900">Not registered yet? <a href="javascript:void(0)" class="font-bold text-grey-700">Create an Account</a></p>
-          </form>
+  <body class="bg-white rounded-lg py-5">
+    <div class="container relative grid h-svh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+      <div class="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
+        <div class="absolute inset-0 bg-zinc-900"></div>
+        <img
+          src="/assets/images/logos/dynamic-logo.svg"
+          class="relative m-auto rounded-xl"
+          width={400}
+          height={50}
+          alt="Logo"
+        />
+
+        <div class="relative z-20 mt-auto">
+          <blockquote class="space-y-2">
+            <p class="text-lg">
+              &ldquo;This library has saved me countless hours of work and
+              helped me deliver stunning designs to my clients faster than
+              ever before.&rdquo;
+            </p>
+            <footer class="text-sm">Sofia Davis</footer>
+          </blockquote>
         </div>
       </div>
-    </div>            
+      <form class="flex flex-col w-full h-full pb-6 xl:p-10 text-center bg-white rounded-3xl">
+        <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign In</h3>
+        <p class="mb-4 text-grey-700">Enter your email and password</p>
+        <button class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
+          <svg width="30px" baseProfile="tiny"
+            x="0px" y="0px" viewBox="0 0 2350 2314.8" xml:space="preserve">
+              <path d="M1175,0C525.8,0,0,525.8,0,1175c0,552.2,378.9,1010.5,890.1,1139.7c-5.9-14.7-8.8-35.3-8.8-55.8v-199.8H734.4
+              c-79.3,0-152.8-35.2-185.1-99.9c-38.2-70.5-44.1-179.2-141-246.8c-29.4-23.5-5.9-47,26.4-44.1c61.7,17.6,111.6,58.8,158.6,120.4
+              c47,61.7,67.6,76.4,155.7,76.4c41.1,0,105.7-2.9,164.5-11.8c32.3-82.3,88.1-155.7,155.7-190.9c-393.6-47-581.6-240.9-581.6-505.3
+              c0-114.6,49.9-223.3,132.2-317.3c-26.4-91.1-61.7-279.1,11.8-352.5c176.3,0,282,114.6,308.4,143.9c88.1-29.4,185.1-47,284.9-47
+              c102.8,0,196.8,17.6,284.9,47c26.4-29.4,132.2-143.9,308.4-143.9c70.5,70.5,38.2,261.4,8.8,352.5c82.3,91.1,129.3,202.7,129.3,317.3
+              c0,264.4-185.1,458.3-575.7,499.4c108.7,55.8,185.1,214.4,185.1,331.9V2256c0,8.8-2.9,17.6-2.9,26.4
+              C2021,2123.8,2350,1689.1,2350,1175C2350,525.8,1824.2,0,1175,0L1175,0z"/>
+          </svg>
+          <span class="ml-3">
+            Sign in with GitHub
+          </span>
+        </button>
+        <div class="flex items-center mb-3">
+          <hr class="h-0 border-b border-solid border-grey-500 grow">
+          <p class="mx-4 text-grey-600 uppercase">or continue with</p>
+          <hr class="h-0 border-b border-solid border-grey-500 grow">
+        </div>
+        <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
+        <input id="email" type="email" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+        <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
+        <input id="password" type="password" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+        <div class="flex flex-row justify-end mb-8">
+          <a href="javascript:void(0)" class="mr-4 text-sm font-medium text-purple-blue-500">Forget password?</a>
+        </div>
+        <button class="w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
+        <p class="text-sm leading-relaxed text-grey-900">Not registered yet? <a href="javascript:void(0)" class="font-bold text-grey-700">Create an Account</a></p>
+      </form>  
   </body>
 <html>
