@@ -12,6 +12,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
+  DropdownMenuItem
 } from "@/components/ui/dropdown-menu"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
@@ -28,7 +29,7 @@ export function getColumns(
     toast.promise(resetPassword(row), {
       loading: "Resetting password ...",
       success: () => {
-        return "Reset password "
+        return "Reset password"
       },
       error: (error) => {
         return getErrorMessage(error)
@@ -206,8 +207,8 @@ export function getColumns(
                   <span className="sr-only">Open menu</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[100px] space-y-1">
-                <Button variant="ghost" className="w-full" onClick={() => reset(row.original)}>Reset Password</Button>
+              <DropdownMenuContent align="end" className="w-[150px] space-y-1">
+                <DropdownMenuItem onClick={() => reset(row.original)}>Reset Password</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           }
