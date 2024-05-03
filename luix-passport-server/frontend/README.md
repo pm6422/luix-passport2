@@ -47,15 +47,15 @@ Start the server
 npx shadcn-ui@latest add label
 
 ## TODOs
-- role and permissions view
 - server start vite
-- dashboard page
 - datetime string to ms
 - multiple data in same column of table
 - table page no url query param
 - breadcrumbs
 - last sign in at
 - createHashRouter vs. createBrowserRouter
+- role and permissions page
+- dashboard page
 - forget password page
 - register page
 
