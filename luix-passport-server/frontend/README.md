@@ -47,6 +47,10 @@ Start the server
 npx shadcn-ui@latest add label
 
 ## TODOs
+- role and permissions page
+- dashboard page
+- forget password page
+- register page
 - server start vite
 - datetime string to ms
 - multiple data in same column of table
@@ -54,10 +58,6 @@ npx shadcn-ui@latest add label
 - breadcrumbs
 - last sign in at
 - createHashRouter vs. createBrowserRouter
-- role and permissions page
-- dashboard page
-- forget password page
-- register page
 
 
 
