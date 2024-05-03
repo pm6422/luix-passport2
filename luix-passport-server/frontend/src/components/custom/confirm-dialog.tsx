@@ -10,17 +10,17 @@ import {
 } from "@/components/ui/alert-dialog"
 
 type Props = {
-  children: string
+  children: React.ReactNode
   title: string
   description: string
-  confirm: () => void
+  onConfirm: () => void
 }
 
 export const ConfirmDialog = ({
   children,
   title,
   description,
-  confirm
+  onConfirm
 }: Props) => (
   <AlertDialog>
     {children}
@@ -31,7 +31,7 @@ export const ConfirmDialog = ({
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>Cancel</AlertDialogCancel>
-        <AlertDialogAction onClick={confirm}>Confirm</AlertDialogAction>
+        <AlertDialogAction onClick={onConfirm}>Confirm</AlertDialogAction>
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>

@@ -8,6 +8,8 @@ import { yesNo } from "@/data/yes-no"
 import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
+import { ConfirmDialog } from "@/components/custom/confirm-dialog"
+import { AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -208,7 +210,11 @@ export function tableColumns(
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-fit space-y-1">
-                <DropdownMenuItem onClick={() => reset(row.original)}>Reset Password</DropdownMenuItem>
+                <ConfirmDialog title="Reset Password" description="Are you sure to reset password?" onConfirm={() => reset(row.original)}>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="secondary">Reset password</Button>
+                  </AlertDialogTrigger>
+                </ConfirmDialog>
               </DropdownMenuContent>
             </DropdownMenu>
           }
