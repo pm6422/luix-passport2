@@ -1,24 +1,28 @@
-import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { RequiredFormLabel } from "../required-form-label";
+import type { Control, FieldValues, Path } from "react-hook-form"
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { RequiredFormLabel } from "../required-form-label"
 import Combobox from "@/components/custom/combobox"
-import { Key } from "react";
+import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
-  name: keyof TFieldValues;
-  key?: Key;
-  label?: string;
-  options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
-  creatable?: boolean;
-  multiple?: boolean;
-  description?: string;
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
-  comboboxClassName?: string;
-  formItemClassName?: string;
-  hide?: boolean;
+  control: Control<TFieldValues>
+  name: keyof TFieldValues
+  key?: Key
+  label?: string
+  options: { 
+    label: string
+    value: string
+    icon?: React.ComponentType<{ className?: string }>
+  }[]
+  creatable?: boolean
+  multiple?: boolean
+  description?: string
+  placeholder?: string
+  required?: boolean
+  disabled?: boolean
+  comboboxClassName?: string
+  formItemClassName?: string
+  hide?: boolean
 }
 
 const ComboboxFormField = <TFieldValues extends FieldValues>({
@@ -60,6 +64,6 @@ const ComboboxFormField = <TFieldValues extends FieldValues>({
       </FormItem>
     )}
   />
-);
+)
 
-export default ComboboxFormField;
+export default ComboboxFormField

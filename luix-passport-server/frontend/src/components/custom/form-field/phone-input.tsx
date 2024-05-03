@@ -6,18 +6,18 @@ import { CountryCode } from "libphonenumber-js"
 import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
-  name: keyof TFieldValues;
-  key?: Key;
-  label?: string;
-  defaultCountry?: CountryCode;
-  description?: string;
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
-  phoneInputClassName?: string;
-  formItemClassName?: string;
-  hide?: boolean;
+  control: Control<TFieldValues>
+  name: keyof TFieldValues
+  key?: Key
+  label?: string
+  defaultCountry?: CountryCode
+  description?: string
+  placeholder?: string
+  required?: boolean
+  disabled?: boolean
+  phoneInputClassName?: string
+  formItemClassName?: string
+  hide?: boolean
 }
 
 const PhoneInputFormField = <TFieldValues extends FieldValues>({
@@ -49,6 +49,6 @@ const PhoneInputFormField = <TFieldValues extends FieldValues>({
       </FormItem>
     )}
   />
-);
+)
 
-export default PhoneInputFormField;
+export default PhoneInputFormField

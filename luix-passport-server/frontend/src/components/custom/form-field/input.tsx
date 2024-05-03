@@ -1,30 +1,30 @@
-import type { ReactNode } from "react";
-import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { RequiredFormLabel } from "../required-form-label";
-import { Key } from "react";
+import type { ReactNode } from "react"
+import type { Control, FieldValues, Path } from "react-hook-form"
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { RequiredFormLabel } from "../required-form-label"
+import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
-  name: keyof TFieldValues;
-  key?: Key;
-  label?: string;
-  value?: string;
-  defaultValue?: string;
-  type?: Parameters<typeof Input>[0]["type"] | "textarea";
-  description?: string;
-  placeholder?: string;
-  onFocus?: () => void;
-  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  subComponent?: React.ReactNode;
-  required?: boolean;
-  disabled?: boolean;
-  icon?: ReactNode;
-  inputClassName?: string;
-  formItemClassName?: string;
-  hide?: boolean;
+  control: Control<TFieldValues>
+  name: keyof TFieldValues
+  key?: Key
+  label?: string
+  value?: string
+  defaultValue?: string
+  type?: Parameters<typeof Input>[0]["type"] | "textarea"
+  description?: string
+  placeholder?: string
+  onFocus?: () => void
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  subComponent?: React.ReactNode
+  required?: boolean
+  disabled?: boolean
+  icon?: ReactNode
+  inputClassName?: string
+  formItemClassName?: string
+  hide?: boolean
 }
 
 const InputFormField = <TFieldValues extends FieldValues>({
@@ -87,6 +87,6 @@ const InputFormField = <TFieldValues extends FieldValues>({
       </FormItem>
     )}
   />
-);
+)
 
-export default InputFormField;
+export default InputFormField

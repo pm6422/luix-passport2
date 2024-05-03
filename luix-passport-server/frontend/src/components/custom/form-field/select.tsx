@@ -1,6 +1,6 @@
-import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { RequiredFormLabel } from "../required-form-label";
+import type { Control, FieldValues, Path } from "react-hook-form"
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { RequiredFormLabel } from "../required-form-label"
 import {
   Select,
   SelectContent,
@@ -11,18 +11,22 @@ import {
 import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
-  name: keyof TFieldValues;
-  key?: Key;
-  label?: string;
-  options: { label: string; value: string; icon?: React.ComponentType<{ className?: string }> }[];
-  description?: string;
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
-  selectContentClassName?: string;
-  formItemClassName?: string;
-  hide?: boolean;
+  control: Control<TFieldValues>
+  name: keyof TFieldValues
+  key?: Key
+  label?: string
+  options: { 
+    label: string 
+    value: string 
+    icon?: React.ComponentType<{ className?: string }> 
+  }[]
+  description?: string
+  placeholder?: string
+  required?: boolean
+  disabled?: boolean
+  selectContentClassName?: string
+  formItemClassName?: string
+  hide?: boolean
 }
 
 const SelectFormField = <TFieldValues extends FieldValues>({
@@ -65,6 +69,6 @@ const SelectFormField = <TFieldValues extends FieldValues>({
       </FormItem>
     )}
   />
-);
+)
 
-export default SelectFormField;
+export default SelectFormField

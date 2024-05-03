@@ -1,22 +1,25 @@
-import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { RequiredFormLabel } from "../required-form-label";
-import { Key } from "react";
+import type { Control, FieldValues, Path } from "react-hook-form"
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { RequiredFormLabel } from "../required-form-label"
+import { Key } from "react"
 import { ClearableSelect } from "@/components/custom/clearable-select"
 
 interface Props<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
-  name: keyof TFieldValues;
-  key?: Key;
-  label?: string;
-  options: { label: string; value: string; }[];
-  description?: string;
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
-  selectContentClassName?: string;
-  formItemClassName?: string;
-  hide?: boolean;
+  control: Control<TFieldValues>
+  name: keyof TFieldValues
+  key?: Key
+  label?: string
+  options: { 
+    label: string 
+    value: string 
+  }[]
+  description?: string
+  placeholder?: string
+  required?: boolean
+  disabled?: boolean
+  selectContentClassName?: string
+  formItemClassName?: string
+  hide?: boolean
 }
 
 const ClearableSelectFormField = <TFieldValues extends FieldValues>({
@@ -47,6 +50,6 @@ const ClearableSelectFormField = <TFieldValues extends FieldValues>({
       </FormItem>
     )}
   />
-);
+)
 
-export default ClearableSelectFormField;
+export default ClearableSelectFormField

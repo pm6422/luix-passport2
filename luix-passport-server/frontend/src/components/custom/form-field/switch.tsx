@@ -1,20 +1,20 @@
-import type { Control, FieldValues, Path } from "react-hook-form";
-import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form";
-import { RequiredFormLabel } from "../required-form-label";
-import { Switch } from "@/components/ui/switch";
+import type { Control, FieldValues, Path } from "react-hook-form"
+import { FormControl, FormDescription, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { RequiredFormLabel } from "../required-form-label"
+import { Switch } from "@/components/ui/switch"
 import { Key } from "react"
 
 interface Props<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
-  name: keyof TFieldValues;
-  key?: Key;
-  label?: string;
-  description?: string;
-  required?: boolean;
-  disabled?: boolean;
-  switchClassName?: string;
-  formItemClassName?: string;
-  hide?: boolean;
+  control: Control<TFieldValues>
+  name: keyof TFieldValues
+  key?: Key
+  label?: string
+  description?: string
+  required?: boolean
+  disabled?: boolean
+  switchClassName?: string
+  formItemClassName?: string
+  hide?: boolean
 }
 
 const SwitchFormField = <TFieldValues extends FieldValues>({
@@ -51,6 +51,6 @@ const SwitchFormField = <TFieldValues extends FieldValues>({
       </FormItem>
     )}
   />
-);
+)
 
-export default SwitchFormField;
+export default SwitchFormField
