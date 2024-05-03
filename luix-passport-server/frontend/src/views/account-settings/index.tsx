@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom"
 import {
   IconBrowserCheck,
-  IconExclamationCircle,
   IconNotification,
   IconPalette,
   IconTool,
@@ -49,12 +48,7 @@ export default function AccountSettings() {
       title: "Form",
       icon: <IconForms size={18} />,
       href: "/account-settings/form",
-    },
-    {
-      title: "Error",
-      icon: <IconExclamationCircle size={18} />,
-      href: "/account-settings/error-example",
-    },
+    }
   ]
 
   return (
