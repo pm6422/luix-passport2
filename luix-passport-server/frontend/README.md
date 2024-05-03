@@ -47,7 +47,6 @@ Start the server
 npx shadcn-ui@latest add label
 
 ## TODOs
-- themeleaf use shadcn login
 - role and permissions view
 - server start vite
 - dashboard page
