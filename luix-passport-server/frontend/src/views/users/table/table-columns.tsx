@@ -1,6 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table"
 import { Checkbox } from "@/components/ui/checkbox"
-import { IconEdit } from "@tabler/icons-react"
+import { IconEdit, IconDots } from "@tabler/icons-react"
 import { DataTableColumnHeader } from "@/components/custom/data-table/data-table-column-header"
 import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
 import { Button } from "@/components/custom/button"
@@ -8,6 +8,11 @@ import { yesNo } from "@/data/yes-no"
 import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { formatDateTime } from "@/libs/utils"
 
 export function getColumns(
@@ -163,15 +168,34 @@ export function getColumns(
     {
       id: "actions",
       cell: ({ row }) => (
-        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
-          <EditDialog entityName={entityName} id={row.original.id} save={save}>
-            <DialogTrigger asChild>
-              <Button variant="secondary" className="flex size-8 p-0">
-                <IconEdit className="size-4" />
-                <span className="sr-only">Update</span>
-              </Button>
-            </DialogTrigger>
-          </EditDialog>
+        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow} 
+          children={
+            <EditDialog entityName={entityName} id={row.original.id} save={save}>
+              <DialogTrigger asChild>
+                <Button variant="secondary" className="flex size-8 p-0">
+                  <IconEdit className="size-4" />
+                  <span className="sr-only">Update</span>
+                </Button>
+              </DialogTrigger>
+            </EditDialog>
+          } 
+          moreActions={
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="secondary"
+                  className="flex size-8 p-0 data-[state=open]:bg-muted"
+                >
+                  <IconDots className="size-4" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-[100px] space-y-1">
+                <Button variant="ghost" className="w-full">Reset Password</Button>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          }
+        >
         </DataTableRowActions>
       )
     }

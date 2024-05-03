@@ -119,34 +119,15 @@ export function getColumns(
     {
       id: "actions",
       cell: ({ row }) => (
-        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow} 
-          children={
-            <EditDialog entityName={entityName} id={row.original.id} save={save}>
-              <DialogTrigger asChild>
-                <Button variant="secondary" className="flex size-8 p-0">
-                  <IconEdit className="size-4" />
-                  <span className="sr-only">Update</span>
-                </Button>
-              </DialogTrigger>
-            </EditDialog>
-          } 
-          // moreActions={
-          //   <DropdownMenu>
-          //     <DropdownMenuTrigger asChild>
-          //       <Button
-          //         variant="ghost"
-          //         className="flex size-8 p-0 data-[state=open]:bg-muted"
-          //       >
-          //         <IconDots className="size-4" />
-          //         <span className="sr-only">Open menu</span>
-          //       </Button>
-          //     </DropdownMenuTrigger>
-          //     <DropdownMenuContent align="end" className="w-[100px] space-y-1">
-          //       <Button variant="ghost" className="w-full">TODO...</Button>
-          //     </DropdownMenuContent>
-          //   </DropdownMenu>
-          // }
-        >
+        <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow}>
+          <EditDialog entityName={entityName} id={row.original.id} save={save}>
+            <DialogTrigger asChild>
+              <Button variant="secondary" className="flex size-8 p-0">
+                <IconEdit className="size-4" />
+                <span className="sr-only">Update</span>
+              </Button>
+            </DialogTrigger>
+          </EditDialog>
         </DataTableRowActions>
       )
     }
