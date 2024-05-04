@@ -18,7 +18,7 @@ import { getErrorMessage } from "@/libs/handle-error"
 import { AccountService } from "@/services/account-service"
 
 const formSchema = z.object({
-  file: z.any().optional(),
+  file: z.any(),
   description: z.string().min(1, { message: "Required"})
 })
 
