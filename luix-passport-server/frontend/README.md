@@ -1,6 +1,6 @@
-# Shadcn Admin Dashboard
+# Luix Passport Frontend
 
-Admin Dashboard UI crafted with Shadcn and Vite. Built with responsiveness and accessibility in mind.
+Luix passport frontend UI crafted with Shadcn and Vite. 
 
 
 ## Features
