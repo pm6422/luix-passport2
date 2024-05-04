@@ -51,7 +51,7 @@ export function DataTableRowActions({
             <span className="sr-only">Delete</span>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[240px]">
+        <PopoverContent className="w-fit">
           Are your sure to delete it?
           <div className="mt-4 flex items-center justify-between space-x-2">
             <Button
