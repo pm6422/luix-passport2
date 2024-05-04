@@ -10,6 +10,8 @@ import { CentralTopNav } from "@/components/central-top-nav"
 import { AccountNav } from "@/components/account-nav.tsx"
 import { Layout, LayoutHeader } from "@/layouts/layout-definitions"
 // import { Search } from "@/components/custom/search"
+import { IconBell } from "@tabler/icons-react"
+import { Button } from "@/components/custom/button"
 import { isEmpty } from "lodash"
 
 export default function AuthLayout() {
@@ -60,8 +62,11 @@ export default function AuthLayout() {
             <RoleOnlyUser>
               <CentralTopNav links={topNav}/>
             </RoleOnlyUser>
-            <div className='ml-auto flex items-center space-x-4'>
+            <div className="ml-auto flex items-center space-x-4">
               {/* <Search /> */}
+              <Button variant="outline" className="relative size-12 rounded-full p-1">
+                <IconBell className="text-red-700"></IconBell>
+              </Button>
               <AccountNav />
             </div>
           </LayoutHeader>
