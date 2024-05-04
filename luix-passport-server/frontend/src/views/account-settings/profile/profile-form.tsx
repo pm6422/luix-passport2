@@ -38,10 +38,10 @@ export default function ProfileForm() {
   function onSubmit(formData: FormSchema) {
     setSaving(true)
     toast.promise(save(formData), {
-      loading: "Updating picture...",
+      loading: "Updating profile picture...",
       success: () => {
         setSaving(false)
-        return "Updated picture"
+        return "Updated profile picture"
       },
       error: (error) => {
         setSaving(false)
@@ -73,7 +73,7 @@ export default function ProfileForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={saving}>
+        <Button type="submit" disabled={saving || !(form.getValues().file instanceof File)}>
           {saving ? "Saving picture..." : "Save picture"}
           {saving && (<IconReload className="ml-1 size-4 animate-spin"/>)}
         </Button>
