@@ -7,7 +7,7 @@ type Props = {
   onClickYes: () => void
   onClickNo?: () => void
   showNoButton?: boolean
-  open?: boolean
+  open?: boolean | undefined
   onOpenChange?: (open: boolean) => void
 }
 
@@ -16,38 +16,68 @@ export const ConfirmPopover = ({
   message,
   onClickYes,
   onClickNo,
-  open = false,
-  onOpenChange
+  showNoButton = true, // default to showing the "No" button
+  open = undefined,
+  onOpenChange,
 }: Props) => {
-
   return (
-    <Popover open={open} onOpenChange={onOpenChange}>
-      <PopoverTrigger asChild>
-        {children}
-      </PopoverTrigger>
-      <PopoverContent className="w-fit">
-        {message}
-        <div className="mt-4 flex items-center justify-between space-x-2">
-          { onClickNo && 
-            <Button
-              className="w-full"
-              variant="secondary"
-              size="sm"
-              onClick={onClickNo}
-            >
-              No
-            </Button>
-          }
-          <Button
-            className="w-full"
-            variant="destructive"
-            size="sm"
-            onClick={onClickYes}
-          >
-            Yes
-          </Button>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <>
+      {open === undefined && (
+        <Popover>
+          <PopoverTrigger asChild>{children}</PopoverTrigger>
+          <PopoverContent className="w-fit">
+            {message}
+            <div className="mt-4 flex items-center justify-between space-x-2">
+              {showNoButton && onClickNo && (
+                <Button
+                  className="w-full"
+                  variant="secondary"
+                  size="sm"
+                  onClick={onClickNo}
+                >
+                  No
+                </Button>
+              )}
+              <Button
+                className="w-full"
+                variant="destructive"
+                size="sm"
+                onClick={onClickYes}
+              >
+                Yes
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      )}
+      {open !== undefined && (
+        <Popover open={open} onOpenChange={onOpenChange}>
+          <PopoverTrigger asChild>{children}</PopoverTrigger>
+          <PopoverContent className="w-fit">
+            {message}
+            <div className="mt-4 flex items-center justify-between space-x-2">
+              {showNoButton && onClickNo && (
+                <Button
+                  className="w-full"
+                  variant="secondary"
+                  size="sm"
+                  onClick={onClickNo}
+                >
+                  No
+                </Button>
+              )}
+              <Button
+                className="w-full"
+                variant="destructive"
+                size="sm"
+                onClick={onClickYes}
+              >
+                Yes
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      )}
+    </>
   )
 }
