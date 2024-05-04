@@ -2,7 +2,7 @@ import { useState } from "react"
 import { IconTrash } from "@tabler/icons-react"
 import { Row } from "@tanstack/react-table"
 import { Button } from "@/components/custom/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { ConfirmPopover } from "@/components/custom/confirm-popover"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
 
@@ -44,35 +44,18 @@ export function DataTableRowActions({
   return (
     <div className="flex items-center space-x-2">
       {children}
-      <Popover open={delConfirmPopoverOpen} onOpenChange={setDelConfirmPopoverOpen}>
-        <PopoverTrigger asChild>
-          <Button variant="secondary" className="flex size-8 p-0">
-            <IconTrash className="size-4" />
-            <span className="sr-only">Delete</span>
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-fit">
-          Are your sure to delete it?
-          <div className="mt-4 flex items-center justify-between space-x-2">
-            <Button
-              className="w-full"
-              variant="secondary"
-              size="sm"
-              onClick={clickDeleteNo}
-            >
-              No
-            </Button>
-            <Button
-              className="w-full"
-              variant="destructive"
-              size="sm"
-              onClick={clickDeleteYes}
-            >
-              Yes
-            </Button>
-          </div>
-        </PopoverContent>
-      </Popover>
+      <ConfirmPopover 
+        message={"Are your sure to delete it?"}
+        onClickYes={clickDeleteYes} 
+        onClickNo={clickDeleteNo} 
+        open={delConfirmPopoverOpen} 
+        onOpenChange={setDelConfirmPopoverOpen}
+      >
+        <Button variant="secondary" className="flex size-8 p-0">
+          <IconTrash className="size-4" />
+          <span className="sr-only">Delete</span>
+        </Button>
+      </ConfirmPopover>
       {moreActions}
     </div>
   )

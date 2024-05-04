@@ -4,7 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 type Props = {
   children: React.ReactNode
-  description: string
+  message: string
   onClickYes: () => void
   onClickNo: () => void
   showNoButton?: boolean
@@ -14,7 +14,7 @@ type Props = {
 
 export const ConfirmPopover = ({
   children,
-  description,
+  message,
   onClickYes,
   onClickNo,
   showNoButton = true,
@@ -33,7 +33,7 @@ export const ConfirmPopover = ({
         {children}
       </PopoverTrigger>
       <PopoverContent className="w-fit">
-        {description}
+        {message}
         <div className="mt-4 flex items-center justify-between space-x-2">
           { showNoButton && 
             <Button
