@@ -80,9 +80,6 @@ export default function FormExample() {
         </h1>
       </div>
       <h2 className="text-lg font-bold md:text-xl">Breadcrumbs</h2>
-      <Breadcrumb separator={<IconChevronRight size={18} />}>
-        {items}
-      </Breadcrumb>
       <Breadcrumb>{items}</Breadcrumb>
 
       <Separator />
