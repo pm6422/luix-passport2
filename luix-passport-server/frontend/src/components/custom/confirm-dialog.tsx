@@ -7,6 +7,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogTrigger
 } from "@/components/ui/alert-dialog"
 
 type Props = {
@@ -23,7 +24,9 @@ export const ConfirmDialog = ({
   onConfirm
 }: Props) => (
   <AlertDialog>
-    {children}
+    <AlertDialogTrigger asChild>
+      {children}
+    </AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogTitle>{title}</AlertDialogTitle>
