@@ -7,7 +7,6 @@ import { IconPlus, IconUpload, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
 import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
 import { type UploadFormSchema } from "@/components/custom/uploader/upload-dialog"
-import { DialogTrigger } from "@/components/ui/dialog"
 import { UploadDialog } from "@/components/custom/uploader/upload-dialog"
 import {
   Form,
@@ -121,20 +120,16 @@ export function DataTableToolbar ({
       </Popover>
       <div className="space-x-2">
         <EditDialog entityName={entityName} save={save}>
-          <DialogTrigger asChild>
-            <Button variant="secondary" size="sm">
-              <IconPlus className="mr-2 size-4" aria-hidden="true" />
-              Create
-            </Button>
-          </DialogTrigger>
+          <Button variant="secondary" size="sm">
+            <IconPlus className="mr-2 size-4" aria-hidden="true" />
+            Create
+          </Button>
         </EditDialog>
         <UploadDialog entityName={entityName} upload={upload} description="Supported file types: .txt, .json, you can use downloaded the template." templateUrl="api/data-dicts/import-template">
-          <DialogTrigger asChild>
-            <Button variant="secondary" size="sm">
-              <IconUpload className="mr-2 size-4" aria-hidden="true" />
-              Upload
-            </Button>
-          </DialogTrigger>
+          <Button variant="secondary" size="sm">
+            <IconUpload className="mr-2 size-4" aria-hidden="true" />
+            Upload
+          </Button>
         </UploadDialog>
       </div>
     </div>

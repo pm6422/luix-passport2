@@ -5,7 +5,6 @@ import { Button } from "@/components/custom/button"
 import { IconPlus } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
 import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
-import { DialogTrigger } from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form"
 
 interface DataTableToolbarProps{
@@ -47,12 +46,10 @@ export function DataTableToolbar ({
       </div>
       <div className="space-x-2">
         <EditDialog entityName={entityName} save={save}>
-          <DialogTrigger asChild>
-            <Button variant="secondary" size="sm">
-              <IconPlus className="mr-2 size-4" aria-hidden="true" />
-              Create
-            </Button>
-          </DialogTrigger>
+          <Button variant="secondary" size="sm">
+            <IconPlus className="mr-2 size-4" aria-hidden="true" />
+            Create
+          </Button>
         </EditDialog>
       </div>
     </div>

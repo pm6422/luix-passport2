@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Dialog } from "@/components/ui/dialog"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
@@ -59,7 +59,9 @@ export function EditDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      {children}
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
       <SaveDialogContent entityName={entityName} id={id} form={form} save={save} afterSave={afterSave} setOpen={setOpen}>
         <div className="flex items-center justify-between gap-5">
           <Avatar className="size-20">

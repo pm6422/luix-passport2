@@ -5,7 +5,6 @@ import { DataTableColumnHeader } from "@/components/custom/data-table/data-table
 import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
 import { Button } from "@/components/custom/button"
 import { yesNo } from "@/data/yes-no"
-import { DialogTrigger } from "@/components/ui/dialog"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
 import {
@@ -188,12 +187,10 @@ export function tableColumns(
         <DataTableRowActions entityName={entityName} row={row} deleteRow={deleteRow} 
           children={
             <EditDialog entityName={entityName} id={row.original.id} save={save}>
-              <DialogTrigger asChild>
-                <Button variant="secondary" className="flex size-8 p-0">
-                  <IconEdit className="size-4" />
-                  <span className="sr-only">Update</span>
-                </Button>
-              </DialogTrigger>
+              <Button variant="secondary" className="flex size-8 p-0">
+                <IconEdit className="size-4" />
+                <span className="sr-only">Update</span>
+              </Button>
             </EditDialog>
           } 
           moreActions={
