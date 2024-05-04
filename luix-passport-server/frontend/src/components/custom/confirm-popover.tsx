@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { Button } from "@/components/custom/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
@@ -6,7 +5,7 @@ type Props = {
   children: React.ReactNode
   message: string
   onClickYes: () => void
-  onClickNo: () => void
+  onClickNo?: () => void
   showNoButton?: boolean
   open?: boolean
   onOpenChange?: (open: boolean) => void
@@ -17,25 +16,19 @@ export const ConfirmPopover = ({
   message,
   onClickYes,
   onClickNo,
-  showNoButton = true,
   open = false,
   onOpenChange
 }: Props) => {
-  const [confirmPopoverOpen, setConfirmPopoverOpen] = useState(open)
-
-  useEffect(() => {
-    setConfirmPopoverOpen(open)
-  }, [open])
 
   return (
-    <Popover open={confirmPopoverOpen} onOpenChange={onOpenChange}>
+    <Popover open={open} onOpenChange={onOpenChange}>
       <PopoverTrigger asChild>
         {children}
       </PopoverTrigger>
       <PopoverContent className="w-fit">
         {message}
         <div className="mt-4 flex items-center justify-between space-x-2">
-          { showNoButton && 
+          { onClickNo && 
             <Button
               className="w-full"
               variant="secondary"
