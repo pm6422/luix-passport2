@@ -7,7 +7,7 @@ type Props = {
   onClickYes: () => void
   onClickNo?: () => void
   showNoButton?: boolean
-  open?: boolean | undefined
+  open?: boolean
   onOpenChange?: (open: boolean) => void
 }
 
@@ -17,7 +17,7 @@ export const ConfirmPopover = ({
   onClickYes,
   onClickNo,
   showNoButton = true, // default to showing the "No" button
-  open = undefined,
+  open,
   onOpenChange,
 }: Props) => {
   return (
