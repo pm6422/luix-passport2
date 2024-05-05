@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import { IconChevronRight } from "@tabler/icons-react"
 import { nord } from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { LayoutBody } from "@/layouts/layout-definitions"
