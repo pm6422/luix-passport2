@@ -21,7 +21,7 @@ public class UserProfilePic extends AbstractBaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = -8375847941374800940L;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
     @Basic(fetch = FetchType.LAZY)
     @Column(columnDefinition = "bytea", nullable = false)

@@ -28,12 +28,12 @@ public class UserRole extends AbstractBaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "userId:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String userId;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "role:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String role;

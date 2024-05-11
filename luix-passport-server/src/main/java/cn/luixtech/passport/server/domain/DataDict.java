@@ -27,12 +27,12 @@ public class DataDict extends AbstractAuditableDomain implements Serializable {
     @Column(unique = true, nullable = false)
     private String num;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "categoryCode:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String categoryCode;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "dictCode:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String dictCode;

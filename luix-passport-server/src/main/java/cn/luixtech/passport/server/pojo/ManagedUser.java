@@ -24,7 +24,7 @@ public class ManagedUser extends User {
     public static final  int  RAW_PASSWORD_MIN_LENGTH = 5;
     public static final  int  RAW_PASSWORD_MAX_LENGTH = 50;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @Size(min = RAW_PASSWORD_MIN_LENGTH, max = RAW_PASSWORD_MAX_LENGTH)
     private String password;
 

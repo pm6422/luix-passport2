@@ -22,12 +22,12 @@ public class TableSeqNumber extends AbstractBaseDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "tableName:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String tableName;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @Column(nullable = false)
     private Long maxSeqNum;
 }

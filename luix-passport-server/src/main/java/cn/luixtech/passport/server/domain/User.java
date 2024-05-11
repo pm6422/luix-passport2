@@ -23,17 +23,17 @@ public class User extends AbstractAuditableDomain implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "username:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String username;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "email:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String email;
 
-    @Schema(required = true)
+    @Schema(requiredMode = Schema.RequiredMode.REQUIRED)
     @NotEmpty(message = "mobileNo:{Validation.NotEmpty}")
     @Column(nullable = false)
     private String mobileNo;
