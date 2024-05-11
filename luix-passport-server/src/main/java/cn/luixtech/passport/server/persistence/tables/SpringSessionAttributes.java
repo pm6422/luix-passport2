@@ -63,7 +63,7 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
     /**
      * The column <code>public.spring_session_attributes.attribute_bytes</code>.
      */
-    public final TableField<SpringSessionAttributesRecord, Long> ATTRIBUTE_BYTES = createField(DSL.name("attribute_bytes"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<SpringSessionAttributesRecord, byte[]> ATTRIBUTE_BYTES = createField(DSL.name("attribute_bytes"), SQLDataType.BLOB.nullable(false), this, "");
 
     private SpringSessionAttributes(Name alias, Table<SpringSessionAttributesRecord> aliased) {
         this(alias, aliased, null);
@@ -154,14 +154,14 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<String, String, Long> fieldsRow() {
+    public Row3<String, String, byte[]> fieldsRow() {
         return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function3<? super String, ? super String, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super String, ? super String, ? super byte[], ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -169,7 +169,7 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super String, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super String, ? super byte[], ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

@@ -74,7 +74,7 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     /**
      * The column <code>public.oauth2_authorization.attributes</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> ATTRIBUTES = createField(DSL.name("attributes"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> ATTRIBUTES = createField(DSL.name("attributes"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.state</code>.
@@ -85,7 +85,7 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
      * The column
      * <code>public.oauth2_authorization.authorization_code_value</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> AUTHORIZATION_CODE_VALUE = createField(DSL.name("authorization_code_value"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> AUTHORIZATION_CODE_VALUE = createField(DSL.name("authorization_code_value"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -103,12 +103,12 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
      * The column
      * <code>public.oauth2_authorization.authorization_code_metadata</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> AUTHORIZATION_CODE_METADATA = createField(DSL.name("authorization_code_metadata"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> AUTHORIZATION_CODE_METADATA = createField(DSL.name("authorization_code_metadata"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.access_token_value</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> ACCESS_TOKEN_VALUE = createField(DSL.name("access_token_value"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> ACCESS_TOKEN_VALUE = createField(DSL.name("access_token_value"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -126,7 +126,7 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
      * The column
      * <code>public.oauth2_authorization.access_token_metadata</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> ACCESS_TOKEN_METADATA = createField(DSL.name("access_token_metadata"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> ACCESS_TOKEN_METADATA = createField(DSL.name("access_token_metadata"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.access_token_type</code>.
@@ -141,7 +141,7 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     /**
      * The column <code>public.oauth2_authorization.oidc_id_token_value</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> OIDC_ID_TOKEN_VALUE = createField(DSL.name("oidc_id_token_value"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> OIDC_ID_TOKEN_VALUE = createField(DSL.name("oidc_id_token_value"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -159,12 +159,12 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
      * The column
      * <code>public.oauth2_authorization.oidc_id_token_metadata</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> OIDC_ID_TOKEN_METADATA = createField(DSL.name("oidc_id_token_metadata"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> OIDC_ID_TOKEN_METADATA = createField(DSL.name("oidc_id_token_metadata"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.refresh_token_value</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> REFRESH_TOKEN_VALUE = createField(DSL.name("refresh_token_value"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> REFRESH_TOKEN_VALUE = createField(DSL.name("refresh_token_value"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -182,12 +182,12 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
      * The column
      * <code>public.oauth2_authorization.refresh_token_metadata</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> REFRESH_TOKEN_METADATA = createField(DSL.name("refresh_token_metadata"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> REFRESH_TOKEN_METADATA = createField(DSL.name("refresh_token_metadata"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.user_code_value</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> USER_CODE_VALUE = createField(DSL.name("user_code_value"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> USER_CODE_VALUE = createField(DSL.name("user_code_value"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.user_code_issued_at</code>.
@@ -202,12 +202,12 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     /**
      * The column <code>public.oauth2_authorization.user_code_metadata</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> USER_CODE_METADATA = createField(DSL.name("user_code_metadata"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> USER_CODE_METADATA = createField(DSL.name("user_code_metadata"), SQLDataType.CLOB, this, "");
 
     /**
      * The column <code>public.oauth2_authorization.device_code_value</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> DEVICE_CODE_VALUE = createField(DSL.name("device_code_value"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> DEVICE_CODE_VALUE = createField(DSL.name("device_code_value"), SQLDataType.CLOB, this, "");
 
     /**
      * The column
@@ -224,7 +224,7 @@ public class Oauth2Authorization extends TableImpl<Oauth2AuthorizationRecord> {
     /**
      * The column <code>public.oauth2_authorization.device_code_metadata</code>.
      */
-    public final TableField<Oauth2AuthorizationRecord, Long> DEVICE_CODE_METADATA = createField(DSL.name("device_code_metadata"), SQLDataType.BIGINT, this, "");
+    public final TableField<Oauth2AuthorizationRecord, String> DEVICE_CODE_METADATA = createField(DSL.name("device_code_metadata"), SQLDataType.CLOB, this, "");
 
     private Oauth2Authorization(Name alias, Table<Oauth2AuthorizationRecord> aliased) {
         this(alias, aliased, null);

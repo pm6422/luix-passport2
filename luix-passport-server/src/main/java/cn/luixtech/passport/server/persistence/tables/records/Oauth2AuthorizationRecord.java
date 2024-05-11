@@ -95,15 +95,15 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Setter for <code>public.oauth2_authorization.attributes</code>.
      */
-    public void setAttributes(Long value) {
+    public void setAttributes(String value) {
         set(5, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.attributes</code>.
      */
-    public Long getAttributes() {
-        return (Long) get(5);
+    public String getAttributes() {
+        return (String) get(5);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Setter for
      * <code>public.oauth2_authorization.authorization_code_value</code>.
      */
-    public void setAuthorizationCodeValue(Long value) {
+    public void setAuthorizationCodeValue(String value) {
         set(7, value);
     }
 
@@ -132,8 +132,8 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>public.oauth2_authorization.authorization_code_value</code>.
      */
-    public Long getAuthorizationCodeValue() {
-        return (Long) get(7);
+    public String getAuthorizationCodeValue() {
+        return (String) get(7);
     }
 
     /**
@@ -172,7 +172,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Setter for
      * <code>public.oauth2_authorization.authorization_code_metadata</code>.
      */
-    public void setAuthorizationCodeMetadata(Long value) {
+    public void setAuthorizationCodeMetadata(String value) {
         set(10, value);
     }
 
@@ -180,22 +180,22 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>public.oauth2_authorization.authorization_code_metadata</code>.
      */
-    public Long getAuthorizationCodeMetadata() {
-        return (Long) get(10);
+    public String getAuthorizationCodeMetadata() {
+        return (String) get(10);
     }
 
     /**
      * Setter for <code>public.oauth2_authorization.access_token_value</code>.
      */
-    public void setAccessTokenValue(Long value) {
+    public void setAccessTokenValue(String value) {
         set(11, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.access_token_value</code>.
      */
-    public Long getAccessTokenValue() {
-        return (Long) get(11);
+    public String getAccessTokenValue() {
+        return (String) get(11);
     }
 
     /**
@@ -234,7 +234,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Setter for
      * <code>public.oauth2_authorization.access_token_metadata</code>.
      */
-    public void setAccessTokenMetadata(Long value) {
+    public void setAccessTokenMetadata(String value) {
         set(14, value);
     }
 
@@ -242,8 +242,8 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>public.oauth2_authorization.access_token_metadata</code>.
      */
-    public Long getAccessTokenMetadata() {
-        return (Long) get(14);
+    public String getAccessTokenMetadata() {
+        return (String) get(14);
     }
 
     /**
@@ -277,15 +277,15 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Setter for <code>public.oauth2_authorization.oidc_id_token_value</code>.
      */
-    public void setOidcIdTokenValue(Long value) {
+    public void setOidcIdTokenValue(String value) {
         set(17, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.oidc_id_token_value</code>.
      */
-    public Long getOidcIdTokenValue() {
-        return (Long) get(17);
+    public String getOidcIdTokenValue() {
+        return (String) get(17);
     }
 
     /**
@@ -324,7 +324,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Setter for
      * <code>public.oauth2_authorization.oidc_id_token_metadata</code>.
      */
-    public void setOidcIdTokenMetadata(Long value) {
+    public void setOidcIdTokenMetadata(String value) {
         set(20, value);
     }
 
@@ -332,22 +332,22 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>public.oauth2_authorization.oidc_id_token_metadata</code>.
      */
-    public Long getOidcIdTokenMetadata() {
-        return (Long) get(20);
+    public String getOidcIdTokenMetadata() {
+        return (String) get(20);
     }
 
     /**
      * Setter for <code>public.oauth2_authorization.refresh_token_value</code>.
      */
-    public void setRefreshTokenValue(Long value) {
+    public void setRefreshTokenValue(String value) {
         set(21, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.refresh_token_value</code>.
      */
-    public Long getRefreshTokenValue() {
-        return (Long) get(21);
+    public String getRefreshTokenValue() {
+        return (String) get(21);
     }
 
     /**
@@ -386,7 +386,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Setter for
      * <code>public.oauth2_authorization.refresh_token_metadata</code>.
      */
-    public void setRefreshTokenMetadata(Long value) {
+    public void setRefreshTokenMetadata(String value) {
         set(24, value);
     }
 
@@ -394,22 +394,22 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
      * Getter for
      * <code>public.oauth2_authorization.refresh_token_metadata</code>.
      */
-    public Long getRefreshTokenMetadata() {
-        return (Long) get(24);
+    public String getRefreshTokenMetadata() {
+        return (String) get(24);
     }
 
     /**
      * Setter for <code>public.oauth2_authorization.user_code_value</code>.
      */
-    public void setUserCodeValue(Long value) {
+    public void setUserCodeValue(String value) {
         set(25, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.user_code_value</code>.
      */
-    public Long getUserCodeValue() {
-        return (Long) get(25);
+    public String getUserCodeValue() {
+        return (String) get(25);
     }
 
     /**
@@ -443,29 +443,29 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Setter for <code>public.oauth2_authorization.user_code_metadata</code>.
      */
-    public void setUserCodeMetadata(Long value) {
+    public void setUserCodeMetadata(String value) {
         set(28, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.user_code_metadata</code>.
      */
-    public Long getUserCodeMetadata() {
-        return (Long) get(28);
+    public String getUserCodeMetadata() {
+        return (String) get(28);
     }
 
     /**
      * Setter for <code>public.oauth2_authorization.device_code_value</code>.
      */
-    public void setDeviceCodeValue(Long value) {
+    public void setDeviceCodeValue(String value) {
         set(29, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.device_code_value</code>.
      */
-    public Long getDeviceCodeValue() {
-        return (Long) get(29);
+    public String getDeviceCodeValue() {
+        return (String) get(29);
     }
 
     /**
@@ -503,15 +503,15 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Setter for <code>public.oauth2_authorization.device_code_metadata</code>.
      */
-    public void setDeviceCodeMetadata(Long value) {
+    public void setDeviceCodeMetadata(String value) {
         set(32, value);
     }
 
     /**
      * Getter for <code>public.oauth2_authorization.device_code_metadata</code>.
      */
-    public Long getDeviceCodeMetadata() {
-        return (Long) get(32);
+    public String getDeviceCodeMetadata() {
+        return (String) get(32);
     }
 
     // -------------------------------------------------------------------------
@@ -537,7 +537,7 @@ public class Oauth2AuthorizationRecord extends UpdatableRecordImpl<Oauth2Authori
     /**
      * Create a detached, initialised Oauth2AuthorizationRecord
      */
-    public Oauth2AuthorizationRecord(String id, String registeredClientId, String principalName, String authorizationGrantType, String authorizedScopes, Long attributes, String state, Long authorizationCodeValue, LocalDateTime authorizationCodeIssuedAt, LocalDateTime authorizationCodeExpiresAt, Long authorizationCodeMetadata, Long accessTokenValue, LocalDateTime accessTokenIssuedAt, LocalDateTime accessTokenExpiresAt, Long accessTokenMetadata, String accessTokenType, String accessTokenScopes, Long oidcIdTokenValue, LocalDateTime oidcIdTokenIssuedAt, LocalDateTime oidcIdTokenExpiresAt, Long oidcIdTokenMetadata, Long refreshTokenValue, LocalDateTime refreshTokenIssuedAt, LocalDateTime refreshTokenExpiresAt, Long refreshTokenMetadata, Long userCodeValue, LocalDateTime userCodeIssuedAt, LocalDateTime userCodeExpiresAt, Long userCodeMetadata, Long deviceCodeValue, LocalDateTime deviceCodeIssuedAt, LocalDateTime deviceCodeExpiresAt, Long deviceCodeMetadata) {
+    public Oauth2AuthorizationRecord(String id, String registeredClientId, String principalName, String authorizationGrantType, String authorizedScopes, String attributes, String state, String authorizationCodeValue, LocalDateTime authorizationCodeIssuedAt, LocalDateTime authorizationCodeExpiresAt, String authorizationCodeMetadata, String accessTokenValue, LocalDateTime accessTokenIssuedAt, LocalDateTime accessTokenExpiresAt, String accessTokenMetadata, String accessTokenType, String accessTokenScopes, String oidcIdTokenValue, LocalDateTime oidcIdTokenIssuedAt, LocalDateTime oidcIdTokenExpiresAt, String oidcIdTokenMetadata, String refreshTokenValue, LocalDateTime refreshTokenIssuedAt, LocalDateTime refreshTokenExpiresAt, String refreshTokenMetadata, String userCodeValue, LocalDateTime userCodeIssuedAt, LocalDateTime userCodeExpiresAt, String userCodeMetadata, String deviceCodeValue, LocalDateTime deviceCodeIssuedAt, LocalDateTime deviceCodeExpiresAt, String deviceCodeMetadata) {
         super(Oauth2Authorization.OAUTH2_AUTHORIZATION);
 
         setId(id);
