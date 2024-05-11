@@ -1,5 +1,6 @@
 package cn.luixtech.passport.server.event;
 
+import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.domain.UserAuthEvent;
 import cn.luixtech.passport.server.repository.UserAuthEventRepository;
 import cn.luixtech.passport.server.service.SpringSessionService;
@@ -14,7 +15,13 @@ import org.springframework.security.authentication.event.LogoutSuccessEvent;
 import org.springframework.security.authorization.event.AuthorizationDeniedEvent;
 import org.springframework.security.authorization.event.AuthorizationEvent;
 import org.springframework.security.authorization.event.AuthorizationGrantedEvent;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.session.FindByIndexNameSessionRepository;
+import org.springframework.session.Session;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUserId;
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
@@ -23,8 +30,10 @@ import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 @Component
 @AllArgsConstructor
 public class AuthenticationEventListener {
-    private UserAuthEventRepository userAuthEventRepository;
-    private SpringSessionService    springSessionService;
+    private UserAuthEventRepository                             userAuthEventRepository;
+    private SpringSessionService                                springSessionService;
+    private FindByIndexNameSessionRepository<? extends Session> sessions;
+    private SessionRegistry                                     sessionRegistry;
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
@@ -56,8 +65,28 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void logoutEvent(LogoutEvent event) {
-        springSessionService.deleteByPrincipalName(event.getUsername());
+//        springSessionService.deleteByPrincipalName(event.getUsername());
+        sessions.findByPrincipalName(event.getUsername()).values().stream().forEach(session -> {
+//            session.i
+        });
+
+        List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
+        for (Object principal : allPrincipals) {
+            if (principal instanceof AuthUser authUser) {
+                if (authUser.getUsername().equals(event.getUsername())) {
+                    List<SessionInformation> sessionsInfo = sessionRegistry.getAllSessions(principal, false);
+                    if (null != sessionsInfo && sessionsInfo.size() > 0) {
+                        for (SessionInformation sessionInformation : sessionsInfo) {
+                            log.info("Exprire now :" + sessionInformation.getSessionId());
+                            //Expire or logout the user
+                            sessionInformation.expireNow();
+                        }
+                    }
+                }
+            }
+        }
     }
+
 
     @EventListener
     public void logoutSuccessEvent(LogoutSuccessEvent event) {
