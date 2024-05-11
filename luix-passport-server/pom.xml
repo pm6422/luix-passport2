@@ -197,16 +197,16 @@
                 <version>3.18.7</version>
                 <configuration>
                     <jdbc>
-                        <driver>com.mysql.cj.jdbc.Driver</driver>
-                        <url>jdbc:mysql://localhost:3306/luix-passport?useSSL=false</url>
-                        <user>root</user>
-                        <password/>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/luix-passport</url>
+                        <user>postgres</user>
+                        <password>postgres</password>
                     </jdbc>
                     <generator>
                         <database>
-                            <name>org.jooq.meta.mysql.MySQLDatabase</name>
+                            <name>org.jooq.meta.postgres.PostgresDatabase</name>
                             <excludes>databasechange.*</excludes>
-                            <inputSchema>luix-passport</inputSchema>
+                            <inputSchema>public</inputSchema>
                         </database>
                         <generate>
                             <pojos>false</pojos>
