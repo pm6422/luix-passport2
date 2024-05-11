@@ -65,7 +65,7 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void logoutEvent(LogoutEvent event) {
-//        springSessionService.deleteByPrincipalName(event.getUsername());
+        springSessionService.deleteByPrincipalName(event.getUsername());
         sessions.findByPrincipalName(event.getUsername()).values().stream().forEach(session -> {
 //            session.i
         });
