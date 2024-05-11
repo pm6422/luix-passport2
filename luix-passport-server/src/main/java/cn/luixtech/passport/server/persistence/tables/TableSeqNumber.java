@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.TableSeqNumberRecord;
 
 import java.util.function.Function;
@@ -37,7 +37,7 @@ public class TableSeqNumber extends TableImpl<TableSeqNumberRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.table_seq_number</code>
+     * The reference instance of <code>public.table_seq_number</code>
      */
     public static final TableSeqNumber TABLE_SEQ_NUMBER = new TableSeqNumber();
 
@@ -50,17 +50,17 @@ public class TableSeqNumber extends TableImpl<TableSeqNumberRecord> {
     }
 
     /**
-     * The column <code>luix-passport.table_seq_number.id</code>.
+     * The column <code>public.table_seq_number.id</code>.
      */
     public final TableField<TableSeqNumberRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.table_seq_number.table_name</code>.
+     * The column <code>public.table_seq_number.table_name</code>.
      */
     public final TableField<TableSeqNumberRecord, String> TABLE_NAME = createField(DSL.name("table_name"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.table_seq_number.max_seq_num</code>.
+     * The column <code>public.table_seq_number.max_seq_num</code>.
      */
     public final TableField<TableSeqNumberRecord, Long> MAX_SEQ_NUM = createField(DSL.name("max_seq_num"), SQLDataType.BIGINT.nullable(false), this, "");
 
@@ -73,23 +73,21 @@ public class TableSeqNumber extends TableImpl<TableSeqNumberRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.table_seq_number</code> table
-     * reference
+     * Create an aliased <code>public.table_seq_number</code> table reference
      */
     public TableSeqNumber(String alias) {
         this(DSL.name(alias), TABLE_SEQ_NUMBER);
     }
 
     /**
-     * Create an aliased <code>luix-passport.table_seq_number</code> table
-     * reference
+     * Create an aliased <code>public.table_seq_number</code> table reference
      */
     public TableSeqNumber(Name alias) {
         this(alias, TABLE_SEQ_NUMBER);
     }
 
     /**
-     * Create a <code>luix-passport.table_seq_number</code> table reference
+     * Create a <code>public.table_seq_number</code> table reference
      */
     public TableSeqNumber() {
         this(DSL.name("table_seq_number"), null);
@@ -101,12 +99,12 @@ public class TableSeqNumber extends TableImpl<TableSeqNumberRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<TableSeqNumberRecord> getPrimaryKey() {
-        return Keys.KEY_TABLE_SEQ_NUMBER_PRIMARY;
+        return Keys.TABLE_SEQ_NUMBER_PKEY;
     }
 
     @Override

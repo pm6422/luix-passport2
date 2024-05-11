@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.UserPermissionRecord;
 
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.user_permission</code>
+     * The reference instance of <code>public.user_permission</code>
      */
     public static final UserPermission USER_PERMISSION = new UserPermission();
 
@@ -52,17 +52,17 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
     }
 
     /**
-     * The column <code>luix-passport.user_permission.id</code>.
+     * The column <code>public.user_permission.id</code>.
      */
     public final TableField<UserPermissionRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_permission.user_id</code>.
+     * The column <code>public.user_permission.user_id</code>.
      */
     public final TableField<UserPermissionRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_permission.permission</code>.
+     * The column <code>public.user_permission.permission</code>.
      */
     public final TableField<UserPermissionRecord, String> PERMISSION = createField(DSL.name("permission"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
@@ -75,23 +75,21 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_permission</code> table
-     * reference
+     * Create an aliased <code>public.user_permission</code> table reference
      */
     public UserPermission(String alias) {
         this(DSL.name(alias), USER_PERMISSION);
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_permission</code> table
-     * reference
+     * Create an aliased <code>public.user_permission</code> table reference
      */
     public UserPermission(Name alias) {
         this(alias, USER_PERMISSION);
     }
 
     /**
-     * Create a <code>luix-passport.user_permission</code> table reference
+     * Create a <code>public.user_permission</code> table reference
      */
     public UserPermission() {
         this(DSL.name("user_permission"), null);
@@ -103,27 +101,27 @@ public class UserPermission extends TableImpl<UserPermissionRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<UserPermissionRecord> getPrimaryKey() {
-        return Keys.KEY_USER_PERMISSION_PRIMARY;
+        return Keys.USER_PERMISSION_PKEY;
     }
 
     @Override
     public List<ForeignKey<UserPermissionRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_USER_PERMISSION_USER_ID);
+        return Arrays.asList(Keys.USER_PERMISSION__FK_USER_PERMISSION_USER_ID);
     }
 
     private transient User _user;
 
     /**
-     * Get the implicit join path to the <code>luix-passport.user</code> table.
+     * Get the implicit join path to the <code>public.user</code> table.
      */
     public User user() {
         if (_user == null)
-            _user = new User(this, Keys.FK_USER_PERMISSION_USER_ID);
+            _user = new User(this, Keys.USER_PERMISSION__FK_USER_PERMISSION_USER_ID);
 
         return _user;
     }

@@ -22,28 +22,28 @@ public class UserProfilePicRecord extends UpdatableRecordImpl<UserProfilePicReco
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.user_profile_pic.id</code>.
+     * Setter for <code>public.user_profile_pic.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_profile_pic.id</code>.
+     * Getter for <code>public.user_profile_pic.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.user_profile_pic.profile_pic</code>.
+     * Setter for <code>public.user_profile_pic.profile_pic</code>.
      */
     public void setProfilePic(byte[] value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_profile_pic.profile_pic</code>.
+     * Getter for <code>public.user_profile_pic.profile_pic</code>.
      */
     public byte[] getProfilePic() {
         return (byte[]) get(1);

@@ -22,83 +22,83 @@ import cn.luixtech.passport.server.persistence.tables.UserRole;
 
 
 /**
- * Convenience access to all tables in luix-passport.
+ * Convenience access to all tables in public.
  */
 @SuppressWarnings({ "all", "unchecked", "rawtypes", "this-escape" })
 public class Tables {
 
     /**
-     * The table <code>luix-passport.data_dict</code>.
+     * The table <code>public.data_dict</code>.
      */
     public static final DataDict DATA_DICT = DataDict.DATA_DICT;
 
     /**
-     * The table <code>luix-passport.oauth2_authorization</code>.
+     * The table <code>public.oauth2_authorization</code>.
      */
     public static final Oauth2Authorization OAUTH2_AUTHORIZATION = Oauth2Authorization.OAUTH2_AUTHORIZATION;
 
     /**
-     * The table <code>luix-passport.oauth2_authorization_consent</code>.
+     * The table <code>public.oauth2_authorization_consent</code>.
      */
     public static final Oauth2AuthorizationConsent OAUTH2_AUTHORIZATION_CONSENT = Oauth2AuthorizationConsent.OAUTH2_AUTHORIZATION_CONSENT;
 
     /**
-     * The table <code>luix-passport.oauth2_registered_client</code>.
+     * The table <code>public.oauth2_registered_client</code>.
      */
     public static final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = Oauth2RegisteredClient.OAUTH2_REGISTERED_CLIENT;
 
     /**
-     * The table <code>luix-passport.org</code>.
+     * The table <code>public.org</code>.
      */
     public static final Org ORG = Org.ORG;
 
     /**
-     * The table <code>luix-passport.org_user</code>.
+     * The table <code>public.org_user</code>.
      */
     public static final OrgUser ORG_USER = OrgUser.ORG_USER;
 
     /**
-     * The table <code>luix-passport.spring_session</code>.
+     * The table <code>public.spring_session</code>.
      */
     public static final SpringSession SPRING_SESSION = SpringSession.SPRING_SESSION;
 
     /**
-     * The table <code>luix-passport.spring_session_attributes</code>.
+     * The table <code>public.spring_session_attributes</code>.
      */
     public static final SpringSessionAttributes SPRING_SESSION_ATTRIBUTES = SpringSessionAttributes.SPRING_SESSION_ATTRIBUTES;
 
     /**
-     * The table <code>luix-passport.table_seq_number</code>.
+     * The table <code>public.table_seq_number</code>.
      */
     public static final TableSeqNumber TABLE_SEQ_NUMBER = TableSeqNumber.TABLE_SEQ_NUMBER;
 
     /**
-     * The table <code>luix-passport.user</code>.
+     * The table <code>public.user</code>.
      */
     public static final User USER = User.USER;
 
     /**
-     * The table <code>luix-passport.user_auth_event</code>.
+     * The table <code>public.user_auth_event</code>.
      */
     public static final UserAuthEvent USER_AUTH_EVENT = UserAuthEvent.USER_AUTH_EVENT;
 
     /**
-     * The table <code>luix-passport.user_login</code>.
+     * The table <code>public.user_login</code>.
      */
     public static final UserLogin USER_LOGIN = UserLogin.USER_LOGIN;
 
     /**
-     * The table <code>luix-passport.user_permission</code>.
+     * The table <code>public.user_permission</code>.
      */
     public static final UserPermission USER_PERMISSION = UserPermission.USER_PERMISSION;
 
     /**
-     * The table <code>luix-passport.user_profile_pic</code>.
+     * The table <code>public.user_profile_pic</code>.
      */
     public static final UserProfilePic USER_PROFILE_PIC = UserProfilePic.USER_PROFILE_PIC;
 
     /**
-     * The table <code>luix-passport.user_role</code>.
+     * The table <code>public.user_role</code>.
      */
     public static final UserRole USER_ROLE = UserRole.USER_ROLE;
 }

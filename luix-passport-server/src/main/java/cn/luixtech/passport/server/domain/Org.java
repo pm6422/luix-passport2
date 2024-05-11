@@ -23,7 +23,6 @@ public class Org extends AbstractAuditableDomain implements Serializable {
     private Boolean enabled;
 
     @Basic(fetch = FetchType.LAZY)
-    @Lob
-    @Column(columnDefinition = "longblob", nullable = false)
+    @Column(columnDefinition = "bytea", nullable = false)
     private byte[] photo;
 }

@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2AuthorizationConsentRecord;
 
 import java.util.function.Function;
@@ -38,7 +38,7 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
 
     /**
      * The reference instance of
-     * <code>luix-passport.oauth2_authorization_consent</code>
+     * <code>public.oauth2_authorization_consent</code>
      */
     public static final Oauth2AuthorizationConsent OAUTH2_AUTHORIZATION_CONSENT = new Oauth2AuthorizationConsent();
 
@@ -52,19 +52,18 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
 
     /**
      * The column
-     * <code>luix-passport.oauth2_authorization_consent.registered_client_id</code>.
+     * <code>public.oauth2_authorization_consent.registered_client_id</code>.
      */
     public final TableField<Oauth2AuthorizationConsentRecord, String> REGISTERED_CLIENT_ID = createField(DSL.name("registered_client_id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
      * The column
-     * <code>luix-passport.oauth2_authorization_consent.principal_name</code>.
+     * <code>public.oauth2_authorization_consent.principal_name</code>.
      */
     public final TableField<Oauth2AuthorizationConsentRecord, String> PRINCIPAL_NAME = createField(DSL.name("principal_name"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_authorization_consent.authorities</code>.
+     * The column <code>public.oauth2_authorization_consent.authorities</code>.
      */
     public final TableField<Oauth2AuthorizationConsentRecord, String> AUTHORITIES = createField(DSL.name("authorities"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
@@ -77,24 +76,23 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
     }
 
     /**
-     * Create an aliased <code>luix-passport.oauth2_authorization_consent</code>
-     * table reference
+     * Create an aliased <code>public.oauth2_authorization_consent</code> table
+     * reference
      */
     public Oauth2AuthorizationConsent(String alias) {
         this(DSL.name(alias), OAUTH2_AUTHORIZATION_CONSENT);
     }
 
     /**
-     * Create an aliased <code>luix-passport.oauth2_authorization_consent</code>
-     * table reference
+     * Create an aliased <code>public.oauth2_authorization_consent</code> table
+     * reference
      */
     public Oauth2AuthorizationConsent(Name alias) {
         this(alias, OAUTH2_AUTHORIZATION_CONSENT);
     }
 
     /**
-     * Create a <code>luix-passport.oauth2_authorization_consent</code> table
-     * reference
+     * Create a <code>public.oauth2_authorization_consent</code> table reference
      */
     public Oauth2AuthorizationConsent() {
         this(DSL.name("oauth2_authorization_consent"), null);
@@ -106,12 +104,12 @@ public class Oauth2AuthorizationConsent extends TableImpl<Oauth2AuthorizationCon
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<Oauth2AuthorizationConsentRecord> getPrimaryKey() {
-        return Keys.KEY_OAUTH2_AUTHORIZATION_CONSENT_PRIMARY;
+        return Keys.OAUTH2_AUTHORIZATION_CONSENT_PKEY;
     }
 
     @Override

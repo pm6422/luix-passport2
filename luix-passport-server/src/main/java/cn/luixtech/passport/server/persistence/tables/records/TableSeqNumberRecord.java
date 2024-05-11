@@ -22,42 +22,42 @@ public class TableSeqNumberRecord extends UpdatableRecordImpl<TableSeqNumberReco
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.table_seq_number.id</code>.
+     * Setter for <code>public.table_seq_number.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.table_seq_number.id</code>.
+     * Getter for <code>public.table_seq_number.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.table_seq_number.table_name</code>.
+     * Setter for <code>public.table_seq_number.table_name</code>.
      */
     public void setTableName(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.table_seq_number.table_name</code>.
+     * Getter for <code>public.table_seq_number.table_name</code>.
      */
     public String getTableName() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.table_seq_number.max_seq_num</code>.
+     * Setter for <code>public.table_seq_number.max_seq_num</code>.
      */
     public void setMaxSeqNum(Long value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.table_seq_number.max_seq_num</code>.
+     * Getter for <code>public.table_seq_number.max_seq_num</code>.
      */
     public Long getMaxSeqNum() {
         return (Long) get(2);

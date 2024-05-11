@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.Oauth2RegisteredClientRecord;
 
 import java.time.LocalDateTime;
@@ -38,8 +38,7 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of
-     * <code>luix-passport.oauth2_registered_client</code>
+     * The reference instance of <code>public.oauth2_registered_client</code>
      */
     public static final Oauth2RegisteredClient OAUTH2_REGISTERED_CLIENT = new Oauth2RegisteredClient();
 
@@ -52,113 +51,104 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     }
 
     /**
-     * The column <code>luix-passport.oauth2_registered_client.id</code>.
+     * The column <code>public.oauth2_registered_client.id</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.oauth2_registered_client.client_id</code>.
+     * The column <code>public.oauth2_registered_client.client_id</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_ID = createField(DSL.name("client_id"), SQLDataType.VARCHAR(100).nullable(false), this, "");
 
     /**
      * The column
-     * <code>luix-passport.oauth2_registered_client.client_id_issued_at</code>.
+     * <code>public.oauth2_registered_client.client_id_issued_at</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CLIENT_ID_ISSUED_AT = createField(DSL.name("client_id_issued_at"), SQLDataType.LOCALDATETIME(0).nullable(false).defaultValue(DSL.field(DSL.raw("CURRENT_TIMESTAMP"), SQLDataType.LOCALDATETIME)), this, "");
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CLIENT_ID_ISSUED_AT = createField(DSL.name("client_id_issued_at"), SQLDataType.LOCALDATETIME(6).nullable(false).defaultValue(DSL.field(DSL.raw("now()"), SQLDataType.LOCALDATETIME)), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.client_secret</code>.
+     * The column <code>public.oauth2_registered_client.client_secret</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_SECRET = createField(DSL.name("client_secret"), SQLDataType.VARCHAR(200), this, "");
 
     /**
      * The column
-     * <code>luix-passport.oauth2_registered_client.client_secret_expires_at</code>.
+     * <code>public.oauth2_registered_client.client_secret_expires_at</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CLIENT_SECRET_EXPIRES_AT = createField(DSL.name("client_secret_expires_at"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CLIENT_SECRET_EXPIRES_AT = createField(DSL.name("client_secret_expires_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.client_name</code>.
+     * The column <code>public.oauth2_registered_client.client_name</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_NAME = createField(DSL.name("client_name"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
      * The column
-     * <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
+     * <code>public.oauth2_registered_client.client_authentication_methods</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_AUTHENTICATION_METHODS = createField(DSL.name("client_authentication_methods"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
     /**
      * The column
-     * <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
+     * <code>public.oauth2_registered_client.authorization_grant_types</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> AUTHORIZATION_GRANT_TYPES = createField(DSL.name("authorization_grant_types"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
+     * The column <code>public.oauth2_registered_client.redirect_uris</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> REDIRECT_URIS = createField(DSL.name("redirect_uris"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
      * The column
-     * <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
+     * <code>public.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> POST_LOGOUT_REDIRECT_URIS = createField(DSL.name("post_logout_redirect_uris"), SQLDataType.VARCHAR(1000), this, "");
 
     /**
-     * The column <code>luix-passport.oauth2_registered_client.scopes</code>.
+     * The column <code>public.oauth2_registered_client.scopes</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> SCOPES = createField(DSL.name("scopes"), SQLDataType.VARCHAR(1000).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.client_settings</code>.
+     * The column <code>public.oauth2_registered_client.client_settings</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CLIENT_SETTINGS = createField(DSL.name("client_settings"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.token_settings</code>.
+     * The column <code>public.oauth2_registered_client.token_settings</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> TOKEN_SETTINGS = createField(DSL.name("token_settings"), SQLDataType.VARCHAR(2000).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.oauth2_registered_client.photo</code>.
+     * The column <code>public.oauth2_registered_client.photo</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, byte[]> PHOTO = createField(DSL.name("photo"), SQLDataType.BLOB, this, "");
 
     /**
-     * The column <code>luix-passport.oauth2_registered_client.enabled</code>.
+     * The column <code>public.oauth2_registered_client.enabled</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT, this, "");
+    public final TableField<Oauth2RegisteredClientRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BOOLEAN, this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.created_by</code>.
+     * The column <code>public.oauth2_registered_client.created_by</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.created_at</code>.
+     * The column <code>public.oauth2_registered_client.created_at</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.modified_by</code>.
+     * The column <code>public.oauth2_registered_client.modified_by</code>.
      */
     public final TableField<Oauth2RegisteredClientRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.oauth2_registered_client.modified_at</code>.
+     * The column <code>public.oauth2_registered_client.modified_at</code>.
      */
-    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<Oauth2RegisteredClientRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private Oauth2RegisteredClient(Name alias, Table<Oauth2RegisteredClientRecord> aliased) {
         this(alias, aliased, null);
@@ -169,24 +159,23 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
     }
 
     /**
-     * Create an aliased <code>luix-passport.oauth2_registered_client</code>
-     * table reference
+     * Create an aliased <code>public.oauth2_registered_client</code> table
+     * reference
      */
     public Oauth2RegisteredClient(String alias) {
         this(DSL.name(alias), OAUTH2_REGISTERED_CLIENT);
     }
 
     /**
-     * Create an aliased <code>luix-passport.oauth2_registered_client</code>
-     * table reference
+     * Create an aliased <code>public.oauth2_registered_client</code> table
+     * reference
      */
     public Oauth2RegisteredClient(Name alias) {
         this(alias, OAUTH2_REGISTERED_CLIENT);
     }
 
     /**
-     * Create a <code>luix-passport.oauth2_registered_client</code> table
-     * reference
+     * Create a <code>public.oauth2_registered_client</code> table reference
      */
     public Oauth2RegisteredClient() {
         this(DSL.name("oauth2_registered_client"), null);
@@ -198,12 +187,12 @@ public class Oauth2RegisteredClient extends TableImpl<Oauth2RegisteredClientReco
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<Oauth2RegisteredClientRecord> getPrimaryKey() {
-        return Keys.KEY_OAUTH2_REGISTERED_CLIENT_PRIMARY;
+        return Keys.OAUTH2_REGISTERED_CLIENT_PKEY;
     }
 
     @Override

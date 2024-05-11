@@ -24,98 +24,98 @@ public class UserLoginRecord extends UpdatableRecordImpl<UserLoginRecord> implem
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.user_login.id</code>.
+     * Setter for <code>public.user_login.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.id</code>.
+     * Getter for <code>public.user_login.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.user_id</code>.
+     * Setter for <code>public.user_login.user_id</code>.
      */
     public void setUserId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.user_id</code>.
+     * Getter for <code>public.user_login.user_id</code>.
      */
     public String getUserId() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.logged_at</code>.
+     * Setter for <code>public.user_login.logged_at</code>.
      */
     public void setLoggedAt(LocalDateTime value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.logged_at</code>.
+     * Getter for <code>public.user_login.logged_at</code>.
      */
     public LocalDateTime getLoggedAt() {
         return (LocalDateTime) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.location</code>.
+     * Setter for <code>public.user_login.location</code>.
      */
     public void setLocation(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.location</code>.
+     * Getter for <code>public.user_login.location</code>.
      */
     public String getLocation() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.ip</code>.
+     * Setter for <code>public.user_login.ip</code>.
      */
     public void setIp(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.ip</code>.
+     * Getter for <code>public.user_login.ip</code>.
      */
     public String getIp() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.os</code>.
+     * Setter for <code>public.user_login.os</code>.
      */
     public void setOs(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.os</code>.
+     * Getter for <code>public.user_login.os</code>.
      */
     public String getOs() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>luix-passport.user_login.browser</code>.
+     * Setter for <code>public.user_login.browser</code>.
      */
     public void setBrowser(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_login.browser</code>.
+     * Getter for <code>public.user_login.browser</code>.
      */
     public String getBrowser() {
         return (String) get(6);

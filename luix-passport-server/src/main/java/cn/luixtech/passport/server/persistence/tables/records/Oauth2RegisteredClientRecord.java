@@ -24,28 +24,28 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.oauth2_registered_client.id</code>.
+     * Setter for <code>public.oauth2_registered_client.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.oauth2_registered_client.id</code>.
+     * Getter for <code>public.oauth2_registered_client.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.oauth2_registered_client.client_id</code>.
+     * Setter for <code>public.oauth2_registered_client.client_id</code>.
      */
     public void setClientId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.oauth2_registered_client.client_id</code>.
+     * Getter for <code>public.oauth2_registered_client.client_id</code>.
      */
     public String getClientId() {
         return (String) get(1);
@@ -53,7 +53,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Setter for
-     * <code>luix-passport.oauth2_registered_client.client_id_issued_at</code>.
+     * <code>public.oauth2_registered_client.client_id_issued_at</code>.
      */
     public void setClientIdIssuedAt(LocalDateTime value) {
         set(2, value);
@@ -61,23 +61,21 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Getter for
-     * <code>luix-passport.oauth2_registered_client.client_id_issued_at</code>.
+     * <code>public.oauth2_registered_client.client_id_issued_at</code>.
      */
     public LocalDateTime getClientIdIssuedAt() {
         return (LocalDateTime) get(2);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.client_secret</code>.
+     * Setter for <code>public.oauth2_registered_client.client_secret</code>.
      */
     public void setClientSecret(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.client_secret</code>.
+     * Getter for <code>public.oauth2_registered_client.client_secret</code>.
      */
     public String getClientSecret() {
         return (String) get(3);
@@ -85,7 +83,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Setter for
-     * <code>luix-passport.oauth2_registered_client.client_secret_expires_at</code>.
+     * <code>public.oauth2_registered_client.client_secret_expires_at</code>.
      */
     public void setClientSecretExpiresAt(LocalDateTime value) {
         set(4, value);
@@ -93,23 +91,21 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Getter for
-     * <code>luix-passport.oauth2_registered_client.client_secret_expires_at</code>.
+     * <code>public.oauth2_registered_client.client_secret_expires_at</code>.
      */
     public LocalDateTime getClientSecretExpiresAt() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.client_name</code>.
+     * Setter for <code>public.oauth2_registered_client.client_name</code>.
      */
     public void setClientName(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.client_name</code>.
+     * Getter for <code>public.oauth2_registered_client.client_name</code>.
      */
     public String getClientName() {
         return (String) get(5);
@@ -117,7 +113,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Setter for
-     * <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
+     * <code>public.oauth2_registered_client.client_authentication_methods</code>.
      */
     public void setClientAuthenticationMethods(String value) {
         set(6, value);
@@ -125,7 +121,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Getter for
-     * <code>luix-passport.oauth2_registered_client.client_authentication_methods</code>.
+     * <code>public.oauth2_registered_client.client_authentication_methods</code>.
      */
     public String getClientAuthenticationMethods() {
         return (String) get(6);
@@ -133,7 +129,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Setter for
-     * <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
+     * <code>public.oauth2_registered_client.authorization_grant_types</code>.
      */
     public void setAuthorizationGrantTypes(String value) {
         set(7, value);
@@ -141,23 +137,21 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Getter for
-     * <code>luix-passport.oauth2_registered_client.authorization_grant_types</code>.
+     * <code>public.oauth2_registered_client.authorization_grant_types</code>.
      */
     public String getAuthorizationGrantTypes() {
         return (String) get(7);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
+     * Setter for <code>public.oauth2_registered_client.redirect_uris</code>.
      */
     public void setRedirectUris(String value) {
         set(8, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.redirect_uris</code>.
+     * Getter for <code>public.oauth2_registered_client.redirect_uris</code>.
      */
     public String getRedirectUris() {
         return (String) get(8);
@@ -165,7 +159,7 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Setter for
-     * <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
+     * <code>public.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
     public void setPostLogoutRedirectUris(String value) {
         set(9, value);
@@ -173,145 +167,133 @@ public class Oauth2RegisteredClientRecord extends UpdatableRecordImpl<Oauth2Regi
 
     /**
      * Getter for
-     * <code>luix-passport.oauth2_registered_client.post_logout_redirect_uris</code>.
+     * <code>public.oauth2_registered_client.post_logout_redirect_uris</code>.
      */
     public String getPostLogoutRedirectUris() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>luix-passport.oauth2_registered_client.scopes</code>.
+     * Setter for <code>public.oauth2_registered_client.scopes</code>.
      */
     public void setScopes(String value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>luix-passport.oauth2_registered_client.scopes</code>.
+     * Getter for <code>public.oauth2_registered_client.scopes</code>.
      */
     public String getScopes() {
         return (String) get(10);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.client_settings</code>.
+     * Setter for <code>public.oauth2_registered_client.client_settings</code>.
      */
     public void setClientSettings(String value) {
         set(11, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.client_settings</code>.
+     * Getter for <code>public.oauth2_registered_client.client_settings</code>.
      */
     public String getClientSettings() {
         return (String) get(11);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.token_settings</code>.
+     * Setter for <code>public.oauth2_registered_client.token_settings</code>.
      */
     public void setTokenSettings(String value) {
         set(12, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.token_settings</code>.
+     * Getter for <code>public.oauth2_registered_client.token_settings</code>.
      */
     public String getTokenSettings() {
         return (String) get(12);
     }
 
     /**
-     * Setter for <code>luix-passport.oauth2_registered_client.photo</code>.
+     * Setter for <code>public.oauth2_registered_client.photo</code>.
      */
     public void setPhoto(byte[] value) {
         set(13, value);
     }
 
     /**
-     * Getter for <code>luix-passport.oauth2_registered_client.photo</code>.
+     * Getter for <code>public.oauth2_registered_client.photo</code>.
      */
     public byte[] getPhoto() {
         return (byte[]) get(13);
     }
 
     /**
-     * Setter for <code>luix-passport.oauth2_registered_client.enabled</code>.
+     * Setter for <code>public.oauth2_registered_client.enabled</code>.
      */
     public void setEnabled(Boolean value) {
         set(14, value);
     }
 
     /**
-     * Getter for <code>luix-passport.oauth2_registered_client.enabled</code>.
+     * Getter for <code>public.oauth2_registered_client.enabled</code>.
      */
     public Boolean getEnabled() {
         return (Boolean) get(14);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.created_by</code>.
+     * Setter for <code>public.oauth2_registered_client.created_by</code>.
      */
     public void setCreatedBy(String value) {
         set(15, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.created_by</code>.
+     * Getter for <code>public.oauth2_registered_client.created_by</code>.
      */
     public String getCreatedBy() {
         return (String) get(15);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.created_at</code>.
+     * Setter for <code>public.oauth2_registered_client.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
         set(16, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.created_at</code>.
+     * Getter for <code>public.oauth2_registered_client.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(16);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.modified_by</code>.
+     * Setter for <code>public.oauth2_registered_client.modified_by</code>.
      */
     public void setModifiedBy(String value) {
         set(17, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.modified_by</code>.
+     * Getter for <code>public.oauth2_registered_client.modified_by</code>.
      */
     public String getModifiedBy() {
         return (String) get(17);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.oauth2_registered_client.modified_at</code>.
+     * Setter for <code>public.oauth2_registered_client.modified_at</code>.
      */
     public void setModifiedAt(LocalDateTime value) {
         set(18, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.oauth2_registered_client.modified_at</code>.
+     * Getter for <code>public.oauth2_registered_client.modified_at</code>.
      */
     public LocalDateTime getModifiedAt() {
         return (LocalDateTime) get(18);

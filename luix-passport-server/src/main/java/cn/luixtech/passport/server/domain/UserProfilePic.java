@@ -24,7 +24,6 @@ public class UserProfilePic extends AbstractBaseDomain implements Serializable {
     @Schema(required = true)
     @NotNull
     @Basic(fetch = FetchType.LAZY)
-    @Lob
-    @Column(columnDefinition = "longblob", nullable = false)
+    @Column(columnDefinition = "bytea", nullable = false)
     private byte[] profilePic;
 }

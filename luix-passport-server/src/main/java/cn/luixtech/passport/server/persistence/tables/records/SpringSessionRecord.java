@@ -22,100 +22,98 @@ public class SpringSessionRecord extends UpdatableRecordImpl<SpringSessionRecord
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.spring_session.PRIMARY_ID</code>.
+     * Setter for <code>public.spring_session.primary_id</code>.
      */
     public void setPrimaryId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.spring_session.PRIMARY_ID</code>.
+     * Getter for <code>public.spring_session.primary_id</code>.
      */
     public String getPrimaryId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.spring_session.SESSION_ID</code>.
+     * Setter for <code>public.spring_session.session_id</code>.
      */
     public void setSessionId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.spring_session.SESSION_ID</code>.
+     * Getter for <code>public.spring_session.session_id</code>.
      */
     public String getSessionId() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.spring_session.CREATION_TIME</code>.
+     * Setter for <code>public.spring_session.creation_time</code>.
      */
     public void setCreationTime(Long value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.spring_session.CREATION_TIME</code>.
+     * Getter for <code>public.spring_session.creation_time</code>.
      */
     public Long getCreationTime() {
         return (Long) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport.spring_session.LAST_ACCESS_TIME</code>.
+     * Setter for <code>public.spring_session.last_access_time</code>.
      */
     public void setLastAccessTime(Long value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport.spring_session.LAST_ACCESS_TIME</code>.
+     * Getter for <code>public.spring_session.last_access_time</code>.
      */
     public Long getLastAccessTime() {
         return (Long) get(3);
     }
 
     /**
-     * Setter for
-     * <code>luix-passport.spring_session.MAX_INACTIVE_INTERVAL</code>.
+     * Setter for <code>public.spring_session.max_inactive_interval</code>.
      */
     public void setMaxInactiveInterval(Integer value) {
         set(4, value);
     }
 
     /**
-     * Getter for
-     * <code>luix-passport.spring_session.MAX_INACTIVE_INTERVAL</code>.
+     * Getter for <code>public.spring_session.max_inactive_interval</code>.
      */
     public Integer getMaxInactiveInterval() {
         return (Integer) get(4);
     }
 
     /**
-     * Setter for <code>luix-passport.spring_session.EXPIRY_TIME</code>.
+     * Setter for <code>public.spring_session.expiry_time</code>.
      */
     public void setExpiryTime(Long value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>luix-passport.spring_session.EXPIRY_TIME</code>.
+     * Getter for <code>public.spring_session.expiry_time</code>.
      */
     public Long getExpiryTime() {
         return (Long) get(5);
     }
 
     /**
-     * Setter for <code>luix-passport.spring_session.PRINCIPAL_NAME</code>.
+     * Setter for <code>public.spring_session.principal_name</code>.
      */
     public void setPrincipalName(String value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>luix-passport.spring_session.PRINCIPAL_NAME</code>.
+     * Getter for <code>public.spring_session.principal_name</code>.
      */
     public String getPrincipalName() {
         return (String) get(6);

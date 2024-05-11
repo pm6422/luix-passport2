@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.UserLoginRecord;
 
 import java.time.LocalDateTime;
@@ -40,7 +40,7 @@ public class UserLogin extends TableImpl<UserLoginRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.user_login</code>
+     * The reference instance of <code>public.user_login</code>
      */
     public static final UserLogin USER_LOGIN = new UserLogin();
 
@@ -53,37 +53,37 @@ public class UserLogin extends TableImpl<UserLoginRecord> {
     }
 
     /**
-     * The column <code>luix-passport.user_login.id</code>.
+     * The column <code>public.user_login.id</code>.
      */
     public final TableField<UserLoginRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.user_id</code>.
+     * The column <code>public.user_login.user_id</code>.
      */
     public final TableField<UserLoginRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.logged_at</code>.
+     * The column <code>public.user_login.logged_at</code>.
      */
-    public final TableField<UserLoginRecord, LocalDateTime> LOGGED_AT = createField(DSL.name("logged_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<UserLoginRecord, LocalDateTime> LOGGED_AT = createField(DSL.name("logged_at"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.location</code>.
+     * The column <code>public.user_login.location</code>.
      */
     public final TableField<UserLoginRecord, String> LOCATION = createField(DSL.name("location"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.ip</code>.
+     * The column <code>public.user_login.ip</code>.
      */
     public final TableField<UserLoginRecord, String> IP = createField(DSL.name("ip"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.os</code>.
+     * The column <code>public.user_login.os</code>.
      */
     public final TableField<UserLoginRecord, String> OS = createField(DSL.name("os"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_login.browser</code>.
+     * The column <code>public.user_login.browser</code>.
      */
     public final TableField<UserLoginRecord, String> BROWSER = createField(DSL.name("browser"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
@@ -96,21 +96,21 @@ public class UserLogin extends TableImpl<UserLoginRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_login</code> table reference
+     * Create an aliased <code>public.user_login</code> table reference
      */
     public UserLogin(String alias) {
         this(DSL.name(alias), USER_LOGIN);
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_login</code> table reference
+     * Create an aliased <code>public.user_login</code> table reference
      */
     public UserLogin(Name alias) {
         this(alias, USER_LOGIN);
     }
 
     /**
-     * Create a <code>luix-passport.user_login</code> table reference
+     * Create a <code>public.user_login</code> table reference
      */
     public UserLogin() {
         this(DSL.name("user_login"), null);
@@ -122,27 +122,27 @@ public class UserLogin extends TableImpl<UserLoginRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<UserLoginRecord> getPrimaryKey() {
-        return Keys.KEY_USER_LOGIN_PRIMARY;
+        return Keys.USER_LOGIN_PKEY;
     }
 
     @Override
     public List<ForeignKey<UserLoginRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_USER_LOGIN_USER_ID);
+        return Arrays.asList(Keys.USER_LOGIN__FK_USER_LOGIN_USER_ID);
     }
 
     private transient User _user;
 
     /**
-     * Get the implicit join path to the <code>luix-passport.user</code> table.
+     * Get the implicit join path to the <code>public.user</code> table.
      */
     public User user() {
         if (_user == null)
-            _user = new User(this, Keys.FK_USER_LOGIN_USER_ID);
+            _user = new User(this, Keys.USER_LOGIN__FK_USER_LOGIN_USER_ID);
 
         return _user;
     }

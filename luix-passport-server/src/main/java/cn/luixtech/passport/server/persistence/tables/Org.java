@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.OrgRecord;
 
 import java.util.function.Function;
@@ -37,7 +37,7 @@ public class Org extends TableImpl<OrgRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.org</code>
+     * The reference instance of <code>public.org</code>
      */
     public static final Org ORG = new Org();
 
@@ -50,22 +50,22 @@ public class Org extends TableImpl<OrgRecord> {
     }
 
     /**
-     * The column <code>luix-passport.org.id</code>.
+     * The column <code>public.org.id</code>.
      */
     public final TableField<OrgRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.org.remark</code>.
+     * The column <code>public.org.remark</code>.
      */
     public final TableField<OrgRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(36), this, "");
 
     /**
-     * The column <code>luix-passport.org.enabled</code>.
+     * The column <code>public.org.enabled</code>.
      */
-    public final TableField<OrgRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT.nullable(false), this, "");
+    public final TableField<OrgRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.org.photo</code>.
+     * The column <code>public.org.photo</code>.
      */
     public final TableField<OrgRecord, byte[]> PHOTO = createField(DSL.name("photo"), SQLDataType.BLOB, this, "");
 
@@ -78,21 +78,21 @@ public class Org extends TableImpl<OrgRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.org</code> table reference
+     * Create an aliased <code>public.org</code> table reference
      */
     public Org(String alias) {
         this(DSL.name(alias), ORG);
     }
 
     /**
-     * Create an aliased <code>luix-passport.org</code> table reference
+     * Create an aliased <code>public.org</code> table reference
      */
     public Org(Name alias) {
         this(alias, ORG);
     }
 
     /**
-     * Create a <code>luix-passport.org</code> table reference
+     * Create a <code>public.org</code> table reference
      */
     public Org() {
         this(DSL.name("org"), null);
@@ -104,12 +104,12 @@ public class Org extends TableImpl<OrgRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<OrgRecord> getPrimaryKey() {
-        return Keys.KEY_ORG_PRIMARY;
+        return Keys.ORG_PKEY;
     }
 
     @Override

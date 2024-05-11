@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.DataDictRecord;
 
 import java.time.LocalDateTime;
@@ -40,7 +40,7 @@ public class DataDict extends TableImpl<DataDictRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.data_dict</code>
+     * The reference instance of <code>public.data_dict</code>
      */
     public static final DataDict DATA_DICT = new DataDict();
 
@@ -53,59 +53,59 @@ public class DataDict extends TableImpl<DataDictRecord> {
     }
 
     /**
-     * The column <code>luix-passport.data_dict.id</code>.
+     * The column <code>public.data_dict.id</code>.
      */
     public final TableField<DataDictRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.num</code>.
+     * The column <code>public.data_dict.num</code>.
      */
     public final TableField<DataDictRecord, String> NUM = createField(DSL.name("num"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.category_code</code>.
+     * The column <code>public.data_dict.category_code</code>.
      */
     public final TableField<DataDictRecord, String> CATEGORY_CODE = createField(DSL.name("category_code"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.dict_code</code>.
+     * The column <code>public.data_dict.dict_code</code>.
      */
     public final TableField<DataDictRecord, String> DICT_CODE = createField(DSL.name("dict_code"), SQLDataType.VARCHAR(30).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.dict_name</code>.
+     * The column <code>public.data_dict.dict_name</code>.
      */
     public final TableField<DataDictRecord, String> DICT_NAME = createField(DSL.name("dict_name"), SQLDataType.VARCHAR(20), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.remark</code>.
+     * The column <code>public.data_dict.remark</code>.
      */
     public final TableField<DataDictRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(256), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.enabled</code>.
+     * The column <code>public.data_dict.enabled</code>.
      */
-    public final TableField<DataDictRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BIT.nullable(false), this, "");
+    public final TableField<DataDictRecord, Boolean> ENABLED = createField(DSL.name("enabled"), SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.created_by</code>.
+     * The column <code>public.data_dict.created_by</code>.
      */
     public final TableField<DataDictRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(50).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.created_at</code>.
+     * The column <code>public.data_dict.created_at</code>.
      */
-    public final TableField<DataDictRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<DataDictRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.modified_by</code>.
+     * The column <code>public.data_dict.modified_by</code>.
      */
     public final TableField<DataDictRecord, String> MODIFIED_BY = createField(DSL.name("modified_by"), SQLDataType.VARCHAR(50), this, "");
 
     /**
-     * The column <code>luix-passport.data_dict.modified_at</code>.
+     * The column <code>public.data_dict.modified_at</code>.
      */
-    public final TableField<DataDictRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(0), this, "");
+    public final TableField<DataDictRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     private DataDict(Name alias, Table<DataDictRecord> aliased) {
         this(alias, aliased, null);
@@ -116,21 +116,21 @@ public class DataDict extends TableImpl<DataDictRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.data_dict</code> table reference
+     * Create an aliased <code>public.data_dict</code> table reference
      */
     public DataDict(String alias) {
         this(DSL.name(alias), DATA_DICT);
     }
 
     /**
-     * Create an aliased <code>luix-passport.data_dict</code> table reference
+     * Create an aliased <code>public.data_dict</code> table reference
      */
     public DataDict(Name alias) {
         this(alias, DATA_DICT);
     }
 
     /**
-     * Create a <code>luix-passport.data_dict</code> table reference
+     * Create a <code>public.data_dict</code> table reference
      */
     public DataDict() {
         this(DSL.name("data_dict"), null);
@@ -142,17 +142,17 @@ public class DataDict extends TableImpl<DataDictRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<DataDictRecord> getPrimaryKey() {
-        return Keys.KEY_DATA_DICT_PRIMARY;
+        return Keys.DATA_DICT_PKEY;
     }
 
     @Override
     public List<UniqueKey<DataDictRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_DATA_DICT_UK_DATA_DICT_CATE_CODE_DICT_CODE);
+        return Arrays.asList(Keys.UK_DATA_DICT_CATE_CODE_DICT_CODE);
     }
 
     @Override

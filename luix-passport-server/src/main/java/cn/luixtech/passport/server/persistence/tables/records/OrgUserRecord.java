@@ -22,42 +22,42 @@ public class OrgUserRecord extends UpdatableRecordImpl<OrgUserRecord> implements
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.org_user.id</code>.
+     * Setter for <code>public.org_user.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org_user.id</code>.
+     * Getter for <code>public.org_user.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.org_user.org_id</code>.
+     * Setter for <code>public.org_user.org_id</code>.
      */
     public void setOrgId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org_user.org_id</code>.
+     * Getter for <code>public.org_user.org_id</code>.
      */
     public String getOrgId() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.org_user.user_id</code>.
+     * Setter for <code>public.org_user.user_id</code>.
      */
     public void setUserId(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org_user.user_id</code>.
+     * Getter for <code>public.org_user.user_id</code>.
      */
     public String getUserId() {
         return (String) get(2);

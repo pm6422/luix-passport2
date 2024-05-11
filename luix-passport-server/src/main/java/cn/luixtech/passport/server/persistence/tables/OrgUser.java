@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.OrgUserRecord;
 
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class OrgUser extends TableImpl<OrgUserRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.org_user</code>
+     * The reference instance of <code>public.org_user</code>
      */
     public static final OrgUser ORG_USER = new OrgUser();
 
@@ -52,17 +52,17 @@ public class OrgUser extends TableImpl<OrgUserRecord> {
     }
 
     /**
-     * The column <code>luix-passport.org_user.id</code>.
+     * The column <code>public.org_user.id</code>.
      */
     public final TableField<OrgUserRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.org_user.org_id</code>.
+     * The column <code>public.org_user.org_id</code>.
      */
     public final TableField<OrgUserRecord, String> ORG_ID = createField(DSL.name("org_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.org_user.user_id</code>.
+     * The column <code>public.org_user.user_id</code>.
      */
     public final TableField<OrgUserRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
@@ -75,21 +75,21 @@ public class OrgUser extends TableImpl<OrgUserRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.org_user</code> table reference
+     * Create an aliased <code>public.org_user</code> table reference
      */
     public OrgUser(String alias) {
         this(DSL.name(alias), ORG_USER);
     }
 
     /**
-     * Create an aliased <code>luix-passport.org_user</code> table reference
+     * Create an aliased <code>public.org_user</code> table reference
      */
     public OrgUser(Name alias) {
         this(alias, ORG_USER);
     }
 
     /**
-     * Create a <code>luix-passport.org_user</code> table reference
+     * Create a <code>public.org_user</code> table reference
      */
     public OrgUser() {
         this(DSL.name("org_user"), null);
@@ -101,27 +101,27 @@ public class OrgUser extends TableImpl<OrgUserRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<OrgUserRecord> getPrimaryKey() {
-        return Keys.KEY_ORG_USER_PRIMARY;
+        return Keys.ORG_USER_PKEY;
     }
 
     @Override
     public List<ForeignKey<OrgUserRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_ORG_USER_USER_ID);
+        return Arrays.asList(Keys.ORG_USER__FK_ORG_USER_USER_ID);
     }
 
     private transient User _user;
 
     /**
-     * Get the implicit join path to the <code>luix-passport.user</code> table.
+     * Get the implicit join path to the <code>public.user</code> table.
      */
     public User user() {
         if (_user == null)
-            _user = new User(this, Keys.FK_ORG_USER_USER_ID);
+            _user = new User(this, Keys.ORG_USER__FK_ORG_USER_USER_ID);
 
         return _user;
     }

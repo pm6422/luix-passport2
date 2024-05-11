@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.SpringSessionRecord;
 
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class SpringSession extends TableImpl<SpringSessionRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.spring_session</code>
+     * The reference instance of <code>public.spring_session</code>
      */
     public static final SpringSession SPRING_SESSION = new SpringSession();
 
@@ -52,40 +52,39 @@ public class SpringSession extends TableImpl<SpringSessionRecord> {
     }
 
     /**
-     * The column <code>luix-passport.spring_session.PRIMARY_ID</code>.
+     * The column <code>public.spring_session.primary_id</code>.
      */
-    public final TableField<SpringSessionRecord, String> PRIMARY_ID = createField(DSL.name("PRIMARY_ID"), SQLDataType.CHAR(36).nullable(false), this, "");
+    public final TableField<SpringSessionRecord, String> PRIMARY_ID = createField(DSL.name("primary_id"), SQLDataType.CHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.spring_session.SESSION_ID</code>.
+     * The column <code>public.spring_session.session_id</code>.
      */
-    public final TableField<SpringSessionRecord, String> SESSION_ID = createField(DSL.name("SESSION_ID"), SQLDataType.CHAR(36).nullable(false), this, "");
+    public final TableField<SpringSessionRecord, String> SESSION_ID = createField(DSL.name("session_id"), SQLDataType.CHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.spring_session.CREATION_TIME</code>.
+     * The column <code>public.spring_session.creation_time</code>.
      */
-    public final TableField<SpringSessionRecord, Long> CREATION_TIME = createField(DSL.name("CREATION_TIME"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<SpringSessionRecord, Long> CREATION_TIME = createField(DSL.name("creation_time"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.spring_session.LAST_ACCESS_TIME</code>.
+     * The column <code>public.spring_session.last_access_time</code>.
      */
-    public final TableField<SpringSessionRecord, Long> LAST_ACCESS_TIME = createField(DSL.name("LAST_ACCESS_TIME"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<SpringSessionRecord, Long> LAST_ACCESS_TIME = createField(DSL.name("last_access_time"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.spring_session.MAX_INACTIVE_INTERVAL</code>.
+     * The column <code>public.spring_session.max_inactive_interval</code>.
      */
-    public final TableField<SpringSessionRecord, Integer> MAX_INACTIVE_INTERVAL = createField(DSL.name("MAX_INACTIVE_INTERVAL"), SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<SpringSessionRecord, Integer> MAX_INACTIVE_INTERVAL = createField(DSL.name("max_inactive_interval"), SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.spring_session.EXPIRY_TIME</code>.
+     * The column <code>public.spring_session.expiry_time</code>.
      */
-    public final TableField<SpringSessionRecord, Long> EXPIRY_TIME = createField(DSL.name("EXPIRY_TIME"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<SpringSessionRecord, Long> EXPIRY_TIME = createField(DSL.name("expiry_time"), SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.spring_session.PRINCIPAL_NAME</code>.
+     * The column <code>public.spring_session.principal_name</code>.
      */
-    public final TableField<SpringSessionRecord, String> PRINCIPAL_NAME = createField(DSL.name("PRINCIPAL_NAME"), SQLDataType.VARCHAR(100), this, "");
+    public final TableField<SpringSessionRecord, String> PRINCIPAL_NAME = createField(DSL.name("principal_name"), SQLDataType.VARCHAR(100), this, "");
 
     private SpringSession(Name alias, Table<SpringSessionRecord> aliased) {
         this(alias, aliased, null);
@@ -96,23 +95,21 @@ public class SpringSession extends TableImpl<SpringSessionRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.spring_session</code> table
-     * reference
+     * Create an aliased <code>public.spring_session</code> table reference
      */
     public SpringSession(String alias) {
         this(DSL.name(alias), SPRING_SESSION);
     }
 
     /**
-     * Create an aliased <code>luix-passport.spring_session</code> table
-     * reference
+     * Create an aliased <code>public.spring_session</code> table reference
      */
     public SpringSession(Name alias) {
         this(alias, SPRING_SESSION);
     }
 
     /**
-     * Create a <code>luix-passport.spring_session</code> table reference
+     * Create a <code>public.spring_session</code> table reference
      */
     public SpringSession() {
         this(DSL.name("spring_session"), null);
@@ -124,17 +121,17 @@ public class SpringSession extends TableImpl<SpringSessionRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<SpringSessionRecord> getPrimaryKey() {
-        return Keys.KEY_SPRING_SESSION_PRIMARY;
+        return Keys.SPRING_SESSION_PKEY;
     }
 
     @Override
     public List<UniqueKey<SpringSessionRecord>> getUniqueKeys() {
-        return Arrays.asList(Keys.KEY_SPRING_SESSION_SESSION_ID);
+        return Arrays.asList(Keys.SPRING_SESSION_SESSION_ID_KEY);
     }
 
     @Override

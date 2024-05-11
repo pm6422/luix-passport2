@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.UserProfilePicRecord;
 
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class UserProfilePic extends TableImpl<UserProfilePicRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.user_profile_pic</code>
+     * The reference instance of <code>public.user_profile_pic</code>
      */
     public static final UserProfilePic USER_PROFILE_PIC = new UserProfilePic();
 
@@ -52,12 +52,12 @@ public class UserProfilePic extends TableImpl<UserProfilePicRecord> {
     }
 
     /**
-     * The column <code>luix-passport.user_profile_pic.id</code>.
+     * The column <code>public.user_profile_pic.id</code>.
      */
     public final TableField<UserProfilePicRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_profile_pic.profile_pic</code>.
+     * The column <code>public.user_profile_pic.profile_pic</code>.
      */
     public final TableField<UserProfilePicRecord, byte[]> PROFILE_PIC = createField(DSL.name("profile_pic"), SQLDataType.BLOB.nullable(false), this, "");
 
@@ -70,23 +70,21 @@ public class UserProfilePic extends TableImpl<UserProfilePicRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_profile_pic</code> table
-     * reference
+     * Create an aliased <code>public.user_profile_pic</code> table reference
      */
     public UserProfilePic(String alias) {
         this(DSL.name(alias), USER_PROFILE_PIC);
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_profile_pic</code> table
-     * reference
+     * Create an aliased <code>public.user_profile_pic</code> table reference
      */
     public UserProfilePic(Name alias) {
         this(alias, USER_PROFILE_PIC);
     }
 
     /**
-     * Create a <code>luix-passport.user_profile_pic</code> table reference
+     * Create a <code>public.user_profile_pic</code> table reference
      */
     public UserProfilePic() {
         this(DSL.name("user_profile_pic"), null);
@@ -98,27 +96,27 @@ public class UserProfilePic extends TableImpl<UserProfilePicRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<UserProfilePicRecord> getPrimaryKey() {
-        return Keys.KEY_USER_PROFILE_PIC_PRIMARY;
+        return Keys.USER_PROFILE_PIC_PKEY;
     }
 
     @Override
     public List<ForeignKey<UserProfilePicRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_USER_PROFILE_PIC_USER_ID);
+        return Arrays.asList(Keys.USER_PROFILE_PIC__FK_USER_PROFILE_PIC_USER_ID);
     }
 
     private transient User _user;
 
     /**
-     * Get the implicit join path to the <code>luix-passport.user</code> table.
+     * Get the implicit join path to the <code>public.user</code> table.
      */
     public User user() {
         if (_user == null)
-            _user = new User(this, Keys.FK_USER_PROFILE_PIC_USER_ID);
+            _user = new User(this, Keys.USER_PROFILE_PIC__FK_USER_PROFILE_PIC_USER_ID);
 
         return _user;
     }

@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.SpringSessionAttributesRecord;
 
 import java.util.function.Function;
@@ -37,8 +37,7 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of
-     * <code>luix-passport.spring_session_attributes</code>
+     * The reference instance of <code>public.spring_session_attributes</code>
      */
     public static final SpringSessionAttributes SPRING_SESSION_ATTRIBUTES = new SpringSessionAttributes();
 
@@ -52,21 +51,19 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
 
     /**
      * The column
-     * <code>luix-passport.spring_session_attributes.SESSION_PRIMARY_ID</code>.
+     * <code>public.spring_session_attributes.session_primary_id</code>.
      */
-    public final TableField<SpringSessionAttributesRecord, String> SESSION_PRIMARY_ID = createField(DSL.name("SESSION_PRIMARY_ID"), SQLDataType.CHAR(36).nullable(false), this, "");
+    public final TableField<SpringSessionAttributesRecord, String> SESSION_PRIMARY_ID = createField(DSL.name("session_primary_id"), SQLDataType.CHAR(36).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.spring_session_attributes.ATTRIBUTE_NAME</code>.
+     * The column <code>public.spring_session_attributes.attribute_name</code>.
      */
-    public final TableField<SpringSessionAttributesRecord, String> ATTRIBUTE_NAME = createField(DSL.name("ATTRIBUTE_NAME"), SQLDataType.VARCHAR(200).nullable(false), this, "");
+    public final TableField<SpringSessionAttributesRecord, String> ATTRIBUTE_NAME = createField(DSL.name("attribute_name"), SQLDataType.VARCHAR(200).nullable(false), this, "");
 
     /**
-     * The column
-     * <code>luix-passport.spring_session_attributes.ATTRIBUTE_BYTES</code>.
+     * The column <code>public.spring_session_attributes.attribute_bytes</code>.
      */
-    public final TableField<SpringSessionAttributesRecord, byte[]> ATTRIBUTE_BYTES = createField(DSL.name("ATTRIBUTE_BYTES"), SQLDataType.BLOB.nullable(false), this, "");
+    public final TableField<SpringSessionAttributesRecord, Long> ATTRIBUTE_BYTES = createField(DSL.name("attribute_bytes"), SQLDataType.BIGINT.nullable(false), this, "");
 
     private SpringSessionAttributes(Name alias, Table<SpringSessionAttributesRecord> aliased) {
         this(alias, aliased, null);
@@ -77,24 +74,23 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
     }
 
     /**
-     * Create an aliased <code>luix-passport.spring_session_attributes</code>
-     * table reference
+     * Create an aliased <code>public.spring_session_attributes</code> table
+     * reference
      */
     public SpringSessionAttributes(String alias) {
         this(DSL.name(alias), SPRING_SESSION_ATTRIBUTES);
     }
 
     /**
-     * Create an aliased <code>luix-passport.spring_session_attributes</code>
-     * table reference
+     * Create an aliased <code>public.spring_session_attributes</code> table
+     * reference
      */
     public SpringSessionAttributes(Name alias) {
         this(alias, SPRING_SESSION_ATTRIBUTES);
     }
 
     /**
-     * Create a <code>luix-passport.spring_session_attributes</code> table
-     * reference
+     * Create a <code>public.spring_session_attributes</code> table reference
      */
     public SpringSessionAttributes() {
         this(DSL.name("spring_session_attributes"), null);
@@ -106,12 +102,12 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<SpringSessionAttributesRecord> getPrimaryKey() {
-        return Keys.KEY_SPRING_SESSION_ATTRIBUTES_PRIMARY;
+        return Keys.SPRING_SESSION_ATTRIBUTES_PKEY;
     }
 
     @Override
@@ -158,14 +154,14 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
     // -------------------------------------------------------------------------
 
     @Override
-    public Row3<String, String, byte[]> fieldsRow() {
+    public Row3<String, String, Long> fieldsRow() {
         return (Row3) super.fieldsRow();
     }
 
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function3<? super String, ? super String, ? super byte[], ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super String, ? super String, ? super Long, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -173,7 +169,7 @@ public class SpringSessionAttributes extends TableImpl<SpringSessionAttributesRe
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super String, ? super byte[], ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super String, ? super String, ? super Long, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

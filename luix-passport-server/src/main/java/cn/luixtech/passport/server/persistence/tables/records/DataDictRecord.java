@@ -24,154 +24,154 @@ public class DataDictRecord extends UpdatableRecordImpl<DataDictRecord> implemen
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.data_dict.id</code>.
+     * Setter for <code>public.data_dict.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.id</code>.
+     * Getter for <code>public.data_dict.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.num</code>.
+     * Setter for <code>public.data_dict.num</code>.
      */
     public void setNum(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.num</code>.
+     * Getter for <code>public.data_dict.num</code>.
      */
     public String getNum() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.category_code</code>.
+     * Setter for <code>public.data_dict.category_code</code>.
      */
     public void setCategoryCode(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.category_code</code>.
+     * Getter for <code>public.data_dict.category_code</code>.
      */
     public String getCategoryCode() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.dict_code</code>.
+     * Setter for <code>public.data_dict.dict_code</code>.
      */
     public void setDictCode(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.dict_code</code>.
+     * Getter for <code>public.data_dict.dict_code</code>.
      */
     public String getDictCode() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.dict_name</code>.
+     * Setter for <code>public.data_dict.dict_name</code>.
      */
     public void setDictName(String value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.dict_name</code>.
+     * Getter for <code>public.data_dict.dict_name</code>.
      */
     public String getDictName() {
         return (String) get(4);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.remark</code>.
+     * Setter for <code>public.data_dict.remark</code>.
      */
     public void setRemark(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.remark</code>.
+     * Getter for <code>public.data_dict.remark</code>.
      */
     public String getRemark() {
         return (String) get(5);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.enabled</code>.
+     * Setter for <code>public.data_dict.enabled</code>.
      */
     public void setEnabled(Boolean value) {
         set(6, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.enabled</code>.
+     * Getter for <code>public.data_dict.enabled</code>.
      */
     public Boolean getEnabled() {
         return (Boolean) get(6);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.created_by</code>.
+     * Setter for <code>public.data_dict.created_by</code>.
      */
     public void setCreatedBy(String value) {
         set(7, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.created_by</code>.
+     * Getter for <code>public.data_dict.created_by</code>.
      */
     public String getCreatedBy() {
         return (String) get(7);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.created_at</code>.
+     * Setter for <code>public.data_dict.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
         set(8, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.created_at</code>.
+     * Getter for <code>public.data_dict.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(8);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.modified_by</code>.
+     * Setter for <code>public.data_dict.modified_by</code>.
      */
     public void setModifiedBy(String value) {
         set(9, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.modified_by</code>.
+     * Getter for <code>public.data_dict.modified_by</code>.
      */
     public String getModifiedBy() {
         return (String) get(9);
     }
 
     /**
-     * Setter for <code>luix-passport.data_dict.modified_at</code>.
+     * Setter for <code>public.data_dict.modified_at</code>.
      */
     public void setModifiedAt(LocalDateTime value) {
         set(10, value);
     }
 
     /**
-     * Getter for <code>luix-passport.data_dict.modified_at</code>.
+     * Getter for <code>public.data_dict.modified_at</code>.
      */
     public LocalDateTime getModifiedAt() {
         return (LocalDateTime) get(10);

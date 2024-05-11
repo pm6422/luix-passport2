@@ -24,84 +24,84 @@ public class UserAuthEventRecord extends UpdatableRecordImpl<UserAuthEventRecord
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.id</code>.
+     * Setter for <code>public.user_auth_event.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.id</code>.
+     * Getter for <code>public.user_auth_event.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.user_id</code>.
+     * Setter for <code>public.user_auth_event.user_id</code>.
      */
     public void setUserId(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.user_id</code>.
+     * Getter for <code>public.user_auth_event.user_id</code>.
      */
     public String getUserId() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.event</code>.
+     * Setter for <code>public.user_auth_event.event</code>.
      */
     public void setEvent(String value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.event</code>.
+     * Getter for <code>public.user_auth_event.event</code>.
      */
     public String getEvent() {
         return (String) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.remark</code>.
+     * Setter for <code>public.user_auth_event.remark</code>.
      */
     public void setRemark(String value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.remark</code>.
+     * Getter for <code>public.user_auth_event.remark</code>.
      */
     public String getRemark() {
         return (String) get(3);
     }
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.created_at</code>.
+     * Setter for <code>public.user_auth_event.created_at</code>.
      */
     public void setCreatedAt(LocalDateTime value) {
         set(4, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.created_at</code>.
+     * Getter for <code>public.user_auth_event.created_at</code>.
      */
     public LocalDateTime getCreatedAt() {
         return (LocalDateTime) get(4);
     }
 
     /**
-     * Setter for <code>luix-passport.user_auth_event.created_by</code>.
+     * Setter for <code>public.user_auth_event.created_by</code>.
      */
     public void setCreatedBy(String value) {
         set(5, value);
     }
 
     /**
-     * Getter for <code>luix-passport.user_auth_event.created_by</code>.
+     * Getter for <code>public.user_auth_event.created_by</code>.
      */
     public String getCreatedBy() {
         return (String) get(5);

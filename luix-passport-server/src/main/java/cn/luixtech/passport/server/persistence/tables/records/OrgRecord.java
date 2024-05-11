@@ -22,56 +22,56 @@ public class OrgRecord extends UpdatableRecordImpl<OrgRecord> implements Record4
     private static final long serialVersionUID = 1L;
 
     /**
-     * Setter for <code>luix-passport.org.id</code>.
+     * Setter for <code>public.org.id</code>.
      */
     public void setId(String value) {
         set(0, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org.id</code>.
+     * Getter for <code>public.org.id</code>.
      */
     public String getId() {
         return (String) get(0);
     }
 
     /**
-     * Setter for <code>luix-passport.org.remark</code>.
+     * Setter for <code>public.org.remark</code>.
      */
     public void setRemark(String value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org.remark</code>.
+     * Getter for <code>public.org.remark</code>.
      */
     public String getRemark() {
         return (String) get(1);
     }
 
     /**
-     * Setter for <code>luix-passport.org.enabled</code>.
+     * Setter for <code>public.org.enabled</code>.
      */
     public void setEnabled(Boolean value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org.enabled</code>.
+     * Getter for <code>public.org.enabled</code>.
      */
     public Boolean getEnabled() {
         return (Boolean) get(2);
     }
 
     /**
-     * Setter for <code>luix-passport.org.photo</code>.
+     * Setter for <code>public.org.photo</code>.
      */
     public void setPhoto(byte[] value) {
         set(3, value);
     }
 
     /**
-     * Getter for <code>luix-passport.org.photo</code>.
+     * Getter for <code>public.org.photo</code>.
      */
     public byte[] getPhoto() {
         return (byte[]) get(3);

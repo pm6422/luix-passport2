@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.UserRoleRecord;
 
 import java.util.Arrays;
@@ -39,7 +39,7 @@ public class UserRole extends TableImpl<UserRoleRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.user_role</code>
+     * The reference instance of <code>public.user_role</code>
      */
     public static final UserRole USER_ROLE = new UserRole();
 
@@ -52,17 +52,17 @@ public class UserRole extends TableImpl<UserRoleRecord> {
     }
 
     /**
-     * The column <code>luix-passport.user_role.id</code>.
+     * The column <code>public.user_role.id</code>.
      */
     public final TableField<UserRoleRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_role.user_id</code>.
+     * The column <code>public.user_role.user_id</code>.
      */
     public final TableField<UserRoleRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_role.role</code>.
+     * The column <code>public.user_role.role</code>.
      */
     public final TableField<UserRoleRecord, String> ROLE = createField(DSL.name("role"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
@@ -75,21 +75,21 @@ public class UserRole extends TableImpl<UserRoleRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_role</code> table reference
+     * Create an aliased <code>public.user_role</code> table reference
      */
     public UserRole(String alias) {
         this(DSL.name(alias), USER_ROLE);
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_role</code> table reference
+     * Create an aliased <code>public.user_role</code> table reference
      */
     public UserRole(Name alias) {
         this(alias, USER_ROLE);
     }
 
     /**
-     * Create a <code>luix-passport.user_role</code> table reference
+     * Create a <code>public.user_role</code> table reference
      */
     public UserRole() {
         this(DSL.name("user_role"), null);
@@ -101,27 +101,27 @@ public class UserRole extends TableImpl<UserRoleRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<UserRoleRecord> getPrimaryKey() {
-        return Keys.KEY_USER_ROLE_PRIMARY;
+        return Keys.USER_ROLE_PKEY;
     }
 
     @Override
     public List<ForeignKey<UserRoleRecord, ?>> getReferences() {
-        return Arrays.asList(Keys.FK_USER_ROLE_USER_ID);
+        return Arrays.asList(Keys.USER_ROLE__FK_USER_ROLE_USER_ID);
     }
 
     private transient User _user;
 
     /**
-     * Get the implicit join path to the <code>luix-passport.user</code> table.
+     * Get the implicit join path to the <code>public.user</code> table.
      */
     public User user() {
         if (_user == null)
-            _user = new User(this, Keys.FK_USER_ROLE_USER_ID);
+            _user = new User(this, Keys.USER_ROLE__FK_USER_ROLE_USER_ID);
 
         return _user;
     }

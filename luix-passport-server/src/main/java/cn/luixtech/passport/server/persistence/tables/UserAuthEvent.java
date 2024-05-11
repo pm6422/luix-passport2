@@ -5,7 +5,7 @@ package cn.luixtech.passport.server.persistence.tables;
 
 
 import cn.luixtech.passport.server.persistence.Keys;
-import cn.luixtech.passport.server.persistence.LuixPassport;
+import cn.luixtech.passport.server.persistence.Public;
 import cn.luixtech.passport.server.persistence.tables.records.UserAuthEventRecord;
 
 import java.time.LocalDateTime;
@@ -38,7 +38,7 @@ public class UserAuthEvent extends TableImpl<UserAuthEventRecord> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The reference instance of <code>luix-passport.user_auth_event</code>
+     * The reference instance of <code>public.user_auth_event</code>
      */
     public static final UserAuthEvent USER_AUTH_EVENT = new UserAuthEvent();
 
@@ -51,32 +51,32 @@ public class UserAuthEvent extends TableImpl<UserAuthEventRecord> {
     }
 
     /**
-     * The column <code>luix-passport.user_auth_event.id</code>.
+     * The column <code>public.user_auth_event.id</code>.
      */
     public final TableField<UserAuthEventRecord, String> ID = createField(DSL.name("id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_auth_event.user_id</code>.
+     * The column <code>public.user_auth_event.user_id</code>.
      */
     public final TableField<UserAuthEventRecord, String> USER_ID = createField(DSL.name("user_id"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_auth_event.event</code>.
+     * The column <code>public.user_auth_event.event</code>.
      */
     public final TableField<UserAuthEventRecord, String> EVENT = createField(DSL.name("event"), SQLDataType.VARCHAR(36).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_auth_event.remark</code>.
+     * The column <code>public.user_auth_event.remark</code>.
      */
     public final TableField<UserAuthEventRecord, String> REMARK = createField(DSL.name("remark"), SQLDataType.VARCHAR(64), this, "");
 
     /**
-     * The column <code>luix-passport.user_auth_event.created_at</code>.
+     * The column <code>public.user_auth_event.created_at</code>.
      */
-    public final TableField<UserAuthEventRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(0).nullable(false), this, "");
+    public final TableField<UserAuthEventRecord, LocalDateTime> CREATED_AT = createField(DSL.name("created_at"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     /**
-     * The column <code>luix-passport.user_auth_event.created_by</code>.
+     * The column <code>public.user_auth_event.created_by</code>.
      */
     public final TableField<UserAuthEventRecord, String> CREATED_BY = createField(DSL.name("created_by"), SQLDataType.VARCHAR(64), this, "");
 
@@ -89,23 +89,21 @@ public class UserAuthEvent extends TableImpl<UserAuthEventRecord> {
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_auth_event</code> table
-     * reference
+     * Create an aliased <code>public.user_auth_event</code> table reference
      */
     public UserAuthEvent(String alias) {
         this(DSL.name(alias), USER_AUTH_EVENT);
     }
 
     /**
-     * Create an aliased <code>luix-passport.user_auth_event</code> table
-     * reference
+     * Create an aliased <code>public.user_auth_event</code> table reference
      */
     public UserAuthEvent(Name alias) {
         this(alias, USER_AUTH_EVENT);
     }
 
     /**
-     * Create a <code>luix-passport.user_auth_event</code> table reference
+     * Create a <code>public.user_auth_event</code> table reference
      */
     public UserAuthEvent() {
         this(DSL.name("user_auth_event"), null);
@@ -117,12 +115,12 @@ public class UserAuthEvent extends TableImpl<UserAuthEventRecord> {
 
     @Override
     public Schema getSchema() {
-        return aliased() ? null : LuixPassport.LUIX_PASSPORT;
+        return aliased() ? null : Public.PUBLIC;
     }
 
     @Override
     public UniqueKey<UserAuthEventRecord> getPrimaryKey() {
-        return Keys.KEY_USER_AUTH_EVENT_PRIMARY;
+        return Keys.USER_AUTH_EVENT_PKEY;
     }
 
     @Override
