@@ -2,6 +2,7 @@ package cn.luixtech.passport.server.event;
 
 import cn.luixtech.passport.server.domain.UserAuthEvent;
 import cn.luixtech.passport.server.repository.UserAuthEventRepository;
+import cn.luixtech.passport.server.service.SpringSessionService;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,8 +16,6 @@ import org.springframework.security.authorization.event.AuthorizationEvent;
 import org.springframework.security.authorization.event.AuthorizationGrantedEvent;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUserId;
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 
@@ -25,6 +24,7 @@ import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 @AllArgsConstructor
 public class AuthenticationEventListener {
     private UserAuthEventRepository userAuthEventRepository;
+    private SpringSessionService    springSessionService;
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
@@ -50,8 +50,13 @@ public class AuthenticationEventListener {
             domain.setEvent("AuthenticationFailure");
             domain.setRemark(StringUtils.abbreviate(event.getException().getMessage(), 64));
             userAuthEventRepository.save(domain);
-            log.warn("Authenticate failure for user: " + userId + " with exception: " + event.getException().getMessage());
+            log.warn("Authenticate failure for user: {} with exception: {}", userId, event.getException().getMessage());
         }
+    }
+
+    @EventListener
+    public void logoutEvent(LogoutEvent event) {
+        springSessionService.deleteByPrincipalName(event.getUsername());
     }
 
     @EventListener
@@ -70,13 +75,13 @@ public class AuthenticationEventListener {
     }
 
     @EventListener
-    public void authorizationGrantedEvent(AuthorizationGrantedEvent event) {
+    public void authorizationGrantedEvent(AuthorizationGrantedEvent<?> event) {
         log.info("Granted authorization for user: [{}] and initiated by {}", getCurrentUsername(event.getAuthentication().get()),
                 event.getSource().getClass().getSimpleName());
     }
 
     @EventListener
-    public void authorizationDeniedEvent(AuthorizationDeniedEvent event) {
+    public void authorizationDeniedEvent(AuthorizationDeniedEvent<?> event) {
         log.warn("Denied authorization for user: [{}] and initiated by {}", getCurrentUsername(event.getAuthentication().get()),
                 event.getSource().getClass().getSimpleName());
     }

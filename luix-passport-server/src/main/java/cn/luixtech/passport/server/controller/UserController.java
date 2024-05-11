@@ -107,7 +107,7 @@ public class UserController {
         userService.update(existingOne, domain.getRoles());
         if (domain.getId().equals(AuthUtils.getCurrentUserId())) {
             // Logout if current user were changed
-            applicationEventPublisher.publishEvent(new LogoutEvent(this));
+            applicationEventPublisher.publishEvent(new LogoutEvent(this, AuthUtils.getCurrentUsername()));
         }
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
@@ -123,6 +123,10 @@ public class UserController {
     @PutMapping("/api/users/reset-password/{id}")
     public ResponseEntity<Void> resetPassword(@Parameter(description = "id", required = true) @PathVariable String id) {
         userService.changePassword(id, null, applicationProperties.getAccount().getDefaultPassword(), null);
+        if (id.equals(AuthUtils.getCurrentUserId())) {
+            // Logout if current user were changed
+            applicationEventPublisher.publishEvent(new LogoutEvent(this, AuthUtils.getCurrentUsername()));
+        }
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.ok().headers(headers).build();
     }

@@ -106,7 +106,7 @@ public class AccountController {
         User user = userService.changePassword(AuthUtils.getCurrentUserId(), dto.getOldRawPassword(), dto.getNewRawPassword(), dto.getVerificationCode());
         mailService.sendPasswordChangedMail(user, getRequestUrl(request));
         // Logout asynchronously
-        applicationEventPublisher.publishEvent(new LogoutEvent(this));
+        applicationEventPublisher.publishEvent(new LogoutEvent(this, AuthUtils.getCurrentUsername()));
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", messageCreator.getMessage("password"))).build();
     }
 
