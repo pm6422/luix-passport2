@@ -33,7 +33,7 @@ NOTE: Java compatability: Java 21 above
 - Java 21
 - Spring Boot 3.2.0
 - Spring Security OAuth2 Authorization Server 1.1.0
-- MySQL 8
+- PostgresSQL 16
 
 [[UsingDocker]]
 == Using Docker

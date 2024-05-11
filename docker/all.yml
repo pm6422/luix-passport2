@@ -1,10 +1,10 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
 name: luix
 services:
-  mysql:
+  postgresql:
     extends:
-      file: ./mysql.yml
-      service: mysql
+      file: ./postgresql.yml
+      service: postgresql
   passport-server:
     image: luix-passport-server
     container_name: luix-passport-server
@@ -13,11 +13,11 @@ services:
       - SPRING_PROFILES_ACTIVE=test
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
       # Note: It can NOT use localhost as the database URL
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/luix-passport?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/luix-passport
     ports:
       - 127.0.0.1:4001:4001
     depends_on:
-      mysql:
+      postgresql:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4001/management/health"]
@@ -36,7 +36,7 @@ services:
     # host network mode can access auth server in docker environment
     network_mode: host
     depends_on:
-      mysql:
+      postgresql:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4002/management/health"]
