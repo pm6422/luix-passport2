@@ -14,7 +14,7 @@ export const Date = ({
     if (!value) {
       return ""
     }
-    return dayjs(value).format(authUser.dateFormatInstance.dateFormat)
+    return dayjs(value).format(authUser.dateTimeFormatInstance.dateFormat)
   }
 
   return (

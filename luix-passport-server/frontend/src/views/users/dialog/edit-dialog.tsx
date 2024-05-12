@@ -120,8 +120,8 @@ export function EditDialog({
 
           <ClearableSelectFormField 
             control={form.control} 
-            name="dateFormat" 
-            label="Date Format"
+            name="dateTimeFormat" 
+            label="Date Time Format"
             options={dateTimeFormats}
             formItemClassName="w-full"
           />

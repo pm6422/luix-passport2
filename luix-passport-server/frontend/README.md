@@ -58,7 +58,6 @@ npx shadcn-ui@latest add label
 - breadcrumbs
 - last sign in at
 - createHashRouter vs. createBrowserRouter
-- date format display in UI
 - sign out after changed password
 - session management
 - introduce signal

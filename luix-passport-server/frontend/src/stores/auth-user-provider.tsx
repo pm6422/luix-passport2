@@ -9,12 +9,11 @@ export type AuthUser = {
   firstName: string
   lastName: string
   language: string
-  locale: string
   activated: boolean
   enabled: boolean
   roles: Array<string>
-  dateFormat: string
-  dateFormatInstance: DateTimeFormat
+  dateTimeFormat: string
+  dateTimeFormatInstance: DateTimeFormat
 }
 
 type AuthUserProviderProps = {

@@ -10,9 +10,9 @@ export class AccountService {
   public static async getCurrentAccount(): Promise<AuthUser> {
     try {
       const res = await axios.get<AuthUser>("open-api/accounts/user")
-      const dateFormatInstance = dateTimeFormats.find(d => d.value === res.data.dateFormat)
-      if(dateFormatInstance) {
-        res.data.dateFormatInstance = dateFormatInstance
+      const dateTimeFormatInstance = dateTimeFormats.find(d => d.value === res.data.dateTimeFormat)
+      if(dateTimeFormatInstance) {
+        res.data.dateTimeFormatInstance = dateTimeFormatInstance
       }
       return res.data
     } catch (error) {

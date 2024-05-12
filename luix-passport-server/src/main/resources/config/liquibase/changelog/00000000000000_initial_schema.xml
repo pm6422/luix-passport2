@@ -189,6 +189,15 @@
             <column name="language" type="VARCHAR(25)">
                 <constraints nullable="false"/>
             </column>
+            <column name="locale" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_time_format" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_zone" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
             <column name="created_by" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
@@ -197,15 +206,6 @@
             </column>
             <column name="modified_by" type="VARCHAR(50)"/>
             <column name="modified_at" type="timestamp"/>
-            <column name="locale" type="varchar(10)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="time_zone" type="varchar(30)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="date_format" type="varchar(20)">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
         <loadData
                 file="config/liquibase/data/user.csv"

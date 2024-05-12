@@ -169,7 +169,7 @@ export default function FormExample() {
                         )}
                       >
                         {field.value ? (
-                          formatDate(authUser.dateFormatInstance.dateFormat, field.value)
+                          formatDate(authUser.dateTimeFormatInstance.dateFormat, field.value)
                         ) : (
                           <span>Pick a date</span>
                         )}

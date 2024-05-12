@@ -99,7 +99,7 @@ public class UserController {
         existingOne.setLanguage(domain.getLanguage());
         existingOne.setLocale(domain.getLocale());
         existingOne.setTimeZone(domain.getTimeZone());
-        existingOne.setDateFormat(domain.getDateFormat());
+        existingOne.setDateTimeFormat(domain.getDateTimeFormat());
         existingOne.setEmail(domain.getEmail().toLowerCase());
         existingOne.setMobileNo(domain.getMobileNo());
         existingOne.setRemark(domain.getRemark());

@@ -195,7 +195,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setEnabled(true);
         domain.setPasswordExpiresAt(LocalDateTime.now().plus(6, ChronoUnit.MONTHS));
         domain.setLocale(env.getProperty("spring.web.locale"));
-        domain.setDateFormat("2021-09-10 10:15:00");
+        domain.setDateTimeFormat("2021-09-10 10:15:00");
         domain.setTimeZone("Asia/Shanghai (GMT +08:00)");
 
         if (!permanentAccount) {

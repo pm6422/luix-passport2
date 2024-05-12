@@ -29,7 +29,7 @@ const formSchema = z.object({
   language: z.string().trim().min(1, { message: "Required" }),
   locale: z.string().trim().min(1, { message: "Required" }),
   timeZone: z.string().trim().optional(),
-  dateFormat: z.string().trim().optional(),
+  dateTimeFormat: z.string().trim().optional(),
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -117,8 +117,8 @@ export function AccountForm() {
         />
         <ClearableSelectFormField 
           control={form.control} 
-          name="dateFormat" 
-          label="Date Format"
+          name="dateTimeFormat" 
+          label="Date Time Format"
           options={dateTimeFormats}
         />
         <SelectFormField 

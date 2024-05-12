@@ -17,8 +17,8 @@ public class AuthUser {
     private String      lastName;
     private String      language;
     private String      locale;
+    private String      dateTimeFormat;
     private String      timeZone;
-    private String      dateFormat;
     private Boolean     activated;
     private Boolean     enabled;
     private Set<String> roles;

@@ -84,7 +84,7 @@ public class AccountController {
         existingOne.setLanguage(domain.getLanguage());
         existingOne.setLocale(domain.getLocale());
         existingOne.setTimeZone(domain.getTimeZone());
-        existingOne.setDateFormat(domain.getDateFormat());
+        existingOne.setDateTimeFormat(domain.getDateTimeFormat());
         userService.update(existingOne);
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
