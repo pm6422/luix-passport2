@@ -23,6 +23,9 @@ Luix passport frontend UI crafted with Shadcn and Vite.
 
 **Icons:** [Tabler Icons](https://tabler.io/icons)
 
+## Installing Shadcn UI component
+npx shadcn-ui@latest add label
+
 ## Run Locally
 
 Install pnpm
@@ -42,9 +45,6 @@ Start the server
 ```bash
   pnpm run dev
 ```
-
-## Installing Shadcn UI component
-npx shadcn-ui@latest add label
 
 ## TODOs
 - role and permissions page
