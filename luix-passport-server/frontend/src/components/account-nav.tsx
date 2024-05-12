@@ -13,9 +13,11 @@ import {
 import { IconUser, IconCodeCircle2, IconApi, IconVocabulary, IconLogout } from "@tabler/icons-react"
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUser } from "@/stores/auth-user-provider"
+import { useAppInfo } from "@/stores/app-info-provider"
 
 export function AccountNav() {
   const { authUser } = useAuthUser()
+  const { appInfo } = useAppInfo()
 
   return (
     <DropdownMenu>
@@ -51,11 +53,12 @@ export function AccountNav() {
             <IconCodeCircle2 className="size-6"/>Developer Tools
           </DropdownMenuLabel>
           <DropdownMenuGroup>
-            <Link to="/api-docs">
+            { appInfo.apiDocsEnabled && <Link to="/api-docs">
               <DropdownMenuItem className="cursor-pointer">
                 <IconApi className="size-4 mr-2"/>API Documentation
               </DropdownMenuItem>
             </Link>
+            }
             <Link to="/data-dicts">
               <DropdownMenuItem className="cursor-pointer">
                 <IconVocabulary className="size-4 mr-2"/>Data Dictionaries

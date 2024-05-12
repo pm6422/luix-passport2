@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState } from "react"
 import appInfoObj from "@/data/app-info.json"
 
 export type AppInfo = {
-  apiDocsEnabled: string
+  apiDocsEnabled: boolean
   ribbonProfile: string
   build: {
     artifact: string

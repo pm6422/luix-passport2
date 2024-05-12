@@ -18,7 +18,7 @@ export default function Sidebar2({
   setIsCollapsed,
 }: SidebarProps) {
   const [navOpened, setNavOpened] = useState(false)
-  const { appInfo } = useAppInfo();
+  const { appInfo } = useAppInfo()
 
   /* Make body not scrollable when navBar is opened */
   useEffect(() => {

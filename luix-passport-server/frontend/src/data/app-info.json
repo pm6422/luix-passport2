@@ -1,5 +1,5 @@
 {
-  "apiDocsEnabled" : "true",
+  "apiDocsEnabled" : true,
   "ribbonProfile" : "disconnected",
   "build" : {
     "artifact" : "luix-passport",
