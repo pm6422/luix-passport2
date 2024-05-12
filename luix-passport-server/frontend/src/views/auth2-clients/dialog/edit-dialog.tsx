@@ -6,7 +6,7 @@ import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import { Button } from "@/components/custom/button"
-import { IconX, IconPlus } from "@tabler/icons-react"
+import { IconX, IconCirclePlus } from "@tabler/icons-react"
 import { FormLabel, FormDescription } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import SwitchFormField from "@/components/custom/form-field/switch"
@@ -157,8 +157,8 @@ export function EditDialog({
             />
           ))}
           <div className="flex items-center justify-end w-full mt-2">
-            <IconPlus
-              className="size-6 mr-1 cursor-pointer text-muted-foreground"
+            <IconCirclePlus
+              className="size-6 mt-1 mr-1 cursor-pointer text-muted-foreground"
               type="button"
               onClick={() => addRedirectUri("")}
             />
@@ -188,8 +188,8 @@ export function EditDialog({
             />
           ))}
           <div className="flex items-center justify-end w-full mt-2">
-            <IconPlus
-              className="size-6 mr-1 cursor-pointer text-muted-foreground"
+            <IconCirclePlus
+              className="size-6 mt-1 mr-1 cursor-pointer text-muted-foreground"
               type="button"
               onClick={() => addPostLogoutRedirectUri("")}
             />
