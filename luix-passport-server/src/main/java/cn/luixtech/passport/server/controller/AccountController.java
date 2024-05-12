@@ -18,6 +18,7 @@ import com.luixtech.springbootframework.component.HttpHeaderCreator;
 import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.utilities.encryption.JasyptEncryptUtils;
 import com.luixtech.utilities.exception.DataNotFoundException;
+import com.luixtech.utilities.lang.DateUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +27,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.time.FastDateFormat;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -56,16 +56,15 @@ import static com.luixtech.springbootframework.utils.NetworkUtils.getRequestUrl;
 @AllArgsConstructor
 @Slf4j
 public class AccountController {
-    private static final FastDateFormat            DATETIME_FORMAT = FastDateFormat.getInstance("yyyyMMdd-HHmmss");
-    private final        HttpHeaderCreator         httpHeaderCreator;
-    private final        MessageCreator            messageCreator;
-    private final        MailService               mailService;
-    private final        UserRepository            userRepository;
-    private final        UserProfilePicRepository  userProfilePicRepository;
-    private final        UserService               userService;
-    private final        UserProfilePicService     userProfilePicService;
-    private final        SpringSessionService      springSessionService;
-    private final        ApplicationEventPublisher applicationEventPublisher;
+    private final HttpHeaderCreator         httpHeaderCreator;
+    private final MessageCreator            messageCreator;
+    private final MailService               mailService;
+    private final UserRepository            userRepository;
+    private final UserProfilePicRepository  userProfilePicRepository;
+    private final UserService               userService;
+    private final UserProfilePicService     userProfilePicService;
+    private final SpringSessionService      springSessionService;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "get current user who are signed in")
     @GetMapping("/open-api/accounts/user")
@@ -198,7 +197,7 @@ public class AccountController {
             return ResponseEntity.ok().body(null);
         }
         ByteArrayResource resource = new ByteArrayResource(existingOne.get().getProfilePic());
-        String fileName = "pic-" + DATETIME_FORMAT.format(new Date()) + ".jpg";
+        String fileName = "pic-" + DateUtils.FILE_DATETIME_FORMAT.format(new Date()) + ".jpg";
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
