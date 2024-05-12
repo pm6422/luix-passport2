@@ -2,7 +2,7 @@
 export const locales = [
   {
     value: "en_US",
-    label: "American English"
+    label: "English (United States)"
   },
   {
     value: "zh_CN",
