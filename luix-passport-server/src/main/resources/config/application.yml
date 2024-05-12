@@ -8,6 +8,9 @@
 # ===================================================================
 server:
   port: 4001
+  servlet:
+    session:
+      timeout: 1D # Session timeout in 1 day. This parameter can control the login expiration. And this statement can affect Spring Session, which is used by SessionProperties.
 management: # Management http server configuration, used by ManagementServerProperties
   health:
     mail:
