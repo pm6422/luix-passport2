@@ -13,7 +13,7 @@ import { locales } from "@/data/locales"
 import { timeZones } from "@/data/time-zones"
 import { dateFormats } from "@/data/date-formats"
 import { toast } from "sonner"
-import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { useAuthUser } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
 import { getErrorMessage } from "@/libs/handle-error"
 import { isValidPhoneNumber } from "react-phone-number-input"
@@ -35,12 +35,12 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>
 
 export function AccountForm() {
-  const authUserProvider = useAuthUserProvider()
+  const { authUser } = useAuthUser()
   const [saving, setSaving] = useState(false)
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: authUserProvider.authUser
+    defaultValues: authUser
   })
 
   useEffect(() => {

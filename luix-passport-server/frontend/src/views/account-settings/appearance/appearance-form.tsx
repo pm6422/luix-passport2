@@ -16,18 +16,18 @@ import { toast } from "sonner"
 import { useTheme } from "@/stores/theme-provider"
 
 const formSchema = z.object({
-  theme: z.enum(["light", "dark"], {required_error: "Please select a theme."})
+  theme: z.enum(["light", "dark", "system"], {required_error: "Please select a theme."})
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export function AppearanceForm() {
-  const { setTheme } = useTheme()
+  const themeProvider = useTheme()
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      theme: "light"
+      theme: themeProvider.theme
     }
   })
   
@@ -38,7 +38,7 @@ export function AppearanceForm() {
       </div>, 
     { duration: 5000 })
     // set the theme
-    setTheme(formData.theme)
+    themeProvider.setTheme(formData.theme)
   }
 
   return (

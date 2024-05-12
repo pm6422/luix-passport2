@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { IconUser, IconCodeCircle2, IconApi, IconAssembly, IconLogout } from "@tabler/icons-react"
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
-import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { useAuthUser } from "@/stores/auth-user-provider"
 
 export function AccountNav() {
-  const authUserProvider = useAuthUserProvider()
+  const { authUser } = useAuthUser()
 
   return (
     <DropdownMenu>
@@ -30,9 +30,9 @@ export function AccountNav() {
       <DropdownMenuContent className="w-48" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-2">
-            <p className="text-sm font-medium leading-none">{authUserProvider.authUser.firstName} {authUserProvider.authUser.lastName}</p>
+            <p className="text-sm font-medium leading-none">{authUser.firstName} {authUser.lastName}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {authUserProvider.authUser.email}
+              {authUser.email}
             </p>
           </div>
         </DropdownMenuLabel>

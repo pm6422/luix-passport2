@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import Sidebar from "@/components/sidebar"
 import useIsCollapsed from "@/hooks/use-is-collapsed"
-import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { useAuthUser } from "@/stores/auth-user-provider"
 import { RoleAdmin } from "@/components/custom/role/role-admin"
 import { RoleOnlyUser } from "@/components/custom/role/role-only-user"
 import { useLocation } from "react-router-dom"
@@ -11,12 +11,10 @@ import { NotificationNav } from "@/components/notification-nav.tsx"
 import { AccountNav } from "@/components/account-nav.tsx"
 import { Layout, LayoutHeader } from "@/layouts/layout-definitions"
 // import { Search } from "@/components/custom/search"
-import { IconBell } from "@tabler/icons-react"
-import { Button } from "@/components/custom/button"
 import { isEmpty } from "lodash"
 
 export default function AuthLayout() {
-  const authUserProvider = useAuthUserProvider()
+  const { authUser, isAdmin } = useAuthUser()
   const [isCollapsed, setIsCollapsed] = useIsCollapsed()
   const location = useLocation()
   const topNav = [
@@ -43,7 +41,7 @@ export default function AuthLayout() {
   ]
 
   useEffect(() => {
-    if(isEmpty(authUserProvider.authUser)) {
+    if(isEmpty(authUser)) {
       console.log("Redirecting to login for null auth user")
       window.location.href = "/login"
     }
@@ -56,7 +54,7 @@ export default function AuthLayout() {
       </RoleAdmin>
       <main
         id="content"
-        className={`overflow-x-hidden pt-16 transition-[margin] md:overflow-y-hidden md:pt-0 ${!authUserProvider.isAdmin() ? "" : isCollapsed ? "md:ml-14" : "md:ml-64"} h-full`}
+        className={`overflow-x-hidden pt-16 transition-[margin] md:overflow-y-hidden md:pt-0 ${!isAdmin() ? "" : isCollapsed ? "md:ml-14" : "md:ml-64"} h-full`}
       >
         <Layout>
           <LayoutHeader>

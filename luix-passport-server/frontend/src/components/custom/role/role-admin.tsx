@@ -1,4 +1,4 @@
-import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { useAuthUser } from "@/stores/auth-user-provider"
 
 type Props = {
   children: React.ReactNode
@@ -7,9 +7,9 @@ type Props = {
 export const RoleAdmin = ({
   children
 }: Props) => {
-  const authUserProvider = useAuthUserProvider()
+  const { isAdmin } = useAuthUser()
 
   return (
-    authUserProvider.isAdmin() && children
+    isAdmin() && children
   )
 }

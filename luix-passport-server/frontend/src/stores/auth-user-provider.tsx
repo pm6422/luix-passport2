@@ -72,11 +72,11 @@ export function AuthUserProvider({
   )
 }
 
-export const useAuthUserProvider = () => {
+export const useAuthUser = () => {
   const context = useContext(AuthUserProviderContext)
 
   if (context === undefined) {
-    throw new Error("useAuthUserProvider must be used within a AuthUserProvider")
+    throw new Error("useAuthUser must be used within a AuthUserProvider")
   }
 
   return context

@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 import { PinInput, PinInputField } from "@/components/custom/pin-input"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
-import { useAuthUserProvider } from "@/stores/auth-user-provider"
+import { useAuthUser } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
 import { getErrorMessage } from "@/libs/handle-error"
 
@@ -32,7 +32,7 @@ const formSchema = z.object({
 type FormSchema = z.infer<typeof formSchema>
 
 export function ChangePasswordForm() {
-  const authUserProvider = useAuthUserProvider()
+  const { authUser } = useAuthUser()
   const [saving, setSaving] = useState(false)
 
   const form = useForm<FormSchema>({
@@ -116,7 +116,7 @@ export function ChangePasswordForm() {
           control={form.control} 
           name="email" 
           label="Email"
-          value={authUserProvider.authUser?.email}
+          value={authUser?.email}
           disabled
           description="Click right button to send a verification code to your email."
           icon={
@@ -148,7 +148,7 @@ export function ChangePasswordForm() {
                   ))}
                 </PinInput>
               </FormControl>
-              <FormDescription>Enter the verification code sent to {authUserProvider.authUser.email}</FormDescription>
+              <FormDescription>Enter the verification code sent to {authUser.email}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
