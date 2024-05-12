@@ -178,7 +178,7 @@ public class AccountController {
         }
         // Set default profile picture
         byte[] bytes = StreamUtils.copyToByteArray(
-                new UrlResource(getRequestUrl(request) + "/assets/images/avatars/01.jpg").getInputStream());
+                new UrlResource(getRequestUrl(request) + "/assets/images/cartoon/01.png").getInputStream());
         return ResponseEntity.ok(bytes);
     }
 
