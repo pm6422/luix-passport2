@@ -9,18 +9,18 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDateTime(dateTimeFormat: string, value: string | Date): string {
+export function formatDateTime(dateTimeFormat: string, value: string | Date, timeZone: string): string {
   if (!value) {
     return ""
   }
-  return dayjs(value).format(dateTimeFormat)
+  return dayjs(value).tz(timeZone).format(dateTimeFormat)
 }
 
-export function formatDate(dateFormat: string, value: string | Date): string {
+export function formatDate(dateFormat: string, value: string | Date, timeZone: string): string {
   if (!value) {
     return ""
   }
-  return dayjs(value).format(dateFormat)
+  return dayjs(value).tz(timeZone).format(dateFormat)
 }
 
 export function generateId({ length = 8, prefix = "" } = {}) {

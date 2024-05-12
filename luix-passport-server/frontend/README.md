@@ -53,7 +53,6 @@ npx shadcn-ui@latest add label
 - register page
 - server start vite
 - datetime string to ms
-- timezone
 - multiple data in same column of table
 - table page no url query param
 - breadcrumbs

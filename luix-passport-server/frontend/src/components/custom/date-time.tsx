@@ -11,6 +11,6 @@ export const DateTime = ({
   const { authUser } = useAuthUser()
 
   return (
-    <span >{formatDateTime(authUser.dateTimeFormatInstance.dateTimeFormat, value)}</span>
+    <span >{formatDateTime(authUser.dateTimeFormatInstance.dateTimeFormat, value, authUser.timeZone)}</span>
   )
 }

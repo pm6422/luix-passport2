@@ -1,5 +1,5 @@
-import dayjs from "dayjs"
 import { useAuthUser } from "@/stores/auth-user-provider"
+import { formatDate } from "@/libs/utils"
 
 type Props = {
   value: string | Date
@@ -10,14 +10,7 @@ export const Date = ({
 }: Props) => {
   const { authUser } = useAuthUser()
 
-  function formatDate(value: string | Date): string {
-    if (!value) {
-      return ""
-    }
-    return dayjs(value).format(authUser.dateTimeFormatInstance.dateFormat)
-  }
-
   return (
-    <span >{formatDate(value)}</span>
+    <span >{formatDate(authUser.dateTimeFormatInstance.dateFormat, value, authUser.timeZone)}</span>
   )
 }
