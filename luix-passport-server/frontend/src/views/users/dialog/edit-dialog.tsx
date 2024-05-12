@@ -111,27 +111,6 @@ export function EditDialog({
         </div>
 
         <div className="flex items-center gap-2">
-          <SelectFormField 
-            control={form.control} 
-            name="language" 
-            label="Preferred Language"
-            options={languages}
-            formItemClassName="w-full"
-            required
-          />
-
-          <SelectFormField 
-            control={form.control} 
-            name="locale" 
-            label="Locale"
-            options={locales}
-            formItemClassName="w-full"
-            required
-          />
-        </div>
-
-
-        <div className="flex items-center gap-2">
           <ClearableSelectFormField 
             control={form.control} 
             name="timeZone" 
@@ -148,6 +127,15 @@ export function EditDialog({
             formItemClassName="w-full"
           />
         </div>
+
+        <SelectFormField 
+          control={form.control} 
+          name="language" 
+          label="Preferred Language"
+          options={languages}
+          formItemClassName="w-full"
+          required
+        />
 
         <InputFormField 
           control={form.control} 
