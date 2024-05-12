@@ -94,11 +94,10 @@ export function tableColumns(
         const element = yesNo.find(e => e.value === row.getValue("enabled"))
 
         return (
-          <div className="flex w-[50px] items-center">
+          <div className="flex w-[50px] items-center justify-center">
             {element && element.icon && (
               <element.icon className="mr-2 size-5 text-muted-foreground" />
             )}
-            <span>{element && element.label}</span>
           </div>
         )
       },
