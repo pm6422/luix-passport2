@@ -5,8 +5,8 @@ export const timeZones = [
     label: "Asia/Shanghai (GMT +08:00)"
   },
   {
-    value: "Asia/Tokyo",
-    label: "Asia/Tokyo (GMT +09:00)"
+    value: "America/New_York",
+    label: "America/New_York (GMT -04:00)"
   }
 ]
 
