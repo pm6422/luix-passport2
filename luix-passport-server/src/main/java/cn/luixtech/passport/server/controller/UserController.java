@@ -96,7 +96,6 @@ public class UserController {
         User existingOne = userRepository.findById(domain.getId()).orElseThrow(() -> new DataNotFoundException(AuthUtils.getCurrentUserId()));
         existingOne.setFirstName(domain.getFirstName());
         existingOne.setLastName(domain.getLastName());
-        existingOne.setLanguage(domain.getLanguage());
         existingOne.setLocale(domain.getLocale());
         existingOne.setTimeZone(domain.getTimeZone());
         existingOne.setDateTimeFormat(domain.getDateTimeFormat());

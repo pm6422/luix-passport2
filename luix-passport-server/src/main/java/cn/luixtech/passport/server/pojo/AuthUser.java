@@ -15,7 +15,6 @@ public class AuthUser {
     private String      mobileNo;
     private String      firstName;
     private String      lastName;
-    private String      language;
     private String      locale;
     private String      dateTimeFormat;
     private String      timeZone;

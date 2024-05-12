@@ -8,7 +8,6 @@ import InputFormField from "@/components/custom/form-field/input"
 import SelectFormField from "@/components/custom/form-field/select"
 import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import { IconReload, IconMailForward } from "@tabler/icons-react"
-import { languages } from "@/data/languages"
 import { locales } from "@/data/locales"
 import { timeZones } from "@/data/time-zones"
 import { dateTimeFormats } from "@/data/date-time-formats"
@@ -26,7 +25,6 @@ const formSchema = z.object({
   mobileNo: z.string().trim().min(1, { message: "Required" }).refine(isValidPhoneNumber, { message: "Invalid phone number" }),
   firstName: z.string().optional(),
   lastName: z.string().optional(),
-  language: z.string().trim().min(1, { message: "Required" }),
   locale: z.string().trim().min(1, { message: "Required" }),
   timeZone: z.string().trim().optional(),
   dateTimeFormat: z.string().trim().optional(),
@@ -104,15 +102,8 @@ export function AccountForm() {
         <InputFormField control={form.control} name="lastName" label="Last Name"/>
         <SelectFormField 
           control={form.control} 
-          name="language" 
-          label="Preferred Language"
-          options={languages}
-          required
-        />
-        <SelectFormField 
-          control={form.control} 
           name="locale" 
-          label="Locale"
+          label="Preferred Language"
           options={locales}
           required
         />

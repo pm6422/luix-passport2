@@ -81,7 +81,6 @@ public class AccountController {
         Validate.isTrue(StringUtils.isNotEmpty(domain.getId()) && existingOne.getId().equals(domain.getId()), "Invalid user ID!");
         existingOne.setFirstName(domain.getFirstName());
         existingOne.setLastName(domain.getLastName());
-        existingOne.setLanguage(domain.getLanguage());
         existingOne.setLocale(domain.getLocale());
         existingOne.setTimeZone(domain.getTimeZone());
         existingOne.setDateTimeFormat(domain.getDateTimeFormat());

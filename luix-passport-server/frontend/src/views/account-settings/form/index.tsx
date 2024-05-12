@@ -21,7 +21,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { languages } from "@/data/languages"
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -30,7 +29,6 @@ import { cn } from "@/libs/utils"
 import { IconCalendar } from "@tabler/icons-react"
 import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
-import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import { useAuthUser } from "@/stores/auth-user-provider"
 import { formatDate } from "@/libs/utils"
 
@@ -142,15 +140,6 @@ export default function FormExample() {
           onSubmit={form.handleSubmit(onSubmit)}
           className="flex flex-col gap-4"
         >
-
-          <ClearableSelectFormField 
-            control={form.control} 
-            name="language" 
-            label="Preferred Language"
-            options={languages}
-            required
-            description="This is the language that will be used in the dashboard."
-          />
 
           <FormField
             control={form.control}

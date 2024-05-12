@@ -8,7 +8,6 @@ export type AuthUser = {
   email: string
   firstName: string
   lastName: string
-  language: string
   locale: string
   timeZone: string
   dateTimeFormat: string

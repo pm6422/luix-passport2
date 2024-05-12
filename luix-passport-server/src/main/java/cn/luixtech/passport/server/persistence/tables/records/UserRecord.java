@@ -287,115 +287,101 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     }
 
     /**
-     * Setter for <code>public.user.language</code>.
-     */
-    public void setLanguage(String value) {
-        set(19, value);
-    }
-
-    /**
-     * Getter for <code>public.user.language</code>.
-     */
-    public String getLanguage() {
-        return (String) get(19);
-    }
-
-    /**
-     * Setter for <code>public.user.created_by</code>.
-     */
-    public void setCreatedBy(String value) {
-        set(20, value);
-    }
-
-    /**
-     * Getter for <code>public.user.created_by</code>.
-     */
-    public String getCreatedBy() {
-        return (String) get(20);
-    }
-
-    /**
-     * Setter for <code>public.user.created_at</code>.
-     */
-    public void setCreatedAt(LocalDateTime value) {
-        set(21, value);
-    }
-
-    /**
-     * Getter for <code>public.user.created_at</code>.
-     */
-    public LocalDateTime getCreatedAt() {
-        return (LocalDateTime) get(21);
-    }
-
-    /**
-     * Setter for <code>public.user.modified_by</code>.
-     */
-    public void setModifiedBy(String value) {
-        set(22, value);
-    }
-
-    /**
-     * Getter for <code>public.user.modified_by</code>.
-     */
-    public String getModifiedBy() {
-        return (String) get(22);
-    }
-
-    /**
-     * Setter for <code>public.user.modified_at</code>.
-     */
-    public void setModifiedAt(LocalDateTime value) {
-        set(23, value);
-    }
-
-    /**
-     * Getter for <code>public.user.modified_at</code>.
-     */
-    public LocalDateTime getModifiedAt() {
-        return (LocalDateTime) get(23);
-    }
-
-    /**
      * Setter for <code>public.user.locale</code>.
      */
     public void setLocale(String value) {
-        set(24, value);
+        set(19, value);
     }
 
     /**
      * Getter for <code>public.user.locale</code>.
      */
     public String getLocale() {
-        return (String) get(24);
+        return (String) get(19);
+    }
+
+    /**
+     * Setter for <code>public.user.date_time_format</code>.
+     */
+    public void setDateTimeFormat(String value) {
+        set(20, value);
+    }
+
+    /**
+     * Getter for <code>public.user.date_time_format</code>.
+     */
+    public String getDateTimeFormat() {
+        return (String) get(20);
     }
 
     /**
      * Setter for <code>public.user.time_zone</code>.
      */
     public void setTimeZone(String value) {
-        set(25, value);
+        set(21, value);
     }
 
     /**
      * Getter for <code>public.user.time_zone</code>.
      */
     public String getTimeZone() {
-        return (String) get(25);
+        return (String) get(21);
     }
 
     /**
-     * Setter for <code>public.user.date_format</code>.
+     * Setter for <code>public.user.created_by</code>.
      */
-    public void setDateFormat(String value) {
-        set(26, value);
+    public void setCreatedBy(String value) {
+        set(22, value);
     }
 
     /**
-     * Getter for <code>public.user.date_format</code>.
+     * Getter for <code>public.user.created_by</code>.
      */
-    public String getDateFormat() {
-        return (String) get(26);
+    public String getCreatedBy() {
+        return (String) get(22);
+    }
+
+    /**
+     * Setter for <code>public.user.created_at</code>.
+     */
+    public void setCreatedAt(LocalDateTime value) {
+        set(23, value);
+    }
+
+    /**
+     * Getter for <code>public.user.created_at</code>.
+     */
+    public LocalDateTime getCreatedAt() {
+        return (LocalDateTime) get(23);
+    }
+
+    /**
+     * Setter for <code>public.user.modified_by</code>.
+     */
+    public void setModifiedBy(String value) {
+        set(24, value);
+    }
+
+    /**
+     * Getter for <code>public.user.modified_by</code>.
+     */
+    public String getModifiedBy() {
+        return (String) get(24);
+    }
+
+    /**
+     * Setter for <code>public.user.modified_at</code>.
+     */
+    public void setModifiedAt(LocalDateTime value) {
+        set(25, value);
+    }
+
+    /**
+     * Getter for <code>public.user.modified_at</code>.
+     */
+    public LocalDateTime getModifiedAt() {
+        return (LocalDateTime) get(25);
     }
 
     // -------------------------------------------------------------------------
@@ -421,7 +407,7 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
     /**
      * Create a detached, initialised UserRecord
      */
-    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String verificationCode, LocalDateTime verificationCodeSentAt, String newEmail, String resetCode, LocalDateTime resetAt, String remark, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, LocalDateTime lastSignInAt, String language, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt, String locale, String timeZone, String dateFormat) {
+    public UserRecord(String id, String username, String email, String mobileNo, String firstName, String lastName, String passwordHash, String activationCode, String verificationCode, LocalDateTime verificationCodeSentAt, String newEmail, String resetCode, LocalDateTime resetAt, String remark, Boolean activated, Boolean enabled, LocalDateTime accountExpiresAt, LocalDateTime passwordExpiresAt, LocalDateTime lastSignInAt, String locale, String dateTimeFormat, String timeZone, String createdBy, LocalDateTime createdAt, String modifiedBy, LocalDateTime modifiedAt) {
         super(User.USER);
 
         setId(id);
@@ -443,14 +429,13 @@ public class UserRecord extends UpdatableRecordImpl<UserRecord> {
         setAccountExpiresAt(accountExpiresAt);
         setPasswordExpiresAt(passwordExpiresAt);
         setLastSignInAt(lastSignInAt);
-        setLanguage(language);
+        setLocale(locale);
+        setDateTimeFormat(dateTimeFormat);
+        setTimeZone(timeZone);
         setCreatedBy(createdBy);
         setCreatedAt(createdAt);
         setModifiedBy(modifiedBy);
         setModifiedAt(modifiedAt);
-        setLocale(locale);
-        setTimeZone(timeZone);
-        setDateFormat(dateFormat);
         resetChangedOnNotNull();
     }
 }
