@@ -109,6 +109,13 @@ export function AccountForm() {
           options={languages}
           required
         />
+        <SelectFormField 
+          control={form.control} 
+          name="locale" 
+          label="Locale"
+          options={locales}
+          required
+        />
         <ClearableSelectFormField 
           control={form.control} 
           name="timeZone" 
@@ -120,13 +127,6 @@ export function AccountForm() {
           name="dateTimeFormat" 
           label="Date Time Format"
           options={dateTimeFormats}
-        />
-        <SelectFormField 
-          control={form.control} 
-          name="locale" 
-          label="Locale"
-          options={locales}
-          required
         />
 
         <Button type="submit" disabled={saving}>
