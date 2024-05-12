@@ -3,7 +3,7 @@ import { IconChevronsLeft, IconMenu2, IconX } from "@tabler/icons-react"
 import { Layout, LayoutHeader } from "../layouts/layout-definitions"
 import { Button } from "./custom/button"
 import { sidelinks } from "@/data/sidelinks"
-import { useAppInfoProvider } from "@/stores/app-info-provider"
+import { useAppInfo } from "@/stores/app-info-provider"
 import SidebarMenu from "./sidebar-menu"
 import { cn } from "@/libs/utils"
 
@@ -18,7 +18,7 @@ export default function Sidebar2({
   setIsCollapsed,
 }: SidebarProps) {
   const [navOpened, setNavOpened] = useState(false)
-  const appInfoProvider = useAppInfoProvider();
+  const { appInfo } = useAppInfo();
 
   /* Make body not scrollable when navBar is opened */
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Sidebar2({
             <div
                 className={`flex flex-col ms-1 justify-end truncate ${isCollapsed ? "invisible w-0" : "visible w-auto"}`}
             >
-              <span className="flex justify-end text-[0.5rem]">{appInfoProvider.appInfo.ribbonProfile} env</span>
+              <span className="flex justify-end text-[0.5rem]">{appInfo.ribbonProfile} env</span>
               <img
                   src="/assets/images/logos/logo-text.svg"
                   className="intro-y"

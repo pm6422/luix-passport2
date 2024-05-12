@@ -50,11 +50,11 @@ export function AppInfoProvider({
 }
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-export const useAppInfoProvider = () => {
+export const useAppInfo = () => {
   const context = useContext(AppInfoProviderContext)
 
   if (context === undefined) {
-    throw new Error("useAppInfoProvider must be used within a AppInfoProvider")
+    throw new Error("useAppInfo must be used within a AppInfoProvider")
   }
 
   return context
