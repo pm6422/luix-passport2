@@ -31,9 +31,11 @@ import { IconCalendar } from "@tabler/icons-react"
 import { Button } from "@/components/custom/button"
 import { Calendar } from "@/components/ui/calendar"
 import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
+import { useAuthUser } from "@/stores/auth-user-provider"
 import { formatDate } from "@/libs/utils"
 
 export default function FormExample() {
+  const { authUser } = useAuthUser()
   const items = [
     { title: "Extra Components", href: "/extra-components" },
     { title: "Breadcrumb" },
@@ -167,7 +169,7 @@ export default function FormExample() {
                         )}
                       >
                         {field.value ? (
-                          formatDate(field.value)
+                          formatDate(authUser.dateFormatInstance.dateFormat, field.value)
                         ) : (
                           <span>Pick a date</span>
                         )}

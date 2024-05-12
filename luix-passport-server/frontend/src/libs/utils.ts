@@ -5,38 +5,23 @@ import { customAlphabet } from "nanoid"
 import { ColumnSort } from "@tanstack/react-table"
 import { isBoolean, isString, isArray, cloneDeep, toLower } from "lodash"
 
-export const defaultDateTimeFormat = "YYYY-MM-DD HH:mm:ss"
-export const defaultDateFormat = "YYYY-MM-DD"
-
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDateTime(value: string | Date): string {
+export function formatDateTime(dateTimeFormat: string, value: string | Date): string {
   if (!value) {
     return ""
   }
-  return dayjs(value).format(defaultDateTimeFormat)
+  return dayjs(value).format(dateTimeFormat)
 }
 
-export function formatDate(value: string | Date): string {
+export function formatDate(dateFormat: string, value: string | Date): string {
   if (!value) {
     return ""
   }
-  return dayjs(value).format(defaultDateFormat)
+  return dayjs(value).format(dateFormat)
 }
-
-// export function formatDate(
-//   date: Date | string | number,
-//   options: Intl.DateTimeFormatOptions = {}
-// ) {
-//   return new Intl.DateTimeFormat("en-US", {
-//     month: options.month ?? "long",
-//     day: options.day ?? "numeric",
-//     year: options.year ?? "numeric",
-//     ...options,
-//   }).format(new Date(date))
-// }
 
 export function generateId({ length = 8, prefix = "" } = {}) {
   return `${prefix}${customAlphabet(

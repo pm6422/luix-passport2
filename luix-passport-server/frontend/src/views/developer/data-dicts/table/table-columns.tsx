@@ -7,7 +7,7 @@ import { Button } from "@/components/custom/button"
 import { yesNo } from "@/data/yes-no"
 import { FormSchema } from "./table-schema"
 import { EditDialog } from "../dialog/edit-dialog"
-import { formatDateTime } from "@/libs/utils"
+import { DateTime } from "@/components/custom/date-time"
 
 export function tableColumns(
   entityName: string,
@@ -110,7 +110,7 @@ export function tableColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Modified At" />
       ),
-      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("modifiedAt"))}</div>,
+      cell: ({ row }) => <div className="w-[150px]"><DateTime value={row.getValue("modifiedAt")}/></div>,
       enableSorting: true,
       enableHiding: true,
     },

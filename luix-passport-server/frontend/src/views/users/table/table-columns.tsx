@@ -15,7 +15,7 @@ import {
 import { ConfirmPopover } from "@/components/custom/confirm-popover"
 import { toast } from "sonner"
 import { getErrorMessage } from "@/libs/handle-error"
-import { formatDateTime } from "@/libs/utils"
+import { DateTime } from "@/components/custom/date-time"
 
 export function tableColumns(
   entityName: string,
@@ -166,7 +166,7 @@ export function tableColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Last Sign In" />
       ),
-      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("lastSignInAt"))}</div>,
+      cell: ({ row }) => <div className="w-[150px]"><DateTime value={row.getValue("lastSignInAt")}/></div>,
       enableSorting: true,
       enableHiding: true,
     },
@@ -175,7 +175,7 @@ export function tableColumns(
       header: ({ column }) => (
         <DataTableColumnHeader column={column} title="Modified At" />
       ),
-      cell: ({ row }) => <div className="w-[150px]">{formatDateTime(row.getValue("modifiedAt"))}</div>,
+      cell: ({ row }) => <div className="w-[150px]"><DateTime value={row.getValue("modifiedAt")}/></div>,
       enableSorting: true,
       enableHiding: true,
     },
