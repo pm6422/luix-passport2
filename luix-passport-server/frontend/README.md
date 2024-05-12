@@ -62,6 +62,7 @@ npx shadcn-ui@latest add label
 - sign out after changed password
 - session management
 - session period
+- introduce signal
 
 
 

@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { IconUser, IconCodeCircle2, IconApi, IconAssembly, IconLogout } from "@tabler/icons-react"
+import { IconUser, IconCodeCircle2, IconApi, IconVocabulary, IconLogout } from "@tabler/icons-react"
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUser } from "@/stores/auth-user-provider"
 
@@ -58,7 +58,7 @@ export function AccountNav() {
             </Link>
             <Link to="/data-dicts">
               <DropdownMenuItem className="cursor-pointer">
-                <IconAssembly className="size-4 mr-2"/>Data Dictionaries
+                <IconVocabulary className="size-4 mr-2"/>Data Dictionaries
               </DropdownMenuItem>
             </Link>
           </DropdownMenuGroup>
