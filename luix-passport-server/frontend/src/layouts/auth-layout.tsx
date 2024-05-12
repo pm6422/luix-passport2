@@ -64,8 +64,8 @@ export default function AuthLayout() {
             </RoleOnlyUser>
             <div className="ml-auto flex items-center space-x-4">
               {/* <Search /> */}
-              <Button variant="outline" className="animate-pulse relative size-12 rounded-full p-1 bg-red-200 border-0">
-                <IconBell className="text-red-800"></IconBell>
+              <Button variant="outline" className="animate-pulse relative size-12 rounded-full p-1 bg-gray-200 border-0">
+                <IconBell className="text-red-500"></IconBell>
               </Button>
               <AccountNav />
             </div>
