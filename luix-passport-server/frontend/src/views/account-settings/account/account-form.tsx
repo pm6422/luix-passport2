@@ -11,7 +11,7 @@ import { IconReload, IconMailForward } from "@tabler/icons-react"
 import { languages } from "@/data/languages"
 import { locales } from "@/data/locales"
 import { timeZones } from "@/data/time-zones"
-import { dateFormats } from "@/data/date-formats"
+import { dateTimeFormats } from "@/data/date-time-formats"
 import { toast } from "sonner"
 import { useAuthUser } from "@/stores/auth-user-provider"
 import { AccountService } from "@/services/account-service"
@@ -119,7 +119,7 @@ export function AccountForm() {
           control={form.control} 
           name="dateFormat" 
           label="Date Format"
-          options={dateFormats}
+          options={dateTimeFormats}
         />
         <SelectFormField 
           control={form.control} 

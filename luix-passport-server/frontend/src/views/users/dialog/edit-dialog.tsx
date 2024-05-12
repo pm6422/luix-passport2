@@ -14,7 +14,7 @@ import { type FormSchema, formSchema, initialFormState } from "../table/table-sc
 import { Separator } from "@/components/ui/separator"
 import { languages } from "@/data/languages"
 import { timeZones } from "@/data/time-zones"
-import { dateFormats } from "@/data/date-formats"
+import { dateTimeFormats } from "@/data/date-time-formats"
 import { DataDictService } from "@/services/data-dict-service"
 import { UserService } from "@/services/user-service"
 import { merge } from "@/libs/utils"
@@ -122,7 +122,7 @@ export function EditDialog({
             control={form.control} 
             name="dateFormat" 
             label="Date Format"
-            options={dateFormats}
+            options={dateTimeFormats}
             formItemClassName="w-full"
           />
         </div>

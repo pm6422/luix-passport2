@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react"
-import { DateFormat } from "@/data/date-formats"
+import { DateTimeFormat } from "@/data/date-time-formats"
 import { isEmpty } from "lodash"
 
 export type AuthUser = {
@@ -14,7 +14,7 @@ export type AuthUser = {
   enabled: boolean
   roles: Array<string>
   dateFormat: string
-  dateFormatInstance: DateFormat
+  dateFormatInstance: DateTimeFormat
 }
 
 type AuthUserProviderProps = {
