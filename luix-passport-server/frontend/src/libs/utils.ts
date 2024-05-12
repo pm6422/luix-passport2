@@ -12,7 +12,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
 export function formatDateTime(value: string | Date): string {
   if (!value) {
     return ""
