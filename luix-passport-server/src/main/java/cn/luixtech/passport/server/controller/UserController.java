@@ -105,10 +105,6 @@ public class UserController {
         existingOne.setRemark(domain.getRemark());
         existingOne.setEnabled(domain.getEnabled());
         userService.update(existingOne, domain.getRoles());
-        if (domain.getId().equals(AuthUtils.getCurrentUserId())) {
-            // Logout if current user were changed
-            applicationEventPublisher.publishEvent(new LogoutEvent(this, AuthUtils.getCurrentUsername()));
-        }
         return ResponseEntity.ok().headers(httpHeaderCreator.createSuccessHeader("SM1002", domain.getUsername())).build();
     }
 
