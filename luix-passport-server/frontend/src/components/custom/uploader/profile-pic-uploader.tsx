@@ -43,7 +43,7 @@ export function ProfilePicUploader({
         type="button"
         variant="ghost"
         size="icon"
-        className="rounded-full p-1 bg-primary hover:bg-secondary-foreground/30 absolute bottom-1 right-0 border"
+        className="absolute bottom-1 right-0 rounded-full p-1 bg-primary hover:bg-secondary-foreground/30 border"
         onClick={() => fileInputRef.current?.click()}
       >
         <IconPencil className="size-5 ml-2 text-white"/>
