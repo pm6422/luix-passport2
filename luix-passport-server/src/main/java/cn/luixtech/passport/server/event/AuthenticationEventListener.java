@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.event.AbstractAuthenticationFailureEvent;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.authentication.event.LogoutSuccessEvent;
@@ -23,6 +24,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static cn.luixtech.passport.server.domain.UserAuthEvent.AUTH_FAILURE;
+import static cn.luixtech.passport.server.domain.UserAuthEvent.AUTH_SUCCESS;
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUserId;
 import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 
@@ -37,15 +40,15 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
-        String userId = getCurrentUserId();
-        if (StringUtils.isNotEmpty(userId)) {
-            // insert
-            UserAuthEvent domain = new UserAuthEvent();
-            domain.setUserId(userId);
-            domain.setEvent("AuthenticationSuccess");
-            domain.setRemark(event.getSource().getClass().getSimpleName());
-            userAuthEventRepository.save(domain);
-            log.info("Authenticated successfully for user: {}", userId);
+        if (event.getSource() instanceof UsernamePasswordAuthenticationToken token) {
+            if (token.getPrincipal() instanceof AuthUser authUser) {
+                UserAuthEvent domain = new UserAuthEvent();
+                domain.setUserId(authUser.getId());
+                domain.setEvent(AUTH_SUCCESS);
+                domain.setRemark(event.getSource().getClass().getSimpleName());
+                userAuthEventRepository.save(domain);
+                log.info("Authenticated successfully for user: {}", authUser.getId());
+            }
         }
     }
 
@@ -56,7 +59,7 @@ public class AuthenticationEventListener {
             // insert
             UserAuthEvent domain = new UserAuthEvent();
             domain.setUserId(userId);
-            domain.setEvent("AuthenticationFailure");
+            domain.setEvent(AUTH_FAILURE);
             domain.setRemark(StringUtils.abbreviate(event.getException().getMessage(), 64));
             userAuthEventRepository.save(domain);
             log.warn("Authenticate failure for user: {} with exception: {}", userId, event.getException().getMessage());
@@ -75,9 +78,9 @@ public class AuthenticationEventListener {
             if (principal instanceof AuthUser authUser) {
                 if (authUser.getUsername().equals(event.getUsername())) {
                     List<SessionInformation> sessionsInfo = sessionRegistry.getAllSessions(principal, false);
-                    if (null != sessionsInfo && sessionsInfo.size() > 0) {
+                    if (null != sessionsInfo && !sessionsInfo.isEmpty()) {
                         for (SessionInformation sessionInformation : sessionsInfo) {
-                            log.info("Exprire now :" + sessionInformation.getSessionId());
+                            log.info("Expire now :" + sessionInformation.getSessionId());
                             //Expire or logout the user
                             sessionInformation.expireNow();
                         }

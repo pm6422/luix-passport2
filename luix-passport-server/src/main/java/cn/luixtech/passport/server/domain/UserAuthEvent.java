@@ -18,9 +18,11 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(callSuper = true)
 public class UserAuthEvent extends AbstractCreationDomain implements Serializable {
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long   serialVersionUID = 1L;
+    public static final  String AUTH_SUCCESS     = "AuthenticationSuccess";
+    public static final  String AUTH_FAILURE     = "AuthenticationFailure";
 
-    private String        userId;
-    private String        event;
-    private String        remark;
+    private String userId;
+    private String event;
+    private String remark;
 }
