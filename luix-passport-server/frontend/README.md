@@ -56,7 +56,6 @@ Start the server
 - multiple data in same column of table
 - table page no url query param
 - breadcrumbs
-- last sign in at
 - createHashRouter vs. createBrowserRouter
 - session management
 - introduce signal

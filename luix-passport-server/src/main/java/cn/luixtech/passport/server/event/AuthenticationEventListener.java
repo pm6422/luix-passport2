@@ -1,10 +1,14 @@
 package cn.luixtech.passport.server.event;
 
 import cn.luixtech.passport.server.config.oauth.AuthUser;
+import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.domain.UserAuthEvent;
 import cn.luixtech.passport.server.repository.UserAuthEventRepository;
+import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.service.SpringSessionService;
+import cn.luixtech.passport.server.service.UserService;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
+import com.luixtech.utilities.exception.DataNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +26,7 @@ import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.session.Session;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static cn.luixtech.passport.server.domain.UserAuthEvent.AUTH_FAILURE;
@@ -33,10 +38,12 @@ import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 @Component
 @AllArgsConstructor
 public class AuthenticationEventListener {
-    private UserAuthEventRepository                             userAuthEventRepository;
-    private SpringSessionService                                springSessionService;
-    private FindByIndexNameSessionRepository<? extends Session> sessions;
-    private SessionRegistry                                     sessionRegistry;
+    private       UserAuthEventRepository                             userAuthEventRepository;
+    private       SpringSessionService                                springSessionService;
+    private final UserRepository                                      userRepository;
+    private       UserService                                         userService;
+    private       FindByIndexNameSessionRepository<? extends Session> sessions;
+    private       SessionRegistry                                     sessionRegistry;
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
@@ -47,6 +54,10 @@ public class AuthenticationEventListener {
                 domain.setEvent(AUTH_SUCCESS);
                 domain.setRemark(event.getSource().getClass().getSimpleName());
                 userAuthEventRepository.save(domain);
+
+                User user = userRepository.findById(authUser.getId()).orElseThrow(() -> new DataNotFoundException(authUser.getId()));
+                user.setLastSignInAt(LocalDateTime.now());
+                userService.update(user);
                 log.info("Authenticated successfully for user: {}", authUser.getId());
             }
         }
