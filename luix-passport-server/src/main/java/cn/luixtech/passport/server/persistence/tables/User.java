@@ -143,19 +143,9 @@ public class User extends TableImpl<UserRecord> {
     public final TableField<UserRecord, LocalDateTime> LAST_SIGN_IN_AT = createField(DSL.name("last_sign_in_at"), SQLDataType.LOCALDATETIME(6), this, "");
 
     /**
-     * The column <code>public.user.locale</code>.
+     * The column <code>public.user.language</code>.
      */
-    public final TableField<UserRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
-
-    /**
-     * The column <code>public.user.date_time_format</code>.
-     */
-    public final TableField<UserRecord, String> DATE_TIME_FORMAT = createField(DSL.name("date_time_format"), SQLDataType.VARCHAR(20).nullable(false), this, "");
-
-    /**
-     * The column <code>public.user.time_zone</code>.
-     */
-    public final TableField<UserRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(30).nullable(false), this, "");
+    public final TableField<UserRecord, String> LANGUAGE = createField(DSL.name("language"), SQLDataType.VARCHAR(25).nullable(false), this, "");
 
     /**
      * The column <code>public.user.created_by</code>.
@@ -176,6 +166,21 @@ public class User extends TableImpl<UserRecord> {
      * The column <code>public.user.modified_at</code>.
      */
     public final TableField<UserRecord, LocalDateTime> MODIFIED_AT = createField(DSL.name("modified_at"), SQLDataType.LOCALDATETIME(6), this, "");
+
+    /**
+     * The column <code>public.user.locale</code>.
+     */
+    public final TableField<UserRecord, String> LOCALE = createField(DSL.name("locale"), SQLDataType.VARCHAR(10).nullable(false), this, "");
+
+    /**
+     * The column <code>public.user.time_zone</code>.
+     */
+    public final TableField<UserRecord, String> TIME_ZONE = createField(DSL.name("time_zone"), SQLDataType.VARCHAR(30).nullable(false), this, "");
+
+    /**
+     * The column <code>public.user.date_format</code>.
+     */
+    public final TableField<UserRecord, String> DATE_FORMAT = createField(DSL.name("date_format"), SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     private User(Name alias, Table<UserRecord> aliased) {
         this(alias, aliased, null);
