@@ -57,7 +57,6 @@ Start the server
 - table page no url query param
 - breadcrumbs
 - createHashRouter vs. createBrowserRouter
-- session management
 - introduce signal
 
 

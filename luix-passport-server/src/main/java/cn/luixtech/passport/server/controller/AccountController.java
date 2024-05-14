@@ -10,7 +10,6 @@ import cn.luixtech.passport.server.pojo.PasswordRecovery;
 import cn.luixtech.passport.server.repository.UserProfilePicRepository;
 import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.service.MailService;
-import cn.luixtech.passport.server.service.SpringSessionService;
 import cn.luixtech.passport.server.service.UserProfilePicService;
 import cn.luixtech.passport.server.service.UserService;
 import cn.luixtech.passport.server.utils.AuthUtils;
@@ -63,7 +62,6 @@ public class AccountController {
     private final UserProfilePicRepository  userProfilePicRepository;
     private final UserService               userService;
     private final UserProfilePicService     userProfilePicService;
-    private final SpringSessionService      springSessionService;
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Operation(summary = "get current user who are signed in")
@@ -222,7 +220,7 @@ public class AccountController {
 
     @Operation(summary = "sign out current user")
     @PostMapping("/api/accounts/sign-out")
-    public void signOut() {
-        springSessionService.deleteByPrincipalName(AuthUtils.getCurrentUsername());
+    public void signOut(HttpServletRequest request) {
+        request.getSession(false).invalidate();
     }
 }
