@@ -5,7 +5,6 @@ import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.domain.UserAuthEvent;
 import cn.luixtech.passport.server.repository.UserAuthEventRepository;
 import cn.luixtech.passport.server.repository.UserRepository;
-import cn.luixtech.passport.server.service.SpringSessionService;
 import cn.luixtech.passport.server.service.UserService;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
 import com.luixtech.utilities.exception.DataNotFoundException;
@@ -22,8 +21,6 @@ import org.springframework.security.authorization.event.AuthorizationEvent;
 import org.springframework.security.authorization.event.AuthorizationGrantedEvent;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.session.FindByIndexNameSessionRepository;
-import org.springframework.session.Session;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -38,12 +35,10 @@ import static cn.luixtech.passport.server.utils.AuthUtils.getCurrentUsername;
 @Component
 @AllArgsConstructor
 public class AuthenticationEventListener {
-    private       UserAuthEventRepository                             userAuthEventRepository;
-    private       SpringSessionService                                springSessionService;
-    private final UserRepository                                      userRepository;
-    private       UserService                                         userService;
-    private       FindByIndexNameSessionRepository<? extends Session> sessions;
-    private       SessionRegistry                                     sessionRegistry;
+    private       UserAuthEventRepository userAuthEventRepository;
+    private final UserRepository          userRepository;
+    private       UserService             userService;
+    private       SessionRegistry         sessionRegistry;
 
     @EventListener
     public void authenticationSuccessEvent(AuthenticationSuccessEvent event) {
@@ -79,11 +74,6 @@ public class AuthenticationEventListener {
 
     @EventListener
     public void logoutEvent(LogoutEvent event) {
-        springSessionService.deleteByPrincipalName(event.getUsername());
-        sessions.findByPrincipalName(event.getUsername()).values().stream().forEach(session -> {
-//            session.i
-        });
-
         List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
         for (Object principal : allPrincipals) {
             if (principal instanceof AuthUser authUser) {

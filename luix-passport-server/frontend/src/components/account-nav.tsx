@@ -14,6 +14,7 @@ import { IconUser, IconCodeCircle2, IconApi, IconVocabulary, IconLogout } from "
 import { RoleDeveloper } from "@/components/custom/role/role-developer"
 import { useAuthUser } from "@/stores/auth-user-provider"
 import { useAppInfo } from "@/stores/app-info-provider"
+import { AccountService } from "@/services/account-service.ts";
 
 export function AccountNav() {
   const { authUser } = useAuthUser()
@@ -67,7 +68,7 @@ export function AccountNav() {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
         </RoleDeveloper>
-        <DropdownMenuItem className="cursor-pointer" onClick={() => window.location.href = "/sign-out"}>
+        <DropdownMenuItem className="cursor-pointer" onClick={() => AccountService.signOut()}>
           <IconLogout className="size-4 mr-2"/>Sign out
           {/*<DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>*/}
         </DropdownMenuItem>
