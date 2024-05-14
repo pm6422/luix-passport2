@@ -6,7 +6,6 @@ import { Button } from "@/components/custom/button"
 import { Form } from "@/components/ui/form"
 import InputFormField from "@/components/custom/form-field/input"
 import SelectFormField from "@/components/custom/form-field/select"
-import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import { IconReload, IconMailForward } from "@tabler/icons-react"
 import { locales } from "@/data/locales"
 import { timeZones } from "@/data/time-zones"
@@ -26,8 +25,8 @@ const formSchema = z.object({
   firstName: z.string().optional(),
   lastName: z.string().optional(),
   locale: z.string().trim().min(1, { message: "Required" }),
-  timeZone: z.string().trim().optional(),
-  dateTimeFormat: z.string().trim().optional(),
+  timeZone: z.string().trim().min(1, { message: "Required" }),
+  dateTimeFormat: z.string().trim().min(1, { message: "Required" }),
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -107,17 +106,19 @@ export function AccountForm() {
           options={locales}
           required
         />
-        <ClearableSelectFormField 
+        <SelectFormField 
           control={form.control} 
           name="timeZone" 
           label="Time Zone"
           options={timeZones}
+          required
         />
-        <ClearableSelectFormField 
+        <SelectFormField
           control={form.control} 
           name="dateTimeFormat" 
           label="Date Time Format"
           options={dateTimeFormats}
+          required
         />
 
         <Button type="submit" disabled={saving}>

@@ -7,7 +7,6 @@ import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
 import SelectFormField from "@/components/custom/form-field/select"
-import ClearableSelectFormField from "@/components/custom/form-field/clearable-select"
 import PhoneInputFormField from "@/components/custom/form-field/phone-input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
@@ -119,20 +118,22 @@ export function EditDialog({
         />
 
         <div className="flex items-center gap-2">
-          <ClearableSelectFormField 
+          <SelectFormField 
             control={form.control} 
             name="timeZone" 
             label="Time Zone"
             options={timeZones}
             formItemClassName="w-full"
+            required
           />
 
-          <ClearableSelectFormField 
+          <SelectFormField 
             control={form.control} 
             name="dateTimeFormat" 
             label="Date Time Format"
             options={dateTimeFormats}
             formItemClassName="w-full"
+            required
           />
         </div>
 
