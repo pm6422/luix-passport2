@@ -13,6 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/custom/button"
 import { IconSelector, IconCheck, IconX } from "@tabler/icons-react"
 import { cn } from "@/libs/utils"
@@ -86,7 +87,7 @@ export const ClearableSelect = ({
         <Command>
           <CommandInput placeholder="Search..." />
           <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup>
+          <ScrollArea className="max-h-72 p-1">
             {options.map((option) => (
               <CommandItem
                 value={option.label}
@@ -107,7 +108,7 @@ export const ClearableSelect = ({
                 {option.label}
               </CommandItem>
             ))}
-          </CommandGroup>
+          </ScrollArea>
           <CommandSeparator />
             <CommandGroup>
               <div className="flex items-center justify-between">
