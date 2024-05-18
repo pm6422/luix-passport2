@@ -58,7 +58,6 @@ Start the server
 - breadcrumbs
 - createHashRouter vs. createBrowserRouter
 - introduce signal
-- dropdown popup scroll y
 
 
 
