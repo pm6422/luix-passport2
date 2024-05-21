@@ -53,8 +53,6 @@ Start the server
 - register page
 - server start vite
 - table page no url query param
-- breadcrumbs
-- createHashRouter vs. createBrowserRouter
 - introduce signal
 
 
