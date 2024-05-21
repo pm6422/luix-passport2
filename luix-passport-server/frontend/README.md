@@ -49,8 +49,8 @@ Start the server
 ## TODOs
 - role and permissions page
 - dashboard page
-- forget password page
 - register page
+- forget password page
 - server start vite
 - table page no url query param
 - introduce signal
