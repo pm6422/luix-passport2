@@ -50,7 +50,7 @@ public interface UserService {
 
     String generateRandomVerificationCode();
 
-    User extendAccount(String id, long amountToAdd, TemporalUnit unit);
+    User extendAccountValidityPeriod(String id, long amountToAdd, TemporalUnit unit);
 
     void changeToNewEmail(User currentUser);
 }
