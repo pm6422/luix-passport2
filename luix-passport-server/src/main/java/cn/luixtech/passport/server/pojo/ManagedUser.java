@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
+import java.io.Serial;
 import java.util.Set;
 
 
@@ -20,6 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class ManagedUser extends User {
 
+    @Serial
     private static final long serialVersionUID        = -8095593058946091229L;
     public static final  int  RAW_PASSWORD_MIN_LENGTH = 5;
     public static final  int  RAW_PASSWORD_MAX_LENGTH = 50;
