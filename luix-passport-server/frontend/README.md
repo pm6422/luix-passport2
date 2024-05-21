@@ -52,7 +52,6 @@ Start the server
 - forget password page
 - register page
 - server start vite
-- datetime string to ms
 - multiple data in same column of table
 - table page no url query param
 - breadcrumbs
