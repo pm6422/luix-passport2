@@ -47,7 +47,6 @@ Start the server
 ```
 
 ## TODOs
-- role and permissions page
 - dashboard page
 - register page
 - forget password page

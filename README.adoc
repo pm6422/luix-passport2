@@ -78,7 +78,7 @@ npm run all:up
 * Navigate to `http://127.0.0.1:4003` to access client
 
 |===
-|Username |Password |Authorities
+|Username |Password |Roles
 
 |user
 |user
