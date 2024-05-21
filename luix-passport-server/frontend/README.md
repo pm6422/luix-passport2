@@ -52,7 +52,6 @@ Start the server
 - forget password page
 - register page
 - server start vite
-- multiple data in same column of table
 - table page no url query param
 - breadcrumbs
 - createHashRouter vs. createBrowserRouter
