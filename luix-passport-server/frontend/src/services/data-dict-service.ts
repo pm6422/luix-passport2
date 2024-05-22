@@ -16,7 +16,7 @@ export class DataDictService {
     return http.get("api/data-dicts", { params: { page: 0, size: 2000, categoryCode: categoryCode, enabled: enabled }})
   }
 
-  public static findById(id: String): Promise<any> {
+  public static findById(id: string): Promise<any> {
     return http.get("api/data-dicts/" + id)
   }
 
@@ -28,7 +28,7 @@ export class DataDictService {
     return http.put("api/data-dicts", model)
   }
 
-  public static deleteById(id: String): Promise<any> {
+  public static deleteById(id: string): Promise<any> {
     return http.delete("api/data-dicts/" + id)
   }
 

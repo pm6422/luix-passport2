@@ -8,7 +8,7 @@ export class Oauth2ClientService {
     return http.get("api/oauth2-clients", { params: { page: 0, size: 2000, enabled: enabled } })
   }
 
-  public static findById(id: String): Promise<any> {
+  public static findById(id: string): Promise<any> {
     return http.get("api/oauth2-clients/" + id)
   }
 
@@ -20,7 +20,7 @@ export class Oauth2ClientService {
     return http.put("api/oauth2-clients", model)
   }
 
-  public static deleteById(id: String): Promise<any> {
+  public static deleteById(id: string): Promise<any> {
     return http.delete("api/oauth2-clients/" + id)
   }
 

@@ -12,7 +12,7 @@ export class UserService {
     return http.get("api/users", { params: { page: 0, size: 2000, enabled: enabled }})
   }
 
-  public static findById(id: String): Promise<any> {
+  public static findById(id: string): Promise<any> {
     return http.get("api/users/" + id)
   }
 
@@ -24,11 +24,11 @@ export class UserService {
     return http.put("api/users", model)
   }
 
-  public static deleteById(id: String): Promise<any> {
+  public static deleteById(id: string): Promise<any> {
     return http.delete("api/users/" + id)
   }
 
-  public static resetPassword(id: String): Promise<any> {
+  public static resetPassword(id: string): Promise<any> {
     return http.put("api/users/reset-password/" + id)
   }
 }
