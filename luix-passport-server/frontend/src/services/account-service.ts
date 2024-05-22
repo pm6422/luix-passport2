@@ -45,7 +45,8 @@ export class AccountService {
     return http.post("api/accounts/profile-pic/upload", formData)
   }
 
-  public static signOut(): Promise<any> {
-    return http.post("api/accounts/sign-out")
+  public static async signOut(): Promise<any> {
+    await http.post("api/accounts/sign-out")
+    window.location.reload()
   }
 }
