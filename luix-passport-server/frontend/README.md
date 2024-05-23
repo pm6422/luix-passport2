@@ -50,7 +50,6 @@ Start the server
 - dashboard page
 - register page
 - forget password page
-- server start vite
 - table page no url query param
 - introduce signal
 
