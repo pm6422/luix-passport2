@@ -44,7 +44,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.List;
 import java.util.Map;
@@ -193,13 +192,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         domain.setResetAt(null);
         domain.setActivated(false);
         domain.setEnabled(true);
-        domain.setPasswordExpiresAt(LocalDateTime.now().plus(6, ChronoUnit.MONTHS));
+        domain.setPasswordExpiresAt(LocalDateTime.now().plusMonths(6));
         domain.setLocale(env.getProperty("spring.web.locale"));
         domain.setDateTimeFormat("2021-09-10 10:15:00");
         domain.setTimeZone("Asia/Shanghai (GMT +08:00)");
 
         if (!permanentAccount) {
-            domain.setAccountExpiresAt(LocalDateTime.now().plus(30, ChronoUnit.DAYS));
+            domain.setAccountExpiresAt(LocalDateTime.now().plusDays(30));
         }
 
         userRepository.save(domain);
@@ -297,7 +296,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void resetPassword(String resetCode, String newRawPassword) {
         User user = userRepository.findOneByResetCode(resetCode).orElseThrow(() -> new DataNotFoundException(resetCode));
 
-        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetAt().plus(1, ChronoUnit.DAYS)), messageCreator.getMessage("UE1023"));
+        Validate.isTrue(LocalDateTime.now().isBefore(user.getResetAt().plusDays(1)), messageCreator.getMessage("UE1023"));
 
         user.setPasswordHash(BCRYPT_PASSWORD_ENCODER.encode(newRawPassword));
         user.setResetCode(null);
