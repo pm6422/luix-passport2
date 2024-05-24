@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client"
-import { AppInfoService } from "@/services/app-info-service"
+import { AppInfoService } from "./services/app-info-service"
 import { AccountService } from "./services/account-service"
 import { AppInfoProvider } from "@/stores/app-info-provider"
 import { AuthUserProvider } from "./stores/auth-user-provider"
