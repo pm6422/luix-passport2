@@ -5,6 +5,6 @@ import { AccountService } from "./src/services/account-service"
 import Main from "./src/main"
 
 Promise.all([AppInfoService.load(), AccountService.getCurrentAccount()]).then(results => {
-    const [appInfo, authUser] = results
-    createRoot(document.getElementById("root")!).render(createElement(Main, { appInfo, authUser }))
+    createRoot(document.getElementById("root")!)
+        .render(createElement(Main, { appInfo: results[0], authUser: results[1] }))
 })
