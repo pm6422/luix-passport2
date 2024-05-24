@@ -1,3 +1,4 @@
+// import React from "react"
 import { AppInfoProvider } from "@/stores/app-info-provider"
 import { AuthUserProvider } from "./stores/auth-user-provider"
 import { ThemeProvider } from "@/stores/theme-provider"
@@ -29,4 +30,15 @@ export default function Main({ appInfo, authUser }: Props) {
             </ThemeProvider>
         </AuthUserProvider>
     </AppInfoProvider>;
+
+    // return <React.StrictMode>
+    //         <AppInfoProvider defaultValue={appInfo}>
+    //         <AuthUserProvider defaultValue={authUser}>
+    //             <ThemeProvider>
+    //                 <RouterProvider router={router}/>
+    //                 <Toaster/>
+    //             </ThemeProvider>
+    //         </AuthUserProvider>
+    //     </AppInfoProvider>
+    // </React.StrictMode>;
 }
