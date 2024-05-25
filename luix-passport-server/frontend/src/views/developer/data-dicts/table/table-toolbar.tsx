@@ -5,7 +5,7 @@ import { Button } from "@/components/custom/button"
 import InputFormField from "@/components/custom/form-field/input"
 import { IconPlus, IconUpload, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
-import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
+import { type DataDict, type DataDictCriteria, dataDictCriteriaSchema, initialDataDictCriteriaState } from "@/domains/data-dict"
 import { type UploadFormSchema } from "@/components/custom/uploader/upload-dialog"
 import { UploadDialog } from "@/components/custom/uploader/upload-dialog"
 import {
@@ -31,8 +31,8 @@ import {
 
 interface DataTableToolbarProps{
   entityName: string,
-  loadPage: (pageNo: number | undefined, pageSize: number | undefined, sorts: Array<string> | undefined, criteria: CriteriaSchema) => void,
-  save: (formData: FormSchema) => Promise<void>,
+  loadPage: (pageNo: number | undefined, pageSize: number | undefined, sorts: Array<string> | undefined, criteria: DataDictCriteria) => void,
+  save: (formData: DataDict) => Promise<void>,
   upload: (formData: UploadFormSchema) => Promise<Array<void>>
 }
 
@@ -43,12 +43,12 @@ export function DataTableToolbar ({
   upload
 }: DataTableToolbarProps) {
   const [isFilterPopoverOpen, setIsFilterPopoverOpen] = useState(false)
-  const form = useForm<CriteriaSchema>({
-    resolver: zodResolver(criteriaSchema),
-    defaultValues: initialCriteriaState
+  const form = useForm<DataDictCriteria>({
+    resolver: zodResolver(dataDictCriteriaSchema),
+    defaultValues: initialDataDictCriteriaState
   })
 
-  function onSubmit(formData: CriteriaSchema): void {
+  function onSubmit(formData: DataDictCriteria): void {
     loadPage(undefined, undefined, undefined, formData)
     setIsFilterPopoverOpen(false)
   }

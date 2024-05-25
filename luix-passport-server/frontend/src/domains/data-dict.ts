@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const formSchema = z.object({
+export const dataDictSchema = z.object({
   id: z.string().optional(),
   num: z.string().optional(),
   categoryCode: z.string().trim().min(1, { message: "Required" }),
@@ -11,9 +11,9 @@ export const formSchema = z.object({
   modifiedAt: z.string().optional()
 })
 
-export type FormSchema = z.infer<typeof formSchema>
+export type DataDict = z.infer<typeof dataDictSchema>
 
-export const initialFormState: FormSchema = {
+export const initialDataDictState: DataDict = {
   id: "",
   num: "",
   categoryCode: "",
@@ -24,15 +24,15 @@ export const initialFormState: FormSchema = {
   modifiedAt: ""
 }
 
-export const criteriaSchema = z.object({
+export const dataDictCriteriaSchema = z.object({
   num: z.string().optional(),
   categoryCode: z.string().optional(),
   enabled: z.string().optional()
 })
 
-export type CriteriaSchema = z.infer<typeof criteriaSchema>
+export type DataDictCriteria = z.infer<typeof dataDictCriteriaSchema>
 
-export const initialCriteriaState: CriteriaSchema = {
+export const initialDataDictCriteriaState: DataDictCriteria = {
   num: "",
   categoryCode: "",
   enabled: ""

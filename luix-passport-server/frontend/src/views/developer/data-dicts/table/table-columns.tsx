@@ -5,7 +5,7 @@ import { DataTableColumnHeader } from "@/components/custom/data-table/data-table
 import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
 import { Button } from "@/components/custom/button"
 import { yesNo } from "@/data/yes-no"
-import { FormSchema } from "./table-schema"
+import { DataDict } from "@/domains/data-dict"
 import { EditDialog } from "../dialog/edit-dialog"
 import { DateTime } from "@/components/custom/date-time"
 
@@ -13,7 +13,7 @@ export function tableColumns(
   entityName: string,
   save: (formData: any) => Promise<void>,
   deleteRow: (row: any) => Promise<void>
-): ColumnDef<FormSchema>[] {
+): ColumnDef<DataDict>[] {
 
   return [
     {
