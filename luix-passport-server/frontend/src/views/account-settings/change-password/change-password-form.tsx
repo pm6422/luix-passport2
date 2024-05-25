@@ -60,7 +60,7 @@ export function ChangePasswordForm() {
     })
   }
 
-  function send(): Promise<any> {
+  function send(): Promise<void> {
     return AccountService.sendPasswordChangeVerificationCode()
   }
 
@@ -79,7 +79,7 @@ export function ChangePasswordForm() {
     })
   }
 
-  function save(formData: FormSchema): Promise<any> {
+  function save(formData: FormSchema): Promise<void> {
     return AccountService.updatePassword(formData)
   }
 

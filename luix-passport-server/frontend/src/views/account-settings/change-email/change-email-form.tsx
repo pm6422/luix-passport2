@@ -69,7 +69,7 @@ export function ChangeEmailForm() {
     })
   }
 
-  function send(email: string): Promise<any> {
+  function send(email: string): Promise<void> {
     return AccountService.sendEmailChangeVerificationCode(email)
   }
   
@@ -89,7 +89,7 @@ export function ChangeEmailForm() {
     })
   }
 
-  function save(formData: FormSchema): Promise<any> {
+  function save(formData: FormSchema): Promise<void> {
     return AccountService.changeEmail(formData.verificationCode)
   }
 

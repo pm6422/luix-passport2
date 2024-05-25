@@ -50,7 +50,7 @@ export default function ProfileForm() {
     })
   }
 
-  function save(form: FormSchema): Promise<any> {
+  function save(form: FormSchema): Promise<void> {
     const formData = new FormData()
     // parse base64 to file
     formData.append("file", form.file)

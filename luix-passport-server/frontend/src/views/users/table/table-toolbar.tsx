@@ -30,7 +30,7 @@ import {
 interface DataTableToolbarProps{
   entityName: string,
   loadPage: (pageNo: number | undefined, pageSize: number | undefined, sorts: Array<string> | undefined, criteria: CriteriaSchema) => void,
-  save: (formData: FormSchema) => Promise<any>
+  save: (formData: FormSchema) => Promise<void>
 }
 
 export function DataTableToolbar ({

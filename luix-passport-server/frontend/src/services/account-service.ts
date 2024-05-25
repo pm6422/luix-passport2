@@ -21,27 +21,27 @@ export class AccountService {
     }
   }
 
-  public static update(model: any): Promise<any> {
+  public static update(model: any): Promise<void> {
     return http.put("api/accounts/user", model)
   }
 
-  public static sendEmailChangeVerificationCode(email: string): Promise<any> {
+  public static sendEmailChangeVerificationCode(email: string): Promise<void> {
     return http.post("api/accounts/request-email-change-verification-code?email=" + email)
   }
 
-  public static sendPasswordChangeVerificationCode(): Promise<any> {
+  public static sendPasswordChangeVerificationCode(): Promise<void> {
     return http.post("api/accounts/request-password-change-verification-code")
   }
 
-  public static updatePassword(model: any): Promise<any> {
+  public static updatePassword(model: any): Promise<void> {
     return http.put("api/accounts/password", model)
   }
 
-  public static changeEmail(verificationCode: string): Promise<any> {
+  public static changeEmail(verificationCode: string): Promise<void> {
     return http.post("api/accounts/change-email?verificationCode=" + verificationCode)
   }
 
-  public static uploadProfilePicture(formData: FormData): Promise<any> {
+  public static uploadProfilePicture(formData: FormData): Promise<void> {
     return http.post("api/accounts/profile-pic/upload", formData)
   }
 

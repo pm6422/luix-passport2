@@ -22,7 +22,7 @@ interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
   id?: string,
-  save: (formData: FormSchema) => Promise<any>,
+  save: (formData: FormSchema) => Promise<void>,
   afterSave?: (success: boolean) => void
 }
 

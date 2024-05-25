@@ -61,7 +61,7 @@ export function AccountForm() {
     })
   }
 
-  function save(formData: FormSchema): Promise<any> {
+  function save(formData: FormSchema): Promise<void> {
     return AccountService.update(formData)
   }
 

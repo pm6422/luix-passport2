@@ -26,7 +26,7 @@ export default function DataDict() {
     })
   }
 
-  function save(formData: FormSchema): Promise<any> {
+  function save(formData: FormSchema): Promise<void> {
     const res = formData.id ? Oauth2ClientService.update(formData) : Oauth2ClientService.create(formData)
     res.then(() => {
       loadPage()
@@ -34,7 +34,7 @@ export default function DataDict() {
     return res
   }
 
-  function deleteRow(row: FormSchema): Promise<any> {
+  function deleteRow(row: FormSchema): Promise<void> {
     if(!row.id) {
       return Promise.reject("Invalid empty id")
     }
@@ -43,7 +43,7 @@ export default function DataDict() {
     })
   }
 
-  function deleteRows(rows: Array<FormSchema>): Promise<any> {
+  function deleteRows(rows: Array<FormSchema>): Promise<Array<void>> {
     return Promise.all(rows.map(deleteRow))
   }
 

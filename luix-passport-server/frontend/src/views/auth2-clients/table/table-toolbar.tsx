@@ -10,7 +10,7 @@ import { Form } from "@/components/ui/form"
 interface DataTableToolbarProps{
   entityName: string,
   loadPage: (criteria: CriteriaSchema) => void,
-  save: (formData: FormSchema) => Promise<any>
+  save: (formData: FormSchema) => Promise<void>
 }
 
 export function DataTableToolbar ({

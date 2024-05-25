@@ -10,8 +10,8 @@ import { EditDialog } from "../dialog/edit-dialog"
 
 export function tableColumns(
   entityName: string,
-  save: (formData: any) => Promise<any>,
-  deleteRow: (row: any) => Promise<any>, 
+  save: (formData: any) => Promise<void>,
+  deleteRow: (row: any) => Promise<void>,
 ): ColumnDef<FormSchema>[] {
   return [
     {
