@@ -1,4 +1,5 @@
 import http from "@/axios"
+// import { type FormSchema } from "@/views/developer/data-dicts/table/table-schema"
 
 export class DataDictService {
   constructor() {
@@ -20,23 +21,23 @@ export class DataDictService {
     return http.get("api/data-dicts/" + id)
   }
 
-  public static create(model: any): Promise<any> {
+  public static create(model: any): Promise<void> {
     return http.post("api/data-dicts", model)
   }
 
-  public static update(model: any): Promise<any> {
+  public static update(model: any): Promise<void> {
     return http.put("api/data-dicts", model)
   }
 
-  public static deleteById(id: string): Promise<any> {
+  public static deleteById(id: string): Promise<void> {
     return http.delete("api/data-dicts/" + id)
   }
 
-  public static upload(formData: FormData): Promise<any> {
+  public static upload(formData: FormData): Promise<void> {
     return http.post("api/data-dicts/import", formData)
   }
 
-  public static batchUpdate(ids: Array<string>, targetCategoryCode: string): Promise<any> {
+  public static batchUpdate(ids: Array<string>, targetCategoryCode: string): Promise<void> {
     return http.put("api/data-dicts/batch-update", { ids: ids, targetCategoryCode: targetCategoryCode })
   }
 }
