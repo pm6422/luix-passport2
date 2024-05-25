@@ -5,7 +5,7 @@ import { DataTableColumnHeader } from "@/components/custom/data-table/data-table
 import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
 import { Button } from "@/components/custom/button"
 import { yesNo } from "@/data/yes-no"
-import { FormSchema } from "./table-schema"
+import { User } from "@/domains/user"
 import { EditDialog } from "../dialog/edit-dialog"
 import {
   DropdownMenu,
@@ -19,12 +19,12 @@ import { DateTime } from "@/components/custom/date-time"
 
 export function tableColumns(
   entityName: string,
-  save: (formData: FormSchema) => Promise<void>,
-  deleteRow: (row: FormSchema) => Promise<void>,
-  resetPassword: (row: FormSchema) => Promise<void>
-): ColumnDef<FormSchema>[] {
+  save: (formData: User) => Promise<void>,
+  deleteRow: (row: User) => Promise<void>,
+  resetPassword: (row: User) => Promise<void>
+): ColumnDef<User>[] {
 
-  function clickResetYes(row: FormSchema): void {
+  function clickResetYes(row: User): void {
     toast.promise(resetPassword(row), {
       loading: "Resetting password ...",
       success: () => {

@@ -3,7 +3,7 @@ import { LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/server-pagination-data-table"
 import { tableColumns } from "./table/table-columns"
-import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
+import { type User, type UserCriteriaSchema } from "@/domains/user"
 import { UserService } from "@/services/user-service"
 
 export default function DataDict() {
@@ -13,7 +13,7 @@ export default function DataDict() {
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
-  function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ["modifiedAt,desc"], criteria: CriteriaSchema = {}): void {
+  function loadPage(pageNo: number = 0, pageSize: number = 10, sorts: Array<string> = ["modifiedAt,desc"], criteria: UserCriteriaSchema = {}): void {
     UserService.find({
       page: pageNo,
       size: pageSize,
@@ -30,7 +30,7 @@ export default function DataDict() {
     })
   }
 
-  function save(formData: FormSchema): Promise<void> {
+  function save(formData: User): Promise<void> {
     const res = formData.id ? UserService.update(formData) : UserService.create(formData)
     res.then(() => {
       loadPage()
@@ -38,7 +38,7 @@ export default function DataDict() {
     return res
   }
 
-  function deleteRow(row: FormSchema): Promise<void> {
+  function deleteRow(row: User): Promise<void> {
     if(!row.id) {
       return Promise.reject("Invalid empty id")
     }
@@ -47,11 +47,11 @@ export default function DataDict() {
     })
   }
 
-  function deleteRows(rows: Array<FormSchema>): Promise<Array<void>> {
+  function deleteRows(rows: Array<User>): Promise<Array<void>> {
     return Promise.all(rows.map(deleteRow))
   }
 
-  function resetPassword(row: FormSchema): Promise<void> {
+  function resetPassword(row: User): Promise<void> {
     if(!row.id) {
       return Promise.reject("Invalid empty id")
     }

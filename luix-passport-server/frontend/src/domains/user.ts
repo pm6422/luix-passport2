@@ -1,7 +1,7 @@
 import { z } from "zod"
 import { isValidPhoneNumber } from "react-phone-number-input"
 
-export const formSchema = z.object({
+export const userSchema = z.object({
   id: z.string().optional(),
   username: z.string().trim().min(1, { message: "Required" }),
   email: z.string().trim().min(1, { message: "Required" }).email("Invalid email format"),
@@ -25,9 +25,9 @@ export const formSchema = z.object({
   modifiedAt: z.string().optional()
 })
 
-export type FormSchema = z.infer<typeof formSchema>
+export type User = z.infer<typeof userSchema>
 
-export const initialFormState: FormSchema = {
+export const initialUserState: User = {
   id: "",
   username: "",
   email: "",
@@ -47,16 +47,16 @@ export const initialFormState: FormSchema = {
   createdAt: "",
   modifiedAt: ""
 }
-export const criteriaSchema = z.object({
+export const userCriteriaSchema = z.object({
   username: z.string().optional(),
   email: z.string().optional(),
   mobileNo: z.string().optional(),
   enabled: z.string().optional()
 })
 
-export type CriteriaSchema = z.infer<typeof criteriaSchema>
+export type UserCriteriaSchema = z.infer<typeof userCriteriaSchema>
 
-export const initialCriteriaState: CriteriaSchema = {
+export const initialUserCriteriaState: UserCriteriaSchema = {
   username: "",
   email: "",
   mobileNo: "",

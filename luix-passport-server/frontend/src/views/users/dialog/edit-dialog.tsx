@@ -10,7 +10,7 @@ import SwitchFormField from "@/components/custom/form-field/switch"
 import SelectFormField from "@/components/custom/form-field/select"
 import PhoneInputFormField from "@/components/custom/form-field/phone-input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
+import { type User, userSchema, initialUserState } from "../../../domains/user"
 import { type DataDict } from "@/domains/data-dict"
 import { Separator } from "@/components/ui/separator"
 import { locales } from "@/data/locales"
@@ -24,7 +24,7 @@ interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
   id?: string,
-  save: (formData: FormSchema) => Promise<void>,
+  save: (formData: User) => Promise<void>,
   afterSave?: (success: boolean) => void
 }
 
@@ -37,9 +37,9 @@ export function EditDialog({
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
   const [enabledRoles, setEnabledRoles] = useState(Array<Option>)
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: initialFormState
+  const form = useForm<User>({
+    resolver: zodResolver(userSchema),
+    defaultValues: initialUserState
   })
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export function EditDialog({
     if(id) {
       // update form data on every dialog open
       UserService.findById(id).then(r => {
-        form.reset(merge(r.data, initialFormState))
+        form.reset(merge(r.data, initialUserState))
       })
     }
   }, [open])

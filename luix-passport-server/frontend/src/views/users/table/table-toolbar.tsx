@@ -5,7 +5,7 @@ import InputFormField from "@/components/custom/form-field/input"
 import { Button } from "@/components/custom/button"
 import { IconPlus, IconFilterSearch } from "@tabler/icons-react"
 import { EditDialog } from "../dialog/edit-dialog"
-import { type FormSchema, type CriteriaSchema, criteriaSchema, initialCriteriaState } from "./table-schema"
+import { type User, type UserCriteriaSchema, userCriteriaSchema, initialUserCriteriaState } from "@/domains/user"
 import {
   Form,
   FormControl,
@@ -29,8 +29,8 @@ import {
 
 interface DataTableToolbarProps{
   entityName: string,
-  loadPage: (pageNo: number | undefined, pageSize: number | undefined, sorts: Array<string> | undefined, criteria: CriteriaSchema) => void,
-  save: (formData: FormSchema) => Promise<void>
+  loadPage: (pageNo: number | undefined, pageSize: number | undefined, sorts: Array<string> | undefined, criteria: UserCriteriaSchema) => void,
+  save: (formData: User) => Promise<void>
 }
 
 export function DataTableToolbar ({
@@ -39,12 +39,12 @@ export function DataTableToolbar ({
   save
 }: DataTableToolbarProps) {
   const [isFilterPopoverOpen, setIsFilterPopoverOpen] = useState(false)
-  const form = useForm<CriteriaSchema>({
-    resolver: zodResolver(criteriaSchema),
-    defaultValues: initialCriteriaState
+  const form = useForm<UserCriteriaSchema>({
+    resolver: zodResolver(userCriteriaSchema),
+    defaultValues: initialUserCriteriaState
   })
 
-  function onSubmit(formData: CriteriaSchema): void {
+  function onSubmit(formData: UserCriteriaSchema): void {
     loadPage(undefined, undefined, undefined, formData)
     setIsFilterPopoverOpen(false)
   }
