@@ -37,7 +37,7 @@ export function EditDialog({
       return
     }
     DataDictService.findAll(true).then(function (res) {
-      const options = Array.from(new Set(res.data.map((item: any) => item.categoryCode))).map(code => ({ label: code, value: code }))
+      const options = Array.from(new Set(res.data.map((item: DataDict) => item.categoryCode))).map(code => ({ label: code, value: code }))
       setCategoryCodeOptions(options)
     })
     if(id) {
