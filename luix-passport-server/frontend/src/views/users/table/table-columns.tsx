@@ -19,9 +19,9 @@ import { DateTime } from "@/components/custom/date-time"
 
 export function tableColumns(
   entityName: string,
-  save: (formData: any) => Promise<void>,
-  deleteRow: (row: any) => Promise<void>,
-  resetPassword: (row: any) => Promise<void>
+  save: (formData: FormSchema) => Promise<void>,
+  deleteRow: (row: FormSchema) => Promise<void>,
+  resetPassword: (row: FormSchema) => Promise<void>
 ): ColumnDef<FormSchema>[] {
 
   function clickResetYes(row: FormSchema): void {

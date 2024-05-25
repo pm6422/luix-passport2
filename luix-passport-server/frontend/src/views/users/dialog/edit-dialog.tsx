@@ -5,11 +5,13 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
+import { type Option } from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
 import SelectFormField from "@/components/custom/form-field/select"
 import PhoneInputFormField from "@/components/custom/form-field/phone-input"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
+import { type DataDict } from "@/domains/data-dict"
 import { Separator } from "@/components/ui/separator"
 import { locales } from "@/data/locales"
 import { timeZones } from "@/data/time-zones"
@@ -34,7 +36,7 @@ export function EditDialog({
   afterSave
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
-  const [enabledRoles, setEnabledRoles] = useState(Array<any>)
+  const [enabledRoles, setEnabledRoles] = useState(Array<Option>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
@@ -45,7 +47,7 @@ export function EditDialog({
       return
     }
     DataDictService.lookup("role", true).then(r => {
-      setEnabledRoles(r.data.map((item: any) => ({label: item.dictCode, value: item.dictCode})))
+      setEnabledRoles(r.data.map((item: DataDict) => ({label: item.dictCode, value: item.dictCode})))
     })
     if(id) {
       // update form data on every dialog open
