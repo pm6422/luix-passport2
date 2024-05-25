@@ -11,7 +11,7 @@ import { IconX, IconCirclePlus } from "@tabler/icons-react"
 import { FormLabel, FormDescription } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import SwitchFormField from "@/components/custom/form-field/switch"
-import { type FormSchema, formSchema, initialFormState } from "../table/table-schema"
+import { type Auth2Client, auth2ClientSchema, initialAuth2ClientState } from "../../../domains/auth2-client"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
 
@@ -19,7 +19,7 @@ interface EditDialogProps {
   children: React.ReactNode,
   entityName: string,
   id?: string,
-  save: (formData: FormSchema) => Promise<any>,
+  save: (formData: Auth2Client) => Promise<any>,
   afterSave?: (success: boolean) => void
 }
 
@@ -34,9 +34,9 @@ export function EditDialog({
   const [authenticationMethodOptions, setAuthenticationMethodOptions] = useState(Array<Option>)
   const [grantTypeOptions, setGrantTypeOptions] = useState(Array<Option>)
   const [scopeOptions, setScopeOptions] = useState(Array<Option>)
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-    defaultValues: initialFormState
+  const form = useForm<Auth2Client>({
+    resolver: zodResolver(auth2ClientSchema),
+    defaultValues: initialAuth2ClientState
   })
 
   const { 
@@ -78,7 +78,7 @@ export function EditDialog({
     if(id) {
       // update form data on every dialog open
       Oauth2ClientService.findById(id).then(r => {
-        form.reset(merge(r.data, initialFormState))
+        form.reset(merge(r.data, initialAuth2ClientState))
       })
     }
   }, [open])

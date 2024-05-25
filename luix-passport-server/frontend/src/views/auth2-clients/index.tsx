@@ -3,7 +3,7 @@ import { LayoutBody } from "@/layouts/layout-definitions"
 import { DataTableToolbar } from "./table/table-toolbar"
 import { DataTable } from "@/components/custom/data-table/client-pagination-data-table"
 import { tableColumns } from "./table/table-columns"
-import { type FormSchema, type CriteriaSchema } from "./table/table-schema"
+import { type Auth2Client, type Auth2ClientCriteriaSchema } from "@/domains/auth2-client"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { filterTable } from "@/libs/utils"
 
@@ -16,7 +16,7 @@ export default function DataDict() {
     loadPage()
   }, [])
 
-  function loadPage(criteria: CriteriaSchema = {}): void {
+  function loadPage(criteria: Auth2ClientCriteriaSchema = {}): void {
     if(criteria.keyword && tableData.length) {
       setTableData(filterTable(tableData, criteria.keyword))
       return
@@ -26,7 +26,7 @@ export default function DataDict() {
     })
   }
 
-  function save(formData: FormSchema): Promise<void> {
+  function save(formData: Auth2Client): Promise<void> {
     const res = formData.id ? Oauth2ClientService.update(formData) : Oauth2ClientService.create(formData)
     res.then(() => {
       loadPage()
@@ -34,7 +34,7 @@ export default function DataDict() {
     return res
   }
 
-  function deleteRow(row: FormSchema): Promise<void> {
+  function deleteRow(row: Auth2Client): Promise<void> {
     if(!row.id) {
       return Promise.reject("Invalid empty id")
     }
@@ -43,7 +43,7 @@ export default function DataDict() {
     })
   }
 
-  function deleteRows(rows: Array<FormSchema>): Promise<Array<void>> {
+  function deleteRows(rows: Array<Auth2Client>): Promise<Array<void>> {
     return Promise.all(rows.map(deleteRow))
   }
 

@@ -5,14 +5,14 @@ import { DataTableColumnHeader } from "@/components/custom/data-table/data-table
 import { DataTableRowActions } from "@/components/custom/data-table/data-table-row-actions"
 import { Button } from "@/components/custom/button"
 import { yesNo } from "@/data/yes-no"
-import { FormSchema } from "./table-schema"
+import { Auth2Client } from "@/domains/auth2-client"
 import { EditDialog } from "../dialog/edit-dialog"
 
 export function tableColumns(
   entityName: string,
-  save: (formData: FormSchema) => Promise<void>,
-  deleteRow: (row: FormSchema) => Promise<void>,
-): ColumnDef<FormSchema>[] {
+  save: (formData: Auth2Client) => Promise<void>,
+  deleteRow: (row: Auth2Client) => Promise<void>,
+): ColumnDef<Auth2Client>[] {
   return [
     {
       id: "select",

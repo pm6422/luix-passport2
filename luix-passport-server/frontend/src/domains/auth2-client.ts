@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const formSchema = z.object({
+export const auth2ClientSchema = z.object({
   id: z.string().optional(),
   clientId: z.string().trim().min(1, { message: "Required" }),
   clientName: z.string().trim().min(1, { message: "Required" }),
@@ -17,9 +17,9 @@ export const formSchema = z.object({
   enabled: z.boolean().optional(),
 })
 
-export type FormSchema = z.infer<typeof formSchema>
+export type Auth2Client = z.infer<typeof auth2ClientSchema>
 
-export const initialFormState: FormSchema = {
+export const initialAuth2ClientState: Auth2Client = {
   id: "",
   clientId: "",
   clientName: "",
@@ -35,12 +35,12 @@ export const initialFormState: FormSchema = {
   clientSecretExpiresAt: "",
   enabled: true
 }
-export const criteriaSchema = z.object({
+export const auth2ClientCriteriaSchema = z.object({
   keyword: z.string().optional(),
 })
 
-export type CriteriaSchema = z.infer<typeof criteriaSchema>
+export type Auth2ClientCriteriaSchema = z.infer<typeof auth2ClientCriteriaSchema>
 
-export const initialCriteriaState: CriteriaSchema = {
+export const initialAuth2ClientCriteriaState: Auth2ClientCriteriaSchema = {
   keyword: ""
 }
