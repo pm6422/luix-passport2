@@ -5,6 +5,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
+import { type Option } from "@/components/custom/form-field/combobox"
 import SwitchFormField from "@/components/custom/form-field/switch"
 import { type DataDict, dataDictSchema, initialDataDictState } from "@/domains/data-dict"
 import { DataDictService } from "@/services/data-dict-service"
@@ -26,7 +27,7 @@ export function EditDialog({
   afterSave
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
-  const [categoryCodeOptions, setCategoryCodeOptions] = useState(Array<any>)
+  const [categoryCodeOptions, setCategoryCodeOptions] = useState(Array<Option>)
   const form = useForm<DataDict>({
     resolver: zodResolver(dataDictSchema),
     defaultValues: initialDataDictState
@@ -37,7 +38,7 @@ export function EditDialog({
       return
     }
     DataDictService.findAll(true).then(function (res) {
-      const options = Array.from(new Set(res.data.map((item: DataDict) => item.categoryCode))).map(code => ({ label: code, value: code }))
+      const options: Array<Option> = Array.from(new Set<string>(res.data.map((item: DataDict) => item.categoryCode))).map(code => ({ label: code, value: code }))
       setCategoryCodeOptions(options)
     })
     if(id) {

@@ -4,16 +4,18 @@ import { RequiredFormLabel } from "../required-form-label"
 import Combobox from "@/components/custom/combobox"
 import { Key } from "react"
 
+export type Option = {
+  label: string
+  value: string
+  icon?: React.ComponentType<{ className?: string }>
+}
+
 interface Props<TFieldValues extends FieldValues> {
   control: Control<TFieldValues>
   name: keyof TFieldValues
   key?: Key
   label?: string
-  options: { 
-    label: string
-    value: string
-    icon?: React.ComponentType<{ className?: string }>
-  }[]
+  options: Array<Option>
   creatable?: boolean
   multiple?: boolean
   description?: string
