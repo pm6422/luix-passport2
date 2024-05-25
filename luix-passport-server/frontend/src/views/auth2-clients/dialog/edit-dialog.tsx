@@ -5,6 +5,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import SaveDialogContent from "@/components/custom/dialog/save-dialog-content"
 import InputFormField from "@/components/custom/form-field/input"
 import ComboboxFormField from "@/components/custom/form-field/combobox"
+import { type Option } from "@/components/custom/form-field/combobox"
 import { Button } from "@/components/custom/button"
 import { IconX, IconCirclePlus } from "@tabler/icons-react"
 import { FormLabel, FormDescription } from "@/components/ui/form"
@@ -30,9 +31,9 @@ export function EditDialog({
   afterSave
 }: EditDialogProps) {
   const [open, setOpen] = useState(false)
-  const [authenticationMethodOptions, setAuthenticationMethodOptions] = useState(Array<any>)
-  const [grantTypeOptions, setGrantTypeOptions] = useState(Array<any>)
-  const [scopeOptions, setScopeOptions] = useState(Array<any>)
+  const [authenticationMethodOptions, setAuthenticationMethodOptions] = useState(Array<Option>)
+  const [grantTypeOptions, setGrantTypeOptions] = useState(Array<Option>)
+  const [scopeOptions, setScopeOptions] = useState(Array<Option>)
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: initialFormState
