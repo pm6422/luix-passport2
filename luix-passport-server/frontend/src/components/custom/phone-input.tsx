@@ -24,6 +24,7 @@ import {
 
 import { cn } from "@/libs/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { E164Number } from "libphonenumber-js/core";
 
 type PhoneInputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -52,7 +53,7 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> =
            *
            * @param {E164Number | undefined} value - The entered value
            */
-          onChange={(value) => onChange?.(value || "")}
+          onChange={(value: E164Number) => onChange?.(value)}
           {...props}
         />
       );
