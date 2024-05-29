@@ -115,6 +115,6 @@ public class AuthorizationServerApplicationTests {
 
         assertThat(usernameInput).isNotNull();
         assertThat(passwordInput).isNotNull();
-        assertThat(signInButton.getTextContent()).isEqualTo("Sign in");
+        assertThat(signInButton.getTextContent().trim()).isEqualTo("Sign In");
     }
 }
