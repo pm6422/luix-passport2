@@ -3,6 +3,7 @@ package cn.luixtech.passport.server.service.impl;
 import cn.luixtech.passport.server.config.oauth.AuthUser;
 import cn.luixtech.passport.server.domain.User;
 import cn.luixtech.passport.server.domain.UserRole;
+import cn.luixtech.passport.server.statemachine.UserEvent;
 import cn.luixtech.passport.server.exception.UserNotActivatedException;
 import cn.luixtech.passport.server.persistence.Tables;
 import cn.luixtech.passport.server.pojo.ManagedUser;
@@ -11,6 +12,7 @@ import cn.luixtech.passport.server.repository.UserRepository;
 import cn.luixtech.passport.server.repository.UserRoleRepository;
 import cn.luixtech.passport.server.service.UserRoleService;
 import cn.luixtech.passport.server.service.UserService;
+import cn.luixtech.passport.server.statemachine.UserState;
 import cn.luixtech.passport.server.utils.AuthUtils;
 import com.luixtech.springbootframework.component.MessageCreator;
 import com.luixtech.uidgenerator.core.id.IdGenerator;
@@ -30,6 +32,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,9 +40,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.statemachine.StateMachine;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -69,14 +74,15 @@ import static org.apache.commons.lang3.time.DateFormatUtils.ISO_8601_EXTENDED_DA
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService, UserDetailsService {
-    private final PasswordEncoder    passwordEncoder;
-    private final DSLContext         dslContext;
-    private final UserRepository     userRepository;
-    private final UserRoleRepository userRoleRepository;
-    private final UserRoleService    userRoleService;
-    private final MessageCreator     messageCreator;
-    private final HttpServletRequest httpServletRequest;
-    private final Environment        env;
+    private final PasswordEncoder                    passwordEncoder;
+    private final DSLContext                         dslContext;
+    private final UserRepository                     userRepository;
+    private final UserRoleRepository                 userRoleRepository;
+    private final UserRoleService                    userRoleService;
+    private final MessageCreator                     messageCreator;
+    private final HttpServletRequest                 httpServletRequest;
+    private final Environment                        env;
+    private final StateMachine<UserState, UserEvent> stateMachine;
 
     @Override
     public UserDetails loadUserByUsername(final String loginName) {
@@ -85,8 +91,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             log.warn("Login name must not be empty!");
             throw new BadCredentialsException("Login name must not be empty");
         }
-        User user = findOne(loginName)
-                .orElseThrow(() -> new UsernameNotFoundException("User " + loginName + " was not found"));
+        User user = findOne(loginName).orElseThrow(() -> new UsernameNotFoundException("User " + loginName + " was not found"));
         if (!Boolean.TRUE.equals(user.getActivated())) {
             throw new UserNotActivatedException(loginName);
         }
@@ -95,10 +100,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         boolean passwordNonExpired = user.getPasswordExpiresAt() == null || LocalDateTime.now().isBefore(user.getPasswordExpiresAt());
 
         Set<String> roles = findRoles(user.getId());
-        List<GrantedAuthority> authorities = roles
-                .stream()
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+        List<GrantedAuthority> authorities = roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
         Set<String> teamIds = findOrgIds(user.getId());
 
         String modifiedTime = ISO_8601_EXTENDED_DATETIME_TIME_ZONE_FORMAT.format(user.getModifiedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
@@ -107,10 +109,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (httpServletRequest != null) {
             photoUrl = getRequestUrl(httpServletRequest) + USER_PHOTO_URL + JasyptEncryptUtils.encrypt(user.getId(), DEFAULT_ALGORITHM, USER_PHOTO_TOKEN_KEY);
         }
-        return new AuthUser(user.getId(), user.getUsername(),
-                user.getEmail(), user.getMobileNo(), user.getFirstName(), user.getLastName(), user.getPasswordHash(),
-                user.getEnabled(), accountNonExpired, passwordNonExpired,
-                true, photoUrl, user.getLocale(), modifiedTime, authorities, roles, teamIds);
+        return new AuthUser(user.getId(), user.getUsername(), user.getEmail(), user.getMobileNo(), user.getFirstName(), user.getLastName(), user.getPasswordHash(), user.getEnabled(), accountNonExpired, passwordNonExpired, true, photoUrl, user.getLocale(), modifiedTime, authorities, roles, teamIds);
     }
 
     @Override
@@ -144,26 +143,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Set<String> findRoles(String userId) {
-        return dslContext.select(Tables.USER_ROLE.ROLE)
-                .from(Tables.USER_ROLE)
-                .where(Tables.USER_ROLE.USER_ID.eq(userId))
-                .fetchSet(Tables.USER_ROLE.ROLE);
+        return dslContext.select(Tables.USER_ROLE.ROLE).from(Tables.USER_ROLE).where(Tables.USER_ROLE.USER_ID.eq(userId)).fetchSet(Tables.USER_ROLE.ROLE);
     }
 
     @Override
     public Set<String> findOrgIds(String userId) {
-        return dslContext.select(Tables.ORG_USER.ORG_ID)
-                .from(Tables.ORG_USER)
-                .where(Tables.ORG_USER.USER_ID.eq(userId))
-                .fetchSet(Tables.ORG_USER.ORG_ID);
+        return dslContext.select(Tables.ORG_USER.ORG_ID).from(Tables.ORG_USER).where(Tables.ORG_USER.USER_ID.eq(userId)).fetchSet(Tables.ORG_USER.ORG_ID);
     }
 
     @Override
     public Set<String> findPermissions(String userId) {
-        return dslContext.select(Tables.USER_PERMISSION.PERMISSION)
-                .from(Tables.USER_PERMISSION)
-                .where(Tables.USER_PERMISSION.USER_ID.eq(userId))
-                .fetchSet(Tables.USER_PERMISSION.PERMISSION);
+        return dslContext.select(Tables.USER_PERMISSION.PERMISSION).from(Tables.USER_PERMISSION).where(Tables.USER_PERMISSION.USER_ID.eq(userId)).fetchSet(Tables.USER_PERMISSION.PERMISSION);
     }
 
     @Override
@@ -202,6 +192,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
 
         userRepository.save(domain);
+        stateMachine.startReactively().block();
         log.info("Created user: {}", domain);
 
         List<UserRole> userAuthorities = userRoleService.generate(id, authorities);
@@ -314,6 +305,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setActivated(true);
         user.setActivationCode(null);
         userRepository.save(user);
+        stateMachine.sendEvent(Mono.just(MessageBuilder.withPayload(UserEvent.ACTIVATE).build()));
         log.info("Activated user by activation code {}", activationCode);
     }
 
@@ -339,21 +331,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public String generateRandomCode() {
-        return RandomStringUtils.randomAlphanumeric(4).toUpperCase() +
-                "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
-                + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
-                + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase()
-                + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase();
+        return RandomStringUtils.randomAlphanumeric(4).toUpperCase() + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase() + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase() + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase() + "-" + RandomStringUtils.randomAlphanumeric(4).toUpperCase();
     }
 
     @Override
     public String generateRandomVerificationCode() {
-        return RandomStringUtils.randomAlphabetic(1).toUpperCase()
-                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
-                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
-                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
-                + RandomStringUtils.randomAlphabetic(1).toUpperCase()
-                + RandomStringUtils.randomAlphabetic(1).toUpperCase();
+        return RandomStringUtils.randomAlphabetic(1).toUpperCase() + RandomStringUtils.randomAlphabetic(1).toUpperCase() + RandomStringUtils.randomAlphabetic(1).toUpperCase() + RandomStringUtils.randomAlphabetic(1).toUpperCase() + RandomStringUtils.randomAlphabetic(1).toUpperCase() + RandomStringUtils.randomAlphabetic(1).toUpperCase();
     }
 
     @Override
