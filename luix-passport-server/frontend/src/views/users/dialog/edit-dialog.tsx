@@ -49,12 +49,9 @@ export function EditDialog({
     DataDictService.lookup("role", true).then(r => {
       setEnabledRoles(r.data.map((item: DataDict) => ({label: item.dictCode, value: item.dictCode})))
     })
-    if(id) {
-      // update form data on every dialog open
-      UserService.findById(id).then(r => {
-        form.reset(merge(r.data, initialUserState))
-      })
-    }
+    id && UserService.findById(id).then(r => {
+      form.reset(merge(r.data, initialUserState))
+    })
   }, [open])
 
   return (

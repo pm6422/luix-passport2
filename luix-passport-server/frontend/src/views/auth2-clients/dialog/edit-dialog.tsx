@@ -75,12 +75,9 @@ export function EditDialog({
       const options = res.data.map((item: string) => ({ label: item, value: item }))
       setScopeOptions(options)
     })
-    if(id) {
-      // update form data on every dialog open
-      Oauth2ClientService.findById(id).then(r => {
-        form.reset(merge(r.data, initialAuth2ClientState))
-      })
-    }
+    id && Oauth2ClientService.findById(id).then(r => {
+      form.reset(merge(r.data, initialAuth2ClientState))
+    })
   }, [open])
 
   return (

@@ -41,12 +41,9 @@ export function EditDialog({
       const options: Array<Option> = Array.from(new Set<string>(res.data.map((item: DataDict) => item.categoryCode))).map(code => ({ label: code, value: code }))
       setCategoryCodeOptions(options)
     })
-    if(id) {
-      // update form data on every dialog open
-      DataDictService.findById(id).then(r => {
-        form.reset(merge(r.data, initialDataDictState))
-      })
-    }
+    id && DataDictService.findById(id).then(r => {
+      form.reset(merge(r.data, initialDataDictState))
+    })
   }, [open])
 
   return (
