@@ -30,15 +30,15 @@ export class Oauth2ClientService {
     return http.delete("api/oauth2-clients/" + id)
   }
 
-  public static findClientAuthenticationMethods(): Promise<any> {
+  public static findClientAuthenticationMethods(): Promise<AxiosResponse<Array<string>>> {
     return http.get("api/oauth2-clients/client-authentication-methods")
   }
 
-  public static findAuthorizationGrantTypes(): Promise<any> {
+  public static findAuthorizationGrantTypes(): Promise<AxiosResponse<Array<string>>> {
     return http.get("api/oauth2-clients/authorization-grant-types")
   }
 
-  public static findScopes(): Promise<any> {
+  public static findScopes(): Promise<AxiosResponse<Array<string>>> {
     return http.get("api/oauth2-clients/scopes")
   }
 }

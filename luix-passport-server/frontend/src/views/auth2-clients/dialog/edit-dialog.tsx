@@ -11,7 +11,7 @@ import { IconX, IconCirclePlus } from "@tabler/icons-react"
 import { FormLabel, FormDescription } from "@/components/ui/form"
 import { RequiredFormLabel } from "@/components/custom/required-form-label"
 import SwitchFormField from "@/components/custom/form-field/switch"
-import { type Auth2Client, auth2ClientSchema, initialAuth2ClientState } from "../../../domains/auth2-client"
+import { type Auth2Client, auth2ClientSchema, initialAuth2ClientState } from "@/domains/auth2-client.ts"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
 
@@ -64,15 +64,15 @@ export function EditDialog({
       return
     }
     Oauth2ClientService.findClientAuthenticationMethods().then(function (res) {
-      const options = res.data.map((item: any) => ({ label: item, value: item }))
+      const options = res.data.map((item: string) => ({ label: item, value: item }))
       setAuthenticationMethodOptions(options)
     })
     Oauth2ClientService.findAuthorizationGrantTypes().then(function (res) {
-      const options = res.data.map((item: any) => ({ label: item, value: item }))
+      const options = res.data.map((item: string) => ({ label: item, value: item }))
       setGrantTypeOptions(options)
     })
     Oauth2ClientService.findScopes().then(function (res) {
-      const options = res.data.map((item: any) => ({ label: item, value: item }))
+      const options = res.data.map((item: string) => ({ label: item, value: item }))
       setScopeOptions(options)
     })
     if(id) {
