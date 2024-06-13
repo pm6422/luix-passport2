@@ -6,7 +6,7 @@ export class UserService {
   constructor() {
   }
 
-  public static find(reqParams: any): Promise<any> {
+  public static find(reqParams: object): Promise<any> {
     return http.get("api/users", { params: reqParams })
   }
 

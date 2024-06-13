@@ -6,7 +6,7 @@ export class DataDictService {
   constructor() {
   }
 
-  public static find(reqParams: any): Promise<any> {
+  public static find(reqParams: object): Promise<any> {
     return http.get("api/data-dicts", { params: reqParams })
   }
 
