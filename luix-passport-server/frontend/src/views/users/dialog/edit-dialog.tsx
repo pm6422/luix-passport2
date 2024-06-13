@@ -72,7 +72,7 @@ export function EditDialog({
             label="Username"
             formItemClassName="w-full"
             required 
-            disabled={id ? true : false}
+            disabled={!!id}
           />
         </div>
 

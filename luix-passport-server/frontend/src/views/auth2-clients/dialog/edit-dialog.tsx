@@ -91,7 +91,7 @@ export function EditDialog({
           name="clientId" 
           label="Client ID" 
           required 
-          disabled={id ? true : false}
+          disabled={!!id}
         />
 
         <InputFormField 
