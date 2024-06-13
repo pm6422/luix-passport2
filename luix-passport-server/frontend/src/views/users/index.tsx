@@ -31,11 +31,9 @@ export default function DataDict() {
   }
 
   function save(formData: User): Promise<void> {
-    const res = formData.id ? UserService.update(formData) : UserService.create(formData)
-    res.then(() => {
+    return UserService.save(formData).then(() => {
       loadPage()
     })
-    return res
   }
 
   function deleteRow(row: User): Promise<void> {

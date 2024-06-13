@@ -27,11 +27,9 @@ export default function DataDict() {
   }
 
   function save(formData: Auth2Client): Promise<void> {
-    const res = formData.id ? Oauth2ClientService.update(formData) : Oauth2ClientService.create(formData)
-    res.then(() => {
+    return Oauth2ClientService.save(formData).then(() => {
       loadPage()
     })
-    return res
   }
 
   function deleteRow(row: Auth2Client): Promise<void> {

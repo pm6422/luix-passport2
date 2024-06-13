@@ -31,11 +31,9 @@ export default function DataDict() {
   }
 
   function save(formData: DataDict): Promise<void> {
-    const res = formData.id ? DataDictService.update(formData) : DataDictService.create(formData)
-    res.then(() => {
+    return DataDictService.save(formData).then(() => {
       loadPage()
     })
-    return res
   }
 
   function upload(formData: UploadFormSchema): Promise<Array<void>> {

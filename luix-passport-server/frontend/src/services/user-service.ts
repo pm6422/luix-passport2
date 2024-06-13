@@ -25,6 +25,10 @@ export class UserService {
     return http.put("api/users", model)
   }
 
+  public static save(model: User): Promise<void> {
+    return model.id ? this.create(model) : this.update(model)
+  }
+
   public static deleteById(id: string): Promise<void> {
     return http.delete("api/users/" + id)
   }
