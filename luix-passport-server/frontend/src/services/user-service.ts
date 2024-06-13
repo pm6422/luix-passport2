@@ -1,5 +1,6 @@
 import http from "@/axios"
 import { type User } from "@/domains/user"
+import {AxiosResponse} from "axios";
 
 export class UserService {
   constructor() {
@@ -13,7 +14,7 @@ export class UserService {
     return http.get("api/users", { params: { page: 0, size: 2000, enabled: enabled }})
   }
 
-  public static findById(id: string): Promise<any> {
+  public static findById(id: string): Promise<AxiosResponse<User>> {
     return http.get("api/users/" + id)
   }
 

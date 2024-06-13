@@ -1,5 +1,6 @@
 import http from "@/axios"
 import { type DataDict } from "@/domains/data-dict"
+import {AxiosResponse} from "axios";
 
 export class DataDictService {
   constructor() {
@@ -17,7 +18,7 @@ export class DataDictService {
     return http.get("api/data-dicts", { params: { page: 0, size: 2000, categoryCode: categoryCode, enabled: enabled }})
   }
 
-  public static findById(id: string): Promise<any> {
+  public static findById(id: string): Promise<AxiosResponse<DataDict>> {
     return http.get("api/data-dicts/" + id)
   }
 

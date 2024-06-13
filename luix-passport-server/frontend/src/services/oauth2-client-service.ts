@@ -1,5 +1,6 @@
 import http from "@/axios"
 import { type Auth2Client } from "@/domains/auth2-client"
+import {AxiosResponse} from "axios";
 
 export class Oauth2ClientService {
   constructor() {
@@ -9,7 +10,7 @@ export class Oauth2ClientService {
     return http.get("api/oauth2-clients", { params: { page: 0, size: 2000, enabled: enabled } })
   }
 
-  public static findById(id: string): Promise<any> {
+  public static findById(id: string): Promise<AxiosResponse<Auth2Client>> {
     return http.get("api/oauth2-clients/" + id)
   }
 
