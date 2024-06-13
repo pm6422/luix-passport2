@@ -6,7 +6,7 @@ export class Oauth2ClientService {
   constructor() {
   }
 
-  public static findAll(enabled: boolean | null = null): Promise<any> {
+  public static findAll(enabled: boolean | null = null): Promise<AxiosResponse<Array<Auth2Client>>> {
     return http.get("api/oauth2-clients", { params: { page: 0, size: 2000, enabled: enabled } })
   }
 
@@ -23,7 +23,7 @@ export class Oauth2ClientService {
   }
 
   public static save(model: Auth2Client): Promise<void> {
-    return model.id ? this.create(model) : this.update(model)
+    return model.id ? this.update(model) : this.create(model)
   }
 
   public static deleteById(id: string): Promise<void> {

@@ -31,7 +31,7 @@ export class DataDictService {
   }
 
   public static save(model: DataDict): Promise<void> {
-    return model.id ? this.create(model) : this.update(model)
+    return model.id ? this.update(model) : this.create(model)
   }
 
   public static deleteById(id: string): Promise<void> {

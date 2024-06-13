@@ -6,11 +6,11 @@ export class UserService {
   constructor() {
   }
 
-  public static find(reqParams: object): Promise<any> {
+  public static find(reqParams: object): Promise<AxiosResponse<Array<User>>> {
     return http.get("api/users", { params: reqParams })
   }
 
-  public static findAll(enabled: boolean | null = null): Promise<any> {
+  public static findAll(enabled: boolean | null = null): Promise<AxiosResponse<Array<User>>> {
     return http.get("api/users", { params: { page: 0, size: 2000, enabled: enabled }})
   }
 
@@ -27,7 +27,7 @@ export class UserService {
   }
 
   public static save(model: User): Promise<void> {
-    return model.id ? this.create(model) : this.update(model)
+    return model.id ? this.update(model) : this.create(model)
   }
 
   public static deleteById(id: string): Promise<void> {

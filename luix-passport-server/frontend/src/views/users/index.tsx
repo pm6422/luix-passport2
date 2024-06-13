@@ -9,7 +9,7 @@ import { UserService } from "@/services/user-service"
 export default function DataDict() {
   // State to hold the fetched data
   const entityName = "user"
-  const [tableData, setTableData] = useState([])
+  const [tableData, setTableData] = useState([] as Array<User>)
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 

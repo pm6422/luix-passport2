@@ -10,7 +10,7 @@ import { filterTable } from "@/libs/utils"
 export default function DataDict() {
   // State to hold the fetched data
   const entityName = "oauth2 client"
-  const [tableData, setTableData] = useState([])
+  const [tableData, setTableData] = useState([] as Array<Auth2Client>)
 
   useEffect(() => {
     loadPage()
