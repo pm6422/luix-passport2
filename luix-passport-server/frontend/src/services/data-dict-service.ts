@@ -14,7 +14,7 @@ export class DataDictService {
     return http.get("api/data-dicts", { params: { page: 0, size: 2000, enabled: enabled }})
   }
 
-  public static lookup(categoryCode: string, enabled: boolean | null = null): Promise<any> {
+  public static lookup(categoryCode: string, enabled: boolean | null = null): Promise<AxiosResponse<Array<DataDict>>> {
     return http.get("api/data-dicts", { params: { page: 0, size: 2000, categoryCode: categoryCode, enabled: enabled }})
   }
 
