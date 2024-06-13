@@ -34,11 +34,14 @@ export function EditDialog({
   })
 
   useEffect(() => {
+    if (!open) {
+      return
+    }
     DataDictService.findAll(true).then(function (res) {
       const options: Array<Option> = Array.from(new Set<string>(res.data.map((item: DataDict) => item.categoryCode))).map(code => ({ label: code, value: code }))
       setCategoryCodeOptions(options)
     })
-    open && id && DataDictService.findById(id).then(r => {
+    id && DataDictService.findById(id).then(r => {
       form.reset(merge(r.data, initialDataDictState))
     })
   }, [open])
