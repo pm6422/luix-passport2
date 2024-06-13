@@ -1,4 +1,5 @@
 import http from "@/axios"
+import { type Auth2Client } from "@/domains/auth2-client"
 
 export class Oauth2ClientService {
   constructor() {
@@ -12,15 +13,15 @@ export class Oauth2ClientService {
     return http.get("api/oauth2-clients/" + id)
   }
 
-  public static create(model: any): Promise<any> {
+  public static create(model: Auth2Client): Promise<void> {
     return http.post("api/oauth2-clients", model)
   }
 
-  public static update(model: any): Promise<any> {
+  public static update(model: Auth2Client): Promise<void> {
     return http.put("api/oauth2-clients", model)
   }
 
-  public static deleteById(id: string): Promise<any> {
+  public static deleteById(id: string): Promise<void> {
     return http.delete("api/oauth2-clients/" + id)
   }
 

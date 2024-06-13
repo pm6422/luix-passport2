@@ -1,5 +1,5 @@
 import http from "@/axios"
-// import { type FormSchema } from "@/views/developer/data-dicts/table/table-schema"
+import { type DataDict } from "@/domains/data-dict"
 
 export class DataDictService {
   constructor() {
@@ -21,11 +21,11 @@ export class DataDictService {
     return http.get("api/data-dicts/" + id)
   }
 
-  public static create(model: any): Promise<void> {
+  public static create(model: DataDict): Promise<void> {
     return http.post("api/data-dicts", model)
   }
 
-  public static update(model: any): Promise<void> {
+  public static update(model: DataDict): Promise<void> {
     return http.put("api/data-dicts", model)
   }
 
