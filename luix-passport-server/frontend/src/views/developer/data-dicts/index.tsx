@@ -10,7 +10,7 @@ import { type UploadFormSchema } from "@/components/custom/uploader/upload-dialo
 export default function DataDict() {
   // State to hold the fetched data
   const entityName = "data dictionary"
-  const [tableData, setTableData] = useState([])
+  const [tableData, setTableData] = useState([] as Array<DataDict>)
   const [totalCount, setTotalCount] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 

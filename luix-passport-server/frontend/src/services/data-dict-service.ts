@@ -6,11 +6,11 @@ export class DataDictService {
   constructor() {
   }
 
-  public static find(reqParams: object): Promise<any> {
+  public static find(reqParams: object): Promise<AxiosResponse<Array<DataDict>>> {
     return http.get("api/data-dicts", { params: reqParams })
   }
 
-  public static findAll(enabled: boolean | null = null): Promise<any> {
+  public static findAll(enabled: boolean | null = null): Promise<AxiosResponse<Array<DataDict>>> {
     return http.get("api/data-dicts", { params: { page: 0, size: 2000, enabled: enabled }})
   }
 
