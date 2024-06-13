@@ -43,16 +43,14 @@ export function EditDialog({
   })
 
   useEffect(() => {
-    if(!open) {
-      return
-    }
-    DataDictService.lookup("role", true).then(r => {
-      setEnabledRoles(r.data.map((item: DataDict) => ({label: item.dictCode, value: item.dictCode})))
-    })
-    id && UserService.findById(id).then(r => {
+    open && id && UserService.findById(id).then(r => {
       form.reset(merge(r.data, initialUserState))
     })
   }, [open])
+
+  DataDictService.lookup("role", true).then(r => {
+    setEnabledRoles(r.data.map((item: DataDict) => ({label: item.dictCode, value: item.dictCode})))
+  })
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

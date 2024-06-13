@@ -60,25 +60,23 @@ export function EditDialog({
   })
 
   useEffect(() => {
-    if(!open) {
-      return
-    }
-    Oauth2ClientService.findClientAuthenticationMethods().then(function (res) {
-      const options = res.data.map((item: string) => ({ label: item, value: item }))
-      setAuthenticationMethodOptions(options)
-    })
-    Oauth2ClientService.findAuthorizationGrantTypes().then(function (res) {
-      const options = res.data.map((item: string) => ({ label: item, value: item }))
-      setGrantTypeOptions(options)
-    })
-    Oauth2ClientService.findScopes().then(function (res) {
-      const options = res.data.map((item: string) => ({ label: item, value: item }))
-      setScopeOptions(options)
-    })
-    id && Oauth2ClientService.findById(id).then(r => {
+    open && id && Oauth2ClientService.findById(id).then(r => {
       form.reset(merge(r.data, initialAuth2ClientState))
     })
   }, [open])
+
+  Oauth2ClientService.findClientAuthenticationMethods().then(function (res) {
+    const options = res.data.map((item: string) => ({ label: item, value: item }))
+    setAuthenticationMethodOptions(options)
+  })
+  Oauth2ClientService.findAuthorizationGrantTypes().then(function (res) {
+    const options = res.data.map((item: string) => ({ label: item, value: item }))
+    setGrantTypeOptions(options)
+  })
+  Oauth2ClientService.findScopes().then(function (res) {
+    const options = res.data.map((item: string) => ({ label: item, value: item }))
+    setScopeOptions(options)
+  })
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
