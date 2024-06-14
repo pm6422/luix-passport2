@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, HTMLAttributes, Dispatch, SetStateAction } from "react"
 import { IconChevronsLeft, IconMenu2, IconX } from "@tabler/icons-react"
 import { Layout, LayoutHeader } from "../layouts/layout-definitions"
 import { Button } from "./custom/button"
@@ -7,9 +7,9 @@ import { useAppInfo } from "@/stores/app-info-provider"
 import SidebarMenu from "./sidebar-menu"
 import { cn } from "@/libs/utils"
 
-interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
+interface SidebarProps extends HTMLAttributes<HTMLElement> {
   isCollapsed: boolean
-  setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
+  setIsCollapsed: Dispatch<SetStateAction<boolean>>
 }
 
 export default function Sidebar2({
@@ -48,6 +48,7 @@ export default function Sidebar2({
           <div className={`flex items-center ${!isCollapsed ? "gap-2" : ""}`}>
             <img
               src="/favicon.svg"
+              alt="favicon"
               className="relative m-auto -intro-y"
               width={45}
               height={45}
@@ -58,6 +59,7 @@ export default function Sidebar2({
               <span className="flex justify-end text-[0.5rem]">{appInfo.ribbonProfile} env</span>
               <img
                   src="/assets/images/logos/logo-text.svg"
+                  alt="logo"
                   className="intro-y"
                   width={150}
                   height={50}

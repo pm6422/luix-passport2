@@ -1,3 +1,4 @@
+import { HTMLAttributes } from "react"
 import { Link } from "react-router-dom"
 import { IconChevronDown } from "@tabler/icons-react"
 import { Button, buttonVariants } from "./custom/button"
@@ -24,7 +25,7 @@ import useCheckActiveNav from "@/hooks/use-check-active-nav"
 import { SideLink } from "@/data/sidelinks"
 import { cn } from "@/libs/utils"
 
-interface NavProps extends React.HTMLAttributes<HTMLDivElement> {
+interface NavProps extends HTMLAttributes<HTMLDivElement> {
   isCollapsed: boolean
   links: SideLink[]
   closeNav: () => void
