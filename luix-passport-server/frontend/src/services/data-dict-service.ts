@@ -22,16 +22,8 @@ export class DataDictService {
     return http.get("api/data-dicts/" + id)
   }
 
-  public static create(model: DataDict): Promise<void> {
-    return http.post("api/data-dicts", model)
-  }
-
-  public static update(model: DataDict): Promise<void> {
-    return http.put("api/data-dicts", model)
-  }
-
   public static save(model: DataDict): Promise<void> {
-    return model.id ? this.update(model) : this.create(model)
+    return model.id ? http.put("api/data-dicts", model) : http.post("api/data-dicts", model)
   }
 
   public static deleteById(id: string): Promise<void> {
