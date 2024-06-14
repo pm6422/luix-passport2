@@ -1,4 +1,5 @@
-import {type Auth2Client} from "@/domains/auth2-client"
+import http from "@/axios"
+import { type Auth2Client } from "@/domains/auth2-client"
 import {AxiosResponse} from "axios";
 
 export class Oauth2ClientService {
@@ -6,30 +7,30 @@ export class Oauth2ClientService {
   }
 
   public static findAll(enabled: boolean | null = null): Promise<AxiosResponse<Array<Auth2Client>>> {
-    return instance.get("api/oauth2-clients", { params: { page: 0, size: 2000, enabled: enabled } })
+    return http.get("api/oauth2-clients", { params: { page: 0, size: 2000, enabled: enabled } })
   }
 
   public static findById(id: string): Promise<AxiosResponse<Auth2Client>> {
-    return instance.get("api/oauth2-clients/" + id)
+    return http.get("api/oauth2-clients/" + id)
   }
 
   public static save(model: Auth2Client): Promise<void> {
-    return model.id ? instance.put("api/oauth2-clients", model) : instance.post("api/oauth2-clients", model)
+    return model.id ? http.put("api/oauth2-clients", model) : http.post("api/oauth2-clients", model)
   }
 
   public static deleteById(id: string): Promise<void> {
-    return instance.delete("api/oauth2-clients/" + id)
+    return http.delete("api/oauth2-clients/" + id)
   }
 
   public static findClientAuthenticationMethods(): Promise<AxiosResponse<Array<string>>> {
-    return instance.get("api/oauth2-clients/client-authentication-methods")
+    return http.get("api/oauth2-clients/client-authentication-methods")
   }
 
   public static findAuthorizationGrantTypes(): Promise<AxiosResponse<Array<string>>> {
-    return instance.get("api/oauth2-clients/authorization-grant-types")
+    return http.get("api/oauth2-clients/authorization-grant-types")
   }
 
   public static findScopes(): Promise<AxiosResponse<Array<string>>> {
-    return instance.get("api/oauth2-clients/scopes")
+    return http.get("api/oauth2-clients/scopes")
   }
 }

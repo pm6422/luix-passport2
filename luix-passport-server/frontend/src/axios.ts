@@ -44,3 +44,7 @@ instance.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+const http = instance
+
+export default http
