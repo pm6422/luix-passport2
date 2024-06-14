@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, ReactNode } from "react"
 import {
   DialogContent,
   DialogHeader,
@@ -17,7 +17,7 @@ import { getErrorMessage } from "@/libs/handle-error"
 import { cn } from "@/libs/utils"
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   entityName: string;
   id?: string;
   form: UseFormReturn<any, any, any>;

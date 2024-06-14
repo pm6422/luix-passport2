@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, ReactNode } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
@@ -21,7 +21,7 @@ import { UserService } from "@/services/user-service"
 import { merge } from "@/libs/utils"
 
 interface EditDialogProps {
-  children: React.ReactNode,
+  children: ReactNode,
   entityName: string,
   id?: string,
   save: (formData: User) => Promise<void>,

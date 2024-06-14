@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, ReactNode } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm, useFieldArray } from "react-hook-form"
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
@@ -16,7 +16,7 @@ import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { merge } from "@/libs/utils"
 
 interface EditDialogProps {
-  children: React.ReactNode,
+  children: ReactNode,
   entityName: string,
   id?: string,
   save: (formData: Auth2Client) => Promise<any>,
