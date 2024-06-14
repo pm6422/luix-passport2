@@ -80,9 +80,7 @@ export function fromBase64(base64String: string, fileName: string) {
   const blob = new Blob(byteArrays, { type: "application/octet-stream" })
 
   // Convert Blob to File
-  const file = new File([blob], fileName, { type: blob.type })
-  
-  return file
+  return new File([blob], fileName, { type: blob.type })
 }
 
 
