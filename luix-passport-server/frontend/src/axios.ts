@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const TIMEOUT = 1 * 60 * 1000
+const TIMEOUT = 60 * 1000
 
 const instance = axios.create({
   paramsSerializer: { indexes: null }
@@ -23,7 +23,7 @@ instance.interceptors.response.use(
   function (response) {
     // Modify response data before resolving the promise
     if(response.request.responseURL.indexOf("/login") !== -1) {
-      // Redirect to login
+      // Redirect to login page
       window.location.href = "/login"
     }
     return response
@@ -44,7 +44,3 @@ instance.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
-export const http = instance
-
-export default http
