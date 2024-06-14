@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, HTMLAttributes, JSX } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { buttonVariants } from '@/components/custom/button'
 import {
@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/select'
 import { cn } from '@/libs/utils'
 
-interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
+interface SidebarNavProps extends HTMLAttributes<HTMLElement> {
   items: {
     href: string
     title: string
