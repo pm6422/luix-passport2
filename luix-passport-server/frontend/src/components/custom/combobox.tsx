@@ -265,7 +265,7 @@ const Combobox: React.ForwardRefRenderFunction<HTMLButtonElement, ComboboxProps>
             </CommandGroup>
             <CommandSeparator />
             <CommandGroup>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-2">
                 {selectedValues.length > 0 && (
                   <>
                     <CommandItem
