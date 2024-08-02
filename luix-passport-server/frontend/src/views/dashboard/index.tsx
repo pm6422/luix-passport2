@@ -16,10 +16,6 @@ import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { OrgService } from "@/services/org-service"
 import { SpringSessionService } from "@/services/spring-session-service"
 import { type SpringSession } from "@/domains/spring-session"
-import {DataDictService} from "@/services/data-dict-service.ts";
-import type {DataDict} from "@/domains/data-dict.ts";
-import {merge} from "@/libs/utils.ts";
-import {initialUserState} from "@/domains/user.ts";
 
 export default function Dashboard() {
   const [userCount, setUserCount] = useState(0)
