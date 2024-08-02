@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { useState } from "react"
+import {useEffect, useState} from "react"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { LayoutBody } from "@/layouts/layout-definitions"
 import { RecentSales } from "./components/recent-sales"
@@ -14,23 +14,36 @@ import { IconUsers, IconShieldCheckered, IconVector, IconUserPlus } from "@table
 import { UserService } from "@/services/user-service"
 import { Oauth2ClientService } from "@/services/oauth2-client-service"
 import { OrgService } from "@/services/org-service"
+import { SpringSessionService } from "@/services/spring-session-service"
+import { type SpringSession } from "@/domains/spring-session"
+import {DataDictService} from "@/services/data-dict-service.ts";
+import type {DataDict} from "@/domains/data-dict.ts";
+import {merge} from "@/libs/utils.ts";
+import {initialUserState} from "@/domains/user.ts";
 
 export default function Dashboard() {
   const [userCount, setUserCount] = useState(0)
   const [oauth2ClientCount, setOauth2ClientCount] = useState(0)
   const [orgCount, setOrgCount] = useState(0)
+  const [springSessions, setSpringSessions] = useState([] as Array<SpringSession>)
 
-  UserService.count().then(r => {
-    setUserCount(r.data)
-  })
+  useEffect(() => {
+    UserService.count().then(r => {
+      setUserCount(r.data)
+    })
 
-  Oauth2ClientService.count().then(r => {
-    setOauth2ClientCount(r.data)
-  })
+    Oauth2ClientService.count().then(r => {
+      setOauth2ClientCount(r.data)
+    })
 
-  OrgService.count().then(r => {
-    setOrgCount(r.data)
-  })
+    OrgService.count().then(r => {
+      setOrgCount(r.data)
+    })
+
+    SpringSessionService.findAll().then(r => {
+      setSpringSessions(r.data)
+    })
+  }, [])
 
   return (
     <LayoutBody className="space-y-4">
