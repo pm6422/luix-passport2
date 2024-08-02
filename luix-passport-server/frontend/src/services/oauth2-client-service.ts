@@ -1,6 +1,6 @@
 import http from "@/axios"
 import { type Auth2Client } from "@/domains/auth2-client"
-import {AxiosResponse} from "axios";
+import { AxiosResponse } from "axios"
 
 export class Oauth2ClientService {
   constructor() {
@@ -32,5 +32,9 @@ export class Oauth2ClientService {
 
   public static findScopes(): Promise<AxiosResponse<Array<string>>> {
     return http.get("api/oauth2-clients/scopes")
+  }
+
+  public static count(): Promise<AxiosResponse<number>> {
+    return http.get("api/oauth2-clients/count")
   }
 }

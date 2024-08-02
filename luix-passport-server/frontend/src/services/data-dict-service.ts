@@ -1,6 +1,6 @@
 import http from "@/axios"
 import { type DataDict } from "@/domains/data-dict"
-import {AxiosResponse} from "axios";
+import {AxiosResponse} from "axios"
 
 export class DataDictService {
   constructor() {

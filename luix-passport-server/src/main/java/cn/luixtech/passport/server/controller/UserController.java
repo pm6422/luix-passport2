@@ -125,4 +125,10 @@ public class UserController {
         HttpHeaders headers = httpHeaderCreator.createSuccessHeader("NM1011", applicationProperties.getAccount().getDefaultPassword());
         return ResponseEntity.ok().headers(headers).build();
     }
+
+    @Operation(summary = "count enabled users")
+    @GetMapping("/api/users/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(userRepository.count());
+    }
 }

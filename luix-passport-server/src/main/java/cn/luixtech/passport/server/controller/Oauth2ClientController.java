@@ -139,4 +139,10 @@ public class Oauth2ClientController {
         sets.add("external:write");
         return ResponseEntity.ok(sets);
     }
+
+    @Operation(summary = "count enabled oauth 2 registered clients")
+    @GetMapping("/api/oauth2-clients/count")
+    public ResponseEntity<Long> count() {
+        return ResponseEntity.ok(oauth2RegisteredClientRepository.count());
+    }
 }

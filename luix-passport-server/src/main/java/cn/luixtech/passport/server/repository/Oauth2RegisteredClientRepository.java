@@ -13,4 +13,6 @@ import java.util.List;
 public interface Oauth2RegisteredClientRepository extends JpaRepository<Oauth2RegisteredClient, String> {
 
     List<Oauth2RegisteredClient> findByClientId(String clientId);
+
+    Long countByEnabledIsTrue();
 }

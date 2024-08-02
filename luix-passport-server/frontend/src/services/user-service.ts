@@ -1,6 +1,6 @@
 import http from "@/axios"
 import { type User } from "@/domains/user"
-import {AxiosResponse} from "axios";
+import { AxiosResponse } from "axios"
 
 export class UserService {
   constructor() {
@@ -28,5 +28,9 @@ export class UserService {
 
   public static resetPassword(id: string): Promise<void> {
     return http.put("api/users/reset-password/" + id)
+  }
+
+  public static count(): Promise<AxiosResponse<number>> {
+    return http.get("api/users/count")
   }
 }
