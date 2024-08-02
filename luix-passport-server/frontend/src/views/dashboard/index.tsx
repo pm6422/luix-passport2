@@ -1,7 +1,7 @@
 import {
   Card,
   CardContent,
-  CardDescription,
+  // CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -112,9 +112,9 @@ export default function Dashboard() {
             <Card className="col-span-1 lg:col-span-3">
               <CardHeader>
                 <CardTitle>Recent Login</CardTitle>
-                <CardDescription>
-                  You made 265 sales this month.
-                </CardDescription>
+                {/*<CardDescription>*/}
+                {/*  You made 265 sales this month.*/}
+                {/*</CardDescription>*/}
               </CardHeader>
               <CardContent>
                 <RecentSales />
